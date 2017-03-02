@@ -2,19 +2,25 @@ var express = require('express'),
     jwt = require('express-jwt'),
     config = require('../config'),
     db = require('../db');
+
 var app = module.exports = express.Router();
+
+
 var jwtCheck = jwt({
     secret: config.secretKey
 });
 
+
+// app.use('/', jwtCheck);
+
 app.get('/', function(req, res) {
     if (req.query['name']) {
-        db.get().query('SELECT ID, Name from Vols WHERE deleted = 0 AND Name = ?', [req.query['name']], function(error, results, fields) {
+        db.get().query('SELECT id_vol, Name from Vols WHERE deleted = 0 AND Name = ?', [req.query['name']], function(error, results, fields) {
             if (error) throw error;
             res.send(results);
         });
     } else {
-        db.get().query('SELECT ID, Name from Vols WHERE deleted = 0', function(error, results, fields) {
+        db.get().query('SELECT id_vol, Name from Vols WHERE deleted = 0', function(error, results, fields) {
             if (error) throw error;
             res.send(results);
         });
@@ -24,7 +30,7 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
 
     var name = req.body.name;
-    var query = db.get().connection.query('INSERT INTO vols SET ?', req.body, function(error, results, fields) {
+    var query = db.get().query('INSERT INTO vols SET ?', req.body, function(error, results, fields) {
         if (error) throw error;
         res.json({
             message: 'Success',
