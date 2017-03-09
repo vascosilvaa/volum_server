@@ -1,22 +1,23 @@
 {
-    "name": "volum",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^1.0.2",
-        "express-jwt": "^5.1.0",
-        "jsonwebtoken": "^7.3.0",
-        "lodash": "^4.17.4",
-        "morgan": "^1.8.1",
-        "passport": "^0.3.2",
-        "passport-jwt": "^2.2.1",
-        "socket.io": "^1.7.3"
-    }
+  "name": "volum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.3.0",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "socket.io": "^1.7.3"
+  }
 }
