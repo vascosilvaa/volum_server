@@ -13,21 +13,26 @@ var jwtCheck = jwt({
 
 // app.use('/', jwtCheck);
 
-let count = 0;
-let count1 = 10;
 app.get('/', function(req, res) {
-    console.log("a")
     if (req.query['name']) {
-        db.get().query('SELECT * from Vols WHERE deleted = 0 AND Name = ? LIMIT ' + count, count1, [req.query['name ']], function(error, results, fields) {
+        db.get().query('SELECT * from Vols WHERE deleted = 0 AND Name = ?', [req.query['name ']], function(error, results, fields) {
             if (error) throw error;
             res.send(results);
         });
+    } else if (req.query['inst']) {
+        db.get().query('SELECT * from Vols WHERE deleted = 0 AND id_vol_type = 1', function(error, results, fields) {
+            if (error) throw error;
+            res.send(results);
+        });
+    } else if (req.query['private']) {
+
     } else {
         db.get().query('SELECT * from Vols WHERE deleted = 0', function(error, results, fields) {
             if (error) throw error;
             res.send(results);
         });
-    };
+    }
+
 });
 
 app.post('/', function(req, res) {
