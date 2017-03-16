@@ -1,17 +1,16 @@
 var express = require('express'),
     _ = require('lodash'),
     config = require('../config'),
-    jwt = require('jsonwebtoken')
-db = require('../db');
+    jwt = require('jsonwebtoken'),
+    db = require('../db');
 
 
 function getUserById(id, done) {
-    db.get().query('SELECT * FROM users WHERE idusers = ? LIMIT 1', [id], function(err, rows, fields) {
+    db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function(err, rows, fields) {
         if (err) throw err;
         done(rows[0]);
     });
 }
-
 
 var app = module.exports = express.Router();
 
@@ -31,8 +30,11 @@ app.get('/profile/:id', function(req, res) {
                     success: true,
                     user: {
                         id: user.id,
-                        username: user.username,
-                        email: user.email
+                        login: user.login,
+                        username: user.name,
+                        email: user.email,
+                        photo: user.photo_url,
+                        verified: user.tinyint
 
                     }
                 });
