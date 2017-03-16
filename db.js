@@ -29,8 +29,6 @@ pool = mysql.createConnection({
     database: 'tm25ztdr_volum',
 });
 
-
-
 exports.get = function() {
     return pool;
 }
