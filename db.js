@@ -19,7 +19,6 @@ pool = mysql.createPool({
     database: 'deca_15l4_14'
 });
 
-
 */
 
 pool = mysql.createConnection({
