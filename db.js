@@ -23,8 +23,8 @@ pool = mysql.createPool({
 */
 
 pool = mysql.createConnection({
-    host: 'localhost',
-    port: '2063',
+    host: 'lhcp1091.webapps.net',
+    port: '3306',
     user: 'tm25ztdr_volum',
     password: 'Volum123',
     database: 'tm25ztdr_volum',
