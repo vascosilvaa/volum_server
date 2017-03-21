@@ -15,17 +15,18 @@ var jwtCheck = jwt({
 
 app.get('/', function(req, res) {
 
+    console.log(req);
+    console.log(res);
     var comments = [];
     let user = {};
     let vol = {};
     if (req.query['name']) {
+
         db.get().query('SELECT * from vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.name = ?  ', [req.query['name']], function(error, results, fields) {
             if (error) {
                 res.send({ success: false, message: error })
                 console.log(error);
             } else {
-                // FALTA ALIASES, CONFLITO DO VOL NAME  E DO PLACE. 
-
                 if (results.length == 0) {
                     res.status(404);
                     res.send({ success: true, message: "No records found" })
@@ -56,8 +57,8 @@ app.get('/', function(req, res) {
                                     active: results[i].active,
                                     insurance: results[i].insurance,
                                     long: results[i].long,
-                                    lat: results[i].lat
-
+                                    lat: results[i].lat,
+                                    user: user,
 
                                 },
                                 user = {
@@ -66,7 +67,6 @@ app.get('/', function(req, res) {
                                 }
 
                             if (i == results.length - 1) {
-
 
                                 res.json({
                                     success: true,
@@ -85,130 +85,93 @@ app.get('/', function(req, res) {
                 }
             }
         });
-    } else if (req.query['dateStart']) {
-        let date = new Date(parseInt(req.query['dateStart']));
-        date.toISOString();
-        var c = 0;
-        db.get().query('SELECT * from Vols WHERE date_creation > ? ', [date], function(error, results, fields) {
-            if (error) {
-                res.send({ success: false, message: error })
-                console.log(error);
-            } else {
-                if (results.length == 0) {
-                    res.status(404);
-                    res.send({ success: true, message: "No records found" })
-                } else {
-                    console.log(results.length);
-
-                    for (let i = 0; i < results.length; i++) {
-
-                        db.get().query('SELECT * FROM `comments` WHERE id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
-
-                            comments.push(comment_res);
-                            console.log(comments);
-                            if (i == results.length - 1) {
-                                console.log("derp");
-
-
-                                res.json({
-                                    success: true,
-                                    body: {
-                                        vols: results,
-                                        comments: comments
-                                    }
-                                })
-                            }
-
-                        });
-                    }
-
-
-                }
-            }
-        });
-    } else if (req.query['type']) {
-        db.get().query('SELECT * from Vols WHERE deleted = 0 AND id_vol_type = ?', [req.query['type']], function(error, results, fields) {
-            if (error) {
-                res.send({ success: false, message: error })
-            } else {
-
-                if (results.length == 0) {
-                    res.status(404);
-                    res.send({ success: true, message: "No records found" })
-                } else {
-                    console.log(results.length);
-
-                    for (let i = 0; i < results.length; i++) {
-
-                        db.get().query('SELECT * FROM `comments` WHERE id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
-
-                            comments.push(comment_res);
-                            console.log(comments);
-                            if (i == results.length - 1) {
-                                console.log("derp");
-
-
-                                res.json({
-                                    success: true,
-                                    body: {
-                                        vols: results,
-                                        comments: comments
-                                    }
-                                })
-                            }
-
-                        });
-                    }
-
-
-                }
-            }
-
-        });
 
     } else {
-        db.get().query('SELECT * from Vols WHERE deleted = 0', function(error, results, fields) {
-
-            if (error) {
-                res.send({ success: false, message: error })
-                console.log(error);
-            } else {
-
-                if (results.length == 0) {
-                    res.status(404);
-                    res.send({ success: true, message: "No records found" })
+        var options = {
+            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
+            nestTables: true
+        };
+        db.get().query(options,
+            function(error, results, fields) {
+                let comments = [];
+                if (error) {
+                    res.send({ success: false, message: error })
+                    console.log(error);
                 } else {
 
-                    for (let i = 0; i < results.length; i++) {
+                    console.log("RESULTS", results);
+                    if (results.length == 0) {
+                        res.status(404);
+                        res.send({ success: true, message: "No records found" })
+                    } else {
+                        /*
 
-                        db.get().query('SELECT * FROM `comments` WHERE id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
+                        for (let i = 0; i < results.length; i++) {
 
-                            comments.push(comment_res);
+                            db.get().query('SELECT comments.id_user, comments.id_comment, users.name, users.id_user, comments.id_vol, comments.message, users.photo_url FROM `comments` INNER JOIN users ON comments.id_user = users.id_user WHERE comments.id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
 
-                            if (i == results.length - 1) {
+                                comments.push(comment_res);
 
+                                vol[i] = {
+                                    id_vol: results[i].id_vol,
+                                    place: results[i].address,
+                                    name: results[i].name,
+                                    desc: results[i].desc,
+                                    date_begin: results[i].date_begin,
+                                    duration: results[i].duration,
+                                    active: results[i].active,
+                                    placeName: results[i].placeName,
+                                    insurance: results[i].insurance,
+                                    long: results[i].long,
+                                    lat: results[i].lat,
 
-                                res.json({
-                                    success: true,
-                                    body: {
-                                        vols: results,
-                                        comments: comments
+                                    comments: comments[i],
+                                    user: {
+                                        login: results[i].login,
+                                        photo_url: results[i].photo_url,
+                                        verified: results[i].verified
                                     }
-                                })
-                            }
+                                };
 
-                        });
+
+                                if (i == results.length - 1) {
+
+                                    res.json({
+                                        success: true,
+                                        vols: vol,
+
+                                    })
+                                }
+
+
+                            });
+                        }
+                        */
+                        res.json({
+                            success: true,
+                            vols: results,
+
+                        })
                     }
-
-
                 }
-            }
 
-        });
+            });
     }
 });
 
-app.post('/', function(req, res) {
+app.get('/:id/comments', function(req, res) {
+
+
+    db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user where id_vol = ? ', [req.params.id],
+        function(error, results, fields) {
+            res.json({
+                success: true,
+                comments: results,
+            })
+        });
+});
+
+app.post('/', jwtCheck, function(req, res) {
 
     var name = req.body.name;
     if (!req.body.name || !req.body.desc) {
@@ -224,7 +187,7 @@ app.post('/', function(req, res) {
 
 });
 
-app.post('/delete', function(req, res) {
+app.post('/delete', jwtCheck, function(req, res) {
     var id = req.body.id;
 
     db.get().query('UPDATE vols SET deleted = ? WHERE id = ?', [1, id], function(error, results, fields) {
