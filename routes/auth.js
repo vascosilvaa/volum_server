@@ -5,9 +5,8 @@ var express = require('express'),
 db = require('../db');
 var app = module.exports = express.Router();
 var secretKey = "don't share this key";
-var bcrypt = require('bcrypt');
 const saltRounds = 10;
-
+/*
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
 }
@@ -113,3 +112,5 @@ app.get('/check/:login', function(req, res) {
         else res.status(400).send("A user with that login already exists");
     });
 });
+
+*/
