@@ -22,6 +22,7 @@ function getUserDB(login, done) {
         }
     });
 }
+
 app.post('/create', function(req, res) {
     if (!req.body.login || !req.body.password || !req.body.email || !req.body.name) {
         return res.status(400).json({ success: false, message: "Falta enviar dados" });
@@ -42,8 +43,6 @@ app.post('/create', function(req, res) {
                         gender: 0,
                         photo_url: "a123",
                         birth_date: new Date()
-
-
                     };
 
                     db.get().query('INSERT INTO users SET ?', [user], function(err, result) {

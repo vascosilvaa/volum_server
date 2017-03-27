@@ -87,10 +87,12 @@ app.get('/', function(req, res) {
         });
 
     } else {
+
         var options = {
             sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
             nestTables: true
         };
+
         db.get().query(options,
             function(error, results, fields) {
                 let comments = [];
@@ -104,49 +106,7 @@ app.get('/', function(req, res) {
                         res.status(404);
                         res.send({ success: true, message: "No records found" })
                     } else {
-                        /*
 
-                        for (let i = 0; i < results.length; i++) {
-
-                            db.get().query('SELECT comments.id_user, comments.id_comment, users.name, users.id_user, comments.id_vol, comments.message, users.photo_url FROM `comments` INNER JOIN users ON comments.id_user = users.id_user WHERE comments.id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
-
-                                comments.push(comment_res);
-
-                                vol[i] = {
-                                    id_vol: results[i].id_vol,
-                                    place: results[i].address,
-                                    name: results[i].name,
-                                    desc: results[i].desc,
-                                    date_begin: results[i].date_begin,
-                                    duration: results[i].duration,
-                                    active: results[i].active,
-                                    placeName: results[i].placeName,
-                                    insurance: results[i].insurance,
-                                    long: results[i].long,
-                                    lat: results[i].lat,
-
-                                    comments: comments[i],
-                                    user: {
-                                        login: results[i].login,
-                                        photo_url: results[i].photo_url,
-                                        verified: results[i].verified
-                                    }
-                                };
-
-
-                                if (i == results.length - 1) {
-
-                                    res.json({
-                                        success: true,
-                                        vols: vol,
-
-                                    })
-                                }
-
-
-                            });
-                        }
-                        */
                         res.json({
                             success: true,
                             vols: results,
@@ -157,18 +117,6 @@ app.get('/', function(req, res) {
 
             });
     }
-});
-
-app.get('/:id/comments', function(req, res) {
-
-
-    db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user where id_vol = ? ', [req.params.id],
-        function(error, results, fields) {
-            res.json({
-                success: true,
-                comments: results,
-            })
-        });
 });
 
 app.post('/', jwtCheck, function(req, res) {
@@ -185,6 +133,61 @@ app.post('/', jwtCheck, function(req, res) {
         });
     });
 
+});
+
+app.post('/:id/comments', function(req, res) {
+
+    if (req.body.id_user || req.body.message) {
+
+        console.log(req.body)
+        let body = {
+            id_user: req.body.id_user,
+            message: req.body.message,
+            id_vol: req.params.id
+        }
+
+        db.get().query('INSERT INTO comments SET ?', [body],
+            function(error, results, fields) {
+                console.log(error);
+                if (!error) {
+                    res.json({
+                        success: true,
+                    })
+                } else {
+                    res.status(500);
+                    res.json({
+                        success: false,
+                        message: "Internal Server Error"
+                    })
+                }
+            });
+    } else {
+        console.log(req.body);
+        res.json({
+            success: false,
+            message: "Falta enviar dados"
+        })
+    }
+});
+
+app.get('/:id/comments', function(req, res) {
+
+    db.get().query('SELECT * FROM comments where id_vol = ?', [req.params.id], function(error, results, fields) {
+        if (error) {
+            res.json({
+                success: false
+            });
+            throw error;
+        } else {
+
+            res.json({
+                success: true,
+                message: results
+            });
+
+        }
+
+    });
 });
 
 app.post('/delete', jwtCheck, function(req, res) {

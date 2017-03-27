@@ -13,6 +13,7 @@ var http = require('http');
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser')
+var cors = require('cors');
 
 var vols = require('./routes/vols');
 var auth = require('./routes/auth');
@@ -20,6 +21,7 @@ var users = require('./routes/users');
 var path = require('path');
 var app = express();
 
+app.use(cors());
 
 
 app.use(bodyParser.json());

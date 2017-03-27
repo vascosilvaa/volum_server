@@ -10,7 +10,7 @@ pool = mysql.createPool({
 
 });
 */
-
+/*
 
 pool = mysql.createPool({
     host: 'labmm.clients.ua.pt',
@@ -20,8 +20,24 @@ pool = mysql.createPool({
     multipleStatements: true
 });
 
+*/
 
 /*
+let config = {
+    user: 'volum',
+    password: 'volum',
+    database: 'deca-vol',
+}
+if (process.env.INSTANCE_CONNECTION_NAME) {
+    config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
+}
+
+
+pool = mysql.createConnection(config);
+*/
+
+
+
 
 pool = mysql.createConnection({
     host: 'lhcp1091.webapps.net',
@@ -31,7 +47,8 @@ pool = mysql.createConnection({
     database: 'tm25ztdr_volum',
 });
 
-*/
+
+
 exports.get = function() {
     return pool;
 }

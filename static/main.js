@@ -3,6 +3,15 @@ $(document).ready(function() {
     /* ===== Affix Sidebar ===== */
     /* Ref: http://getbootstrap.com/javascript/#affix-examples */
 
+    $.ajax({
+
+        url: "https://volum-162412.appspot.com/api/vols",
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'json',
+        success: function(data) { console.log(data) },
+        error: function() { alert('Failed!'); },
+    });
 
     $('#doc-menu').affix({
         offset: {
@@ -25,7 +34,6 @@ $(document).ready(function() {
         var target = this.hash;
         e.preventDefault();
         $('body').scrollTo(target, 800, { offset: 0, 'axis': 'y' });
-
     });
 
 
