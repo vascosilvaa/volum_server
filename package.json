@@ -1,28 +1,27 @@
 {
-  "name": "volum",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^1.0.2",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.17.1",
-    "cors": "^2.8.1",
-    "express": "^4.15.2",
-    "express-jwt": "^5.1.0",
-    "jsonwebtoken": "^7.3.0",
-    "lodash": "^4.17.4",
-    "morgan": "^1.8.1",
-    "mysql": "^2.13.0",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "path": "^0.12.7",
-    "pmx": "^1.0.4"
-  }
+    "name": "volum",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.17.1",
+        "cors": "^2.8.1",
+        "express": "^4.15.2",
+        "express-jwt": "^5.1.0",
+        "jsonwebtoken": "^7.3.0",
+        "lodash": "^4.17.4",
+        "morgan": "^1.8.1",
+        "mysql": "^2.13.0",
+        "passport": "^0.3.2",
+        "passport-jwt": "^2.2.1",
+        "path": "^0.12.7",
+        "pmx": "^1.0.4"
+    }
 }
