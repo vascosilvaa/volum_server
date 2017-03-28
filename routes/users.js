@@ -33,6 +33,7 @@ app.get('/profile/:id', function(req, res) {
                         login: user.login,
                         username: user.name,
                         email: user.email,
+                        password: user.password,
                         photo: user.photo_url,
                         verified: user.tinyint
 

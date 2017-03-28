@@ -5,8 +5,12 @@ var express = require('express'),
 db = require('../db');
 var app = module.exports = express.Router();
 var secretKey = "don't share this key";
+var bcrypt = require('bcryptjs');
+
 const saltRounds = 10;
-/*
+
+
+
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
 }
@@ -37,7 +41,7 @@ app.post('/create', function(req, res) {
                         login: req.body.login,
                         password: hash,
                         email: req.body.email,
-                        type_user: 2,
+                        type_user: 1,
                         name: req.body.name,
                         gender: 0,
                         photo_url: "a123",
@@ -46,6 +50,7 @@ app.post('/create', function(req, res) {
 
                     db.get().query('INSERT INTO users SET ?', [user], function(err, result) {
                         if (err) {
+                            console.log(err);
                             res.json({ success: false, error: err })
                         } else {
 
@@ -112,5 +117,3 @@ app.get('/check/:login', function(req, res) {
         else res.status(400).send("A user with that login already exists");
     });
 });
-
-*/

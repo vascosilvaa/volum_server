@@ -15,8 +15,7 @@ var jwtCheck = jwt({
 
 app.get('/', function(req, res) {
 
-    console.log(req);
-    console.log(res);
+
     var comments = [];
     let user = {};
     let vol = {};

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
     "express": "^4.15.2",
@@ -22,7 +23,6 @@
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "path": "^0.12.7",
-    "pmx": "^1.0.4",
-    "socket.io": "^1.7.3"
+    "pmx": "^1.0.4"
   }
 }

@@ -1,4 +1,4 @@
-var pmx = require('pmx').init({
+require('pmx').init({
     http: true, // HTTP routes logging (default: true)
     errors: true, // Exceptions logging (default: true)
     custom_probes: true, // Auto expose JS Loop Latency and HTTP req/s as custom metrics
@@ -8,8 +8,6 @@ var pmx = require('pmx').init({
 
 var morgan = require('morgan')
 var http = require('http');
-
-
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser')
@@ -21,6 +19,7 @@ var users = require('./routes/users');
 var path = require('path');
 var app = express();
 
+app.use(morgan('dev'));
 app.use(cors());
 
 
@@ -28,8 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
-
 
 app.use('/api', express.static(path.join(__dirname, 'static')))
 
