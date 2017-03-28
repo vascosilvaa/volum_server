@@ -10,112 +10,109 @@ var jwtCheck = jwt({
     secret: config.secretKey
 });
 
+let vols = [];
+var comments = [];
+let user = {};
+let vol = {};
 
-// app.use('/', jwtCheck);
+
+app.get('/:id', function(req, res) {
+
+    db.get().query('SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol = ?', [req.params['id']], function(error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+            console.log(results);
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, message: "No records found" })
+            } else {
+
+                for (let i = 0; i < results.length; i++) {
+
+                    vol = {
+                        id_vol: results[i].id_vol,
+                        place: results[i].address,
+                        name: results[i].name,
+                        desc: results[i].desc,
+                        date_begin: results[i].date_begin,
+                        duration: results[i].duration,
+                        active: results[i].active,
+                        insurance: results[i].insurance,
+                        long: results[i].long,
+                        lat: results[i].lat,
+                        user: user,
+
+                    }
+                }
+                res.json({
+                    success: true,
+                    body: {
+                        vol: vol,
+                    }
+                })
+
+            }
+        }
+    });
+
+
+});
 
 app.get('/', function(req, res) {
 
+    var options = {
+        sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
+        nestTables: true
+    };
 
-    var comments = [];
-    let user = {};
-    let vol = {};
-    if (req.query['name']) {
-
-        db.get().query('SELECT * from vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.name = ?  ', [req.query['name']], function(error, results, fields) {
+    db.get().query(options,
+        function(error, results, fields) {
             if (error) {
                 res.send({ success: false, message: error })
-                console.log(error);
+                throw new Error(error);
             } else {
                 if (results.length == 0) {
                     res.status(404);
                     res.send({ success: true, message: "No records found" })
                 } else {
+                    console.log(results.length)
 
                     for (let i = 0; i < results.length; i++) {
-                        db.get().query('SELECT comments.id_user, comments.id_comment, users.name, users.id_user, comments.id_vol, comments.message, users.photo_url FROM `comments` INNER JOIN users ON comments.id_user = users.id_user WHERE comments.id_vol = ?', [results[i].id_vol], function(error, comment_res, fields) {
-                            console.log(comment_res);
-                            comments.push({
-                                user: {
-                                    id: comment_res[0].id_user,
-                                    name: comment_res[0].name,
-                                    photo_url: comment_res[0].photo_url
-                                },
-                                comment: {
-                                    message: comment_res[0].message,
-                                    comment_id: comment_res[0].id_comment
-                                }
-                            });
-
-                            vol = {
-                                    id_vol: results[i].id_vol,
-                                    place: results[i].address,
-                                    name: results[i].name,
-                                    desc: results[i].desc,
-                                    date_begin: results[i].date_begin,
-                                    duration: results[i].duration,
-                                    active: results[i].active,
-                                    insurance: results[i].insurance,
-                                    long: results[i].long,
-                                    lat: results[i].lat,
-                                    user: user,
-
-                                },
-                                user = {
-                                    login: results[i].login,
-                                    photo_url: results[i].photo_url
-                                }
-
-                            if (i == results.length - 1) {
-
-                                res.json({
-                                    success: true,
-                                    body: {
-                                        vols: vol,
-                                        creator: user,
-                                        comments: comments
-                                    }
-                                })
+                        console.log(results[i].vols.id_vol);
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                place: results[i].vols.address,
+                                name: results[i].vols.name,
+                                desc: results[i].vols.desc,
+                                date_begin: results[i].vols.date_begin,
+                                duration: results[i].vols.duration,
+                                active: results[i].vols.active,
+                                insurance: results[i].vols.insurance,
+                                long: results[i].place.long,
+                                lat: results[i].place.lat,
+                                address: results[i].place.address
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                login: results[i].users.login,
+                                photo_url: results[i].users.photo_url
                             }
-
                         });
+
+
                     }
-
-
+                    res.json({
+                        success: true,
+                        body: {
+                            vols
+                        }
+                    })
                 }
             }
         });
-
-    } else {
-
-        var options = {
-            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
-            nestTables: true
-        };
-
-        db.get().query(options,
-            function(error, results, fields) {
-                let comments = [];
-                if (error) {
-                    res.send({ success: false, message: error })
-                    console.log(error);
-                } else {
-
-                    console.log("RESULTS", results);
-                    if (results.length == 0) {
-                        res.status(404);
-                        res.send({ success: true, message: "No records found" })
-                    } else {
-
-                        res.json({
-                            success: true,
-                            vols: results,
-
-                        })
-                    }
-                }
-
-            });
-    }
 });
 
 app.post('/', jwtCheck, function(req, res) {
@@ -123,6 +120,8 @@ app.post('/', jwtCheck, function(req, res) {
     var name = req.body.name;
     if (!req.body.name || !req.body.desc) {
         return res.status(400).send("Falta enviar dados");
+        throw new Error(error);
+
     }
 
     var query = db.get().query('INSERT INTO vols SET ?', req.body, function(error, results, fields) {
@@ -138,7 +137,6 @@ app.post('/:id/comments', function(req, res) {
 
     if (req.body.id_user || req.body.message) {
 
-        console.log(req.body)
         let body = {
             id_user: req.body.id_user,
             message: req.body.message,
@@ -158,6 +156,7 @@ app.post('/:id/comments', function(req, res) {
                         success: false,
                         message: "Internal Server Error"
                     })
+                    throw new Error(error);
                 }
             });
     } else {

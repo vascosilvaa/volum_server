@@ -43,7 +43,4 @@ app.get('/profile/:id', function(req, res) {
         });
 
     }
-
-
-
 });

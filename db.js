@@ -20,8 +20,8 @@ pool = mysql.createPool({
     multipleStatements: true
 });
 
-*/
 
+*/
 /*
 let config = {
     user: 'volum',
@@ -35,8 +35,6 @@ if (process.env.INSTANCE_CONNECTION_NAME) {
 
 pool = mysql.createConnection(config);
 */
-
-
 
 
 pool = mysql.createConnection({
