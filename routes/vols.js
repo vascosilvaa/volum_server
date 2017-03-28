@@ -10,7 +10,7 @@ var jwtCheck = jwt({
     secret: config.secretKey
 });
 
-let vols = [];
+
 var comments = [];
 let user = {};
 let vol = {};
@@ -61,6 +61,7 @@ app.get('/:id', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+    let vols = [];
 
     var options = {
         sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
@@ -77,7 +78,6 @@ app.get('/', function(req, res) {
                     res.status(404);
                     res.send({ success: true, message: "No records found" })
                 } else {
-                    console.log(results.length)
 
                     for (let i = 0; i < results.length; i++) {
                         console.log(results[i].vols.id_vol);
