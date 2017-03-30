@@ -32,14 +32,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static(path.join(__dirname, 'public/')));
+app.use(express.static(path.join(__dirname, 'public/dist')));
 
-app.use('/api', express.static(path.join(__dirname, 'static')))
+app.use('/api', express.static(path.join(__dirname, 'docs')))
 
 app.use('/api/auth', auth);
 app.use('/api/vols', vols);
 app.use('/api/users', users);
 
+/**
+ * @api {get} /search Pesquisar 
+ * @apiGroup Geral
+ * @apiParam {String} search Termo a pesquisar
+ */
 
 app.get('/api/search', function(req, res) {
     console.log(req.query.search);
@@ -66,10 +71,7 @@ app.get('/api/search', function(req, res) {
     } else {
         res.send({ success: false, message: 'Please provide a search query' })
     }
-
 });
 
-
-
-app.listen(process.env.PORT || 3000);
-console.log("listening on 3000");
+app.listen(process.env.PORT || 8080);
+console.log("Listening...");

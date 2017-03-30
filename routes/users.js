@@ -14,6 +14,13 @@ function getUserById(id, done) {
 
 var app = module.exports = express.Router();
 
+/**
+ * @api {get} /profile/:id Retornar Perfil
+ * @apiName getProfile
+ * @apiParam id ID do user
+ * @apiGroup Perfil
+ */
+
 app.get('/profile/:id', function(req, res) {
     if (isNaN(req.params.id)) {
         res.status(400);

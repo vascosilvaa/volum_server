@@ -60,6 +60,12 @@ app.get('/:id', function(req, res) {
 
 });
 
+/**
+ * @api {get} /vols Listar todos os voluntariados
+ * @apiName listVols
+ * @apiGroup Voluntariados 
+ */
+
 app.get('/', function(req, res) {
     let vols = [];
 
@@ -110,11 +116,19 @@ app.get('/', function(req, res) {
                             vols
                         }
                     })
+
                 }
             }
+
         });
 });
-
+/**
+ * @api {post} /vols Inserir Voluntariado
+ * @apiName insertVol
+ * @apiParam {String} name Nome do Voluntariado  
+ * @apiParam {String} desc Descrição do Voluntariado  
+ * @apiGroup Voluntariados 
+ */
 app.post('/', jwtCheck, function(req, res) {
 
     var name = req.body.name;
@@ -132,6 +146,13 @@ app.post('/', jwtCheck, function(req, res) {
     });
 
 });
+
+/**
+ * @api {post} /vols/:id/comments Comentar Voluntariado
+ * @apiName commentVol
+ 
+ * @apiGroup Voluntariados 
+ */
 
 app.post('/:id/comments', function(req, res) {
 
@@ -168,6 +189,13 @@ app.post('/:id/comments', function(req, res) {
     }
 });
 
+/**
+ * @api {get} /vols/:id/comments Retornar Comentários
+ * @apiName getVolComments
+
+ * @apiGroup Voluntariados 
+ */
+
 app.get('/:id/comments', function(req, res) {
 
     db.get().query('SELECT * FROM comments where id_vol = ?', [req.params.id], function(error, results, fields) {
@@ -188,6 +216,14 @@ app.get('/:id/comments', function(req, res) {
     });
 });
 
+/**
+ * @api {post} /vols/:id/comments Apagar Voluntariado
+ * @apiName deleteVol
+ * @apiParam {String}  id ID do Vol  
+ * @apiGroup Voluntariados 
+ */
+
+
 app.post('/delete', jwtCheck, function(req, res) {
     var id = req.body.id;
 
@@ -199,6 +235,13 @@ app.post('/delete', jwtCheck, function(req, res) {
     });
 
 });
+
+/**
+ * @api {post} /vols/:id/comments Recuperar Voluntariado
+ * @apiName undeleteVol
+ * @apiParam {String} id ID do Vol  
+ * @apiGroup Voluntariados 
+ */
 
 app.post('/undelete', function(req, res) {
     var id = req.body.id;

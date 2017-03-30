@@ -10,7 +10,7 @@ pool = mysql.createPool({
 
 });
 */
-/*
+
 
 pool = mysql.createPool({
     host: 'labmm.clients.ua.pt',
@@ -21,7 +21,6 @@ pool = mysql.createPool({
 });
 
 
-*/
 /*
 let config = {
     user: 'volum',
@@ -35,15 +34,20 @@ if (process.env.INSTANCE_CONNECTION_NAME) {
 
 pool = mysql.createConnection(config);
 */
+/*
 
-
-pool = mysql.createConnection({
+pool = mysql.createPool({
     host: 'lhcp1091.webapps.net',
     port: '3306',
     user: 'tm25ztdr_volum',
     password: 'Volum123',
     database: 'tm25ztdr_volum',
+    multipleStatements: true
+
+
 });
+
+*/
 
 
 
