@@ -11,7 +11,7 @@ pool = mysql.createPool({
 });
 */
 
-
+/*
 pool = mysql.createPool({
     host: 'labmm.clients.ua.pt',
     user: 'deca_15L4_14_dbo',
@@ -20,7 +20,7 @@ pool = mysql.createPool({
     multipleStatements: true
 });
 
-
+*/
 /*
 let config = {
     user: 'volum',
@@ -34,7 +34,7 @@ if (process.env.INSTANCE_CONNECTION_NAME) {
 
 pool = mysql.createConnection(config);
 */
-/*
+
 
 pool = mysql.createPool({
     host: 'lhcp1091.webapps.net',
@@ -47,7 +47,7 @@ pool = mysql.createPool({
 
 });
 
-*/
+
 
 
 
