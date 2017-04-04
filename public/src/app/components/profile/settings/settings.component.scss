@@ -1,4 +1,13 @@
 @import '../actions/actions.component';
+//accordion
+
+.listSettings li a {
+  color: $grey3;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+
 
 /deep/ .card-header {
   background-color: $white!important;
