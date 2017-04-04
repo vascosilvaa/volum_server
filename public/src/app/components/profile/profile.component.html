@@ -1,0 +1,49 @@
+
+<div class="container-fluid sub-header-background">
+    <div class="container sub-header-profile">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-12 profile-user-picture">
+                <img src="./assets/imgs/avatar.png" alt="profile user picture">
+                <div class="col user-rate">
+                    <md-icon class="rate1">star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-12 profile-user-name-location">
+                <div class="user-name">
+                    João Tavares
+                </div>
+                <div class="user-location">
+                    Aveiro, Sever do Vouga
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-6 menuSubHeader">
+                <ul class="menuSubHeaderUl">
+                    <li><a routerLink="/profile/activity" [routerLinkActive]="['menuSubHeaderActive']">Atividade</a></li>
+                    <li><a routerLink="/profile/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
+                    <li><a routerLink="/profile/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
+                    <li><a routerLink="/profile/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
+                    <li><a routerLink="/profile/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
+                </ul>
+                <a class="btn-menu" md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader"><md-icon class="btn-new-action-icon">menu</md-icon></a>
+                <md-menu #menuSubHeader="mdMenu">
+                    <button md-menu-item>Actividade</button>
+                    <button md-menu-item>Minhas ações</button>
+                    <button md-menu-item>Sobre</button>
+                    <button md-menu-item>A seguir</button>
+                    <button md-menu-item>Definições</button>
+                </md-menu>
+            </div>
+            <div class="col-sm-2 col-6 col-new-action text-right">
+                <a class="btn-new-action" md-raised-button routerLink="."><span class="btn-new-action-text">NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

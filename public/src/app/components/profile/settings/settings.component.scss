@@ -1,0 +1,279 @@
+@import '../actions/actions.component';
+
+/deep/ .card-header {
+  background-color: $white!important;
+  font-weight: $bold;
+  color: $grey3;
+  border-bottom: 1px solid $grey1
+}
+
+/deep/ .card-block ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-weight: 400!important;
+}
+
+/deep/ .card-block ul li {
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.border {
+  border: 0;
+}
+
+/deep/ .card {
+  border: 0px;
+}
+
+.card-block2 {
+  background-color: #ffffff;
+  color: $grey2;
+  border: 0;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-family: Lato;
+    font-size: 12px;
+    color: red;
+
+}
+
+.form-control {
+  margin-bottom: 0px!important
+}
+
+.inputProfile {
+  margin-top: 20px;
+  }
+
+.inputProfile2 {
+  height: 50px;
+  margin-top: 20px;
+}
+
+.no-margin {
+  margin-top: 0px;
+}
+
+.disabled {
+  color:    $grey2;
+  font-family: Lato;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.date_picker {
+  height: 50px;
+  border: 1px solid $grey1!important;
+  font-size: 15px;
+  font-family: Lato;
+  color: #4A4A4A;
+  padding-top: 20px;
+  padding-bottom: 0;
+  background: #fff;
+  z-index: 9;
+}
+
+.input-group-addon {
+  height: 50px;
+  margin-top: 0px;
+}
+
+.text_area_profile {
+  height: 100px;
+  line-height: 1.2em
+}
+
+.fotoTitle {
+  margin-top: 20px;
+}
+
+.inputPhotoProfile {
+  margin-top: 55px;
+}
+
+.btnDescart {
+  width: 100%;
+  font-size: 15px;
+  color:$grey2;
+  background-color: $white;
+  padding-top:15px;
+  padding-bottom:15px;
+  border:1px solid $grey2;
+  border-radius: 0px;
+  margin-top:40px;
+}
+
+.btnSave {
+  width: 100%;
+  font-size: 15px;
+  color:$white;
+  background-color: $blue;
+  padding-top:15px;
+  padding-bottom:15px;
+  border:1px solid $blue;
+  border-radius: 0px;
+  margin-top: 40px;
+}
+
+.btnDescart:hover {
+  width: 100%;
+  font-size: 15px;
+  color:$white;
+  background-color: $grey2;
+  padding-top:15px;
+  padding-bottom:15px;
+  border:1px solid $grey2;
+  border-radius: 0px;
+  margin-top:40px;
+}
+
+.btnSave:hover {
+  width: 100%;
+  font-size: 15px;
+  color:$blue;
+  background-color: $white;
+  padding-top:15px;
+  padding-bottom:15px;
+  border:1px solid $blue;
+  border-radius: 0px;
+  margin-top: 40px;
+}
+
+.cardTitle {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.inputText {
+  height: 50px;
+}
+
+.form-group {
+  margin: 0!important
+}
+
+.float-label .control {
+  width: 100%;
+}
+
+.float-label input,
+.float-label textarea {
+  display: block;
+  width: 95%;
+  border: 0;
+  outline: 0;
+  resize: none;
+  font-size: 15px;
+  font-family: Lato;
+  color: $grey3;
+}
+.float-label input + label,
+.float-label textarea + label {
+  position: absolute;
+  top: 10px;
+  transition: top 0.5s ease;
+  opacity: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ccc;
+}
+.float-label input:valid + label,
+.float-label textarea:valid + label {  //label up
+  opacity: 1;
+  color: $grey2;
+  font-size: 10px;
+}
+.float-label input:focus + label,
+.float-label textarea:focus + label {  // label quando estamos a escrever
+  color: $grey2;
+  font-style: 8px!important;
+  font-size: 10px;
+}
+
+.float-label .control{  // div input
+  border: 1px solid $grey1!important;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.titlePlaceholder {
+  margin-top: -2px;
+}
+
+::-webkit-input-placeholder {
+   font-size: 14px;
+   font-family: Lato;
+   color: $grey2;
+}
+
+
+
+.placeholderSelect {
+  position: absolute;
+  top:9px;
+  left: 29px;
+  color: $grey2;
+  font-size: 10px;
+  font-family: Lato;
+  opacity: 1;
+  z-index: 11;
+}
+
+
+.input-group-lg>.input-group-btn>select.btn:not([size]):not([multiple]), .input-group-lg>select.form-control:not([size]):not([multiple]), .input-group-lg>select.input-group-addon:not([size]):not([multiple]), select.form-control-lg:not([size]):not([multiple]) {
+  font-size: 15px;
+  font-family: Lato;
+  color: #4A4A4A;
+  padding-bottom: 0;
+  padding-top: 18px;
+}
+
+.textAreaProfile {
+  margin-left: -2px;
+}
+
+.inputSocial {
+  border:1px solid $grey1!important
+}
+
+
+//educação
+.titleAdd {
+  color: $grey2;
+  font-size: 14px;
+  margin-top: -20px;
+}
+
+
+.titleEducation {
+  color: $grey2;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.iconAdd {
+  font-size: 18px;
+  margin-top: 20px;
+  color: $grey2;
+}
+
+.marginBottom {
+  margin-bottom: 30px;
+}
+
+.textAdd {
+  margin-top: -10px;
+}
+
+.addEducation {
+  margin-top: 20px!important;
+  margin-bottom: -5px!important;
+}

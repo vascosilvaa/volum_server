@@ -1,0 +1,225 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 ">
+      <div class="card primaryCard">
+        <div class=" card-block">
+            <div class="row iconBack">
+              <a routerLink="/profile/actions" (click)="typeProfile=2"><i class="material-icons arrow">arrow_back</i></a>
+              <div class="col titleCard titleVol vcenter">
+                Lorem Ipsum
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">create</i>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+            <div class="row">
+              <div class="col titleCard">
+                Descrição
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">create</i>
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-12">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus venenatis euismod. Cras vel elit id ligula lobortis sagittis. Vestibulum iaculis neque rutrum justo gravida, in semper risus vehicula. Etiam vitae ligula velit. Nunc aliquam consequat sagittis. Sed diam massa, tempor at metus a, mollis sollicitudin felis. Maecenas ipsum neque, condimentum ut quam sed, viverra lacinia dolor. Fusce in ultrices risus, sollicitudin dictum justo. Sed ultricies ullamcorper consequat. Aliquam orci tortor, dignissim et porta vel, blandit eget massa. Integer non ante vitae sem tempor ornare gravida et diam. Curabitur sit amet felis ac dui imperdiet blandit. Vivamus eu condimentum est.
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+            <div class="row">
+              <div class="col titleCard">
+                Localização
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">create</i>
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-12">
+                <div class="addressTitle">
+                  Universidade de Aveiro
+                </div>
+                <div class="Address">
+                  Universidade de Aveiro, 3810-164 Aveiro, Portugal
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+            <div class="row">
+              <div class="col titleCard">
+                Data
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">create</i>
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-12">
+                <div class="addressTitle">
+                  8 de março - 12 de março
+                </div>
+                <div class="Address">
+                  8 de março às 18:00 até 12 de março às 22:00
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card primaryCard">
+        <div class="card-header cardTitleMap">
+
+            <div class="row">
+              <div class="col titleCard">
+                Mapa
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">create</i>
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+              <div class="col-12">
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng" ></sebm-google-map-marker>
+                </sebm-google-map>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+            <div class="row">
+              <div class="col titleCard">
+                Candidatos
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+          <ul class="list-group">
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar04.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                  <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+                </div>
+              </div>
+            </li>
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar5.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                  <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+                </div>
+              </div>
+            </li>
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar3.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnCancel ">RECUSAR</button>
+                  <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+            <div class="row">
+              <div class="col titleCard">
+                Confirmados
+              </div>
+            </div>
+        </div>
+        <div class="card-block">
+          <ul class="list-group">
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar04.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                </div>
+              </div>
+            </li>
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                </div>
+              </div>
+            </li>
+            <li class="listPerson no-border no-margin">
+              <div class="row no-margin">
+                <div class="card-user-image">
+                  <img src="../assets/imgs/avatar2.png">
+                  <span class="candidateName">Pedro Araújo</span>
+                </div>
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

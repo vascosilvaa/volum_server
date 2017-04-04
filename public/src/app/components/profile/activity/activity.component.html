@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="container">
+      <div class="row">
+        <div *ngFor="let item of volsTodos" class="col-lg-6">
+          <app-card *ngIf="item.veryfied==1" [veryfied]="1" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
+          <app-card *ngIf="item.veryfied==0" [veryfied]="0" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
+        </div>
+      </div>
+  </div>
+</div>

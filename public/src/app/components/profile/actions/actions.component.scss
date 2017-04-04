@@ -1,0 +1,174 @@
+@import '../../../../styles';
+
+.titleCard {
+  font-weight: $bold;
+}
+
+.titleVol {
+  font-size: 18px;
+}
+
+.primaryCard {
+  margin-top: 25px;
+  font-size: 16px;
+  border: 0;
+}
+
+.cardTitle {
+  background: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.cardTitleMap {
+  background: #fff;
+  border-bottom: 2px solid $blue;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.addressTitle {
+  font-weight: bold;
+}
+
+.sebm-google-map-container {
+  height: 200px;
+}
+
+.candidate {
+  margin-top: 15px;
+}
+
+.edit {
+  font-size: 24px;
+  color: $grey2;
+}
+
+.no-border {
+  border: 0!important;
+}
+
+
+.card-user-image img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    margin: 0;
+}
+
+.list-group-item {
+  margin: 0!important;
+}
+
+.listPerson{
+ list-style-type: none;
+ padding: 10px;
+}
+
+.candidateName{
+  margin-left: 10px;
+}
+
+.navCard {
+  font-size: 16px;
+}
+
+
+.navLink {
+  text-decoration: none;
+  font-size: 16px;
+  color: $grey2;
+  position: relative;
+  transform: perspective(1px) translateY(-50%);
+}
+
+.navLinkAtive {
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+  font-weight: $bold;
+  position: relative;
+  transform: perspective(1px) translateY(-50%);
+}
+
+.badge {
+  background-color: $blue;
+  margin-left: 7px;
+  border-radius: 50px;
+}
+
+.table {
+  margin-top: 10px;
+}
+
+.cabecalho {
+  background-color: #fff;
+  font-size: 12px!important;
+  color: $grey3;
+}
+
+.tableBold {
+  font-weight: $bold;
+  font-size: 16px!important;
+}
+
+.tableText {
+  font-size: 14px;
+}
+
+.table-user-image img{
+    width: 30px;
+    height: 30px;
+    border-radius: 45px;
+
+}
+
+.margin {
+  margin-left: -12px;
+}
+
+
+
+.table td, .table th {
+vertical-align: middle;
+padding-top: 20px;
+padding-bottom:20px;
+}
+
+.marginAbout {
+  margin-top: 30px;
+}
+
+.btnCancel {
+  margin-top: 2px;
+}
+
+.btnConfirm {
+  margin-bottom: 2px;
+}
+
+.tableTitle {
+  min-width: 150px;
+}
+
+.tablePlace {
+  min-width: 240px;
+}
+
+.tableDate {
+  max-width: 180px;
+}
+
+.table th {
+  padding-left: 20px;
+}
+
+.tableBtns {
+  padding-right: 20px;
+}
+
+.titleNavLink {
+  margin-top: 5px;
+}
