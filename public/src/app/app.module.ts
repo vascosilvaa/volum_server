@@ -1,3 +1,5 @@
+import { HttpClient } from './shared/http-client';
+import { AuthenticationService } from './shared/Auth/authentication.service';
 import { RegisterComponent } from './components/register/register.component';
 
 import { LoginComponent } from './components/login/login.component';
@@ -40,7 +42,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     BrowserAnimationsModule,
   ],
   entryComponents: [LoginComponent],
-  providers: [],
+  providers: [AuthenticationService, HttpClient],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

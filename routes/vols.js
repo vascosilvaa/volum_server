@@ -87,7 +87,6 @@ app.get('/', function(req, res) {
                 } else {
 
                     for (let i = 0; i < results.length; i++) {
-                        console.log(results[i].vols.id_vol);
                         vols.push({
                             vol: {
                                 id_vol: results[i].vols.id_vol,

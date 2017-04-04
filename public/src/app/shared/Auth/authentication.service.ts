@@ -1,5 +1,7 @@
+import { HttpClient } from './../http-client';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
 //import { HttpClient } from '../http-client';
 //import { User } from '../user/user';
@@ -10,12 +12,11 @@ export class AuthenticationService {
 
 
     userPromise: any;
-
     constructor(private http: HttpClient, private router: Router) {
         this.loadUserCredentials();
     }
 
-    private errorHandler = error => console.error('AuthenticationService error', error.json());
+    private errorHandler = error => console.log('AuthenticationService error', error);
 
     //TODO load information about the roles
     private LOCAL_TOKEN_KEY = 'yourTokenKey';
@@ -24,7 +25,7 @@ export class AuthenticationService {
     public dataAvailable = false;
 
     reloadUser(id, self) {
-        var temp = this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+        var temp = this.http.get(`${GlobalConstants.API_ENDPOINT}/users/profile/` + id).toPromise()
             .then(res => {
                 let response = res.json();
                 this.dataAvailable = true;
@@ -33,7 +34,6 @@ export class AuthenticationService {
             .catch(err => {
                 this.router.navigateByUrl('error');
                 this.errorHandler(err);
-                console.log(err);
                 return err.json();
             });
         if (self) {
@@ -42,10 +42,10 @@ export class AuthenticationService {
         return temp;
     }
     login(loginInfo) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/auth`, loginInfo).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/auth/login`, loginInfo).toPromise()
             .then(res => {
-                this.storeUserCredentials(res.json().token);
-                localStorage.setItem("USER_ID", res.json().userId);
+                this.storeUserCredentials(res.json().id_token);
+                localStorage.setItem("USER_ID", res.json().user_id);
                 return res.json();
             })
             .catch(err => {

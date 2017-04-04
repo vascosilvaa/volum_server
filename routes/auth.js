@@ -185,22 +185,32 @@ app.post('/create', function(req, res) {
 
 app.post('/login', function(req, res) {
     if (!req.body.login || !req.body.password) {
-        return res.status(400).send("Falta enviar dados");
+        return res.status(400).json({
+            success: false,
+            message: "Falta enviar dados"
+        });
     }
     getUserDB(req.body.login, function(user) {
         if (!user) {
-            return res.status(401).send("O User não existe");
+            return res.status(401).json({
+                success: false,
+                message: "O User não existe"
+            });
         }
 
 
         bcrypt.compare(req.body.password, user.password, function(err, result) {
             if (!result) {
-                return res.status(401).send("O Login e password não coincidem");
-                console.log(res);
+                return res.status(401).json({
+                    success: false,
+                    message: "Login e Password não coincidem"
+                });
             } else {
                 var token = jwt.sign({ id: user.id_user }, secretKey);
 
                 res.status(201).send({
+                    success: true,
+                    user_id: user.id_user,
                     id_token: "JWT " + token
                 });
 
@@ -215,10 +225,16 @@ app.post('/login', function(req, res) {
 
 app.get('/check/:login', function(req, res) {
     if (!req.params.login) {
-        return res.status(400).send("You must send a login");
+        return res.status(400).json({
+            success: false,
+            message: "Falta o User"
+        });
     }
     getUserDB(req.params.login, function(user) {
         if (!user) res.status(201).send({ login: "OK" });
-        else res.status(400).send("A user with that login already exists");
+        else res.status(400).json({
+            success: false,
+            message: "Já existe"
+        });
     });
 });
