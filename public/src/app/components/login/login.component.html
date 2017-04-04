@@ -1,0 +1,7 @@
+<form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+    <br> Login <input type="text" formControlName="login">
+    <small *ngIf="!form.controls.login.valid && form.controls.login.dirty" style="color:red">Invalido</small>
+    <br> Password <input type="password" formControlName="password">
+    <br>
+    <button type="submit">Login</button>
+</form>

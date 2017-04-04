@@ -1,1 +1,37 @@
+<div class="container-fluid header-background">
+    <div class="row">
+        <div class="col-sm-2 col-12 brandBackground">
+            <div class="titleBrand">
+                <a routerLink="/feed">VOLUM</a>
+            </div>
+        </div>
+        <div class="col-sm-10 col-12 menuHeader">
+            <ul>
+                <li>
+                    <md-icon (click)="open()">people</md-icon>
+                </li>
+                <li>
+                    <md-icon>chat_bubble</md-icon>
+                </li>
+                <li>
+                    <md-icon>notifications</md-icon>
+                </li>
+                <li [mdMenuTriggerFor]="menu">
+                    <span class="navbar-user-picture">
+                     <img src="./assets/imgs/avatar.png">
+                 </span> João Tavares
+                    <div class="navbar-namePicture-arrow">
+                        <md-icon>arrow_drop_down</md-icon>
+                    </div>
+                    <md-menu #menu="mdMenu">
+                        <button md-menu-item routerLink="/profile">Perfil</button>
+                        <button md-menu-item>Definições</button>
+                        <button md-menu-item>Sair</button>
+                    </md-menu>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <router-outlet></router-outlet>
