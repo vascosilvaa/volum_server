@@ -1,21 +1,37 @@
+import { LoginComponent } from './components/login/login.component';
+import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
 import { ProfileComponent } from './components/profile/profile.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+
 import { FeedComponent } from './components/feed/feed.component';
-import { LayoutComponent } from './components/layout/layout.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'profile', loadChildren: './components/profile/profile.module#ProfileModule' },
-    { path: 'feed', component: FeedComponent },
-
-  ] }
+  {
+    path: '',
+    children: [
+      {
+        path: 'profile',
+        loadChildren: '../app/components/profile/profile.module#ProfileModule'
+      },
+      {
+        path: 'feed',
+        loadChildren: '../app/components/feed/feed.module#FeedModule'
+      }
+    ]
+  }
 ];
 
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+
+}

@@ -1,6 +1,5 @@
 //FONTS
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
 //GLOBAL COLORS
 $red: #F51111;
 $blue: #0F76F7;
@@ -14,80 +13,78 @@ $yellow: #FFCB2B;
 $inputTitle: #A28F9F;
 $orange: #FF8A65;
 $bold: 600;
-
 .carousel-control-next-icon {
-  background-image: url('https://www.lithosdesign.com/images/arrow_b_right.png');
-  width: 20px;
-  height: 20px;
-
+    background-image: url('https://www.lithosdesign.com/images/arrow_b_right.png');
+    width: 20px;
+    height: 20px;
 }
 
 .carousel-control-prev-icon {
-  background-image: url('https://www.lithosdesign.com/images/arrow_b_left.png');
-  height: 20px;
-  width: 20px;
-  margin-left: -20px;
+    background-image: url('https://www.lithosdesign.com/images/arrow_b_left.png');
+    height: 20px;
+    width: 20px;
+    margin-left: -20px;
 }
 
 .carousel-control-prev {
-  width: 5%;
-  margin-left: -40px;
+    width: 5%;
+    margin-left: -40px;
 }
 
 .carousel-control-next {
-  width: 5%;
-  margin-right: -50px;
+    width: 5%;
+    margin-right: -50px;
 }
 
 //GLOBAL TEXT
-.ts10{
+.ts10 {
     font-size: 10px;
 }
 
-.ts12{
+.ts12 {
     font-size: 12px;
 }
 
-.ts13{
+.ts13 {
     font-size: 13px;
 }
 
-.ts14{
+.ts14 {
     font-size: 14px;
 }
 
-.ts16{
+.ts16 {
     font-size: 16px;
 }
 
-.ts18{
+.ts18 {
     font-size: 18px;
 }
 
 //GLOBAL MARGIN
-.no-margin{
+.no-margin {
     margin-left: 0;
     margin-right: 0;
 }
 
 //GLOBAL PADDING
-.no-padding{
+.no-padding {
     padding-left: 0;
     padding-right: 0;
 }
 
 //GLOBAL INPUT
-.width100{
+.width100 {
     width: 100%
 }
 
 //BOOTSTRAP EDIT
 button:focus {
-  outline: none!important;
+    outline: none!important;
 }
 
 //STYLES
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif!important;
@@ -96,65 +93,75 @@ body{
 }
 
 //BOTÕES
-
 .btnConfirm {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid $blue;
-  background-color: $blue;
-  color: #fff;
-  width: 100px;
-
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid $blue;
+    background-color: $blue;
+    color: #fff;
+    width: 100px;
 }
 
 .btnConfirm a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
 
 .btnCancel {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid $grey2;
-  color: $grey2;
-  width: 100px;
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid $grey2;
+    color: $grey2;
+    width: 100px;
 }
 
 .btnCancel a {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
-
 
 .btnCancel:hover {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid $grey2;
-  color: #fff;
-  background: $grey2;
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid $grey2;
+    color: #fff;
+    background: $grey2;
 }
 
-
 .btnConfirm:hover {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid $blue;
-  background-color: #fff;
-  color: $blue;
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid $blue;
+    background-color: #fff;
+    color: $blue;
 }
 
 .btnRemove {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid #ff484a;
-  background-color: #ff484a;
-  color: #fff;
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid #ff484a;
+    background-color: #ff484a;
+    color: #fff;
 }
 
 .btnRemove:hover {
-  border-radius: 0!important;
-  font-size: 12px;
-  border: 1px solid #ff484a;
-  background-color: #fff;
-  color: #ff484a;
+    border-radius: 0!important;
+    font-size: 12px;
+    border: 1px solid #ff484a;
+    background-color: #fff;
+    color: #ff484a;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+    opacity: 0.5;
 }

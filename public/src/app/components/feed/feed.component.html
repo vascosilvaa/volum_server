@@ -1,188 +1,183 @@
 <div *ngIf="login==false">
-<div class="header">
-<div class="container">
-  <div class="container headerFeed">
-      <div class="v-header-title">FRASE INSPIRADORA DE VOLUNTARIADO.</div>
-      <div class="v-header-subtitle">Frase ainda mais inspiradora de voluntariado. </div>
+    <div class="header">
+        <div class="container">
+            <div class="container headerFeed">
+                <div class="v-header-title">FRASE INSPIRADORA DE VOLUNTARIADO.</div>
+                <div class="v-header-subtitle">Frase ainda mais inspiradora de voluntariado. </div>
+            </div>
+
+            <div class="container">
+
+                <div class="col-12 header-home-search menuFull">
+                    <div class="col-search col-8">
+
+                        <md-input-container class="col-12">
+                            <input mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+                        </md-input-container>
+                    </div>
+
+                    <div class="col-search-btn col-4 btnSearch">
+                        <button md-raised-button class="btn-search">Procurar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
     <div class="container">
-
-        <div class="col-12 header-home-search menuFull">
-        <div class="col-search col-8">
-
-          <md-input-container class="col-12">
-            <input  mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
-          </md-input-container>
+        <!-- PUBLICO -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="titleFeed">Instituições</div>
+            </div>
         </div>
-
-        <div class="col-search-btn col-4 btnSearch">
-           <button md-raised-button class="btn-search">Procurar</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class="container">
-  <!-- PUBLICO -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="titleFeed">Instituições</div>
-    </div>
-  </div>
-    <carousel>
-        <slide>
-          <span class="row">
+        <carousel>
+            <slide>
+                <span class="row">
             <span class="col-lg-6">
               <app-card *ngIf="volInst1?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst1?.photo_url" [username]="volInst1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
               <app-card *ngIf="volInst1?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst1?.photo_url" [username]="volInst1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
             </span>
-            <span class="col-lg-6">
+                <span class="col-lg-6">
               <app-card *ngIf="volInst2?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst2?.photo_url" [username]="volInst2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
               <app-card *ngIf="volInst2?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst2?.photo_url" [username]="volInst2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
             </span>
-          </span>
-        </slide>
+                </span>
+            </slide>
 
-        <slide>
-          <span class="row">
+            <slide>
+                <span class="row">
             <span class="col-lg-6">
               <app-card *ngIf="volInst3?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst3?.photo_url"  [username]="volInst3?.username"  [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
               <app-card *ngIf="volInst3?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst3?.photo_url"  [username]="volInst3?.username"  [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
             </span>
-            <span class="col-lg-6">
+                <span class="col-lg-6">
               <app-card *ngIf="volInst4?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst4?.photo_url" [username]="volInst4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
               <app-card *ngIf="volInst4?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst4?.photo_url" [username]="volInst4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
             </span>
-          </span>
-        </slide>
-    </carousel>
+                </span>
+            </slide>
+        </carousel>
 
-  <!-- PUBLICO -->
-  <!-- PRIVADO -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="titleFeed">Privado</div>
-    </div>
-  </div>
-    <carousel>
-        <slide>
-            <div class="row">
-              <div class="col-lg-6">
-                <app-card *ngIf="volPriv1?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv1?.photo_url"  [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-                <app-card *ngIf="volPriv1?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv1?.photo_url"  [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-              </div>
-              <div class="col-lg-6">
-                <app-card *ngIf="volPriv2?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-                <app-card *ngIf="volPriv2?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-              </div>
+        <!-- PUBLICO -->
+        <!-- PRIVADO -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="titleFeed">Privado</div>
             </div>
-        </slide>
+        </div>
+        <carousel>
+            <slide>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <app-card *ngIf="volPriv1?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv1?.photo_url" [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
+                        <app-card *ngIf="volPriv1?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv1?.photo_url" [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
+                    </div>
+                    <div class="col-lg-6">
+                        <app-card *ngIf="volPriv2?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
+                        <app-card *ngIf="volPriv2?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
+                    </div>
+                </div>
+            </slide>
 
-        <slide>
-            <div class="row">
-              <div class="col-lg-6">
-                <app-card *ngIf="volPriv3?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-                <app-card *ngIf="volPriv3?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-              </div>
-              <div class="col-lg-6">
-                <app-card *ngIf="volPriv4?.veryfied==1" [veryfied]="1" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-                <app-card *ngIf="volPriv4?.veryfied==0" [veryfied]="0" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-              </div>
+            <slide>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <app-card *ngIf="volPriv3?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
+                        <app-card *ngIf="volPriv3?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
+                    </div>
+                    <div class="col-lg-6">
+                        <app-card *ngIf="volPriv4?.veryfied==1" [veryfied]="1" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
+                        <app-card *ngIf="volPriv4?.veryfied==0" [veryfied]="0" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
+                    </div>
+                </div>
+            </slide>
+        </carousel>
+        <!-- PRIVADO -->
+        <!-- CIDADES -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="titleFeed">Cidades</div>
             </div>
-        </slide>
-    </carousel>
-  <!-- PRIVADO -->
-  <!-- CIDADES -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="titleFeed">Cidades</div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city1">
+                <div class="cityCard cityAveiro">
+                    <div class="cityText">Aveiro</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city2">
+                <div class="cityCard cityPorto">
+                    <div class="cityText">Porto</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city3">
+                <div class="cityCard cityLisboa">
+                    <div class="cityText">Lisboa</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-sm-3 col-md-3 city city4">
+                <div class="cityCard cityCoimbra">
+                    <div class="cityText">Coimbra</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 city city5">
+                <div class="cityCard cityBraga">
+                    <div class="cityText">Braga</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-2 col-md-2 city city6">
+                <div class="cityCard cityGuimaraes">
+                    <div class="cityText">Guimarães</div>
+                </div>
+            </div>
+        </div>
+        <!-- CIDADES -->
+        <!-- QUESTIONS -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="titleFeed">Perguntas Frequentes</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="col-lg-12 askedQuestions">
+                </div>
+                <div class="titleAskedQuestions">
+                    O que é a Volum?
+                </div>
+                <div class="textAskedQuestions">
+                    A Volum foi lançada pela ENTRAJUDA em 2006. É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social. Trata-se de uma ferramenta de gestão e
+                    desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado e permite a capacitação das organizações. </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="col-lg-12 askedQuestions">
+
+                </div>
+                <div class="titleAskedQuestions">
+                    Como funciona a Volum?
+                </div>
+                <div class="textAskedQuestions">
+
+
+                    Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social, procurar uma instituição
+                    ou organização perto do local da sua residência, participar numa acção pontual. </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="col-lg-12 askedQuestions">
+                </div>
+                <div class="titleAskedQuestions">
+                    A Volum é só para atuais voluntários?
+                </div>
+                <div class="textAskedQuestions">
+                    Não, porque o voluntariado não se limita à área da solidariedade Social. São contempladas outras áreas onde o voluntariado tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto, Direitos Humanos, entre
+                    outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade </div>
+            </div>
+        </div>
+        <!-- QUESTIONS -->
     </div>
-  </div>
-  <div class="row">
-      <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city1">
-        <div class="cityCard cityAveiro">
-          <div class="cityText">Aveiro</div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city2">
-        <div class="cityCard cityPorto">
-          <div class="cityText">Porto</div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city3">
-        <div class="cityCard cityLisboa">
-          <div class="cityText">Lisboa</div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2 col-sm-3 col-md-3 city city4">
-        <div class="cityCard cityCoimbra">
-          <div class="cityText">Coimbra</div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2 col-md-2 city city5">
-        <div class="cityCard cityBraga">
-          <div class="cityText">Braga</div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-2 col-md-2 city city6">
-        <div class="cityCard cityGuimaraes">
-          <div class="cityText">Guimarães</div>
-        </div>
-      </div>
-  </div>
-  <!-- CIDADES -->
-  <!-- QUESTIONS -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="titleFeed">Perguntas Frequentes</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="col-lg-12 askedQuestions">
-      </div>
-      <div class="titleAskedQuestions">
-        O que é a Volum?
-      </div>
-      <div class="textAskedQuestions">
-        A Volum foi lançada pela ENTRAJUDA em 2006.
-
-        É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social.
-
-
-
-        Trata-se de uma ferramenta de gestão e desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado e permite a capacitação das organizações.      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="col-lg-12 askedQuestions">
-
-      </div>
-      <div class="titleAskedQuestions">
-        Como funciona a Volum?
-      </div>
-      <div class="textAskedQuestions">
-
-
-        Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social, procurar uma instituição ou organização perto do local da sua residência, participar numa acção pontual.       </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="col-lg-12 askedQuestions">
-      </div>
-      <div class="titleAskedQuestions">
-        A Volum é só para atuais voluntários?
-      </div>
-      <div class="textAskedQuestions">
-        Não, porque o voluntariado não se limita à área da solidariedade Social.
-
-        São contempladas outras áreas onde o voluntariado tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto, Direitos Humanos, entre outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade      </div>
-    </div>
-  </div>
-  <!-- QUESTIONS -->
-</div>
 </div>
 
 
@@ -190,42 +185,37 @@
 
 <!-- LOGADO -->
 <div *ngIf="login==true">
-  <div class="header">
-  <div class="container">
-    <div class="container headerFeed">
-        <div class="v-header-title">LOREM IPSUM DOLOR SIT AMET</div>
-        <div class="v-header-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-      </div>
+    <div class="header">
+        <div class="container">
+            <div class="container headerFeed">
+                <div class="v-header-title">LOREM IPSUM DOLOR SIT AMET</div>
+                <div class="v-header-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
 
-      <div class="container">
+            <div class="container">
 
-          <div class="col-12 header-home-search menuFull">
-          <div class="col-search col-8">
+                <div class="col-12 header-home-search menuFull">
+                    <div class="col-search col-8">
 
-            <md-input-container class="col-12">
-              <input  mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
-            </md-input-container>
-          </div>
+                        <md-input-container class="col-12">
+                            <input mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+                        </md-input-container>
+                    </div>
 
-          <div class="col-search-btn col-4 btnSearch">
-             <button md-raised-button class="btn-search">Procurar</button>
-          </div>
+                    <div class="col-search-btn col-4 btnSearch">
+                        <button md-raised-button class="btn-search">Procurar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-<div class="container">
-    <div class="row">
-      <div *ngFor="let item of volsTodos" class="col-lg-6">
-        <app-card *ngIf="item.veryfied==1" [veryfied]="1" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
-        <app-card *ngIf="item.veryfied==0" [veryfied]="0" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let item of volsTodos" class="col-lg-6">
+                <app-card *ngIf="item.veryfied==1" [veryfied]="1" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
+                <app-card *ngIf="item.veryfied==0" [veryfied]="0" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
+            </div>
+        </div>
+
     </div>
-
 </div>
-</div>
-<!--LOGADO -->
-
-<!-- FOOTER -->
-<app-footer></app-footer>
-<!-- FOOTER -->
