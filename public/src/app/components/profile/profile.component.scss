@@ -1,0 +1,217 @@
+@import '../../../styles';
+
+
+/* Sub Header */
+
+.sub-header-profile{
+     height: 80px;
+ }
+.sub-header-background{
+    background-color: $white;
+}
+.profile-user-picture{
+    margin-top:-90px;
+}
+.profile-user-picture img{
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    border: solid 5px $white;
+}
+.user-rate{
+     padding-left: 0;
+     padding-top: 5px;
+     margin-left: -7px;
+ }
+
+ .user-rate md-icon{
+    color: $yellow;
+ }
+.profile-user-name-location{
+    margin-top: -60px;
+    margin-left: -145px;
+}
+.user-name{
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+}
+.user-location{
+    color: $white;
+    font-size: 16px;
+    margin-top: -5px;
+}
+
+.menuSubHeader ul{
+    padding-left: 140px;
+    margin-top: -36px;
+}
+.menuSubHeader ul li{
+    display: inline-block;
+    color: $grey2;
+    padding-right: 15px;
+}
+
+.menuSubHeader ul li a{
+    display: inline-block;
+    color: $grey2;
+    text-decoration: none;
+}
+
+.menuSubHeader ul li a:hover{
+    display: inline-block;
+    color: $grey3;
+    text-decoration: none;
+}
+
+.menuSubHeaderActive{
+  color: $grey3!important;
+  padding: 0;
+}
+
+.col-new-action{
+    margin-top: -65px;
+}
+.btn-new-action{
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0), 0 2px 2px 0 rgba(0,0,0,0), 0 1px 5px 0 rgba(0,0,0,0);
+    background-color: $yellow;
+    color: $white;
+    font-weight: 600;
+    height: 45px;
+    line-height: 45px;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 17px;
+ }
+ .btn-new-action:hover{
+     text-decoration: none!important;
+ }
+.btn-new-action:focus{
+    text-decoration: none!important;
+}
+.btn-new-action-icon{
+    display: none;
+}
+
+@media (max-width:1200px){
+    .profile-user-name-location{
+        margin-left: -100px
+    }
+    .user-rate{
+        padding-left: 0;
+        padding-top: 5px;
+        margin-left: -5px;
+        padding-right: 0;
+    }
+    .rate1{
+        margin-left: -3px;
+    }
+}
+
+@media (max-width:992px){
+    .profile-user-name-location{
+       margin-left: -40px;
+    }
+    .col-new-action{
+        margin-left: -35px;
+    }
+}
+
+@media (max-width:767px){
+    .sub-header-profile{
+        height: 130px;
+    }
+    .profile-user-picture{
+        text-align: center;
+    }
+    .profile-user-name-location{
+        text-align: center;
+        margin-left: 0;
+        margin-top: 0;
+    }
+    .user-name{
+        color: $grey3;
+    }
+    .user-location{
+        color: $grey3;
+    }
+    .col-new-action{
+        margin-top:-54px;
+        margin-left: 0;
+    }
+    .menuSubHeader ul{
+        padding-left: 15px;
+        margin-top: 0;
+    }
+    .btn-new-action-text{
+        display: none;
+    }
+    .btn-new-action-icon{
+        display: block;
+    }
+    .btn-new-action{
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,0), 0 2px 2px 0 rgba(0,0,0,0), 0 1px 5px 0 rgba(0,0,0,0);
+        background-color: $yellow;
+        color: $white;
+        font-weight: 600;
+        height: auto;
+        line-height: 45px;
+        font-size: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: -80px;
+        min-width: 40px!important;
+        text-align: center
+    }
+    .menuSubHeaderUl{
+        display: none;
+    }
+    .menuSubHeader{
+         margin-top:-54px;
+    }
+    .btn-menu{
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,0), 0 2px 2px 0 rgba(0,0,0,0), 0 1px 5px 0 rgba(0,0,0,0);
+        background-color: $grey1;
+        color: $white;
+        font-weight: 600;
+        height: auto;
+        line-height: 45px;
+        font-size: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: -80px;
+        min-width: 40px!important;
+        text-align: center
+    }
+}
+
+@media (max-width:576px){
+    .brandBackground{
+        background-color: $white;
+    }
+    .titleBrand{
+        color: $white;
+        font-weight: 600;
+        letter-spacing: 8px;
+        font-size: 1.45rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 15px;
+    }
+    .titleBrand{
+        color: $blue;
+    }
+    .header-background{
+        height: 210px;
+    }
+    .menuHeader{
+        padding-top: 5px;
+    }
+}
+
+/* Sub Header */

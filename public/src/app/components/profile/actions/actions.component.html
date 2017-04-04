@@ -1,0 +1,106 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 ">
+      <div class="card primaryCard">
+        <div class=" card-block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-2 col-6 navCard vcenter titleNavLink">
+                <a routerLink="/profile/actions" (click)="invite=0" *ngIf="invite==0" class="navLinkAtive">Minhas Ações</a>
+                <a routerLink="/profile/actions" (click)="invite=0" *ngIf="invite==1" class="navLink ">Minhas Ações</a>
+              </div>
+              <div class="col-lg-2 col-6 navCard vcenter titleNavLink">
+                <a routerLink="/profile/actions" (click)="invite=1" *ngIf="invite==0" class="navLink">Convites<span class="badge badge-pill badge-primary">2</span></a>
+                <a routerLink="/profile/actions" (click)="invite=1" *ngIf="invite==1" class="navLinkAtive">Convites<span class="badge badge-pill badge-primary">2</span></a>
+              </div>
+              <div class="col text-right titleNavLink iconCard ">
+                <i class="material-icons edit">more_horiz</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 table">
+      <table class="table">
+        <thead class="thead-inverse" class="cabecalho">
+          <tr>
+            <th>TITULO</th>
+            <th>LOCALIZAÇÃO</th>
+            <th>DATA</th>
+            <th *ngIf="invite==0">CONFIRMADOS</th>
+            <th *ngIf="invite==0">CANDIDATOS</th>
+            <th *ngIf="invite==1">CRIADO POR</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tableText">
+            <th class="tableBold tableTitle">Lorem Ipsum</th>
+
+            <td class="tablePlace">
+              <div class="tableBold">Universidade de Aveiro</div>
+              <div class="">Universidade de Aveiro, 3810-164</div>
+              <div>Aveiro, Portugal</div>
+            </td>
+
+            <td class="tableDate">
+              <div class="tableBold">8 de março - 12 de março</div>
+              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
+            </td>
+
+            <td *ngIf="invite==0">
+                <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/avatar2.png"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/avatar3.png"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+            </td>
+
+            <td *ngIf="invite==0">
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/avatar2.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/avatar3.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+            </td>
+
+            <td *ngIf="invite==1">
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="tableBold">André Martins</span>
+            </td>
+
+            <td *ngIf="invite==0" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm" routerLink="/profile/details">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+              </div>
+            </td>
+
+            <td *ngIf="invite==1" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm" routerLink="/profile/details">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+              </div>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- detalhes -->

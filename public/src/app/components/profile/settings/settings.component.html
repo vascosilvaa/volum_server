@@ -1,0 +1,361 @@
+<div class="container">
+  <div class="row">
+    <div clasS="col-12 col-lg-3 border">
+        <div class="card cardBorder primaryCard">
+          <accordion>
+            <accordion-group class="titleCard" heading="Definições de perfil">
+                <ul>
+                  <li>
+                    Informação pessoal
+                  </li>
+                  <li>
+                    Acerca de mim
+                  </li>
+                  <li>
+                    Educação e formação
+                  </li>
+                  <li>
+                    Alterar a palavra passe
+                  </li>
+              </ul>
+            </accordion-group>
+            <accordion-group heading="Mensagens">
+              <p>Content 2</p>
+            </accordion-group>
+            <accordion-group heading="Privacidade">
+              <p>Content 2</p>
+            </accordion-group>
+          </accordion>
+
+          <!--<div class="">
+            <div class="col titleCard">
+              Dados Pessoais
+            </div>
+          </div>-->
+        </div>
+    </div>
+
+
+    <div class="col-12 col-lg-9">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              Informação Pessoal
+            </div>
+          </div>
+        </div>
+
+        <div class="card-block">
+
+            <form class="float-label" spellcheck="false">
+            <div class="row">
+                <div class="col-6 inputProfile no-margin">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="Primeiro nome" value="Vasco" required />
+                    <label for="title" class="titlePlaceholder">Primeiro nome</label>
+                  </div>
+                </div>
+                <div class="col-6 inputProfile no-margin">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="Apelido" value="Silva" required />
+                    <label for="title" class="titlePlaceholder">Apelido</label>
+                  </div>
+                </div>
+
+                <div class="col-6 inputProfile">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="E-mail" value="vascosilvaa@gmail.com" required />
+                    <label for="title" class="titlePlaceholder">E-mail</label>
+                  </div>
+                </div>
+
+                <div class="col-6 inputProfile">
+                  <select class="form-control inputText form-control-lg disabled">
+                    <option selected>Masculino</option>
+                    <option>Feminino</option>
+                  </select>
+                  <label class="placeholderSelect">Género</label>
+                </div>
+
+                <div class="col-6 inputProfile">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input class="form-control date_picker"
+                               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" placeholder="aaaa-mm-dd">
+                        <div class="input-group-addon" (click)="d.toggle()" >
+                          <i class="data_range_icon material-icons">date_range</i>
+                        </div>
+                      </div>
+                      <label class="placeholderSelect">Data de Nascimento</label>
+                    </div>
+                </div>
+
+                <div class="col-6 inputProfile">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="E-mail" value="vascosilvaa@gmail.com" required />
+                    <label for="title" class="titlePlaceholder">E-mail</label>
+                  </div>
+                </div>
+
+                <div class="col-4 inputProfile">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="País" value="Portugal" required />
+                    <label for="title" class="titlePlaceholder">País</label>
+                  </div>
+                </div>
+                <div class="col-4 inputProfile">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="Distrito" value="Porto" required />
+                    <label for="title" class="titlePlaceholder">Distrito</label>
+                  </div>
+                </div>
+                <div class="col-4 inputProfile">
+                    <div class="control inputText">
+                    <input type="text" class="" name="title" placeholder="Telemóvel" value="913 315 609" required />
+                    <label for="title" class="titlePlaceholder">Telemóvel</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 inputProfile">
+                  <div class="control">
+                   <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                    <label for="textarea" class="titlePlaceholder">Sobre mim</label>
+                 </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="file" class="form-control-file inputPhotoProfile" id="exampleInputFile" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Insira uma nova imagem de forma a alterar a sua foto de perfil. </small>
+                  </div>
+                </div>
+                <div class="col-lg-12 inputProfile">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1" style="background-color:white; padding-left:30px; padding-right:30px;"><img src="../assets/imgs/fb_logo.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
+                    <input type="text" class="form-control inputSocial" placeholder="vasco/facebook.com" aria-describedby="sizing-addon1">
+                  </div>
+                </div>
+                <div class="col-lg-12 inputProfile">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="../assets/imgs/insta_logo.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
+                    <input type="text" class="form-control inputSocial" placeholder="vasco/instagram.com" aria-describedby="sizing-addon1">
+                  </div>
+                </div>
+                <div class="col-lg-12 inputProfile">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="../assets/imgs/linkedin_logo.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
+                    <input type="text" class="form-control  inputSocial" placeholder="vasco/linkedin.com" aria-describedby="sizing-addon1">
+                  </div>
+                </div>
+                <div class="col-lg-12 inputProfile">
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="../assets/imgs/twitter_logo.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
+                    <input type="text" class="form-control  inputSocial" placeholder="twitter/snapchat.com" aria-describedby="sizing-addon1">
+                  </div>
+                </div>
+                <div class="col-6">
+                    <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
+                </div>
+                <div class="col-6 ">
+                  <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div class="col-12 col-lg-9">
+    <div class="card primaryCard">
+      <div class="card-header cardTitle">
+        <div class="row">
+          <div class="col titleCard">
+          Acerca de mim
+          </div>
+        </div>
+      </div>
+
+    <div class="card-block">
+      <form class="float-label" spellcheck="false">
+        <div class="row">
+            <div class="col-6 inputProfile no-margin">
+              <div class="control">
+               <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                <label for="textarea" class="titlePlaceholder">Sobre mim</label>
+               </div>
+             </div>
+             <div class="col-6 inputProfile no-margin">
+               <div class="control">
+                <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Hobbies e interesses">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                 <label for="textarea" class="titlePlaceholder">Hobbies e interesses</label>
+                </div>
+              </div>
+
+              <div class="col-6 inputProfile">
+                <div class="control">
+                 <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Tipos de voluntariado favoritos">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                  <label for="textarea" class="titlePlaceholder">Tipos de voluntariado favoritos</label>
+                 </div>
+               </div>
+               <div class="col-6 inputProfile">
+                 <div class="control">
+                  <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Idiomas">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                   <label for="textarea" class="titlePlaceholder">Idiomas</label>
+                  </div>
+                </div>
+
+                <div class="col-6 inputProfile">
+                  <div class="control">
+                   <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Outros interesses">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                    <label for="textarea" class="titlePlaceholder">Outros interesses</label>
+                   </div>
+                 </div>
+                 <div class="col-6 inputProfile">
+                   <div class="control">
+                    <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+                     <label for="textarea" class="titlePlaceholder">Sobre mim</label>
+                    </div>
+                  </div>
+
+            <div class="col-6">
+                <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
+            </div>
+            <div class="col-6 ">
+              <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-12 col-lg-9">
+    <div class="card primaryCard">
+      <div class="card-header cardTitle">
+        <div class="row">
+          <div class="col titleCard">
+          Educação e formação
+          </div>
+        </div>
+      </div>
+
+    <div class="card-block">
+      <form class="float-label" spellcheck="false">
+      <div class="row">
+        <div class="col-12 titleEducation noMarginTitleEducation">
+          Formação 1
+        </div>
+          <div class="col-6 inputProfile no-margin">
+              <div class="control inputText">
+              <input type="text" class="" name="title" placeholder="Instituição" value="Universidade de Aveiro" required />
+              <label for="title" class="titlePlaceholder">Instituição</label>
+            </div>
+          </div>
+
+          <div class="col-6 inputProfile no-margin">
+              <div class="control inputText">
+              <input type="text" class="" name="title" placeholder="Período de tempo" value="2014-2017" required />
+              <label for="title" class="titlePlaceholder">Período de tempo</label>
+            </div>
+          </div>
+          <div class="col-12 inputProfile marginBottom">
+            <div class="control">
+             <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Descrição">Licenciatura em Psicologia</textarea>
+              <label for="textarea" class="titlePlaceholder">Descrição</label>
+             </div>
+           </div>
+
+
+           <div class="col-12 titleEducation">
+              Formação 2
+           </div>
+
+
+           <div class="col-6 inputProfile no-margin">
+               <div class="control inputText">
+               <input type="text" class="" name="title" placeholder="Instituição" value="Universidade de Aveiro" required />
+               <label for="title" class="titlePlaceholder">Instituição</label>
+             </div>
+           </div>
+
+           <div class="col-6 inputProfile no-margin ">
+               <div class="control inputText">
+               <input type="text" class="" name="title" placeholder="Período de tempo" value="2014-2017" required />
+               <label for="title" class="titlePlaceholder">Período de tempo</label>
+             </div>
+           </div>
+           <div class="col-12 inputProfile marginBottom">
+             <div class="control">
+              <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Descrição">Licenciatura em Psicologia</textarea>
+               <label for="textarea" class="titlePlaceholder">Descrição</label>
+              </div>
+            </div>
+
+            <div class="col-12 addEducation">
+              <span class="iconAdd">+ </span><span class="titleAdd">Adicionar campo de educação</span>
+            </div>
+
+           <div class="col-6">
+               <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
+           </div>
+           <div class="col-6 ">
+             <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+           </div>
+
+        </div>
+
+
+
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+<div class="col-12 col-lg-9">
+  <div class="card primaryCard">
+    <div class="card-header cardTitle">
+      <div class="row">
+        <div class="col titleCard">
+        Alterar a palavra passe
+        </div>
+      </div>
+    </div>
+
+  <div class="card-block">
+    <form class="float-label" spellcheck="false">
+    <div class="row">
+        <div class="col-12 inputProfile no-margin">
+            <div class="control inputText">
+            <input type="password" class="" name="title" placeholder="Palavra passe atual" value="qualquer" required />
+            <label for="title" class="titlePlaceholder">Palavra passe atual</label>
+          </div>
+        </div>
+        <div class="col-6 inputProfile">
+          <div class="control inputText">
+            <input type="password" class="" name="title" placeholder="Nova palavra passe" value="qualquer" required />
+            <label for="title" class="titlePlaceholder">Nova palavra passe</label>
+          </div>
+        </div>
+        <div class="col-6 inputProfile">
+          <div class="control inputText">
+            <input type="password" class="" name="title" placeholder="Confirmar nova palavra passe" value="qualquer" required />
+            <label for="title" class="titlePlaceholder">Confirmar nova palavra passe</label>
+          </div>
+        </div>
+        <div class="col-12 ">
+          <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+        </div>
+      </div>
+
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Educação e Formação -->
+  </div>
+
+</div>

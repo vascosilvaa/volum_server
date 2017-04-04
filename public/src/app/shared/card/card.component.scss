@@ -1,0 +1,283 @@
+@import '../../../styles';
+
+@media (min-width:320px)  {  .likeImgs { display:none};  .likesText { display: none}}
+@media (min-width:480px)  {  .likeImgs { display:block}; .likesText { display:block}}
+@media (min-width:600px)  { }
+@media (min-width:801px)  {  }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
+.card-volum{
+    background-color: $white;
+    padding-top: 15px;
+    border-radius: 4px;
+    margin-top: 30px;
+    min-width: 50%!important;
+
+}
+
+// HEADER
+.card-user-image img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+}
+
+.card-user-nd{
+    padding-left: 0;
+}
+
+.card-user-name{
+    color: $blue;
+    font-weight: 600;
+}
+
+.card-date{
+    color: $grey2;
+}
+
+.veryfied {
+  background-color: #fff;
+  color: #3C765A;
+  padding: 0;
+  margin-left: 5px;
+  font-size: 5px;
+}
+.btn-secondary {
+  border: 0!important;
+}
+
+.card-option{
+    padding-top: 10px;
+}
+
+.card-btn-option{
+    color: $grey1;
+    transition:all 0.3s ease;
+}
+
+.card-btn-option:hover{
+    color: $grey2;
+    cursor: pointer;
+}
+// HEADER
+
+// CONTENT
+.card-volum-content{
+    margin-top: 20px;
+}
+
+.card-volum-title{
+    font-weight: 600;
+    color: $grey3;
+}
+
+.card-volum-description{
+    margin-top: 5px;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-justify: inter-word;
+    min-width: 50%;
+}
+// CONTENT
+
+// FOOTER
+.card-volum-footer{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 15px;
+    -webkit-flex-flow: row wrap;
+    padding: 15px;
+}
+
+.btnLike{
+    color: $red;
+    padding-top: 7px;
+}
+
+.likesNumber{
+    font-weight: 600;
+    padding-top: 10px;
+    padding-left: 5px;
+    margin-right: 15px;
+}
+
+.likeImgs{
+    margin-top: 2.5px;
+}
+.likeImgs img{
+    border: 1px solid #FFF;
+    width: 30px;
+    height: 30px;
+    margin-left: -10px;
+    border-radius: 30px;
+}
+
+.likesText{
+    padding-top: 1px;
+    max-width: 110px;
+    margin-left: 5px;
+    color: $grey2;
+}
+
+.likesTestMe{
+    color: $blue;
+    font-weight: 600;
+}
+
+.likesTestSecond{
+    color: $grey2;
+    font-weight: 600;
+}
+
+.cardComments{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex: 2;
+    margin-left: 10px;
+}
+
+.cardComments md-icon{
+    padding-top: 7.5px;
+    font-size: 20px;
+}
+.textComments{
+    padding-top: 7.5px;
+}
+.commentsNumber{
+    font-weight: 600;
+}
+
+
+.btnView button{
+    background-color: $blue;
+    color: #FFF;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0), 0 2px 2px 0 rgba(0,0,0,0), 0 1px 5px 0 rgba(0,0,0,.0);
+    min-width: 68px;
+}
+// FOOTER
+
+// COMMENTS
+.card-Comments{
+
+    border-top: 1px solid $grey1;
+}
+.comments-header{
+    background-color: $grey0;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+}
+
+.card-user--comments-image{
+    padding-right: 10px;
+}
+
+.card-user--comments-image img{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-top: 1.5px;
+}
+
+.card-user-nd{
+    padding-left: 0;
+}
+
+.card-user-name-comments{
+    color: $grey3;
+    font-weight: 600;
+}
+
+.card-date-comments{
+    margin-top: -3px;
+    color: $grey2;
+}
+
+.card-option-comments{
+    padding-top: 3px;
+}
+
+.comments-content{
+    background-color: $grey0;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+}
+
+.borderComments{
+    min-width: 100%;
+    height: 1px;
+    background-color: $grey1;
+    margin-right: -15px;
+    margin-left:  -15px;
+}
+
+.more-Comments{
+    width: 100%;
+    text-align: center;
+    height: 42px;
+    font-weight: 600;
+    border-bottom: 1px solid $grey1;
+    padding-top: 2px;
+    transition:all 0.3s ease;
+    color: $grey2;
+}
+
+.more-Comments:hover{
+    cursor: pointer;
+    color: $orange;
+}
+
+.textMoreComments{
+    vertical-align: middle
+}
+.moreIcon{
+    font-size: 24px;
+    font-weight: 700;
+    vertical-align: middle
+}
+
+.insert-comment{
+    padding-top: 10px;
+}
+
+.btnSend{
+    padding-left: 0;
+}
+
+.btnSendIcon{
+
+    padding-top:10px;
+}
+
+.btnSendIcon:hover{
+    cursor: pointer;
+}
+
+.btnSendColorBlue{
+color: $blue;
+}
+
+.btnSendColorGrey{
+color: $grey1;
+}
+
+
+.card-user-comments-image-comments{
+    padding-top: 5px;
+}
+// COMMENTS

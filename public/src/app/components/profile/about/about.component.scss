@@ -1,0 +1,83 @@
+@import '../../../../styles';
+@import '../actions/actions.component';
+
+.marginAbout2 {
+  margin-top: 10px;
+}
+
+.marginAbout3 {
+  margin-top: 20px;
+}
+
+.socialButtonFacebook {
+  border-radius: 3px;
+  width: 100%;
+  background-color: #2F5B9C;
+  color: #fff;
+  height: 30px;
+  font-family: Lato;
+  margin-top: 10px;
+  text-decoration: none;
+  border: none;
+}
+
+.socialButtonTwitter {
+  border-radius: 3px;
+  width: 100%;
+  background-color: #37BFF1;
+  color: #fff;
+  height: 30px;
+  font-family: Lato;
+  margin-top: 10px;
+  text-decoration: none;
+  border: none;
+}
+
+.socialButtonLinkedin {
+  border-radius: 3px;
+  width: 100%;
+  background-color: #0077B5;
+  color: #fff;
+  height: 30px;
+  font-family: Lato;
+  margin-top: 10px;
+  text-decoration: none;
+  border: none;
+}
+
+.card-block {
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+
+.card-header {
+  padding-left: 5px!important;
+  padding-right: 5px!important;
+}
+
+.titleProfile {
+  font-weight: bold;
+  font-size: 16px;
+  color: $grey3;
+}
+
+.textProfile {
+  font-size: 14px;
+  color: $grey2;
+  padding-top: 3px;
+}
+
+.socialProfile {
+  margin-left: 5px;
+  padding-top: 15px;
+}
+
+.dateFormation {
+  font-size: 11px;
+  color:$grey2;
+  font-weight: 300;
+}
+
+.formationText {
+  margin-top: 3px;
+}

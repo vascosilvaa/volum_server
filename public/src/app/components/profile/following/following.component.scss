@@ -1,0 +1,135 @@
+@import "../../../../styles";
+@import '../actions/actions.component';
+
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.searchIcon {
+  font-size: 17px;
+  color: #fff;
+  margin-top: 6px;
+}
+
+.searchBar {
+  font-size: 16px;
+  color: $grey2;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $grey2;
+    font-size: 14px;
+    font-family: Lato;
+    border-color: black!important
+}
+
+
+// card amigos
+
+.cardFriends {
+  margin-top: 30px;
+  height: 330px;
+  background: #fff;
+  border: 0;
+  width: 100%;
+}
+
+
+.profile-user-picture{
+  text-align: center;
+  margin-top:-50px!important;
+
+}
+.profile-user-picture img{
+    width: 100px;
+    height: 100px;
+    border-radius: 120px;
+    border: solid 5px $white;
+    text-align: center!important;
+}
+
+.friendsName {
+  text-align: center;
+  font-weight: $bold;
+  margin-top: 5px;
+}
+
+.friendsPlace {
+  text-align: center;
+  color: $grey2;
+  font-size: 12px;
+}
+
+.friendsEvents {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 20px;
+}
+
+.friendsCardNumber {
+  font-weight: $bold;
+  font-size: 14px;
+}
+
+.friendsCardNumberDesc {
+  color: $grey2;
+  font-size:12px;
+  text-align: center;
+}
+
+.friendsBtns {
+  margin-top: 28px;
+}
+
+
+.btnConfirm {
+  margin-left: -30px;
+  margin-top: 0;
+}
+
+.btnCancel {
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+.vcenter {
+  margin-top: 10px;
+}
+
+.friendsBackground {
+  background: url('../../../../assets/imgs/backgroundOV.jpg');
+  height: 100px;
+  background-size:cover;
+}

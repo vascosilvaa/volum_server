@@ -1,0 +1,51 @@
+@import '../../../../styles';
+@import '../actions/actions.component';
+
+.no-padding {
+  padding-right: 0!important;
+}
+
+.btnCancel {
+  margin: 0;
+}
+
+.btnConfirm {
+  margin: 0;
+}
+
+.iconBack {
+  margin-left: 5px!important;
+  margin-top: 2px;
+}
+
+.arrow {
+  margin-top: 2px;
+}
+
+.titleCard {
+  margin-top: 5px;
+}
+
+.titleVol {
+  margin-top: 2px!important;
+}
+
+.edit {
+  margin-top: 2px;
+}
+
+.btnCancel {
+  margin-top: 6px;
+}
+
+.btnConfirm {
+  margin-top: 6px;
+}
+
+.btnRemove {
+  margin-top: 6px;
+}
+
+.badge {
+  padding: 5px 5px;
+}
