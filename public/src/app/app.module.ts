@@ -37,6 +37,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     HttpModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    NgbModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
