@@ -1,3 +1,4 @@
+import { AuthenticationGuard } from './shared/Auth/authentication.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { FeedComponent } from './components/feed/feed.component';
 const appRoutes: Routes = [
   {
     path: '',
+   // canActivateChild: [AuthenticationGuard],
     children: [
       {
         path: 'profile',

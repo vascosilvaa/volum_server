@@ -1,3 +1,4 @@
+import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';
 import { Router } from '@angular/router';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
@@ -10,16 +11,35 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal) {
+  public isLoggedIn;
+  public user: any;
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
   }
   ngOnInit() {
+
+    this.getUser();
+  }
+
+  getUser() {
+    if (this.auth.isAuthenticated()) {
+      this.auth.userPromise.then(res => {
+        this.user = res.user;
+        console.log(this.user);
+      }
+      );
+
+    }
   }
 
   open() {
-    
+
     return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
 
+  }
+  logout() {
+    this.auth.logout();
+    this.user = null;
   }
 
 }

@@ -2,7 +2,8 @@ var express = require('express'),
     _ = require('lodash'),
     config = require('../config'),
     jwt = require('jsonwebtoken'),
-    db = require('../config/db');
+    db = require('../config/db'),
+    passport = require('passport');
 
 
 function getUserById(id, done) {
@@ -21,7 +22,7 @@ var app = module.exports = express.Router();
  * @apiGroup Perfil
  */
 
-app.get('/profile/:id', function(req, res) {
+app.get('/profile/:id', passport.authenticate(['jwt']), function(req, res) {
     if (isNaN(req.params.id)) {
         res.status(400);
         res.send({ success: false, message: "Parâmetros Invalidos" });
