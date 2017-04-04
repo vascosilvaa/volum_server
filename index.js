@@ -55,6 +55,7 @@ app.use('/api/users', users);
  */
 
 //teste 
+//teste do branch
 
 
 function ensureUnauthenticated(req, res, next) {
