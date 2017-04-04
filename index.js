@@ -6,36 +6,44 @@ require('pmx').init({
     ports: true // Shows which ports your app is listening on (default: false)
 });
 
+//DEPENDENCIES
 var morgan = require('morgan')
 var http = require('http');
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser')
 var cors = require('cors');
-
-var vols = require('./routes/vols');
-var auth = require('./routes/auth');
-var users = require('./routes/users');
+var passport = require('passport');
 var path = require('path');
 var app = express();
 var fileUpload = require('express-fileupload');
 
+//ROUTES
 
+var vols = require('./routes/vols');
+var auth = require('./routes/auth');
+var users = require('./routes/users');
+
+var db = require('./config/db');
 
 var searchData = [];
 
+
+app.use(passport.initialize());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());
-
+require('./config/passport')(passport);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(express.static(path.join(__dirname, 'public/dist')));
-
 app.use('/api', express.static(path.join(__dirname, 'docs')))
+app.use('/teste', express.static(path.join(__dirname, 'testes')))
 
+//ROUTES
 app.use('/api/auth', auth);
 app.use('/api/vols', vols);
 app.use('/api/users', users);
@@ -46,9 +54,24 @@ app.use('/api/users', users);
  * @apiParam {String} search Termo a pesquisar
  */
 
-app.get('/api/search', function(req, res) {
+
+function ensureUnauthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        // display an "already logged in" message
+        return res.redirect('/home');
+    }
+    next();
+}
+
+app.get('/api/search', passport.authenticate(['jwt', 'facebook'], { session: false }), function(req, res) {
     console.log(req.query.search);
-    if (req.query['search'] != undefined || req.query['search'] != null) {
+    if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
+        res.send({ success: false, message: 'Please provide a search query' })
+    } else if (typeof req.query['search'] !== 'string') {
+        res.send({ success: false, message: 'Please provide a valid search query' })
+    } else {
+
+
         let query = (req.query.search).replace(/['"]+/g, '');
 
         db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.login, users.photo_url FROM users where users.login LIKE ?', ['%' + query + '%', '%' + query + '%'],
@@ -68,10 +91,23 @@ app.get('/api/search', function(req, res) {
                     }
                 }
             });
-    } else {
-        res.send({ success: false, message: 'Please provide a search query' })
     }
 });
 
+
+app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));
+
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/teste',
+        failureRedirect: '/'
+    }));
+
+app.get('/profile', function(req, res) {
+    res.send({
+        user: req.user // get the user out of session and pass to template
+    });
+});
 app.listen(process.env.PORT || 8080);
 console.log("Listening...");

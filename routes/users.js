@@ -2,7 +2,7 @@ var express = require('express'),
     _ = require('lodash'),
     config = require('../config'),
     jwt = require('jsonwebtoken'),
-    db = require('../db');
+    db = require('../config/db');
 
 
 function getUserById(id, done) {

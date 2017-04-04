@@ -1,7 +1,8 @@
 var express = require('express'),
     jwt = require('express-jwt'),
     config = require('../config'),
-    db = require('../db');
+    db = require('../config/db');
+var passport = require('passport');
 
 var app = module.exports = express.Router();
 

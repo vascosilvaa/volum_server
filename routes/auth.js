@@ -2,10 +2,10 @@ var express = require('express'),
     _ = require('lodash'),
     config = require('../config'),
     jwt = require('jsonwebtoken'),
-    db = require('../db');
+    db = require('../config/db');
 
 var app = module.exports = express.Router();
-var secretKey = "don't share this key";
+var secretKey = "teste";
 var bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
@@ -159,6 +159,8 @@ app.post('/create', function(req, res) {
 
                                     message: "User criado com sucesso",
                                     id_token: createToken(newUser)
+
+
                                 });
 
                             }
@@ -171,7 +173,6 @@ app.post('/create', function(req, res) {
         });
     }
 });
-
 
 
 /**
@@ -197,8 +198,10 @@ app.post('/login', function(req, res) {
                 return res.status(401).send("O Login e password não coincidem");
                 console.log(res);
             } else {
+                var token = jwt.sign({ id: user.id_user }, secretKey);
+
                 res.status(201).send({
-                    id_token: createToken(user)
+                    id_token: "JWT " + token
                 });
 
                 console.log(res);
