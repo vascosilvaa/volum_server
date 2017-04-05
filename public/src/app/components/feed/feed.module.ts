@@ -1,3 +1,4 @@
+import { SwiperModule } from 'angular2-useful-swiper';
 import { FeedRoutingModule } from './feed.routing';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './../../shared/card/card.component';
@@ -9,6 +10,7 @@ import { FeedComponent } from './feed.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         NgbModule.forRoot(),
         CommonModule,
         FormsModule,
+        SwiperModule,    
         ReactiveFormsModule],
-    declarations: [FeedComponent, CardComponent]
+    declarations: [FeedComponent, CardComponent, SearchComponent]
 })
 export class FeedModule { }

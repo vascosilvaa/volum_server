@@ -1,73 +1,141 @@
 @import '../../../styles';
-@media screen and (max-width: 992px){
-  #main-navbar {
-      clear: both;
-  }
+@media screen and (max-width: 992px) {
+    #main-navbar {
+        clear: both;
+    }
 }
-@media (min-width:320px)  { .btnSearch{display: none} .city3{display:none}; .city4{display:none}; .city5{display:none}; .city6{display: none} }
-@media (min-width:480px)  { .btnSearch{display: none} .city3{display:block}; .city4{display:none}; .city5{display:none}; .city6{display: none} }
-@media (min-width:600px)  { .btnSearch{display: none} .city4{display:block}; .city5{display:none}; .city6{display: none} }
-@media (min-width:801px)  { .btnSearch{display: block} .city4{display:block}; .city5{display:block}; .city6{display: block} }
-@media (min-width:1025px) { .btnSearch{display: block} .city4{display:block}; .city5{display:block}; .city6{display: block} }
-@media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
+@media (min-width:320px) {
+    .btnSearch {
+        display: none
+    }
+    .city3 {
+        display: none
+    }
+    ;
+    .city4 {
+        display: none
+    }
+    ;
+    .city5 {
+        display: none
+    }
+    ;
+    .city6 {
+        display: none
+    }
+}
+
+@media (min-width:480px) {
+    .btnSearch {
+        display: none
+    }
+    .city3 {
+        display: block
+    }
+    ;
+    .city4 {
+        display: none
+    }
+    ;
+    .city5 {
+        display: none
+    }
+    ;
+    .city6 {
+        display: none
+    }
+}
+
+@media (min-width:600px) {
+    .btnSearch {
+        display: none
+    }
+    .city4 {
+        display: block
+    }
+    ;
+    .city5 {
+        display: none
+    }
+    ;
+    .city6 {
+        display: none
+    }
+}
+
+@media (min-width:801px) {
+    .btnSearch {
+        display: block
+    }
+    .city4 {
+        display: block
+    }
+    ;
+    .city5 {
+        display: block
+    }
+    ;
+    .city6 {
+        display: block
+    }
+}
+
+@media (min-width:1025px) {
+    .btnSearch {
+        display: block
+    }
+    .city4 {
+        display: block
+    }
+    ;
+    .city5 {
+        display: block
+    }
+    ;
+    .city6 {
+        display: block
+    }
+}
+
+@media (min-width:1281px) {
+    /* hi-res laptops and desktops */
+}
 
 .headerFeed {
-  margin-top: -80px;
+    margin-top: -80px;
 }
+
 .carousel-indicators li {
-  display: none!important;
+    display: none!important;
 }
+
 .lista {
-  float: right;
-}
-.header {
-  background: $blue;
-  min-height: 200px;
-  padding-top: 20px;
-}
-.titleFeed {
-  font-weight: $bold;
-  font-size: 18px;
-  margin-top: 50px;
-}
-
-.header-home-search{
-    background-color: $white;
-    min-height: 80px;
-    border-radius: 4px
-}
-
-.col-search{
-    float: left;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 80px;
-    line-height: 80px;
-}
-
-.col-search-btn{
     float: right;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 80px;
-    line-height: 80px;
-    text-align: right
 }
 
-.col-search-border{
-    border-right: 1px solid $grey-border;
+.header {
+    background: $blue;
+    min-height: 200px;
+    padding-top: 20px;
 }
 
-.search-areas{
+.titleFeed {
+    font-weight: $bold;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.search-areas {
     width: 100%;
 }
 
-.search-voluntario{
+.search-voluntario {
     width: 100%;
     margin-top: 15px;
 }
 
-.btn-search{
+.btn-search {
     background-color: $blue;
     color: $white;
     font-size: 18px;
@@ -76,97 +144,97 @@
 }
 
 .v-header-title {
-  font-weight: 600;
-  color: $white;
-  font-size: 36px;
+    font-weight: 600;
+    color: $white;
+    font-size: 58px;
 }
 
 .v-header-subtitle {
-  color: $white;
-  font-size: 20px;
-  font-weight: 100;
-  margin-top: -5px;
+    color: $white;
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: -5px;
 }
 
-.header-home-search{
-  margin-top: 30px;
+.header-home-search {
+    margin-top: 30px;
 }
 
 .header-title-search {
-  color:$inputTitle;
-  font-size: 15px;
-  margin-top: 3px;
+    color: $inputTitle;
+    font-size: 15px;
+    margin-top: 3px;
 }
 
-
 .cityCard {
-  background-color: $blue;
-  margin-top:20px;
-  padding:10px;
+    background-color: $blue;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .askedQuestions {
-  border-top:3px;
-  border-style: solid;
-  border-bottom: 0;
-  border-left: 0;
-  border-right: 0;
-  border-color: $blue;
-  margin-top: 10px;
+    border-top: 3px;
+    border-style: solid;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: $blue;
+    margin-top: 10px;
 }
 
 .titleAskedQuestions {
-  font-weight: $bold;
-  font-size: 18px;
-  margin-top: 35px;
+    font-weight: $bold;
+    font-size: 18px;
+    margin-top: 35px;
 }
 
 .textAskedQuestions {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .cityAveiro {
-  background: url('../../../assets/imgs/aveiro2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/aveiro2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .cityPorto {
-  background: url('../../../assets/imgs/porto2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/porto2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .city {
-  text-align: center;
+    text-align: center;
 }
+
 .cityLisboa {
-  background: url('../../../assets/imgs/lisboa2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/lisboa2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .cityCoimbra {
-  background: url('../../../assets/imgs/coimbra2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/coimbra2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .cityBraga {
-  background: url('../../../assets/imgs/braga2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/braga2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .cityGuimaraes {
-  background: url('../../../assets/imgs/guimaraes2.jpg');
-  background-size: cover;
-  height:200px;
+    background: url('../../../assets/imgs/guimaraes2.jpg');
+    background-size: cover;
+    height: 200px;
 }
 
 .cityText {
-  color:#fff;
-  font-weight: 600;
-  font-size: 1.4em;
-  padding-top:70px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4em;
+    padding-top: 70px;
 }

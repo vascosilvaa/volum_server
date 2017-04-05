@@ -56,7 +56,6 @@ app.use('/api/users', users);
 
 //teste 
 
-
 //teste do branch
 
 
@@ -68,36 +67,37 @@ function ensureUnauthenticated(req, res, next) {
     next();
 }
 
-app.get('/api/search', passport.authenticate(['jwt', 'facebook'], { session: false }), function(req, res) {
-    console.log(req.query.search);
-    if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
-        res.send({ success: false, message: 'Please provide a search query' })
-    } else if (typeof req.query['search'] !== 'string') {
-        res.send({ success: false, message: 'Please provide a valid search query' })
-    } else {
+app.get('/api/search',
+    function(req, res) {
+        console.log(req.query.search);
+        if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
+            res.send({ success: false, message: 'Please provide a search query' })
+        } else if (typeof req.query['search'] !== 'string') {
+            res.send({ success: false, message: 'Please provide a valid search query' })
+        } else {
 
 
-        let query = (req.query.search).replace(/['"]+/g, '');
+            let query = (req.query.search).replace(/['"]+/g, '');
 
-        db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.login, users.photo_url FROM users where users.login LIKE ?', ['%' + query + '%', '%' + query + '%'],
-            function(error, results, fields) {
-                if (error) {
-                    res.send({ success: false, message: error })
-                    console.log(error);
-                } else {
-
-                    if (results[0].length == 0 && results[1].length == 0) {
-                        res.status(404);
-                        res.send({ success: false, message: "No records found" })
+            db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.login, users.photo_url FROM users where users.login LIKE ?', ['%' + query + '%', '%' + query + '%'],
+                function(error, results, fields) {
+                    if (error) {
+                        res.send({ success: false, message: error })
+                        console.log(error);
                     } else {
-                        searchData = results[0].concat(results[1]);
-                        res.send({ success: true, message: searchData })
 
+                        if (results[0].length == 0 && results[1].length == 0) {
+                            res.status(404);
+                            res.send({ success: false, message: "No records found" })
+                        } else {
+                            searchData = results[0].concat(results[1]);
+                            res.send({ success: true, message: searchData })
+
+                        }
                     }
-                }
-            });
-    }
-});
+                });
+        }
+    });
 
 
 app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));

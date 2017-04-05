@@ -1,0 +1,27 @@
+@import '../../../../styles';
+.header-home-search {
+    background-color: $white;
+    min-height: 80px;
+    border-radius: 4px
+}
+
+.col-search {
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.col-search-btn {
+    float: right;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 80px;
+    line-height: 80px;
+    text-align: right
+}
+
+.col-search-border {
+    border-right: 1px solid $grey-border;
+}
