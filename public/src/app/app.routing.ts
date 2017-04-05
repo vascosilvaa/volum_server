@@ -1,3 +1,4 @@
+import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationGuard } from './shared/Auth/authentication.guard';
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';

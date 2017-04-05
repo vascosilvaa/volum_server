@@ -29,7 +29,8 @@
                         <button md-menu-item routerLink="/profile" *ngIf="user">Perfil</button>
                         <button md-menu-item *ngIf="user">Definições</button>
                         <button md-menu-item (click)="logout()" *ngIf="user">Sair</button>
-                        <button md-menu-item (click)="open()" *ngIf="!user">Login</button>
+                        <button md-menu-item (click)="openLogin()" *ngIf="!user">Login</button>
+                        <button md-menu-item (click)="openRegister()" *ngIf="!user">Registar</button>
 
                     </md-menu>
                 </li>

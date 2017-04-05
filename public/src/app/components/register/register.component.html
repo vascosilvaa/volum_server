@@ -1,3 +1,42 @@
-<p>
-  register works!
-</p>
+<div class="container">
+<!--
+<form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+    <button class="facebookLogin">Entrar com o Facebook</button>
+    <br> Login <input type="text" formControlName="login">
+    <small *ngIf="!form.controls.login.valid && form.controls.login.dirty" style="color:red">Invalido</small>
+    <br> Password <input type="password" formControlName="password">
+    <br>
+    <button type="submit">Login</button>
+</form>
+-->
+<div class="row">
+    <div class="col-12 containerLogin">
+        <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+            <div class="col-12">
+            <button class="facebookLogin">Registar com o Facebook</button>
+            </div>
+            <div class="col-12">
+            <button class="googleLogin">Registar com o Google</button>
+            </div>
+            <div class="col-12 text-center orLogin">
+            <span class="divider-or">ou</span>
+            <hr class="divider-hr">
+            </div>
+            <div class="col-12">
+            <button class="normalLogin">Registar com o e-mail</button>
+            </div>
+            <div class="col-12 footerLogin">
+                <hr>
+            </div>
+                <div class="col-6">
+                <span class="registerAdvice">Já se encontra registado?</span>
+            </div>
+            <div class="col text-right btnRegister">
+                <button class="registerBtn">Entrar</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+</div>
+

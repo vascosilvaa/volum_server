@@ -1,3 +1,4 @@
+import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';
 import { Router } from '@angular/router';
@@ -32,10 +33,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  open() {
+  openLogin() {
 
-    return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+    return this.modal.open(LoginComponent, overlayConfigFactory({num1: 2, num2: 3 }, BSModalContext));
 
+  }
+
+    openRegister() {
+
+    return this.modal.open(RegisterComponent, overlayConfigFactory({num1: 2, num2: 3 }, BSModalContext));
   }
   logout() {
     this.auth.logout();
