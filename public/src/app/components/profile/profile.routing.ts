@@ -33,7 +33,7 @@ const routes: Routes = [
           },
           {
             path: 'following',
-            component: FollowingComponent
+            loadChildren: 'app/components/profile/following/following.module#FollowingModule'
           },
           {
             path: 'settings',

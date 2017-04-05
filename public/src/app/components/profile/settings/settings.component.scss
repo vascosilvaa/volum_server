@@ -1,22 +1,61 @@
 @import '../actions/actions.component';
+@import "../../../../styles";
 //accordion
 
 .listSettings li a {
-  color: $grey3;
+  color: $grey2;
   list-style-type: none;
   text-decoration: none;
+  font-size: 12px;
 }
 
+.card-block-acc ul li {
+  padding-top: 7px!important
+}
 
+.titleCardMini {
+  color: $grey2;
+  font-size: 10px;
+  padding-left: 15px;
+}
 
-/deep/ .card-header {
-  background-color: $white!important;
-  font-weight: $bold;
+.titleCardAcc {
+  font-size: 14px;
+  padding: 5px;
+  padding-left: 15px;
   color: $grey3;
-  border-bottom: 1px solid $grey1
 }
 
-/deep/ .card-block ul {
+.card-block-acc {
+  background: #FAFBFD;
+  padding-left: 15px;
+  padding-top: 15px;
+  border-top: 1px solid $grey0;
+}
+
+.cardTitleAcc {
+  border-top: 1px solid $grey0;
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.cardTitleMini {
+  border-bottom: 0;
+  border-top: 1px solid $grey0;
+}
+
+.settingsActive {
+  color:$grey3!important;
+  font-weight: $bold
+}
+
+//accordion
+
+.card-header {
+  background-color: $white!important;
+}
+
+ .card-block ul {
     list-style-type: none;
     padding: 0;
     margin-top: -10px;
@@ -25,7 +64,7 @@
     font-weight: 400!important;
 }
 
-/deep/ .card-block ul li {
+ .card-block ul li {
     list-style-type: none;
     padding-top: 15px;
 }
@@ -153,10 +192,6 @@
   margin-top: 40px;
 }
 
-.cardTitle {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
 
 .inputText {
   height: 50px;
@@ -177,7 +212,7 @@
   border: 0;
   outline: 0;
   resize: none;
-  font-size: 15px;
+  font-size: 14px;
   font-family: Lato;
   color: $grey3;
 }

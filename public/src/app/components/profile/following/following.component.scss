@@ -60,7 +60,7 @@
 
 .cardFriends {
   margin-top: 30px;
-  height: 330px;
+  height: 335px;
   background: #fff;
   border: 0;
   width: 100%;
@@ -78,6 +78,7 @@
     border-radius: 120px;
     border: solid 5px $white;
     text-align: center!important;
+    object-fit: cover;
 }
 
 .friendsName {
@@ -129,7 +130,12 @@
 }
 
 .friendsBackground {
-  background: url('../../../../assets/imgs/backgroundOV.jpg');
   height: 100px;
   background-size:cover;
+}
+
+.coverImg {
+  height:100px;
+  width: 100%;
+  object-fit: cover;
 }

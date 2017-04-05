@@ -1,3 +1,4 @@
+import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClient } from './shared/http-client';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { RegisterComponent } from './components/register/register.component';
@@ -28,7 +29,7 @@ import { LayoutComponent } from './components/layout/layout.component';
   declarations: [
     AppComponent,
     LayoutComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
