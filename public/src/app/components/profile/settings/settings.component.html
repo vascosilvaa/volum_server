@@ -2,37 +2,55 @@
   <div class="row">
     <div clasS="col-12 col-lg-3 border">
       <div class="card primaryCard">
-        <div class="card-header cardTitle">
+        <div class="card-header cardTitleMini">
           <div class="row">
-            <div class="col titleCard">
+            <div class="col titleCardMini">
+            MEU PERFIL
+            </div>
+          </div>
+        </div>
+
+        <div class="card-header cardTitleAcc" (click)="openPersonal()">
+          <div class="row">
+            <div class="col titleCardAcc">
             Definições de Perfil
             </div>
           </div>
         </div>
 
-      <div class="card-block">
+      <div *ngIf="personalSettings==1" class="card-block-acc card-block">
         <ul class="listSettings">
           <li>
-            <a routerLink="/profile/settings/personal">Informação Pessoal</a>
+            <a routerLink="/profile/settings/personal" [routerLinkActive]="['settingsActive']">Informação Pessoal</a>
           </li>
           <li>
-            <a routerLink="/profile/settings/about-me">Acerca de Mim</a>
+            <a routerLink="/profile/settings/about-me" [routerLinkActive]="['settingsActive']">Acerca de Mim</a>
           </li>
           <li>
-            <a routerLink="/profile/settings/education">Educação e Formação</a>
+            <a routerLink="/profile/settings/education" [routerLinkActive]="['settingsActive']">Educação e Formação</a>
           </li>
           <li>
-            <a routerLink="/profile/settings/change-pass">Alterar a palavra passe</a>
+            <a routerLink="/profile/settings/change-pass" [routerLinkActive]="['settingsActive']">Alterar a palavra passe</a>
           </li>
       </ul>
       </div>
 
+      <div class="card-header cardTitleAcc">
+        <div class="row">
+          <div class="col titleCardAcc">
+          Mensagens
+          </div>
+        </div>
+      </div>
 
-          
+
+
     </div>
+  </div>
 
     <div class="col-12 col-lg-9">
       <router-outlet></router-outlet>
     </div>
-
 </div>
+</div>
+

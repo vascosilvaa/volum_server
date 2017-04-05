@@ -1,3 +1,5 @@
+import { FooterComponent } from './../../shared/footer/footer.component';
+
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
@@ -12,6 +14,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
 import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { InstitutionsComponent } from './following/institutions/institutions.component';
+import { PeopleComponent } from './following/people/people.component';
+
 
 @NgModule({
   imports: [
@@ -24,7 +29,7 @@ import { AccordionModule } from 'ng2-bootstrap/accordion';
     ProfileRoutingModule,
     AccordionModule.forRoot(),
   ],
-  declarations: [ProfileComponent, ActionsComponent, AboutComponent, FollowingComponent, ActivityComponent],
+  declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ]

@@ -21,6 +21,10 @@ const routes: Routes = [
         component: SettingsComponent,
         children: [
           {
+            path: '',
+            redirectTo: 'personal'
+          },
+          {
             path: 'personal',
             component: PersonalSettingsComponent
           },
