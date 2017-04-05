@@ -69,11 +69,23 @@ app.get('/:id', function(req, res) {
 
 app.get('/', function(req, res) {
     let vols = [];
-
-    var options = {
-        sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0;',
+    let options = {
+        sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0',
         nestTables: true
     };
+    console.log(req.query);
+    if (req.query['type'] == 'inst') {
+        options = {
+            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
+            nestTables: true
+        };
+    } else if (req.query['type'] == 'private') {
+
+        options = {
+            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol_type = 2',
+            nestTables: true
+        };
+    }
 
     db.get().query(options,
         function(error, results, fields) {
@@ -112,15 +124,14 @@ app.get('/', function(req, res) {
                     }
                     res.json({
                         success: true,
-                        body: {
-                            vols
-                        }
+                        vols
                     })
 
                 }
             }
-
         });
+
+
 });
 /**
  * @api {post} /vols Inserir Voluntariado

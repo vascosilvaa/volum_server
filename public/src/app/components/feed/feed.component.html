@@ -1,25 +1,15 @@
-<div *ngIf="login==false">
+<div>
     <div class="header">
         <div class="container">
             <div class="container headerFeed">
-                <div class="v-header-title">FRASE INSPIRADORA DE VOLUNTARIADO.</div>
-                <div class="v-header-subtitle">Frase ainda mais inspiradora de voluntariado. </div>
+                <div class="v-header-title">From compassion to action.</div>
+                <div class="v-header-subtitle">Don’t just stand there. Volunteer.
+                </div>
             </div>
 
-            <div class="container">
-
-                <div class="col-12 header-home-search menuFull">
-                    <div class="col-search col-8">
-
-                        <md-input-container class="col-12">
-                            <input mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
-                        </md-input-container>
-                    </div>
-
-                    <div class="col-search-btn col-4 btnSearch">
-                        <button md-raised-button class="btn-search">Procurar</button>
-                    </div>
-                </div>
+            <div class="container" style="padding: 0; margin-top: 25px">
+                <!-- TODO: LIMPAR ESTE CSS -->
+                <search></search>
             </div>
 
         </div>
@@ -33,33 +23,22 @@
                 <div class="titleFeed">Instituições</div>
             </div>
         </div>
-        <carousel>
-            <slide>
-                <span class="row">
-            <span class="col-lg-6">
-              <app-card *ngIf="volInst1?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst1?.photo_url" [username]="volInst1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-              <app-card *ngIf="volInst1?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst1?.photo_url" [username]="volInst1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-            </span>
-                <span class="col-lg-6">
-              <app-card *ngIf="volInst2?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst2?.photo_url" [username]="volInst2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-              <app-card *ngIf="volInst2?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst2?.photo_url" [username]="volInst2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-            </span>
-                </span>
-            </slide>
 
-            <slide>
-                <span class="row">
-            <span class="col-lg-6">
-              <app-card *ngIf="volInst3?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst3?.photo_url"  [username]="volInst3?.username"  [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-              <app-card *ngIf="volInst3?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst3?.photo_url"  [username]="volInst3?.username"  [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-            </span>
-                <span class="col-lg-6">
-              <app-card *ngIf="volInst4?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volInst4?.photo_url" [username]="volInst4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-              <app-card *ngIf="volInst4?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volInst4?.photo_url" [username]="volInst4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-            </span>
-                </span>
-            </slide>
-        </carousel>
+        <swiper [config]="config">
+            <div class="swiper-wrapper">
+                <vol-card *ngFor="let vol of instVols" [verified]="true" class="swiper-slide" [type]="private" [avatar]="vol.user.photo_url" [username]="vol.user.login" [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                </vol-card>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </swiper>
+
+        <div class="row">
+
+        </div>
 
         <!-- PUBLICO -->
         <!-- PRIVADO -->
@@ -68,33 +47,23 @@
                 <div class="titleFeed">Privado</div>
             </div>
         </div>
-        <carousel>
-            <slide>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <app-card *ngIf="volPriv1?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv1?.photo_url" [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-                        <app-card *ngIf="volPriv1?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv1?.photo_url" [username]="volPriv1?.username" [userCreator]="volInst1?.id_user_creator" [dateCreation]="volInst1?.date_creation" [title]="volInst1?.name" [desc]="volInst1?.desc"></app-card>
-                    </div>
-                    <div class="col-lg-6">
-                        <app-card *ngIf="volPriv2?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-                        <app-card *ngIf="volPriv2?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv2?.photo_url" [username]="volPriv2?.username" [userCreator]="volInst2?.id_user_creator" [dateCreation]="volInst2?.date_creation" [title]="volInst2?.name" [desc]="volInst2?.desc"></app-card>
-                    </div>
-                </div>
-            </slide>
 
-            <slide>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <app-card *ngIf="volPriv3?.veryfied==1" [veryfied]="1" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-                        <app-card *ngIf="volPriv3?.veryfied==0" [veryfied]="0" [type]="public" [avatar]="volPriv3?.photo_url" [username]="volPriv3?.username" [userCreator]="volInst3?.id_user_creator" [dateCreation]="volInst3?.date_creation" [title]="volInst3?.name" [desc]="volInst3?.desc"></app-card>
-                    </div>
-                    <div class="col-lg-6">
-                        <app-card *ngIf="volPriv4?.veryfied==1" [veryfied]="1" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-                        <app-card *ngIf="volPriv4?.veryfied==0" [veryfied]="0" [avatar]="volPriv4?.photo_url" [username]="volPriv4?.username" [userCreator]="volInst4?.id_user_creator" [dateCreation]="volInst4?.date_creation" [title]="volInst4?.name" [desc]="volInst4?.desc"></app-card>
-                    </div>
-                </div>
-            </slide>
-        </carousel>
+
+        <swiper [config]="config">
+            <div class="swiper-wrapper">
+                <vol-card *ngFor="let vol of privateVols" [verified]="true" [type]="private" class="swiper-slide" [avatar]="vol.user.photo_url" [username]="vol.user.login" [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                </vol-card>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </swiper>
+
+
+
+
         <!-- PRIVADO -->
         <!-- CIDADES -->
         <div class="row">
@@ -184,38 +153,3 @@
 
 
 <!-- LOGADO -->
-<div *ngIf="login==true">
-    <div class="header">
-        <div class="container">
-            <div class="container headerFeed">
-                <div class="v-header-title">LOREM IPSUM DOLOR SIT AMET</div>
-                <div class="v-header-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-            </div>
-
-            <div class="container">
-
-                <div class="col-12 header-home-search menuFull">
-                    <div class="col-search col-8">
-
-                        <md-input-container class="col-12">
-                            <input mdInput placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
-                        </md-input-container>
-                    </div>
-
-                    <div class="col-search-btn col-4 btnSearch">
-                        <button md-raised-button class="btn-search">Procurar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div *ngFor="let item of volsTodos" class="col-lg-6">
-                <app-card *ngIf="item.veryfied==1" [veryfied]="1" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
-                <app-card *ngIf="item.veryfied==0" [veryfied]="0" [type]="private" [username]="item.username" [avatar]="item.photo_url" [userCreator]="item.id_user_creator" [dateCreation]="item.date_creation" [title]="item.name" [desc]="item.desc"></app-card>
-            </div>
-        </div>
-
-    </div>
-</div>

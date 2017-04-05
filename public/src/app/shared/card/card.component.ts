@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
+  selector: 'vol-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   @Input() desc;
   @Input() avatar;
   @Input() username;
-  @Input() veryfied;
+  @Input() verified;
 
   constructor() { }
 
