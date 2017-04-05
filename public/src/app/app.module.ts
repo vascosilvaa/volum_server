@@ -30,6 +30,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     AppComponent,
     LayoutComponent,
     LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  entryComponents: [LoginComponent],
+  entryComponents: [LoginComponent, RegisterComponent],
   providers: [AuthenticationService, HttpClient],
   bootstrap: [AppComponent],
 })

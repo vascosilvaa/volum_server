@@ -1,56 +1,48 @@
+import { AppComponent } from './../../app.component';
+import { AuthenticationService } from './../../shared/Auth/authentication.service';
+import { User } from './user.interface';
 import { Component, OnInit } from '@angular/core';
+import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
+import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 
-import { DialogRef, ModalComponent } from 'angular2-modal';
-import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
-import { Overlay, overlayConfigFactory } from 'angular2-modal';
 
-export class ModalData extends BSModalContext {
-  public id?: String;
+export class ModalContext extends BSModalContext {
+
 }
+
 @Component({
-  selector: 'modal-content',
-  styles: [`
-        .custom-modal-container {
-            padding: 15px;
-        }
-
-        .custom-modal-header {
-            background-color: #219161;
-            color: #fff;
-            -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-            box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-            margin-top: -15px;
-            margin-bottom: 40px;
-        }
-    `],
-  templateUrl: './register.component.html',
-
+    selector: 'register',
+    styleUrls: ['./register.component.scss'],
+    templateUrl: './register.component.html',
 })
-export class RegisterComponent implements OnInit, ModalComponent<ModalData> {
-  context: ModalData;
 
-  ngOnInit() {
+export class RegisterComponent implements OnInit {
 
-  }
-  public wrongAnswer: boolean;
+    public wrongAnswer: boolean;
+    public form: any;
+    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
 
-  constructor(public dialog: DialogRef<ModalData>) {
-    this.context = dialog.context;
-    this.wrongAnswer = true;
-  }
+    }
 
-  onKeyUp(value) {
-    this.wrongAnswer = value != 5;
-    this.dialog.close();
-  }
+    ngOnInit() {
+        this.form = this._fb.group({
+            login: ['', [Validators.required, Validators.minLength(2)]],
+            password: ['']
+        });
+    }
 
+    onSubmit({ value, valid }: { value: User, valid: boolean }) {
+        console.log(value, valid);
 
-  beforeDismiss(): boolean {
-    return true;
-  }
-
-  beforeClose(): boolean {
-    return this.wrongAnswer;
-  }
+        this.auth.login(value)
+            .then(res => {
+                console.log(res);
+                if (res.success) {
+                    this.dialog.close();
+                    location.reload();
+                }
+            })
+            .catch(err => console.log(err));
+    }
 }
