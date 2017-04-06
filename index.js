@@ -115,7 +115,8 @@ app.get('/profile', function(req, res) {
     });
 });
 
-app.use(express.static(path.join(__dirname, 'public/dist')));
+app.use('/', express.static(path.join(__dirname, 'public/dist')));
+app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
 
 app.listen(process.env.PORT || 8080);
