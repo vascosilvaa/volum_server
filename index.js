@@ -39,7 +39,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(express.static(path.join(__dirname, 'public/dist')));
+
+
 app.use('/api', express.static(path.join(__dirname, 'docs')))
 app.use('/teste', express.static(path.join(__dirname, 'testes')))
 
@@ -114,5 +115,10 @@ app.get('/profile', function(req, res) {
         user: req.user // get the user out of session and pass to template
     });
 });
+
+app.use('*', express.static(path.join(__dirname, 'public/dist')));
+app.use('/', express.static(path.join(__dirname, 'public/dist')));
+
+
 app.listen(process.env.PORT || 8080);
 console.log("Listening...");
