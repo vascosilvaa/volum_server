@@ -1,240 +1,271 @@
-@import '../../../styles';
-@media screen and (max-width: 992px) {
-    #main-navbar {
-        clear: both;
+    @import '../../../styles';
+    @media screen and (max-width: 992px) {
+        #main-navbar {
+            clear: both;
+        }
     }
-}
-
-@media (min-width:320px) {
-    .btnSearch {
-        display: none
+    
+    @media (min-width:320px) {
+        .btnSearch {
+            display: none
+        }
+        .city3 {
+            display: none
+        }
+        ;
+        .city4 {
+            display: none
+        }
+        ;
+        .city5 {
+            display: none
+        }
+        ;
+        .city6 {
+            display: none
+        }
     }
-    .city3 {
-        display: none
+    
+    @media (min-width:480px) {
+        .btnSearch {
+            display: none
+        }
+        .city3 {
+            display: block
+        }
+        ;
+        .city4 {
+            display: none
+        }
+        ;
+        .city5 {
+            display: none
+        }
+        ;
+        .city6 {
+            display: none
+        }
     }
-    ;
-    .city4 {
-        display: none
+    
+    @media (min-width:600px) {
+        .btnSearch {
+            display: none
+        }
+        .city4 {
+            display: block
+        }
+        ;
+        .city5 {
+            display: none
+        }
+        ;
+        .city6 {
+            display: none
+        }
     }
-    ;
-    .city5 {
-        display: none
+    
+    @media (min-width:801px) {
+        .btnSearch {
+            display: block
+        }
+        .city4 {
+            display: block
+        }
+        ;
+        .city5 {
+            display: block
+        }
+        ;
+        .city6 {
+            display: block
+        }
     }
-    ;
-    .city6 {
-        display: none
+    
+    @media (min-width:1025px) {
+        .btnSearch {
+            display: block
+        }
+        .city4 {
+            display: block
+        }
+        ;
+        .city5 {
+            display: block
+        }
+        ;
+        .city6 {
+            display: block
+        }
     }
-}
-
-@media (min-width:480px) {
-    .btnSearch {
-        display: none
+    
+    @media (min-width:1281px) {
+        /* hi-res laptops and desktops */
     }
-    .city3 {
-        display: block
+    
+    .headerFeed {
+        margin-top: -80px;
     }
-    ;
-    .city4 {
-        display: none
+    
+    .carousel-indicators li {
+        display: none!important;
     }
-    ;
-    .city5 {
-        display: none
+    
+    .lista {
+        float: right;
     }
-    ;
-    .city6 {
-        display: none
+    
+    .header {
+        background: $blue;
+        min-height: 200px;
+        padding-top: 20px;
     }
-}
-
-@media (min-width:600px) {
-    .btnSearch {
-        display: none
+    
+    .titleFeed {
+        font-weight: $bold;
+        font-size: 18px;
+        margin-top: 50px;
     }
-    .city4 {
-        display: block
+    
+    .search-areas {
+        width: 100%;
     }
-    ;
-    .city5 {
-        display: none
+    
+    .search-voluntario {
+        width: 100%;
+        margin-top: 15px;
     }
-    ;
-    .city6 {
-        display: none
+    
+    .btn-search {
+        background-color: $blue;
+        color: $white;
+        font-size: 18px;
+        width: 130px;
+        height: 45px
     }
-}
-
-@media (min-width:801px) {
-    .btnSearch {
-        display: block
+    
+    .v-header-title {
+        font-weight: 600;
+        color: $white;
+        font-size: 58px;
     }
-    .city4 {
-        display: block
+    
+    .v-header-subtitle {
+        color: $white;
+        font-size: 20px;
+        font-weight: 100;
+        margin-top: -5px;
     }
-    ;
-    .city5 {
-        display: block
+    
+    .header-home-search {
+        margin-top: 30px;
     }
-    ;
-    .city6 {
-        display: block
+    
+    .header-title-search {
+        color: $inputTitle;
+        font-size: 15px;
+        margin-top: 3px;
     }
-}
-
-@media (min-width:1025px) {
-    .btnSearch {
-        display: block
+    
+    .cityCard {
+        background-color: $blue;
+        margin-top: 20px;
+        padding: 10px;
     }
-    .city4 {
-        display: block
+    
+    .askedQuestions {
+        border-top: 3px;
+        border-style: solid;
+        border-bottom: 0;
+        border-left: 0;
+        border-right: 0;
+        border-color: $blue;
+        margin-top: 10px;
     }
-    ;
-    .city5 {
-        display: block
+    
+    .titleAskedQuestions {
+        font-weight: $bold;
+        font-size: 18px;
+        margin-top: 35px;
     }
-    ;
-    .city6 {
-        display: block
+    
+    .textAskedQuestions {
+        margin-top: 5px;
     }
-}
-
-@media (min-width:1281px) {
-    /* hi-res laptops and desktops */
-}
-
-.headerFeed {
-    margin-top: -80px;
-}
-
-.carousel-indicators li {
-    display: none!important;
-}
-
-.lista {
-    float: right;
-}
-
-.header {
-    background: $blue;
-    min-height: 200px;
-    padding-top: 20px;
-}
-
-.titleFeed {
-    font-weight: $bold;
-    font-size: 18px;
-    margin-top: 50px;
-}
-
-.search-areas {
-    width: 100%;
-}
-
-.search-voluntario {
-    width: 100%;
-    margin-top: 15px;
-}
-
-.btn-search {
-    background-color: $blue;
-    color: $white;
-    font-size: 18px;
-    width: 130px;
-    height: 45px
-}
-
-.v-header-title {
-    font-weight: 600;
-    color: $white;
-    font-size: 58px;
-}
-
-.v-header-subtitle {
-    color: $white;
-    font-size: 20px;
-    font-weight: 100;
-    margin-top: -5px;
-}
-
-.header-home-search {
-    margin-top: 30px;
-}
-
-.header-title-search {
-    color: $inputTitle;
-    font-size: 15px;
-    margin-top: 3px;
-}
-
-.cityCard {
-    background-color: $blue;
-    margin-top: 20px;
-    padding: 10px;
-}
-
-.askedQuestions {
-    border-top: 3px;
-    border-style: solid;
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-    border-color: $blue;
-    margin-top: 10px;
-}
-
-.titleAskedQuestions {
-    font-weight: $bold;
-    font-size: 18px;
-    margin-top: 35px;
-}
-
-.textAskedQuestions {
-    margin-top: 5px;
-}
-
-.cityAveiro {
-    background: url('../../../assets/imgs/aveiro2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.cityPorto {
-    background: url('../../../assets/imgs/porto2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.city {
-    text-align: center;
-}
-
-.cityLisboa {
-    background: url('../../../assets/imgs/lisboa2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.cityCoimbra {
-    background: url('../../../assets/imgs/coimbra2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.cityBraga {
-    background: url('../../../assets/imgs/braga2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.cityGuimaraes {
-    background: url('../../../assets/imgs/guimaraes2.jpg');
-    background-size: cover;
-    height: 200px;
-}
-
-.cityText {
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.4em;
-    padding-top: 70px;
-}
+    
+    .cityAveiro {
+        background: url('../../../assets/imgs/aveiro2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .cityPorto {
+        background: url('../../../assets/imgs/porto2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .city {
+        text-align: center;
+    }
+    
+    .cityLisboa {
+        background: url('../../../assets/imgs/lisboa2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .cityCoimbra {
+        background: url('../../../assets/imgs/coimbra2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .cityBraga {
+        background: url('../../../assets/imgs/braga2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .cityGuimaraes {
+        background: url('../../../assets/imgs/guimaraes2.jpg');
+        background-size: cover;
+        height: 200px;
+    }
+    
+    .cityText {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.4em;
+        padding-top: 70px;
+    }
+    
+    .slider-prev1 {
+        top: 210px;
+        left: -30px;
+    }
+    
+    .slider-next1 {
+        top: 210px;
+        right: -30px;
+    }
+    
+    .slider-prev2 {
+        top: 535px;
+        left: -30px;
+    }
+    
+    .slider-buttons {
+        position: absolute;
+        margin-top: -22px;
+        z-index: 10;
+        cursor: pointer;
+    }
+    
+    .slider-next2 {
+        top: 535px;
+        right: -30px;
+    }
+    
+    .disabled {
+        display: none;
+    }

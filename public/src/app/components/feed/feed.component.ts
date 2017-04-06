@@ -15,25 +15,27 @@ import { Http } from '@angular/http';
 
 export class FeedComponent implements OnInit {
 
+  @ViewChild('swiper1') swiper1;
 
   public privateVols: any;
   public instVols: any;
   ready: boolean = false;
 
   config: Object = {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
+    pagination: 'null',
     spaceBetween: 30,
     slidesPerView: 2,
-
-
-
+    loop: true,
+    loopedSlides: 1,
+    zoom: true
   };
 
 
   constructor(public http: Http, private feedService: FeedService) { }
+  test(a) {
+    console.log(a);
+  }
+
 
   ngOnInit() {
 
