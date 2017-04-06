@@ -21,13 +21,11 @@ export class ActivityComponent implements OnInit {
     this.feedService.getPrivates()
       .then(res => {
         this.privateVols = res.vols;
-        console.log(res.vols);
       })
       .catch(err => console.log(err));
 
     this.feedService.getInstVol().then(res => {
       this.instVols = res.vols;
-      console.log(res);
 
     }).catch(err => {
 
