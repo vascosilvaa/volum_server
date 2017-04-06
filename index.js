@@ -39,6 +39,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(express.static(path.join(__dirname, 'public/dist')));
 
 app.use('/api', express.static(path.join(__dirname, 'docs')))
 app.use('/teste', express.static(path.join(__dirname, 'testes')))
@@ -115,7 +116,6 @@ app.get('/profile', function(req, res) {
     });
 });
 
-app.use(express.static(path.join(__dirname, 'public/dist')));
 
 
 app.listen(process.env.PORT || 8080);
