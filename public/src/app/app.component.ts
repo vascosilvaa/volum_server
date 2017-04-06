@@ -14,12 +14,13 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 export class AppComponent implements OnInit {
   public isLoggedIn;
   public user: any;
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private auth: AuthenticationService) {
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
   }
   ngOnInit() {
 
     this.getUser();
+    this.router.navigate(['/feed']);
   }
 
   getUser() {
@@ -35,13 +36,13 @@ export class AppComponent implements OnInit {
 
   openLogin() {
 
-    return this.modal.open(LoginComponent, overlayConfigFactory({num1: 2, num2: 3 }, BSModalContext));
+    return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
 
   }
 
-    openRegister() {
+  openRegister() {
 
-    return this.modal.open(RegisterComponent, overlayConfigFactory({num1: 2, num2: 3 }, BSModalContext));
+    return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
   logout() {
     this.auth.logout();

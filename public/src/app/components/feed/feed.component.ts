@@ -27,7 +27,7 @@ export class FeedComponent implements OnInit {
     prevButton: '.swiper-button-prev',
     spaceBetween: 30,
     slidesPerView: 2,
-    
+
 
 
   };
@@ -36,8 +36,6 @@ export class FeedComponent implements OnInit {
   constructor(public http: Http, private feedService: FeedService) { }
 
   ngOnInit() {
-
-    console.log(this.teste);
 
     this.feedService.getPrivates()
       .then(res => {
