@@ -1,3 +1,4 @@
+import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';

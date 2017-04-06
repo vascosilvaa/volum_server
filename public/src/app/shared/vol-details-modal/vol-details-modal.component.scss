@@ -1,0 +1,134 @@
+@import '../../../styles';
+
+.containerLogin {
+    padding:32px;
+}
+
+.facebookLogin {
+    width:100%;
+    border-radius: 0px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: #4568B2;
+    color: #fff;
+    font-size: 16px;
+    font-family: Lato;
+    border:1px solid #4568B2 ;
+    margin-bottom: 6px;
+}
+
+.googleLogin {
+    width:100%;
+    border-radius: 0px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: $white;
+    color: $grey2;
+    font-size: 16px;
+    font-family: Lato;
+    border:1px solid $grey1;
+}
+
+.normalLogin {
+    width:100%;
+    border-radius: 0px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: $orange;
+    color: $white;
+    font-size: 16px;
+    font-family: Lato;
+    border:1px solid $orange;
+    margin-top:15px;
+}
+
+.orLogin {
+    margin-top: 10px;
+    margin-bottom: 23px;
+}
+
+.divider-hr{
+    margin-top:-10px;
+}
+
+.divider-or {
+    padding: 6px;
+    background: $white;
+    font-family: Lato;
+    color: $grey2;
+}
+
+.inputEmailLogin {
+    width:100%;
+    border-radius: 0px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: $white;
+    color: $grey2;
+    font-size: 16px;
+    font-family: Lato;
+    border:1px solid $grey1;
+    margin-bottom: 6px;
+}
+
+
+
+.inputPasswordLogin {
+    width:100%;
+    border-radius: 3px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: $white;
+    color: $grey2;
+    font-size: 16px;
+    font-family: Lato;
+    border:1px solid $grey1;
+}
+
+.forgotPass {
+    font-size: 14px;
+    color: $grey2;
+    margin-top:10px;
+    font-family: Lato;
+}
+
+.forgotPass:hover {
+    text-decoration: underline;
+    cursor: pointer; 
+}
+
+.footerLogin {
+    margin-top:20px;
+}
+
+.registerBtn {
+    border-radius: 0px;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+    background: $white;
+    color: $orange;
+    font-size: 14px;
+    font-family: Lato;
+    border:1px solid $orange;
+}
+.btnRegister {
+    margin-top:-30px;
+}
+.registerAdvice {
+  margin-top: 10px;
+  font-family: Lato;
+  font-size: 16px;
+  color: $grey3;
+}
