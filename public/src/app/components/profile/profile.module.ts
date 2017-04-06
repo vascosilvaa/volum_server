@@ -1,3 +1,4 @@
+import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 
 import { ActionsComponent } from './actions/actions.component';
@@ -29,7 +30,7 @@ import { PeopleComponent } from './following/people/people.component';
     ProfileRoutingModule,
     AccordionModule.forRoot(),
   ],
-  declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent],
+  declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ]
