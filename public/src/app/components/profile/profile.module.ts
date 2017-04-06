@@ -1,3 +1,4 @@
+import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { SharedModule } from './../../shared/shared.module';
 import { FeedModule } from './../feed/feed.module';
 import { CardComponent } from './../../shared/card/card.component';
@@ -37,7 +38,8 @@ import { PeopleComponent } from './following/people/people.component';
   declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
-  ]
+  ],
+  entryComponents: [VolDetailsModalComponent]
 })
 
 export class ProfileModule { }

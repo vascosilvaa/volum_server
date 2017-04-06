@@ -3,20 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
-
-@Component({
-  selector: 'app-vol-details-modal',
-  templateUrl: './vol-details-modal.component.html',
-  styleUrls: ['./vol-details-modal.component.scss']
-})
-
 export class ModalContext extends BSModalContext {
 
 }
 
-export class VolDetailsModalComponent implements OnInit {
+@Component({
+  selector: 'vol-details-modal',
+  templateUrl: './vol-details-modal.component.html',
+  styleUrls: ['./vol-details-modal.component.scss']
+})
 
-  constructor(private dialog: DialogRef<ModalContext>) { }
+
+export class VolDetailsModalComponent implements OnInit {
+  context: ModalContext;
+
+  constructor(private dialog: DialogRef<ModalContext>) {
+    this.context = dialog.context;
+    this.context.isBlocking = false;
+  
+  }
 
   ngOnInit() {
   }

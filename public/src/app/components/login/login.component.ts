@@ -21,8 +21,12 @@ export class LoginComponent implements OnInit {
 
     public wrongAnswer: boolean;
     public form: any;
-    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
+    context: ModalContext;
 
+    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
+        this.context = dialog.context;
+        this.context.isBlocking = false;
+        this.context.keyboard = [27];
     }
 
     ngOnInit() {

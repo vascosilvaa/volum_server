@@ -1,3 +1,4 @@
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'angular2-modal';
 import { VolDetailsModalComponent } from './vol-details-modal/vol-details-modal.component';
@@ -10,13 +11,15 @@ import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     CardComponent,
+    VolDetailsModalComponent
   ],
   imports: [
     CommonModule,
-        MaterialModule,
+    MaterialModule,
     ModalModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BootstrapModalModule
   ],
-  exports: [CardComponent],
+  exports: [CardComponent, VolDetailsModalComponent],
 })
 export class SharedModule { }
