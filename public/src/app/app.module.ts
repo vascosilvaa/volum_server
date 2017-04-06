@@ -1,3 +1,4 @@
+import { CardComponent } from './shared/card/card.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClient } from './shared/http-client';
@@ -25,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { LayoutComponent } from './components/layout/layout.component';
+import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     LayoutComponent,
     LoginComponent,
     RegisterComponent,
-    FilterComponent
+    FilterComponent,
+    VolDetailsModalComponent,
   ],
   imports: [
     BrowserModule,
