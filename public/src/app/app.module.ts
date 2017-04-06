@@ -20,8 +20,6 @@ import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
@@ -35,7 +33,6 @@ import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details
     LoginComponent,
     RegisterComponent,
     FilterComponent,
-    VolDetailsModalComponent,
   ],
   imports: [
     BrowserModule,
