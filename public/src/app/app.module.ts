@@ -1,3 +1,4 @@
+import { FilterComponent } from './shared/filter/filter.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClient } from './shared/http-client';
 import { AuthenticationService } from './shared/Auth/authentication.service';
@@ -30,7 +31,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     AppComponent,
     LayoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

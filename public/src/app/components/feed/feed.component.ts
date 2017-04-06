@@ -15,10 +15,9 @@ import { Http } from '@angular/http';
 
 export class FeedComponent implements OnInit {
 
-  @ViewChild('teste') teste: any;
 
-  private privateVols: any;
-  private instVols: any;
+  public privateVols: any;
+  public instVols: any;
   ready: boolean = false;
 
   config: Object = {
