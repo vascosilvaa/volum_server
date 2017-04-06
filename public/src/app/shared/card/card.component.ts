@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { SharedModule } from './../shared.module';
+import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
+import { Component, ViewContainerRef, OnInit, Input} from '@angular/core';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
+
+
 
 @Component({
   selector: 'vol-card',
@@ -14,10 +20,14 @@ export class CardComponent implements OnInit {
   @Input() avatar;
   @Input() username;
   @Input() verified;
+  
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal) {
+    overlay.defaultViewContainer = vcRef;
+   }
 
-  constructor() { }
+  ngOnInit() {  }
 
-  ngOnInit() {
+  openVolDetails() {
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
-
 }

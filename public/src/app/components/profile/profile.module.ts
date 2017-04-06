@@ -1,3 +1,6 @@
+import { SharedModule } from './../../shared/shared.module';
+import { FeedModule } from './../feed/feed.module';
+import { CardComponent } from './../../shared/card/card.component';
 import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 
@@ -29,6 +32,7 @@ import { PeopleComponent } from './following/people/people.component';
     NgbModule.forRoot(),
     ProfileRoutingModule,
     AccordionModule.forRoot(),
+    SharedModule,
   ],
   declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent],
   providers: [

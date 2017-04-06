@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="container">
-      <div class="row">
-        <!--<div *ngFor="let item of volsTodos" class="col-lg-6">
-          Chamar as cards
+  <div class="row">
+    <div class="col-6" *ngFor="let vol of privateVols">
+          <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.login" [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+          </vol-card>
       </div>
-    -->
-    chamar as cards
-  </div>
 </div>
