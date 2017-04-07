@@ -13,19 +13,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FeedComponent } from './components/feed/feed.component';
 
 const appRoutes: Routes = [
+  { path: '*', redirectTo: 'feed', pathMatch: 'full' },
+  { path: '', redirectTo: 'feed', pathMatch: 'full' },
   {
-    path: '',
-   // canActivateChild: [AuthenticationGuard],
-    children: [
-      {
-        path: 'profile',
-        loadChildren: '../app/components/profile/profile.module#ProfileModule'
-      },
-      {
-        path: 'feed',
-        loadChildren: '../app/components/feed/feed.module#FeedModule'
-      }
-    ]
+    path: 'profile',
+    loadChildren: '../app/components/profile/profile.module#ProfileModule'
+  },
+  {
+    path: 'feed',
+    loadChildren: '../app/components/feed/feed.module#FeedModule'
   }
 ];
 
