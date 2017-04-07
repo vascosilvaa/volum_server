@@ -4,6 +4,7 @@ import { FeedModule } from './../feed/feed.module';
 import { CardComponent } from './../../shared/card/card.component';
 import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -34,6 +35,9 @@ import { PeopleComponent } from './following/people/people.component';
     ProfileRoutingModule,
     AccordionModule.forRoot(),
     SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+    }),
   ],
   declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent],
   providers: [

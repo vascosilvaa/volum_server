@@ -15,6 +15,8 @@ export class ModalContext extends BSModalContext {
 
 
 export class VolDetailsModalComponent implements OnInit {
+  lat: number = 41.100856;
+  lng: number =  -8.544893;
   context: ModalContext;
 
   constructor(private dialog: DialogRef<ModalContext>) {
