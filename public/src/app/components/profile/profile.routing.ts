@@ -1,3 +1,4 @@
+import { DetailsComponent } from './details/details.component';
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
         path: '',
         component: ProfileComponent,
         children: [
+          {
+            path: 'details',
+            component: DetailsComponent
+          },
           {
             path: 'actions',
             component: ActionsComponent
