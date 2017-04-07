@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 
@@ -45,6 +46,9 @@ import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details
     BootstrapModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+    }),
   ],
   entryComponents: [LoginComponent, RegisterComponent],
   providers: [AuthenticationService, HttpClient],

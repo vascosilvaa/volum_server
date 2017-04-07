@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 
 
 @NgModule({
@@ -18,7 +20,10 @@ import { CardComponent } from './card/card.component';
     MaterialModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+    }),
   ],
   exports: [CardComponent, VolDetailsModalComponent],
 })
