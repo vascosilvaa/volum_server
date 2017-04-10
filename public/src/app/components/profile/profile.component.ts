@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
@@ -28,9 +29,18 @@ export class ProfileComponent implements OnInit {
   login: boolean;
   i: any;
   usernames: any;
-  constructor(public http: Http) { }
+  userId: any;
+  idProfile:any;
+  constructor(public http: Http, private route: ActivatedRoute) { }
 
   ngOnInit() {
+  this.route.params.subscribe((params) => {
+        this.idProfile = this.route.snapshot.params['id'];
+        console.log(this.idProfile);
+      });
+  
+
+
     this.login=true;
     if(this.login) { // Privado
       this.http.get('http://localhost:3000/vols').map(res => res.json()).subscribe(result => {

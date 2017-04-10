@@ -7,6 +7,7 @@ import { MaterialModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     VolDetailsModalComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     MaterialModule,
     ModalModule.forRoot(),

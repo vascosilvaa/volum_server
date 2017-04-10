@@ -18,7 +18,7 @@ const appRoutes: Routes = [
    // canActivateChild: [AuthenticationGuard],
     children: [
       {
-        path: 'profile',
+        path: 'profile/:id',
         loadChildren: '../app/components/profile/profile.module#ProfileModule'
       },
       {

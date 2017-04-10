@@ -49,4 +49,8 @@ export class AppComponent implements OnInit {
     this.user = null;
   }
 
+  onSelect(profile) {
+     this.router.navigate(['/profile', profile]);
+  }
+
 }
