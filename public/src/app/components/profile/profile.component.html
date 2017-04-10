@@ -24,13 +24,13 @@
         <div class="row">
             <div class="col-sm-10 col-6 menuSubHeader">
                 <ul class="menuSubHeaderUl">
-                    <li><a routerLink="/profile/activity" [routerLinkActive]="['menuSubHeaderActive']">Atividade</a></li>
-                    <li><a routerLink="/profile/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
-                    <li><a routerLink="/profile/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
-                    <li><a routerLink="/profile/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
-                    <li><a routerLink="/profile/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
+                    <li><a routerLink="/profile/{{idProfile}}/activity" [routerLinkActive]="['menuSubHeaderActive']">Atividade</a></li>
+                    <li *ngIf="idProfile==1"><a routerLink="/profile/{{idProfile}}/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
+                    <li><a routerLink="/profile/{{idProfile}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
+                    <li><a routerLink="/profile/{{idProfile}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
+                    <li *ngIf="idProfile==1"><a routerLink="/profile/{{idProfile}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
                 </ul>
-                <a class="btn-menu" md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader"><md-icon class="btn-new-action-icon">menu</md-icon></a>
+                <a class="btn-menu"  md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader"><md-icon class="btn-new-action-icon">menu</md-icon></a>
                 <md-menu #menuSubHeader="mdMenu">
                     <button md-menu-item>Actividade</button>
                     <button md-menu-item>Minhas ações</button>
@@ -39,12 +39,16 @@
                     <button md-menu-item>Definições</button>
                 </md-menu>
             </div>
-            <div class="col-sm-2 col-6 col-new-action text-right">
+            <div *ngIf="idProfile==1"  class="col-sm-2 col-6 col-new-action text-right">
                 <a class="btn-new-action" md-raised-button routerLink="."><span class="btn-new-action-text">NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Externo -->
+
 
 <router-outlet></router-outlet>
 
