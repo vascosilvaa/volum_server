@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              Criar uma nova ação de voluntariado
+            </div>
+          </div>
+        </div>
+
+      <div class="card-block">
+        <form class="float-label" spellcheck="false">
+          <div class="row">
+              <div class="col-12 inputProfile no-margin">
+                <div class="control">
+                 <input type="text" class="" name="title" placeholder="Título da ação de voluntariado" value="Insira aqui o título da ação de voluntariado" required />
+                  <label for="textarea" class="titlePlaceholder">Título da ação de voluntariado</label>
+                </div>
+              </div>
+
+              <div class="col-12 inputProfile">
+                <div class="control">
+                  <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Descrição">Descrição das funções do voluntário</textarea>
+                  <label for="textarea" class="titlePlaceholder">Descrição</label>
+                </div>
+              </div>
+
+            <div class="col-6 inputProfile">
+              <select class="form-control inputText form-control-lg disabled">
+                <option selected>Desporto</option>
+                <option>Solidariedade Social</option>
+                <option>Inclusão Social</option>
+                <option>Apoio ao estudo</option>
+                <option>Apoio aos jovens</option>
+                <option>Animais</option>
+                <option>Ambiente</option>
+                <option>Geográfico</option>
+              </select>
+              <label class="placeholderSelect">Categoria de Voluntariado</label>
+            </div>
+              
+               <div class="col-6 inputProfile">
+              <select class="form-control inputText form-control-lg disabled">
+                <option selected>Sim</option>
+                <option>Não</option>
+              </select>
+              <label class="placeholderSelect">Seguro</label>
+            </div>
+
+          <div *ngIf="img==0" class="col-12 addEducation" (click)="showImgs()">
+          <span class="iconAdd">+ </span><span class="titleAdd">Inserir fotografia (s)</span>
+        </div>
+
+         <div *ngIf="img==1" class="col-12 addEducation" (click)="hideImgs()">
+          <span class="iconAdd">+ </span><span class="titleAdd">Esconder fotografias (s)</span>
+        </div>
+             
+          
+           <div  *ngIf="img==1"class="col-6 inputProfile3">
+              <div class="form-group">
+                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                <small id="fileHelp" class="form-text text-muted">Pode inserir 3 fotografias selecionando na área de seleção. </small>
+              </div>
+            </div>
+
+                <div *ngIf="img==1" class="col-2 ">
+                  <div class="imageVol"></div>
+                </div>
+                <div  *ngIf="img==1"class="col-2 ">
+                  <div class="imageVol"></div>
+                </div>
+                <div *ngIf="img==1" class="col-2 ">
+                  <div class="imageVol"></div>
+                </div>
+
+     
+
+                 <div class="col-12 inputProfile">
+                <div class="control">
+                 <input type="text" class="" name="title" placeholder="Localização" value="Insira a localização do voluntariado" required />
+                  <label for="textarea" class="titlePlaceholder">Localização</label>
+                </div>
+              </div>
+
+
+              <div class="col-12 inputProfile">
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng" ></sebm-google-map-marker>
+                </sebm-google-map>
+             
+               </div>
+
+
+               <div class="col-6 inputProfile2">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control date_picker"
+                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" placeholder="aaaa-mm-dd">
+                    <div class="input-group-addon" (click)="d.toggle()" >
+                      <i class="data_range_icon material-icons">date_range</i>
+                    </div>
+                  </div>
+                  <label class="placeholderSelect">Data de Início</label>
+                </div>
+            </div>
+
+        <div class="col-6 inputProfile2">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control date_picker"
+                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" placeholder="aaaa-mm-dd">
+                    <div class="input-group-addon" (click)="d.toggle()" >
+                      <i class="data_range_icon material-icons">date_range</i>
+                    </div>
+                  </div>
+                  <label class="placeholderSelect">Data de Fim</label>
+                </div>
+            </div>
+
+
+        <div *ngIf="schedule==0" class="col-12 addEducation" (click)="showSchedule()">
+          <span class="iconAdd">+ </span><span class="titleAdd">Inserir mais detalhes de horário</span>
+        </div>
+        <div *ngIf="schedule==1" class="col-12 addEducation" (click)="hideSchedule()">
+          <span class="iconAdd">- </span><span class="titleAdd">Esconder detalhes de horário</span>
+        </div>
+
+          <div *ngIf="schedule==1" class="col-4 inputProfile">
+                  <div class="control">
+                  <input type="text" class="" name="title" placeholder="Hora de entrada" value="09:00" required />
+                    <label for="textarea" class="titlePlaceholder">Hora de entrada</label>
+                  </div>
+                </div>
+          <div *ngIf="schedule==1" class="col-4 inputProfile">
+                  <div class="control">
+                  <input type="text" class="" name="title" placeholder="Hora de saída" value="17:00" required />
+                    <label for="textarea" class="titlePlaceholder">Hora de saída</label>
+                  </div>
+                </div>
+          <div *ngIf="schedule==1" class="col-4 inputProfile">
+                  <div class="control">
+                  <input type="text" class="" name="title" placeholder="Duração diária em horas" value="5" required />
+                    <label for="textarea" class="titlePlaceholder">Duração diária em horas</label>
+                  </div>
+                </div>
+
+
+         
+
+
+
+               
+
+
+              <div class="col-6">
+                  <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
+              </div>
+              <div class="col-6 ">
+                <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+              </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>

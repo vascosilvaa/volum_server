@@ -1,5 +1,4 @@
 import { ProfileService } from './profile.service';
-
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { SharedModule } from './../../shared/shared.module';
 import { FeedModule } from './../feed/feed.module';
@@ -24,6 +23,7 @@ import { ProfileComponent } from './profile.component';
 import { AccordionModule } from 'ng2-bootstrap/accordion';
 import { InstitutionsComponent } from './following/institutions/institutions.component';
 import { PeopleComponent } from './following/people/people.component';
+import { NewActionComponent } from './new-action/new-action.component';
 
 @NgModule({
   imports: [
@@ -40,7 +40,7 @@ import { PeopleComponent } from './following/people/people.component';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  declarations: [ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent],
+  declarations: [NewActionComponent, ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent, NewActionComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
   ],

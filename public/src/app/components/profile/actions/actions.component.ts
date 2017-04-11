@@ -1,3 +1,5 @@
+import { AuthenticationService } from './../../../shared/Auth/authentication.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionsComponent implements OnInit {
   invite=0;
-  constructor() { }
+  public userLogin: any;
+  public idLogin: any;
+  constructor(public router: Router,  private auth: AuthenticationService) { }
 
   ngOnInit() {
+    
   }
-
 }

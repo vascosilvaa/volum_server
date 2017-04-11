@@ -27,6 +27,7 @@ import { AppRoutingModule } from './app.routing';
 import { LayoutComponent } from './components/layout/layout.component';
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,3 +1,5 @@
+import { NewActionComponent } from './new-action/new-action.component';
+
 import { DetailsComponent } from './details/details.component';
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -23,6 +25,10 @@ const routes: Routes = [
           {
             path: 'details',
             component: DetailsComponent
+          },
+           {
+            path: 'new',
+            component: NewActionComponent,
           },
           {
             path: 'actions',
