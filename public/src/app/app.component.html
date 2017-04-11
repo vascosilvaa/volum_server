@@ -26,7 +26,7 @@
                         <md-icon>arrow_drop_down</md-icon>
                     </div>
                     <md-menu #menu="mdMenu">
-                        <button md-menu-item (click)="onSelect(1)" *ngIf="user">Perfil</button>
+                        <button md-menu-item (click)="onSelect(idLogin)" *ngIf="user">Perfil</button>
                         <button md-menu-item *ngIf="user">Definições</button>
                         <button md-menu-item (click)="logout()" *ngIf="user">Sair</button>
                         <button md-menu-item (click)="openLogin()" *ngIf="!user">Login</button>

@@ -14,7 +14,6 @@ import { Http } from '@angular/http';
 
 
 export class FeedComponent implements OnInit {
-
   @ViewChild('swiper1') swiper1;
 
   public privateVols: any;

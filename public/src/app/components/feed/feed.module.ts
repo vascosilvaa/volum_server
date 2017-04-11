@@ -1,3 +1,4 @@
+import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SharedModule } from './../../shared/shared.module';
 
 import { SwiperModule } from 'angular2-useful-swiper';
@@ -25,7 +26,10 @@ import { SearchComponent } from './search/search.component';
         FormsModule,
         SwiperModule,
         ReactiveFormsModule,
-        SharedModule],
+        SharedModule,
+        AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+        })],
     declarations: [FeedComponent, SearchComponent],
 })
 
