@@ -1,12 +1,12 @@
 <div class="card-volum">
     <!-- HEADER CARD -->
     <div class="row no-margin">
-        <div class="col card-user-image col-md-auto">
+        <div (click)="onSelect(userCreator)" class="col card-user-image col-md-auto">
             <img src="{{avatar}}">
         </div>
         <div class="col-6 col-lg-8 card-user-nd">
-            <div *ngIf="verified==1" class="card-user-name ts16"><a (click)="onSelect(2)">{{username}}</a> <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada"><i class="material-icons md-18">verified_user</i></button></div>
-            <div *ngIf="verified==0" class="card-user-name ts16"><a (click)="onSelect(2)">{{username}}</a> </div>
+            <div *ngIf="verified==1" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada"><i class="material-icons md-18">verified_user</i></button></div>
+            <div *ngIf="verified==0" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> </div>
             <div class="card-date ts14">{{dateCreation | date}}</div>
         </div>
         <div class="col card-option text-right">

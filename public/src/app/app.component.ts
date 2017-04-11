@@ -14,6 +14,7 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 export class AppComponent implements OnInit {
   public isLoggedIn;
   public user: any;
+  public idLogin: any;
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
   }
@@ -28,9 +29,10 @@ export class AppComponent implements OnInit {
       this.auth.userPromise.then(res => {
         this.user = res.user;
         console.log(this.user);
+        let id = localStorage.getItem('USER_ID');
+        this.idLogin = id;
       }
       );
-
     }
   }
 
@@ -50,7 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   onSelect(profile) {
-     this.router.navigate(['/profile', profile]);
+     this.router.navigate(['/profile/' + profile + '/activity']);
   }
 
 }

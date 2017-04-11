@@ -34,6 +34,6 @@ export class CardComponent implements OnInit {
   }
 
     onSelect(profile) {
-    this.router.navigate(['/profile', profile]);
+    this.router.navigate(['/profile/' + profile + '/activity']);
   }
 }

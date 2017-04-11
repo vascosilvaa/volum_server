@@ -11,12 +11,14 @@
 }
 .profile-user-picture{
     margin-top:-90px;
+    
 }
 .profile-user-picture img{
     width: 120px;
     height: 120px;
     border-radius: 120px;
     border: solid 5px $white;
+    object-fit: cover
 }
 .user-rate{
      padding-left: 0;
@@ -78,21 +80,39 @@
     color: $white;
     font-weight: 600;
     height: 45px;
-    line-height: 45px;
-    font-size: 16px;
+    line-height: 41px;
+    font-size: 14px;
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 17px;
+    border-radius: 4px;
  }
- .btn-new-action:hover{
+ .btn-new-action:hover, .btn-follow:hover{
      text-decoration: none!important;
  }
-.btn-new-action:focus{
+.btn-new-action:focus, .btn-follow:focus{
     text-decoration: none!important;
 }
 .btn-new-action-icon{
     display: none;
 }
+
+
+.btn-follow{
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0), 0 2px 2px 0 rgba(0,0,0,0), 0 1px 5px 0 rgba(0,0,0,0);
+    background-color: $white;
+    color: $inputTitle;
+    font-weight: $bold;
+    height: 45px;
+    line-height: 41px;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 17px;
+    border: 1px solid $grey1;
+    border-radius: 4px;
+ }
+
 
 @media (max-width:1200px){
     .profile-user-name-location{

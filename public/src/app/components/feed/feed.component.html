@@ -16,6 +16,14 @@
     </div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-6" *ngFor="let vol of privateVols">
+          <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.login" [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+          </vol-card>
+      </div>
+</div>
+
     <div class="container">
         <!-- PUBLICO -->
         <div class="row">

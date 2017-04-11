@@ -44,6 +44,8 @@
     width: 45px;
     height: 45px;
     border-radius: 45px;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .card-user-nd {
@@ -53,6 +55,7 @@
 .card-user-name {
     color: $blue;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .card-date {

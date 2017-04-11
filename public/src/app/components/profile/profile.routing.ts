@@ -1,4 +1,3 @@
-import { ExternComponent } from './extern/extern.component';
 import { DetailsComponent } from './details/details.component';
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -22,10 +21,6 @@ const routes: Routes = [
         component: ProfileComponent,
         children: [
           {
-            path: '',
-            component: ActivityComponent,
-          },
-          {
             path: 'details',
             component: DetailsComponent
           },
@@ -40,10 +35,6 @@ const routes: Routes = [
           {
             path: 'about',
             component: AboutComponent
-          },
-          {
-            path: 'extern',
-            component: ExternComponent
           },
           {
             path: 'following',
