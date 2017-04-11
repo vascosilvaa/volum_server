@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.getUser();
-    this.router.navigate(['/feed']);
   }
 
   getUser() {
