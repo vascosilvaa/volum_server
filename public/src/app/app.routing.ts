@@ -15,7 +15,7 @@ import { FeedComponent } from './components/feed/feed.component';
 const appRoutes: Routes = [
   { path: '*', redirectTo: 'feed', pathMatch: 'full' },
   { path: '', redirectTo: 'feed', pathMatch: 'full' },
-    path: '',
+  { path: '',
    // canActivateChild: [AuthenticationGuard],
     children: [
       {
@@ -26,6 +26,8 @@ const appRoutes: Routes = [
         path: 'feed',
         loadChildren: '../app/components/feed/feed.module#FeedModule'
       }
+]
+  }
 ];
 
 
