@@ -111,7 +111,7 @@ app.get('/', function(req, res) {
                                 duration: results[i].vols.duration,
                                 active: results[i].vols.active,
                                 insurance: results[i].vols.insurance,
-                                likes: results[i][''].likes
+                                likes: results[i]['']
 
                             },
                             user: {
