@@ -99,8 +99,6 @@ app.get('/', function(req, res) {
                 } else {
 
                     for (let i = 0; i < results.length; i++) {
-
-
                         vols.push({
                             vol: {
                                 id_vol: results[i].vols.id_vol,
@@ -112,19 +110,14 @@ app.get('/', function(req, res) {
                                 active: results[i].vols.active,
                                 insurance: results[i].vols.insurance,
                                 likes: results[i]['']
-
                             },
                             user: {
                                 id_user: results[i].users.id_user,
-                                login: results[i].users.login,
+                                name: results[i].users.name,
                                 photo_url: results[i].users.photo_url
                             }
                         });
-
-
                     }
-
-
                 }
                 res.json({
                     success: true,
@@ -133,9 +126,8 @@ app.get('/', function(req, res) {
             }
 
         });
-
-
 });
+
 /**
  * @api {post} /vols Inserir Voluntariado
  * @apiName insertVol
@@ -148,7 +140,8 @@ app.get('/categories', function(req, res) {
     db.get().query('SELECT id_category, name FROM categories', function(error, results, fields) {
         if (error) {
             res.json({
-                success: false
+                success: false,
+                error: error
             });
             throw error;
         } else {
@@ -192,7 +185,6 @@ app.post('/:id/dislike', function(req, res) {
             }
         });
 });
-
 
 app.post('/', jwtCheck, function(req, res) {
 
@@ -281,13 +273,23 @@ app.get('/:id/comments', function(req, res) {
     });
 });
 
+
+/**
+ * @api {post} /vols/:id/apply Candidatar a Voluntariado
+ * @apiName apply
+ * @apiParam {String}  id_user ID do user
+ * @apiGroup Voluntariados 
+ */
+
+
+
 app.post('/:id/apply', function(req, res) {
     if (!req.body) {
         res.json({
             success: false,
             message: 'Falta Enviar o Body'
         });
-    } else if (req.body.id_user !== 'string') {
+    } else if (typeof req.body.id_user !== 'string') {
         res.json({
             success: false,
             message: 'Id Inválido'
@@ -297,35 +299,149 @@ app.post('/:id/apply', function(req, res) {
             function(error, results, fields) {
                 if (error) {
                     res.json({
-                        success: false
+                        success: false,
+                        error: "Ja te candidataste a este voluntariado"
                     });
-                    throw error;
                 } else {
                     res.json({
                         success: true,
-                        message: results
+                        message: "Sucesso"
                     });
                 }
             });
     }
 });
 
-app.get('/:id/applies', function(req, res) {
-    if (!req.params.id !== 'string') {
+/**
+ * @api {get} /vols/:id/comments Listar Confirmados
+ * @apiName getConfirmed
+ * @apiGroup Voluntariados 
+ */
+
+app.get('/:id/applies/confirmed', function(req, res) {
+
+    let users = [];
+
+    if (isNaN(parseInt(req.params.id))) {
         res.json({
             success: false,
             message: 'ID INVALIDO'
         });
     } else {
-        db.get().query('SELECT * FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.id_vol = ?', [req.params.id], function(error, results, fields) {
+        let options = {
+            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+            nestTables: true
+        };
+
+        db.get().query(options, [req.params.id], function(error, results, fields) {
             console.log(results);
-            res.json({
-                success: true,
-                message: results
-            });
+            if (error) {
+                console.log(error);
+            } else if (results.length == 0) {
+                res.json({
+                    success: true,
+                    message: "Sem Confirmados"
+                });
+            } else {
+                for (let i = 0; i < results.length; i++) {
+                    users.push({
+                        id_user: results[i].users.id_user,
+                        name: results[i].users.name,
+                        photo_url: results[i].users.photo_url
+                    });
+                }
+                res.json({
+                    success: true,
+                    users
+                });
+            }
         });
     }
 });
+
+app.get('/:id/applies/candidates', function(req, res) {
+
+    let users = [];
+
+    if (isNaN(parseInt(req.params.id))) {
+        res.json({
+            success: false,
+            message: 'ID INVALIDO'
+        });
+    } else {
+
+        let options = {
+            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+            nestTables: true
+        };
+
+        db.get().query(options, [req.params.id], function(error, results, fields) {
+            console.log(results);
+            if (error) {
+                console.log(error);
+            } else if (results.length == 0) {
+                res.json({
+                    success: true,
+                    message: "Sem Candidatos"
+                });
+            } else {
+                for (let i = 0; i < results.length; i++) {
+                    users.push({
+                        id_user: results[i].users.id_user,
+                        name: results[i].users.name,
+                        photo_url: results[i].users.photo_url
+                    });
+                }
+                res.json({
+                    success: true,
+                    users
+                });
+            }
+        });
+    }
+});
+
+app.post('/:id/applies/accept', function(req, res) {
+    if (isNaN(parseInt(req.body.id_user))) {
+        res.json({
+            success: false,
+            message: 'ID INVALIDO'
+        });
+    } else if (isNaN(parseInt(req.params.id))) {
+        res.json({
+            success: false,
+            message: 'ID INVALIDO'
+        });
+    } else {
+
+        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function(error, results, fields) {
+            if (error) {
+                res.json({
+                    success: false,
+                    error: error
+                });
+            } else if (results.affectedRows == 1 && results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Este User já está confirmado'
+                });
+            } else if (results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Este User não existe ou não é um candidato'
+                });
+            } else {
+                res.json({
+                    success: true,
+                    message: "Sucesso"
+                });
+            }
+
+        });
+    }
+});
+
+
 
 
 
