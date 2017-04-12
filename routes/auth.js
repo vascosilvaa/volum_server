@@ -27,8 +27,8 @@ function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
 }
 
-function getUserDB(login, done) {
-    db.get().query('SELECT * FROM users WHERE login = ? LIMIT 1', [login], function(err, rows, fields) {
+function getUserDB(email, done) {
+    db.get().query('SELECT * FROM users WHERE email = ? LIMIT 1', [email], function(err, rows, fields) {
         if (err) {
             console.log(err);
         } else {
@@ -60,7 +60,7 @@ function hashUrl(id) {
 
 app.post('/create', function(req, res) {
     console.log(req.body)
-    if (!req.body.login || !req.body.password || !req.body.email || !req.body.name) {
+    if (!req.body.password || !req.body.email || !req.body.name) {
         return res.status(400).json({ success: false, message: "Falta enviar dados" });
     } else if (req.files && req.files.photo.mimetype != 'image/jpeg') {
         return res.status(200).send('Foto invalida');
@@ -75,7 +75,6 @@ app.post('/create', function(req, res) {
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
 
                         user = {
-                            login: req.body.login,
                             password: hash,
                             email: req.body.email,
                             type_user: 1,
@@ -114,7 +113,6 @@ app.post('/create', function(req, res) {
                                             } else {
                                                 newUser = {
                                                     id: userId,
-                                                    login: user.login,
                                                     password: hash,
                                                     email: user.email,
                                                     type_user: 1
@@ -144,7 +142,6 @@ app.post('/create', function(req, res) {
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
 
                         user = {
-                            login: req.body.login,
                             password: hash,
                             email: req.body.email,
                             type_user: 1,
@@ -165,7 +162,6 @@ app.post('/create', function(req, res) {
 
                                 newUser = {
                                     id: result.insertId,
-                                    login: user.login,
                                     password: hash,
                                     email: user.email,
                                     type_user: 1
@@ -219,13 +215,13 @@ app.post('/create', function(req, res) {
  */
 
 app.post('/login', function(req, res) {
-    if (!req.body.login || !req.body.password) {
+    if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             success: false,
             message: "Falta enviar dados"
         });
     }
-    getUserDB(req.body.login, function(user) {
+    getUserDB(req.body.email, function(user) {
         if (!user) {
             return res.status(401).json({
                 success: false,
@@ -265,13 +261,13 @@ app.get('/confirm-email', function(req, res) {
 });
 
 app.get('/check/:login', function(req, res) {
-    if (!req.params.login) {
+    if (!req.params.email) {
         return res.status(400).json({
             success: false,
             message: "Falta o User"
         });
     }
-    getUserDB(req.params.login, function(user) {
+    getUserDB(req.params.email, function(user) {
         if (!user) res.status(201).send({ login: "OK" });
         else res.status(400).json({
             success: false,
