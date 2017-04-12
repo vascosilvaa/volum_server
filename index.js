@@ -12,7 +12,6 @@ var http = require('http');
 var mysql = require('mysql');
 var express = require('express');
 var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
 var cors = require('cors');
 var passport = require('passport');
 var path = require('path');
