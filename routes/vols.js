@@ -165,9 +165,9 @@ app.post('/:id/like', function(req, res) {
         function(error, results, fields) {
             if (error) {
                 res.json({
-                    success: false
+                    success: false,
+                    message: "Ja tens Like",
                 });
-                throw error;
             } else {
                 res.json({
                     success: true,
@@ -184,7 +184,6 @@ app.post('/:id/dislike', function(req, res) {
                 res.json({
                     success: false
                 });
-                throw error;
             } else {
                 res.json({
                     success: true,
