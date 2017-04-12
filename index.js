@@ -11,12 +11,14 @@ var morgan = require('morgan')
 var http = require('http');
 var mysql = require('mysql');
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 var cors = require('cors');
 var passport = require('passport');
 var path = require('path');
 var app = express();
 var fileUpload = require('express-fileupload');
+var io = require('socket.io')(http);
 
 //ROUTES
 
@@ -27,7 +29,6 @@ var users = require('./routes/users');
 var db = require('./config/db');
 
 var searchData = [];
-
 
 app.use(passport.initialize());
 app.use(morgan('dev'));
@@ -101,20 +102,13 @@ app.get('/api/search',
     });
 
 
-app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));
-
-// handle the callback after facebook has authenticated the user
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/teste',
-        failureRedirect: '/'
-    }));
-
-app.get('/profile', function(req, res) {
-    res.send({
-        user: req.user // get the user out of session and pass to template
-    });
+io.on('connection', function(socket) {
+    console.log('a user connected');
 });
+
+
+
+
 
 
 app.listen(process.env.PORT || 8080);

@@ -10,6 +10,19 @@ var bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
 
+const nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    service: 'Outlook365',
+    auth: {
+        user: 'pedroaraujo@ua.pt',
+        pass: '!Me170796'
+    }
+});
+
+
+
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
 }
@@ -107,6 +120,9 @@ app.post('/create', function(req, res) {
                                                     type_user: 1
                                                 };
 
+
+
+
                                                 res.status(201).send({
                                                     message: "User criado com sucesso",
                                                     id_token: createToken(newUser)
@@ -154,6 +170,25 @@ app.post('/create', function(req, res) {
                                     email: user.email,
                                     type_user: 1
                                 };
+
+                                let mailOptions = {
+                                    from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
+                                    to: user.email, // list of receivers
+                                    subject: 'Lindo', // Subject line
+                                    html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
+                                };
+
+                                // send mail with defined transport object
+                                transporter.sendMail(mailOptions, (error, info) => {
+                                    if (error) {
+                                        return console.log(error);
+                                    }
+                                    console.log('Message %s sent: %s', info.messageId, info.response);
+                                });
+
+
+                                // setup email data with unicode symbols
+
 
                                 res.status(201).send({
 
@@ -223,6 +258,12 @@ app.post('/login', function(req, res) {
     });
 });
 
+app.get('/confirm-email', function(req, res) {
+
+    res.send(req.query.email + 'ativado com sucesso');
+    // SET USER WHERE EMAIL = X ACTIVE = TRUE
+});
+
 app.get('/check/:login', function(req, res) {
     if (!req.params.login) {
         return res.status(400).json({
@@ -238,3 +279,16 @@ app.get('/check/:login', function(req, res) {
         });
     });
 });
+
+/*
+app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));
+
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/teste',
+        failureRedirect: '/'
+    }));
+
+
+    */

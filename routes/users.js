@@ -44,7 +44,6 @@ app.get('/profile/:id', passport.authenticate(['jwt']), function(req, res) {
                         password: user.password,
                         photo: user.photo_url,
                         verified: user.tinyint
-
                     }
                 });
             }
