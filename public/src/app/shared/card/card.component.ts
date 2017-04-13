@@ -22,6 +22,10 @@ export class CardComponent implements OnInit {
   @Input() username;
   @Input() verified;
 
+  public foto1=1;
+  public foto2=0;
+  public foto3=0;
+
   
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal,   private router: Router) {
     overlay.defaultViewContainer = vcRef;
@@ -35,5 +39,21 @@ export class CardComponent implements OnInit {
 
     onSelect(profile) {
     this.router.navigate(['/profile/' + profile + '/activity']);
+  }
+
+  changePhoto1(){
+    this.foto1=1;
+    this.foto3=0;
+    this.foto2=0;
+  }
+  changePhoto2(){
+    this.foto1=0;
+    this.foto2=1;
+    this.foto3=0;
+  }
+  changePhoto3(){
+    this.foto1=0;
+    this.foto2=0;
+    this.foto3=1;
   }
 }

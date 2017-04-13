@@ -4,46 +4,33 @@
     padding:32px;
 }
 
-.facebookLogin {
-    width:100%;
+button {
+width:100%;
     border-radius: 0px;
     padding-top: 20px !important;
     padding-bottom: 20px !important;
     padding-left: 27px !important;
     padding-right: 27px !important;
-    background: #4568B2;
-    color: #fff;
     font-size: 16px;
     font-family: Lato;
+}
+
+.facebookLogin {
+    background: #4568B2;
+    color: #fff;
     border:1px solid #4568B2 ;
     margin-bottom: 6px;
 }
 
 .googleLogin {
-    width:100%;
-    border-radius: 0px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
     background: $white;
     color: $grey2;
-    font-size: 16px;
-    font-family: Lato;
     border:1px solid $grey1;
 }
 
 .normalLogin {
-    width:100%;
-    border-radius: 0px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
     background: $orange;
     color: $white;
-    font-size: 16px;
-    font-family: Lato;
     border:1px solid $orange;
     margin-top:15px;
 }
@@ -64,36 +51,26 @@
     color: $grey2;
 }
 
-.inputEmailLogin {
-    width:100%;
-    border-radius: 0px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
-    background: $white;
-    color: $grey2;
-    font-size: 16px;
-    font-family: Lato;
-    border:1px solid $grey1;
-    margin-bottom: 6px;
-}
-
-
-
-.inputPasswordLogin {
+input {
     width:100%;
     border-radius: 3px;
     padding-top: 20px !important;
     padding-bottom: 20px !important;
     padding-left: 27px !important;
     padding-right: 27px !important;
-    background: $white;
     color: $grey2;
     font-size: 16px;
     font-family: Lato;
     border:1px solid $grey1;
 }
+
+.inputEmailLogin {
+    margin-bottom: 6px;
+}
+.inputPasswordLogin {
+    margin-bottom: 6px;
+}
+
 
 .forgotPass {
     font-size: 14px;
@@ -112,6 +89,7 @@
 }
 
 .registerBtn {
+    width: 110px;
     border-radius: 0px;
     padding-top: 7px !important;
     padding-bottom: 7px !important;

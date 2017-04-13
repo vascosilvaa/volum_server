@@ -171,3 +171,13 @@ body {
 .modal-backdrop.in {
     opacity: 0.5;
 }
+
+.borda {
+    border: 1px solid #E82C0C;
+}
+
+.textError {
+    margin-bottom: 10px;
+    color: #E82C0C!important;
+    font-size: 14px;
+}

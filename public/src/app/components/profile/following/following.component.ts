@@ -20,8 +20,7 @@ export class FollowingComponent implements OnInit {
 
   ngOnInit() {
  this.route.params.subscribe((params) => {
-      this.idProfile = this.route.snapshot.params['id'];
-
+      this.idProfile = this.route.parent.parent.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
       });

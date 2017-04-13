@@ -4,11 +4,11 @@ import { User } from './user.interface';
 import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
-import { FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from '@angular/forms';
 
 
 export class ModalContext extends BSModalContext {
-
+    
 }
 
 @Component({
@@ -18,10 +18,11 @@ export class ModalContext extends BSModalContext {
 })
 
 export class LoginComponent implements OnInit {
-
     public wrongAnswer: boolean;
-    public form: any;
     context: ModalContext;
+    form: FormGroup;
+    public stateEmail=0;
+    public statePass=0;
 
     constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
         this.context = dialog.context;
@@ -30,9 +31,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.form = this._fb.group({
-            login: ['', [Validators.required, Validators.minLength(2)]],
-            password: ['']
+            this.form = this._fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required,  Validators.minLength(3)]]
         });
     }
 

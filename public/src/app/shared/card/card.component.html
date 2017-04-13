@@ -30,6 +30,21 @@
     <!-- / HEADER CARD -->
 
     <!-- CONTENT CARD -->
+    <div class="imgSlider">
+            <img *ngIf="foto1==1" class="imgSliderInd" src="../assets/imgs/testemaps2.PNG">
+            <img *ngIf="foto2==1" class="imgSliderInd" src="../assets/imgs/testemaps.PNG">
+            <img *ngIf="foto3==1" class="imgSliderInd" src="../assets/imgs/fundo_vasco.jpg">
+    </div>
+    <div class="balls">
+        <div class="row">
+            <div (click)="changePhoto1()" *ngIf="foto1==1"class="ball1"></div>
+            <div (click)="changePhoto1()" *ngIf="foto1==0" class="ball1Empty"></div>
+            <div (click)="changePhoto2()" *ngIf="foto2==1" class="ball2"></div>
+            <div (click)="changePhoto2()" *ngIf="foto2==0" class="ball2Empty"></div>
+            <div (click)="changePhoto3()" *ngIf="foto3==1" class="ball3"></div>
+            <div (click)="changePhoto3()" *ngIf="foto3==0" class="ball3Empty"></div>
+        </div>
+    </div>
     <div class="row no-margin card-volum-content">
         <div class="col-12 ts18 card-volum-title">
             {{title}}
