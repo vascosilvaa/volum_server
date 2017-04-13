@@ -1,0 +1,55 @@
+@import "../../../styles";
+
+
+.sebm-google-map-container {
+  height: 97vh;
+  top: -60px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardsSection {
+  overflow-y:scroll;
+  height: 76vh;
+}
+
+.searchSection {
+  height: 100px;
+  background: $white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.areaSearch {
+  padding-left: 30px;
+  padding-right: 45px;
+}
+
+.mapFull {
+  overflow: hidden;
+}
+
+.searchTitle {
+  color: $grey3;
+  font-size: 16px;
+  font-weight: $bold;
+  padding: 10px 20px;
+}
+
+.inputSearch {
+  width: 100%;
+  height: 40px;
+  border: 1px solid $grey1;
+  border-radius: 3px;
+  padding: 15px;
+  font-size: 14px;
+  color: $grey2;
+}
+
+.areaInput {
+  padding: 0px 20px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}

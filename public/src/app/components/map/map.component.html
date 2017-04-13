@@ -1,0 +1,53 @@
+<div class="container-fluid no-padding mapFull">
+    <div class="row no-padding">
+        <div class="col-8">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
+        </div>
+        <div class="col-4 ">
+            <div class="row">
+                <div class="areaSearch col-12">
+                    <div class="searchSection">
+                        <div class="searchTitle">Pesquisar voluntariados por local específico:</div>
+                        <div class="areaInput">
+                            <input type="text" class="inputSearch" placeholder="Inserir localização...">
+                        </div>
+                    </div>
+                </div>
+                <div class="cardsSection col-12">
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                    <div class="col-12" *ngFor="let vol of privateVols">
+                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                        </vol-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

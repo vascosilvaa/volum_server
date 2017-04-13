@@ -4,22 +4,7 @@
     padding:32px;
 }
 
-.facebookLogin {
-    width:100%;
-    border-radius: 0px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
-    background: #4568B2;
-    color: #fff;
-    font-size: 16px;
-    font-family: Lato;
-    border:1px solid #4568B2 ;
-    margin-bottom: 6px;
-}
-
-.googleLogin {
+input{
     width:100%;
     border-radius: 0px;
     padding-top: 20px !important;
@@ -31,19 +16,38 @@
     font-size: 16px;
     font-family: Lato;
     border:1px solid $grey1;
+    margin-bottom: 6px;
+
 }
 
-.normalLogin {
+button{
     width:100%;
     border-radius: 0px;
     padding-top: 20px !important;
     padding-bottom: 20px !important;
     padding-left: 27px !important;
     padding-right: 27px !important;
-    background: $orange;
-    color: $white;
     font-size: 16px;
     font-family: Lato;
+    margin-bottom: 6px;
+    cursor: pointer;  
+}
+
+.facebookLogin {
+    background: #4568B2;
+    color: #fff;
+    border:1px solid #4568B2 ;
+}
+
+.googleLogin {
+    background: $white;
+    color: $grey2;
+    border:1px solid $grey1;
+}
+
+.normalLogin {
+    background: $orange;
+    color: $white;
     border:1px solid $orange;
     margin-top:15px;
 }
@@ -62,37 +66,6 @@
     background: $white;
     font-family: Lato;
     color: $grey2;
-}
-
-.inputEmailLogin {
-    width:100%;
-    border-radius: 0px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
-    background: $white;
-    color: $grey2;
-    font-size: 16px;
-    font-family: Lato;
-    border:1px solid $grey1;
-    margin-bottom: 6px;
-}
-
-
-
-.inputPasswordLogin {
-    width:100%;
-    border-radius: 3px;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 27px !important;
-    padding-right: 27px !important;
-    background: $white;
-    color: $grey2;
-    font-size: 16px;
-    font-family: Lato;
-    border:1px solid $grey1;
 }
 
 .forgotPass {
@@ -117,6 +90,7 @@
     padding-bottom: 7px !important;
     padding-left: 21px !important;
     padding-right: 21px !important;
+    width: 110px;
     background: $white;
     color: $orange;
     font-size: 14px;
@@ -131,4 +105,34 @@
   font-family: Lato;
   font-size: 16px;
   color: $grey3;
+}
+.registerAdvice1 {
+  margin-top: 10px;
+  font-family: Lato;
+  font-size: 14px;
+  color: $grey3;
+}
+
+.adviceSocial {
+    color: $blue;
+    cursor: pointer;
+}
+
+.adviceSocial:hover {
+    text-decoration: underline;
+}
+
+.serviceAdvice {
+    color: $grey2;
+    font-size:12px;
+    margin-top: 15px;
+    font-family: Lato;
+    margin-bottom: 0;
+}
+
+.registSuccess{
+    color: $grey3;
+    font-size:14px;
+    font-family: Lato;
+
 }

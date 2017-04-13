@@ -20,8 +20,7 @@ export class ActionsComponent implements OnInit {
 
   ngOnInit() {
   this.route.params.subscribe((params) => {
-      this.idProfile = this.route.snapshot.params['id'];
-
+      this.idProfile = this.route.parent.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
       });
@@ -33,7 +32,6 @@ export class ActionsComponent implements OnInit {
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
         this.userLogin = res.user;
-        console.log(this.userLogin);
         let id = localStorage.getItem('USER_ID');
         this.idLogin = id;
        }

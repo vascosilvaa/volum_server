@@ -22,6 +22,7 @@ export class VolDetailsModalComponent implements OnInit {
   constructor(private dialog: DialogRef<ModalContext>) {
     this.context = dialog.context;
     this.context.isBlocking = false;
+    this.context.size = "lg";
   
   }
 

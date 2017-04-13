@@ -1,3 +1,4 @@
+import { MapComponent } from './components/map/map.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationGuard } from './shared/Auth/authentication.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
       {
         path: 'feed',
         loadChildren: '../app/components/feed/feed.module#FeedModule'
+      },
+      {
+        path: 'map',
+        component: MapComponent
       }
 ]
   }

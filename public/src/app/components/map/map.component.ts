@@ -1,16 +1,17 @@
-import { FeedService } from './../../feed/feed.service';
-import { GlobalConstants } from '../../../shared/global-constants';
-import { Component, OnInit } from '@angular/core';
+import { FeedService } from './../feed/feed.service';
 import { Http } from '@angular/http';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.css'],
-  providers: [FeedService]
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.scss'],
+  providers: [FeedService],
 })
-export class ActivityComponent implements OnInit {
+export class MapComponent implements OnInit {
+  lat: number = 41.100856;
+  lng: number =  -8.544893;
+  
   public privateVols: any;
   public instVols: any;
   

@@ -1,3 +1,4 @@
+import { MapModule } from './components/map/map.module';
 import { CardComponent } from './shared/card/card.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { LayoutComponent } from './components/layout/layout.component';
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
@@ -35,18 +37,21 @@ import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details
     LoginComponent,
     RegisterComponent,
     FilterComponent,
+
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     FormsModule,
     HttpModule,
+    MapModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),
     BootstrapModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
