@@ -56,4 +56,22 @@ export class CardComponent implements OnInit {
     this.foto2=0;
     this.foto3=1;
   }
+
+  showFoto(foto) {
+    if (foto==1) {
+      this.foto1=1;
+      this.foto2=0;
+      this.foto3=0;
+    }
+     if (foto==2) {
+      this.foto1=0;
+      this.foto2=1;
+      this.foto3=0;
+    }
+    if (foto==3) {
+      this.foto1=0;
+      this.foto2=0;
+      this.foto3=1;
+    }
+  }
 }
