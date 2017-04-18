@@ -30,6 +30,7 @@
     <!-- / HEADER CARD -->
 
     <!-- CONTENT CARD -->
+    <div *ngIf="map!=true">
     <div class="imgSlider">
             <img *ngIf="foto1==1" class="imgSliderInd" src="../assets/imgs/testemaps2.PNG">
             <img *ngIf="foto2==1" class="imgSliderInd" src="../assets/imgs/testemaps.PNG">
@@ -66,7 +67,7 @@
     <div class="leftArrow" (click)="showFoto(2)" *ngIf="foto3==1">
         <i class="material-icons iconRight">keyboard_arrow_left</i>
     </div>
-
+    </div>
     <div class="row no-margin card-volum-content">
         <div class="col-12 ts18 card-volum-title">
             {{title}}
@@ -75,6 +76,7 @@
             {{desc}}
         </div>
     </div>
+    
     <!-- /CONTENT CARD -->
 
     <!-- FOOTER CARD -->

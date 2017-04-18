@@ -1,11 +1,11 @@
 <div class="container-fluid no-padding mapFull">
     <div class="row no-padding">
-        <div class="col-8">
+        <div class="col-7 map">
             <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
                 <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
             </sebm-google-map>
         </div>
-        <div class="col-4 ">
+        <div class="col-5 ">
             <div class="row">
                 <div class="areaSearch col-12">
                     <div class="searchSection">
@@ -17,35 +17,31 @@
                 </div>
                 <div class="cardsSection col-12">
                     <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                        <vol-card [map]="true" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
                             [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                         </vol-card>
                     </div>
                     <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                        <vol-card [map]="true" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
                             [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                         </vol-card>
                     </div>
                     <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                        <vol-card [map]="true" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
                             [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                         </vol-card>
                     </div>
                     <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                        <vol-card [map]="true" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
                             [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                         </vol-card>
                     </div>
                     <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
+                        <vol-card [map]="true" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
                             [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                         </vol-card>
                     </div>
-                    <div class="col-12" *ngFor="let vol of privateVols">
-                        <vol-card [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
-                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
-                        </vol-card>
-                    </div>
+                    
                 </div>
             </div>
         </div>

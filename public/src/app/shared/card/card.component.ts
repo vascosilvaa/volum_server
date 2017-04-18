@@ -21,6 +21,7 @@ export class CardComponent implements OnInit {
   @Input() avatar;
   @Input() username;
   @Input() verified;
+  @Input() map;
 
   public foto1=1;
   public foto2=0;

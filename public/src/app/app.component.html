@@ -7,6 +7,9 @@
         </div>
         <div class="col-sm-10 col-12 menuHeader">
             <ul>
+                <li *ngIf="user" routerLink="map">
+                    <md-icon>place</md-icon>
+                </li>
                 <li *ngIf="user">
                     <md-icon>people</md-icon>
                 </li>
