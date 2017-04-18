@@ -2,22 +2,22 @@
 
 
 .sebm-google-map-container {
-  height: 97vh;
-  top: -60px;
+  height: 100vh;
+  top: -50px;
   position: relative;
   z-index: 1;
 }
 
 .cardsSection {
   overflow-y:scroll;
-  height: 76vh;
+  height: 75vh;
 }
 
 .searchSection {
   height: 100px;
   background: $white;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .areaSearch {
@@ -52,4 +52,8 @@
 
 textarea:focus, input:focus{
     outline: none;
+}
+
+.map {
+  margin-right: -20px;
 }
