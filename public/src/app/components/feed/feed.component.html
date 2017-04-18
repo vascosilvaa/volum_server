@@ -25,9 +25,7 @@
         <div class="slider">
             <swiper [config]="config" #swiper1>
                 <div class="swiper-wrapper">
-                    <vol-card *ngFor="let vol of privateVols"  [verified]="true" class="swiper-slide" [type]="private" [avatar]="avatar" [username]="name" [userCreator]="criador" [dateCreation]="quando" [title]="title" [desc]="desc">
-                    </vol-card>
-                    <vol-card *ngFor="let vol of privateVols"  [verified]="true" class="swiper-slide" [type]="private" [avatar]="avatar" [username]="name" [userCreator]="criador" [dateCreation]="quando" [title]="title" [desc]="desc">
+                    <vol-card *ngFor="let vol of instVols"  [idVol]="vol.vol.id_vol" [likes]="vol.vol.likes.likes" [verified]="true" class="swiper-slide" [type]="private" [avatar]="vol.user.photo_url" [username]="vol.user.name" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
                     </vol-card>
                 </div>
                 <!-- Add Pagination -->
@@ -51,7 +49,7 @@
         <div class="slider">
             <swiper [config]="config" #swiper2>
                 <div class="swiper-wrapper">
-                    <vol-card *ngFor="let vol of privateVols" [verified]="true" [type]="private" class="swiper-slide" [avatar]="vol.user.photo_url" [username]="vol.user.login" [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.name" [desc]="vol.vol.desc">
+                    <vol-card *ngFor="let vol of privateVols" [likes]="vol.vol.likes.likes" [idVol]="vol.vol.id_vol" [verified]="true" [type]="private" class="swiper-slide" [avatar]="vol.user.photo_url" [username]="vol.user.name" [dateCreation]="vol.vol.date_begin" [title]="vol.vol.name" [desc]="vol.vol.desc">
                     </vol-card>
                 </div>
                 <!-- Add Pagination -->

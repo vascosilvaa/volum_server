@@ -106,6 +106,8 @@
     margin-bottom: 20px;
 }
 
+
+
 .iconDate {
     font-size: 18px;
     color: $grey3;
@@ -205,4 +207,9 @@
 }
 .card-Comments{
     border:0px;
+}
+
+.modalTextBold {
+    font-weight: $bold;
+    margin-top: 5px;
 }

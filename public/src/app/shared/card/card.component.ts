@@ -22,6 +22,8 @@ export class CardComponent implements OnInit {
   @Input() username;
   @Input() verified;
   @Input() map;
+  @Input() likes;
+  @Input() idVol;
 
   public foto1=1;
   public foto2=0;
@@ -34,8 +36,9 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {  }
 
-  openVolDetails() {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+  openVolDetails(idVol) {
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: this.idVol}, BSModalContext));
+
   }
 
     onSelect(profile) {

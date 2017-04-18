@@ -2,7 +2,7 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'angular2-modal';
 import { VolDetailsModalComponent } from './vol-details-modal/vol-details-modal.component';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
@@ -28,5 +28,9 @@ import { RouterModule } from '@angular/router';
     }),
   ],
   exports: [CardComponent, VolDetailsModalComponent],
+  providers: [
+    { provide: LOCALE_ID, useValue: "pt-PT" }, //replace "en-US" with your locale
+    //otherProviders...
+  ]
 })
 export class SharedModule { }
