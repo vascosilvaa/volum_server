@@ -22,8 +22,8 @@ var app = module.exports = express.Router();
  * @apiGroup Perfil
  */
 
-app.get('/profile/:id', passport.authenticate(['jwt']), function(req, res) {
-    if (isNaN(req.params.id)) {
+app.get('/:id', passport.authenticate(['jwt']), function(req, res) {
+    if (isNaN(parseInt(req.params.id))) {
         res.status(400);
         res.send({ success: false, message: "Parâmetros Invalidos" });
     } else {
@@ -49,5 +49,75 @@ app.get('/profile/:id', passport.authenticate(['jwt']), function(req, res) {
             }
         });
 
+    }
+});
+
+app.get('/:id/my-vols', function(req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400);
+        res.send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function(err, rows, fields) {
+            if (err) {
+                res.status(400);
+                res.send({ success: false, message: "Parâmetros Invalidos" });
+            } else {
+                if (rows.length > 0) {
+
+                    res.send({
+                        success: true,
+                        body: {
+                            rows
+                        }
+                    });
+
+                } else {
+                    res.send({
+                        success: true,
+                        body: "Sem Registos"
+                    });
+                }
+
+            }
+
+        });
+    }
+});
+
+
+app.get('/:id/vols', function(req, res) {
+    console.log(typeof req.params.id)
+    console.log(req.params.id);
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        let options = {
+            sql:"SELECT user_vol.id_vol, user_vol.confirm, vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,  (SELECT COUNT(user_vol.id_vol)) AS confirmed, (SELECT COUNT(user_vol.id_vol)) AS candidates" 
+    + " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol"
+    + " LIMIT 0, 30 "
+        }
+        db.get().query(options, [req.params.id], function(err, vols, fields) {
+            if (err) {
+                res.status(400);
+                res.send({ success: false, message: 'Erro' });
+                console.error(err);          
+ } else {
+                if (vols.length > 0) {
+
+                    res.send({
+                        success: true,
+                        vols
+                    });
+
+                } else {
+                    res.send({
+                        success: true,
+                        body: "Sem Registos"
+                    });
+                }
+
+            }
+
+        });
     }
 });

@@ -88,7 +88,6 @@ app.get('/api/search',
                     } else {
 
                         if (results[0].length == 0 && results[1].length == 0) {
-                            res.status(404);
                             res.send({ success: false, message: "No records found" })
                         } else {
                             searchData = results[0].concat(results[1]);
