@@ -150,8 +150,53 @@ define({ "api": [
     },
     "group": "Perfil",
     "version": "0.0.0",
+    "filename": "volum/routes/chat.js",
+    "groupTitle": "Perfil"
+  },
+  {
+    "type": "get",
+    "url": "/profile/:id",
+    "title": "Retornar Perfil",
+    "name": "getProfile",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID do user</p>"
+          }
+        ]
+      }
+    },
+    "group": "Perfil",
+    "version": "0.0.0",
     "filename": "volum/routes/users.js",
     "groupTitle": "Perfil"
+  },
+  {
+    "type": "post",
+    "url": "/vols/:id/apply",
+    "title": "Candidatar a Voluntariado",
+    "name": "apply",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id_user",
+            "description": "<p>ID do user</p>"
+          }
+        ]
+      }
+    },
+    "group": "Voluntariados",
+    "version": "0.0.0",
+    "filename": "volum/routes/vols.js",
+    "groupTitle": "Voluntariados"
   },
   {
     "type": "post",
@@ -181,6 +226,16 @@ define({ "api": [
         ]
       }
     },
+    "group": "Voluntariados",
+    "version": "0.0.0",
+    "filename": "volum/routes/vols.js",
+    "groupTitle": "Voluntariados"
+  },
+  {
+    "type": "get",
+    "url": "/vols/:id/comments",
+    "title": "Listar Confirmados",
+    "name": "getConfirmed",
     "group": "Voluntariados",
     "version": "0.0.0",
     "filename": "volum/routes/vols.js",

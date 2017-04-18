@@ -80,7 +80,7 @@ app.get('/api/search',
 
             let query = (req.query.search).replace(/['"]+/g, '');
 
-            db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.login, users.photo_url FROM users where users.login LIKE ?', ['%' + query + '%', '%' + query + '%'],
+            db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
                 function(error, results, fields) {
                     if (error) {
                         res.send({ success: false, message: error })
