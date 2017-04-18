@@ -24,6 +24,9 @@
                     <span class="divider-or">ou</span>
                     <hr class="divider-hr">
                 </div>
+                <div class="col-12" *ngIf="error">
+                    <div class="textError">{{error}}</div>
+                </div>
                 <div class="col-12" >
                     <input [class.borda]="!form.controls.email.valid && form.controls.email.dirty" type="email" formControlName="email"
                         class="inputEmailLogin form-control" placeholder="Endereço de e-mail">

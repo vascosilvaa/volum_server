@@ -2,19 +2,19 @@
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
-                MAR
+               {{volDetails?.date_begin | date:"MMM" | uppercase}}
             </div> 
             <div>
-                2
+               {{volDetails?.date_begin | date:"d"}}
             </div>
         </div>
 
         <div class="modalTitle">
             <div class="modalTitleDesc">
-                Lorem Ipsum
+                {{volDetails?.name}}
             </div>
             <div class="modalSubtitle">
-                Sábado, às 20:00
+                {{volDetails?.date_begin | date:"fullDate"}}
             </div>    
     </div>   
     </div>
@@ -23,18 +23,20 @@
 <div class="modalContainer row">
 
         <div class="card-user-image col-md-auto">
-            <img src="../assets/imgs/caritas_logo.gif">
+            <img src={{volDetails?.user.photo_url}}>
         </div>
         <div class="card-user-nd">
-            <div><span class="card-user-name ts16">Cáritas </span><span class="ts14 card-user-desc"> criou o </span><span class="card-user-event ts14">evento</span></div>
-            <div class="card-date ts13">2 de Abril às 9:43</div>
+            <div><span class="card-user-name ts16">{{volDetails?.user.name}} </span><span class="ts14 card-user-desc"> criou o </span><span class="card-user-event ts14">evento</span></div>
+            <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
         </div>
         <div class="col text-right no-padding">
             <button class="btnCandidate">CANDIDATAR</button>
         </div>
 
-        <div class="modalTextArea ts13">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fringilla nibh et metus tristique luctus. Donec a volutpat massa. Praesent et mauris sed mi pulvinar bibendum. Vestibulum iaculis libero mi, a lacinia ex semper et. Nullam dignissim mauris tortor, vel hendrerit urna viverra pellentesque. Pellentesque tincidunt nisi ut neque tristique, in sollicitudin ex pharetra. Aliquam dapibus scelerisque tortor, id posuere purus.
+        <div class="modalTextArea col-12 no-padding">
+            <div class="ts13 col-12 no-padding">
+                {{volDetails?.desc}}
+            </div>
         </div>
 
         
@@ -46,11 +48,17 @@
                         <i class="material-icons iconDate">query_builder</i>
                     </div>
                     <div class="col descDatePlace">
-                        <div class="daysEvent ts13">
-                            8 de Março - 12 de Março
+                        <div class="daysEvent ts13" *ngIf="!volDetails?.date_end">
+                            Início a {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}} 
                         </div>
-                        <div class="daysEventFull ts13">
-                            Horário fixo das 10:00 às 12:00
+                        <div class="daysEvent ts13" *ngIf="volDetails?.date_end">
+                            {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}} - {{volDetails?.date_end | date:"d"}} de {{volDetails?.date_end | date:"MMMM"}} 
+                        </div>
+                        <div class="daysEventFull ts13" *ngIf="volDetails?.duration > 1">
+                            {{volDetails?.duration}} horas diárias
+                        </div>
+                         <div class="daysEventFull ts13" *ngIf="volDetails?.duration < 2">
+                            {{volDetails?.duration}} hora diária
                         </div>
                     </div>
                 </div>
@@ -62,7 +70,7 @@
                     </div>
                     <div class="col descDatePlace">
                         <div class="daysEvent ts13">
-                           Universidade de Aveiro
+                         Universidade de Aveiro
                         </div>
                         <div class="daysEventFull ts13">
                             3810-164, Aveiro, Portugal
@@ -72,7 +80,14 @@
                 </div>
                 
             </div>
+            
+            
         </div>
+
+
+        
+
+
 
 
         <div class="col-12 no-padding mapContent">
@@ -138,19 +153,26 @@
           
         
 <div class="card-volum-footer no-margin">
+    <div class="container">
+    <div class="row">
+        
         <div class="cardLikes">
             <md-icon class="btnLike">favorite</md-icon>
         </div>
         <div class="likesNumber ts12">
             300
         </div>
-       
-        <div class="cardComments ts12 text-right">
+
+       <div class="col-11 float-right">
+        <div class="cardComments ts12 float-right">
             <div>
                 <md-icon class="btnComments">textsms</md-icon>
             </div>
             <div class="textComments"><span class="commentsNumber">16</span> comentários</div>
         </div>
+        </div>
+        </div>
+    </div>
     </div>
 
     <div class="row no-margin card-Comments">

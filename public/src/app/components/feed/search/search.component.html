@@ -4,14 +4,14 @@
 </template>
 <div class="container">
     <div class="col-12 header-home-search menuFull">
-        <div class="col-search col-8">
+        <div class="col-search col-10">
 
             <md-input-container class="col-12">
                 <input mdInput [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
             </md-input-container>
         </div>
 
-        <div class="col-search-btn col-4 btnSearch">
+        <div class="col-search-btn col-2 btnSearch">
             <button md-raised-button class="btn-search">Procurar</button>
         </div>
     </div>

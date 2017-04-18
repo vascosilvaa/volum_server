@@ -7,7 +7,7 @@
         <div class="col-6 col-lg-8 card-user-nd">
             <div *ngIf="verified==1" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada"><i class="material-icons md-18">verified_user</i></button></div>
             <div *ngIf="verified==0" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> </div>
-            <div class="card-date ts14">{{dateCreation | date}}</div>
+            <div class="card-date ts14">{{dateCreation | date:"d/M"}} às {{dateCreation| date:"shortTime"}}</div>
         </div>
         <div class="col card-option text-right">
             <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
@@ -85,7 +85,7 @@
             <md-icon class="btnLike">favorite</md-icon>
         </div>
         <div class="likesNumber ts12">
-            300
+            {{likes}}
         </div>
         <div *ngIf="type=='private'" class="likeImgs">
             <img src="assets/imgs/avatar2.png">
@@ -104,7 +104,7 @@
             <div class="textComments"><span class="commentsNumber">16</span> comentários</div>
         </div>
         <div class="btnView">
-            <button md-raised-button (click)="openVolDetails()">VER</button>
+            <button md-raised-button (click)="openVolDetails(idVol)">VER</button>
         </div>
     </div>
     <!-- /FOOTER CARD -->

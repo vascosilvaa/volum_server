@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     public stateEmail=0;
     public statePass=0;
+    public error: any;
 
     constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
         this.context = dialog.context;
@@ -47,7 +48,13 @@ export class LoginComponent implements OnInit {
                     this.dialog.close();
                     location.reload();
                 }
+                 else {this.error=res.message;
+                console.log(this.error);
+                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+            });
+            
     }
 }

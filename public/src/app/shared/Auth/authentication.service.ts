@@ -25,7 +25,7 @@ export class AuthenticationService {
     public dataAvailable = false;
 
     reloadUser(id, self) {
-        var temp = this.http.get(`${GlobalConstants.API_ENDPOINT}/users/profile/` + id).toPromise()
+        var temp = this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
             .then(res => {
                 let response = res.json();
                 this.dataAvailable = true;
