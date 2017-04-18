@@ -76,13 +76,15 @@ app.get('/', function(req, res) {
     };
     if (req.query['type'] == 'inst') {
         options = {
-            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
+            sql: 'SELECT vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+                'users.id_user, users.name, users.photo_url, (SELECT COUNT(likes.id_vol)) AS likes FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user RIGHT JOIN likes ON vols.id_vol = likes.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 GROUP BY likes.id_vol ',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
-            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol_type = 2',
+            sql: 'SELECT vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+                'users.id_user, users.name, users.photo_url, (SELECT COUNT(likes.id_vol)) AS likes FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user RIGHT JOIN likes ON vols.id_vol = likes.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 GROUP BY likes.id_vol ',
             nestTables: true
         };
     }
