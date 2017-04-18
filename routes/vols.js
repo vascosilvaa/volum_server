@@ -19,7 +19,12 @@ let vol = {};
 
 app.get('/:id', function(req, res) {
 
-    db.get().query('SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN place ON vols.id_place = place.id_place WHERE vols.deleted = 0 AND vols.id_vol = ?', [req.params['id']], function(error, results, fields) {
+    let options = {
+        sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ?',
+        nestTables: true
+    };
+
+    db.get().query(options, [req.params['id']], function(error, results, fields) {
         if (error) {
             res.send({ success: false, message: error })
             throw new Error(error);
@@ -29,30 +34,29 @@ app.get('/:id', function(req, res) {
                 res.status(404);
                 res.send({ success: true, message: "No records found" })
             } else {
-
+                console.log(results);
                 for (let i = 0; i < results.length; i++) {
 
                     vol = {
-                        id_vol: results[i].id_vol,
-                        place: results[i].address,
-                        name: results[i].name,
-                        desc: results[i].desc,
-                        date_begin: results[i].date_begin,
-                        duration: results[i].duration,
-                        active: results[i].active,
-                        insurance: results[i].insurance,
-                        long: results[i].long,
-                        lat: results[i].lat,
-                        user: user,
-
+                        id_vol: results[i].vols.id_vol,
+                        place: results[i].vols.address,
+                        name: results[i].vols.name,
+                        desc: results[i].vols.desc,
+                        date_creation: results[i].vols.date_creation,
+                        date_begin: results[i].vols.date_begin,
+                        duration: results[i].vols.duration,
+                        active: results[i].vols.active,
+                        insurance: results[i].vols.insurance,
+                        long: results[i].vols.long,
+                        lat: results[i].vols.lat,
+                        user: results[i].users,
+                        
                     }
                 }
                 res.json({
                     success: true,
-                    body: {
-                        vol: vol,
-                    }
-                })
+                    vol
+                    })
 
             }
         }
@@ -108,6 +112,7 @@ app.get('/', function(req, res) {
                                 name: results[i].vols.name,
                                 desc: results[i].vols.desc,
                                 date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].date_creation,
                                 duration: results[i].vols.duration,
                                 active: results[i].vols.active,
                                 insurance: results[i].vols.insurance,
@@ -154,6 +159,7 @@ app.get('/categories', function(req, res) {
         }
     });
 });
+
 
 app.post('/:id/like', function(req, res) {
     db.get().query('INSERT INTO likes (id_user, id_vol, _like) VALUES (?, ?, 1)', [req.body.id_user, req.params.id],
