@@ -92,16 +92,16 @@ app.get('/:id/vols', function(req, res) {
         res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
     } else {
         let options = {
-            sql:"SELECT user_vol.id_vol, user_vol.confirm, vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,  (SELECT COUNT(user_vol.id_vol)) AS confirmed, (SELECT COUNT(user_vol.id_vol)) AS candidates" 
-    + " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol"
-    + " LIMIT 0, 30 "
+            sql: "SELECT user_vol.id_vol, user_vol.confirm, vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,  (SELECT COUNT(user_vol.id_vol)) AS confirmed, (SELECT COUNT(user_vol.id_vol)) AS candidates, users.photo_url, users.name" +
+                " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol" +
+                " LIMIT 0, 30 "
         }
         db.get().query(options, [req.params.id], function(err, vols, fields) {
             if (err) {
                 res.status(400);
                 res.send({ success: false, message: 'Erro' });
-                console.error(err);          
- } else {
+                console.error(err);
+            } else {
                 if (vols.length > 0) {
 
                     res.send({
