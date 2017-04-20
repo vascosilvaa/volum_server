@@ -38,7 +38,7 @@ app.get('/:id', function(req, res) {
                 for (let i = 0; i < results.length; i++) {
 
                     vol = {
-                      
+
                         id_vol: results[i].vols.id_vol,
                         place: results[i].vols.address,
                         name: results[i].vols.name,
@@ -49,15 +49,15 @@ app.get('/:id', function(req, res) {
                         active: results[i].vols.active,
                         insurance: results[i].vols.insurance,
                         long: results[i].vols.long,
-                        lat: results[i].vols.lat,    
+                        lat: results[i].vols.lat,
                         user: results[i].users,
-                        
+
                     }
                 }
                 res.json({
                     success: true,
                     vol
-                    })
+                })
 
             }
         }
