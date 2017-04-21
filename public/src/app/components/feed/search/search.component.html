@@ -1,6 +1,6 @@
 <template #rt let-r="result" let-t="term">
- <span *ngIf="r.name"> {{ r.name}}</span>
- <span *ngIf="r.login"> <img class="img-responsive" style="border-radius:50px" width="50" [src]="r.photo_url"> {{ r.login}} </span>
+ <div *ngIf="!r.photo_url" class="container"> <div class="row"> <div class="col-1"><img class="img-responsive" style="border-radius:50px" width="50" src="assets/imgs/volunteer.png"></div> <div class="col"><div class="namePerson" >{{ r.name}} </div><div class="descPerson" >Solidariedade Social </div></div> </div> </div>
+ <div *ngIf="r.photo_url" class="container"> <div class="row"> <div class="col-1"><img class="img-responsive" style="border-radius:50px" width="50" [src]="r.photo_url"></div> <div class="col"><div class="namePerson" >{{ r.name}} </div><div class="descPerson" >Vila Nova de Gaia, Portugal </div></div> </div> </div>
 </template>
 <div class="container">
     <div class="col-12 header-home-search menuFull">
@@ -15,4 +15,4 @@
             <button md-raised-button class="btn-search">Procurar</button>
         </div>
     </div>
-</div>
+</div> 
