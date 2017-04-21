@@ -29,8 +29,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [CardComponent, VolDetailsModalComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-PT" }, //replace "en-US" with your locale
-    //otherProviders...
+    { provide: LOCALE_ID, useValue: "pt-PT" },
   ]
 })
 export class SharedModule { }

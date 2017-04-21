@@ -1,7 +1,9 @@
 @import '../styles';
 
 /* HEADER */
-
+.brandBackground {
+    padding-top: 6px;
+}
 .header-background {
     background-color: $blue;
     height: 50px;
