@@ -77,7 +77,6 @@ app.get('/api/search',
             res.send({ success: false, message: 'Please provide a valid search query' })
         } else {
 
-
             let query = (req.query.search).replace(/['"]+/g, '');
 
             db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
@@ -88,7 +87,7 @@ app.get('/api/search',
                     } else {
 
                         if (results[0].length == 0 && results[1].length == 0) {
-                            res.send({ success: false, message: "No records found" })
+                            res.send({ success: false, message: [] })
                         } else {
                             searchData = results[0].concat(results[1]);
                             res.send({ success: true, message: searchData })
