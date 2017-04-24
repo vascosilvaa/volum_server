@@ -1,3 +1,4 @@
+import { SearchComponent } from './components/search/search.component';
 import { MapComponent } from './components/map/map.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationGuard } from './shared/Auth/authentication.guard';
@@ -16,6 +17,7 @@ import { FeedComponent } from './components/feed/feed.component';
 const appRoutes: Routes = [
   { path: '*', redirectTo: 'feed', pathMatch: 'full' },
   { path: '', redirectTo: 'feed', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
   { path: '',
    // canActivateChild: [AuthenticationGuard],
     children: [

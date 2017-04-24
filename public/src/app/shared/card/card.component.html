@@ -101,7 +101,7 @@
             <div>
                 <md-icon class="btnComments">textsms</md-icon>
             </div>
-            <div class="textComments"><span class="commentsNumber">16</span> comentários</div>
+            <div (click)="openComments()" class="textComments"><span class="commentsNumber">16</span> comentários</div>
         </div>
         <div class="btnView">
             <button md-raised-button (click)="openVolDetails(idVol)">VER</button>
@@ -109,8 +109,8 @@
     </div>
     <!-- /FOOTER CARD -->
 
-<!--
-    <div *ngIf="type=='private'">
+
+    <div *ngIf="type=='private' && comments==1">
         <div class="row no-margin card-Comments">
             <div class="col-12">
                 <div class="row comments-header">
@@ -202,5 +202,4 @@
             </div>
         </div>
     </div>
-    -->
 </div>

@@ -12,7 +12,8 @@ const routes: Routes = [
     {
         path: '',
         component: FeedComponent,
-    },
+
+    }
 ];
 
 @NgModule({

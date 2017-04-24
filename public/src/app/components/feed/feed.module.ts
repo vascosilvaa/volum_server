@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 
 
+
+
 @NgModule({
     imports: [
         RouterModule,
