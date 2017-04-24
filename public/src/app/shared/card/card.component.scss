@@ -183,6 +183,11 @@
 
 .textComments {
     padding-top: 7.5px;
+    cursor: pointer;
+}
+
+.textComments:hover {
+    text-decoration: underline
 }
 
 .commentsNumber {

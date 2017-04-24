@@ -28,6 +28,7 @@ import { AppRoutingModule } from './app.routing';
 import { LayoutComponent } from './components/layout/layout.component';
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 import { MapComponent } from './components/map/map.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MapComponent } from './components/map/map.component';
     LoginComponent,
     RegisterComponent,
     FilterComponent,
+    SearchComponent,
 
   ],
   imports: [

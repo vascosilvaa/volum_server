@@ -36,13 +36,6 @@ export class ActivityComponent implements OnInit {
         console.log(this.volHistory);
       })
       .catch(err => console.log(err));
-       
-       this.profileService.getMyVols(this.idProfile)
-      .then(res => {
-        this.volHistory = res.vols;
-        console.log(this.volHistory);
-      })
-      .catch(err => console.log(err));
   }
 
 

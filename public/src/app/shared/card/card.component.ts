@@ -28,6 +28,7 @@ export class CardComponent implements OnInit {
   public foto1=1;
   public foto2=0;
   public foto3=0;
+  public comments=0;
 
   
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal,   private router: Router) {
@@ -35,6 +36,14 @@ export class CardComponent implements OnInit {
    }
 
   ngOnInit() {  }
+  
+  openComments() {
+    if(this.comments==0) {
+      this.comments=1;
+    } else {
+    this.comments=0;
+    }
+  }
 
   openVolDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: this.idVol}, BSModalContext));
