@@ -40,7 +40,7 @@ import { NewActionComponent } from './new-action/new-action.component';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  declarations: [NewActionComponent, ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, FooterComponent, DetailsComponent, NewActionComponent],
+  declarations: [NewActionComponent, ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
   ],

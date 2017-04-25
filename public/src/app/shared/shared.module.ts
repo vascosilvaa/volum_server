@@ -1,3 +1,4 @@
+import { FooterComponent } from './footer/footer.component';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'angular2-modal';
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     CardComponent,
-    VolDetailsModalComponent
+    VolDetailsModalComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule,
@@ -27,7 +29,7 @@ import { RouterModule } from '@angular/router';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  exports: [CardComponent, VolDetailsModalComponent],
+  exports: [CardComponent, VolDetailsModalComponent, FooterComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ]

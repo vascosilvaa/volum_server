@@ -1,0 +1,87 @@
+@import "../../../styles";
+
+.card-people {
+}
+.mini-card-social {
+    background: $white;
+    padding: 20px 0px;
+    margin-top: 15px;
+    border-radius: 3px;
+}
+.for-img {
+    max-width: 48px;
+}
+
+.for-imgInst {
+    max-width: 48px;
+    margin-top:9px;
+}
+
+.name-person {
+    font-weight: $bold;
+}
+.desc-person {
+    color: $grey2;
+}
+.btnConfirm {
+    padding: 5px;
+}
+.for-btn {
+    margin-top: 5px;
+}
+
+.for-input {
+    background: $white;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 3px;
+    border: 1px solid $grey0;
+}
+
+.inputSearch {
+  width: 100%;
+  height: 40px;
+  border: 1px solid $grey1;
+  border-radius: 3px;
+  padding: 15px;
+  font-size: 14px;
+  color: $grey2;
+}
+
+.searchTitle {
+  color: $grey3;
+  font-size: 16px;
+  font-weight: $bold;
+}
+.title-filter {
+    font-weight: $bold;
+    margin-top: 30px;
+}
+.moreResults {
+    margin-top: 5px;
+    padding: 5px;
+    font-size:13px;
+    cursor: pointer;
+    color: $blue;
+    font-weight: $bold;
+}
+
+.moreResults:hover {
+    color: #000;
+}
+
+.headerInput {
+    font-size:16px;
+    color:$grey3;
+    font-weight: $bold;
+    margin-bottom: 10px;
+}
+
+.rowInst {
+    min-width: 160px;
+}
+
+.btnInst {
+    margin-top: 10px;
+    margin-right: 15px;
+}
