@@ -91,7 +91,6 @@ app.get('/api/search',
                         } else {
                             searchData = results[0].concat(results[1]);
                             res.send({ success: true, message: searchData })
-
                         }
                     }
                 });

@@ -76,20 +76,20 @@ app.get('/', function(req, res) {
     let vols = [];
     let options = {
         sql: 'SELECT vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url, (SELECT COUNT(likes.id_vol)) AS likes FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user RIGHT JOIN likes ON vols.id_vol = likes.id_vol WHERE vols.deleted = 0 GROUP BY likes.id_vol ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
         options = {
             sql: 'SELECT vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url, (SELECT COUNT(likes.id_vol)) AS likes FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user RIGHT JOIN likes ON vols.id_vol = likes.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 GROUP BY likes.id_vol ',
+                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
             sql: 'SELECT vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url, (SELECT COUNT(likes.id_vol)) AS likes FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user RIGHT JOIN likes ON vols.id_vol = likes.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 GROUP BY likes.id_vol ',
+                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2 ',
             nestTables: true
         };
     }
@@ -97,13 +97,11 @@ app.get('/', function(req, res) {
     db.get().query(options,
         function(error, results, fields) {
             if (error) {
+                console.log(error);
                 res.send({ success: false, message: error })
                 throw new Error(error);
             } else {
-                if (results.length == 0) {
-                    res.status(404);
-                    res.send({ success: true, message: "No records found" })
-                } else {
+                if (results.length == 0) {} else {
 
                     for (let i = 0; i < results.length; i++) {
                         vols.push({
