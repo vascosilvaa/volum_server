@@ -1,3 +1,4 @@
+import { FooterComponent } from './../../shared/footer/footer.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SharedModule } from './../../shared/shared.module';

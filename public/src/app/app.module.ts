@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { MapModule } from './components/map/map.module';
 import { CardComponent } from './shared/card/card.component';
 import { FilterComponent } from './shared/filter/filter.component';
@@ -42,6 +43,7 @@ import { SearchComponent } from './components/search/search.component';
 
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     MaterialModule,
     FormsModule,
