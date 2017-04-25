@@ -1,9 +1,11 @@
 @import '../styles';
 
 /* HEADER */
+
 .brandBackground {
     padding-top: 6px;
 }
+
 .header-background {
     background-color: $blue;
     height: 50px;
@@ -49,7 +51,7 @@
     padding-right: 0;
 }
 
-.navbar-user-picture img {
+.navbar-user-picture {
     width: 35px;
     height: 35px;
     border-radius: 35px;
@@ -66,7 +68,7 @@
 }
 
 /deep/ .mat-menu-panel {
-        /* box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); */
+    /* box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); */
     width: 220px;
     margin-top: 40px;
 }
@@ -79,7 +81,6 @@
     padding-left: 10px;
     padding-right: 10px;
     color: $grey2!important;
-
 }
 
 /deep/ .mat-menu-ripple:hover {
@@ -87,8 +88,8 @@
 }
 
 /deep/ .mat-menu-content {
-    padding-bottom:0!important;
-    padding-top:0!important;
+    padding-bottom: 0!important;
+    padding-top: 0!important;
     border-bottom: 1px solid $grey0!important;
 }
 
@@ -102,4 +103,130 @@
     font-family: Lato!important;
     color: $grey3!important;
     background: $white!important;
+}
+
+.message-item {
+    display: flex;
+    padding: 15px;
+}
+
+hr {
+    margin: 0;
+}
+
+
+/*
+/deep/ .popover {
+    max-width: 350px !important;
+    width: 100% !important;
+    /* Max Width of the popover (depending on the container!)
+
+}
+*/
+
+.dropdown-menu {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.image img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.image {
+    display: inline-flex;
+}
+
+.message-info {
+    margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 260px;
+    height: 50px;
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.notification-info {
+    margin-left: 15px;
+    width: 260px;
+    height: 50px;
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.dropdown-menu .new {
+    background: rgba(15, 118, 247, 0.1)
+}
+
+.message-info span {
+    vertical-align: middle;
+}
+
+.message-item:hover {
+    background: #f5f5f5;
+}
+
+.message-item .time {
+    color: $grey2;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+.message-info div:first-child {
+    justify-content: space-between;
+    display: flex;
+    font-weight: bold;
+}
+
+.message-info .text {
+    font-weight: normal;
+}
+
+#dropdown-user {
+    left: -27px;
+    top: 45px;
+    border-radius: 0px;
+    right: 0;
+}
+
+#dropdown-user .dropdown-item {
+    padding: 10px !important;
+    height: initial;
+}
+
+#dropdown-messages {
+    left: -325px;
+    top: 45px;
+    border-radius: 0px;
+}
+
+.dropdown-menu:before {
+    position: absolute;
+    top: -7px;
+    right: 5px;
+    display: inline-block;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ccc;
+    border-left: 8px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+
+.dropdown-menu:after {
+    position: absolute;
+    top: -7px;
+    right: 5px;
+    display: inline-block;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+    border-left: 8px solid transparent;
+    content: '';
 }
