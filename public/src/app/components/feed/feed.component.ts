@@ -26,7 +26,6 @@ export class FeedComponent implements OnInit {
     pagination: 'null',
     spaceBetween: 30,
     slidesPerView: 2,
-    loop: true,
     loopedSlides: 1,
     zoom: true
   };
