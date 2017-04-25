@@ -14,36 +14,93 @@
                     <md-icon>people</md-icon>
                 </li>
 
-                <li *ngIf="user">
-                    <md-icon>chat_bubble</md-icon>
+                <li *ngIf="user" ngbDropdown>
+                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>
+
+                    <div id="dropdown-messages" class="dropdown-menu">
+                        <div class="message-item">
+                            <div class="image">
+                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+                            </div>
+                            <div class="message-info">
+                                <div>
+                                    <span>Dr. Paul Doors</span>
+                                    <span class="time">20:00</span>
+                                </div>
+
+                                <span> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="message-item">
+                            <div class="image" style="display: inline-flex">
+                                <img src="http://i.imgur.com/TXm5TEk.gif">
+                            </div>
+                            <div class="message-info">
+                                <div>
+                                    <span>Dr. Paul Pepe</span>
+                                    <span class="time">20:00</span>
+                                </div>
+
+                                <span> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
+                            </div>
+                        </div>
+                    </div>
                 </li>
 
-                <li *ngIf="user">
-                    <md-icon>notifications</md-icon>
-                </li>
+                <li *ngIf="user" ngbDropdown>
+                    <md-icon ngbDropdownToggle>notifications</md-icon>
 
-               <li (click)="openRegister()" *ngIf="!user">
+                    <div id="dropdown-messages" class="dropdown-menu">
+                        <div class="message-item new">
+                            <div class="image">
+                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Dr. Paul Doors</b> publicou no voluntariado <b>Ajudar os Pobres</b> <span class="time">20:00</span> </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-item">
+                            <div class="image">
+                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Dr. Paul Doors</b> publicou no voluntariado <b>Ajudar os Pobres</b> <span class="time">20:00</span> </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                    </div>
+
+                </li>
+                <li (click)="openRegister()" *ngIf="!user">
                     Registar
                 </li>
-                
-                <li (click)="openLogin()" *ngIf="!user" >
+                <li (click)="openLogin()" *ngIf="!user">
                     Entrar
                 </li>
-                
-                
-                <li *ngIf="user" [mdMenuTriggerFor]="menu">
-                    <span class="navbar-user-picture">
-                     <img [src]="user?.photo">
-                     
-                 </span> {{user?.username}}
-                  <div class="navbar-namePicture-arrow">
-                        <md-icon>arrow_drop_down</md-icon>
+
+                <li *ngIf="user" ngbDropdown>
+
+                    <span ngbDropdownToggle>
+                    <img class="navbar-user-picture" [src]="user?.photo">
+                    <span>{{user?.username}}</span>
+
+                    </span>
+
+                    <div class="dropdown-menu" id="dropdown-user">
+                        <button class="dropdown-item" (click)="onSelect(idLogin)" *ngIf="user" styles="font-size:10px!important">Perfil</button>
+                        <button class="dropdown-item" *ngIf="user">Definições</button>
+                        <button class="dropdown-item" (click)="logout()" *ngIf="user">Sair</button>
                     </div>
-                    <md-menu #menu="mdMenu">
-                        <button md-menu-item (click)="onSelect(idLogin)" *ngIf="user" styles="font-size:10px!important">Perfil</button>
-                        <button md-menu-item *ngIf="user">Definições</button>
-                        <button md-menu-item (click)="logout()" *ngIf="user">Sair</button>
-                    </md-menu>
+
                 </li>
             </ul>
         </div>
