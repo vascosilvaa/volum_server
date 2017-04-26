@@ -94,7 +94,7 @@
 
 .modalTextArea{
     margin-top: 15px;
-    text-indent: 10px;
+    text-indent: 30px;
     text-align: justify; 
 }
 
@@ -220,7 +220,6 @@
     padding: 2px 8px;
     font-size: 12px;
     color: white;
-    margin-left: 6px;
 }
 
 .insuBool {
@@ -230,4 +229,9 @@
     font-size: 12px;
     color: white;
     margin-left: 6px;
+}
+
+.details-vol {
+    margin-top:10px;
+    text-indent:0px!important;
 }

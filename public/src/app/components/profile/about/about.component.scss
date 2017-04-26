@@ -103,3 +103,14 @@
   margin-top: 3px;
 }
 
+.linkInsert{
+  color: $orange;
+  cursor:pointer;
+  font-weight: $bold;
+}
+
+
+.linkInsert:hover{
+  cursor:pointer;
+  font-weight: $bold;
+}

@@ -50,6 +50,7 @@
 
                 <li *ngIf="user" ngbDropdown>
                     <md-icon ngbDropdownToggle>notifications</md-icon>
+                    <span class="badge badge-notify">1</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="message-item new">
@@ -92,8 +93,11 @@
                     <span ngbDropdownToggle>
                     <img class="navbar-user-picture" [src]="user?.photo">
                     <span>{{user?.username}}</span>
+                    <i class="material-icons arrow_dropdown">arrow_drop_down</i>
+                    
 
                     </span>
+                    
 
                     <div class="dropdown-menu" id="dropdown-user">
                         <button class="dropdown-item" (click)="onSelect(idLogin)" *ngIf="user" styles="font-size:10px!important">Perfil</button>
