@@ -2,16 +2,16 @@
  <div *ngIf="!r.photo_url" class="container"> <div class="row"> <div class="col-1"><img class="img-responsive" style="border-radius:50px" width="50" src="assets/imgs/volunteer.png"></div> <div class="col"><div class="namePerson" >{{ r.name}} </div><div class="descPerson" >Solidariedade Social </div></div> </div> </div>
  <div *ngIf="r.photo_url" class="container"> <div class="row"> <div class="col-1"><img class="img-responsive" style="border-radius:50px" width="50" [src]="r.photo_url"></div> <div class="col"><div class="namePerson" >{{ r.name}} </div><div class="descPerson" >Vila Nova de Gaia, Portugal </div></div> </div> </div>
 </template>
-<div class="container">
+<div class="container no-padding">
     <div class="col-12 header-home-search menuFull">
-        <div class="col-search col-10">
+        <div class="col-search">
 
             <md-input-container class="col-12">
                 <input mdInput [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
             </md-input-container>
         </div>
 
-        <div class="col-search-btn col-2 btnSearch">
+        <div class="col-search-btn btnSearch">
             <button md-raised-button class="btnConfirm btn-search" routerLink="/search">PROCURAR</button>
         </div>
     </div>
