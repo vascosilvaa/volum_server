@@ -108,6 +108,7 @@
 .message-item {
     display: flex;
     padding: 15px;
+    border-bottom: 1px solid $grey1;
 }
 
 hr {
@@ -125,13 +126,13 @@ hr {
 */
 
 .dropdown-menu {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border:1px solid $grey1;
 }
 
 .image img {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
 }
 
@@ -140,21 +141,20 @@ hr {
 }
 
 .message-info {
-    margin-left: 15px;
+    margin-left: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 260px;
-    height: 50px;
-    padding-top: 5px;
+    width: 500px;
+    padding-top: 0px;
     font-size: 14px;
+    margin-top:-1px;
 }
 
 .notification-info {
-    margin-left: 15px;
-    width: 260px;
+    margin-left: 12px;
+    width: 100%;
     height: 50px;
-    padding-top: 5px;
     font-size: 14px;
 }
 
@@ -162,9 +162,7 @@ hr {
     background: rgba(15, 118, 247, 0.1)
 }
 
-.message-info span {
-    vertical-align: middle;
-}
+
 
 .message-item:hover {
     background: #f5f5f5;
@@ -176,14 +174,23 @@ hr {
     font-size: 11px;
 }
 
+.nameMsg{
+    font-weight: bold;
+    color: $grey3;
+    font-size:14px;
+}
+
+.textMsg{
+    color: $grey2;
+    font-size:13px;
+}
 .message-info div:first-child {
     justify-content: space-between;
     display: flex;
-    font-weight: bold;
 }
 
 .message-info .text {
-    font-weight: normal;
+    font-weight: 12px;
 }
 
 #dropdown-user {
@@ -199,15 +206,17 @@ hr {
 }
 
 #dropdown-messages {
-    left: -325px;
-    top: 45px;
+    left: -385px;
+    top: 40px;
     border-radius: 0px;
+    width:450px;
+    padding: 0;
 }
 
 .dropdown-menu:before {
     position: absolute;
     top: -7px;
-    right: 5px;
+    right: 36px;
     display: inline-block;
     border-right: 8px solid transparent;
     border-bottom: 8px solid #ccc;
@@ -223,7 +232,7 @@ hr {
 .dropdown-menu:after {
     position: absolute;
     top: -7px;
-    right: 5px;
+    right: 36px;
     display: inline-block;
     border-right: 8px solid transparent;
     border-bottom: 8px solid #ffffff;
@@ -241,4 +250,19 @@ hr {
 .arrow_dropdown {
     position: relative;
     top: 5px;
+}
+
+.dropdown-header {
+    font-size: 10px;
+    padding: 10px 20px 10px;
+    border-bottom: 1px solid $grey1;
+    color:$grey2;
+}
+
+.dropdown-footer {
+    font-size: 13px;
+    font-weight: $bold;
+    padding: 10px 0px 10px;
+    color:$blue;
+    text-align: center;
 }

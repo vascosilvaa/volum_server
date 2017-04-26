@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { RouterModule } from '@angular/router';
-
+import { SharedService } from './shared.service';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [CardComponent, VolDetailsModalComponent, FooterComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-PT" },
+    { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
   ]
 })
 export class SharedModule { }

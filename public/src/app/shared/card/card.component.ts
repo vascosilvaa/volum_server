@@ -1,3 +1,4 @@
+import { SharedService } from './../shared.service';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
 import { Component, ViewContainerRef, OnInit, Input} from '@angular/core';
@@ -29,13 +30,22 @@ export class CardComponent implements OnInit {
   public foto2=0;
   public foto3=0;
   public comments=0;
+  public commentsResult;
 
   
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal,   private router: Router) {
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
+  private router: Router) {
     overlay.defaultViewContainer = vcRef;
    }
 
-  ngOnInit() {  }
+  ngOnInit() {    
+    this.sharedService.getComments(this.idVol)
+      .then(res => {
+        this.commentsResult = res.vols;
+        console.log(this.commentsResult);
+      })
+      .catch(err => console.log(err));
+  } 
   
   openComments() {
     if(this.comments==0) {
