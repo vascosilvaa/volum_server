@@ -40,7 +40,112 @@
         </thead>
         <tbody>
           <tr class="tableText">
-            <th class="tableBold tableTitle">Lorem Ipsum</th>
+            <th class="tableBold tableTitle">Técnico de juventude</th>
+
+            <td class="tablePlace">
+              <div class="tableBold">Centro ocupacional AME</div>
+              <div class="">Rua dos pardais, 4430-826</div>
+              <div>Aveiro, Portugal</div>
+            </td>
+
+            <td class="tableDate">
+              <div class="tableBold">8 de março - 12 de março</div>
+              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
+            </td>
+
+            <td *ngIf="invite==0">
+                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
+            </td>
+
+            <td *ngIf="invite==0">
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+            </td>
+
+
+            <td *ngIf="invite==1">
+              <span class="table-user-image"><img src="../assets/imgs/andre.jpg"></span>
+              <span class="tableBold margin-left">André Martins</span>
+            </td>
+
+            <td *ngIf="invite==0" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+              </div>
+            </td>
+
+            <td *ngIf="invite==1" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+              </div>
+            </td>
+            <tr class="tableText">
+            <th class="tableBold tableTitle">Enfermeiros voluntários</th>
+
+            <td class="tablePlace">
+              <div class="tableBold">Centro de Saúde de Aveiro</div>
+              <div class="">Rua das Corujas Pretas, 3810-164</div>
+              <div>Aveiro, Portugal</div>
+            </td>
+
+            <td class="tableDate">
+              <div class="tableBold">8 de março - 12 de março</div>
+              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
+            </td>
+
+            <td *ngIf="invite==0">
+                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
+            </td>
+
+            <td *ngIf="invite==0">
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+            </td>
+
+            <td *ngIf="invite==1">
+              <span class="table-user-image"><img src="../assets/imgs/vasco.jpg"></span>
+              <span class="tableBold margin-left">Vasco Silva</span>
+            </td>
+
+            <td *ngIf="invite==0" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+              </div>
+            </td>
+
+            <td *ngIf="invite==1" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+              </div>
+            </td>
+            <tr class="tableText">
+            <th class="tableBold tableTitle">Dinamização de matrículas</th>
 
             <td class="tablePlace">
               <div class="tableBold">Universidade de Aveiro</div>
@@ -53,25 +158,78 @@
               <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
             </td>
 
-            <td *ngIf="invite==0">
-                <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/avatar2.png"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/avatar3.png"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+          <td *ngIf="invite==0">
+                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
             </td>
 
             <td *ngIf="invite==0">
               <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/avatar2.png"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/avatar3.png"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/avatar04.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+            </td>
+
+
+            <td *ngIf="invite==1">
+              <span class="table-user-image"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="tableBold margin-left">Pedro Araújo</span>
+            </td>
+
+            <td *ngIf="invite==0" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+              </div>
+            </td>
+
+            <td *ngIf="invite==1" class="tableBtns">
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+              </div>
+              <div class="text-right">
+                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+              </div>
+            </td>
+            <tr class="tableText">
+            <th class="tableBold tableTitle">Limpeza de Rio Febros</th>
+
+            <td class="tablePlace">
+              <div class="tableBold">Rio Febros</div>
+              <div class="">Rua do Febros, 3810-164</div>
+              <div>Porto, Portugal</div>
+            </td>
+
+            <td class="tableDate">
+              <div class="tableBold">8 de março - 12 de março</div>
+              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
+            </td>
+
+         <td *ngIf="invite==0">
+                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
+            </td>
+
+            <td *ngIf="invite==0">
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
             </td>
 
             <td *ngIf="invite==1">
-              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
-              <span class="tableBold">André Martins</span>
+              <span class="table-user-image"><img src="../assets/imgs/cunha.jpg"></span>
+              <span class="tableBold margin-left">Pedro Cunha</span>
             </td>
 
             <td *ngIf="invite==0" class="tableBtns">
