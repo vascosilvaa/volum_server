@@ -1,0 +1,77 @@
+@import "../../../../styles";
+
+.header-msg {
+    background: $white;
+    padding:15px 0px 15px 0px;
+    border-bottom:1px solid $grey1;
+    font-weight: $bold;
+    font-size: 16px;
+}
+
+.area-insert {
+    position:absolute;
+    top:calc( 100vh - 105px );
+    height: 50px;
+    background: $white;
+    border-top:1px solid $grey1;
+    padding-top:5px;
+}
+
+.inputSearch {
+  width: 100%;
+  height: 35px;
+  border: 0;
+  border-radius: 3px;
+  padding: 15px;
+  font-size: 14px;
+  color: $grey3;
+}
+
+.writeSection {
+    padding-right: 15px;
+    padding-top:5px;
+}
+
+.item-mine {
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:10px;
+}
+
+.item-mine .msg-mine {
+    border-radius:20px;
+    background: $blue;
+    color: $white;
+    padding:5px 15px;
+    border:0;
+    font-size: 14px;
+    text-align: left;
+    max-width: 50%;
+}
+
+.item-friend {
+    margin-top:10px;
+    margin-bottom:10px;
+    display: flex;
+}
+
+.item-friend .msg-text {
+    margin-left: 10px;
+}
+
+.item-friend .msg-friend {
+    border-radius:20px;
+    background: $grey1;
+    color: $grey3;
+    padding:5px 15px;
+    border:0;
+    font-size: 14px;
+    text-align: left;
+    max-width: 50%;
+}
+.item-friend .image img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}

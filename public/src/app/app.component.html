@@ -10,8 +10,60 @@
                 <li *ngIf="user" routerLink="map">
                     <md-icon>place</md-icon>
                 </li>
-                <li *ngIf="user">
-                    <md-icon>people</md-icon>
+                <li *ngIf="user" ngbDropdown>
+                    <md-icon ngbDropdownToggle>people</md-icon>
+
+                    <div id="dropdown-messages" class="dropdown-menu">
+                        <div class="dropdown-header">PEDIDOS</div>
+                        <div class="message-item">
+                            <div class="image">
+                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11156121_957072344316738_4262642724862983361_n.jpg?oh=d6b84a15ec7b0776ac4cf3474bf2c285&oe=59751E5E">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Paulo Ramos</b> pediu para te seguir. <span class="time">20:00</span> </p>
+                                </div>
+                            </div>
+                            <div class="notification-info text-right">
+                                <div class="btn-notification">
+                                    <button class="btn btnConfirm">VER</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-item">
+                            <div class="image">
+                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/1003983_4704960985374_922860467_n.jpg?oh=bc5cfa2a4d8667eb772d71bb69143b4a&oe=59874D1E">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Rúben Cardoso</b> pediu para te seguir. <span class="time">20:00</span> </p>
+                                </div>
+                            </div>
+                            <div class="notification-info text-right">
+                                <div class="btn-notification">
+                                    <button class="btn btnConfirm">VER</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-item">
+                            <div class="image">
+                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12347979_10204514364242502_2019712815003656266_n.jpg?oh=d9d0358675ab56e0062273b7ed2039d1&oe=59793230">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Diogo Monteiro</b> pediu para te seguir. <span class="time">20:00</span> </p>
+                                </div>
+                            </div>
+                            <div class="notification-info text-right">
+                                <div class="btn-notification">
+                                    <button class="btn btnConfirm">VER</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div routerLink="/notifications" class="dropdown-footer">Ver todos os pedidos</div>
+
+                    </div>
                 </li>
 
                 <li *ngIf="user" ngbDropdown>
@@ -72,7 +124,7 @@
                                 <span class="textMsg"> ta bem </span>
                             </div>
                         </div>
-                        <div class="dropdown-footer">Ver todas as mensagens</div>
+                        <div class="dropdown-footer" routerLink="/chat/msg">Ver todas as mensagens</div>
                     </div>
                 </li>
 
@@ -105,7 +157,19 @@
 
                             </div>
                         </div>
-                        <div class="dropdown-footer">Ver todas as notificações</div>
+                          <div class="message-item">
+                            <div class="image">
+                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+                            </div>
+                            <div class="notification-info">
+                                <div>
+                                    <p><b>Dr. Paul Doors</b> publicou no voluntariado <b>Ajudar os Pobres</b> <span class="time">20:00</span> </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
                     </div>
 
@@ -117,23 +181,107 @@
                     Entrar
                 </li>
 
-                <li *ngIf="user" ngbDropdown>
+                <li *ngIf="user" class="nameDropdown" ngbDropdown>
 
                     <span ngbDropdownToggle>
                     <img class="navbar-user-picture" [src]="user?.photo">
                     <span>{{user?.username}}</span>
                     <i class="material-icons arrow_dropdown">arrow_drop_down</i>
                     
-
+                    
                     </span>
                     
 
+                    <div id="dropdown-user" class="dropdown-menu dropdown-menu-profile">
+                        <div class="dropdown-header">A MINHA CONTA</div>
+                        <div class="actions-profile">
+                        <div class="profile-item" (click)="onSelect(idLogin)">
+                            <div class="icon">
+                                <i class="material-icons">portrait</i>
+                            </div>
+                             <div class="desc">
+                                Perfil
+                            </div>
+                        </div>
+                         <div class="profile-item" (click)="onSelectSettings(idLogin)">
+                            <div class="icon">
+                                <i class="material-icons">settings</i>
+                            </div>
+                             <div class="desc">
+                               Definições de perfil
+                            </div>
+                        </div>
+                         <div class="profile-item" (click)="logout()">
+                            <div class="icon">
+                               <i class="material-icons">power_settings_new</i>
+                            </div>
+                             <div class="desc">
+                                Log out
+                            </div>
+                        </div>
+                        </div>
+                         <div class="dropdown-header">SOCIAL</div>
+                        <div class="actions-profile">
+                        <div class="profile-item">
+                            <div class="icon">
+                                <i class="material-icons">chat_bubble</i>
+                            </div>
+                             <div class="desc">
+                                Mensagens
+                            </div>
+                        </div>
+                         <div class="profile-item" routerLink="/notifications">
+                            <div class="icon">
+                                <i class="material-icons">notifications</i>
+                            </div>
+                             <div class="desc">
+                               Notificações
+                            </div>
+                        </div>
+                         <div class="profile-item">
+                            <div class="icon">
+                               <i class="material-icons">people</i>
+                            </div>
+                             <div class="desc">
+                                Pedidos
+                            </div>
+                        </div>
+                        </div>
+                        <div class="dropdown-header">SOBRE O VOLUM</div>
+                        <div class="actions-profile">
+                        <div class="profile-item">
+                            <div class="icon">
+                                <i class="material-icons">toc</i>
+                            </div>
+                             <div class="desc">
+                                Termos e condições
+                            </div>
+                        </div>
+                         <div class="profile-item">
+                            <div class="icon">
+                                <i class="material-icons">forum</i>
+                            </div>
+                             <div class="desc">
+                               Contactos
+                            </div>
+                        </div>
+                         <div class="profile-item">
+                            <div class="icon">
+                               <i class="material-icons">help_outline</i>
+                            </div>
+                             <div class="desc">
+                                FAQS
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                <!--
                     <div class="dropdown-menu" id="dropdown-user">
                         <button class="dropdown-item" (click)="onSelect(idLogin)" *ngIf="user" styles="font-size:10px!important">Perfil</button>
                         <button class="dropdown-item" *ngIf="user">Definições</button>
                         <button class="dropdown-item" (click)="logout()" *ngIf="user">Sair</button>
                     </div>
-
+-->
                 </li>
             </ul>
         </div>

@@ -1,3 +1,6 @@
+import { ActionComponent } from './components/action/action.component';
+import { ActionsComponent } from './components/profile/actions/actions.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { MapComponent } from './components/map/map.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -9,7 +12,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { FeedComponent } from './components/feed/feed.component';
@@ -17,10 +19,13 @@ import { FeedComponent } from './components/feed/feed.component';
 const appRoutes: Routes = [
   { path: '*', redirectTo: 'feed', pathMatch: 'full' },
   { path: '', redirectTo: 'feed', pathMatch: 'full' },
-  { path: 'search', component: SearchComponent },
   { path: '',
    // canActivateChild: [AuthenticationGuard],
     children: [
+       {
+        path: 'chat',
+        loadChildren: '../app/components/chat/chat.module#ChatModule'
+      },
       {
         path: 'profile/:id',
         loadChildren: '../app/components/profile/profile.module#ProfileModule'
@@ -32,6 +37,18 @@ const appRoutes: Routes = [
       {
         path: 'map',
         component: MapComponent
+      },
+      {
+        path: 'search',
+        component: SearchComponent
+      },
+      {
+        path: 'notifications',
+        component: NotificationsComponent
+      },
+      {
+        path: 'action',
+        component: ActionComponent
       }
 ]
   }

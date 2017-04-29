@@ -97,6 +97,7 @@
 .card-volum-title {
     font-weight: 600;
     color: $grey3;
+    width:100%;
 }
 
 .card-volum-description {
@@ -109,6 +110,7 @@
     text-overflow: ellipsis;
     text-justify: inter-word;
     min-width: 50%;
+    max-width: 95%;
     height: 58px;
 }
 
