@@ -1,3 +1,4 @@
+import { ChatModule } from './components/chat/chat.module';
 import { SharedModule } from './shared/shared.module';
 import { MapModule } from './components/map/map.module';
 import { CardComponent } from './shared/card/card.component';
@@ -30,6 +31,9 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 import { MapComponent } from './components/map/map.component';
 import { SearchComponent } from './components/search/search.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ActionComponent } from './components/action/action.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -40,7 +44,9 @@ import { SearchComponent } from './components/search/search.component';
     RegisterComponent,
     FilterComponent,
     SearchComponent,
-
+    NotificationsComponent,
+    ActionComponent,
+    
   ],
   imports: [
     SharedModule,

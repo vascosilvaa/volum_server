@@ -1,0 +1,86 @@
+@import "../../../styles";
+
+.recent-msgs {
+    background: $white;
+    height:calc( 100vh - 110px );
+padding:0;
+    overflow-y:auto;
+   
+}
+
+
+
+.title-msgs {
+    color: $grey3;
+    font-size: 16px;
+    font-weight: $bold;
+    padding:15px 0px 15px 0px;
+    // border-right: 1px solid $grey1;
+}
+
+.msg-item {
+    cursor:pointer;
+    display:flex;
+    padding:10px 15px 10px 15px;
+}
+
+.msg-item:hover {
+    background:$grey1;
+}
+
+.msg-item .image img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.message-info {
+    margin-left: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 500px;
+    padding-top: 5px;
+    font-size: 14px;
+    margin-top:-1px;
+}
+
+.nameMsg{
+    font-weight: bold;
+    color: $grey3;
+    font-size:14px;
+}
+
+.textMsg{
+    color: $grey2;
+    font-size:13px;
+}
+
+.content-msgs{
+    padding: 10px 0px;
+}
+
+.time {
+    color: $grey2;
+    font-weight: normal;
+    font-size: 11px;
+    float:right;
+    margin-top:-20px;
+}
+
+.search-msgs {
+    background: $white;
+    padding: 0px;
+    border-bottom: 1px solid $grey1;
+}
+
+.inputSearch {
+  width: 100%;
+  height: 35px;
+  border: 1px solid $grey1;
+  border-radius: 3px;
+  padding: 15px;
+  font-size: 14px;
+  color: $grey2;
+}

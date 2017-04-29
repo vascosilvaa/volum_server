@@ -53,5 +53,8 @@ export class AppComponent implements OnInit {
   onSelect(profile) {
      this.router.navigate(['/profile/' + profile + '/activity']);
   }
+  onSelectSettings(profile) {
+     this.router.navigate(['/profile/' + profile + '/settings']);
+  }
 
 }

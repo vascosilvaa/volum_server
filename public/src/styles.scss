@@ -90,6 +90,10 @@ button:focus {
 }
 
 //STYLES
+textarea:focus, input:focus{
+    outline: none;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -100,7 +104,7 @@ body {
 
 //BOTÕES
 .btnConfirm {
-    border-radius: 0!important;
+    border-radius: 3px!important;
     font-size: 12px;
     border: 1px solid $blue;
     background-color: $blue;
@@ -114,11 +118,12 @@ body {
 }
 
 .btnCancel {
-    border-radius: 0!important;
+     border-radius: 3px!important;
     font-size: 12px;
     border: 1px solid $grey2;
     color: $grey2;
     width: 100px;
+    background:#fff;
 }
 
 .btnCancel a {
@@ -135,7 +140,7 @@ body {
 }
 
 .btnConfirm:hover {
-    border-radius: 0!important;
+     border-radius: 3px!important;
     font-size: 12px;
     border: 1px solid $blue;
     background-color: #fff;
@@ -143,7 +148,7 @@ body {
 }
 
 .btnRemove {
-    border-radius: 0!important;
+     border-radius: 3px!important;
     font-size: 12px;
     border: 1px solid #ff484a;
     background-color: #ff484a;
@@ -151,7 +156,7 @@ body {
 }
 
 .btnRemove:hover {
-    border-radius: 0!important;
+     border-radius: 3px!important;
     font-size: 12px;
     border: 1px solid #ff484a;
     background-color: #fff;

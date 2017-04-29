@@ -37,7 +37,7 @@
     display: inline-block;
     vertical-align: middle;
     color: $white;
-    padding-top: 2px;
+    padding-top: 5px;
     padding-left: 8px;
     padding-right: 8px;
 }
@@ -110,6 +110,34 @@
     padding: 15px;
     border-bottom: 1px solid $grey1;
 }
+.profile-item {
+    display: flex;
+    padding: 5px 20px;
+    border:0;
+}
+.profile-item .icon {
+   color: $grey2;
+   padding-top:1px;
+}
+
+.profile-item .icon i {
+   font-size:20px;
+}
+
+.profile-item .desc {
+   color: $grey3;
+   font-size:13px;
+   margin-left: 15px;
+   padding-top: 2px;
+}
+.profile-item:hover {
+    background: #f5f5f5;
+}
+.actions-profile {
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-bottom:1px solid $grey1;
+}
 
 hr {
     margin: 0;
@@ -125,9 +153,6 @@ hr {
 }
 */
 
-.dropdown-menu {
-    border:1px solid $grey1;
-}
 
 .image img {
     border-radius: 50%;
@@ -194,11 +219,13 @@ hr {
 }
 
 #dropdown-user {
-    left: -27px;
+    left: -30px;
     top: 45px;
     border-radius: 0px;
     right: 0;
 }
+
+
 
 #dropdown-user .dropdown-item {
     padding: 10px !important;
@@ -225,6 +252,18 @@ hr {
     content: '';
 }
 
+.dropdown-menu-profile:before {
+    position: absolute;
+    top: -7px;
+    right: 3px;
+    display: inline-block;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ccc;
+    border-left: 8px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+}
+
 .dropdown-toggle:after {
     display: none;
 }
@@ -233,6 +272,17 @@ hr {
     position: absolute;
     top: -7px;
     right: 36px;
+    display: inline-block;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+    border-left: 8px solid transparent;
+    content: '';
+}
+
+.dropdown-menu-profile:after {
+    position: absolute;
+    top: -7px;
+    right: 3px;
     display: inline-block;
     border-right: 8px solid transparent;
     border-bottom: 8px solid #ffffff;
@@ -265,4 +315,16 @@ hr {
     padding: 10px 0px 10px;
     color:$blue;
     text-align: center;
+}
+
+.nameDropdown {
+    margin-top:-5px;
+}
+
+.btn-notification {
+    padding:6px;
+}
+
+.btnConfirm:hover {
+    background: #f5f5f5;
 }
