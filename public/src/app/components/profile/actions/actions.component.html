@@ -15,9 +15,9 @@
                 <a routerLink="/profile/{{idLogin}}/actions" (click)="invite=1" *ngIf="invite==0" class="navLink">Convites<span class="badge badge-pill badge-primary">2</span></a>
                 <a routerLink="/profile/{{idLogin}}/actions" (click)="invite=1" *ngIf="invite==1" class="navLinkAtive">Convites<span class="badge badge-pill badge-primary">2</span></a>
               </div>
-              <div class="col text-right titleNavLink iconCard ">
+             <!-- <div class="col text-right titleNavLink iconCard ">
                 <i class="material-icons edit">more_horiz</i>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -77,19 +77,19 @@
 
             <td *ngIf="invite==0" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm" (click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+                <button class="btn btnCancel" >APAGAR</button>
               </div>
             </td>
 
             <td *ngIf="invite==1" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm"(click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+                <button class="btn btnCancel" >REJEITAR</button>
               </div>
             </td>
             <tr class="tableText">
@@ -129,19 +129,19 @@
 
             <td *ngIf="invite==0" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm" (click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+                <button class="btn btnCancel" >APAGAR</button>
               </div>
             </td>
 
             <td *ngIf="invite==1" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm"(click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+                <button class="btn btnCancel" >REJEITAR</button>
               </div>
             </td>
             <tr class="tableText">
@@ -182,19 +182,19 @@
 
             <td *ngIf="invite==0" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm" (click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+                <button class="btn btnCancel" >APAGAR</button>
               </div>
             </td>
 
             <td *ngIf="invite==1" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm"(click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+                <button class="btn btnCancel" >REJEITAR</button>
               </div>
             </td>
             <tr class="tableText">
@@ -234,19 +234,19 @@
 
             <td *ngIf="invite==0" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn" (click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm" (click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >APAGAR</a>
+                <button class="btn btnCancel" >APAGAR</button>
               </div>
             </td>
 
             <td *ngIf="invite==1" class="tableBtns">
               <div class="text-right">
-                <a class="btn btn-outline-primary btnConfirm whiteBtn"(click)="onSelect(idLogin)">VER</a>
+                <button class="btn btnConfirm" (click)="onSelect(idLogin)">VER</button>
               </div>
               <div class="text-right">
-                <a class="btn btn-outline-primary btnCancel" >REJEITAR</a>
+                <button class="btn btnCancel" >REJEITAR</button>
               </div>
             </td>
 

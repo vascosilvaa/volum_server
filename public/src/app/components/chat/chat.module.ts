@@ -10,6 +10,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { ChatNewComponent } from './chat-new/chat-new.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { AccordionModule } from 'ng2-bootstrap/accordion';
     NgbModule.forRoot(),
     AccordionModule.forRoot(),
   ],
-  declarations: [ChatMessageComponent, ChatComponent],
+  declarations: [ChatMessageComponent, ChatComponent, ChatNewComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }
   ],

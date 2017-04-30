@@ -220,7 +220,7 @@ hr {
 
 #dropdown-user {
     left: -30px;
-    top: 45px;
+    top: 42px;
     border-radius: 0px;
     right: 0;
 }
@@ -239,7 +239,9 @@ hr {
     width:450px;
     padding: 0;
 }
-
+.dropdown-menu-profile {
+    padding:0!important;
+}
 .dropdown-menu:before {
     position: absolute;
     top: -7px;
@@ -317,6 +319,9 @@ hr {
     text-align: center;
 }
 
+.dropdown-footer:focus {
+    outline: none;
+}
 .nameDropdown {
     margin-top:-5px;
 }

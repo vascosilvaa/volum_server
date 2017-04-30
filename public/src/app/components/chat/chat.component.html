@@ -1,19 +1,29 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-3 no-padding">
-      <div class="search-msgs">
+      
+      <div class="search-msgs d-flex justify-content-between">
+
+        <div class="search-icon" (click)="activeSearch()">
+          <i class="material-icons">search</i>
+          </div> 
+
        <div class="title-msgs text-center">
           Ultimas mensagens
         </div>
-        
+
+          <div class="add-icon" routerLink="/chat/new">
+          <i class="material-icons">add</i>
+          </div>
+
       </div>
       <div class="recent-msgs">
-        <!--<div class="searchSection"  style="padding-top:5px;">
+        <div class="searchSection" *ngIf="searchAtive" style="padding-top:5px;">
           <div class="areaInput">
-            <input type="text" class="inputSearch" placeholder="Pesquisar contactos">
+            <input type="text" class="inputSearch" autofocus placeholder="Pesquisar contactos">
           </div>
         </div>
-        -->
+        
         <div class="content-msgs">
           <div class="msg-item">
             <div class="image">

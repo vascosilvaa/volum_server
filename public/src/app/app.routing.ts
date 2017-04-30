@@ -1,3 +1,4 @@
+import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionComponent } from './components/action/action.component';
 import { ActionsComponent } from './components/profile/actions/actions.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -45,6 +46,10 @@ const appRoutes: Routes = [
       {
         path: 'notifications',
         component: NotificationsComponent
+      },
+      {
+        path: 'requests',
+        component: SocialRequestsComponent
       },
       {
         path: 'action',

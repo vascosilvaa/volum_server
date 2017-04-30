@@ -34,6 +34,7 @@ import { SearchComponent } from './components/search/search.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ActionComponent } from './components/action/action.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ChatComponent } from './components/chat/chat.component';
     SearchComponent,
     NotificationsComponent,
     ActionComponent,
+    SocialRequestsComponent,
     
   ],
   imports: [
