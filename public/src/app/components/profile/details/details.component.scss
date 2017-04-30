@@ -1,5 +1,4 @@
 @import '../../../../styles';
-@import '../actions/actions.component';
 
 .no-padding {
   padding-right: 0!important;
@@ -14,8 +13,9 @@
 }
 
 .iconBack {
-  margin-left: 5px!important;
+  margin-left: -2px!important;
   margin-top: 2px;
+  padding: 5px 0px 5px 0px;
 }
 
 .arrow {
@@ -23,15 +23,24 @@
 }
 
 .titleCard {
-  margin-top: 5px;
+  margin-top: 3px;
+  display: flex;
+  font-weight: $bold;
 }
 
 .titleVol {
   margin-top: 2px!important;
+  font-size:18px;
+}
+
+.card-header {
+  padding:10px 30px 10px 30px!important;
 }
 
 .edit {
   margin-top: 2px;
+  font-size: 24px;
+  color: $grey2;
 }
 
 .btnCancel {
@@ -48,4 +57,118 @@
 
 .badge {
   padding: 5px 5px;
+  background-color: $blue;
+  margin-left: 7px;
+  border-radius: 50px;
 }
+
+.see-all {
+  color: $blue;
+  font-size:15px;
+  font-weight: $bold;
+  padding-top:1px;
+  padding-right:10px;
+  cursor:pointer;
+}
+
+.card-content {
+  padding: 10px 30px 10px 30px;
+
+}
+
+.primaryCard {
+  margin-top: 25px;
+  font-size: 16px;
+  border: 0;
+}
+
+.cardTitle {
+  background: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.cardTitleMap {
+  background: #fff;
+  border-bottom: 2px solid $blue;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+
+.addressTitle {
+  font-weight: bold;
+}
+
+
+.sebm-google-map-container {
+  height: 200px;
+}
+
+
+.no-border {
+  border: 0!important;
+}
+
+.card-user-image img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    margin: 0;
+}
+
+.listPerson{
+ list-style-type: none;
+ padding: 10px 0px;
+}
+
+
+.candidateName{
+  margin-left: 10px;
+}
+
+
+.inputText {
+  height: 45px;
+  font-size:16px;
+  border:1px solid $grey1;
+  border-radius:5px;
+  width:100%;
+  color: $grey3;
+  padding:10px 10px 10px 10px;
+}
+
+.inputText:focus {
+  outline: none;
+}
+
+.desc-title {
+  font-weight:$bold;
+}
+
+.content-details {
+   margin-top:10px;
+}
+
+.image-event {
+  height:78px;
+  border: 1px dashed $grey1;
+  border-radius:6px;
+}
+
+.image-event img {
+  height:78px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.m-b {
+  padding-bottom:20px;
+}
+
+
+
+
+

@@ -10,10 +10,10 @@
 
 .area-insert {
     position:absolute;
-    top:calc( 100vh - 105px );
+    top:calc( 100vh - 100px );
     height: 50px;
     background: $white;
-    border-top:1px solid $grey1;
+    border:1px solid $grey1;
     padding-top:5px;
 }
 

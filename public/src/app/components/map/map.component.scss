@@ -20,7 +20,7 @@
 
 .areaSearch {
   padding-left: 30px;
-  padding-right: 45px;
+  padding-right: 35px;
 }
 
 .mapFull {
@@ -54,4 +54,18 @@ textarea:focus, input:focus{
 
 .map {
   margin-right: -20px;
+}
+
+.cardsSection::-webkit-scrollbar {
+    width: 5px;
+    border-radius:10px;
+}
+ 
+.cardsSection::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $grey2;
+}
+ 
+.cardsSection::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+
 }

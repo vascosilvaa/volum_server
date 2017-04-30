@@ -108,13 +108,14 @@ body {
     font-size: 12px;
     border: 1px solid $blue;
     background-color: $blue;
-    color: #fff;
+    color: #fff!important;
     width: 100px;
+    cursor:pointer;
 }
 
 .btnConfirm a {
     text-decoration: none;
-    color: #fff;
+    color: #fff!important;
 }
 
 .btnCancel {
@@ -124,6 +125,7 @@ body {
     color: $grey2;
     width: 100px;
     background:#fff;
+    cursor:pointer;
 }
 
 .btnCancel a {
@@ -144,7 +146,7 @@ body {
     font-size: 12px;
     border: 1px solid $blue;
     background-color: #fff;
-    color: $blue;
+    color: $blue!important;
 }
 
 .btnRemove {
@@ -202,3 +204,4 @@ body {
 .text-orange {
     color: $orange;
 }
+

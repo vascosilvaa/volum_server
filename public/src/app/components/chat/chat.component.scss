@@ -2,9 +2,10 @@
 
 .recent-msgs {
     background: $white;
-    height:calc( 100vh - 110px );
-padding:0;
+    height:calc( 100vh - 105px );
+    padding:0;
     overflow-y:auto;
+    border-right:1px solid $grey1;
    
 }
 
@@ -71,7 +72,7 @@ padding:0;
 
 .search-msgs {
     background: $white;
-    padding: 0px;
+    padding: 0px 15px 0px 15px;
     border-bottom: 1px solid $grey1;
 }
 
@@ -79,8 +80,46 @@ padding:0;
   width: 100%;
   height: 35px;
   border: 1px solid $grey1;
-  border-radius: 3px;
+  border-radius: 0;
   padding: 15px;
   font-size: 14px;
   color: $grey2;
+}
+
+.recent-msgs::-webkit-scrollbar {
+    width: 5px;
+    border-radius:10px;
+}
+ 
+.recent-msgs::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $grey2;
+}
+ 
+.recent-msgs::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+
+}
+
+.search-icon, .add-icon {
+    padding-top:15px;
+    cursor:pointer;
+
+}
+
+.search-icon:focus, .add-icon:focus {
+    outline:0!important;
+
+}
+
+
+
+.search-icon i , .add-icon i{
+    color: $grey2;
+    
+}
+
+
+.search-icon i:hover , .add-icon i:hover{
+    color: $grey3;
+    
 }

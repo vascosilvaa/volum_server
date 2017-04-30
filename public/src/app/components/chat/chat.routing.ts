@@ -1,3 +1,4 @@
+import { ChatNewComponent } from './chat-new/chat-new.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatComponent } from './chat.component';
 
@@ -19,6 +20,10 @@ const routes: Routes = [
             path: 'msg',
             component: ChatMessageComponent
           },
+          {
+              path: 'new',
+              component: ChatNewComponent
+          }
         ]
     },
 ];

@@ -1,0 +1,90 @@
+@import '../../../styles';
+
+.titleCard {
+  font-weight: $bold;
+}
+.primaryCard {
+  margin-top: 25px;
+  font-size: 16px;
+  border: 0;
+}
+
+.cardTitle {
+  background: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.cardTitleMap {
+  background: #fff;
+  border-bottom: 2px solid $blue;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+
+.image img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.image {
+    display: inline-flex;
+}
+
+.not-content {
+    display:flex;
+}
+
+.notDesc {
+    margin-left: 15px;
+   margin-top: 4px;
+   color: $grey3;
+   font-size:15px;
+}
+
+.not-name {
+    font-weight: $bold;
+
+}
+
+.notTime {
+    font-size:14px;
+    color: $grey2;
+}
+
+.notEvent {
+    color: $orange;
+    font-weight: $bold;
+}
+
+.not-item {
+    border-bottom: 1px solid $grey1;
+    cursor: pointer;
+}
+
+.titleCard {
+    margin-top: 4px
+}
+
+.iconCard {
+    margin-top:5px;
+    color: $grey2;
+}
+
+.not-icon {
+    margin-top: -42px;
+    float: left;
+}
+
+.not-icon i {
+    color: $grey2;
+}
+
+.not-item:hover {
+    background: #f5f5f5
+}
