@@ -1,8 +1,13 @@
+import { ModalEndComponent } from './../../../shared/modal-end/modal-end.component';
+import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
+import { SharedService } from './../../../shared/shared.service';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { Overlay, overlayConfigFactory} from 'angular2-modal';
 import { ProfileService } from './../profile.service';
 import { Http } from '@angular/http';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { Router, ActivatedRoute  } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +20,11 @@ export class DetailsComponent implements OnInit {
   public idLogin: any;
   public userLogin: any;
   constructor(public route: ActivatedRoute, public http: Http, private profileService: ProfileService,
-  private auth: AuthenticationService, private router: Router) { }
+  overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
+  private auth: AuthenticationService, private router: Router) {
+    overlay.defaultViewContainer = vcRef;
+   }
+
 
   ngOnInit() {
     this.getUser();
@@ -31,6 +40,16 @@ export class DetailsComponent implements OnInit {
       );
 
     }
+  }
+
+  openViewAll(type, idVol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ idVol: idVol, type: type}, BSModalContext));
+
+  }
+  
+  openEnd(type, idVol) {
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ idVol: idVol, type: type}, BSModalContext));
+
   }
 
 }

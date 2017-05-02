@@ -89,6 +89,7 @@ button:focus {
     outline: none!important;
 }
 
+
 //STYLES
 textarea:focus, input:focus{
     outline: none;
@@ -134,7 +135,6 @@ body {
 }
 
 .btnCancel:hover {
-    border-radius: 0!important;
     font-size: 12px;
     border: 1px solid $grey2;
     color: #fff;
@@ -155,6 +155,7 @@ body {
     border: 1px solid #ff484a;
     background-color: #ff484a;
     color: #fff;
+    cursor:pointer;
 }
 
 .btnRemove:hover {

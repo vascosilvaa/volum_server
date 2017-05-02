@@ -192,6 +192,25 @@
         </div>
     </div>
 
+   <div class="row">
+        <div class="col-12">
+            <div class="card primaryCard">
+                <div class="card-header cardTitle">
+                    <div class="row">
+                        <div class="col titleCard">
+                            <div>Convidar Pessoas</div>
+                            <div class="see-all ml-auto" (click)="openViewAll(3,1)">Ver convites</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <input type="text" class="inputInvite" placeholder="Procurar pessoas ou instituições...">
+
+            </div>
+        </div>
+        </div>
+        
+    </div>
   
     <div class="row">
         <div class="col-6">
@@ -199,8 +218,8 @@
                 <div class="card-header cardTitle">
                     <div class="row">
                         <div class="col titleCard">
-                            <div>Candidatos</div>
-                            <div class="see-all ml-auto">Ver todos</div>
+                            <div>Candidatos (7)</div>
+                            <div class="see-all ml-auto" (click)="openViewAll(1,1)">Ver todos</div>
                         </div>
                     </div>
                 </div>
@@ -251,8 +270,8 @@
                 <div class="card-header cardTitle">
                     <div class="row">
                         <div class="col titleCard">
-                            <div>Confirmados</div>
-                            <div class="see-all ml-auto">Ver todos</div>
+                            <div>Confirmados (12)</div>
+                            <div class="see-all ml-auto" (click)="openViewAll(2,1)">Ver todos</div>
                         </div>
                     </div>
                 </div>
@@ -265,7 +284,7 @@
                                     <span class="candidateName">Pedro Araújo</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                                    <button type="button" class="btn btnRemove">REMOVER</button>
                                 </div>
                             </div>
                         </li>
@@ -276,7 +295,7 @@
                                     <span class="candidateName">Pedro Araújo</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                                    <button type="button" class="btn  btnRemove">REMOVER</button>
                                 </div>
                             </div>
                         </li>
@@ -287,13 +306,23 @@
                                     <span class="candidateName">Pedro Araújo</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnRemove">REMOVER</button>
+                                    <button type="button" class="btn btnRemove">REMOVER</button>
                                 </div>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+
+ 
+    <div class="row btnsBack">
+        <div class="col-6">
+            <button class="btn btnCancel1" (click)="openEnd(1,1)">APAGAR AÇÃO</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btnEnd" (click)="openEnd(2,1)">FINALIZAR AÇÃO</button>
         </div>
     </div>
 </div>

@@ -48,7 +48,6 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
     NotificationsComponent,
     ActionComponent,
     SocialRequestsComponent,
-    
   ],
   imports: [
     SharedModule,

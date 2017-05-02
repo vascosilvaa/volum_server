@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,15 +11,21 @@ import { CardComponent } from './card/card.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { RouterModule } from '@angular/router';
 import { SharedService } from './shared.service';
+import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component';
+import { ModalEndComponent } from './modal-end/modal-end.component';
 
 
 @NgModule({
   declarations: [
     CardComponent,
     VolDetailsModalComponent,
-    FooterComponent
+    FooterComponent,
+    ModalViewAllComponent,
+    ModalEndComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     CommonModule,
     MaterialModule,
@@ -29,7 +36,7 @@ import { SharedService } from './shared.service';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  exports: [CardComponent, VolDetailsModalComponent, FooterComponent],
+  exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
   ]

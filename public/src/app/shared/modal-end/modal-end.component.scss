@@ -1,0 +1,133 @@
+@import '../../../styles';
+
+.modalHeader {
+    background: $blue;
+    padding:15px 20px;
+}
+
+.day-w-border {
+    width: 60px;
+    border: 2px solid $white;
+    border-radius: 7px;
+    font-size: 14px;
+    text-align: center;
+    color:$white;
+    font-weight: $bold;
+    padding: 5px;
+}
+
+.modalTitle {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.containerDatePlace {
+    margin-top: 10px;
+}
+
+.modalTitleDesc {
+    font-size: 18px;
+    color: $white;
+    font-weight: $bold;
+}
+
+.modalSubtitle {
+    font-size: 13px;
+    color: $white;
+}
+
+.modal-end-content {
+        padding:15px 20px;
+        background: $white;
+}
+
+.modal-textarea {
+    width:100%;
+    border: 1px solid $grey1;
+}
+
+.modal-content-title {
+    font-size:16px;
+    font-weight: $bold;
+    color: $grey3;
+}
+
+.modal-content-desc {
+    font-size:14px;
+}
+
+.modal-textarea {
+    margin-top:10px;
+    color: $grey3;
+    font-size:14px;
+}
+
+.modal-textarea::-webkit-input-placeholder {
+    font-size:14px;
+    color: $grey2;
+    font-family:Lato;
+}
+
+.evaluation {
+    margin-top:20px;
+}
+
+.evaluation-option {
+    font-size:14px;
+    color: $grey3;
+    font-weight: normal;
+    margin-top:5px;
+}
+
+.user-rate{
+     padding-left: 0;
+     padding-top: 5px;
+     margin-left: -7px;
+ }
+
+ .user-rate md-icon {
+     cursor: pointer;
+ }
+
+
+.yellow{
+    color: $yellow!important;
+ }
+.grey{
+    color: $grey1!important;
+ }
+ .yellow:hover{
+    color: $grey2!important;
+ }
+.grey:hover{
+    color: $grey2!important;
+ }
+
+ .individual {
+    height:150px;
+    margin-top:25px;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+ .listPerson{
+    list-style-type: none;
+    padding: 2px 0px;
+}
+
+.card-user-image img{
+    width: 30px;
+    height: 30px;
+    border-radius: 45px;
+    margin: 0;
+}
+
+.candidateName {
+    font-weight: normal;
+    font-size:14px;
+    color: $grey3;
+    padding-left:5px;
+}
+
+.modal-end-footer {
+    margin-top:30px;
+}
