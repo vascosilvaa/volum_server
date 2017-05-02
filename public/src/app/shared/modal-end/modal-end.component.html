@@ -1,0 +1,93 @@
+<!-- APAGAR AÇÃO -->
+<p *ngIf="context.type==1">
+  Apagar Ação
+</p>
+
+<!-- FINALIZAR -->
+<div *ngIf="context.type==2">
+    <div class="modalHeader row">
+        <div class="day-w-border">
+            <div>
+               MAR<!--{{volDetails?.date_begin | date:"MMM" | uppercase}}-->
+            </div> 
+            <div>
+               23 <!--{{volDetails?.date_begin | date:"d"}}-->
+            </div>
+        </div>
+
+        <div class="modalTitle">
+            <div class="modalTitleDesc">
+                Ajudar os pobres <!--{{volDetails?.name}}-->
+            </div>
+            <div class="modalSubtitle">
+                sabado, 29 de Abril de 2019 <!--{{volDetails?.date_begin | date:"fullDate"}}-->
+            </div>    
+    </div>   
+    </div>
+    <div class="modal-end-content row">
+      <div class="modal-content-title col-12">
+        Finalizar Ação de Voluntariado
+      </div>
+      <div class="modal-content-desc col-12">
+        Se desejar, pode inserir um sumário desta ação de voluntariado. Todos os participantes serão notificados.
+      </div>
+      <div class="col-12">
+        <textarea rows="4" class="modal-textarea" placeholder="Escrever sumário descritivo da ação..."></textarea>
+      </div>
+      <div class="col-12 modal-content-title evaluation">
+        Avaliar participantes
+        <form>
+          <div class="evaluation-option">
+            <input checked type="radio" name="option" [(ngModel)]="evaluation" [value]="1"> Quero atribuir a classificação individualmente a cada participante
+          </div>
+          <div class="evaluation-option">
+            <input type="radio" name="option" [(ngModel)]="evaluation" [value]="2"> Quero atribuir a mesma classificação a todos os participantes
+          </div>
+        </form>
+        <div class="individual" *ngIf="evaluation==1">
+          <ul class="list-group">
+                        <li  *ngFor="let person of people; let i=index" class="listPerson no-border no-margin">
+                            <div class="row no-margin">
+                                <div class="card-user-image">
+                                    <img src="../assets/imgs/avatar04.png">
+                                    <span class="candidateName">Pedro Araújo</span>
+                                </div>
+                                <div class="col text-right no-padding">
+                                    <div class="user-rate">
+                                        <md-icon (click)="ev(i,1)" class="yellow" *ngIf="person?.eval!='NULL'">star_rate</md-icon>
+                                        <md-icon (click)="ev(i,1)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<1">star_rate</md-icon>
+                                        
+                                        <md-icon (click)="ev(i,2)" class="yellow" *ngIf="person?.eval>=2">star_rate</md-icon>
+                                        <md-icon (click)="ev(i,2)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<2">star_rate</md-icon>
+
+                                        <md-icon (click)="ev(i,3)" class="yellow" *ngIf="person?.eval>=3">star_rate</md-icon>
+                                        <md-icon (click)="ev(i,3)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<3">star_rate</md-icon>
+
+                                        <md-icon (click)="ev(i,4)" class="yellow" *ngIf="person?.eval>=4">star_rate</md-icon>
+                                        <md-icon (click)="ev(i,4)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<4">star_rate</md-icon>
+
+                                        <md-icon (click)="ev(i,5)" class="yellow" *ngIf="person?.eval>=5">star_rate</md-icon>
+                                        <md-icon (click)="ev(i,5)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<5">star_rate</md-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>                      
+                    </ul>
+        </div>
+        <div *ngIf="evaluation==2">
+             <div class="user-rate">
+                    <md-icon class="rate1">star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                    <md-icon>star_rate</md-icon>
+                </div>
+          </div>
+
+      </div>
+      <div class="col-12 modal-end-footer text-right">
+          <button class="btn btnCancel">CANCELAR</button>
+          <button class="btn btnConfirm">FINALIZAR</button>
+      </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: '',
    // canActivateChild: [AuthenticationGuard],
     children: [
-       {
+      {
         path: 'chat',
         loadChildren: '../app/components/chat/chat.module#ChatModule'
       },

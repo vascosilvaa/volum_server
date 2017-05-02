@@ -56,7 +56,7 @@ export class CardComponent implements OnInit {
   }
 
   openVolDetails(idVol) {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: this.idVol}, BSModalContext));
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol}, BSModalContext));
 
   }
 

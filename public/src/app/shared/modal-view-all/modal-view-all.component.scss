@@ -1,0 +1,39 @@
+@import '../../../styles';
+
+.modal-card {
+    padding:10px 20px 10px 20px;
+    font-weight: $bold;
+    font-size:16px;
+    color: $grey3;
+    border-bottom:1px solid $grey1;
+}
+
+.modal-list-content {
+    padding:10px 20px 10px 20px;
+
+}
+
+.card-user-image img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    margin: 0;
+}
+
+.listPerson{
+ list-style-type: none;
+ padding: 10px 0px;
+}
+
+
+.candidateName{
+  margin-left: 10px;
+}
+
+.btns-list {
+    margin-top:6px;
+}
+
+
+
+

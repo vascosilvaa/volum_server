@@ -1,3 +1,5 @@
+import { ModalEndComponent } from './../../shared/modal-end/modal-end.component';
+import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
 import { ProfileService } from './profile.service';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { SharedModule } from './../../shared/shared.module';
@@ -44,7 +46,7 @@ import { NewActionComponent } from './new-action/new-action.component';
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
   ],
-  entryComponents: [VolDetailsModalComponent]
+  entryComponents: [VolDetailsModalComponent, ModalViewAllComponent, ModalEndComponent]
 })
 
 export class ProfileModule { }
