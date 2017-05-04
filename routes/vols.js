@@ -66,6 +66,54 @@ app.get('/:id', function(req, res) {
 
 });
 
+app.get('/:id/likes/count', function(req, res) {
+
+    let options = {
+        sql: 'SELECT COUNT(*) AS likes FROM likes WHERE id_vol = ? ',
+    };
+
+    db.get().query(options, [req.params['id']], function(error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, body: [] })
+            } else {
+                res.status(200);
+                res.send({ success: true, body: results })
+            }
+        };
+
+    });
+});
+
+app.get('/:id/likes', function(req, res) {
+
+    let options = {
+        sql: 'SELECT users.id_user, users.photo_url, users.name  FROM likes INNER JOIN users ON likes.id_user = users.id_user WHERE id_vol = ?',
+    };
+
+    db.get().query(options, [req.params['id']], function(error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, body: [] })
+            } else {
+                res.status(200);
+                res.send({ success: true, body: results })
+            }
+        };
+
+    });
+});
+
 /**
  * @api {get} /vols Listar todos os voluntariados
  * @apiName listVols
@@ -166,7 +214,7 @@ app.post('/:id/like', function(req, res) {
             if (error) {
                 res.json({
                     success: false,
-                    message: "Ja tens Like",
+                    message: error
                 });
             } else {
                 res.json({
