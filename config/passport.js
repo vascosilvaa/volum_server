@@ -58,7 +58,6 @@ module.exports = function(passport) {
                             type_user: 1,
                             name: profile._json.name,
                             gender: 0,
-                            id_user: profile._json.id,
                             photo_url: profile._json.picture.data.url,
                             birth_date: new Date(profile._json.birthday).getTime()
                         };
@@ -80,11 +79,11 @@ module.exports = function(passport) {
 
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
         console.log(jwt_payload);
-
+        console.log("aagwgwa");
         db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', jwt_payload.id, function(err, rows, fields) {
             if (err) {
                 console.log("erro");
-                console.log(err);
+                done(null, false, { message: 'erro' })
             } else {
                 console.log(rows[0]);
                 done(null, rows[0]);
@@ -95,8 +94,3 @@ module.exports = function(passport) {
 
 }
 
-
-/*
-
-
-*/

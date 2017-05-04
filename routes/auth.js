@@ -275,16 +275,3 @@ app.get('/check/:login', function(req, res) {
         });
     });
 });
-
-/*
-app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));
-
-// handle the callback after facebook has authenticated the user
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/teste',
-        failureRedirect: '/'
-    }));
-
-
-    */
