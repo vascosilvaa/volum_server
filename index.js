@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(express.static(path.join(__dirname, 'public/dist')));
-
+app.use('*', express.static(path.join(__dirname, 'public/dist')));
 app.use('/api', express.static(path.join(__dirname, 'docs')))
 app.use('/teste', express.static(path.join(__dirname, 'testes')))
 
