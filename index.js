@@ -17,18 +17,25 @@ var passport = require('passport');
 var path = require('path');
 var app = express();
 var fileUpload = require('express-fileupload');
-var io = require('socket.io')(http);
+var server = http.createServer(app);
+
+var io = require('socket.io').listen(server);
 
 //ROUTES
 
 var vols = require('./routes/vols');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
+var notifications = require('./routes/notifications');
 
 var db = require('./config/db');
 
 var searchData = [];
-
+var loggedUsers = [{
+    id: null,
+    sockets: []
+}
+];
 app.use(passport.initialize());
 app.use(morgan('dev'));
 app.use(cors());
@@ -47,6 +54,8 @@ app.use('/teste', express.static(path.join(__dirname, 'testes')))
 app.use('/api/auth', auth);
 app.use('/api/vols', vols);
 app.use('/api/users', users);
+app.use('/api/notifications', notifications);
+
 app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
 /**
@@ -63,13 +72,13 @@ app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 function ensureUnauthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         // display an "already logged in" message
-        return res.redirect('/home');
+        return res.redirect('/feed');
     }
     next();
 }
 
 app.get('/api/search',
-    function(req, res) {
+    function (req, res) {
         console.log(req.query.search);
         if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
             res.send({ success: false, message: 'Please provide a search query' })
@@ -80,7 +89,7 @@ app.get('/api/search',
             let query = (req.query.search).replace(/['"]+/g, '');
 
             db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
-                function(error, results, fields) {
+                function (error, results, fields) {
                     if (error) {
                         res.send({ success: false, message: error })
                         console.log(error);
@@ -98,14 +107,29 @@ app.get('/api/search',
     });
 
 
+io.on('connection', function (socket) {
+    io.on('connect', function (data) {
+        console.log('a user connected');
 
-io.on('connection', function(socket) {
-    console.log('a user connected');
+        loggedUsers.push({ id: data.id_user, sockets: [socket.id] })
+
+        console.log(loggedUsers);
+    });
+
+    socket.on('disconnect', function (socket) {
+        for (let i = 0; i < loggedUsers.length; i++) {
+            let index = loggedUsers[i].sockets.indexOf(socket.id);
+            loggedUsers[i].sockets.splice(index, 1);
+            console.log(index + "disconnected");
+        }
+    });
 });
 
 
 
 
 
-app.listen(process.env.PORT || 8080);
+
+
+server.listen(process.env.PORT || 8080);
 console.log("Listening...");

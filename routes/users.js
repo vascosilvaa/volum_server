@@ -37,7 +37,7 @@ app.get('/:id', passport.authenticate(['jwt']), function(req, res) {
                 res.send({
                     success: true,
                     user: {
-                        id: user.id,
+                        id_user: user.id_user,
                         login: user.login,
                         username: user.name,
                         email: user.email,

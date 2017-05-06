@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   public idLogin: any;
 
   constructor(public http: Http, private route: ActivatedRoute, private profileService: ProfileService,
-  private auth: AuthenticationService) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -60,10 +60,8 @@ export class ProfileComponent implements OnInit {
         console.log(this.userLogin);
         let id = localStorage.getItem('USER_ID');
         this.idLogin = id;
-       }
+      }
       );
-
     }
-    
   }
 }

@@ -16,20 +16,21 @@ export class ProfileService {
 
     }
 
-      getProfile(id){
-       return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
-            .then(res => { return res.json()})
+    getProfile(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
     getVolHistory(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/vols').toPromise()
-            .then(res => { return res.json()})
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
     getMyVols(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/my-vols').toPromise()
-            .then(res => { return res.json()})
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+ 
 }

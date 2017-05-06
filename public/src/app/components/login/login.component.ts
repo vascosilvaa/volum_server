@@ -1,3 +1,4 @@
+import { SocketService } from './../../shared/socket.service';
 import { AppComponent } from './../../app.component';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { User } from './user.interface';
@@ -8,33 +9,34 @@ import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from '@ang
 
 
 export class ModalContext extends BSModalContext {
-    
+
 }
 
 @Component({
     selector: 'login',
     styleUrls: ['./login.component.scss'],
     templateUrl: './login.component.html',
+    providers: [SocketService]
 })
 
 export class LoginComponent implements OnInit {
     public wrongAnswer: boolean;
     context: ModalContext;
     form: FormGroup;
-    public stateEmail=0;
-    public statePass=0;
+    public stateEmail = 0;
+    public statePass = 0;
     public error: any;
 
-    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
+    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>, private socketService: SocketService) {
         this.context = dialog.context;
         this.context.isBlocking = false;
         this.context.keyboard = [27];
     }
 
     ngOnInit() {
-            this.form = this._fb.group({
+        this.form = this._fb.group({
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required,  Validators.minLength(3)]]
+            password: ['', [Validators.required, Validators.minLength(3)]]
         });
     }
 
@@ -47,14 +49,17 @@ export class LoginComponent implements OnInit {
                 if (res.success) {
                     this.dialog.close();
                     location.reload();
+                    this.socketService.onConnect(res.id_user);
+
                 }
-                 else {this.error=res.message;
-                console.log(this.error);
-                 }
+                else {
+                    this.error = res.message;
+                    console.log(this.error);
+                }
             })
             .catch(err => {
                 console.log(err)
             });
-            
+
     }
 }
