@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-6" *ngFor="let vol of volHistory">
-          <vol-card [verified]="true" class="swiper-slide" type='private' [likes]="3" [idVol]="vol.id_vol" [avatar]="vol.photo_url" [username]="vol.name" [userCreator]="vol.id_user_creator" [dateCreation]="vol.date_creation" [title]="vol.name" [desc]="vol.desc">
+          <vol-card [verified]="true" type='private' [likes]="3" [idVol]="vol.id_vol" [avatar]="vol.photo_url" [username]="vol.name" [userCreator]="vol.id_user_creator" [dateCreation]="vol.date_creation" [title]="vol.name" [desc]="vol.desc">
           </vol-card>
     </div>
     </div>

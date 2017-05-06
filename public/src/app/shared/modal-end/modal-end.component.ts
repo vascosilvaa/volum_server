@@ -24,7 +24,7 @@ export class ModalEndComponent implements OnInit {
   public volDetails: any;
   public evaluation: any;
   
-  public one: any;
+  public evalAll: any;
   public eval1 = Array;
   public eval2 = Array;
   public eval3 = Array;
@@ -107,12 +107,12 @@ export class ModalEndComponent implements OnInit {
     } else if (this.context.type==2) {
       this.context.size = "lg";
     }
-    this.one = 1;
     
   }
 
   ngOnInit() {
     this.evaluation=1;
+    this.evalAll=0;
     console.log(this.context.idVol);  
      /*this.volsService.getVol(this.context.idVol)
       .then(res => {
@@ -126,6 +126,13 @@ export class ModalEndComponent implements OnInit {
 
   ev(id, estrela) {
     this.people[id].eval=estrela;
+  }
+
+  evAll(estrela) {
+    this.evalAll = estrela;
+    for(let i = 0; i <= this.people.length; i++) {
+      this.people[i].eval = this.evalAll;
+    }
   }
 
 

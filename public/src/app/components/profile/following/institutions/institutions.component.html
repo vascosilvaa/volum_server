@@ -1,3 +1,13 @@
+<div class="col searchInput text-right no-padding">
+                  <form class="navbar-form" role="search">
+                  <div class="input-group">
+                      <input type="text" class="searchBar form-control" placeholder="Procurar instituições..." name="q">
+                      <div class="input-group-btn">
+                          <button class="btn btn-default" type="submit"><i class="material-icons searchIcon">search</i></button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
 <div class="row">
     <div class="col-lg-3 col-12">
           <div class="card cardFriends text-center">
@@ -28,7 +38,7 @@
                   <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
               </div>
               <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
+                <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(1)">VER</a>
               </div>
             </div>
           </div>
@@ -60,10 +70,10 @@
             </div>
             <div class="row text-center friendsBtns">
               <div class="col-6">
-                  <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
+                  <a class="btn btn-outline-primary btnCancel marginBtnL">ELIMINAR</a>
               </div>
               <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
+                <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(1)">VER</a>
               </div>
             </div>
           </div>
@@ -99,7 +109,7 @@
                   <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
               </div>
               <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
+                <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(1)">VER</a>
               </div>
             </div>
           </div>
@@ -135,7 +145,7 @@
                   <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
               </div>
               <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
+                <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(1)">VER</a>
               </div>
             </div>
           </div>

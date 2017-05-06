@@ -1,0 +1,110 @@
+@import '../../../styles';
+
+// card amigos
+
+.cardFriends {
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  width: 100%;
+}
+
+
+.profile-user-picture{
+  text-align: center;
+  margin-top:-50px!important;
+
+}
+.profile-user-picture img{
+    width: 100px;
+    height: 100px;
+    border-radius: 120px;
+    border: solid 5px $white;
+    text-align: center!important;
+    object-fit: cover;
+}
+
+.friendsName {
+  text-align: center;
+  font-weight: $bold;
+  margin-top: 5px;
+}
+
+.friendsPlace {
+  text-align: center;
+  color: $grey2;
+  font-size: 12px;
+}
+
+.friendsEvents {
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 20px;
+}
+
+.friendsCardNumber {
+  font-weight: $bold;
+  font-size: 14px;
+}
+
+.friendsCardNumberDesc {
+  color: $grey2;
+  font-size:12px;
+  text-align: center;
+}
+
+.friendsBtns {
+  margin-top: 28px;
+}
+
+
+
+.friendsBackground {
+  height: 100px;
+  background-size:cover;
+}
+
+.coverImg {
+  height:100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.desc-modal-profile {
+  margin-top:5px;
+  color: $grey3;
+  font-size:14px;
+}
+
+.title-modal {
+  font-weight:$bold;
+  margin-top:15px;
+  color: $grey2;
+  font-size: 15px;
+}
+
+.row-details {
+  margin-top:10px;
+}
+
+.details {
+  margin-top:20px;
+}
+
+.btn-modal {
+  margin-top:35px;
+  margin-bottom: 15px;
+}
+
+.user-rate{
+    margin-left: 10px;
+    margin-top: -4px;
+    padding-bottom: 15px;
+ }
+
+ .user-rate md-icon{
+    color: $yellow;
+    font-size: 16px;
+    padding-left: -10px;
+    margin-left: -10px;
+ }

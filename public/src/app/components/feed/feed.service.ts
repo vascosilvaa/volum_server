@@ -28,4 +28,14 @@ export class FeedService {
                 return err.json();
             });
     }
+
+    getVols() {
+          return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
 }

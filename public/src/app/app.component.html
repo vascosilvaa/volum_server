@@ -171,9 +171,9 @@
                     Entrar
                 </li>
 
-                <li *ngIf="user" class="nameDropdown" ngbDropdown>
+                <li *ngIf="user" class="nameDropdown" ngbDropdown ngbDropdownToggle>
 
-                    <span ngbDropdownToggle>
+                    <span >
                     <img class="navbar-user-picture" [src]="user?.photo">
                     <span>{{user?.username}}</span>
                     <i class="material-icons arrow_dropdown">arrow_drop_down</i>
