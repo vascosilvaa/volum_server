@@ -39,6 +39,8 @@ export class ModalViewAllComponent implements OnInit {
   ngOnInit() {
     console.log(this.context.type);
   }
+
+  
 }
 /*
      this.volsService.getVol(this.context.idVol)

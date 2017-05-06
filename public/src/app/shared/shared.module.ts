@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { SharedService } from './shared.service';
 import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component';
 import { ModalEndComponent } from './modal-end/modal-end.component';
+import { ModalProfileComponent } from './modal-profile/modal-profile.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ModalEndComponent } from './modal-end/modal-end.component';
     VolDetailsModalComponent,
     FooterComponent,
     ModalViewAllComponent,
-    ModalEndComponent
+    ModalEndComponent,
+    ModalProfileComponent
   ],
   imports: [
     FormsModule,
@@ -36,7 +38,7 @@ import { ModalEndComponent } from './modal-end/modal-end.component';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent],
+  exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
   ]

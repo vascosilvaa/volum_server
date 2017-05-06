@@ -1,3 +1,5 @@
+import { SharedModule } from './../../../shared/shared.module';
+import { ModalProfileComponent } from './../../../shared/modal-profile/modal-profile.component';
 import { FollowingRoutingModule } from './following.routing';
 import { PeopleComponent } from './people/people.component';
 import { FollowingComponent } from './following.component';
@@ -13,6 +15,7 @@ import { AccordionModule } from 'ng2-bootstrap/accordion';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     RouterModule,
@@ -23,6 +26,7 @@ import { AccordionModule } from 'ng2-bootstrap/accordion';
     AccordionModule.forRoot(),
   ],
   declarations: [PeopleComponent, InstitutionsComponent, FollowingComponent],
+  entryComponents: [ModalProfileComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ]

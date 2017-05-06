@@ -42,8 +42,13 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  openViewAll(type, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ idVol: idVol, type: type}, BSModalContext));
+  openViewAll(type, idVol, name) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ idVol: idVol, type: type , name: name}, BSModalContext));
+
+  }
+
+   openRemoveConfirm(type,name) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name}, BSModalContext));
 
   }
   

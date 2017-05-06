@@ -44,6 +44,90 @@
               </div>
             </div>
           </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
+          <li class="listPerson no-border no-margin">
+            <div class="row no-margin">
+              <div class="card-user-image">
+                <img src="../assets/imgs/avatar04.png">
+                <span class="candidateName">Pedro Araújo</span>
+              </div>
+              <div class="col text-right btns-list no-padding">
+                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
+                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -143,6 +227,43 @@
             </div>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REMOVER  CONFIRMADOS-->
+<div *ngIf="context.type==4" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="modal-card">
+        Remover {{context.name}}
+      </div>
+      <div class="col-12 modal-remove-content">
+        Tem a certeza que deseja remover {{context.name}} dos confirmados?
+      </div>
+      <div class="col-12 text-right modal-btns">
+        <button class="btn btnCancel">NÃO</button>
+        <button class="btn btnConfirm">SIM</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- REMOVER  CANDIDATOS-->
+<div *ngIf="context.type==5" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="modal-card">
+        Recusar {{context.name}}
+      </div>
+      <div class="col-12 modal-remove-content">
+        Tem a certeza que deseja recusar {{context.name}} como voluntário?
+      </div>
+      <div class="col-12 text-right modal-btns">
+        <button class="btn btnCancel">NÃO</button>
+        <button class="btn btnConfirm">SIM</button>
       </div>
     </div>
   </div>

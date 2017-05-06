@@ -1,3 +1,4 @@
+import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
 import { ModalEndComponent } from './../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
 import { ProfileService } from './profile.service';

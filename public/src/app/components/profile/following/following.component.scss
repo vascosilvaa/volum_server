@@ -125,9 +125,6 @@
   margin-top: 0;
 }
 
-.vcenter {
-  margin-top: 10px;
-}
 
 .friendsBackground {
   height: 100px;
@@ -138,4 +135,19 @@
   height:100px;
   width: 100%;
   object-fit: cover;
+}
+
+.header-bar {
+  padding:20px 25px 20px 25px;
+}
+
+.vcenter {
+  margin-top:10px;
+}
+
+.searchInput {
+  width:339px;
+  margin-top: -54px;
+  margin-left: 746px;
+  float:left;
 }
