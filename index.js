@@ -40,7 +40,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(express.static(path.join(__dirname, 'public/dist')));
-app.use('*', express.static(path.join(__dirname, 'public/dist')));
 app.use('/api', express.static(path.join(__dirname, 'docs')))
 app.use('/teste', express.static(path.join(__dirname, 'testes')))
 
@@ -48,6 +47,7 @@ app.use('/teste', express.static(path.join(__dirname, 'testes')))
 app.use('/api/auth', auth);
 app.use('/api/vols', vols);
 app.use('/api/users', users);
+app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
 /**
  * @api {get} /search Pesquisar 
@@ -98,10 +98,10 @@ app.get('/api/search',
     });
 
 
+
 io.on('connection', function(socket) {
     console.log('a user connected');
 });
-
 
 
 

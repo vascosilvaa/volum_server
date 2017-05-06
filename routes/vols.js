@@ -25,25 +25,23 @@ let vol = {};
 
 app.get('/', function (req, res, next) {
 
-    let topLimit = parseInt(req.query.startAfter + 8);
-
     let vols = [];
     let options = {
         sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation LIMIT 8 ',
+        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
         options = {
             sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1 LIMIT 8 ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
             sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2  LIMIT 8 ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2',
             nestTables: true
         };
     }
@@ -81,7 +79,7 @@ app.get('/', function (req, res, next) {
                 res.json({
                     success: true,
                     vols
-                })
+                });
             }
         });
 });
@@ -91,51 +89,51 @@ app.get('/', function (req, res, next) {
 
 
 app.get('/:id', function (req, res, next) {
-        console.log("query", req.query);
+    console.log("query", req.query);
 
 
-        let options = {
-            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? LIMIT 1',
-            nestTables: true
-        };
+    let options = {
+        sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? LIMIT 1',
+        nestTables: true
+    };
 
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
-            if (error) {
-                res.send({ success: false, message: error })
-                throw new Error(error);
+    db.get().query(options, [req.params['id']], function (error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, message: "No records found" })
             } else {
-                if (results.length == 0) {
-                    res.status(404);
-                    res.send({ success: true, message: "No records found" })
-                } else {
-                    for (let i = 0; i < results.length; i++) {
+                for (let i = 0; i < results.length; i++) {
 
-                        vol = {
+                    vol = {
 
-                            id_vol: results[i].vols.id_vol,
-                            place: results[i].vols.address,
-                            name: results[i].vols.name,
-                            desc: results[i].vols.desc,
-                            date_creation: results[i].vols.date_creation,
-                            date_begin: results[i].vols.date_begin,
-                            duration: results[i].vols.duration,
-                            active: results[i].vols.active,
-                            insurance: results[i].vols.insurance,
-                            long: results[i].vols.long,
-                            lat: results[i].vols.lat,
-                            user: results[i].users
-                        }
+                        id_vol: results[i].vols.id_vol,
+                        place: results[i].vols.address,
+                        name: results[i].vols.name,
+                        desc: results[i].vols.desc,
+                        date_creation: results[i].vols.date_creation,
+                        date_begin: results[i].vols.date_begin,
+                        duration: results[i].vols.duration,
+                        active: results[i].vols.active,
+                        insurance: results[i].vols.insurance,
+                        long: results[i].vols.long,
+                        lat: results[i].vols.lat,
+                        user: results[i].users
                     }
-                    res.json({
-                        success: true,
-                        vol
-                    })
-
                 }
+                res.json({
+                    success: true,
+                    vol
+                })
+
             }
-        });
-    }
+        }
+    });
+}
 );
 
 app.get('/:id/likes/count', passport.authenticate('jwt', { session: false }), function (req, res) {
