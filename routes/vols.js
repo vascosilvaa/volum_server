@@ -23,128 +23,76 @@ let vol = {};
  * @apiGroup Voluntariados 
  */
 
-app.get('/', passport.authenticate('jwt', { session: false, failWithError: true }),
-    function (req, res, next) {
+app.get('/', function (req, res, next) {
 
-        let topLimit = parseInt(req.query.startAfter + 8);
+    let topLimit = parseInt(req.query.startAfter + 8);
 
-        let vols = [];
-        let options = {
+    let vols = [];
+    let options = {
+        sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation LIMIT 8 ',
+        nestTables: true
+    };
+    if (req.query['type'] == 'inst') {
+        options = {
             sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation LIMIT 8 ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1 LIMIT 8 ',
             nestTables: true
         };
-        if (req.query['type'] == 'inst') {
-            options = {
-                sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1 LIMIT 8 ',
-                nestTables: true
-            };
-        } else if (req.query['type'] == 'private') {
+    } else if (req.query['type'] == 'private') {
 
-            options = {
-                sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2  LIMIT 8 ',
-                nestTables: true
-            };
-        }
-
-        db.get().query(options,
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.send({ success: false, message: error })
-                    throw new Error(error);
-                } else {
-                    if (results.length == 0) { } else {
-
-                        for (let i = 0; i < results.length; i++) {
-                            vols.push({
-                                vol: {
-                                    id_vol: results[i].vols.id_vol,
-                                    name: results[i].vols.name,
-                                    desc: results[i].vols.desc,
-                                    date_begin: results[i].vols.date_begin,
-                                    date_creation: results[i].vols.date_creation,
-                                    duration: results[i].vols.duration,
-                                    lat: results[i].vols.lat,
-                                    long: results[i].vols.long,
-                                    photo_1: results[i].vols.photo_1
-                                },
-                                user: {
-                                    id_user: results[i].users.id_user,
-                                    name: results[i].users.name,
-                                    photo_url: results[i].users.photo_url
-                                }
-                            });
-                        }
-                    }
-                    res.json({
-                        success: "COM LOGIN FEITO",
-                        vols
-                    })
-                }
-            });
-    },
-
-
-    function (err, req, res, next) {
-        let vols = [];
-        let options = {
+        options = {
             sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation LIMIT 8',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2  LIMIT 8 ',
             nestTables: true
         };
-        console.log(err);
-        let topLimit = parseInt(req.query.startAfter + 8);
-
-        // handle error
-        db.get().query(options,
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.send({ success: false, message: error })
-                    throw new Error(error);
-                } else {
-                    if (results.length == 0) { } else {
-                        console.log(results);
-                        for (let i = 0; i < results.length; i++) {
-                            vols.push({
-                                vol: {
-                                    id_vol: results[i].vols.id_vol,
-                                    name: results[i].vols.name,
-                                    desc: results[i].vols.desc,
-                                    date_begin: results[i].vols.date_begin,
-                                    date_creation: results[i].vols.date_creation,
-                                    duration: results[i].vols.duration,
-                                    lat: results[i].vols.lat,
-                                    long: results[i].vols.long,
-                                    photo_1: results[i].vols.photo_1
-                                },
-                                user: {
-                                    id_user: results[i].users.id_user,
-                                    name: results[i].users.name,
-                                    photo_url: results[i].users.photo_url
-                                }
-                            });
-                        }
-                    }
-                    res.json({
-                        success: "SEM LOGIN FEITO",
-                        vols
-                    })
-                }
-            });
     }
-);
+
+    db.get().query(options,
+        function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send({ success: false, message: error })
+                throw new Error(error);
+            } else {
+                if (results.length == 0) { } else {
+
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                desc: results[i].vols.desc,
+                                date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].vols.date_creation,
+                                duration: results[i].vols.duration,
+                                lat: results[i].vols.lat,
+                                long: results[i].vols.long,
+                                photo_1: results[i].vols.photo_1
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            }
+                        });
+                    }
+                }
+                res.json({
+                    success: true,
+                    vols
+                })
+            }
+        });
+});
 
 
 
-app.get('/:id', passport.authenticate('jwt', { session: false }),
-    function (req, res, next) {
+
+
+app.get('/:id', function (req, res, next) {
         console.log("query", req.query);
 
-        console.log("top", topLimit);
 
         let options = {
             sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? LIMIT 1',
@@ -180,7 +128,7 @@ app.get('/:id', passport.authenticate('jwt', { session: false }),
                         }
                     }
                     res.json({
-                        success: "COM LOGIN FEITO",
+                        success: true,
                         vol
                     })
 
@@ -373,7 +321,7 @@ app.post('/:id/comments', function (req, res) {
 /**
  * @api {get} /vols/:id/comments Retornar Comentários
  * @apiName getVolComments
-
+ 
  * @apiGroup Voluntariados 
  */
 
