@@ -5,9 +5,9 @@ import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
 export class ModalContext extends BSModalContext {
-    public idVol: any;
+  public idVol: any;
 
-    
+
 
 
 }
@@ -21,10 +21,10 @@ export class ModalContext extends BSModalContext {
 
 
 export class VolDetailsModalComponent implements OnInit {
-  lat: number;
-  lng: number;
+  lat: number = 41.100856;
+  lng: number = -8.544893;
   public volDetails: any;
-
+  public state: Number;
   context: ModalContext;
 
 
@@ -32,20 +32,36 @@ export class VolDetailsModalComponent implements OnInit {
     this.context = dialog.context;
     this.context.isBlocking = false;
     this.context.size = "lg";
-  
-  
+
+
   }
 
   ngOnInit() {
     console.log(this.context.idVol);
 
-     this.volsService.getVol(this.context.idVol)
+    this.volsService.getVol(this.context.idVol)
       .then(res => {
         this.volDetails = res.vol;
         console.log(this.volDetails);
+        this.checkState(this.volDetails.user.id_user, this.context.idVol);
+
       })
       .catch(err => console.log(err));
-      
   }
+
+
+  apply(id_user, id_vol) {
+    console.log(id_user);
+    console.log(id_vol);
+    this.volsService.apply(id_user, id_vol).then(res =>
+      console.log(res));
+  }
+  checkState(id_user, id_vol) {
+    this.volsService.checkState(id_user, id_vol).then(res => {
+      this.state = res.state;
+      console.log(res);
+    });
+  }
+
 
 }

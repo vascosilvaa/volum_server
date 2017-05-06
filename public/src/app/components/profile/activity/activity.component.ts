@@ -21,12 +21,12 @@ export class ActivityComponent implements OnInit {
   public userLogin: any;
   public idLogin: any;
   public user: any;
-  
+
   constructor(public http: Http, private feedService: FeedService, private route: ActivatedRoute, private profileService: ProfileService,
-  private auth: AuthenticationService) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
-     this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.idProfile = this.route.parent.snapshot.params['id'];
 
     });

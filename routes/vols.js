@@ -256,7 +256,6 @@ app.post('/', jwtCheck, function (req, res) {
     }
     if (!req.photo_1 && req.body.lat && req.body.long) {
 
-
         req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.long + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
 
     } else {
@@ -357,7 +356,7 @@ app.post('/:id/apply', function (req, res) {
             success: false,
             message: 'Falta Enviar o Body'
         });
-    } else if (typeof req.body.id_user !== 'string') {
+    } else if (isNaN(req.body.id_user)) {
         res.json({
             success: false,
             message: 'Id Inválido'
@@ -378,6 +377,49 @@ app.post('/:id/apply', function (req, res) {
                 }
             });
     }
+});
+
+app.post('/:id/checkState', function (req, res) {
+    if (!req.body) {
+        res.json({
+            success: false,
+            message: 'Falta Enviar o Body'
+        });
+    } else if (isNaN(req.body.id_user)) {
+        res.json({
+            success: false,
+            message: 'Id Inválido'
+        });
+    } else {
+        db.get().query("SELECT * FROM user_vol WHERE id_user = ? AND id_vol = ?", [req.body.id_user, req.params.id],
+            function (error, results, fields) {
+                if (error) {
+                    console.log(error);
+                } else if (results) {
+                    console.log(results);
+                    if (results.length == 0) {
+                        res.json({
+                            success: true,
+                            state: 0,
+                            message: 'Ainda nao se candidatou nem esta confirmado'
+                        });
+                    } else if (results[0].confirm == '0') {
+                        res.json({
+                            success: true,
+                            state: 1,
+                            message: 'Ja te Candidataste'
+                        });
+                    } else if (results[0].confirm == '1') {
+                        res.json({
+                            success: true,
+                            state: 2,
+                            message: 'Ja estas confirmado'
+                        });
+                    }
+
+                }
+            });
+    };
 });
 
 /**

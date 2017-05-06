@@ -18,4 +18,16 @@ export class VolDetailsModalService {
             });
     }
 
+    checkState(id_user, id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + '/checkState', { id_user: id_user }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    };
+
+    apply(id_user, id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + '/apply', { id_user: id_user }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
 }
