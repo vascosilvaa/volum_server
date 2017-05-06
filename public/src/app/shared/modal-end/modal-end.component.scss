@@ -69,7 +69,7 @@
 }
 
 .evaluation {
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .evaluation-option {
@@ -77,12 +77,28 @@
     color: $grey3;
     font-weight: normal;
     margin-top:5px;
+    display:flex;
+}
+
+.evaluation-option input {
+    margin-top: 4px;
+    margin-right:5px;
 }
 
 .user-rate{
      padding-left: 0;
      padding-top: 5px;
      margin-left: -7px;
+ }
+
+ 
+.user-rate-all{
+     padding-left: 15px!important;
+     margin-top: -3px!important;
+ }
+ .user-rate-all md-icon{
+     cursor: pointer;
+     color:$grey1;
  }
 
  .user-rate md-icon {
@@ -109,6 +125,20 @@
     overflow-y: auto;
     overflow-x: hidden;
  }
+
+ .individual::-webkit-scrollbar {
+    width: 5px;
+    border-radius:10px;
+}
+ 
+.individual::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $grey2;
+}
+ 
+.individual::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+
+}
  .listPerson{
     list-style-type: none;
     padding: 2px 0px;

@@ -1,5 +1,4 @@
-<div>
-    <div class="header">
+<div class="header">
         <div class="container">
             <div class="container headerFeed no-padding">
                 <div class="v-header-title">Da compaixão à ação.</div>
@@ -13,9 +12,9 @@
             </div>
 
         </div>
-    </div>
+</div>
 
-    <div class="container">
+    <div *ngIf="!login" class="container">
         <!-- PUBLICO -->
         <div class="row">
             <div class="col-lg-12">
@@ -145,12 +144,21 @@
         </div>
         <!-- QUESTIONS -->
     </div>
-</div>
 
 
 
 
 <!-- LOGADO -->
+
+<div *ngIf="login" class="container">
+    <div class="row">
+        <div class="col-6"  *ngFor="let vol of vols">
+         <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="1" [idVol]="vol.vol.id_vol" [verified]="true" type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [username]="vol.user.name" [dateCreation]="vol.vol.date_begin" [desc]="vol.vol.desc">
+        </vol-card>
+        </div>
+    </div>
+</div>
+
 
 <app-footer></app-footer>
 

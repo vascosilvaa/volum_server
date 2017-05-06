@@ -23,7 +23,6 @@
 }
 
 .titleCard {
-  margin-top: 3px;
   display: flex;
   font-weight: $bold;
 }
@@ -34,12 +33,12 @@
 }
 
 .card-header {
-  padding:10px 30px 10px 30px!important;
+  padding:15px 30px 15px 30px!important;
 }
 
 .edit {
   margin-top: 2px;
-  font-size: 24px;
+  font-size: 20px;
   color: $grey2;
 }
 
@@ -108,7 +107,11 @@
 }
 
 .card-content {
-  padding: 10px 30px 10px 30px;
+  padding: 10px 15px 10px 15px;
+
+}
+.comments-section {
+  padding: 0px 30px 0px 30px;
 
 }
 
@@ -120,8 +123,6 @@
 
 .cardTitle {
   background: #fff;
-  display: inline-block;
-  vertical-align: middle;
   float: none;
 }
 
@@ -213,5 +214,157 @@
   color:$grey2;
 }
 
+.table th {
+  max-width: 200px
+}
+
+.table td {
+  max-width: 200px;
+}
 
 
+.cardComments {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex: 2;
+    margin-left: 10px;
+}
+
+.cardComments md-icon {
+    padding-top: 7.5px;
+    font-size: 20px;
+}
+
+.textComments {
+    padding-top: 7.5px;
+    cursor: pointer;
+}
+
+.textComments:hover {
+    text-decoration: underline
+}
+
+.commentsNumber {
+    font-weight: 600;
+}
+
+.card-Comments {
+}
+
+.comments-header {
+    background-color: $grey0;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+}
+
+.card-user--comments-image {
+    padding-right: 10px;
+}
+
+.card-user--comments-image img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-top: 1.5px;
+}
+
+.card-user-nd {
+    padding-left: 0;
+}
+
+.card-user-name-comments {
+    color: $grey3;
+    font-weight: 600;
+}
+
+.card-date-comments {
+    margin-top: -3px;
+    color: $grey2;
+}
+
+.card-option-comments {
+    padding-top: 3px;
+}
+
+.comments-content {
+    background-color: $grey0;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+}
+
+.borderComments {
+    min-width: 100%;
+    height: 1px;
+    background-color: $grey1;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.more-Comments {
+    width: 100%;
+    text-align: center;
+    height: 42px;
+    font-weight: 600;
+    border-bottom: 1px solid $grey1;
+    padding-top: 2px;
+    transition: all 0.3s ease;
+    color: $grey2;
+    background: $white;
+    border-right: 1px solid $grey1;
+    border-left: 1px solid $grey1;
+}
+
+.more-Comments:hover {
+    cursor: pointer;
+    color: $orange;
+}
+
+.textMoreComments {
+    vertical-align: middle
+}
+
+.moreIcon {
+    font-size: 24px;
+    font-weight: 700;
+    vertical-align: middle
+}
+
+.insert-comment {
+    padding-top: 10px;
+    background: $white;
+     border-right: 1px solid $grey1;
+    border-left: 1px solid $grey1;
+    border-bottom: 1px solid $grey1;
+}
+
+.btnSend {
+    padding-left: 0;
+}
+
+.btnSendIcon {
+    padding-top: 10px;
+}
+
+.btnSendIcon:hover {
+    cursor: pointer;
+}
+
+.btnSendColorBlue {
+    color: $blue;
+}
+
+.btnSendColorGrey {
+    color: $grey1;
+}
+
+.card-user-comments-image-comments {
+    padding-top: 5px;
+}

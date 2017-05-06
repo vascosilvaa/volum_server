@@ -10,6 +10,22 @@
 
 .modal-list-content {
     padding:10px 20px 10px 20px;
+    max-height:400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+
+ .modal-list-content::-webkit-scrollbar {
+    width: 5px;
+    border-radius:10px;
+}
+ 
+.modal-list-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $grey2;
+}
+ 
+.modal-list-content::-webkit-scrollbar-thumb {
+  background-color: $grey2;
 
 }
 
@@ -34,6 +50,13 @@
     margin-top:6px;
 }
 
+.modal-remove-content {
+    padding:10px 20px
+}
+
+.modal-btns {
+    padding:10px 20px;
+}
 
 
 
