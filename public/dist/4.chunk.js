@@ -1,21 +1,21 @@
 webpackJsonp([4,9],{
 
-/***/ 535:
+/***/ 705:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chat_routing__ = __webpack_require__(572);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_component__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_message_chat_message_component__ = __webpack_require__(552);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chat_routing__ = __webpack_require__(742);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_component__ = __webpack_require__(724);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_message_chat_message_component__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_bootstrap_accordion__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__chat_new_chat_new_component__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_bootstrap_accordion__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__chat_new_chat_new_component__ = __webpack_require__(723);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatModule", function() { return ChatModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -62,12 +62,12 @@ ChatModule = __decorate([
 
 /***/ }),
 
-/***/ 540:
+/***/ 710:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(711);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionComponent; });
 
 
@@ -121,7 +121,7 @@ var AccordionComponent = (function () {
 
 /***/ }),
 
-/***/ 541:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -147,13 +147,13 @@ var AccordionConfig = (function () {
 
 /***/ }),
 
-/***/ 542:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(710);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionPanelComponent; });
 
 
@@ -224,7 +224,7 @@ var AccordionPanelComponent = (function () {
 
 /***/ }),
 
-/***/ 543:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -268,11 +268,11 @@ var EventListener = win['EventListener'];
 
 /***/ }),
 
-/***/ 544:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(713);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isBs3;
 
 function isBs3() {
@@ -282,16 +282,16 @@ function isBs3() {
 
 /***/ }),
 
-/***/ 546:
+/***/ 716:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(549);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(711);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionModule; });
 
 
@@ -318,17 +318,17 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 547:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(712);
 /* unused harmony reexport AccordionPanelComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(710);
 /* unused harmony reexport AccordionComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(546);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(716);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__accordion_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(711);
 /* unused harmony reexport AccordionConfig */
 
 
@@ -338,7 +338,7 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 548:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -447,12 +447,12 @@ var CollapseDirective = (function () {
 
 /***/ }),
 
-/***/ 549:
+/***/ 719:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(718);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollapseModule; });
 
 
@@ -476,11 +476,14 @@ var CollapseModule = (function () {
 
 /***/ }),
 
-/***/ 552:
+/***/ 722:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_service__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatMessageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -492,27 +495,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var ChatMessageComponent = (function () {
-    function ChatMessageComponent() {
+    function ChatMessageComponent(chatService, auth, activatedRoute) {
+        this.chatService = chatService;
+        this.auth = auth;
+        this.activatedRoute = activatedRoute;
+        this.messages = [];
     }
     ChatMessageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.auth.isAuthenticated()) {
+            this.auth.userPromise.then(function (res) {
+                _this.id_user = res.user.id_user;
+                _this.activatedRoute.params.subscribe(function (params) {
+                    _this.id_user2 = params.id;
+                    _this.getMessages(params.id);
+                });
+            });
+        }
+    };
+    ChatMessageComponent.prototype.getMessages = function (id_user) {
+        var _this = this;
+        this.chatService.getMessages(this.id_user, id_user).then(function (res) {
+            _this.messages = res.messages;
+            console.log("messages", _this.messages);
+        });
+    };
+    ChatMessageComponent.prototype.sendMessage = function (message) {
+        var _this = this;
+        this.chatService.sendMessage(this.id_user, this.id_user2, message).then(function (res) {
+            _this.message = '';
+            _this.messages.push({
+                id_user: _this.id_user,
+                id_user2: _this.id_user2,
+                message: message
+            });
+        });
     };
     return ChatMessageComponent;
 }());
 ChatMessageComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
         selector: 'app-chat-message',
-        template: __webpack_require__(607),
-        styles: [__webpack_require__(581)]
+        template: __webpack_require__(777),
+        styles: [__webpack_require__(751)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object])
 ], ChatMessageComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/chat-message.component.js.map
 
 /***/ }),
 
-/***/ 553:
+/***/ 723:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -538,8 +577,8 @@ var ChatNewComponent = (function () {
 ChatNewComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-chat-new',
-        template: __webpack_require__(608),
-        styles: [__webpack_require__(582)]
+        template: __webpack_require__(778),
+        styles: [__webpack_require__(752)]
     }),
     __metadata("design:paramtypes", [])
 ], ChatNewComponent);
@@ -548,11 +587,13 @@ ChatNewComponent = __decorate([
 
 /***/ }),
 
-/***/ 554:
+/***/ 724:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_service__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -564,11 +605,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ChatComponent = (function () {
-    function ChatComponent() {
+    function ChatComponent(chatService, auth) {
+        this.chatService = chatService;
+        this.auth = auth;
         this.searchAtive = 0;
+        this.conversations = [];
     }
     ChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.auth.isAuthenticated()) {
+            this.auth.userPromise.then(function (res) {
+                _this.id_user = res.user.id_user;
+                _this.getConversations(_this.id_user);
+            });
+        }
+    };
+    ChatComponent.prototype.getConversations = function (id_user) {
+        var _this = this;
+        this.chatService.getConversations(id_user).then(function (res) {
+            _this.conversations = res.conversations;
+            console.log(_this.conversations);
+        });
     };
     ChatComponent.prototype.activeSearch = function () {
         if (this.searchAtive) {
@@ -581,27 +641,29 @@ var ChatComponent = (function () {
     return ChatComponent;
 }());
 ChatComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'app-chat',
-        template: __webpack_require__(609),
-        styles: [__webpack_require__(583)]
+        template: __webpack_require__(779),
+        styles: [__webpack_require__(753)],
+        providers: [__WEBPACK_IMPORTED_MODULE_1__chat_service__["a" /* ChatService */]]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__chat_service__["a" /* ChatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object])
 ], ChatComponent);
 
+var _a, _b;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/chat.component.js.map
 
 /***/ }),
 
-/***/ 572:
+/***/ 742:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chat_new_chat_new_component__ = __webpack_require__(553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_message_chat_message_component__ = __webpack_require__(552);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_component__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chat_new_chat_new_component__ = __webpack_require__(723);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_message_chat_message_component__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_component__ = __webpack_require__(724);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -621,6 +683,10 @@ var routes = [
         children: [
             {
                 path: 'msg',
+                component: __WEBPACK_IMPORTED_MODULE_1__chat_message_chat_message_component__["a" /* ChatMessageComponent */]
+            },
+            {
+                path: 'msg/:id',
                 component: __WEBPACK_IMPORTED_MODULE_1__chat_message_chat_message_component__["a" /* ChatMessageComponent */]
             },
             {
@@ -646,15 +712,15 @@ ChatRoutingModule = __decorate([
 
 /***/ }),
 
-/***/ 581:
+/***/ 751:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(11)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 15px 0px 15px 0px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n\n.item-mine {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  margin-right: 10px; }\n\n.item-mine .msg-mine {\n  border-radius: 20px;\n  background: #0F76F7;\n  color: #FFFFFF;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%; }\n\n.item-friend {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.item-friend .msg-text {\n  margin-left: 10px; }\n\n.item-friend .msg-friend {\n  border-radius: 20px;\n  background: #E6E5E5;\n  color: #4A4A4A;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%; }\n\n.item-friend .image img {\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 15px 0px 15px 0px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n\n.item-mine {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  margin-right: 10px;\n  text-align: right; }\n\n.item-mine .msg-mine {\n  border-radius: 20px;\n  background: #0F76F7;\n  color: #FFFFFF;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%; }\n\n.item-friend {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  text-align: left; }\n\n.item-friend .msg-text {\n  margin-left: 10px; }\n\n.item-friend .msg-friend {\n  border-radius: 20px;\n  background: #E6E5E5;\n  color: #4A4A4A;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%; }\n\n.item-friend .image img {\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n", ""]);
 
 // exports
 
@@ -664,15 +730,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 582:
+/***/ 752:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(11)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 10px 0px 10px 15px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearch::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.span-input {\n  color: #0F76F7;\n  font-size: 14px;\n  font-weight: 600 !important;\n  margin-top: 7px; }\n\n.inputSearchHeader {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding-left: 5px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearchHeader::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 10px 0px 10px 15px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearch::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.span-input {\n  color: #0F76F7;\n  font-size: 14px;\n  font-weight: 600 !important;\n  margin-top: 7px; }\n\n.inputSearchHeader {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding-left: 5px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearchHeader::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n", ""]);
 
 // exports
 
@@ -682,15 +748,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 583:
+/***/ 753:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(11)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.recent-msgs {\n  background: #FFFFFF;\n  height: calc( 100vh - 105px);\n  padding: 0;\n  overflow-y: auto;\n  border-right: 1px solid #E6E5E5; }\n\n.title-msgs {\n  color: #4A4A4A;\n  font-size: 16px;\n  font-weight: 600;\n  padding: 15px 0px 15px 0px; }\n\n.msg-item {\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px 15px 10px 15px; }\n\n.msg-item:hover {\n  background: #E6E5E5; }\n\n.msg-item .image img {\n  border-radius: 50%;\n  width: 50px;\n  height: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 5px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.content-msgs {\n  padding: 10px 0px; }\n\n.time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px;\n  float: right;\n  margin-top: -20px; }\n\n.search-msgs {\n  background: #FFFFFF;\n  padding: 0px 15px 0px 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 1px solid #E6E5E5;\n  border-radius: 0;\n  padding: 15px;\n  font-size: 14px;\n  color: #919191; }\n\n.recent-msgs::-webkit-scrollbar {\n  width: 5px;\n  border-radius: 10px; }\n\n.recent-msgs::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset #919191; }\n\n.recent-msgs::-webkit-scrollbar-thumb {\n  background-color: #919191; }\n\n.search-icon, .add-icon {\n  padding-top: 15px;\n  cursor: pointer; }\n\n.search-icon:focus, .add-icon:focus {\n  outline: 0 !important; }\n\n.search-icon i, .add-icon i {\n  color: #919191; }\n\n.search-icon i:hover, .add-icon i:hover {\n  color: #4A4A4A; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.recent-msgs {\n  background: #FFFFFF;\n  height: calc( 100vh - 105px);\n  padding: 0;\n  overflow-y: auto;\n  border-right: 1px solid #E6E5E5; }\n\n.title-msgs {\n  color: #4A4A4A;\n  font-size: 16px;\n  font-weight: 600;\n  padding: 15px 0px 15px 0px; }\n\n.msg-item {\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px 15px 10px 15px; }\n\n.msg-item:hover {\n  background: #E6E5E5; }\n\n.msg-item .image img {\n  border-radius: 50%;\n  width: 50px;\n  height: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 5px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.content-msgs {\n  padding: 10px 0px; }\n\n.time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px;\n  float: right;\n  margin-top: -20px; }\n\n.search-msgs {\n  background: #FFFFFF;\n  padding: 0px 15px 0px 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 1px solid #E6E5E5;\n  border-radius: 0;\n  padding: 15px;\n  font-size: 14px;\n  color: #919191; }\n\n.recent-msgs::-webkit-scrollbar {\n  width: 5px;\n  border-radius: 10px; }\n\n.recent-msgs::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset #919191; }\n\n.recent-msgs::-webkit-scrollbar-thumb {\n  background-color: #919191; }\n\n.search-icon, .add-icon {\n  padding-top: 15px;\n  cursor: pointer; }\n\n.search-icon:focus, .add-icon:focus {\n  outline: 0 !important; }\n\n.search-icon i, .add-icon i {\n  color: #919191; }\n\n.search-icon i:hover, .add-icon i:hover {\n  color: #4A4A4A; }\n", ""]);
 
 // exports
 
@@ -700,24 +766,24 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 607:
+/***/ 777:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 header-msg text-center no-padding\">\r\n      Diogo Monteiro\r\n    </div>\r\n\r\n    <div class=\"col-12\">\r\n      <div class=\"chat-content\">\r\n        <div class=\"item-mine text-right\">\r\n          <div class=\"msg-text\">\r\n          <button class=\"msg-mine\">Olá, como estás?</button>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"item-friend\">\r\n          <div class=\"image\">\r\n            <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/15179213_1273668912697345_1000954396091759152_n.jpg?oh=73f57e5d46ed6dfe007f948e7923d0a2&oe=598ADEF3\">\r\n          </div>\r\n          <div class=\"msg-text\">\r\n          <button class=\"msg-friend\">LOREM IPSUM OLASLASLSALASLASASL ALSASLSALASL LASLASLASLASLASL ASLASLASLASLASL LSALASLASLASLASLASLL SALSALASLASLASL LASLSALSALASLASL LASLSALASLASLSAL LSASALALSLASLSA LSALSALSALSALSAL LSALSALSALASLSLA LASLASLSALSALASL LASLSALSALASL</button>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"item-mine text-right\">\r\n          <button class=\"msg-mine\">wtf??</button>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-12 area-insert\">\r\n      <div class=\"writeSection row\" >\r\n          <div class=\"col\">\r\n            <input autofocus type=\"text\" class=\"inputSearch\" placeholder=\"Escrever uma mensagem\">\r\n             \r\n          </div>\r\n            <div class=\".align-items-lg-end\">\r\n              <button class=\"btn btnConfirm\">ENVIAR</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 header-msg text-center no-padding\">\r\n      Diogo Monteiro\r\n    </div>\r\n\r\n    <div class=\"col-12\">\r\n      <div class=\"chat-content\">\r\n        <div *ngFor=\"let message of messages\" [class.item-mine]=\"message.id_user == id_user\" [class.item-friend]=\"message.id_user == id_user2\">\r\n          <div class=\"msg-text\">\r\n            <button [class.msg-mine]=\"message.id_user == id_user\" [class.msg-friend]=\"message.id_user == id_user2\">{{message.message}}</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-12 area-insert\">\r\n      <div class=\"writeSection row\">\r\n        <div class=\"col\">\r\n          <input autofocus type=\"text\" class=\"inputSearch\" [(ngModel)]=\"message\" placeholder=\"Escrever uma mensagem\" (keyup.enter)=\"sendMessage(message)\">\r\n\r\n        </div>\r\n        <div class=\".align-items-lg-end\">\r\n          <button class=\"btn btnConfirm\" (click)=\"sendMessage(message)\">ENVIAR</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
-/***/ 608:
+/***/ 778:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 header-msg no-padding\">\r\n     <span class=\"span-input\">Para:</span><input autofocus type=\"text\" class=\"inputSearchHeader\" placeholder=\"Escreve o nome da pessoa ou instituição\">\r\n    </div>\r\n\r\n    <div class=\"col-12 area-insert\">\r\n      <div class=\"writeSection row\" >\r\n          <div class=\"col\">\r\n            <input type=\"text\" class=\"inputSearch\" placeholder=\"Escreve uma mensagem...\">\r\n             \r\n          </div>\r\n            <div class=\".align-items-lg-end\">\r\n              <button class=\"btn btnConfirm\">ENVIAR</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
-/***/ 609:
+/***/ 779:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-3 no-padding\">\r\n      \r\n      <div class=\"search-msgs d-flex justify-content-between\">\r\n\r\n        <div class=\"search-icon\" (click)=\"activeSearch()\">\r\n          <i class=\"material-icons\">search</i>\r\n          </div> \r\n\r\n       <div class=\"title-msgs text-center\">\r\n          Ultimas mensagens\r\n        </div>\r\n\r\n          <div class=\"add-icon\" routerLink=\"/chat/new\">\r\n          <i class=\"material-icons\">add</i>\r\n          </div>\r\n\r\n      </div>\r\n      <div class=\"recent-msgs\">\r\n        <div class=\"searchSection\" *ngIf=\"searchAtive\" style=\"padding-top:5px;\">\r\n          <div class=\"areaInput\">\r\n            <input type=\"text\" class=\"inputSearch\" autofocus placeholder=\"Pesquisar contactos\">\r\n          </div>\r\n        </div>\r\n        \r\n        <div class=\"content-msgs\">\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11220863_905757172805944_8420142272234467572_n.jpg?oh=df03737913cafa5d275e3f7e1b6610ad&oe=598AC624\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n          <div class=\"msg-item\">\r\n            <div class=\"image\">\r\n              <img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/15179213_1273668912697345_1000954396091759152_n.jpg?oh=73f57e5d46ed6dfe007f948e7923d0a2&oe=598ADEF3\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">Dr. Paul Doors</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-9 no-padding\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-3 no-padding\">\r\n\r\n      <div class=\"search-msgs d-flex justify-content-between\">\r\n\r\n        <div class=\"search-icon\" (click)=\"activeSearch()\">\r\n          <i class=\"material-icons\">search</i>\r\n        </div>\r\n\r\n        <div class=\"title-msgs text-center\">\r\n          Ultimas mensagens\r\n        </div>\r\n\r\n        <div class=\"add-icon\" routerLink=\"/chat/new\">\r\n          <i class=\"material-icons\">add</i>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"recent-msgs\">\r\n        <div class=\"searchSection\" *ngIf=\"searchAtive\" style=\"padding-top:5px;\">\r\n          <div class=\"areaInput\">\r\n            <input type=\"text\" class=\"inputSearch\" autofocus placeholder=\"Pesquisar contactos\">\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"content-msgs\">\r\n          <div class=\"msg-item\" *ngFor=\"let conversation of conversations\" [routerLink]=\"['./msg/', conversation.id_user]\">\r\n            <div class=\"image\">\r\n              <img [src]=\"conversation.photo_url\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n                <div class=\"nameMsg\">{{conversation.user_name}}</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Teste </span>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-9 no-padding\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ })
 

@@ -112,7 +112,7 @@ app.get('/:id/vols', function (req, res) {
                 } else {
                     res.send({
                         success: true,
-                        body: "Sem Registos"
+                        body: []
                     });
                 }
 
@@ -127,11 +127,11 @@ app.post('/:id/follow', function (req, res) {
         res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
     } else {
         console.log("user", req.body)
-        db.get().query('INSERT INTO follows VALUES (?, ?, NULL)', [req.params.id, req.body.id_user],
+        db.get().query('INSERT INTO follows VALUES (NULL, ?, ?)', [req.params.id, req.body.id_user],
             function (error, results, fields) {
-                console.log(results);
 
-                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, 2, NULL, 0, NULL)', [req.params.id, req.body.id_user],
+
+                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, NULL, 2, NULL, 0)', [req.params.id, req.body.id_user],
                     function (error, results, fields) {
                         console.log(results);
                         console.log(error);

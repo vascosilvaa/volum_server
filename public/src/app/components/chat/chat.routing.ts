@@ -16,14 +16,18 @@ const routes: Routes = [
         path: '',
         component: ChatComponent,
         children: [
-          {
-            path: 'msg',
-            component: ChatMessageComponent
-          },
-          {
-              path: 'new',
-              component: ChatNewComponent
-          }
+            {
+                path: 'msg',
+                component: ChatMessageComponent
+            },
+            {
+                path: 'msg/:id',
+                component: ChatMessageComponent
+            },
+            {
+                path: 'new',
+                component: ChatNewComponent
+            }
         ]
     },
 ];

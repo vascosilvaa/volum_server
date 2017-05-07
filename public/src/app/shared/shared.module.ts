@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
@@ -33,6 +34,7 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
     MaterialModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),
+    MomentModule,
     BootstrapModalModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'

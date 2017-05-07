@@ -378,7 +378,7 @@ app.post('/:id/apply', function (req, res) {
                             console.log(results);
                             let id_creator = results[0].id_user_creator;
 
-                            db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL)', [id_creator, req.body.id_user, req.params.id],
+                            db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],
                                 function (error, results, fields) {
                                     console.log(results);
                                     console.log(error);

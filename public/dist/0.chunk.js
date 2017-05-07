@@ -1,26 +1,26 @@
 webpackJsonp([0,9],{
 
-/***/ 536:
+/***/ 706:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_vol_details_modal_vol_details_modal_component__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_google_maps_core__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_vol_details_modal_vol_details_modal_component__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_google_maps_core__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_module__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_useful_swiper__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_module__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_useful_swiper__ = __webpack_require__(750);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_useful_swiper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_useful_swiper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feed_routing__ = __webpack_require__(573);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_bootstrap_carousel__ = __webpack_require__(601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__feed_component__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feed_routing__ = __webpack_require__(743);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ng2_bootstrap_carousel__ = __webpack_require__(771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__feed_component__ = __webpack_require__(725);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_forms__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__search_search_component__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_forms__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__search_search_component__ = __webpack_require__(744);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FeedModule", function() { return FeedModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -73,7 +73,7 @@ FeedModule = __decorate([
 
 /***/ }),
 
-/***/ 543:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -117,11 +117,11 @@ var EventListener = win['EventListener'];
 
 /***/ }),
 
-/***/ 544:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(713);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isBs3;
 
 function isBs3() {
@@ -131,13 +131,13 @@ function isBs3() {
 
 /***/ }),
 
-/***/ 550:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(603);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__carousel_config__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__carousel_config__ = __webpack_require__(721);
 /* unused harmony export Direction */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CarouselComponent; });
 // todo: add animation
@@ -405,7 +405,7 @@ var CarouselComponent = (function () {
 
 /***/ }),
 
-/***/ 551:
+/***/ 721:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -432,13 +432,14 @@ var CarouselConfig = (function () {
 
 /***/ }),
 
-/***/ 555:
+/***/ 725:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feed_service__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__feed_service__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(29);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -452,10 +453,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var FeedComponent = (function () {
-    function FeedComponent(http, feedService) {
+    function FeedComponent(http, feedService, auth) {
         this.http = http;
         this.feedService = feedService;
+        this.auth = auth;
         this.ready = false;
         this.config = {
             pagination: 'null',
@@ -465,50 +468,60 @@ var FeedComponent = (function () {
             zoom: true
         };
     }
-    FeedComponent.prototype.test = function (a) {
-        console.log(a);
-    };
     FeedComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.feedService.getPrivates()
-            .then(function (res) {
-            _this.privateVols = res.vols;
-            _this.ready = true;
-        })
-            .catch(function (err) { return console.log(err); });
-        this.feedService.getInstVol().then(function (res) {
-            _this.instVols = res.vols;
-            console.log(res);
-        }).catch(function (err) {
-        });
+        this.login = 1;
+        //VERIFICAR LOGIN
+        if (this.login) {
+            this.feedService.getVols()
+                .then(function (res) {
+                _this.vols = res.vols;
+                _this.ready = true;
+            })
+                .catch(function (err) { return console.log(err); });
+        }
+        else if (!this.login) {
+            this.feedService.getPrivates()
+                .then(function (res) {
+                _this.privateVols = res.vols;
+                _this.ready = true;
+            })
+                .catch(function (err) { return console.log(err); });
+            this.feedService.getInstVol()
+                .then(function (res) {
+                _this.instVols = res.vols;
+                console.log(res);
+            })
+                .catch(function (err) { return console.log(err); });
+        }
     };
     return FeedComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewChild"])('swiper1'),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewChild"])('swiper1'),
     __metadata("design:type", Object)
 ], FeedComponent.prototype, "swiper1", void 0);
 FeedComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'feed',
-        template: __webpack_require__(610),
-        styles: [__webpack_require__(584)],
-        providers: [__WEBPACK_IMPORTED_MODULE_0__feed_service__["a" /* FeedService */]]
+        template: __webpack_require__(780),
+        styles: [__webpack_require__(754)],
+        providers: [__WEBPACK_IMPORTED_MODULE_1__feed_service__["a" /* FeedService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__feed_service__["a" /* FeedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__feed_service__["a" /* FeedService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__feed_service__["a" /* FeedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__feed_service__["a" /* FeedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _c || Object])
 ], FeedComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/feed.component.js.map
 
 /***/ }),
 
-/***/ 570:
+/***/ 740:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__carousel_component__ = __webpack_require__(550);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__carousel_component__ = __webpack_require__(720);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SlideComponent; });
 
 
@@ -546,25 +559,25 @@ var SlideComponent = (function () {
 
 /***/ }),
 
-/***/ 571:
+/***/ 741:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(1);
-var debounceTime_1 = __webpack_require__(627);
+var Observable_1 = __webpack_require__(2);
+var debounceTime_1 = __webpack_require__(797);
 Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 //# sourceMappingURL=debounceTime.js.map
 
 /***/ }),
 
-/***/ 573:
+/***/ 743:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feed_component__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feed_component__ = __webpack_require__(725);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -597,19 +610,19 @@ FeedRoutingModule = __decorate([
 
 /***/ }),
 
-/***/ 574:
+/***/ 744:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search_service__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search_service__ = __webpack_require__(745);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__ = __webpack_require__(741);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -656,8 +669,8 @@ var SearchComponent = (function () {
 SearchComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'search',
-        template: __webpack_require__(611),
-        styles: [__webpack_require__(585)],
+        template: __webpack_require__(781),
+        styles: [__webpack_require__(755)],
         providers: [__WEBPACK_IMPORTED_MODULE_0__search_service__["a" /* SearchService */], __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__["b" /* NgbTypeaheadConfig */]]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__search_service__["a" /* SearchService */]) === "function" && _a || Object])
@@ -668,28 +681,28 @@ var _a;
 
 /***/ }),
 
-/***/ 575:
+/***/ 745:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_of__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_of__ = __webpack_require__(479);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(480);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_debounceTime__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_debounceTime__ = __webpack_require__(741);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(796);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_distinctUntilChanged__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_do__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_do__ = __webpack_require__(481);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(482);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -740,7 +753,7 @@ var _a;
 
 /***/ }),
 
-/***/ 579:
+/***/ 749:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -808,15 +821,15 @@ exports.SwiperComponent = SwiperComponent;
 
 /***/ }),
 
-/***/ 580:
+/***/ 750:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(3);
-var swiper_component_1 = __webpack_require__(579);
+var common_1 = __webpack_require__(4);
+var swiper_component_1 = __webpack_require__(749);
 var SwiperModule = (function () {
     function SwiperModule() {
     }
@@ -843,15 +856,15 @@ exports.SwiperModule = SwiperModule;
 
 /***/ }),
 
-/***/ 584:
+/***/ 754:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(11)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media screen and (max-width: 992px) {\n  #main-navbar {\n    clear: both; } }\n\n@media (min-width: 320px) {\n  .btnSearch {\n    display: none; }\n  .city3 {\n    display: none; }\n  .city4 {\n    display: none; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .btnSearch {\n    display: none; }\n  .city3 {\n    display: block; }\n  .city4 {\n    display: none; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 600px) {\n  .btnSearch {\n    display: none; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 801px) {\n  .btnSearch {\n    display: block; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: block; }\n  .city6 {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  .btnSearch {\n    display: block; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: block; }\n  .city6 {\n    display: block; } }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.headerFeed {\n  margin-top: -80px; }\n\n.carousel-indicators li {\n  display: none !important; }\n\n.lista {\n  float: right; }\n\n.header {\n  background: #0F76F7;\n  min-height: 300px;\n  padding-top: 100px; }\n\n.titleFeed {\n  font-weight: 600;\n  font-size: 18px;\n  margin-top: 50px; }\n\n.search-areas {\n  width: 100%; }\n\n.search-voluntario {\n  width: 100%;\n  margin-top: 15px; }\n\n.btn-search {\n  background-color: #0F76F7;\n  color: #FFFFFF;\n  font-size: 18px;\n  width: 130px;\n  height: 45px; }\n\n.v-header-title {\n  font-weight: 600;\n  color: #FFFFFF;\n  font-size: 58px; }\n\n.v-header-subtitle {\n  color: #FFFFFF;\n  font-size: 20px;\n  font-weight: 100;\n  margin-top: -5px; }\n\n.header-home-search {\n  margin-top: 30px; }\n\n.header-title-search {\n  color: #A28F9F;\n  font-size: 15px;\n  margin-top: 3px; }\n\n.cityCard {\n  background-color: #0F76F7;\n  margin-top: 20px;\n  padding: 10px; }\n\n.askedQuestions {\n  border-top: 3px;\n  border-style: solid;\n  border-bottom: 0;\n  border-left: 0;\n  border-right: 0;\n  border-color: #0F76F7;\n  margin-top: 10px; }\n\n.titleAskedQuestions {\n  font-weight: 600;\n  font-size: 18px;\n  margin-top: 35px; }\n\n.textAskedQuestions {\n  margin-top: 5px; }\n\n.cityAveiro {\n  background: url(" + __webpack_require__(629) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityPorto {\n  background: url(" + __webpack_require__(634) + ");\n  background-size: cover;\n  height: 200px; }\n\n.city {\n  text-align: center; }\n\n.cityLisboa {\n  background: url(" + __webpack_require__(633) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityCoimbra {\n  background: url(" + __webpack_require__(631) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityBraga {\n  background: url(" + __webpack_require__(630) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityGuimaraes {\n  background: url(" + __webpack_require__(632) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityText {\n  color: #fff;\n  font-weight: 600;\n  font-size: 1.4em;\n  padding-top: 70px; }\n\n.slider-prev1 {\n  top: 350px;\n  left: -30px; }\n\n.slider-next1 {\n  top: 350px;\n  right: -30px; }\n\n.slider-prev2 {\n  top: 930px;\n  left: -30px; }\n\n.slider-buttons {\n  position: absolute;\n  margin-top: -22px;\n  z-index: 10;\n  cursor: pointer; }\n\n.slider-next2 {\n  top: 930px;\n  right: -30px; }\n\n.disabled {\n  display: none; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media screen and (max-width: 992px) {\n  #main-navbar {\n    clear: both; } }\n\n@media (min-width: 320px) {\n  .btnSearch {\n    display: none; }\n  .city3 {\n    display: none; }\n  .city4 {\n    display: none; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .btnSearch {\n    display: none; }\n  .city3 {\n    display: block; }\n  .city4 {\n    display: none; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 600px) {\n  .btnSearch {\n    display: none; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: none; }\n  .city6 {\n    display: none; } }\n\n@media (min-width: 801px) {\n  .btnSearch {\n    display: block; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: block; }\n  .city6 {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  .btnSearch {\n    display: block; }\n  .city4 {\n    display: block; }\n  .city5 {\n    display: block; }\n  .city6 {\n    display: block; } }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.headerFeed {\n  margin-top: -80px; }\n\n.carousel-indicators li {\n  display: none !important; }\n\n.lista {\n  float: right; }\n\n.header {\n  background: #0F76F7;\n  min-height: 300px;\n  padding-top: 100px; }\n\n.titleFeed {\n  font-weight: 600;\n  font-size: 18px;\n  margin-top: 50px; }\n\n.search-areas {\n  width: 100%; }\n\n.search-voluntario {\n  width: 100%;\n  margin-top: 15px; }\n\n.btn-search {\n  background-color: #0F76F7;\n  color: #FFFFFF;\n  font-size: 18px;\n  width: 130px;\n  height: 45px; }\n\n.v-header-title {\n  font-weight: 600;\n  color: #FFFFFF;\n  font-size: 58px; }\n\n.v-header-subtitle {\n  color: #FFFFFF;\n  font-size: 20px;\n  font-weight: 100;\n  margin-top: -5px; }\n\n.header-home-search {\n  margin-top: 30px; }\n\n.header-title-search {\n  color: #A28F9F;\n  font-size: 15px;\n  margin-top: 3px; }\n\n.cityCard {\n  background-color: #0F76F7;\n  margin-top: 20px;\n  padding: 10px; }\n\n.askedQuestions {\n  border-top: 3px;\n  border-style: solid;\n  border-bottom: 0;\n  border-left: 0;\n  border-right: 0;\n  border-color: #0F76F7;\n  margin-top: 10px; }\n\n.titleAskedQuestions {\n  font-weight: 600;\n  font-size: 18px;\n  margin-top: 35px; }\n\n.textAskedQuestions {\n  margin-top: 5px; }\n\n.cityAveiro {\n  background: url(" + __webpack_require__(799) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityPorto {\n  background: url(" + __webpack_require__(804) + ");\n  background-size: cover;\n  height: 200px; }\n\n.city {\n  text-align: center; }\n\n.cityLisboa {\n  background: url(" + __webpack_require__(803) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityCoimbra {\n  background: url(" + __webpack_require__(801) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityBraga {\n  background: url(" + __webpack_require__(800) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityGuimaraes {\n  background: url(" + __webpack_require__(802) + ");\n  background-size: cover;\n  height: 200px; }\n\n.cityText {\n  color: #fff;\n  font-weight: 600;\n  font-size: 1.4em;\n  padding-top: 70px; }\n\n.slider-prev1 {\n  top: 350px;\n  left: -30px; }\n\n.slider-next1 {\n  top: 350px;\n  right: -30px; }\n\n.slider-prev2 {\n  top: 930px;\n  left: -30px; }\n\n.slider-buttons {\n  position: absolute;\n  margin-top: -22px;\n  z-index: 10;\n  cursor: pointer; }\n\n.slider-next2 {\n  top: 930px;\n  right: -30px; }\n\n.disabled {\n  display: none; }\n", ""]);
 
 // exports
 
@@ -861,15 +874,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 585:
+/***/ 755:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)();
+exports = module.exports = __webpack_require__(11)();
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\nsearch .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-home-search {\n  background-color: #FFFFFF;\n  min-height: 80px;\n  border-radius: 4px; }\n\n.col-search {\n  float: left;\n  padding-left: 15px;\n  height: 80px;\n  line-height: 80px;\n  width: 900px; }\n\n.col-search-btn {\n  float: right;\n  padding-left: 20px;\n  padding-right: 20px;\n  height: 80px;\n  line-height: 80px;\n  text-align: right; }\n\n.col-search-border {\n  border-right: 1px solid #ECECEC; }\n\n/deep/ .dropdown-item {\n  padding: 5px 0px !important;\n  height: 70px;\n  font-family: Lato; }\n\n/deep/ .dropdown-item.active {\n  background: #0F76F7; }\n\n/deep/ .dropdown-menu {\n  padding: 0; }\n\n.namePerson {\n  font-size: 16px;\n  font-weight: 600;\n  margin-top: 5px; }\n\n.descPerson {\n  font-size: 13px;\n  margin-top: 3px; }\n\n.content-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0px 10px 0px 10px; }\n\n.img-search img {\n  border-radius: 50px;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.desc-search {\n  margin-left: 10px;\n  margin-top: 1px; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\nsearch .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-home-search {\n  background-color: #FFFFFF;\n  min-height: 80px;\n  border-radius: 4px; }\n\n.col-search {\n  float: left;\n  padding-left: 15px;\n  height: 80px;\n  line-height: 80px;\n  width: 900px; }\n\n.col-search-btn {\n  float: right;\n  padding-left: 20px;\n  padding-right: 20px;\n  height: 80px;\n  line-height: 80px;\n  text-align: right; }\n\n.col-search-border {\n  border-right: 1px solid #ECECEC; }\n\n/deep/ .dropdown-item {\n  padding: 5px 0px !important;\n  height: 70px;\n  font-family: Lato; }\n\n/deep/ .dropdown-item.active {\n  background: #0F76F7; }\n\n/deep/ .dropdown-menu {\n  padding: 0; }\n\n.namePerson {\n  font-size: 16px;\n  font-weight: 600;\n  margin-top: 5px; }\n\n.descPerson {\n  font-size: 13px;\n  margin-top: 3px; }\n\n.content-search {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 0px 10px 0px 10px; }\n\n.img-search img {\n  border-radius: 50px;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.desc-search {\n  margin-left: 10px;\n  margin-top: 1px; }\n", ""]);
 
 // exports
 
@@ -879,15 +892,15 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 600:
+/***/ 770:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__carousel_component__ = __webpack_require__(550);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slide_component__ = __webpack_require__(570);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__carousel_config__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__carousel_component__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slide_component__ = __webpack_require__(740);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__carousel_config__ = __webpack_require__(721);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CarouselModule; });
 
 
@@ -916,17 +929,17 @@ var CarouselModule = (function () {
 
 /***/ }),
 
-/***/ 601:
+/***/ 771:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__carousel_component__ = __webpack_require__(550);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__carousel_component__ = __webpack_require__(720);
 /* unused harmony reexport CarouselComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__carousel_module__ = __webpack_require__(600);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__carousel_module__ = __webpack_require__(770);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__carousel_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__slide_component__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__slide_component__ = __webpack_require__(740);
 /* unused harmony reexport SlideComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__carousel_config__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__carousel_config__ = __webpack_require__(721);
 /* unused harmony reexport CarouselConfig */
 
 
@@ -936,7 +949,7 @@ var CarouselModule = (function () {
 
 /***/ }),
 
-/***/ 602:
+/***/ 772:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -962,19 +975,19 @@ function OnChange(defaultValue) {
 
 /***/ }),
 
-/***/ 603:
+/***/ 773:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__decorators__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__decorators__ = __webpack_require__(772);
 /* unused harmony reexport OnChange */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__linked_list_class__ = __webpack_require__(604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__linked_list_class__ = __webpack_require__(774);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__linked_list_class__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng2_bootstrap_config__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng2_bootstrap_config__ = __webpack_require__(714);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__ng2_bootstrap_config__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__trigger_class__ = __webpack_require__(605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__trigger_class__ = __webpack_require__(775);
 /* unused harmony reexport Trigger */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_class__ = __webpack_require__(606);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_class__ = __webpack_require__(776);
 /* unused harmony reexport Utils */
 
 
@@ -985,7 +998,7 @@ function OnChange(defaultValue) {
 
 /***/ }),
 
-/***/ 604:
+/***/ 774:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1233,7 +1246,7 @@ var LinkedList = (function () {
 
 /***/ }),
 
-/***/ 605:
+/***/ 775:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1254,11 +1267,11 @@ var Trigger = (function () {
 
 /***/ }),
 
-/***/ 606:
+/***/ 776:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(713);
 /* unused harmony export Utils */
 
 var Utils = (function () {
@@ -1284,33 +1297,33 @@ var Utils = (function () {
 
 /***/ }),
 
-/***/ 610:
+/***/ 780:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <div class=\"header\">\r\n        <div class=\"container\">\r\n            <div class=\"container headerFeed no-padding\">\r\n                <div class=\"v-header-title\">Da compaixão à ação.</div>\r\n                <div class=\"v-header-subtitle\">A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"container\" style=\"padding: 0; margin-top: 25px\">\r\n                <!-- TODO: LIMPAR ESTE CSS -->\r\n                <search></search>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"container\">\r\n        <!-- PUBLICO -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Instituições</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"slider\">\r\n            <swiper [config]=\"config\" #swiper1>\r\n                <div class=\"swiper-wrapper\">\r\n                    <vol-card *ngFor=\"let vol of instVols\" [userCreator]=\"vol.user.id_user\"  [title]=\"vol.vol.name\" [idVol]=\"vol.vol.id_vol\" [likes]=\"1\" [verified]=\"true\" class=\"swiper-slide\" [type]=\"private\" [avatar]=\"vol.user.photo_url\" [username]=\"vol.user.name\" [dateCreation]=\"vol.vol.date_begin\" [title]=\"vol.name\" [desc]=\"vol.vol.desc\">\r\n                    </vol-card>\r\n                </div>\r\n                <!-- Add Pagination -->\r\n                <!-- Add Arrows -->\r\n            </swiper>\r\n\r\n            <!--   <div class=\"swiper-button-prev slider-prev1\" (click)=\"swiper1.Swiper.slidePrev()\"></div>\r\n           <div class=\"swiper-button-next slider-next1\" (click)=\"swiper1.Swiper.slideNext()\"></div> -->\r\n            <md-icon class=\"slider-buttons slider-prev1\" (click)=\"swiper1.Swiper.slidePrev()\">keyboard_arrow_left</md-icon>\r\n            <md-icon class=\"slider-buttons slider-next1\" (click)=\"swiper1.Swiper.slideNext()\">keyboard_arrow_right</md-icon>\r\n        </div>\r\n\r\n        <!-- PUBLICO -->\r\n        <!-- PRIVADO -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Privado</div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"slider\">\r\n            <swiper [config]=\"config\" #swiper2>\r\n                <div class=\"swiper-wrapper\">\r\n                    <vol-card *ngFor=\"let vol of privateVols\" [userCreator]=\"vol.user.id_user\" [title]=\"vol.vol.name\" [likes]=\"1\" [idVol]=\"vol.vol.id_vol\" [verified]=\"true\" [type]=\"private\" class=\"swiper-slide\" [avatar]=\"vol.user.photo_url\" [username]=\"vol.user.name\" [dateCreation]=\"vol.vol.date_begin\" [desc]=\"vol.vol.desc\">\r\n                    </vol-card>\r\n                </div>\r\n                <!-- Add Pagination -->\r\n                <!-- Add Arrows -->\r\n\r\n            </swiper>\r\n\r\n            <md-icon class=\"slider-buttons slider-prev2\" (click)=\"swiper2.Swiper.slidePrev()\">keyboard_arrow_left</md-icon>\r\n            <md-icon class=\"slider-buttons slider-next2\" (click)=\"swiper2.Swiper.slideNext()\">keyboard_arrow_right</md-icon>\r\n        </div>\r\n\r\n\r\n        <!-- PRIVADO -->\r\n        <!-- CIDADES -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Cidades</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city1\">\r\n                <div class=\"cityCard cityAveiro\">\r\n                    <div class=\"cityText\">Aveiro</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city2\">\r\n                <div class=\"cityCard cityPorto\">\r\n                    <div class=\"cityText\">Porto</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city3\">\r\n                <div class=\"cityCard cityLisboa\">\r\n                    <div class=\"cityText\">Lisboa</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-3 col-md-3 city city4\">\r\n                <div class=\"cityCard cityCoimbra\">\r\n                    <div class=\"cityText\">Coimbra</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-md-2 city city5\">\r\n                <div class=\"cityCard cityBraga\">\r\n                    <div class=\"cityText\">Braga</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-md-2 city city6\">\r\n                <div class=\"cityCard cityGuimaraes\">\r\n                    <div class=\"cityText\">Guimarães</div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- CIDADES -->\r\n        <!-- QUESTIONS -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Perguntas Frequentes</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    O que é a Volum?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n                    A Volum foi lançada pela ENTRAJUDA em 2006. É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social. Trata-se de uma ferramenta de gestão e\r\n                    desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado e permite a capacitação das organizações. </div>\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    Como funciona a Volum?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n\r\n\r\n                    Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social, procurar uma instituição\r\n                    ou organização perto do local da sua residência, participar numa acção pontual. </div>\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    A Volum é só para atuais voluntários?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n                    Não, porque o voluntariado não se limita à área da solidariedade Social. São contempladas outras áreas onde o voluntariado tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto, Direitos Humanos, entre\r\n                    outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade </div>\r\n            </div>\r\n        </div>\r\n        <!-- QUESTIONS -->\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n<!-- LOGADO -->\r\n\r\n<app-footer></app-footer>\r\n\r\n"
+module.exports = "<div class=\"header\">\r\n        <div class=\"container\">\r\n            <div class=\"container headerFeed no-padding\">\r\n                <div class=\"v-header-title\">Da compaixão à ação.</div>\r\n                <div class=\"v-header-subtitle\">A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"container\" style=\"padding: 0; margin-top: 25px\">\r\n                <!-- TODO: LIMPAR ESTE CSS -->\r\n                <search></search>\r\n            </div>\r\n\r\n        </div>\r\n</div>\r\n\r\n    <div *ngIf=\"!login\" class=\"container\">\r\n        <!-- PUBLICO -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Instituições</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"slider\">\r\n            <swiper [config]=\"config\" #swiper1>\r\n                <div class=\"swiper-wrapper\">\r\n                    <vol-card *ngFor=\"let vol of instVols\" [userCreator]=\"vol.user.id_user\"  [title]=\"vol.vol.name\" [idVol]=\"vol.vol.id_vol\" [likes]=\"1\" [verified]=\"true\" class=\"swiper-slide\" [type]=\"private\" [avatar]=\"vol.user.photo_url\" [username]=\"vol.user.name\" [dateCreation]=\"vol.vol.date_begin\" [title]=\"vol.name\" [desc]=\"vol.vol.desc\">\r\n                    </vol-card>\r\n                </div>\r\n                <!-- Add Pagination -->\r\n                <!-- Add Arrows -->\r\n            </swiper>\r\n\r\n            <!--   <div class=\"swiper-button-prev slider-prev1\" (click)=\"swiper1.Swiper.slidePrev()\"></div>\r\n           <div class=\"swiper-button-next slider-next1\" (click)=\"swiper1.Swiper.slideNext()\"></div> -->\r\n            <md-icon class=\"slider-buttons slider-prev1\" (click)=\"swiper1.Swiper.slidePrev()\">keyboard_arrow_left</md-icon>\r\n            <md-icon class=\"slider-buttons slider-next1\" (click)=\"swiper1.Swiper.slideNext()\">keyboard_arrow_right</md-icon>\r\n        </div>\r\n\r\n        <!-- PUBLICO -->\r\n        <!-- PRIVADO -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Privado</div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"slider\">\r\n            <swiper [config]=\"config\" #swiper2>\r\n                <div class=\"swiper-wrapper\">\r\n                    <vol-card *ngFor=\"let vol of privateVols\" [userCreator]=\"vol.user.id_user\" [title]=\"vol.vol.name\" [likes]=\"1\" [idVol]=\"vol.vol.id_vol\" [verified]=\"true\" [type]=\"private\" class=\"swiper-slide\" [avatar]=\"vol.user.photo_url\" [username]=\"vol.user.name\" [dateCreation]=\"vol.vol.date_begin\" [desc]=\"vol.vol.desc\">\r\n                    </vol-card>\r\n                </div>\r\n                <!-- Add Pagination -->\r\n                <!-- Add Arrows -->\r\n\r\n            </swiper>\r\n\r\n            <md-icon class=\"slider-buttons slider-prev2\" (click)=\"swiper2.Swiper.slidePrev()\">keyboard_arrow_left</md-icon>\r\n            <md-icon class=\"slider-buttons slider-next2\" (click)=\"swiper2.Swiper.slideNext()\">keyboard_arrow_right</md-icon>\r\n        </div>\r\n\r\n\r\n        <!-- PRIVADO -->\r\n        <!-- CIDADES -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Cidades</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city1\">\r\n                <div class=\"cityCard cityAveiro\">\r\n                    <div class=\"cityText\">Aveiro</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city2\">\r\n                <div class=\"cityCard cityPorto\">\r\n                    <div class=\"cityText\">Porto</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-4 col-md-3 city city3\">\r\n                <div class=\"cityCard cityLisboa\">\r\n                    <div class=\"cityText\">Lisboa</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-sm-3 col-md-3 city city4\">\r\n                <div class=\"cityCard cityCoimbra\">\r\n                    <div class=\"cityText\">Coimbra</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-md-2 city city5\">\r\n                <div class=\"cityCard cityBraga\">\r\n                    <div class=\"cityText\">Braga</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 col-lg-2 col-md-2 city city6\">\r\n                <div class=\"cityCard cityGuimaraes\">\r\n                    <div class=\"cityText\">Guimarães</div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- CIDADES -->\r\n        <!-- QUESTIONS -->\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                <div class=\"titleFeed\">Perguntas Frequentes</div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    O que é a Volum?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n                    A Volum foi lançada pela ENTRAJUDA em 2006. É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social. Trata-se de uma ferramenta de gestão e\r\n                    desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado e permite a capacitação das organizações. </div>\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    Como funciona a Volum?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n\r\n\r\n                    Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social, procurar uma instituição\r\n                    ou organização perto do local da sua residência, participar numa acção pontual. </div>\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <div class=\"col-lg-12 askedQuestions\">\r\n                </div>\r\n                <div class=\"titleAskedQuestions\">\r\n                    A Volum é só para atuais voluntários?\r\n                </div>\r\n                <div class=\"textAskedQuestions\">\r\n                    Não, porque o voluntariado não se limita à área da solidariedade Social. São contempladas outras áreas onde o voluntariado tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto, Direitos Humanos, entre\r\n                    outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade </div>\r\n            </div>\r\n        </div>\r\n        <!-- QUESTIONS -->\r\n    </div>\r\n\r\n\r\n\r\n\r\n<!-- LOGADO -->\r\n\r\n<div *ngIf=\"login\" class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-6\"  *ngFor=\"let vol of vols\">\r\n         <vol-card [userCreator]=\"vol.user.id_user\" [title]=\"vol.vol.name\" [likes]=\"1\" [idVol]=\"vol.vol.id_vol\" [verified]=\"true\" type=\"private\" class=\"swiper-slide\" [avatar]=\"vol.user.photo_url\" [username]=\"vol.user.name\" [dateCreation]=\"vol.vol.date_begin\" [desc]=\"vol.vol.desc\">\r\n        </vol-card>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-footer></app-footer>\r\n\r\n"
 
 /***/ }),
 
-/***/ 611:
+/***/ 781:
 /***/ (function(module, exports) {
 
 module.exports = "<ng-template #rt let-r=\"result\" let-t=\"term\">\r\n   \r\n   <!-- SE FOR INSTITUICAO -->\r\n   <div class=\"container\">\r\n        <div class=\"row content-search\"> \r\n            <div class=\"img-search\">\r\n                <img *ngIf=\"!r.photo_url\" src=\"assets/imgs/volunteer.png\">\r\n                <img *ngIf=\"r.photo_url\" [src]=\"r.photo_url\">\r\n            </div>\r\n            <div class=\"desc-search\">\r\n                <div class=\"namePerson\">\r\n                    {{ r.name}} \r\n                </div>\r\n                <div class=\"descPerson\">\r\n                    Solidariedade Social\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ng-template>\r\n\r\n\r\n<div class=\"container no-padding\">\r\n    <div class=\"col-12 header-home-search menuFull\">\r\n        <div class=\"col-search\">\r\n\r\n            <md-input-container class=\"col-12\">\r\n                <input mdInput [(ngModel)]=\"model\" [ngbTypeahead]=\"search\" [resultTemplate]=\"rt\" [inputFormatter]=\"formatter\" placeholder=\"Pesquisa pessoas, instituições e ações de voluntariado\">\r\n            </md-input-container>\r\n        </div>\r\n\r\n        <div class=\"col-search-btn btnSearch\">\r\n            <button md-raised-button class=\"btnConfirm btn-search\" routerLink=\"/search\">PROCURAR</button>\r\n        </div>\r\n    </div>\r\n</div> "
 
 /***/ }),
 
-/***/ 626:
+/***/ 796:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(1);
-var distinctUntilChanged_1 = __webpack_require__(628);
+var Observable_1 = __webpack_require__(2);
+var distinctUntilChanged_1 = __webpack_require__(798);
 Observable_1.Observable.prototype.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
 //# sourceMappingURL=distinctUntilChanged.js.map
 
 /***/ }),
 
-/***/ 627:
+/***/ 797:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1320,8 +1333,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(10);
-var async_1 = __webpack_require__(333);
+var Subscriber_1 = __webpack_require__(12);
+var async_1 = __webpack_require__(483);
 /**
  * Emits a value from the source Observable only after a particular time span
  * has passed without another source emission.
@@ -1433,7 +1446,7 @@ function dispatchNext(subscriber) {
 
 /***/ }),
 
-/***/ 628:
+/***/ 798:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1443,9 +1456,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(10);
-var tryCatch_1 = __webpack_require__(161);
-var errorObject_1 = __webpack_require__(78);
+var Subscriber_1 = __webpack_require__(12);
+var tryCatch_1 = __webpack_require__(172);
+var errorObject_1 = __webpack_require__(83);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits all items emitted by the source Observable that are distinct by comparison from the previous item.
@@ -1548,42 +1561,42 @@ var DistinctUntilChangedSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 629:
+/***/ 799:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "aveiro2.83fb98754791fd9aa413.jpg";
 
 /***/ }),
 
-/***/ 630:
+/***/ 800:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "braga2.653bc1bbc7a693035d06.jpg";
 
 /***/ }),
 
-/***/ 631:
+/***/ 801:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "coimbra2.b265288c5487e10b0702.jpg";
 
 /***/ }),
 
-/***/ 632:
+/***/ 802:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "guimaraes2.7b75d90422ccf90eed71.jpg";
 
 /***/ }),
 
-/***/ 633:
+/***/ 803:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "lisboa2.afd17cdf6998c2f82578.jpg";
 
 /***/ }),
 
-/***/ 634:
+/***/ 804:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "porto2.29baf9070e53958060b2.jpg";

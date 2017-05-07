@@ -1,3 +1,4 @@
+import { ChatService } from './components/chat/chat.service';
 import { AppService } from './app.service';
 import { SocketService } from './shared/socket.service';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,17 +14,20 @@ import * as moment from 'moment';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [SocketService, AppService]
+  providers: [SocketService, AppService, ChatService]
 })
 export class AppComponent implements OnInit {
   public isLoggedIn;
   public user: any;
   public idLogin: any;
-  public newNotificationCount: any;
+  public newNotificationCount: Number;
+  public newRequestsCount: Number;
+  public conversations = [];
   public notifications: any;
   public requests: any;
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService, private socketService: SocketService, private appService: AppService) {
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
+    private socketService: SocketService, private appService: AppService, private chatService: ChatService) {
     overlay.defaultViewContainer = vcRef;
   }
   ngOnInit() {
@@ -54,9 +58,11 @@ export class AppComponent implements OnInit {
         this.user = res.user;
         console.log("USER", res.user);
         this.socketService.onConnect(res.user.id_user);
-        this.notificationCount(res.user.id_user);
+        this.getNotificationCount(res.user.id_user);
+        this.getRequestCount(res.user.id_user);
         this.getNotifications(res.user.id_user);
         this.getRequests(res.user.id_user);
+        this.getConversations(res.user.id_user);
         let id = localStorage.getItem('USER_ID');
         this.idLogin = id;
       }
@@ -64,12 +70,28 @@ export class AppComponent implements OnInit {
     }
   }
 
-  notificationCount(id) {
+  getConversations(id_user) {
+    this.chatService.getConversations(id_user).then(res => {
+      this.conversations = res.conversations;
+      console.log(this.conversations);
+
+    });
+
+  }
+
+  getNotificationCount(id) {
     this.appService.newNotificationCount(id).then(res => {
       this.newNotificationCount = res.count;
       console.log(res);
     })
   }
+  getRequestCount(id) {
+    this.appService.newRequestCount(id).then(res => {
+      this.newRequestsCount = res.count;
+      console.log(res);
+    })
+  }
+
   getNotifications(id) {
     this.appService.getNotifications(id).then(res => {
       this.notifications = res.notifications;
@@ -81,7 +103,7 @@ export class AppComponent implements OnInit {
     this.appService.getRequests(id).then(res => {
       this.requests = res.notifications;
 
-      console.log(res);
+      console.log("requests", res);
 
     })
   }

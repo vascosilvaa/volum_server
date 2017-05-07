@@ -1,20 +1,20 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-3 no-padding">
-      
+
       <div class="search-msgs d-flex justify-content-between">
 
         <div class="search-icon" (click)="activeSearch()">
           <i class="material-icons">search</i>
-          </div> 
+        </div>
 
-       <div class="title-msgs text-center">
+        <div class="title-msgs text-center">
           Ultimas mensagens
         </div>
 
-          <div class="add-icon" routerLink="/chat/new">
+        <div class="add-icon" routerLink="/chat/new">
           <i class="material-icons">add</i>
-          </div>
+        </div>
 
       </div>
       <div class="recent-msgs">
@@ -23,138 +23,22 @@
             <input type="text" class="inputSearch" autofocus placeholder="Pesquisar contactos">
           </div>
         </div>
-        
+
         <div class="content-msgs">
-          <div class="msg-item">
+          <div class="msg-item" *ngFor="let conversation of conversations" [routerLink]="['./msg/', conversation.id_user]">
             <div class="image">
-              <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+              <img [src]="conversation.photo_url">
             </div>
             <div class="message-info">
               <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
+                <div class="nameMsg">{{conversation.user_name}}</div>
                 <div class="time">20:00</div>
               </div>
 
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
+              <span class="textMsg"> Teste </span>
             </div>
           </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
 
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/18157632_1304981589614677_1709007850473482670_n.jpg?oh=beebc476732de2cf4a23c32b86da81fd&oe=59890E8C">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11220863_905757172805944_8420142272234467572_n.jpg?oh=df03737913cafa5d275e3f7e1b6610ad&oe=598AC624">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
-          <div class="msg-item">
-            <div class="image">
-              <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/15179213_1273668912697345_1000954396091759152_n.jpg?oh=73f57e5d46ed6dfe007f948e7923d0a2&oe=598ADEF3">
-            </div>
-            <div class="message-info">
-              <div>
-                <div class="nameMsg">Dr. Paul Doors</div>
-                <div class="time">20:00</div>
-              </div>
-
-              <span class="textMsg"> Olá, Como esta? Bla bla bla bla. ok? bla bla bla </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
