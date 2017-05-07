@@ -136,7 +136,7 @@ app.get('/:id', function (req, res, next) {
 }
 );
 
-app.get('/:id/likes/count', passport.authenticate('jwt', { session: false }), function (req, res) {
+app.get('/:id/likes/count', function (req, res) {
 
     let options = {
         sql: 'SELECT COUNT(*) AS likes FROM likes WHERE id_vol = ? ',
@@ -147,13 +147,13 @@ app.get('/:id/likes/count', passport.authenticate('jwt', { session: false }), fu
             res.send({ success: false, message: error })
             throw new Error(error);
         } else {
-
+            let likes = results[0].likes;
             if (results.length == 0) {
                 res.status(404);
-                res.send({ success: true, body: [] })
+                res.send({ success: true, likes: 0 })
             } else {
                 res.status(200);
-                res.send({ success: true, body: results })
+                res.send({ success: true, likes })
             }
         };
 
