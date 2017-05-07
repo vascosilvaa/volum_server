@@ -5,11 +5,11 @@
             <img src="{{avatar}}">
         </div>
         <div class="col-6 col-lg-8 card-user-nd">
-            <div *ngIf="verified==1" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> 
-            <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada">
+            <div *ngIf="verified==1" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a>
+                <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada">
                 <i class="material-icons md-18">verified_user</i></button></div>
             <div *ngIf="verified==0" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> </div>
-            <div class="card-date ts14">{{dateCreation | date:"d/M"}} às {{dateCreation| date:"shortTime"}}</div>
+            <div class="card-date ts14">{{dateCreation | amTimeAgo:true }}</div>
         </div>
         <div class="col card-option text-right">
             <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
@@ -33,42 +33,42 @@
 
     <!-- CONTENT CARD -->
     <div *ngIf="map!=true">
-    <div class="imgSlider">
+        <div class="imgSlider">
             <img *ngIf="foto1==1" class="imgSliderInd" src="../assets/imgs/banco_alimentar.jpg">
             <img *ngIf="foto2==1" class="imgSliderInd" src="../assets/imgs/testemaps.PNG">
             <img *ngIf="foto3==1" class="imgSliderInd" src="../assets/imgs/jardin.jpg">
-    </div>
-    <div class="balls">
-        <div class="row">
-            <div (click)="changePhoto1()" *ngIf="foto1==1"class="ball1"></div>
-            <div (click)="changePhoto1()" *ngIf="foto1==0" class="ball1Empty"></div>
-            <div (click)="changePhoto2()" *ngIf="foto2==1" class="ball2"></div>
-            <div (click)="changePhoto2()" *ngIf="foto2==0" class="ball2Empty"></div>
-            <div (click)="changePhoto3()" *ngIf="foto3==1" class="ball3"></div>
-            <div (click)="changePhoto3()" *ngIf="foto3==0" class="ball3Empty"></div>
         </div>
-    </div>
-    <!-- foto1 -->
-    <div class="rightArrow" (click)="showFoto(2)" *ngIf="foto1==1">
-        <i class="material-icons iconRight">keyboard_arrow_right</i>
-    </div>
-    <div class="leftArrow" (click)="showFoto(3)" *ngIf="foto1==1">
-        <i class="material-icons iconRight">keyboard_arrow_left</i>
-    </div>
-    <!-- foto2 -->
-     <div class="rightArrow" (click)="showFoto(3)" *ngIf="foto2==1">
-        <i class="material-icons iconRight">keyboard_arrow_right</i>
-    </div>
-    <div class="leftArrow" (click)="showFoto(1)" *ngIf="foto2==1">
-        <i class="material-icons iconRight">keyboard_arrow_left</i>
-    </div>
-    <!-- foto3 -->
-     <div class="rightArrow" (click)="showFoto(1)" *ngIf="foto3==1">
-        <i class="material-icons iconRight">keyboard_arrow_right</i>
-    </div>
-    <div class="leftArrow" (click)="showFoto(2)" *ngIf="foto3==1">
-        <i class="material-icons iconRight">keyboard_arrow_left</i>
-    </div>
+        <div class="balls">
+            <div class="row">
+                <div (click)="changePhoto1()" *ngIf="foto1==1" class="ball1"></div>
+                <div (click)="changePhoto1()" *ngIf="foto1==0" class="ball1Empty"></div>
+                <div (click)="changePhoto2()" *ngIf="foto2==1" class="ball2"></div>
+                <div (click)="changePhoto2()" *ngIf="foto2==0" class="ball2Empty"></div>
+                <div (click)="changePhoto3()" *ngIf="foto3==1" class="ball3"></div>
+                <div (click)="changePhoto3()" *ngIf="foto3==0" class="ball3Empty"></div>
+            </div>
+        </div>
+        <!-- foto1 -->
+        <div class="rightArrow" (click)="showFoto(2)" *ngIf="foto1==1">
+            <i class="material-icons iconRight">keyboard_arrow_right</i>
+        </div>
+        <div class="leftArrow" (click)="showFoto(3)" *ngIf="foto1==1">
+            <i class="material-icons iconRight">keyboard_arrow_left</i>
+        </div>
+        <!-- foto2 -->
+        <div class="rightArrow" (click)="showFoto(3)" *ngIf="foto2==1">
+            <i class="material-icons iconRight">keyboard_arrow_right</i>
+        </div>
+        <div class="leftArrow" (click)="showFoto(1)" *ngIf="foto2==1">
+            <i class="material-icons iconRight">keyboard_arrow_left</i>
+        </div>
+        <!-- foto3 -->
+        <div class="rightArrow" (click)="showFoto(1)" *ngIf="foto3==1">
+            <i class="material-icons iconRight">keyboard_arrow_right</i>
+        </div>
+        <div class="leftArrow" (click)="showFoto(2)" *ngIf="foto3==1">
+            <i class="material-icons iconRight">keyboard_arrow_left</i>
+        </div>
     </div>
     <div class="row no-margin card-volum-content">
         <div class="col ts18 card-volum-title">
@@ -78,7 +78,7 @@
             {{desc}}
         </div>
     </div>
-    
+
     <!-- /CONTENT CARD -->
 
     <!-- FOOTER CARD -->
@@ -143,7 +143,9 @@
                 </div>
                 <div class="row comments-content">
                     <div class="col-12 ts13">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada ante eget
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse
+                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada
+                        ante eget
                     </div>
                 </div>
                 <div class="borderComments"></div>
@@ -177,7 +179,9 @@
                 </div>
                 <div class="row comments-content">
                     <div class="col-12 ts13">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada ante eget
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse
+                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada
+                        ante eget
                     </div>
                 </div>
                 <div class="borderComments"></div>

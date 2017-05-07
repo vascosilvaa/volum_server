@@ -27,7 +27,7 @@ var vols = require('./routes/vols');
 var auth = require('./routes/auth');
 var users = require('./routes/users');
 var notifications = require('./routes/notifications');
-
+var chat = require('./routes/chat');
 var db = require('./config/db');
 
 var searchData = [];
@@ -54,6 +54,8 @@ app.use('/teste', express.static(path.join(__dirname, 'testes')))
 app.use('/api/auth', auth);
 app.use('/api/vols', vols);
 app.use('/api/users', users);
+app.use('/api/chat', chat);
+
 app.use('/api/notifications', notifications);
 
 app.use('/*', express.static(path.join(__dirname, 'public/dist')));

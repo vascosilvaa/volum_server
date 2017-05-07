@@ -34,7 +34,7 @@ app.get('/:id/', function (req, res) {
 });
 
 app.get('/:id/requests', function (req, res) {
-    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ?', nestTables: true }, [req.params.id], function (error, results, fields) {
+    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ? AND notifications.type = 2', nestTables: true }, [req.params.id], function (error, results, fields) {
         if (results) {
 
             let notifications = [];
@@ -55,12 +55,12 @@ app.get('/:id/requests', function (req, res) {
                 notifications
             })
 
-        }   
+        }
     });
 });
 
 app.get('/:id/not-read/count', function (req, res) {
-    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ?', [req.params.id, 0], function (error, results, fields) {
+    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.params.id, 0], function (error, results, fields) {
         console.log(error);
         console.log(results);
         if (results) {
@@ -74,10 +74,29 @@ app.get('/:id/not-read/count', function (req, res) {
         } else {
             res.json({
                 success: true,
-                count: []
+                count: 0
             })
         }
     });
 });
+app.get('/:id/requests/not-read/count', function (req, res) {
+    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.params.id, 0], function (error, results, fields) {
+        console.log(error);
+        console.log("request count", results);
+        if (results) {
 
+            count = results[0].count;
+            res.json({
+                success: true,
+                count
+            })
+
+        } else {
+            res.json({
+                success: true,
+                count: 0
+            })
+        }
+    });
+});
 
