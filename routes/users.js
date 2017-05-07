@@ -7,7 +7,7 @@ var express = require('express'),
 
 
 function getUserById(id, done) {
-    db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function(err, rows, fields) {
+    db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function (err, rows, fields) {
         if (err) throw err;
         done(rows[0]);
     });
@@ -22,12 +22,12 @@ var app = module.exports = express.Router();
  * @apiGroup Perfil
  */
 
-app.get('/:id', passport.authenticate(['jwt']), function(req, res) {
+app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
     if (isNaN(parseInt(req.params.id))) {
         res.status(400);
         res.send({ success: false, message: "Parâmetros Invalidos" });
     } else {
-        getUserById(req.params.id, function(user) {
+        getUserById(req.params.id, function (user) {
             if (!user) {
                 res.status(400);
                 res.send({ success: false, message: "Utilizador Não Encontrado" })
@@ -43,7 +43,7 @@ app.get('/:id', passport.authenticate(['jwt']), function(req, res) {
                         email: user.email,
                         password: user.password,
                         photo: user.photo_url,
-                        verified: user.tinyint
+                        verified: user.verified
                     }
                 });
             }
@@ -52,12 +52,12 @@ app.get('/:id', passport.authenticate(['jwt']), function(req, res) {
     }
 });
 
-app.get('/:id/my-vols', function(req, res) {
+app.get('/:id/my-vols', function (req, res) {
     if (isNaN(parseInt(req.params.id))) {
         res.status(400);
         res.send({ success: false, message: "Parâmetros Invalidos" });
     } else {
-        db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function(err, rows, fields) {
+        db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function (err, rows, fields) {
             if (err) {
                 res.status(400);
                 res.send({ success: false, message: "Parâmetros Invalidos" });
@@ -85,7 +85,7 @@ app.get('/:id/my-vols', function(req, res) {
 });
 
 
-app.get('/:id/vols', function(req, res) {
+app.get('/:id/vols', function (req, res) {
     console.log(typeof req.params.id)
     console.log(req.params.id);
     if (isNaN(parseInt(req.params.id))) {
@@ -93,10 +93,10 @@ app.get('/:id/vols', function(req, res) {
     } else {
         let options = {
             sql: "SELECT user_vol.id_vol, user_vol.confirm, vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,  (SELECT COUNT(user_vol.id_vol)) AS confirmed, (SELECT COUNT(user_vol.id_vol)) AS candidates, users.photo_url, users.name" +
-                " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol" +
-                " LIMIT 0, 30"
+            " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol" +
+            " LIMIT 0, 30"
         }
-        db.get().query(options, [req.params.id], function(err, vols, fields) {
+        db.get().query(options, [req.params.id], function (err, vols, fields) {
             if (err) {
                 res.status(400);
                 res.send({ success: false, message: 'Erro' });
@@ -119,6 +119,32 @@ app.get('/:id/vols', function(req, res) {
             }
 
         });
+    }
+});
+
+app.post('/:id/follow', function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+        db.get().query('INSERT INTO follows VALUES (?, ?, NULL)', [req.params.id, req.body.id_user],
+            function (error, results, fields) {
+                console.log(results);
+
+                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, 2, NULL, 0, NULL)', [req.params.id, req.body.id_user],
+                    function (error, results, fields) {
+                        console.log(results);
+                        console.log(error);
+                        res.json({
+                            success: true,
+                            message: "Sucesso"
+                        });
+                    });
+            });
+
+        /*
+
+        */
     }
 });
 

@@ -16,6 +16,7 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {MomentModule} from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 
@@ -51,6 +52,7 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
     FormsModule,
     HttpModule,
     MapModule,
+    MomentModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),

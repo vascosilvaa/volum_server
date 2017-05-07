@@ -44,7 +44,7 @@
                 <a routerLink="/profile/{{idProfile}}/new" class="btn-new-action" md-raised-button routerLink="."><span class="btn-new-action-text" >NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
             </div>
             <div *ngIf="idProfile!=idLogin"  class="col-sm-2 col-6 col-new-action text-right">
-                <a class="btn-follow" md-raised-button routerLink="."><span class="btn-new-action-text">NÃO SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
+                <a class="btn-follow" md-raised-button routerLink="." (click)="follow(idProfile)"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
             </div>
         </div>
     </div>

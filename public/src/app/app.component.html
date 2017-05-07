@@ -15,13 +15,13 @@
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">PEDIDOS</div>
-                        <div class="message-item">
+                        <div class="message-item" *ngFor="let request of requests">
                             <div class="image">
-                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11156121_957072344316738_4262642724862983361_n.jpg?oh=d6b84a15ec7b0776ac4cf3474bf2c285&oe=59751E5E">
+                                <img [src]="request.photo_url">
                             </div>
                             <div class="notification-info">
                                 <div>
-                                    <p><b>Paulo Ramos</b> pediu para te seguir. <span class="time">20:00</span> </p>
+                                    <p><b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>                                        </p>
                                 </div>
                             </div>
                             <div class="notification-info text-right">
@@ -30,36 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message-item">
-                            <div class="image">
-                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/1003983_4704960985374_922860467_n.jpg?oh=bc5cfa2a4d8667eb772d71bb69143b4a&oe=59874D1E">
-                            </div>
-                            <div class="notification-info">
-                                <div>
-                                    <p><b>Rúben Cardoso</b> pediu para te seguir. <span class="time">20:00</span> </p>
-                                </div>
-                            </div>
-                            <div class="notification-info text-right">
-                                <div class="btn-notification">
-                                    <button class="btn btnConfirm">VER</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message-item">
-                            <div class="image">
-                                <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12347979_10204514364242502_2019712815003656266_n.jpg?oh=d9d0358675ab56e0062273b7ed2039d1&oe=59793230">
-                            </div>
-                            <div class="notification-info">
-                                <div>
-                                    <p><b>Diogo Monteiro</b> pediu para te seguir. <span class="time">20:00</span> </p>
-                                </div>
-                            </div>
-                            <div class="notification-info text-right">
-                                <div class="btn-notification">
-                                    <button class="btn btnConfirm">VER</button>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div routerLink="/requests" class="dropdown-footer">Ver todos os pedidos</div>
 
@@ -95,7 +66,7 @@
                                     <span class="time">20:00</span>
                                 </div>
 
-                                <span class="textMsg"> Sou gay </span>
+                                <span class="textMsg"> Sou lindo </span>
                             </div>
                         </div>
                         <div class="message-item">
@@ -137,28 +108,19 @@
 
                         <div class="message-item" *ngFor="let notification of notifications">
                             <div class="image">
-                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
+                                <img [src]="notification.photo_url">
                             </div>
                             <div class="notification-info">
                                 <div>
-                                    <p><b>Dr. Paul Doors</b> publicou no voluntariado <b>Ajudar os Pobres</b> <span class="time">20:00</span>                                        </p>
+                                    <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
+                                        <span class="time">20:00</span> </p>
 
                                 </div>
-
-                            </div>
-                        </div>
-                        <div class="message-item">
-                            <div class="image">
-                                <img src="http://www.euacontacto.com/wp-content/uploads/12.05-Paulo-Portas.jpg">
-                            </div>
-                            <div class="notification-info">
                                 <div>
-                                    <p><b>Dr. Paul Doors</b> publicou no voluntariado <b>Ajudar os Pobres</b> <span class="time">20:00</span>                                        </p>
-
                                 </div>
-
                             </div>
                         </div>
+
                         <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
                     </div>
@@ -173,7 +135,7 @@
 
                 <li *ngIf="user" class="nameDropdown" ngbDropdown ngbDropdownToggle>
 
-                    <span >
+                    <span>
                     <img class="navbar-user-picture" [src]="user?.photo">
                     <span>{{user?.username}}</span>
                     <i class="material-icons arrow_dropdown">arrow_drop_down</i>
