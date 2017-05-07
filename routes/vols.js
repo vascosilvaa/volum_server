@@ -324,7 +324,7 @@ app.post('/:id/comments', function (req, res) {
 
 app.get('/:id/comments', function (req, res) {
 
-    db.get().query('SELECT * FROM comments where id_vol = ?', [req.params.id], function (error, results, fields) {
+    db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function (error, comments, fields) {
         if (error) {
             res.json({
                 success: false
@@ -333,7 +333,7 @@ app.get('/:id/comments', function (req, res) {
         } else {
             res.json({
                 success: true,
-                message: results
+                comments
             });
         }
     });

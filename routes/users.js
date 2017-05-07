@@ -57,18 +57,26 @@ app.get('/:id/my-vols', function (req, res) {
         res.status(400);
         res.send({ success: false, message: "Parâmetros Invalidos" });
     } else {
-        db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function (err, rows, fields) {
+        db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function (err, results, fields) {
             if (err) {
                 res.status(400);
                 res.send({ success: false, message: "Parâmetros Invalidos" });
             } else {
-                if (rows.length > 0) {
+                if (results.length > 0) {
+                    let vols = [];
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            id_vol: results[i].id_vol,
+                            name: results[i].name,
+                            date_begin: results[i].date_begin,
+                            lat: results[i].lat,
+                            long: results[i].long
+                        });
+                    }
 
                     res.send({
                         success: true,
-                        body: {
-                            rows
-                        }
+                        vols
                     });
 
                 } else {

@@ -31,10 +31,7 @@ var chat = require('./routes/chat');
 var db = require('./config/db');
 
 var searchData = [];
-var loggedUsers = [{
-    id: null,
-    sockets: []
-}
+var loggedUsers = [
 ];
 app.use(passport.initialize());
 app.use(morgan('dev'));
@@ -58,6 +55,40 @@ app.use('/api/chat', chat);
 
 app.use('/api/notifications', notifications);
 
+app.get('/api/search', function (req, res) {
+    console.log("a");
+    if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
+        res.send({ success: false, message: 'Please provide a search query' })
+    } else if (typeof req.query['search'] !== 'string') {
+        res.send({ success: false, message: 'Please provide a valid search query' })
+    } else {
+
+        let query = (req.query.search).replace(/['"]+/g, '');
+
+        db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
+            function (error, results, fields) {
+                console.log(results);
+                if (error) {
+                    res.send({ success: false, message: error })
+                    console.log(error);
+                } else {
+
+                    for (let i = 0; i < results[0].length; i++) {
+                        results[0][i].type = 0;
+                    }
+
+
+                    if (results[0].length == 0 && results[1].length == 0) {
+                        res.send({ success: false, message: [] })
+                    } else {
+                        searchData = results[0].concat(results[1]);
+                        res.send({ success: true, message: searchData })
+                    }
+                }
+            });
+    }
+});
+
 app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
 /**
@@ -79,53 +110,32 @@ function ensureUnauthenticated(req, res, next) {
     next();
 }
 
-app.get('/api/search',
-    function (req, res) {
-        console.log(req.query.search);
-        if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
-            res.send({ success: false, message: 'Please provide a search query' })
-        } else if (typeof req.query['search'] !== 'string') {
-            res.send({ success: false, message: 'Please provide a valid search query' })
-        } else {
-
-            let query = (req.query.search).replace(/['"]+/g, '');
-
-            db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
-                function (error, results, fields) {
-                    if (error) {
-                        res.send({ success: false, message: error })
-                        console.log(error);
-                    } else {
-
-                        if (results[0].length == 0 && results[1].length == 0) {
-                            res.send({ success: false, message: [] })
-                        } else {
-                            searchData = results[0].concat(results[1]);
-                            res.send({ success: true, message: searchData })
-                        }
-                    }
-                });
-        }
-    });
 
 
+
+
+/*
 io.on('connection', function (socket) {
-    io.on('connect', function (data) {
-        console.log('a user connected');
+    console.log("entrou");
+    socket.on('connect', function (data) {
+        console.log('a user connected', data);
 
-        loggedUsers.push({ id: data.id_user, sockets: [socket.id] })
+        loggedUsers.push({ id: data.id_user, sockets: socket.id })
 
         console.log(loggedUsers);
     });
 
     socket.on('disconnect', function (socket) {
         for (let i = 0; i < loggedUsers.length; i++) {
+            console.log(loggedUsers);
             let index = loggedUsers[i].sockets.indexOf(socket.id);
             loggedUsers[i].sockets.splice(index, 1);
             console.log(index + "disconnected");
         }
+
     });
 });
+*/
 
 
 
