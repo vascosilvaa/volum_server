@@ -32,5 +32,10 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
- 
+    follow(id_user, id_user1) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/follow', { id_user: id_user1 }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
 }

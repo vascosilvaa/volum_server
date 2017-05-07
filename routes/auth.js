@@ -95,9 +95,6 @@ app.post('/create', function(req, res) {
                                 //GERAR TOKEN
 
                                 let sampleFile = req.files.photo;
-
-
-
                                 sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function(err) {
 
                                     if (err) {

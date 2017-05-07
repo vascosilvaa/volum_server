@@ -64,4 +64,10 @@ export class ProfileComponent implements OnInit {
       );
     }
   }
+  follow(id_user) {
+    console.log("ID", id_user);
+    this.profileService.follow(id_user, this.idLogin).then(res => {
+      console.log(res);
+    });
+  }
 }

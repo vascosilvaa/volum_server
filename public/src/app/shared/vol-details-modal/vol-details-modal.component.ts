@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../Auth/authentication.service';
 import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
 import { Component, OnInit } from '@angular/core';
@@ -26,38 +27,37 @@ export class VolDetailsModalComponent implements OnInit {
   public volDetails: any;
   public state: Number;
   context: ModalContext;
+  public id_user: Number;
 
-
-  constructor(private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService) {
+  constructor(private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     this.context.size = "lg";
-
 
   }
 
   ngOnInit() {
     console.log(this.context.idVol);
 
+    this.authService.userPromise.then(res => this.id_user = res.user.id_user);
     this.volsService.getVol(this.context.idVol)
       .then(res => {
         this.volDetails = res.vol;
         console.log(this.volDetails);
-        this.checkState(this.volDetails.user.id_user, this.context.idVol);
+        this.checkState(this.context.idVol);
 
       })
       .catch(err => console.log(err));
   }
 
 
-  apply(id_user, id_vol) {
-    console.log(id_user);
+  apply(id_vol) {
     console.log(id_vol);
-    this.volsService.apply(id_user, id_vol).then(res =>
+    this.volsService.apply(this.id_user, id_vol).then(res =>
       console.log(res));
   }
-  checkState(id_user, id_vol) {
-    this.volsService.checkState(id_user, id_vol).then(res => {
+  checkState(id_vol) {
+    this.volsService.checkState(this.id_user, id_vol).then(res => {
       this.state = res.state;
       console.log(res);
     });

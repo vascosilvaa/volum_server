@@ -251,7 +251,6 @@ app.post('/', jwtCheck, function (req, res) {
     var name = req.body.name;
     if (!req.body.name || !req.body.desc) {
         return res.status(400).send("Falta enviar dados");
-        throw new Error(error);
 
     }
     if (!req.photo_1 && req.body.lat && req.body.long) {
@@ -362,18 +361,35 @@ app.post('/:id/apply', function (req, res) {
             message: 'Id Inválido'
         });
     } else {
+        console.log("a", req.body.id_user);
+        console.log("b", req.params.id);
         db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.body.id_user, req.params.id],
             function (error, results, fields) {
                 if (error) {
+                    console.log(error);
                     res.json({
                         success: false,
                         error: "Ja te candidataste a este voluntariado"
                     });
                 } else {
-                    res.json({
-                        success: true,
-                        message: "Sucesso"
-                    });
+
+                    db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
+                        function (error, results, fields) {
+                            console.log(results);
+                            let id_creator = results[0].id_user_creator;
+
+                            db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL)', [id_creator, req.body.id_user, req.params.id],
+                                function (error, results, fields) {
+                                    console.log(results);
+                                    console.log(error);
+                                    res.json({
+                                        success: true,
+                                        message: "Sucesso"
+                                    });
+                                });
+                        });
+
+
                 }
             });
     }

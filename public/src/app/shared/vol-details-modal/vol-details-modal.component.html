@@ -32,7 +32,7 @@
         <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
     </div>
     <div class="col text-right no-padding">
-        <button class="btn btnCandidate" (click)="apply(volDetails.user.id_user, volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button>
+        <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button>
         <button class="btn btn-info" *ngIf="state == 1">À espera de confirmação</button>
         <button class="btn btn-success " *ngIf="state == 2">Confirmado</button>
 
