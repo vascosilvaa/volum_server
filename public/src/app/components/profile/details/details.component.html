@@ -6,7 +6,7 @@
                     <div class="row iconBack">
                         <a routerLink="/profile/{{idLogin}}/actions"><i class="material-icons arrow">arrow_back</i></a>
                         <div class="col titleCard titleVol vcenter">
-                            Lorem Ipsum
+                            {{vols?.name}}
                         </div>
                         <div class="col text-right iconCard">
                             <i class="material-icons edit">create</i>
@@ -32,9 +32,7 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="col-12">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus venenatis euismod. Cras vel elit id ligula lobortis sagittis. Vestibulum iaculis neque rutrum justo gravida, in semper risus vehicula. Etiam vitae ligula velit. Nunc aliquam consequat
-                            sagittis. Sed diam massa, tempor at metus a, mollis sollicitudin felis. Maecenas ipsum neque, condimentum ut quam sed, viverra lacinia dolor. Fusce in ultrices risus, sollicitudin dictum justo. Sed ultricies ullamcorper consequat.
-                            Aliquam orci tortor, dignissim et porta vel, blandit eget massa. Integer non ante vitae sem tempor ornare gravida et diam. Curabitur sit amet felis ac dui imperdiet blandit. Vivamus eu condimentum est.
+                        {{vols?.desc}}
                         </div>
                     </div>
                     
@@ -61,7 +59,7 @@
                             <span class="desc-title">Tipo de Voluntariado:</span> Solidariedade Social
                         </div>
                         <div class="col-12 content-details">
-                            <span class="desc-title m-b">Seguro:</span> Sim
+                            <span class="desc-title m-b">Seguro:</span> <span *ngIf="vols?.insurance">Sim</span><span *ngIf="!vols?.insurance">Não</span>
                         </div>
                     </div>
                     
@@ -125,10 +123,10 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="addressTitle">
-                                Universidade de Aveiro
+                                {{addressName[vols?.id_vol]}}
                             </div>
                             <div class="Address">
-                                Universidade de Aveiro, 3810-164 Aveiro, Portugal
+                                {{address[vols?.id_vol]}}
                             </div>
                         </div>
                     </div>
@@ -151,7 +149,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="addressTitle">
-                                8 de março - 12 de março
+                                {{vols?.date_begin | date:"d"}} de {{vols?.date_begin | date:"MMMM"}} - {{vols?.date_end | date:"d"}} de {{vols?.date_end | date:"MMMM"}}
                             </div>
                             <div class="Address">
                                 8 de março às 18:00 até 12 de março às 22:00
@@ -181,7 +179,7 @@
 
                         <div class="col-12">
                          
-                            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+                            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14" [styles]="Terrain">
                             <sebm-google-map-marker [latitude]="lat" [longitude]="lng" ></sebm-google-map-marker>
                             </sebm-google-map>
              
@@ -225,38 +223,14 @@
                 </div>
                 <div class="card-content">
                     <ul class="list-group">
-                        <li class="listPerson no-border no-margin">
+                        <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
                             <div class="row no-margin">
                                 <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar04.png">
-                                    <span class="candidateName">Pedro Araújo</span>
+                                    <img src="{{candidate?.photo_url}}">
+                                    <span class="candidateName">{{candidate?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
                                     <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(5,'Pedro Araújo')">RECUSAR</button>
-                                    <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar5.png">
-                                    <span class="candidateName">Pedro Araújo</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(5,'Pedro Araújo')">RECUSAR</button>
-                                    <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar3.png">
-                                    <span class="candidateName">Pedro Araújo</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel " (click)="openRemoveConfirm(5,'Pedro Araújo')">RECUSAR</button>
                                     <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
                                 </div>
                             </div>
@@ -277,33 +251,11 @@
                 </div>
                 <div class="card-content">
                     <ul class="list-group">
-                        <li class="listPerson no-border no-margin">
+                        <li *ngFor="let confirmed of confirmeds"class="listPerson no-border no-margin">
                             <div class="row no-margin">
                                 <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar04.png">
-                                    <span class="candidateName">Pedro Araújo</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4,'Pedro Araújo')">REMOVER</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar.png">
-                                    <span class="candidateName">Pedro Araújo</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn  btnRemove" (click)="openRemoveConfirm(4,'Pedro Araújo')">REMOVER</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="../assets/imgs/avatar2.png">
-                                    <span class="candidateName">Pedro Araújo</span>
+                                    <img src="{{confirmed?.photo_url}}">
+                                    <span class="candidateName">{{confirmed?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
                                     <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4,'Pedro Araújo')">REMOVER</button>

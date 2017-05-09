@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { GlobalConstants } from './../../shared/global-constants';
 import { HttpClient } from './../../shared/http-client';
 
@@ -12,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ProfileService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private HTTP: Http) {
 
     }
 
