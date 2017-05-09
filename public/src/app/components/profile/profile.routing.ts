@@ -23,7 +23,7 @@ const routes: Routes = [
         component: ProfileComponent,
         children: [
           {
-            path: 'details',
+            path: 'details/:id',
             component: DetailsComponent
           },
            {
@@ -31,8 +31,8 @@ const routes: Routes = [
             component: NewActionComponent,
           },
           {
-            path: 'actions',
-            component: ActionsComponent
+           path: 'actions',
+            loadChildren: 'app/components/profile/actions/actions.module#ActionsModule'
           },
           {
             path: 'activity',

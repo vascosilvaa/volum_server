@@ -1,0 +1,63 @@
+  <div class="row">
+    <div class="col-12 table">
+      <table class="table">
+        <thead class="thead-inverse" class="cabecalho">
+          <tr>
+            <th>TITULO</th>
+            <th>LOCALIZAÇÃO</th>
+            <th>DATA</th>
+            <th>CONFIRMADOS</th>
+            <th>CANDIDATOS</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tableText" *ngFor="let vol of myVols; let i=index">
+            <th class="tableBold tableTitle">{{vol.name}}</th>
+
+            <td class="tablePlace">
+              <div class="tableBold">{{addressName[vol.id_vol]}}</div>
+              <div class="">{{address[vol.id_vol]}}</div>
+
+            </td>
+
+            <td class="tableDate">
+              <div class="tableBold">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</div>
+              <div class="">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{vol?.start_time}} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às {{vol?.start_time}}</div>
+            </td>
+
+            <td>
+                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
+                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
+            </td>
+
+            <td>
+              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
+              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+            </td>
+
+
+    
+
+            <td  class="tableBtns">
+              <div class="text-right">
+                <button class="btn btnConfirm" (click)="seeDetails(vol.id_vol)">VER</button>
+              </div>
+              <div class="text-right">
+                <button class="btn btnCancel" >APAGAR</button>
+              </div>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>

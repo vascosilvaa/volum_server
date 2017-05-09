@@ -10,7 +10,6 @@ import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
-import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
 import { FollowingComponent } from './following/following.component';
@@ -43,7 +42,7 @@ import { NewActionComponent } from './new-action/new-action.component';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  declarations: [NewActionComponent, ProfileComponent, ActionsComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
+  declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
   ],

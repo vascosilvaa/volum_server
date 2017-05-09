@@ -1,3 +1,4 @@
+import { DetailsService } from './details.service';
 import { ModalEndComponent } from './../../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
 import { SharedService } from './../../../shared/shared.service';
@@ -12,34 +13,76 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
+  providers: [DetailsService]
 })
 export class DetailsComponent implements OnInit {
-  lat: number = 41.100856;
-  lng: number =  -8.544893;
+  lat: number;
+  lng: number;
   public idLogin: any;
   public userLogin: any;
-  constructor(public route: ActivatedRoute, public http: Http, private profileService: ProfileService,
-  overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
-  private auth: AuthenticationService, private router: Router) {
+  public idVol: any;
+  public vols: any;
+  public addressData: any;
+  public address=[];
+  public addressName=[];
+  public candidates:any;
+  public confirmeds:any;
+  constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
+  public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService, 
+  private router: Router, private detailsservice: DetailsService) {
     overlay.defaultViewContainer = vcRef;
    }
 
 
   ngOnInit() {
-    this.getUser();
+    this.route.params.subscribe((params) => {
+        this.idVol = this.route.snapshot.params['id'];
+        this.idLogin = this.route.parent.parent.snapshot.params['id'];
+    });
+    this.getVol(this.idVol);
+    this.getCandidates(this.idVol);
+    this.getConfirmed(this.idVol);
+
+    
   }
 
-   getUser() {
-    if (this.auth.isAuthenticated()) {
-      this.auth.userPromise.then(res => {
-        this.userLogin = res.user;
-        let id = localStorage.getItem('USER_ID');
-        this.idLogin = id;
-       }
-      );
+  getVol(idVol) {
+    this.detailsservice.getVol(idVol)
+      .then(res => {
+        this.vols = res.vol;
+        this.getAddress();
+        this.lat = parseFloat(this.vols.lat);
+        this.lng = parseFloat(this.vols.long);
+        console.log(this.lat + ',' + this.lng);
+      })
+      .catch(err => console.log(err));
+  }
 
-    }
+  getCandidates(idVol) {
+    this.detailsservice.getCandidates(idVol)
+      .then(res => {
+        this.candidates = res.users;
+      })
+      .catch(err => console.log(err));
+  }
+    getConfirmed(idVol) {
+    this.detailsservice.getConfirmed(idVol)
+      .then(res => {
+        this.confirmeds = res.users;
+      })
+      .catch(err => console.log(err));
+  }
+
+    getAddress() {
+        this.detailsservice.getAddress(this.vols.lat, this.vols.long)
+        .then(res => {
+          this.addressData = res.results;
+          console.log(this.addressData);
+           this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
+          this.addressName[this.vols.id_vol] = this.addressData[0].address_components[0].short_name;
+        })
+       
   }
 
   openViewAll(type, idVol, name) {

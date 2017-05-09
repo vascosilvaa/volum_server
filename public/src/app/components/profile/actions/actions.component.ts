@@ -19,7 +19,7 @@ export class ActionsComponent implements OnInit {
   private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-  this.route.params.subscribe((params) => {
+  /*this.route.params.subscribe((params) => {
       this.idProfile = this.route.parent.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
@@ -42,4 +42,5 @@ export class ActionsComponent implements OnInit {
   onSelect(profile) {
     this.router.navigate(['/profile/' + profile + '/details']);
   }
+*/ }
 }
