@@ -10,9 +10,9 @@
                 <li *ngIf="user" routerLink="map">
                     <md-icon>place</md-icon>
                 </li>
-                <li *ngIf="user" ngbDropdown>
+                <li *ngIf="user" ngbDropdown (click)="cleanRequests()">
                     <md-icon ngbDropdownToggle>people</md-icon>
-                    <span class="badge badge-notify">{{newRequestsCount}}</span>
+                    <span class="badge badge-notify" *ngIf="newRequestsCount > 0">{{newRequestsCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">PEDIDOS</div>
@@ -49,7 +49,7 @@
                             <div class="image">
                                 <img [src]="conversation.photo_url">
                             </div>
-                            <div class="message-info">
+                            <div class="message-info" routerLink="/chat/msg/13">
                                 <div>
                                     <span class="nameMsg">{{conversation.user_name}}</span>
                                     <span class="time">20:00</span>
@@ -62,9 +62,9 @@
                     </div>
                 </li>
 
-                <li *ngIf="user" ngbDropdown>
+                <li *ngIf="user" ngbDropdown (click)="cleanNotifications()">
                     <md-icon ngbDropdownToggle>notifications</md-icon>
-                    <span class="badge badge-notify">{{newNotificationCount}}</span>
+                    <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">NOTIFICAÇÕES</div>

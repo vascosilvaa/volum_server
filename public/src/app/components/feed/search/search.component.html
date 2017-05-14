@@ -1,15 +1,15 @@
 <ng-template #rt let-r="result" let-t="term">
-   
-   <!-- SE FOR INSTITUICAO -->
-   <div class="container">
-        <div class="row content-search"> 
-            <div class="img-search">
+
+    <!-- SE FOR INSTITUICAO -->
+    <div class="container">
+        <div class="row content-search">
+            <div class="img-search" (click)="navigate(model.id, model.type)">
                 <img *ngIf="!r.photo_url" src="assets/imgs/volunteer.png">
                 <img *ngIf="r.photo_url" [src]="r.photo_url">
             </div>
             <div class="desc-search">
                 <div class="namePerson">
-                    {{ r.name}} 
+                    {{ r.name}}
                 </div>
                 <div class="descPerson">
                     Solidariedade Social
@@ -25,7 +25,8 @@
         <div class="col-search">
 
             <md-input-container class="col-12">
-                <input mdInput [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+                <input mdInput [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)"
+                    placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
             </md-input-container>
         </div>
 
@@ -33,4 +34,4 @@
             <button md-raised-button class="btnConfirm btn-search" routerLink="/search">PROCURAR</button>
         </div>
     </div>
-</div> 
+</div>

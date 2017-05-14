@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { SearchService } from './search.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -16,8 +17,7 @@ export class SearchComponent implements OnInit {
   model: any;
   searching = false;
   searchFailed = false;
-
-  constructor(private _service: SearchService) { }
+  constructor(private _service: SearchService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -43,4 +43,15 @@ export class SearchComponent implements OnInit {
           }))
       .do(() => this.searching = false);
 
+
+  navigate(id, type) {
+    if (type == 1) {
+      this.router.navigate(['profile/' + id + '/about'])
+    } else if (type == 2) {
+      this.router.navigate(['profile/' + id + '/about'])
+
+    } else if (type == 3) {
+      //Abrir VOL DETAILS
+    }
+  }
 }

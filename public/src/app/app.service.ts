@@ -27,4 +27,14 @@ export class AppService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
+    cleanRequests(id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/notifications/requests/read-all`, { id_user: id_user }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    cleanNotifications(id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/notifications/read-all`, { id_user: id_user }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

@@ -52,6 +52,14 @@ app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
     }
 });
 
+
+/**
+ * @api {get} /profile/:id Retornar os meus Vols
+ * @apiName getMyVols
+ * @apiParam id ID do user
+ * @apiGroup Perfil
+ */
+
 app.get('/:id/my-vols', function (req, res) {
     if (isNaN(parseInt(req.params.id))) {
         res.status(400);
@@ -93,6 +101,13 @@ app.get('/:id/my-vols', function (req, res) {
 });
 
 
+/**
+ * @api {get} /profile/:id Retornar Vols em que participei 
+ * @apiName getVols
+ * @apiParam id ID do user
+ * @apiGroup Perfil
+ */
+
 app.get('/:id/vols', function (req, res) {
     console.log(typeof req.params.id)
     console.log(req.params.id);
@@ -129,6 +144,16 @@ app.get('/:id/vols', function (req, res) {
         });
     }
 });
+
+
+/**
+ * @api {get} /profile/:id/follow Seguir 
+ * @apiName getVols
+ * @apiParam id ID do user
+ * @apiParam id_user ID do user 2
+ * @apiGroup Perfil
+ */
+
 
 app.post('/:id/follow', function (req, res) {
     if (isNaN(parseInt(req.params.id))) {

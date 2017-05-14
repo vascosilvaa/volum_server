@@ -1,23 +1,23 @@
-webpackJsonp([2,9],{
+webpackJsonp([2,10],{
 
-/***/ 709:
+/***/ 710:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__personal_settings_personal_settings_component__ = __webpack_require__(738);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__settings_routing__ = __webpack_require__(748);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__personal_settings_personal_settings_component__ = __webpack_require__(742);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__settings_routing__ = __webpack_require__(755);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__settings_component__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_bootstrap_accordion__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__about_me_about_me_component__ = __webpack_require__(735);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__education_education_component__ = __webpack_require__(737);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__change_pass_change_pass_component__ = __webpack_require__(736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__settings_component__ = __webpack_require__(743);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_bootstrap_accordion__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__about_me_about_me_component__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__education_education_component__ = __webpack_require__(741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__change_pass_change_pass_component__ = __webpack_require__(740);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsModule", function() { return SettingsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -66,12 +66,12 @@ SettingsModule = __decorate([
 
 /***/ }),
 
-/***/ 710:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(712);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionComponent; });
 
 
@@ -125,7 +125,7 @@ var AccordionComponent = (function () {
 
 /***/ }),
 
-/***/ 711:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -151,13 +151,13 @@ var AccordionConfig = (function () {
 
 /***/ }),
 
-/***/ 712:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(711);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionPanelComponent; });
 
 
@@ -228,7 +228,7 @@ var AccordionPanelComponent = (function () {
 
 /***/ }),
 
-/***/ 713:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -272,11 +272,11 @@ var EventListener = win['EventListener'];
 
 /***/ }),
 
-/***/ 714:
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(714);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isBs3;
 
 function isBs3() {
@@ -286,16 +286,16 @@ function isBs3() {
 
 /***/ }),
 
-/***/ 716:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(719);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(712);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(710);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(712);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionModule; });
 
 
@@ -322,17 +322,17 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 717:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(713);
 /* unused harmony reexport AccordionPanelComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(711);
 /* unused harmony reexport AccordionComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(717);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__accordion_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(712);
 /* unused harmony reexport AccordionConfig */
 
 
@@ -342,7 +342,7 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 718:
+/***/ 719:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -451,12 +451,12 @@ var CollapseDirective = (function () {
 
 /***/ }),
 
-/***/ 719:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(719);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollapseModule; });
 
 
@@ -480,7 +480,7 @@ var CollapseModule = (function () {
 
 /***/ }),
 
-/***/ 735:
+/***/ 739:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -506,8 +506,8 @@ var AboutMeComponent = (function () {
 AboutMeComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-about-me',
-        template: __webpack_require__(791),
-        styles: [__webpack_require__(764)]
+        template: __webpack_require__(804),
+        styles: [__webpack_require__(774)]
     }),
     __metadata("design:paramtypes", [])
 ], AboutMeComponent);
@@ -516,7 +516,7 @@ AboutMeComponent = __decorate([
 
 /***/ }),
 
-/***/ 736:
+/***/ 740:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -542,8 +542,8 @@ var ChangePassComponent = (function () {
 ChangePassComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-change-pass',
-        template: __webpack_require__(792),
-        styles: [__webpack_require__(765)]
+        template: __webpack_require__(805),
+        styles: [__webpack_require__(775)]
     }),
     __metadata("design:paramtypes", [])
 ], ChangePassComponent);
@@ -552,7 +552,7 @@ ChangePassComponent = __decorate([
 
 /***/ }),
 
-/***/ 737:
+/***/ 741:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -578,8 +578,8 @@ var EducationComponent = (function () {
 EducationComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-education',
-        template: __webpack_require__(793),
-        styles: [__webpack_require__(766)]
+        template: __webpack_require__(806),
+        styles: [__webpack_require__(776)]
     }),
     __metadata("design:paramtypes", [])
 ], EducationComponent);
@@ -588,7 +588,7 @@ EducationComponent = __decorate([
 
 /***/ }),
 
-/***/ 738:
+/***/ 742:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -614,8 +614,8 @@ var PersonalSettingsComponent = (function () {
 PersonalSettingsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-personal-settings',
-        template: __webpack_require__(794),
-        styles: [__webpack_require__(767)]
+        template: __webpack_require__(807),
+        styles: [__webpack_require__(777)]
     }),
     __metadata("design:paramtypes", [])
 ], PersonalSettingsComponent);
@@ -624,7 +624,7 @@ PersonalSettingsComponent = __decorate([
 
 /***/ }),
 
-/***/ 739:
+/***/ 743:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -659,8 +659,8 @@ var SettingsComponent = (function () {
 SettingsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-settings',
-        template: __webpack_require__(795),
-        styles: [__webpack_require__(768)],
+        template: __webpack_require__(808),
+        styles: [__webpack_require__(778)],
     }),
     __metadata("design:paramtypes", [])
 ], SettingsComponent);
@@ -669,15 +669,15 @@ SettingsComponent = __decorate([
 
 /***/ }),
 
-/***/ 748:
+/***/ 755:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settings_component__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__change_pass_change_pass_component__ = __webpack_require__(736);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__education_education_component__ = __webpack_require__(737);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__about_me_about_me_component__ = __webpack_require__(735);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__personal_settings_personal_settings_component__ = __webpack_require__(738);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settings_component__ = __webpack_require__(743);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__change_pass_change_pass_component__ = __webpack_require__(740);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__education_education_component__ = __webpack_require__(741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__about_me_about_me_component__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__personal_settings_personal_settings_component__ = __webpack_require__(742);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsRoutingModule; });
@@ -738,7 +738,7 @@ SettingsRoutingModule = __decorate([
 
 /***/ }),
 
-/***/ 764:
+/***/ 774:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -756,7 +756,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 765:
+/***/ 775:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -774,7 +774,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 766:
+/***/ 776:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -792,7 +792,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 767:
+/***/ 777:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -810,7 +810,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 768:
+/***/ 778:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -828,35 +828,35 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 791:
+/***/ 804:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card primaryCard\">\r\n  <div class=\"card-header cardTitle\">\r\n    <div class=\"row\">\r\n      <div class=\"col titleCard\">\r\n      Acerca de mim\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n<div class=\"card-block\">\r\n  <form class=\"float-label\" spellcheck=\"false\">\r\n    <div class=\"row\">\r\n        <div class=\"col-6 inputProfile no-margin\">\r\n          <div class=\"control\">\r\n           <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Sobre mim\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n            <label for=\"textarea\" class=\"titlePlaceholder\">Sobre mim</label>\r\n           </div>\r\n         </div>\r\n         <div class=\"col-6 inputProfile no-margin\">\r\n           <div class=\"control\">\r\n            <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Hobbies e interesses\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n             <label for=\"textarea\" class=\"titlePlaceholder\">Hobbies e interesses</label>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-6 inputProfile\">\r\n            <div class=\"control\">\r\n             <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Tipos de voluntariado favoritos\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n              <label for=\"textarea\" class=\"titlePlaceholder\">Tipos de voluntariado favoritos</label>\r\n             </div>\r\n           </div>\r\n           <div class=\"col-6 inputProfile\">\r\n             <div class=\"control\">\r\n              <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Idiomas\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n               <label for=\"textarea\" class=\"titlePlaceholder\">Idiomas</label>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-6 inputProfile\">\r\n              <div class=\"control\">\r\n               <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Outros interesses\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n                <label for=\"textarea\" class=\"titlePlaceholder\">Outros interesses</label>\r\n               </div>\r\n             </div>\r\n             <div class=\"col-6 inputProfile\">\r\n               <div class=\"control\">\r\n                <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Sobre mim\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n                 <label for=\"textarea\" class=\"titlePlaceholder\">Sobre mim</label>\r\n                </div>\r\n              </div>\r\n\r\n        <div class=\"col-6\">\r\n            <a class=\"btn btn-outline-primary btnDescart\" routerLink=\"/profile/details\">CANCELAR</a>\r\n        </div>\r\n        <div class=\"col-6 \">\r\n          <a class=\"btn btn-outline-primary btnSave\" routerLink=\"/profile/details\">GUARDAR</a>\r\n        </div>\r\n    </div>\r\n  </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 792:
+/***/ 805:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card primaryCard\">\r\n  <div class=\"card-header cardTitle\">\r\n    <div class=\"row\">\r\n      <div class=\"col titleCard\">\r\n      Alterar a palavra passe\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n<div class=\"card-block\">\r\n  <form class=\"float-label\" spellcheck=\"false\">\r\n  <div class=\"row\">\r\n      <div class=\"col-12 inputProfile no-margin\">\r\n          <div class=\"control inputText\">\r\n          <input type=\"password\" class=\"\" name=\"title\" placeholder=\"Palavra passe atual\" value=\"qualquer\" required />\r\n          <label for=\"title\" class=\"titlePlaceholder\">Palavra passe atual</label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6 inputProfile\">\r\n        <div class=\"control inputText\">\r\n          <input type=\"password\" class=\"\" name=\"title\" placeholder=\"Nova palavra passe\" value=\"qualquer\" required />\r\n          <label for=\"title\" class=\"titlePlaceholder\">Nova palavra passe</label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-6 inputProfile\">\r\n        <div class=\"control inputText\">\r\n          <input type=\"password\" class=\"\" name=\"title\" placeholder=\"Confirmar nova palavra passe\" value=\"qualquer\" required />\r\n          <label for=\"title\" class=\"titlePlaceholder\">Confirmar nova palavra passe</label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-12 \">\r\n        <a class=\"btn btn-outline-primary btnSave\" routerLink=\"/profile/details\">GUARDAR</a>\r\n      </div>\r\n    </div>\r\n\r\n  </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 793:
+/***/ 806:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card primaryCard\">\r\n  <div class=\"card-header cardTitle\">\r\n    <div class=\"row\">\r\n      <div class=\"col titleCard\">\r\n      Educação e formação\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n<div class=\"card-block\">\r\n  <form class=\"float-label\" spellcheck=\"false\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 titleEducation noMarginTitleEducation\">\r\n      Formação 1\r\n    </div>\r\n      <div class=\"col-6 inputProfile no-margin\">\r\n          <div class=\"control inputText\">\r\n          <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Instituição\" value=\"Universidade de Aveiro\" required />\r\n          <label for=\"title\" class=\"titlePlaceholder\">Instituição</label>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-6 inputProfile no-margin\">\r\n          <div class=\"control inputText\">\r\n          <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Período de tempo\" value=\"2014-2017\" required />\r\n          <label for=\"title\" class=\"titlePlaceholder\">Período de tempo</label>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-12 inputProfile marginBottom\">\r\n        <div class=\"control\">\r\n         <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Descrição\">Licenciatura em Psicologia</textarea>\r\n          <label for=\"textarea\" class=\"titlePlaceholder\">Descrição</label>\r\n         </div>\r\n       </div>\r\n\r\n\r\n       <div class=\"col-12 titleEducation\">\r\n          Formação 2\r\n       </div>\r\n\r\n\r\n       <div class=\"col-6 inputProfile no-margin\">\r\n           <div class=\"control inputText\">\r\n           <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Instituição\" value=\"Universidade de Aveiro\" required />\r\n           <label for=\"title\" class=\"titlePlaceholder\">Instituição</label>\r\n         </div>\r\n       </div>\r\n\r\n       <div class=\"col-6 inputProfile no-margin \">\r\n           <div class=\"control inputText\">\r\n           <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Período de tempo\" value=\"2014-2017\" required />\r\n           <label for=\"title\" class=\"titlePlaceholder\">Período de tempo</label>\r\n         </div>\r\n       </div>\r\n       <div class=\"col-12 inputProfile marginBottom\">\r\n         <div class=\"control\">\r\n          <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Descrição\">Licenciatura em Psicologia</textarea>\r\n           <label for=\"textarea\" class=\"titlePlaceholder\">Descrição</label>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"col-12 addEducation\">\r\n          <span class=\"iconAdd\">+ </span><span class=\"titleAdd\">Adicionar campo de educação</span>\r\n        </div>\r\n\r\n       <div class=\"col-6\">\r\n           <a class=\"btn btn-outline-primary btnDescart\" routerLink=\"/profile/details\">CANCELAR</a>\r\n       </div>\r\n       <div class=\"col-6 \">\r\n         <a class=\"btn btn-outline-primary btnSave\" routerLink=\"/profile/details\">GUARDAR</a>\r\n       </div>\r\n\r\n    </div>\r\n\r\n\r\n\r\n  </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 794:
+/***/ 807:
 /***/ (function(module, exports) {
 
 module.exports = "\r\n  <div class=\"card primaryCard\">\r\n    <div class=\"card-header cardTitle\">\r\n      <div class=\"row\">\r\n        <div class=\"col titleCard\">\r\n          Informação Pessoal\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"card-block\">\r\n\r\n        <form class=\"float-label\" spellcheck=\"false\">\r\n        <div class=\"row\">\r\n            <div class=\"col-6 inputProfile no-margin\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Primeiro nome\" value=\"Vasco\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">Primeiro nome</label>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-6 inputProfile no-margin\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Apelido\" value=\"Silva\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">Apelido</label>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-6 inputProfile\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"E-mail\" value=\"vascosilvaa@gmail.com\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">E-mail</label>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-6 inputProfile\">\r\n              <select class=\"form-control inputText form-control-lg disabled\">\r\n                <option selected>Masculino</option>\r\n                <option>Feminino</option>\r\n              </select>\r\n              <label class=\"placeholderSelect\">Género</label>\r\n            </div>\r\n\r\n            <div class=\"col-6 inputProfile\">\r\n                <div class=\"form-group\">\r\n                  <div class=\"input-group\">\r\n                    <input class=\"form-control date_picker\"\r\n                           name=\"dp\" [(ngModel)]=\"model\" ngbDatepicker #d=\"ngbDatepicker\" placeholder=\"aaaa-mm-dd\">\r\n                    <div class=\"input-group-addon\" (click)=\"d.toggle()\" >\r\n                      <i class=\"data_range_icon material-icons\">date_range</i>\r\n                    </div>\r\n                  </div>\r\n                  <label class=\"placeholderSelect\">Data de Nascimento</label>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"col-6 inputProfile\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"E-mail\" value=\"vascosilvaa@gmail.com\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">E-mail</label>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-4 inputProfile\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"País\" value=\"Portugal\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">País</label>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-4 inputProfile\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Distrito\" value=\"Porto\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">Distrito</label>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-4 inputProfile\">\r\n                <div class=\"control inputText\">\r\n                <input type=\"text\" class=\"\" name=\"title\" placeholder=\"Telemóvel\" value=\"913 315 609\" required />\r\n                <label for=\"title\" class=\"titlePlaceholder\">Telemóvel</label>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-lg-6 inputProfile\">\r\n              <div class=\"control\">\r\n               <textarea class=\"textAreaProfile\" name=\"textarea\" value=\"913 315 609\" required rows=\"4\" placeholder=\"Sobre mim\">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>\r\n                <label for=\"textarea\" class=\"titlePlaceholder\">Sobre mim</label>\r\n             </div>\r\n            </div>\r\n            <div class=\"col-lg-6\">\r\n              <div class=\"form-group\">\r\n                <input type=\"file\" class=\"form-control-file inputPhotoProfile\" id=\"exampleInputFile\" aria-describedby=\"fileHelp\">\r\n                <small id=\"fileHelp\" class=\"form-text text-muted\">Insira uma nova imagem de forma a alterar a sua foto de perfil. </small>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-lg-12 inputProfile\">\r\n              <div class=\"input-group input-group-lg\">\r\n                <span class=\"input-group-addon\" id=\"sizing-addon1\" style=\"background-color:white; padding-left:30px; padding-right:30px;\"><img src=\"../assets/imgs/fb_logo.png\" style=\"max-height: 20px; max-width: 20px; height:auto; width: auto;\" /></span>\r\n                <input type=\"text\" class=\"form-control inputSocial\" placeholder=\"vasco/facebook.com\" aria-describedby=\"sizing-addon1\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-lg-12 inputProfile\">\r\n              <div class=\"input-group input-group-lg\">\r\n                <span class=\"input-group-addon\" id=\"sizing-addon1\" style=\"background-color:white\"><img src=\"../assets/imgs/insta_logo.png\" style=\"max-height: 20px; max-width: 20px; height:auto; width: auto;\" /></span>\r\n                <input type=\"text\" class=\"form-control inputSocial\" placeholder=\"vasco/instagram.com\" aria-describedby=\"sizing-addon1\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-lg-12 inputProfile\">\r\n              <div class=\"input-group input-group-lg\">\r\n                <span class=\"input-group-addon\" id=\"sizing-addon1\" style=\"background-color:white\"><img src=\"../assets/imgs/linkedin_logo.png\" style=\"max-height: 20px; max-width: 20px; height:auto; width: auto;\" /></span>\r\n                <input type=\"text\" class=\"form-control  inputSocial\" placeholder=\"vasco/linkedin.com\" aria-describedby=\"sizing-addon1\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-lg-12 inputProfile\">\r\n              <div class=\"input-group input-group-lg\">\r\n                <span class=\"input-group-addon\" id=\"sizing-addon1\" style=\"background-color:white\"><img src=\"../assets/imgs/twitter_logo.png\" style=\"max-height: 20px; max-width: 20px; height:auto; width: auto;\" /></span>\r\n                <input type=\"text\" class=\"form-control  inputSocial\" placeholder=\"twitter/snapchat.com\" aria-describedby=\"sizing-addon1\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-6\">\r\n                <a class=\"btn btn-outline-primary btnDescart\" routerLink=\"/profile/details\">CANCELAR</a>\r\n            </div>\r\n            <div class=\"col-6 \">\r\n              <a class=\"btn btn-outline-primary btnSave\" routerLink=\"/profile/details\">GUARDAR</a>\r\n            </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n"
 
 /***/ }),
 
-/***/ 795:
+/***/ 808:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div clasS=\"col-12 col-lg-3 border\">\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitleMini\">\r\n          <div class=\"row\">\r\n            <div class=\"col titleCardMini\">\r\n            MEU PERFIL\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"card-header cardTitleAcc\" (click)=\"openPersonal()\">\r\n          <div class=\"row\">\r\n            <div class=\"col titleCardAcc\">\r\n            Definições de Perfil\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n      <div *ngIf=\"personalSettings==1\" class=\"card-block-acc card-block\">\r\n        <ul class=\"listSettings\">\r\n          <li>\r\n            <a routerLink=\"/profile/1/settings/personal\" [routerLinkActive]=\"['settingsActive']\">Informação Pessoal</a>\r\n          </li>\r\n          <li>\r\n            <a routerLink=\"/profile/1/settings/about-me\" [routerLinkActive]=\"['settingsActive']\">Acerca de Mim</a>\r\n          </li>\r\n          <li>\r\n            <a routerLink=\"/profile/1/settings/education\" [routerLinkActive]=\"['settingsActive']\">Educação e Formação</a>\r\n          </li>\r\n          <li>\r\n            <a routerLink=\"/profile/1/settings/change-pass\" [routerLinkActive]=\"['settingsActive']\">Alterar a palavra passe</a>\r\n          </li>\r\n      </ul>\r\n      </div>\r\n\r\n      <div class=\"card-header cardTitleAcc\">\r\n        <div class=\"row\">\r\n          <div class=\"col titleCardAcc\">\r\n          Mensagens\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n\r\n\r\n    </div>\r\n  </div>\r\n\r\n    <div class=\"col-12 col-lg-9\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n</div>\r\n\r\n"

@@ -107,6 +107,26 @@ export class AppComponent implements OnInit {
 
     })
   }
+  cleanRequests() {
+    if (this.newRequestsCount > 0) {
+      this.appService.cleanRequests(this.user.id_user).then(res => {
+        console.log("requestsaa", res);
+        this.newRequestsCount = 0;
+
+      });
+    }
+  }
+  cleanNotifications() {
+    if (this.newNotificationCount > 0) {
+
+      this.appService.cleanNotifications(this.user.id_user).then(res => {
+        console.log("requestsaabb", res);
+        this.newNotificationCount = 0;
+      });
+
+    }
+  }
+
 
   openLogin() {
 

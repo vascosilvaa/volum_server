@@ -65,7 +65,7 @@ app.get('/api/search', function (req, res) {
 
         let query = (req.query.search).replace(/['"]+/g, '');
 
-        db.get().query('SELECT vols.name from vols where vols.name LIKE ?; SELECT users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
+        db.get().query('SELECT vols.id_vol AS id, vols.name from vols where vols.name LIKE ?; SELECT users.id_user AS id, users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
             function (error, results, fields) {
                 console.log(results);
                 if (error) {

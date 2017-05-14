@@ -1,23 +1,23 @@
-webpackJsonp([3,9],{
+webpackJsonp([3,10],{
 
-/***/ 707:
+/***/ 708:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_shared_module__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_shared_module__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_modal_profile_modal_profile_component__ = __webpack_require__(474);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__following_routing__ = __webpack_require__(746);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__people_people_component__ = __webpack_require__(732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__following_component__ = __webpack_require__(730);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__institutions_institutions_component__ = __webpack_require__(731);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__following_routing__ = __webpack_require__(753);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__people_people_component__ = __webpack_require__(736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__following_component__ = __webpack_require__(734);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__institutions_institutions_component__ = __webpack_require__(735);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_forms__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_bootstrap_accordion__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ng2_bootstrap_accordion__ = __webpack_require__(718);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FollowingModule", function() { return FollowingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -68,12 +68,12 @@ FollowingModule = __decorate([
 
 /***/ }),
 
-/***/ 710:
+/***/ 711:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_config__ = __webpack_require__(712);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionComponent; });
 
 
@@ -127,7 +127,7 @@ var AccordionComponent = (function () {
 
 /***/ }),
 
-/***/ 711:
+/***/ 712:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -153,13 +153,13 @@ var AccordionConfig = (function () {
 
 /***/ }),
 
-/***/ 712:
+/***/ 713:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ng2_bootstrap_config__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_component__ = __webpack_require__(711);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionPanelComponent; });
 
 
@@ -230,7 +230,7 @@ var AccordionPanelComponent = (function () {
 
 /***/ }),
 
-/***/ 713:
+/***/ 714:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -274,11 +274,11 @@ var EventListener = win['EventListener'];
 
 /***/ }),
 
-/***/ 714:
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_browser__ = __webpack_require__(714);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isBs3;
 
 function isBs3() {
@@ -288,15 +288,16 @@ function isBs3() {
 
 /***/ }),
 
-/***/ 715:
+/***/ 716:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_http_client__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_global_constants__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_http_client__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -311,52 +312,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileService = (function () {
-    function ProfileService(http) {
+    function ProfileService(http, HTTP) {
         this.http = http;
+        this.HTTP = HTTP;
     }
     ProfileService.prototype.getProfile = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ProfileService.prototype.getVolHistory = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id + '/vols').toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id + '/vols').toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ProfileService.prototype.getMyVols = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id + '/my-vols').toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id + '/my-vols').toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ProfileService.prototype.follow = function (id_user, id_user1) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id_user + '/follow', { id_user: id_user1 }).toPromise()
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id_user + '/follow', { id_user: id_user1 }).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     return ProfileService;
 }());
 ProfileService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === "function" && _b || Object])
 ], ProfileService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/profile.service.js.map
 
 /***/ }),
 
-/***/ 716:
+/***/ 717:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(719);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(712);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(710);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collapse_collapse_module__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_group_component__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__accordion_component__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accordion_config__ = __webpack_require__(712);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccordionModule; });
 
 
@@ -383,17 +386,17 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 717:
+/***/ 718:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion_group_component__ = __webpack_require__(713);
 /* unused harmony reexport AccordionPanelComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accordion_component__ = __webpack_require__(711);
 /* unused harmony reexport AccordionComponent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordion_module__ = __webpack_require__(717);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__accordion_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(711);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__accordion_config__ = __webpack_require__(712);
 /* unused harmony reexport AccordionConfig */
 
 
@@ -403,7 +406,7 @@ var AccordionModule = (function () {
 
 /***/ }),
 
-/***/ 718:
+/***/ 719:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -512,12 +515,12 @@ var CollapseDirective = (function () {
 
 /***/ }),
 
-/***/ 719:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collapse_directive__ = __webpack_require__(719);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollapseModule; });
 
 
@@ -541,11 +544,11 @@ var CollapseModule = (function () {
 
 /***/ }),
 
-/***/ 730:
+/***/ 734:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__profile_service__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__profile_service__ = __webpack_require__(716);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(40);
@@ -598,8 +601,8 @@ var FollowingComponent = (function () {
 FollowingComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
         selector: 'app-following',
-        template: __webpack_require__(786),
-        styles: [__webpack_require__(759)]
+        template: __webpack_require__(799),
+        styles: [__webpack_require__(769)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__profile_service__["a" /* ProfileService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _d || Object])
 ], FollowingComponent);
@@ -609,13 +612,13 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 731:
+/***/ 735:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_modal_profile_modal_profile_component__ = __webpack_require__(474);
@@ -654,8 +657,8 @@ var InstitutionsComponent = (function () {
 InstitutionsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_core__["Component"])({
         selector: 'app-institutions',
-        template: __webpack_require__(787),
-        styles: [__webpack_require__(760)]
+        template: __webpack_require__(800),
+        styles: [__webpack_require__(770)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__["a" /* SharedService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _f || Object])
 ], InstitutionsComponent);
@@ -665,13 +668,13 @@ var _a, _b, _c, _d, _e, _f;
 
 /***/ }),
 
-/***/ 732:
+/***/ 736:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_modal_profile_modal_profile_component__ = __webpack_require__(474);
@@ -711,8 +714,8 @@ var PeopleComponent = (function () {
 PeopleComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_core__["Component"])({
         selector: 'app-people',
-        template: __webpack_require__(788),
-        styles: [__webpack_require__(761)]
+        template: __webpack_require__(801),
+        styles: [__webpack_require__(771)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_shared_service__["a" /* SharedService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _f || Object])
 ], PeopleComponent);
@@ -722,13 +725,13 @@ var _a, _b, _c, _d, _e, _f;
 
 /***/ }),
 
-/***/ 746:
+/***/ 753:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__people_people_component__ = __webpack_require__(732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__institutions_institutions_component__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__following_component__ = __webpack_require__(730);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__people_people_component__ = __webpack_require__(736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__institutions_institutions_component__ = __webpack_require__(735);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__following_component__ = __webpack_require__(734);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FollowingRoutingModule; });
@@ -779,7 +782,7 @@ FollowingRoutingModule = __decorate([
 
 /***/ }),
 
-/***/ 759:
+/***/ 769:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -797,7 +800,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 760:
+/***/ 770:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -815,7 +818,7 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 761:
+/***/ 771:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
@@ -833,21 +836,21 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 786:
+/***/ 799:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 \">\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"\">\r\n          <div class=\"container\">\r\n            <div class=\"row header-bar\">\r\n              <div class=\"col-lg-2 col-6 navCard no-padding\">\r\n                <a routerLink=\"/profile/{{idLogin}}/following/institutional\" [routerLinkActive]=\"['navLinkAtive']\" class=\"navLink\">Instituições (17)</a>\r\n              </div>\r\n              <div class=\"col-lg-2 col-6 navCard no-padding\">\r\n                <a routerLink=\"/profile/{{idLogin}}/following/people\" [routerLinkActive]=\"['navLinkAtive']\" class=\"navLink\">Pessoas (36)</a>\r\n              </div>\r\n              \r\n\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"container friends\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ 787:
+/***/ 800:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col searchInput text-right no-padding\">\r\n                  <form class=\"navbar-form\" role=\"search\">\r\n                  <div class=\"input-group\">\r\n                      <input type=\"text\" class=\"searchBar form-control\" placeholder=\"Procurar instituições...\" name=\"q\">\r\n                      <div class=\"input-group-btn\">\r\n                          <button class=\"btn btn-default\" type=\"submit\"><i class=\"material-icons searchIcon\">search</i></button>\r\n                      </div>\r\n                  </div>\r\n                  </form>\r\n              </div>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/backgroundOV.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/ondaverde.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Cáritas Aveiro\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Cacia, Aveiro\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" (click)=\"openProfileModal(1)\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n     <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/solidariedade.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/caritas_logo.gif\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Cáritas Aveiro\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Estarreja, Aveiro\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" (click)=\"openProfileModal(1)\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n\r\n<div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/manos.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/santacasa.png\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Santa Casa da Misericordia\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Cacia, Aveiro\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" (click)=\"openProfileModal(1)\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n\r\n<div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/abrigoseguro_fundo.png'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/abrigoseguro.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Abrigo Seguro\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Avintes, Vila Nova de Gaia\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" (click)=\"openProfileModal(1)\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n\r\n\r\n    \r\n\r\n    \r\n\r\n\r\n\r\n\r\n</div>"
 
 /***/ }),
 
-/***/ 788:
+/***/ 801:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col searchInput text-right no-padding\">\r\n                  <form class=\"navbar-form\" role=\"search\">\r\n                  <div class=\"input-group\">\r\n                      <input type=\"text\" class=\"searchBar form-control\" placeholder=\"Procurar pessoas...\" name=\"q\">\r\n                      <div class=\"input-group-btn\">\r\n                          <button class=\"btn btn-default\" type=\"submit\"><i class=\"material-icons searchIcon\">search</i></button>\r\n                      </div>\r\n                  </div>\r\n                  </form>\r\n              </div>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/fundo_andre.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/andre.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              André Martins\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Sever do Vouga, Aveiro\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Amigos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" routerLink=\"/profile/details\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/fundo_pedro.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/pedro.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Pedro Araújo\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Oliveira de Azemeis, Aveiro\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Amigos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" routerLink=\"/profile/details\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/fundo_vasco.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/vasco.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Vasco Silva\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Vila Nova de Gaia, Porto\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Amigos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" routerLink=\"/profile/details\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-lg-3 col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='./assets/imgs/fundo_cunha.jpg'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"./assets/imgs/cunha.jpg\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"friendsName\">\r\n              Pedro Cunha\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Lousada, Porto\r\n            </div>\r\n            <div class=\"row friendsEvents\">\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">45</div>\r\n                <div class=\"friendsCardNumberDesc\">Eventos</div>\r\n              </div>\r\n              <div class=\"col-6\">\r\n                <div class=\"friendsCardNumber\">13</div>\r\n                <div class=\"friendsCardNumberDesc\">Amigos</div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row text-center friendsBtns\">\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnCancel marginBtnL\" routerLink=\"/profile/details\">ELIMINAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <a class=\"btn btn-outline-primary btnConfirm marginBtnR\" routerLink=\"/profile/details\">VER</a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n\r\n    \r\n\r\n    \r\n\r\n\r\n\r\n\r\n</div>"

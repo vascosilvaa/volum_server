@@ -5,6 +5,13 @@ var express = require('express'),
 var app = module.exports = express.Router();
 
 
+/**
+ * @api {get} /vols Listar todas as notificações
+ * @apiName listNotifications
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
 app.get('/:id/', function (req, res) {
     db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ?', nestTables: true }, [req.params.id], function (error, results, fields) {
         let notifications = [];
@@ -33,6 +40,14 @@ app.get('/:id/', function (req, res) {
     });
 });
 
+/**
+ * @api {get} /notifications/:id/requests Listar todos os Pedidos
+ * @apiName listRequests
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
+
 app.get('/:id/requests', function (req, res) {
     db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ? AND notifications.type = 2', nestTables: true }, [req.params.id], function (error, results, fields) {
         if (results) {
@@ -59,6 +74,13 @@ app.get('/:id/requests', function (req, res) {
     });
 });
 
+/**
+ * @api {get} /notifications/:id/not-read/count Contagem das notificações não lidas
+ * @apiName listNotificationCount
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
 app.get('/:id/not-read/count', function (req, res) {
     db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.params.id, 0], function (error, results, fields) {
         console.log(error);
@@ -79,6 +101,14 @@ app.get('/:id/not-read/count', function (req, res) {
         }
     });
 });
+
+/**
+ * @api {get} /notifications/:id/requests/not-read/count Contagem dos pedidos não lidos
+ * @apiName listRequestCount
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
 app.get('/:id/requests/not-read/count', function (req, res) {
     db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.params.id, 0], function (error, results, fields) {
         console.log(error);
@@ -100,3 +130,37 @@ app.get('/:id/requests/not-read/count', function (req, res) {
     });
 });
 
+/**
+ * @api {post} /vols Contagem dos pedidos não lidos
+ * @apiName listRequestCount
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
+app.post('/requests/read-all', function (req, res) {
+    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 2', [req.body.id_user], function (error, results, fields) {
+
+        res.json({
+            success: true
+        })
+
+    });
+});
+
+/**
+ * @api {post} /vols Contagem dos pedidos não lidos
+ * @apiName listRequestCount
+ * @apiParam id ID do user
+ * @apiGroup Notifications
+ */
+
+
+app.post('/read-all', function (req, res) {
+    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 1', [req.body.id_user], function (error, results, fields) {
+
+        res.json({
+            success: true
+        })
+
+    });
+});

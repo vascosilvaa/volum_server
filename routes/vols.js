@@ -18,7 +18,7 @@ let vol = {};
 
 
 /**
- * @api {get} /vols Listar todos os voluntariados (login feito)
+ * @api {get} /vols Listar todos os voluntariados
  * @apiName listVols
  * @apiGroup Voluntariados 
  */
@@ -86,6 +86,12 @@ app.get('/', function (req, res, next) {
 
 
 
+/**
+ * @api {get} /vols/:id Listar Especifico
+ * @apiParam id ID do vol
+ * @apiName listVol
+ * @apiGroup Voluntariados 
+ */
 
 
 app.get('/:id', function (req, res, next) {
@@ -139,6 +145,14 @@ app.get('/:id', function (req, res, next) {
 }
 );
 
+
+/**
+ * @api {get} /vols/:id/likes/count Count dos lIkes
+ * @apiParam id ID do vol
+ * @apiName listLikeCount
+ * @apiGroup Voluntariados 
+ */
+
 app.get('/:id/likes/count', function (req, res) {
 
     let options = {
@@ -162,6 +176,13 @@ app.get('/:id/likes/count', function (req, res) {
 
     });
 });
+
+/**
+ * @api {get} /vols/:id/likes/count Listar quem fez like
+ * @apiParam id ID do vol
+ * @apiName listLikes
+ * @apiGroup Voluntariados 
+ */
 
 app.get('/:id/likes', passport.authenticate('jwt', { session: false }), function (req, res) {
 
@@ -191,10 +212,8 @@ app.get('/:id/likes', passport.authenticate('jwt', { session: false }), function
 
 
 /**
- * @api {post} /vols Inserir Voluntariado
- * @apiName insertVol
- * @apiParam {String} name Nome do Voluntariado  
- * @apiParam {String} desc Descrição do Voluntariado  
+ * @api {get} /vols/categories' Listar Categorias
+ * @apiName listVols
  * @apiGroup Voluntariados 
  */
 
@@ -216,6 +235,14 @@ app.get('/categories', function (req, res) {
 });
 
 
+/**
+ * @api {post} /vols/:id/like Like
+ * @apiName like
+ * @apiParam id ID do vol
+ * @apiGroup Voluntariados 
+ */
+
+
 app.post('/:id/like', function (req, res) {
     db.get().query('INSERT INTO likes (id_user, id_vol, _like) VALUES (?, ?, 1)', [req.body.id_user, req.params.id],
         function (error, results, fields) {
@@ -233,6 +260,13 @@ app.post('/:id/like', function (req, res) {
         });
 });
 
+/**
+ * @api {post} /vols/:id/dislike dislike
+ * @apiName dislike
+ * @apiParam id ID do vol
+ * @apiGroup Voluntariados 
+ */
+
 app.post('/:id/dislike', function (req, res) {
     db.get().query('DELETE FROM likes WHERE id_user = ? AND id_vol = ?', [req.body.id_user, req.params.id],
         function (error, results, fields) {
@@ -248,6 +282,17 @@ app.post('/:id/dislike', function (req, res) {
             }
         });
 });
+
+/**
+ * @api {post} /vols/ Novo Voluntariado
+ * @apiName newVol
+ * @apiParam name nome
+ * @apiParam desc Descriçao
+ * @apiParam photo_1 Descriçao
+ * @apiParam lat Latitude
+ * @apiParam long Longitude
+ * @apiGroup Voluntariados 
+ */
 
 app.post('/', jwtCheck, function (req, res) {
 
@@ -274,13 +319,15 @@ app.post('/', jwtCheck, function (req, res) {
 });
 
 /**
- * @api {post} /vols/:id/comments Comentar Voluntariado
+ * @api {post} /vols/:id/comment Comentar Voluntariado
  * @apiName commentVol
- 
+ * @apiParam id id do vol ( url)
+ * @apiParam id_user id_user ( body)
+ * @apiParam message message (body)
  * @apiGroup Voluntariados 
  */
 
-app.post('/:id/comments', function (req, res) {
+app.post('/:id/comment', function (req, res) {
 
     if (req.body.id_user || req.body.message) {
 
@@ -320,6 +367,7 @@ app.post('/:id/comments', function (req, res) {
 /**
  * @api {get} /vols/:id/comments Retornar Comentários
  * @apiName getVolComments
+ * @apiParam id id_vol
  
  * @apiGroup Voluntariados 
  */
@@ -398,6 +446,14 @@ app.post('/:id/apply', function (req, res) {
     }
 });
 
+/**
+ * @api {post} /vols/:id/checkState Verifica o estado do vol para o user especifico
+ * @apiName checkState
+ * @apiParam id ID do vol
+ * @apiParam id_user ID do user
+ * @apiGroup Voluntariados 
+ */
+
 app.post('/:id/checkState', function (req, res) {
     if (!req.body) {
         res.json({
@@ -442,7 +498,7 @@ app.post('/:id/checkState', function (req, res) {
 });
 
 /**
- * @api {get} /vols/:id/comments Listar Confirmados
+ * @api {get} /vols/:id/applies/confirmed Listar Confirmados
  * @apiName getConfirmed
  * @apiGroup Voluntariados 
  */
@@ -488,6 +544,12 @@ app.get('/:id/applies/confirmed', function (req, res) {
     }
 });
 
+/**
+ * @api {get} /vols/:id/applies/confirmed Listar Candidatos
+ * @apiName getCandidates
+ * @apiGroup Voluntariados 
+ */
+
 app.get('/:id/applies/candidates', function (req, res) {
 
     let users = [];
@@ -529,6 +591,16 @@ app.get('/:id/applies/candidates', function (req, res) {
         });
     }
 });
+
+/**
+ * @api {get} /vols/:id/applies/aceitar Aceitar User
+ * @apiName accept
+ * @apiParam id ID do vol
+ * @apiParam id_user ID do user
+ * @apiGroup Voluntariados 
+ */
+
+
 
 app.post('/:id/applies/accept', function (req, res) {
     if (isNaN(parseInt(req.body.id_user))) {

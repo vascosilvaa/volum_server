@@ -8,6 +8,16 @@ var express = require('express'),
 
 var app = module.exports = express.Router();
 
+
+/**
+ * @api {get} /chat/:id Listar Conversas
+ * @apiName getConversations
+ * @apiParam id ID do user
+ * @apiGroup Chat
+ */
+
+
+
 app.get('/:id', function (req, res) {
     if (!req.params.id) {
         res.json({
@@ -39,6 +49,15 @@ app.get('/:id', function (req, res) {
         });
     }
 });
+
+/**
+ * @api {post} /chat/:id Criar Conversa
+ * @apiName createConv
+ * @apiParam id ID do user (url)
+ * @apiParam id_user ID do user (body)
+ * @apiGroup Chat
+ */
+
 app.post('/:id', function (req, res) {
     if (!req.body.id_user) {
         res.json({
@@ -62,6 +81,15 @@ app.post('/:id', function (req, res) {
         });
     }
 });
+
+/**
+ * @api {post} /chat/:id Mandar Mensagem
+ * @apiName createConv
+ * @apiParam id ID do user (url)
+ * @apiParam id_user ID do user (body)
+ * @apiParam message Mensagem (body)
+ * @apiGroup Chat
+ */
 
 app.post('/:id/message', function (req, res) {
     if (!req.body.id_user) {
@@ -88,9 +116,3 @@ app.post('/:id/message', function (req, res) {
     }
 });
 
-/**
- * @api {get} /profile/:id Retornar Perfil
- * @apiName getProfile
- * @apiParam id ID do user
- * @apiGroup Perfil
- */
