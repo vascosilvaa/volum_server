@@ -1,5 +1,5 @@
-
-<div class="container-fluid headerBlue"></div>
+<div class="container-fluid headerBlue">
+</div>
 <div class="container-fluid sub-header-background">
     <div class="container sub-header-profile">
         <div class="row">
@@ -31,7 +31,9 @@
                     <li><a routerLink="/profile/{{idProfile}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
                     <li *ngIf="idProfile==idLogin"><a routerLink="/profile/{{idProfile}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
                 </ul>
-                <a class="btn-menu"  md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader"><md-icon class="btn-new-action-icon">menu</md-icon></a>
+                <a class="btn-menu" md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader">
+                    <md-icon class="btn-new-action-icon">menu</md-icon>
+                </a>
                 <md-menu #menuSubHeader="mdMenu">
                     <button md-menu-item>Actividade</button>
                     <button md-menu-item>Minhas ações</button>
@@ -40,19 +42,19 @@
                     <button md-menu-item>Definições</button>
                 </md-menu>
             </div>
-            <div *ngIf="idProfile==idLogin"  class="col-sm-2 col-6 col-new-action text-right">
+            <div *ngIf="idProfile==idLogin" class="col-sm-2 col-6 col-new-action text-right">
                 <a routerLink="/profile/{{idProfile}}/new" class="btn-new-action" md-raised-button routerLink="."><span class="btn-new-action-text" >NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
             </div>
-            <div *ngIf="idProfile!=idLogin"  class="col-sm-2 col-6 col-new-action text-right">
-                <a class="btn-follow" md-raised-button routerLink="." (click)="follow(idProfile)"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
+            <div *ngIf="idProfile!=idLogin" class="col-sm-2 col-6 col-new-action text-right">
+                <a class="btn-follow" md-raised-button (click)="follow(idProfile)" *ngIf="state == 0"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
+                <a class="btn-follow" md-raised-button (click)="unfollow(idProfile)" *ngIf="state == 1"><span class="btn-new-action-text" >NÃO SEGUIR</span><span><md-icon class="btn-new-action-icon">minus</md-icon></span></a>
+
             </div>
         </div>
     </div>
 </div>
 
-
 <!-- Externo -->
-
 
 <router-outlet></router-outlet>
 <app-footer></app-footer>

@@ -15,9 +15,10 @@ import { Http } from '@angular/http';
 })
 export class ActivityComponent implements OnInit {
   public privateVols: any;
+
   public instVols: any;
   public idProfile: any;
-  public volHistory: any;
+  public volHistory = [];
   public userLogin: any;
   public idLogin: any;
   public user: any;

@@ -6,12 +6,12 @@
           <div class="container">
             <div class="row header-bar">
               <div class="col-lg-2 col-6 navCard no-padding">
-                <a routerLink="/profile/{{idLogin}}/following/institutional" [routerLinkActive]="['navLinkAtive']" class="navLink">Instituições (17)</a>
+                <a routerLink="/profile/{{idProfile}}/following/institutional" [routerLinkActive]="['navLinkAtive']" class="navLink">Instituições ({{instCount}})</a>
               </div>
               <div class="col-lg-2 col-6 navCard no-padding">
-                <a routerLink="/profile/{{idLogin}}/following/people" [routerLinkActive]="['navLinkAtive']" class="navLink">Pessoas (36)</a>
+                <a routerLink="/profile/{{idProfile}}/following/people" [routerLinkActive]="['navLinkAtive']" class="navLink">Pessoas ({{userCount}})</a>
               </div>
-              
+
 
             </div>
           </div>

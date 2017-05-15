@@ -11,18 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./following.component.scss']
 })
 export class FollowingComponent implements OnInit {
- public idProfile: any;
+  public idProfile: any;
   public user: any;
   public userLogin: any;
   public idLogin: any;
+
+  public userCount: Number;
+  public instCount: Number;
+
   constructor(public route: ActivatedRoute, public http: Http, private profileService: ProfileService,
-  private auth: AuthenticationService) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
- this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.idProfile = this.route.parent.parent.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
+        this.listCount(this.idProfile);
       });
 
     });
@@ -33,12 +38,24 @@ export class FollowingComponent implements OnInit {
       this.auth.userPromise.then(res => {
         this.userLogin = res.user;
         console.log(this.userLogin);
-        let id = localStorage.getItem('USER_ID');
-        this.idLogin = id;
-       }
+        this.idLogin = res.user.id_user;
+      }
       );
 
     }
+  }
+
+  listCount(id) {
+
+    this.profileService.countFollows(id, 1).then(res => {
+      this.userCount = res.count;
+    });
+
+    this.profileService.countFollows(id, 2).then(res => {
+      this.instCount = res.count;
+
+    });
+
   }
 
 }

@@ -1,159 +1,54 @@
 <div class="col searchInput text-right no-padding">
-                  <form class="navbar-form" role="search">
-                  <div class="input-group">
-                      <input type="text" class="searchBar form-control" placeholder="Procurar pessoas..." name="q">
-                      <div class="input-group-btn">
-                          <button class="btn btn-default" type="submit"><i class="material-icons searchIcon">search</i></button>
-                      </div>
-                  </div>
-                  </form>
-              </div>
+  <form class="navbar-form" role="search">
+    <div class="input-group">
+      <input type="text" class="searchBar form-control" placeholder="Procurar pessoas..." name="q">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="material-icons searchIcon">search</i></button>
+      </div>
+    </div>
+  </form>
+</div>
 <div class="row">
-    <div class="col-lg-3 col-12">
-          <div class="card cardFriends text-center">
-            <div class="friendsBackground">
-                <img class="coverImg" src='./assets/imgs/fundo_andre.jpg'>
-            </div>
-            <div class="profile-user-picture text-center">
-                <img src="./assets/imgs/andre.jpg" alt="profile user picture" />
-            </div>
-            <div class="friendsName">
-              André Martins
-            </div>
-            <div class="friendsPlace">
-              Sever do Vouga, Aveiro
-            </div>
-            <div class="row friendsEvents">
-              <div class="col-6">
-                <div class="friendsCardNumber">45</div>
-                <div class="friendsCardNumberDesc">Eventos</div>
-              </div>
-              <div class="col-6">
-                <div class="friendsCardNumber">13</div>
-                <div class="friendsCardNumberDesc">Amigos</div>
-              </div>
-            </div>
-            <div class="row text-center friendsBtns">
-              <div class="col-6">
-                  <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
-              </div>
-              <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
-              </div>
-            </div>
-          </div>
+  <div class="col-lg-3 col-12" *ngFor="let user of users">
+    <div class="card cardFriends text-center">
+      <div class="friendsBackground">
+        <img class="coverImg" src='./assets/imgs/fundo_andre.jpg'>
+      </div>
+      <div class="profile-user-picture text-center">
+        <img [src]="user.photo_url" alt="profile user picture" />
+      </div>
+      <div class="friendsName">
+        {{user.name}}
+      </div>
+      <div class="friendsPlace">
+        Sever do Vouga, Aveiro
+      </div>
+      <div class="row friendsEvents">
+        <div class="col-6">
+          <div class="friendsCardNumber">45</div>
+          <div class="friendsCardNumberDesc">Eventos</div>
+        </div>
+        <div class="col-6">
+          <div class="friendsCardNumber">13</div>
+          <div class="friendsCardNumberDesc">Amigos</div>
+        </div>
+      </div>
+      <div class="row text-center friendsBtns">
+        <div class="col-6">
+          <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
+        </div>
+        <div class="col-6 ">
+          <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
+        </div>
+      </div>
     </div>
-
-    <div class="col-lg-3 col-12">
-          <div class="card cardFriends text-center">
-            <div class="friendsBackground">
-                <img class="coverImg" src='./assets/imgs/fundo_pedro.jpg'>
-            </div>
-            <div class="profile-user-picture text-center">
-                <img src="./assets/imgs/pedro.jpg" alt="profile user picture" />
-            </div>
-            <div class="friendsName">
-              Pedro Araújo
-            </div>
-            <div class="friendsPlace">
-              Oliveira de Azemeis, Aveiro
-            </div>
-            <div class="row friendsEvents">
-              <div class="col-6">
-                <div class="friendsCardNumber">45</div>
-                <div class="friendsCardNumberDesc">Eventos</div>
-              </div>
-              <div class="col-6">
-                <div class="friendsCardNumber">13</div>
-                <div class="friendsCardNumberDesc">Amigos</div>
-              </div>
-            </div>
-            <div class="row text-center friendsBtns">
-              <div class="col-6">
-                  <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
-              </div>
-              <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
-              </div>
-            </div>
-          </div>
-    </div>
-
-    <div class="col-lg-3 col-12">
-          <div class="card cardFriends text-center">
-            <div class="friendsBackground">
-                <img class="coverImg" src='./assets/imgs/fundo_vasco.jpg'>
-            </div>
-            <div class="profile-user-picture text-center">
-                <img src="./assets/imgs/vasco.jpg" alt="profile user picture" />
-            </div>
-            <div class="friendsName">
-              Vasco Silva
-            </div>
-            <div class="friendsPlace">
-              Vila Nova de Gaia, Porto
-            </div>
-            <div class="row friendsEvents">
-              <div class="col-6">
-                <div class="friendsCardNumber">45</div>
-                <div class="friendsCardNumberDesc">Eventos</div>
-              </div>
-              <div class="col-6">
-                <div class="friendsCardNumber">13</div>
-                <div class="friendsCardNumberDesc">Amigos</div>
-              </div>
-            </div>
-            <div class="row text-center friendsBtns">
-              <div class="col-6">
-                  <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
-              </div>
-              <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
-              </div>
-            </div>
-          </div>
-    </div>
-
-    <div class="col-lg-3 col-12">
-          <div class="card cardFriends text-center">
-            <div class="friendsBackground">
-                <img class="coverImg" src='./assets/imgs/fundo_cunha.jpg'>
-            </div>
-            <div class="profile-user-picture text-center">
-                <img src="./assets/imgs/cunha.jpg" alt="profile user picture" />
-            </div>
-            <div class="friendsName">
-              Pedro Cunha
-            </div>
-            <div class="friendsPlace">
-              Lousada, Porto
-            </div>
-            <div class="row friendsEvents">
-              <div class="col-6">
-                <div class="friendsCardNumber">45</div>
-                <div class="friendsCardNumberDesc">Eventos</div>
-              </div>
-              <div class="col-6">
-                <div class="friendsCardNumber">13</div>
-                <div class="friendsCardNumberDesc">Amigos</div>
-              </div>
-            </div>
-            <div class="row text-center friendsBtns">
-              <div class="col-6">
-                  <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
-              </div>
-              <div class="col-6 ">
-                <a class="btn btn-outline-primary btnConfirm marginBtnR" routerLink="/profile/details">VER</a>
-              </div>
-            </div>
-          </div>
-    </div>
-
-    
-
-    
+  </div>
 
 
+</div>
 
-
+<div class="row mt-5" *ngIf="users.length == 0">
+  <div class="col-12 text-center">
+    <b><h3>Não segue nenhum utilizador</h3></b>
+  </div>
 </div>

@@ -38,19 +38,21 @@ export class ProfileComponent implements OnInit {
   private user: any;
   private userLogin: any;
   public idLogin: any;
+  public state: Number;
 
   constructor(public http: Http, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.idProfile = this.route.snapshot.params['id'];
 
+      this.idProfile = this.route.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
       });
 
     });
+    this.checkFollow();
     this.getUser();
   }
   getUser() {
@@ -66,8 +68,21 @@ export class ProfileComponent implements OnInit {
   }
   follow(id_user) {
     console.log("ID", id_user);
-    this.profileService.follow(id_user, this.idLogin).then(res => {
+    this.profileService.follow(this.idProfile).then(res => {
+      this.state = 1;
       console.log(res);
+    });
+  }
+  unfollow(id_user) {
+    this.profileService.unfollow(this.idProfile).then(res => {
+      this.state = 0;
+      console.log(res);
+
+    });
+  }
+  checkFollow() {
+    this.profileService.checkState(this.idProfile).then(res => {
+      this.state = res.state;
     });
   }
 }

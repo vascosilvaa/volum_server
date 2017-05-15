@@ -155,16 +155,18 @@ app.get('/:id/vols', function (req, res) {
  */
 
 
-app.post('/:id/follow', function (req, res) {
-    if (isNaN(parseInt(req.params.id))) {
+app.post('/follow', passport.authenticate('jwt'), function (req, res) {
+    if (isNaN(parseInt(req.body.id_user))) {
         res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
     } else {
-        console.log("user", req.body)
-        db.get().query('INSERT INTO follows VALUES (NULL, ?, ?)', [req.params.id, req.body.id_user],
+
+        console.log("body", req.body.id_user)
+        console.log("user", req.user.id_user)
+
+        db.get().query('INSERT INTO follows VALUES (NULL, ?, ?)', [req.user.id_user, req.body.id_user],
             function (error, results, fields) {
 
-
-                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, NULL, 2, NULL, 0)', [req.params.id, req.body.id_user],
+                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, NULL, 2, NULL, 0)', [req.user.id_user, req.body.id_user],
                     function (error, results, fields) {
                         console.log(results);
                         console.log(error);
@@ -174,10 +176,173 @@ app.post('/:id/follow', function (req, res) {
                         });
                     });
             });
+    }
+});
 
-        /*
+app.post('/unfollow', passport.authenticate('jwt'), function (req, res) {
+    if (isNaN(parseInt(req.body.id_user))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
 
-        */
+        db.get().query('DELETE FROM follows WHERE id_user = ? AND id_user2 = ?', [req.user.id_user, req.body.id_user],
+            function (error, results, fields) {
+                res.json({
+                    success: true,
+                    message: "Sucesso"
+                });
+
+            });
+    }
+});
+
+app.get('/:id/checkFollow', passport.authenticate('jwt'), function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+
+        let users = [];
+
+        db.get().query({
+            sql: 'SELECT COUNT(*) AS count FROM follows WHERE id_user = ? AND id_user2 = ?'
+        }, [req.user.id_user, req.params.id],
+            function (error, count, fields) {
+                if (count[0].count == 1) {
+                    res.json({
+                        success: true,
+                        state: 1
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        state: 0
+                    });
+
+                }
+
+
+            });
+    }
+});
+
+
+app.get('/:id/follows/users', function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+
+        let users = [];
+
+        db.get().query({
+            sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2', nestTables: true
+        }, [req.params.id],
+            function (error, results, fields) {
+                if (results) {
+
+                    for (let i = 0; i < results.length; i++) {
+                        users.push({
+                            id_user: results[i].users.id_user,
+                            name: results[i].users.name,
+                            photo_url: results[i].users.photo_url
+                        })
+                    }
+                    res.json({
+                        success: true,
+                        users
+                    });
+
+                } else {
+                    res.json({
+                        success: true,
+                        users
+                    });
+                }
+
+            });
+    }
+});
+
+app.get('/:id/follows/inst', function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+
+        let institutions = [];
+
+        db.get().query({
+            sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1', nestTables: true
+        }, [req.params.id],
+            function (error, results, fields) {
+                if (results) {
+
+                    for (let i = 0; i < results.length; i++) {
+                        institutions.push({
+                            id_user: results[i].users.id_user,
+                            name: results[i].users.name,
+                            photo_url: results[i].users.photo_url
+                        })
+                    }
+                    res.json({
+                        success: true,
+                        institutions
+                    });
+
+                } else {
+                    res.json({
+                        success: true,
+                        institutions
+                    });
+                }
+
+            });
+    }
+});
+
+app.get('/:id/follows/users/count', function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+
+        let count;
+
+        db.get().query({
+            sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 2'
+        }, [req.params.id],
+            function (error, results, fields) {
+                count = results[0].count
+
+                res.json({
+                    success: true,
+                    count
+                });
+
+            });
+    }
+});
+
+app.get('/:id/follows/inst/count', function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.body)
+
+        let count;
+
+        db.get().query({
+            sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 1'
+        }, [req.params.id],
+            function (error, results, fields) {
+                count = results[0].count
+
+                res.json({
+                    success: true,
+                    count
+                });
+
+            });
     }
 });
 

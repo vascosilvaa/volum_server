@@ -13,7 +13,7 @@ var app = module.exports = express.Router();
  */
 
 app.get('/:id/', function (req, res) {
-    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ?', nestTables: true }, [req.params.id], function (error, results, fields) {
+    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? LIMIT 10', nestTables: true }, [req.params.id], function (error, results, fields) {
         let notifications = [];
         if (results) {
 
