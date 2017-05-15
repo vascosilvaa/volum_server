@@ -177,6 +177,37 @@ app.get('/:id/likes/count', function (req, res) {
     });
 });
 
+app.get('/:id/checkLike', passport.authenticate('jwt'), function (req, res) {
+    if (isNaN(parseInt(req.params.id))) {
+        res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+    } else {
+        console.log("user", req.user.id_user)
+
+        let users = [];
+
+        db.get().query({
+            sql: 'SELECT COUNT(*) AS count FROM likes WHERE id_user = ? AND id_vol = ?'
+        }, [req.user.id_user, req.params.id],
+            function (error, count, fields) {
+                console.log(count);
+                if (count[0].count == 1) {
+                    res.json({
+                        success: true,
+                        state: 1
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        state: 0
+                    });
+
+                }
+
+
+            });
+    }
+});
+
 /**
  * @api {get} /vols/:id/likes/count Listar quem fez like
  * @apiParam id ID do vol

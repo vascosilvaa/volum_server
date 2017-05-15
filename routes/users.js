@@ -78,7 +78,9 @@ app.get('/:id/my-vols', function (req, res) {
                             name: results[i].name,
                             date_begin: results[i].date_begin,
                             lat: results[i].lat,
-                            long: results[i].long
+                            long: results[i].long,
+                            start_time: results[i].start_time,
+                            end_time: results[i].end_time
                         });
                     }
 
