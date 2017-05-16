@@ -88,9 +88,7 @@ app.get('/api/search', function (req, res) {
     }
 });
 
-app.use(function (req, res, next) {
-    res.status(404).send("NOT FOUND")
-})
+
 
 app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
@@ -99,10 +97,6 @@ app.use('/*', express.static(path.join(__dirname, 'public/dist')));
  * @apiGroup Geral
  * @apiParam {String} search Termo a pesquisar
  */
-
-//teste 
-
-//teste do branch
 
 
 function ensureUnauthenticated(req, res, next) {
