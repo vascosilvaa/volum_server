@@ -9,6 +9,8 @@ import { Http } from '@angular/http';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-details',
@@ -23,6 +25,10 @@ export class DetailsComponent implements OnInit {
   public userLogin: any;
   public idVol: any;
   public vols: any;
+  public hora_inicio: any;
+  public hora_fim: any;
+  public minutos_inicio: any;
+  public minutos_fim: any;
   public addressData: any;
   public address=[];
   public addressName=[];
@@ -54,7 +60,10 @@ export class DetailsComponent implements OnInit {
         this.getAddress();
         this.lat = parseFloat(this.vols.lat);
         this.lng = parseFloat(this.vols.long);
-        console.log(this.lat + ',' + this.lng);
+        this.hora_inicio = this.vols.start_time.slice(0,2);
+        this.minutos_inicio = this.vols.start_time.slice(3,5);
+        this.hora_fim = this.vols.end_time.slice(0,2);
+        this.minutos_fim = this.vols.end_time.slice(3,5);
       })
       .catch(err => console.log(err));
   }
@@ -66,7 +75,8 @@ export class DetailsComponent implements OnInit {
       })
       .catch(err => console.log(err));
   }
-    getConfirmed(idVol) {
+  
+  getConfirmed(idVol) {
     this.detailsservice.getConfirmed(idVol)
       .then(res => {
         this.confirmeds = res.users;
@@ -78,26 +88,26 @@ export class DetailsComponent implements OnInit {
         this.detailsservice.getAddress(this.vols.lat, this.vols.long)
         .then(res => {
           this.addressData = res.results;
-          console.log(this.addressData);
            this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
           this.addressName[this.vols.id_vol] = this.addressData[0].address_components[0].short_name;
         })
        
   }
 
-  openViewAll(type, idVol, name) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ idVol: idVol, type: type , name: name}, BSModalContext));
+  openViewAll(type, idVol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: idVol}, BSModalContext));
 
   }
 
-   openRemoveConfirm(type,name) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name}, BSModalContext));
-
+   openRemoveConfirm(type, idVol, idUser, name) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol:idVol, idUser:idUser}, BSModalContext));
   }
   
   openEnd(type, idVol) {
     return this.modal.open(ModalEndComponent, overlayConfigFactory({ idVol: idVol, type: type}, BSModalContext));
 
   }
+
+
 
 }

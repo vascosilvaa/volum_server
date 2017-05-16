@@ -8,119 +8,11 @@
       </div>
       <div class="modal-list-content">
         <ul class="list-group">
-          <li class="listPerson no-border no-margin">
+          <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
             <div class="row no-margin">
               <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
+                <img src="{{candidate?.photo_url}}">
+                <span class="candidateName">{{candidate?.name}}</span>
               </div>
               <div class="col text-right btns-list no-padding">
                 <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
@@ -144,33 +36,11 @@
       </div>
       <div class="modal-list-content">
         <ul class="list-group">
-          <li class="listPerson no-border no-margin">
+          <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
             <div class="row no-margin">
               <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btnRemove">REMOVER</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right btns-list no-padding">
-                <button type="button" class="btn btnRemove">REMOVER</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
+                <img src="{{candidate?.photo_url}}">
+                <span class="candidateName">{{candidate?.name}}</span>
               </div>
               <div class="col text-right btns-list no-padding">
                 <button type="button" class="btn btnRemove">REMOVER</button>

@@ -129,6 +129,7 @@
 .btnLike {
     color: $red;
     padding-top: 7px;
+    cursor: pointer;
 }
 
 .likesNumber {
@@ -389,4 +390,9 @@
     margin-top: 120px;
     margin-left: 30px;
     color: #fff;
+}
+
+.cardLikesContent {
+    display: flex;
+    width: 300px;
 }

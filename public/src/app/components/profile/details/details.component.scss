@@ -106,6 +106,7 @@
   cursor:pointer;
 }
 
+
 .card-content {
   padding: 10px 15px 10px 15px;
 
@@ -147,6 +148,13 @@
 
 .no-border {
   border: 0!important;
+}
+
+.card-user-image {
+    max-width: 290px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-user-image img{
@@ -367,4 +375,28 @@
 
 .card-user-comments-image-comments {
     padding-top: 5px;
+}
+
+.text-no-candidates {
+  font-size: 14px;
+  color: $grey2;
+}
+.icon-no-candidates {
+  font-size: 14px;
+  color: $grey2;
+}
+
+.no-candidates {
+  padding:62px 20px 62px 20px;
+}
+
+.text-see {
+  font-weight: $bold;
+  font-size:14px;
+  cursor:pointer;
+  color: $blue;
+}
+
+.text-see:hover {
+  color:$grey3;
 }

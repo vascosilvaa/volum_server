@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
 import { ModalEndComponent } from './../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
@@ -38,6 +39,7 @@ import { NewActionComponent } from './new-action/new-action.component';
     ProfileRoutingModule,
     AccordionModule.forRoot(),
     SharedModule,
+    MomentModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
