@@ -1,11 +1,24 @@
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 import { HttpClient } from './../../shared/http-client';
 import { GlobalConstants } from './../../shared/global-constants';
 import { Injectable } from '@angular/core';
 
+
 @Injectable()
 export class ChatService {
+    public conversation: string = "ola"
+    public conversationUpdate: Subject<string> = new Subject<string>();
+
     constructor(public http: HttpClient) {
 
+    }
+
+
+    activeConversation(value) {
+        this.conversation = value;
+        this.conversationUpdate.next(this.conversation);
     }
 
     getConversations(id_user) {

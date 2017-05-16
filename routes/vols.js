@@ -2,7 +2,7 @@ var express = require('express'),
     jwt = require('express-jwt'),
     config = require('../config'),
     db = require('../config/db');
-    var passport = require('passport');
+var passport = require('passport');
 
 var app = module.exports = express.Router();
 
@@ -274,8 +274,8 @@ app.get('/categories', function (req, res) {
  */
 
 
-app.post('/:id/like', function (req, res) {
-    db.get().query('INSERT INTO likes (id_user, id_vol, _like) VALUES (?, ?, 1)', [req.body.id_user, req.params.id],
+app.post('/:id/like', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('INSERT INTO likes (id_user, id_vol, _like) VALUES (?, ?, 1)', [req.user.id_user, req.params.id],
         function (error, results, fields) {
             if (error) {
                 res.json({
@@ -298,8 +298,8 @@ app.post('/:id/like', function (req, res) {
  * @apiGroup Voluntariados 
  */
 
-app.post('/:id/dislike', function (req, res) {
-    db.get().query('DELETE FROM likes WHERE id_user = ? AND id_vol = ?', [req.body.id_user, req.params.id],
+app.post('/:id/dislike', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('DELETE FROM likes WHERE id_user = ? AND id_vol = ?', [req.user.id_user, req.params.id],
         function (error, results, fields) {
             if (error) {
                 res.json({

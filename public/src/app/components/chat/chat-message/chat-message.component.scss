@@ -1,5 +1,10 @@
 @import "../../../../styles";
 
+
+.chat-content{
+    overflow-y: scroll;
+    height: 800px;
+}
 .header-msg {
     background: $white;
     padding:15px 0px 15px 0px;
@@ -47,7 +52,7 @@
     border:0;
     font-size: 14px;
     text-align: left;
-    max-width: 50%;
+    max-width: 50%
 }
 
 .item-friend {

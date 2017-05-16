@@ -4,7 +4,7 @@ import { SocketService } from './shared/socket.service';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   public notifications: any;
   public requests: any;
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
+  constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService) {
     overlay.defaultViewContainer = vcRef;
   }
@@ -41,12 +41,12 @@ export class AppComponent implements OnInit {
         mm: "%d m",
         h: "1h",
         hh: "%d hrs",
-        d: "1 day",
-        dd: "%d days",
-        M: "1 mo",
-        MM: "%d mos",
-        y: "1 yr",
-        yy: "%d yrs"
+        d: "1 dia",
+        dd: "%d dias",
+        M: "1 mês",
+        MM: "%d meses",
+        y: "1 ano",
+        yy: "%d anos"
       }
     });
     this.getUser();
@@ -125,6 +125,12 @@ export class AppComponent implements OnInit {
       });
 
     }
+  }
+
+  goToMessages(id, name) {
+    console.log("name", name)
+    this.chatService.conversation = name;
+    this.router.navigate(['./chat/msg', id], { relativeTo: this.route });
   }
 
 
