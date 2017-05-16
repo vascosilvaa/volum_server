@@ -152,7 +152,7 @@
                                 {{vols?.date_begin | date:"d"}} de {{vols?.date_begin | date:"MMMM"}} - {{vols?.date_end | date:"d"}} de {{vols?.date_end | date:"MMMM"}}
                             </div>
                             <div class="Address">
-                                8 de março às 18:00 até 12 de março às 22:00
+                                {{vols?.date_begin | date:"d"}} de {{vols?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vols?.date_end | date:"d"}} de {{vols?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}
                             </div>
                         </div>
                     </div>
@@ -217,11 +217,11 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             <div>Candidatos (7)</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(1,1)">Ver todos</div>
-                        </div>
+                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="candidates!=undefined">Ver todos</div>
+                    </div>
                     </div>
                 </div>
-                <div class="card-content">
+                <div class="card-content candidates-zone">
                     <ul class="list-group">
                         <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
                             <div class="row no-margin">
@@ -230,11 +230,15 @@
                                     <span class="candidateName">{{candidate?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(5,'Pedro Araújo')">RECUSAR</button>
+                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(4, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
                                     <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
                                 </div>
                             </div>
                         </li>
+                        <div *ngIf="candidates==undefined || candidates==null || candidates==''"  class="no-candidates">
+                        <div class="text-center icon-no-candidates"><i class="material-icons">event_busy</i></div>
+                        <div class="text-center text-no-candidates">Neste momento, ainda não possui candidatos para esta ação de voluntariado.<span class="text-see"> Convidar voluntários</span></div>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -245,11 +249,11 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             <div>Confirmados (12)</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(2,1)">Ver todos</div>
+                            <div class="see-all ml-auto" (click)="openViewAll(2,idVol)" *ngIf="confirmeds!=undefined">Ver todos</div>
                         </div>
                     </div>
                 </div>
-                <div class="card-content">
+                <div class="card-content candidates-zone">
                     <ul class="list-group">
                         <li *ngFor="let confirmed of confirmeds"class="listPerson no-border no-margin">
                             <div class="row no-margin">
@@ -258,10 +262,14 @@
                                     <span class="candidateName">{{confirmed?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4,'Pedro Araújo')">REMOVER</button>
+                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4, idVol, confirmed?.id_user, confirmed?.name)">REMOVER</button>
                                 </div>
                             </div>
                         </li>
+                        <div *ngIf="confirmeds==undefined || confirmeds==null || confirmeds==''"  class="no-candidates">
+                        <div class="text-center icon-no-candidates"><i class="material-icons">event_busy</i></div>
+                        <div class="text-center text-no-candidates">Neste momento, ainda não possui voluntários confirmados para esta ação de voluntariado.<span class="text-see"  *ngIf="candidates!=undefined" (click)="openViewAll(1,idVol)"> Ver candidatos</span></div>
+                        </div>
                     </ul>
                 </div>
             </div>

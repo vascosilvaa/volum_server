@@ -15,6 +15,10 @@ export class MyActionsComponent implements OnInit {
   public address= [];
   public addressName = [];
   public addressData: any;
+  public hora_inicio: any;
+  public hora_fim: any;
+  public minutos_inicio: any;
+  public minutos_fim: any;
   ngOnInit() {
     this.route.params.subscribe((params) => {
         this.idProfile = this.route.parent.parent.parent.snapshot.params['id'];
@@ -26,6 +30,12 @@ export class MyActionsComponent implements OnInit {
     this.myactionsservice.getMyActions(id)
      .then(res => {
         this.myVols = res.vols;
+        /*
+        this.hora_inicio = this.myVols.start_time.slice(0,2);
+        this.minutos_inicio = this.myVols.start_time.slice(3,5);
+        this.hora_fim = this.myVols.end_time.slice(0,2);
+        this.minutos_fim = this.myVols.end_time.slice(3,5);
+        */
        this.getAddress();
       })
   }

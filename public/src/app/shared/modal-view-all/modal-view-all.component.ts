@@ -1,3 +1,4 @@
+import { SharedService } from './../shared.service';
 // import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
 import { Component, OnInit } from '@angular/core';
@@ -25,21 +26,47 @@ export class ModalViewAllComponent implements OnInit {
   lat: number = 41.100856;
   lng: number =  -8.544893;
   public volDetails: any;
+  public candidates;
+  public confirmeds;
 
   context: ModalContext;
 
 
-  constructor(private dialog: DialogRef<ModalContext>, /*private volsService: VolDetailsModalService*/) {
+  constructor(private dialog: DialogRef<ModalContext>, /*private volsService: VolDetailsModalService,*/ public SharedService: SharedService ) {
     this.context = dialog.context;
     this.context.isBlocking = false;
+
   
   
   }
 
   ngOnInit() {
-    console.log(this.context.type);
+    if(this.context.type==1) {
+      this.getCandidates(this.context.idVol);
+    } else if (this.context.type==2){
+      this.getConfirmed(this.context.idVol);
+    }
+
+      
+   
+}
+
+  getCandidates(idVol) {
+    this.SharedService.getCandidates(idVol)
+      .then(res => {
+        this.candidates = res.users;
+      })
+      .catch(err => console.log(err));
   }
 
+   getConfirmed(idVol) {
+    this.SharedService.getConfirmed(idVol)
+      .then(res => {
+        this.confirmeds = res.users;
+        console.log(this.confirmeds)
+      })
+      .catch(err => console.log(err));
+  }
   
 }
 /*

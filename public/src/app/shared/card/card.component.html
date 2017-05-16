@@ -83,21 +83,25 @@
 
     <!-- FOOTER CARD -->
     <div class="card-volum-footer">
+        <div class="cardLikesContent">
         <div class="cardLikes">
-            <md-icon class="btnLike">favorite</md-icon>
+            <md-icon *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+             <md-icon *ngIf="numberLikes<1 || !numberLikes || numberLikes==undefined || likeState==0 || !likeState || likeState==undefined" class="btnLike btnBlack">favorite_border</md-icon>
         </div>
         <div class="likesNumber ts12">
-            {{likes}}
+            {{numberLikes}}
         </div>
-        <div *ngIf="type=='private'" class="likeImgs">
+        <div *ngIf="type=='private' && numberLikes>=1" class="likeImgs">
             <img src="assets/imgs/avatar2.png">
             <img src="assets/imgs/avatar3.png">
             <img src="assets/imgs/avatar04.png">
             <img src="assets/imgs/avatar2.png">
             <img src="assets/imgs/avatar.png">
         </div>
-        <div *ngIf="type=='private'" class="likesText ts12">
-            <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto
+        <div *ngIf="type=='private'&& numberLikes>=1" class="likesText ts12">
+           <!-- <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto -->
+           {{numberLikes}} pessoas gostam disto.
+        </div>
         </div>
         <div *ngIf="type=='private'" class="cardComments ts12">
             <div>

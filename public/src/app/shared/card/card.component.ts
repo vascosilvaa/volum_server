@@ -32,6 +32,8 @@ export class CardComponent implements OnInit {
   public foto3 = 0;
   public comments = 0;
   public commentsResult;
+  public numberLikes: any;
+  public likeState: any;
 
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
@@ -40,7 +42,8 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.countLikes();
+    this.checkLike();
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
@@ -60,12 +63,14 @@ export class CardComponent implements OnInit {
       }
     });
 
-    this.sharedService.getComments(this.idVol)
+  /*  this.sharedService.getComments(this.idVol)
       .then(res => {
         this.commentsResult = res.vols;
         console.log(this.commentsResult);
       })
       .catch(err => console.log(err));
+
+      */
   }
 
   openComments() {
@@ -74,6 +79,14 @@ export class CardComponent implements OnInit {
     } else {
       this.comments = 0;
     }
+  }
+
+  countLikes(){
+      this.sharedService.countLikes(this.idVol)
+      .then(res => {
+        this.numberLikes = res.likes;
+      })
+      .catch(err => console.log(err));
   }
 
   openVolDetails(idVol) {
@@ -117,5 +130,12 @@ export class CardComponent implements OnInit {
       this.foto2 = 0;
       this.foto3 = 1;
     }
+  }
+  checkLike(){
+     this.sharedService.checkLike(this.idVol)
+      .then(res => {
+        this.likeState = res.state;
+      })
+      .catch(err => console.log(err));
   }
 }
