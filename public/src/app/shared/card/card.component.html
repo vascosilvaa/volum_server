@@ -85,8 +85,8 @@
     <div class="card-volum-footer">
         <div class="cardLikesContent">
         <div class="cardLikes">
-            <md-icon *ngIf="numberLikes>=1" class="btnLike">favorite</md-icon>
-             <md-icon *ngIf="numberLikes<1 || !numberLikes || numberLikes==undefined" class="btnLike">favorite_border</md-icon>
+            <md-icon *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+             <md-icon *ngIf="numberLikes<1 || !numberLikes || numberLikes==undefined || likeState==0 || !likeState || likeState==undefined" class="btnLike btnBlack">favorite_border</md-icon>
         </div>
         <div class="likesNumber ts12">
             {{numberLikes}}

@@ -33,6 +33,7 @@ export class CardComponent implements OnInit {
   public comments = 0;
   public commentsResult;
   public numberLikes: any;
+  public likeState: any;
 
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
@@ -42,6 +43,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.countLikes();
+    this.checkLike();
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
@@ -128,5 +130,12 @@ export class CardComponent implements OnInit {
       this.foto2 = 0;
       this.foto3 = 1;
     }
+  }
+  checkLike(){
+     this.sharedService.checkLike(this.idVol)
+      .then(res => {
+        this.likeState = res.state;
+      })
+      .catch(err => console.log(err));
   }
 }
