@@ -53,9 +53,13 @@ export class VolDetailsModalComponent implements OnInit {
 
   apply(id_vol) {
     console.log(id_vol);
-    this.volsService.apply(this.id_user, id_vol).then(res =>
-      console.log(res));
+    this.volsService.apply(this.id_user, id_vol).then(res => {
+      this.state = 1;
+      console.log(res);
+
+    });
   }
+
   checkState(id_vol) {
     this.volsService.checkState(this.id_user, id_vol).then(res => {
       this.state = res.state;

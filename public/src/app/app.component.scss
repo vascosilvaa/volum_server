@@ -166,6 +166,7 @@ hr {
 }
 
 .message-info {
+    
     margin-left: 12px;
     white-space: nowrap;
     overflow: hidden;
@@ -177,10 +178,15 @@ hr {
 }
 
 .notification-info {
+        width: 250px;
     margin-left: 12px;
-    width: 100%;
     height: 50px;
     font-size: 14px;
+    overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+
 }
 
 .dropdown-menu .new {
@@ -294,9 +300,9 @@ hr {
 
 .badge-notify{
    background:red;
-   position:relative;
-   top: -20px;
-   left: -13px;
+    position: absolute;
+    top: 0px;
+    left: 25px;
 }
 
 .arrow_dropdown {

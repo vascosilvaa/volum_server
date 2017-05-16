@@ -1,6 +1,7 @@
 var express = require('express'),
     config = require('../config'),
     db = require('../config/db');
+var passport = require('passport');
 
 var app = module.exports = express.Router();
 
@@ -12,8 +13,10 @@ var app = module.exports = express.Router();
  * @apiGroup Notifications
  */
 
-app.get('/:id/', function (req, res) {
-    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? LIMIT 10', nestTables: true }, [req.params.id], function (error, results, fields) {
+app.get('/', passport.authenticate('jwt'), function (req, res) {
+    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ?', nestTables: true }, [req.user.id_user], function (error, results, fields) {
+        console.log(error);
+        console.log("USER", req.user.id_user);
         let notifications = [];
         if (results) {
 
@@ -48,10 +51,11 @@ app.get('/:id/', function (req, res) {
  */
 
 
-app.get('/:id/requests', function (req, res) {
-    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ? AND notifications.type = 2', nestTables: true }, [req.params.id], function (error, results, fields) {
+app.get('/requests', passport.authenticate('jwt'), function (req, res) {
+    db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ? AND notifications.type = 2  ORDER BY notifications.id_notification DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
+        console.log(error);
         if (results) {
-
+            console.log(results);
             let notifications = [];
             for (let i = 0; i < results.length; i++) {
 
@@ -59,7 +63,7 @@ app.get('/:id/requests', function (req, res) {
                     type: results[i].notifications.type,
                     user_name: results[i].users.name,
                     photo_url: results[i].users.photo_url,
-                    id_user: results[i].users.id_user2,
+                    id_user: results[i].users.id_user,
                     date: results[i].notifications.date
                 })
 
@@ -81,8 +85,8 @@ app.get('/:id/requests', function (req, res) {
  * @apiGroup Notifications
  */
 
-app.get('/:id/not-read/count', function (req, res) {
-    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.params.id, 0], function (error, results, fields) {
+app.get('/not-read/count', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.user.id_user, 0], function (error, results, fields) {
         console.log(error);
         console.log(results);
         if (results) {
@@ -109,8 +113,8 @@ app.get('/:id/not-read/count', function (req, res) {
  * @apiGroup Notifications
  */
 
-app.get('/:id/requests/not-read/count', function (req, res) {
-    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.params.id, 0], function (error, results, fields) {
+app.get('/requests/not-read/count', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.user.id_user, 0], function (error, results, fields) {
         console.log(error);
         console.log("request count", results);
         if (results) {
@@ -137,8 +141,8 @@ app.get('/:id/requests/not-read/count', function (req, res) {
  * @apiGroup Notifications
  */
 
-app.post('/requests/read-all', function (req, res) {
-    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 2', [req.body.id_user], function (error, results, fields) {
+app.post('/requests/read-all', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 2', [req.user.id_user], function (error, results, fields) {
 
         res.json({
             success: true
@@ -155,8 +159,8 @@ app.post('/requests/read-all', function (req, res) {
  */
 
 
-app.post('/read-all', function (req, res) {
-    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 1', [req.body.id_user], function (error, results, fields) {
+app.post('/read-all', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 1', [req.user.id_user], function (error, results, fields) {
 
         res.json({
             success: true

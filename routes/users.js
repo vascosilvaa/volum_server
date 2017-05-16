@@ -168,7 +168,7 @@ app.post('/follow', passport.authenticate('jwt'), function (req, res) {
         db.get().query('INSERT INTO follows VALUES (NULL, ?, ?)', [req.user.id_user, req.body.id_user],
             function (error, results, fields) {
 
-                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, NULL, 2, NULL, 0)', [req.user.id_user, req.body.id_user],
+                db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, NULL, 2, ?, 0)', [req.body.id_user, req.user.id_user, new Date()],
                     function (error, results, fields) {
                         console.log(results);
                         console.log(error);

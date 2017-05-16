@@ -23,13 +23,12 @@
                                 <img [src]="request.photo_url">
                             </div>
                             <div class="notification-info">
-                                <div>
-                                    <p><b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>                                        </p>
-                                </div>
+
+                                <b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>
                             </div>
-                            <div class="notification-info text-right">
+                            <div class="text-right">
                                 <div class="btn-notification">
-                                    <button class="btn btnConfirm">VER</button>
+                                    <button class="btn btnConfirm" routerLink='./profile/{{request.id_user}}/activity'>VER</button>
                                 </div>
                             </div>
                         </div>

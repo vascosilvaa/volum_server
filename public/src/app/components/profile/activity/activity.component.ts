@@ -27,17 +27,19 @@ export class ActivityComponent implements OnInit {
     private auth: AuthenticationService) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      this.idProfile = this.route.parent.snapshot.params['id'];
-
+    this.route.parent.params.subscribe(params => {
+      console.log("PARAMS", params['id']);
+      this.profileService.getVolHistory(params.id)
+        .then(res => {
+          this.volHistory = res.vols;
+          console.log(this.volHistory);
+        })
+        .catch(err => console.log(err));
     });
-    this.profileService.getVolHistory(this.idProfile)
-      .then(res => {
-        this.volHistory = res.vols;
-        console.log(this.volHistory);
-      })
-      .catch(err => console.log(err));
   }
+
+
+
 
 
 }

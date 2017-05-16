@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
   getNotifications(id) {
     this.appService.getNotifications(id).then(res => {
       this.notifications = res.notifications;
-      console.log(res);
+      console.log("NOTIFICATIONS", res);
 
     })
   }
