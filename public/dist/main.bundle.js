@@ -1,25 +1,25 @@
 webpackJsonp([7,10],{
 
-/***/ 169:
+/***/ 170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_moment__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_moment__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__footer_footer_component__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__vol_details_modal_vol_details_modal_component__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__card_card_component__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_google_maps_core__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_google_maps_core__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_google_maps_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_router__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_service__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_service__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal_view_all_modal_view_all_component__ = __webpack_require__(478);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modal_end_modal_end_component__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modal_profile_modal_profile_component__ = __webpack_require__(474);
@@ -87,63 +87,14 @@ SharedModule = __decorate([
 
 /***/ }),
 
-/***/ 170:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_constants__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var SharedService = (function () {
-    function SharedService(http) {
-        this.http = http;
-    }
-    SharedService.prototype.getProfile = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getComments = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id + "/comments").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    return SharedService;
-}());
-SharedService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object])
-], SharedService);
-
-var _a;
-//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
-
-/***/ }),
-
 /***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Auth_authentication_service__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vol_details_modal_service__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VolDetailsModalComponent; });
@@ -203,9 +154,11 @@ var VolDetailsModalComponent = (function () {
             .catch(function (err) { return console.log(err); });
     };
     VolDetailsModalComponent.prototype.apply = function (id_vol) {
+        var _this = this;
         console.log(id_vol);
         this.volsService.apply(this.id_user, id_vol).then(function (res) {
-            return console.log(res);
+            _this.state = 3;
+            console.log(res);
         });
     };
     VolDetailsModalComponent.prototype.checkState = function (id_vol) {
@@ -232,14 +185,14 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(6);
 /* unused harmony export ModalContext */
@@ -305,7 +258,6 @@ var LoginComponent = (function () {
             if (res.success) {
                 _this.dialog.close();
                 location.reload();
-                _this.socketService.onConnect(res.id_user);
             }
             else {
                 _this.error = res.message;
@@ -333,7 +285,7 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 279:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -390,7 +342,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -426,13 +378,13 @@ NotificationsComponent = __decorate([
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_Auth_authentication_service__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(6);
 /* unused harmony export ModalContext */
@@ -492,15 +444,21 @@ var RegisterComponent = (function () {
         var _this = this;
         var value = _a.value, valid = _a.valid;
         console.log(value, valid);
-        this.auth.login(value)
-            .then(function (res) {
-            console.log(res);
-            if (res.success) {
-                _this.dialog.close();
-                location.reload();
-            }
-        })
-            .catch(function (err) { return console.log(err); });
+        this.form.controls.email.markAsTouched();
+        this.form.controls.password.markAsTouched();
+        this.form.controls.password2.markAsTouched();
+        this.form.controls.name.markAsTouched();
+        this.form.controls.lastname.markAsTouched();
+        if (valid) {
+            this.auth.register(value)
+                .then(function (res) {
+                console.log(res);
+                if (res.success) {
+                    _this.openConfirmationEmail();
+                }
+            })
+                .catch(function (err) { return console.log(err); });
+        }
     };
     RegisterComponent.prototype.openEmailRegist = function () {
         this.emailRegist = 1;
@@ -524,7 +482,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 282:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -560,7 +518,7 @@ SearchComponent = __decorate([
 
 /***/ }),
 
-/***/ 283:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -596,7 +554,7 @@ SocialRequestsComponent = __decorate([
 
 /***/ }),
 
-/***/ 284:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -604,6 +562,8 @@ SocialRequestsComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_socket_io_client__ = __webpack_require__(693);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_socket_io_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SocketService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -617,15 +577,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SocketService = (function () {
     function SocketService() {
-        this.url = __WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT;
+        this.url = __WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].SOCKET_ENDPOINT;
         this.socket = __WEBPACK_IMPORTED_MODULE_2_socket_io_client__(this.url);
         console.log(this.socket);
         console.log(this.url);
     }
     SocketService.prototype.onConnect = function (id_user) {
-        this.socket.emit("connect", id_user);
+        this.socket.emit("user", id_user);
+    };
+    SocketService.prototype.onNotification = function () {
+        var _this = this;
+        var observable = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"](function (observer) {
+            _this.socket.on('notification', function (data) {
+                observer.next(data);
+            });
+            return function () {
+                _this.socket.disconnect();
+            };
+        });
+        return observable;
+    };
+    SocketService.prototype.onRequest = function () {
+        var _this = this;
+        var observable = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"](function (observer) {
+            _this.socket.on('request', function (data) {
+                observer.next(data);
+            });
+            return function () {
+                _this.socket.disconnect();
+            };
+        });
+        return observable;
     };
     return SocketService;
 }());
@@ -647,8 +632,14 @@ var GlobalConstants = (function () {
     function GlobalConstants() {
     }
     Object.defineProperty(GlobalConstants, "API_ENDPOINT", {
-        // public static get API_ENDPOINT(): string { return 'http://localhost:8080/api'; }
+        //public static get API_ENDPOINT(): string { return 'http://localhost:8080/api'; }
+        //public static get SOCKET_ENDPOINT(): string { return 'http://localhost:8080/'; }
         get: function () { return 'http://146.185.137.215/api'; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GlobalConstants, "SOCKET_ENDPOINT", {
+        get: function () { return 'http://146.185.137.215/'; },
         enumerable: true,
         configurable: true
     });
@@ -656,6 +647,127 @@ var GlobalConstants = (function () {
 }());
 
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/global-constants.js.map
+
+/***/ }),
+
+/***/ 41:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http_client__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_constants__ = __webpack_require__(30);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+//import { HttpClient } from '../http-client';
+//import { User } from '../user/user';
+
+var AuthenticationService = (function () {
+    function AuthenticationService(http, router) {
+        this.http = http;
+        this.router = router;
+        this.errorHandler = function (error) { return console.log('AuthenticationService error', error); };
+        //TODO load information about the roles
+        this.LOCAL_TOKEN_KEY = 'yourTokenKey';
+        this.authenticated = false;
+        this.dataAvailable = false;
+        this.loadUserCredentials();
+    }
+    AuthenticationService.prototype.reloadUser = function (id, self) {
+        var _this = this;
+        var temp = this.http.get(__WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
+            .then(function (res) {
+            var response = res.json();
+            _this.dataAvailable = true;
+            return response;
+        })
+            .catch(function (err) {
+            _this.router.navigateByUrl('error');
+            _this.errorHandler(err);
+            return err.json();
+        });
+        if (self) {
+            this.userPromise = temp;
+        }
+        return temp;
+    };
+    AuthenticationService.prototype.login = function (loginInfo) {
+        var _this = this;
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/auth/login", loginInfo).toPromise()
+            .then(function (res) {
+            _this.storeUserCredentials(res.json().id_token);
+            localStorage.setItem("USER_ID", res.json().user_id);
+            return res.json();
+        })
+            .catch(function (err) {
+            _this.errorHandler(err);
+            return err.json();
+        });
+    };
+    AuthenticationService.prototype.logout = function () {
+        this.destroyUserCredentials();
+    };
+    AuthenticationService.prototype.register = function (value) {
+        var _this = this;
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/auth/register", value).toPromise()
+            .then(function (res) {
+            return res.json();
+        })
+            .catch(function (err) {
+            _this.errorHandler(err);
+            return err.json();
+        });
+    };
+    AuthenticationService.prototype.isAuthenticated = function () {
+        return this.authenticated;
+    };
+    AuthenticationService.prototype.loadUserCredentials = function () {
+        var token = localStorage.getItem(this.LOCAL_TOKEN_KEY);
+        var id = localStorage.getItem("USER_ID");
+        if (token) {
+            this.useCredentials(token);
+            this.reloadUser(id, true);
+        }
+    };
+    AuthenticationService.prototype.storeUserCredentials = function (token) {
+        localStorage.setItem(this.LOCAL_TOKEN_KEY, token);
+        this.useCredentials(token);
+    };
+    AuthenticationService.prototype.useCredentials = function (token) {
+        this.authenticated = true;
+        this.authToken = token;
+        this.http.setAuthHeader(this.authToken);
+    };
+    AuthenticationService.prototype.destroyUserCredentials = function () {
+        this.authToken = undefined;
+        this.authenticated = false;
+        this.http.removeAuthHeader();
+        localStorage.removeItem(this.LOCAL_TOKEN_KEY);
+    };
+    return AuthenticationService;
+}());
+AuthenticationService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
+], AuthenticationService);
+
+var _a, _b;
+//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/authentication.service.js.map
 
 /***/ }),
 
@@ -730,7 +842,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalProfileComponent; });
@@ -792,9 +904,11 @@ var _a;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_http_client__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_global_constants__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_http_client__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_global_constants__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -808,30 +922,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChatService = (function () {
     function ChatService(http) {
         this.http = http;
+        this.conversationUpdate = new __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__["Subject"]();
     }
+    ChatService.prototype.activeConversation = function (value) {
+        this.conversation = value;
+        this.conversationUpdate.next(this.conversation);
+    };
     ChatService.prototype.getConversations = function (id_user) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user).toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ChatService.prototype.getMessages = function (id_user, id_user2) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user, { id_user: id_user2 }).toPromise()
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user, { id_user: id_user2 }).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ChatService.prototype.sendMessage = function (id_user, id_user2, message) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user + "/message", { id_user: id_user2, message: message }).toPromise()
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/chat/" + id_user + "/message", { id_user: id_user2, message: message }).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     return ChatService;
 }());
 ChatService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object])
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object])
 ], ChatService);
 
 var _a;
@@ -907,7 +1027,7 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalEndComponent; });
@@ -1061,9 +1181,10 @@ var _a;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_modal__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_service__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalViewAllComponent; });
 var __extends = (this && this.__extends) || (function () {
@@ -1088,37 +1209,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ModalContext = (function (_super) {
     __extends(ModalContext, _super);
     function ModalContext() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return ModalContext;
-}(__WEBPACK_IMPORTED_MODULE_2_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
+}(__WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
 
 var ModalViewAllComponent = (function () {
-    function ModalViewAllComponent(dialog) {
+    function ModalViewAllComponent(dialog, /*private volsService: VolDetailsModalService,*/ SharedService) {
         this.dialog = dialog;
+        this.SharedService = SharedService;
         this.lat = 41.100856;
         this.lng = -8.544893;
         this.context = dialog.context;
         this.context.isBlocking = false;
     }
     ModalViewAllComponent.prototype.ngOnInit = function () {
-        console.log(this.context.type);
+        if (this.context.type == 1) {
+            this.getCandidates(this.context.idVol);
+        }
+        else if (this.context.type == 2) {
+            this.getConfirmed(this.context.idVol);
+        }
+    };
+    ModalViewAllComponent.prototype.getCandidates = function (idVol) {
+        var _this = this;
+        this.SharedService.getCandidates(idVol)
+            .then(function (res) {
+            _this.candidates = res.users;
+        })
+            .catch(function (err) { return console.log(err); });
+    };
+    ModalViewAllComponent.prototype.getConfirmed = function (idVol) {
+        var _this = this;
+        this.SharedService.getConfirmed(idVol)
+            .then(function (res) {
+            _this.confirmeds = res.users;
+            console.log(_this.confirmeds);
+        })
+            .catch(function (err) { return console.log(err); });
     };
     return ModalViewAllComponent;
 }());
 ModalViewAllComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'view-all-modal',
         template: __webpack_require__(652),
         styles: [__webpack_require__(634)],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angular2_modal__["b" /* DialogRef */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["b" /* DialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_service__["a" /* SharedService */]) === "function" && _b || Object])
 ], ModalViewAllComponent);
 
-var _a;
+var _a, _b;
 /*
      this.volsService.getVol(this.context.idVol)
       .then(res => {
@@ -1129,116 +1274,6 @@ var _a;
   }
 */
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/modal-view-all.component.js.map
-
-/***/ }),
-
-/***/ 49:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http_client__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_constants__ = __webpack_require__(30);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-//import { HttpClient } from '../http-client';
-//import { User } from '../user/user';
-
-var AuthenticationService = (function () {
-    function AuthenticationService(http, router) {
-        this.http = http;
-        this.router = router;
-        this.errorHandler = function (error) { return console.log('AuthenticationService error', error); };
-        //TODO load information about the roles
-        this.LOCAL_TOKEN_KEY = 'yourTokenKey';
-        this.authenticated = false;
-        this.dataAvailable = false;
-        this.loadUserCredentials();
-    }
-    AuthenticationService.prototype.reloadUser = function (id, self) {
-        var _this = this;
-        var temp = this.http.get(__WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
-            .then(function (res) {
-            var response = res.json();
-            _this.dataAvailable = true;
-            return response;
-        })
-            .catch(function (err) {
-            _this.router.navigateByUrl('error');
-            _this.errorHandler(err);
-            return err.json();
-        });
-        if (self) {
-            this.userPromise = temp;
-        }
-        return temp;
-    };
-    AuthenticationService.prototype.login = function (loginInfo) {
-        var _this = this;
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/auth/login", loginInfo).toPromise()
-            .then(function (res) {
-            _this.storeUserCredentials(res.json().id_token);
-            localStorage.setItem("USER_ID", res.json().user_id);
-            return res.json();
-        })
-            .catch(function (err) {
-            _this.errorHandler(err);
-            return err.json();
-        });
-    };
-    AuthenticationService.prototype.logout = function () {
-        this.destroyUserCredentials();
-    };
-    AuthenticationService.prototype.isAuthenticated = function () {
-        return this.authenticated;
-    };
-    AuthenticationService.prototype.loadUserCredentials = function () {
-        var token = localStorage.getItem(this.LOCAL_TOKEN_KEY);
-        var id = localStorage.getItem("USER_ID");
-        if (token) {
-            this.useCredentials(token);
-            this.reloadUser(id, true);
-        }
-    };
-    AuthenticationService.prototype.storeUserCredentials = function (token) {
-        localStorage.setItem(this.LOCAL_TOKEN_KEY, token);
-        this.useCredentials(token);
-    };
-    AuthenticationService.prototype.useCredentials = function (token) {
-        this.authenticated = true;
-        this.authToken = token;
-        this.http.setAuthHeader(this.authToken);
-    };
-    AuthenticationService.prototype.destroyUserCredentials = function () {
-        this.authToken = undefined;
-        this.authenticated = false;
-        this.http.removeAuthHeader();
-        localStorage.removeItem(this.LOCAL_TOKEN_KEY);
-    };
-    return AuthenticationService;
-}());
-AuthenticationService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object])
-], AuthenticationService);
-
-var _a, _b;
-//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/authentication.service.js.map
 
 /***/ }),
 
@@ -1335,13 +1370,13 @@ var _a, _b;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__ = __webpack_require__(475);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_service__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_register_register_component__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_login_login_component__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_register_register_component__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_login_login_component__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_moment__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_moment__);
@@ -1367,7 +1402,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AppComponent = (function () {
-    function AppComponent(overlay, vcRef, modal, router, auth, socketService, appService, chatService) {
+    function AppComponent(overlay, route, vcRef, modal, router, auth, socketService, appService, chatService) {
+        this.route = route;
         this.modal = modal;
         this.router = router;
         this.auth = auth;
@@ -1375,6 +1411,8 @@ var AppComponent = (function () {
         this.appService = appService;
         this.chatService = chatService;
         this.conversations = [];
+        this.notifications = [];
+        this.requests = [];
         overlay.defaultViewContainer = vcRef;
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -1388,12 +1426,12 @@ var AppComponent = (function () {
                 mm: "%d m",
                 h: "1h",
                 hh: "%d hrs",
-                d: "1 day",
-                dd: "%d days",
-                M: "1 mo",
-                MM: "%d mos",
-                y: "1 yr",
-                yy: "%d yrs"
+                d: "1 dia",
+                dd: "%d dias",
+                M: "1 mês",
+                MM: "%d meses",
+                y: "1 ano",
+                yy: "%d anos"
             }
         });
         this.getUser();
@@ -1403,13 +1441,15 @@ var AppComponent = (function () {
         if (this.auth.isAuthenticated()) {
             this.auth.userPromise.then(function (res) {
                 _this.user = res.user;
-                console.log("USER", res.user);
+                _this.socketService.onNotification().subscribe(function (res) {
+                    _this.newNotificationCount++;
+                });
+                _this.socketService.onRequest().subscribe(function (res) {
+                    _this.newRequestsCount++;
+                });
                 _this.socketService.onConnect(res.user.id_user);
                 _this.getNotificationCount(res.user.id_user);
                 _this.getRequestCount(res.user.id_user);
-                _this.getNotifications(res.user.id_user);
-                _this.getRequests(res.user.id_user);
-                _this.getConversations(res.user.id_user);
                 var id = localStorage.getItem('USER_ID');
                 _this.idLogin = id;
             });
@@ -1440,13 +1480,15 @@ var AppComponent = (function () {
         var _this = this;
         this.appService.getNotifications(id).then(function (res) {
             _this.notifications = res.notifications;
-            console.log(res);
+            console.log("NOTIFICATIONS", res);
+            _this.cleanNotifications();
         });
     };
     AppComponent.prototype.getRequests = function (id) {
         var _this = this;
         this.appService.getRequests(id).then(function (res) {
             _this.requests = res.notifications;
+            _this.cleanRequests();
             console.log("requests", res);
         });
     };
@@ -1467,6 +1509,11 @@ var AppComponent = (function () {
                 _this.newNotificationCount = 0;
             });
         }
+    };
+    AppComponent.prototype.goToMessages = function (id, name) {
+        console.log("name", name);
+        this.chatService.conversation = name;
+        this.router.navigate(['./chat/msg', id], { relativeTo: this.route });
     };
     AppComponent.prototype.openLogin = function () {
         return this.modal.open(__WEBPACK_IMPORTED_MODULE_5__components_login_login_component__["a" /* LoginComponent */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_angular2_modal__["n" /* overlayConfigFactory */])({ num1: 2, num2: 3 }, __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
@@ -1493,10 +1540,10 @@ AppComponent = __decorate([
         styles: [__webpack_require__(623)],
         providers: [__WEBPACK_IMPORTED_MODULE_2__shared_socket_service__["a" /* SocketService */], __WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */], __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__["a" /* ChatService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["g" /* Overlay */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_core__["ViewContainerRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__["a" /* SocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__["a" /* SocketService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__["a" /* ChatService */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["g" /* Overlay */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_core__["ViewContainerRef"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__["a" /* SocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_socket_service__["a" /* SocketService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__app_service__["a" /* AppService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__components_chat_chat_service__["a" /* ChatService */]) === "function" && _j || Object])
 ], AppComponent);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/app.component.js.map
 
 /***/ }),
@@ -1505,30 +1552,30 @@ var _a, _b, _c, _d, _e, _f, _g, _h;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_shared_module__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_shared_module__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_map_map_module__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_http_client__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_register_register_component__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_login_login_component__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_register_register_component__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_login_login_component__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_google_maps_core__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_google_maps_core__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular2_moment__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular2_moment__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_angular2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_component__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_routing__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_search_search_component__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_notifications_notifications_component__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_social_requests_social_requests_component__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_search_search_component__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_notifications_notifications_component__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_social_requests_social_requests_component__ = __webpack_require__(284);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1607,10 +1654,10 @@ AppModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_social_requests_social_requests_component__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_notifications_notifications_component__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search_search_component__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_map_map_component__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_social_requests_social_requests_component__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_notifications_notifications_component__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search_search_component__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_map_map_component__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
@@ -1704,36 +1751,36 @@ var AppService = (function () {
         this.http = http;
     }
     AppService.prototype.newNotificationCount = function (id_user) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/" + id_user + "/not-read/count").toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/not-read/count").toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ;
     AppService.prototype.newRequestCount = function (id_user) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/" + id_user + "/requests/not-read/count").toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests/not-read/count").toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ;
     AppService.prototype.getNotifications = function (id_user) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/" + id_user).toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/").toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ;
     AppService.prototype.getRequests = function (id_user) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/" + id_user + "/requests").toPromise()
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests").toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     ;
     AppService.prototype.cleanRequests = function (id_user) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests/read-all", { id_user: id_user }).toPromise()
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests/read-all", null).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
     AppService.prototype.cleanNotifications = function (id_user) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/read-all", { id_user: id_user }).toPromise()
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/read-all", null).toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
@@ -1754,10 +1801,10 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__map_component__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_google_maps_core__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__map_component__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_google_maps_core__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_shared_module__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_shared_module__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
@@ -1806,14 +1853,15 @@ MapModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_service__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vol_details_modal_vol_details_modal_component__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Auth_authentication_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_service__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vol_details_modal_vol_details_modal_component__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_moment__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1831,8 +1879,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CardComponent = (function () {
-    function CardComponent(overlay, vcRef, modal, sharedService, router) {
+    function CardComponent(auth, overlay, vcRef, modal, sharedService, router) {
+        this.auth = auth;
         this.modal = modal;
         this.sharedService = sharedService;
         this.router = router;
@@ -1843,9 +1893,10 @@ var CardComponent = (function () {
         overlay.defaultViewContainer = vcRef;
     }
     CardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_6_moment__["locale"]('pt-pt');
-        __WEBPACK_IMPORTED_MODULE_6_moment__["updateLocale"]('pt', {
+        this.countLikes();
+        this.checkLike();
+        __WEBPACK_IMPORTED_MODULE_7_moment__["locale"]('pt-pt');
+        __WEBPACK_IMPORTED_MODULE_7_moment__["updateLocale"]('pt', {
             relativeTime: {
                 future: "in %s",
                 past: "%s",
@@ -1862,12 +1913,14 @@ var CardComponent = (function () {
                 yy: "%d yrs"
             }
         });
-        this.sharedService.getComments(this.idVol)
-            .then(function (res) {
-            _this.commentsResult = res.vols;
-            console.log(_this.commentsResult);
-        })
-            .catch(function (err) { return console.log(err); });
+        /*  this.sharedService.getComments(this.idVol)
+            .then(res => {
+              this.commentsResult = res.vols;
+              console.log(this.commentsResult);
+            })
+            .catch(err => console.log(err));
+      
+            */
     };
     CardComponent.prototype.openComments = function () {
         if (this.comments == 0) {
@@ -1877,8 +1930,16 @@ var CardComponent = (function () {
             this.comments = 0;
         }
     };
+    CardComponent.prototype.countLikes = function () {
+        var _this = this;
+        this.sharedService.countLikes(this.idVol)
+            .then(function (res) {
+            _this.numberLikes = res.likes;
+        })
+            .catch(function (err) { return console.log(err); });
+    };
     CardComponent.prototype.openVolDetails = function (idVol) {
-        return this.modal.open(__WEBPACK_IMPORTED_MODULE_1__vol_details_modal_vol_details_modal_component__["a" /* VolDetailsModalComponent */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_angular2_modal__["n" /* overlayConfigFactory */])({ idVol: idVol }, __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
+        return this.modal.open(__WEBPACK_IMPORTED_MODULE_2__vol_details_modal_vol_details_modal_component__["a" /* VolDetailsModalComponent */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_angular2_modal__["n" /* overlayConfigFactory */])({ idVol: idVol }, __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
     };
     CardComponent.prototype.onSelect = function (profile) {
         this.router.navigate(['/profile/' + profile + '/activity']);
@@ -1915,62 +1976,72 @@ var CardComponent = (function () {
             this.foto3 = 1;
         }
     };
+    CardComponent.prototype.checkLike = function () {
+        var _this = this;
+        if (this.auth.isAuthenticated()) {
+            this.sharedService.checkLike(this.idVol)
+                .then(function (res) {
+                _this.likeState = res.state;
+            })
+                .catch(function (err) { return console.log(err); });
+        }
+    };
     return CardComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "type", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "userCreator", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "dateCreation", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "title", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "desc", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "avatar", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "username", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "verified", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "map", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "likes", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], CardComponent.prototype, "idVol", void 0);
 CardComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
         selector: 'vol-card',
         template: __webpack_require__(648),
         styles: [__webpack_require__(630)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angular2_modal__["g" /* Overlay */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_core__["ViewContainerRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_service__["a" /* SharedService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angular2_modal__["g" /* Overlay */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewContainerRef"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__["c" /* Modal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__["c" /* Modal */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_service__["a" /* SharedService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */]) === "function" && _f || Object])
 ], CardComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/card.component.js.map
 
 /***/ }),
@@ -2092,7 +2163,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n/* HEADER */\n.brandBackground {\n  padding-top: 6px; }\n\n.header-background {\n  background-color: #0F76F7;\n  height: 50px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  z-index: 10; }\n\n.titleBrand a {\n  color: #FFFFFF;\n  font-weight: 600;\n  letter-spacing: 8px;\n  font-size: 1.45rem;\n  padding-top: 5px;\n  padding-bottom: 15px;\n  padding-right: 15px;\n  text-decoration: none; }\n\n.menuHeader {\n  text-align: right; }\n\n.menuHeader ul {\n  padding-top: 8px;\n  padding-left: 15px; }\n\n.menuHeader ul li {\n  display: inline-block;\n  vertical-align: middle;\n  color: #FFFFFF;\n  padding-top: 5px;\n  padding-left: 8px;\n  padding-right: 8px; }\n\n.menuHeader ul li:last-child {\n  display: inline-block;\n  vertical-align: middle;\n  color: #FFFFFF;\n  padding-top: 0;\n  padding-left: 8px;\n  padding-right: 0; }\n\n.navbar-user-picture {\n  width: 35px;\n  height: 35px;\n  border-radius: 35px;\n  margin-right: 5px; }\n\n.navbar-namePicture-arrow {\n  display: inline-block;\n  vertical-align: middle; }\n\n.menuHeader ul li:hover {\n  cursor: pointer; }\n\n/deep/ .mat-menu-panel {\n  /* box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); */\n  width: 220px;\n  margin-top: 40px; }\n\n/deep/ .cdk-overlay-pane {\n  margin-left: -10px; }\n\n/deep/ .mat-menu-ripple {\n  padding-left: 10px;\n  padding-right: 10px;\n  color: #919191 !important; }\n\n/deep/ .mat-menu-ripple:hover {\n  border-bottom: 1px solid #919191 !important; }\n\n/deep/ .mat-menu-content {\n  padding-bottom: 0 !important;\n  padding-top: 0 !important;\n  border-bottom: 1px solid #F7F8FA !important; }\n\n/deep/ .mat-menu-item {\n  font-size: 14px !important;\n  font-family: Lato !important; }\n\n/deep/ .mat-menu-item:hover {\n  font-size: 14px !important;\n  font-family: Lato !important;\n  color: #4A4A4A !important;\n  background: #FFFFFF !important; }\n\n.message-item {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.profile-item {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 5px 20px;\n  border: 0; }\n\n.profile-item .icon {\n  color: #919191;\n  padding-top: 1px; }\n\n.profile-item .icon i {\n  font-size: 20px; }\n\n.profile-item .desc {\n  color: #4A4A4A;\n  font-size: 13px;\n  margin-left: 15px;\n  padding-top: 2px; }\n\n.profile-item:hover {\n  background: #f5f5f5; }\n\n.actions-profile {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #E6E5E5; }\n\nhr {\n  margin: 0; }\n\n/*\r\n/deep/ .popover {\r\n    max-width: 350px !important;\r\n    width: 100% !important;\r\n    /* Max Width of the popover (depending on the container!)\r\n\r\n}\r\n*/\n.image img {\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.image {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 0px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.notification-info {\n  margin-left: 12px;\n  width: 100%;\n  height: 50px;\n  font-size: 14px; }\n\n.dropdown-menu .new {\n  background: rgba(15, 118, 247, 0.1); }\n\n.message-item:hover {\n  background: #f5f5f5; }\n\n.message-item .time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.message-info div:first-child {\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.message-info .text {\n  font-weight: 12px; }\n\n#dropdown-user {\n  left: -30px;\n  top: 42px;\n  border-radius: 0px;\n  right: 0; }\n\n#dropdown-user .dropdown-item {\n  padding: 10px !important;\n  height: initial; }\n\n#dropdown-messages {\n  left: -385px;\n  top: 40px;\n  border-radius: 0px;\n  width: 450px;\n  padding: 0; }\n\n.dropdown-menu-profile {\n  padding: 0 !important; }\n\n.dropdown-menu:before {\n  position: absolute;\n  top: -7px;\n  right: 36px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ccc;\n  border-left: 8px solid transparent;\n  border-bottom-color: rgba(0, 0, 0, 0.2);\n  content: ''; }\n\n.dropdown-menu-profile:before {\n  position: absolute;\n  top: -7px;\n  right: 3px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ccc;\n  border-left: 8px solid transparent;\n  border-bottom-color: rgba(0, 0, 0, 0.2);\n  content: ''; }\n\n.dropdown-toggle:after {\n  display: none; }\n\n.dropdown-menu:after {\n  position: absolute;\n  top: -7px;\n  right: 36px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ffffff;\n  border-left: 8px solid transparent;\n  content: ''; }\n\n.dropdown-menu-profile:after {\n  position: absolute;\n  top: -7px;\n  right: 3px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ffffff;\n  border-left: 8px solid transparent;\n  content: ''; }\n\n.badge-notify {\n  background: red;\n  position: relative;\n  top: -20px;\n  left: -13px; }\n\n.arrow_dropdown {\n  position: relative;\n  top: 5px; }\n\n.dropdown-header {\n  font-size: 10px;\n  padding: 10px 20px 10px;\n  border-bottom: 1px solid #E6E5E5;\n  color: #919191; }\n\n.dropdown-footer {\n  font-size: 13px;\n  font-weight: 600;\n  padding: 10px 0px 10px;\n  color: #0F76F7;\n  text-align: center; }\n\n.dropdown-footer:focus {\n  outline: none; }\n\n.nameDropdown {\n  margin-top: -5px; }\n\n.btn-notification {\n  padding: 6px; }\n\n.btnConfirm:hover {\n  background: #f5f5f5; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n/* HEADER */\n.brandBackground {\n  padding-top: 6px; }\n\n.header-background {\n  background-color: #0F76F7;\n  height: 50px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  z-index: 10; }\n\n.titleBrand a {\n  color: #FFFFFF;\n  font-weight: 600;\n  letter-spacing: 8px;\n  font-size: 1.45rem;\n  padding-top: 5px;\n  padding-bottom: 15px;\n  padding-right: 15px;\n  text-decoration: none; }\n\n.menuHeader {\n  text-align: right; }\n\n.menuHeader ul {\n  padding-top: 8px;\n  padding-left: 15px; }\n\n.menuHeader ul li {\n  display: inline-block;\n  vertical-align: middle;\n  color: #FFFFFF;\n  padding-top: 5px;\n  padding-left: 8px;\n  padding-right: 8px; }\n\n.menuHeader ul li:last-child {\n  display: inline-block;\n  vertical-align: middle;\n  color: #FFFFFF;\n  padding-top: 0;\n  padding-left: 8px;\n  padding-right: 0; }\n\n.navbar-user-picture {\n  width: 35px;\n  height: 35px;\n  border-radius: 35px;\n  margin-right: 5px; }\n\n.navbar-namePicture-arrow {\n  display: inline-block;\n  vertical-align: middle; }\n\n.menuHeader ul li:hover {\n  cursor: pointer; }\n\n/deep/ .mat-menu-panel {\n  /* box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); */\n  width: 220px;\n  margin-top: 40px; }\n\n/deep/ .cdk-overlay-pane {\n  margin-left: -10px; }\n\n/deep/ .mat-menu-ripple {\n  padding-left: 10px;\n  padding-right: 10px;\n  color: #919191 !important; }\n\n/deep/ .mat-menu-ripple:hover {\n  border-bottom: 1px solid #919191 !important; }\n\n/deep/ .mat-menu-content {\n  padding-bottom: 0 !important;\n  padding-top: 0 !important;\n  border-bottom: 1px solid #F7F8FA !important; }\n\n/deep/ .mat-menu-item {\n  font-size: 14px !important;\n  font-family: Lato !important; }\n\n/deep/ .mat-menu-item:hover {\n  font-size: 14px !important;\n  font-family: Lato !important;\n  color: #4A4A4A !important;\n  background: #FFFFFF !important; }\n\n.message-item {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.profile-item {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 5px 20px;\n  border: 0; }\n\n.profile-item .icon {\n  color: #919191;\n  padding-top: 1px; }\n\n.profile-item .icon i {\n  font-size: 20px; }\n\n.profile-item .desc {\n  color: #4A4A4A;\n  font-size: 13px;\n  margin-left: 15px;\n  padding-top: 2px; }\n\n.profile-item:hover {\n  background: #f5f5f5; }\n\n.actions-profile {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #E6E5E5; }\n\nhr {\n  margin: 0; }\n\n/*\r\n/deep/ .popover {\r\n    max-width: 350px !important;\r\n    width: 100% !important;\r\n    /* Max Width of the popover (depending on the container!)\r\n\r\n}\r\n*/\n.image img {\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.image {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 0px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.notification-info {\n  width: 250px;\n  margin-left: 12px;\n  height: 50px;\n  font-size: 14px;\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical; }\n\n.dropdown-menu .new {\n  background: rgba(15, 118, 247, 0.1); }\n\n.message-item:hover {\n  background: #f5f5f5; }\n\n.message-item .time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.message-info div:first-child {\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.message-info .text {\n  font-weight: 12px; }\n\n#dropdown-user {\n  left: -30px;\n  top: 42px;\n  border-radius: 0px;\n  right: 0; }\n\n#dropdown-user .dropdown-item {\n  padding: 10px !important;\n  height: initial; }\n\n#dropdown-messages {\n  left: -385px;\n  top: 40px;\n  border-radius: 0px;\n  width: 450px;\n  padding: 0; }\n\n.dropdown-menu-profile {\n  padding: 0 !important; }\n\n.dropdown-menu:before {\n  position: absolute;\n  top: -7px;\n  right: 36px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ccc;\n  border-left: 8px solid transparent;\n  border-bottom-color: rgba(0, 0, 0, 0.2);\n  content: ''; }\n\n.dropdown-menu-profile:before {\n  position: absolute;\n  top: -7px;\n  right: 3px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ccc;\n  border-left: 8px solid transparent;\n  border-bottom-color: rgba(0, 0, 0, 0.2);\n  content: ''; }\n\n.dropdown-toggle:after {\n  display: none; }\n\n.dropdown-menu:after {\n  position: absolute;\n  top: -7px;\n  right: 36px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ffffff;\n  border-left: 8px solid transparent;\n  content: ''; }\n\n.dropdown-menu-profile:after {\n  position: absolute;\n  top: -7px;\n  right: 3px;\n  display: inline-block;\n  border-right: 8px solid transparent;\n  border-bottom: 8px solid #ffffff;\n  border-left: 8px solid transparent;\n  content: ''; }\n\n.badge-notify {\n  background: red;\n  position: absolute;\n  top: 0px;\n  left: 25px; }\n\n.arrow_dropdown {\n  position: relative;\n  top: 5px; }\n\n.dropdown-header {\n  font-size: 10px;\n  padding: 10px 20px 10px;\n  border-bottom: 1px solid #E6E5E5;\n  color: #919191; }\n\n.dropdown-footer {\n  font-size: 13px;\n  font-weight: 600;\n  padding: 10px 0px 10px;\n  color: #0F76F7;\n  text-align: center; }\n\n.dropdown-footer:focus {\n  outline: none; }\n\n.nameDropdown {\n  margin-top: -5px; }\n\n.btn-notification {\n  padding: 6px; }\n\n.btnConfirm:hover {\n  background: #f5f5f5; }\n", ""]);
 
 // exports
 
@@ -2218,7 +2289,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media (min-width: 320px) {\n  .likeImgs {\n    display: none; }\n  .likesText {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .likeImgs {\n    display: block; }\n  .likesText {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  /* big landscape tablets, laptops, and desktops */ }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.card-volum {\n  background-color: #FFFFFF;\n  padding-top: 15px;\n  border-radius: 4px;\n  margin-top: 30px;\n  min-width: 50% !important; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  cursor: pointer; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600;\n  cursor: pointer; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.btn-secondary {\n  border: 0 !important; }\n\n.card-option {\n  padding-top: 10px; }\n\n.card-btn-option {\n  color: #E6E5E5;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease; }\n\n.card-btn-option:hover {\n  color: #919191;\n  cursor: pointer; }\n\n.card-volum-content {\n  margin-top: 20px; }\n\n.card-volum-title {\n  font-weight: 600;\n  color: #4A4A4A;\n  width: 100%; }\n\n.card-volum-description {\n  margin-top: 5px;\n  display: block;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  text-justify: inter-word;\n  min-width: 50%;\n  max-width: 95%;\n  height: 45px; }\n\n.card-volum-footer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px; }\n\n.btnLike {\n  color: #F51111;\n  padding-top: 7px; }\n\n.likesNumber {\n  font-weight: 600;\n  padding-top: 10px;\n  padding-left: 5px;\n  margin-right: 15px; }\n\n.likeImgs {\n  margin-top: 2.5px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -10px;\n  border-radius: 30px; }\n\n.likesText {\n  padding-top: 1px;\n  max-width: 110px;\n  margin-left: 5px;\n  color: #919191; }\n\n.likesTestMe {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.likesTestSecond {\n  color: #919191;\n  font-weight: 600; }\n\n.cardComments {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 2;\n      -ms-flex: 2;\n          flex: 2;\n  margin-left: 10px; }\n\n.cardComments md-icon {\n  padding-top: 7.5px;\n  font-size: 20px; }\n\n.textComments {\n  padding-top: 7.5px;\n  cursor: pointer; }\n\n.textComments:hover {\n  text-decoration: underline; }\n\n.commentsNumber {\n  font-weight: 600; }\n\n.btnView button {\n  background-color: #0F76F7;\n  color: #FFF;\n  box-shadow: 0 3px 1px -2px transparent, 0 2px 2px 0 transparent, 0 1px 5px 0 transparent;\n  min-width: 68px; }\n\n.card-Comments {\n  border-top: 1px solid #E6E5E5; }\n\n.comments-header {\n  background-color: #F7F8FA;\n  padding-top: 15px;\n  padding-bottom: 5px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.card-user--comments-image {\n  padding-right: 10px; }\n\n.card-user--comments-image img {\n  width: 30px;\n  height: 30px;\n  border-radius: 30px;\n  margin-top: 1.5px; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name-comments {\n  color: #4A4A4A;\n  font-weight: 600; }\n\n.card-date-comments {\n  margin-top: -3px;\n  color: #919191; }\n\n.card-option-comments {\n  padding-top: 3px; }\n\n.comments-content {\n  background-color: #F7F8FA;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.borderComments {\n  min-width: 100%;\n  height: 1px;\n  background-color: #E6E5E5;\n  margin-right: -15px;\n  margin-left: -15px; }\n\n.more-Comments {\n  width: 100%;\n  text-align: center;\n  height: 42px;\n  font-weight: 600;\n  border-bottom: 1px solid #E6E5E5;\n  padding-top: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #919191; }\n\n.more-Comments:hover {\n  cursor: pointer;\n  color: #FF8A65; }\n\n.textMoreComments {\n  vertical-align: middle; }\n\n.moreIcon {\n  font-size: 24px;\n  font-weight: 700;\n  vertical-align: middle; }\n\n.insert-comment {\n  padding-top: 10px; }\n\n.btnSend {\n  padding-left: 0; }\n\n.btnSendIcon {\n  padding-top: 10px; }\n\n.btnSendIcon:hover {\n  cursor: pointer; }\n\n.btnSendColorBlue {\n  color: #0F76F7; }\n\n.btnSendColorGrey {\n  color: #E6E5E5; }\n\n.card-user-comments-image-comments {\n  padding-top: 5px; }\n\n.imgSlider {\n  margin-top: 10px; }\n\n.imgSliderInd {\n  height: 250px;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.ball1, .ball2, .ball3 {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #0F76F7;\n  border: 1px solid #0F76F7;\n  border-radius: 50px; }\n\n.ball1Empty, .ball2Empty, .ball3Empty {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #E6E5E5;\n  border: 1px solid #E6E5E5;\n  border-radius: 50px; }\n\n.balls {\n  margin-left: 270px; }\n\n.rightArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 12;\n  background-color: #E6E5E5;\n  width: 70px;\n  margin-top: -260px;\n  margin-left: 470px;\n  cursor: pointer; }\n\n.rightArrow:hover {\n  opacity: 0.1; }\n\n.leftArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 10;\n  width: 70px;\n  margin-top: -254px;\n  background-color: #E6E5E5;\n  margin-left: 0;\n  cursor: pointer; }\n\n.leftArrow:hover {\n  opacity: 0.1; }\n\n.iconRight {\n  margin-top: 120px;\n  margin-left: 30px;\n  color: #fff; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media (min-width: 320px) {\n  .likeImgs {\n    display: none; }\n  .likesText {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .likeImgs {\n    display: block; }\n  .likesText {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  /* big landscape tablets, laptops, and desktops */ }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.card-volum {\n  background-color: #FFFFFF;\n  padding-top: 15px;\n  border-radius: 4px;\n  margin-top: 30px;\n  min-width: 50% !important; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  cursor: pointer; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600;\n  cursor: pointer; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.btn-secondary {\n  border: 0 !important; }\n\n.card-option {\n  padding-top: 10px; }\n\n.card-btn-option {\n  color: #E6E5E5;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease; }\n\n.card-btn-option:hover {\n  color: #919191;\n  cursor: pointer; }\n\n.card-volum-content {\n  margin-top: 20px; }\n\n.card-volum-title {\n  font-weight: 600;\n  color: #4A4A4A;\n  width: 100%; }\n\n.card-volum-description {\n  margin-top: 5px;\n  display: block;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  text-justify: inter-word;\n  min-width: 50%;\n  max-width: 95%;\n  height: 45px; }\n\n.card-volum-footer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px; }\n\n.btnLike {\n  color: #F51111;\n  padding-top: 7px;\n  cursor: pointer; }\n\n.likesNumber {\n  font-weight: 600;\n  padding-top: 10px;\n  padding-left: 5px;\n  margin-right: 15px; }\n\n.likeImgs {\n  margin-top: 2.5px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -10px;\n  border-radius: 30px; }\n\n.likesText {\n  padding-top: 1px;\n  max-width: 110px;\n  margin-left: 5px;\n  color: #919191; }\n\n.likesTestMe {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.likesTestSecond {\n  color: #919191;\n  font-weight: 600; }\n\n.cardComments {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 2;\n      -ms-flex: 2;\n          flex: 2;\n  margin-left: 10px; }\n\n.cardComments md-icon {\n  padding-top: 7.5px;\n  font-size: 20px; }\n\n.textComments {\n  padding-top: 7.5px;\n  cursor: pointer; }\n\n.textComments:hover {\n  text-decoration: underline; }\n\n.commentsNumber {\n  font-weight: 600; }\n\n.btnView button {\n  background-color: #0F76F7;\n  color: #FFF;\n  box-shadow: 0 3px 1px -2px transparent, 0 2px 2px 0 transparent, 0 1px 5px 0 transparent;\n  min-width: 68px; }\n\n.card-Comments {\n  border-top: 1px solid #E6E5E5; }\n\n.comments-header {\n  background-color: #F7F8FA;\n  padding-top: 15px;\n  padding-bottom: 5px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.card-user--comments-image {\n  padding-right: 10px; }\n\n.card-user--comments-image img {\n  width: 30px;\n  height: 30px;\n  border-radius: 30px;\n  margin-top: 1.5px; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name-comments {\n  color: #4A4A4A;\n  font-weight: 600; }\n\n.card-date-comments {\n  margin-top: -3px;\n  color: #919191; }\n\n.card-option-comments {\n  padding-top: 3px; }\n\n.comments-content {\n  background-color: #F7F8FA;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.borderComments {\n  min-width: 100%;\n  height: 1px;\n  background-color: #E6E5E5;\n  margin-right: -15px;\n  margin-left: -15px; }\n\n.more-Comments {\n  width: 100%;\n  text-align: center;\n  height: 42px;\n  font-weight: 600;\n  border-bottom: 1px solid #E6E5E5;\n  padding-top: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #919191; }\n\n.more-Comments:hover {\n  cursor: pointer;\n  color: #FF8A65; }\n\n.textMoreComments {\n  vertical-align: middle; }\n\n.moreIcon {\n  font-size: 24px;\n  font-weight: 700;\n  vertical-align: middle; }\n\n.insert-comment {\n  padding-top: 10px; }\n\n.btnSend {\n  padding-left: 0; }\n\n.btnSendIcon {\n  padding-top: 10px; }\n\n.btnSendIcon:hover {\n  cursor: pointer; }\n\n.btnSendColorBlue {\n  color: #0F76F7; }\n\n.btnSendColorGrey {\n  color: #E6E5E5; }\n\n.card-user-comments-image-comments {\n  padding-top: 5px; }\n\n.imgSlider {\n  margin-top: 10px; }\n\n.imgSliderInd {\n  height: 250px;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.ball1, .ball2, .ball3 {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #0F76F7;\n  border: 1px solid #0F76F7;\n  border-radius: 50px; }\n\n.ball1Empty, .ball2Empty, .ball3Empty {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #E6E5E5;\n  border: 1px solid #E6E5E5;\n  border-radius: 50px; }\n\n.balls {\n  margin-left: 270px; }\n\n.rightArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 12;\n  background-color: #E6E5E5;\n  width: 70px;\n  margin-top: -260px;\n  margin-left: 470px;\n  cursor: pointer; }\n\n.rightArrow:hover {\n  opacity: 0.1; }\n\n.leftArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 10;\n  width: 70px;\n  margin-top: -254px;\n  background-color: #E6E5E5;\n  margin-left: 0;\n  cursor: pointer; }\n\n.leftArrow:hover {\n  opacity: 0.1; }\n\n.iconRight {\n  margin-top: 120px;\n  margin-left: 30px;\n  color: #fff; }\n\n.cardLikesContent {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 300px; }\n\n.btnBlack {\n  color: #4A4A4A !important; }\n", ""]);
 
 // exports
 
@@ -2308,7 +2379,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\nsearch .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media (min-width: 320px) {\n  .likeImgs {\n    display: none; }\n  .likesText {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .likeImgs {\n    display: block; }\n  .likesText {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  /* big landscape tablets, laptops, and desktops */ }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.card-volum {\n  background-color: #FFFFFF;\n  padding-top: 15px;\n  border-radius: 4px;\n  margin-top: 30px;\n  min-width: 50% !important; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  cursor: pointer; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600;\n  cursor: pointer; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.btn-secondary {\n  border: 0 !important; }\n\n.card-option {\n  padding-top: 10px; }\n\n.card-btn-option {\n  color: #E6E5E5;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease; }\n\n.card-btn-option:hover {\n  color: #919191;\n  cursor: pointer; }\n\n.card-volum-content {\n  margin-top: 20px; }\n\n.card-volum-title {\n  font-weight: 600;\n  color: #4A4A4A;\n  width: 100%; }\n\n.card-volum-description {\n  margin-top: 5px;\n  display: block;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  text-justify: inter-word;\n  min-width: 50%;\n  max-width: 95%;\n  height: 45px; }\n\n.card-volum-footer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px; }\n\n.btnLike {\n  color: #F51111;\n  padding-top: 7px; }\n\n.likesNumber {\n  font-weight: 600;\n  padding-top: 10px;\n  padding-left: 5px;\n  margin-right: 15px; }\n\n.likeImgs {\n  margin-top: 2.5px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -10px;\n  border-radius: 30px; }\n\n.likesText {\n  padding-top: 1px;\n  max-width: 110px;\n  margin-left: 5px;\n  color: #919191; }\n\n.likesTestMe {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.likesTestSecond {\n  color: #919191;\n  font-weight: 600; }\n\n.cardComments {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 2;\n      -ms-flex: 2;\n          flex: 2;\n  margin-left: 10px; }\n\n.cardComments md-icon {\n  padding-top: 7.5px;\n  font-size: 20px; }\n\n.textComments {\n  padding-top: 7.5px;\n  cursor: pointer; }\n\n.textComments:hover {\n  text-decoration: underline; }\n\n.commentsNumber {\n  font-weight: 600; }\n\n.btnView button {\n  background-color: #0F76F7;\n  color: #FFF;\n  box-shadow: 0 3px 1px -2px transparent, 0 2px 2px 0 transparent, 0 1px 5px 0 transparent;\n  min-width: 68px; }\n\n.card-Comments {\n  border-top: 1px solid #E6E5E5; }\n\n.comments-header {\n  background-color: #F7F8FA;\n  padding-top: 15px;\n  padding-bottom: 5px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.card-user--comments-image {\n  padding-right: 10px; }\n\n.card-user--comments-image img {\n  width: 30px;\n  height: 30px;\n  border-radius: 30px;\n  margin-top: 1.5px; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name-comments {\n  color: #4A4A4A;\n  font-weight: 600; }\n\n.card-date-comments {\n  margin-top: -3px;\n  color: #919191; }\n\n.card-option-comments {\n  padding-top: 3px; }\n\n.comments-content {\n  background-color: #F7F8FA;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.borderComments {\n  min-width: 100%;\n  height: 1px;\n  background-color: #E6E5E5;\n  margin-right: -15px;\n  margin-left: -15px; }\n\n.more-Comments {\n  width: 100%;\n  text-align: center;\n  height: 42px;\n  font-weight: 600;\n  border-bottom: 1px solid #E6E5E5;\n  padding-top: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #919191; }\n\n.more-Comments:hover {\n  cursor: pointer;\n  color: #FF8A65; }\n\n.textMoreComments {\n  vertical-align: middle; }\n\n.moreIcon {\n  font-size: 24px;\n  font-weight: 700;\n  vertical-align: middle; }\n\n.insert-comment {\n  padding-top: 10px; }\n\n.btnSend {\n  padding-left: 0; }\n\n.btnSendIcon {\n  padding-top: 10px; }\n\n.btnSendIcon:hover {\n  cursor: pointer; }\n\n.btnSendColorBlue {\n  color: #0F76F7; }\n\n.btnSendColorGrey {\n  color: #E6E5E5; }\n\n.card-user-comments-image-comments {\n  padding-top: 5px; }\n\n.imgSlider {\n  margin-top: 10px; }\n\n.imgSliderInd {\n  height: 250px;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.ball1, .ball2, .ball3 {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #0F76F7;\n  border: 1px solid #0F76F7;\n  border-radius: 50px; }\n\n.ball1Empty, .ball2Empty, .ball3Empty {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #E6E5E5;\n  border: 1px solid #E6E5E5;\n  border-radius: 50px; }\n\n.balls {\n  margin-left: 270px; }\n\n.rightArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 12;\n  background-color: #E6E5E5;\n  width: 70px;\n  margin-top: -260px;\n  margin-left: 470px;\n  cursor: pointer; }\n\n.rightArrow:hover {\n  opacity: 0.1; }\n\n.leftArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 10;\n  width: 70px;\n  margin-top: -254px;\n  background-color: #E6E5E5;\n  margin-left: 0;\n  cursor: pointer; }\n\n.leftArrow:hover {\n  opacity: 0.1; }\n\n.iconRight {\n  margin-top: 120px;\n  margin-left: 30px;\n  color: #fff; }\n\n.modalHeader {\n  background: #0F76F7;\n  padding: 15px 20px; }\n\n.day-w-border {\n  width: 60px;\n  border: 2px solid #FFFFFF;\n  border-radius: 7px;\n  font-size: 14px;\n  text-align: center;\n  color: #FFFFFF;\n  font-weight: 600;\n  padding: 5px; }\n\n.modalTitle {\n  margin-left: 10px;\n  margin-top: 3px; }\n\n.containerDatePlace {\n  margin-top: 10px; }\n\n.modalTitleDesc {\n  font-size: 18px;\n  color: #FFFFFF;\n  font-weight: 600; }\n\n.modalSubtitle {\n  font-size: 13px;\n  color: #FFFFFF; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px; }\n\n.card-user-nd {\n  padding-left: 10px; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.modalContainer {\n  background: #FFFFFF;\n  padding: 20px;\n  padding-bottom: 0px; }\n\n.card-user-desc {\n  color: #4A4A4A; }\n\n.card-user-event {\n  color: #FF8A65;\n  font-weight: 600; }\n\n.btnCandidate {\n  background: #FFCB2B;\n  font-size: 12px;\n  border: 0;\n  border-radius: 4px;\n  color: #FFFFFF;\n  font-weight: 600;\n  padding: 12px 16px; }\n\n.modalTextArea {\n  margin-top: 15px;\n  text-indent: 30px;\n  text-align: justify; }\n\n.sectionDatePlace {\n  height: 10px;\n  width: 100%;\n  border-top: 1px solid #E6E5E5;\n  margin-top: 20px;\n  margin-bottom: 20px; }\n\n.iconDate {\n  font-size: 18px;\n  color: #4A4A4A;\n  margin-top: 15px; }\n\n.daysEvent {\n  font-weight: 600;\n  margin-top: 5px;\n  color: #4A4A4A; }\n\n.descDatePlace {\n  padding-left: 15px; }\n\n.daysEventFull {\n  font-weight: 300;\n  color: #4A4A4A; }\n\n.no-padding {\n  padding: 0 !important; }\n\n.no-padding-side {\n  padding-left: 0 !important;\n  padding-right: 0 !important; }\n\n.sebm-google-map-container {\n  height: 100px; }\n\n.mapContent {\n  margin-top: 40px; }\n\n.friendsContainer {\n  margin-top: 10px; }\n\n.likeImgs {\n  margin-top: 2.5px;\n  margin-left: 15px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -15px;\n  border-radius: 30px; }\n\n.numberYellow {\n  font-size: 18px;\n  color: #FFCB2B;\n  font-weight: 600; }\n\n.numberBlue {\n  font-size: 18px;\n  color: #0F76F7;\n  font-weight: 600; }\n\n.normalText {\n  font-size: 13px;\n  color: #4A4A4A; }\n\n.comments-back {\n  background: #E6E5E5; }\n\n.card-volum-footer {\n  padding: 0; }\n\n.card-volum-footer {\n  border-top: 1px solid #E6E5E5;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  width: 100%;\n  margin-top: 20px; }\n\n.comments-header, .comments-content {\n  margin-right: -20px;\n  margin-left: -20px; }\n\n.card-Comments {\n  border: 0px; }\n\n.modalTextBold {\n  font-weight: 600;\n  margin-top: 5px; }\n\n.typeVol {\n  background: orange;\n  border-radius: 10px;\n  padding: 2px 8px;\n  font-size: 12px;\n  color: white; }\n\n.insuBool {\n  background: #3C765A;\n  border-radius: 10px;\n  padding: 2px 8px;\n  font-size: 12px;\n  color: white;\n  margin-left: 6px; }\n\n.details-vol {\n  margin-top: 10px;\n  text-indent: 0px !important; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\nsearch .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n@media (min-width: 320px) {\n  .likeImgs {\n    display: none; }\n  .likesText {\n    display: none; } }\n\n@media (min-width: 480px) {\n  .likeImgs {\n    display: block; }\n  .likesText {\n    display: block; } }\n\n@media (min-width: 1025px) {\n  /* big landscape tablets, laptops, and desktops */ }\n\n@media (min-width: 1281px) {\n  /* hi-res laptops and desktops */ }\n\n.card-volum {\n  background-color: #FFFFFF;\n  padding-top: 15px;\n  border-radius: 4px;\n  margin-top: 30px;\n  min-width: 50% !important; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  cursor: pointer; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600;\n  cursor: pointer; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.btn-secondary {\n  border: 0 !important; }\n\n.card-option {\n  padding-top: 10px; }\n\n.card-btn-option {\n  color: #E6E5E5;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease; }\n\n.card-btn-option:hover {\n  color: #919191;\n  cursor: pointer; }\n\n.card-volum-content {\n  margin-top: 20px; }\n\n.card-volum-title {\n  font-weight: 600;\n  color: #4A4A4A;\n  width: 100%; }\n\n.card-volum-description {\n  margin-top: 5px;\n  display: block;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  text-justify: inter-word;\n  min-width: 50%;\n  max-width: 95%;\n  height: 45px; }\n\n.card-volum-footer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 15px; }\n\n.btnLike {\n  color: #F51111;\n  padding-top: 7px;\n  cursor: pointer; }\n\n.likesNumber {\n  font-weight: 600;\n  padding-top: 10px;\n  padding-left: 5px;\n  margin-right: 15px; }\n\n.likeImgs {\n  margin-top: 2.5px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -10px;\n  border-radius: 30px; }\n\n.likesText {\n  padding-top: 1px;\n  max-width: 110px;\n  margin-left: 5px;\n  color: #919191; }\n\n.likesTestMe {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.likesTestSecond {\n  color: #919191;\n  font-weight: 600; }\n\n.cardComments {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 2;\n      -ms-flex: 2;\n          flex: 2;\n  margin-left: 10px; }\n\n.cardComments md-icon {\n  padding-top: 7.5px;\n  font-size: 20px; }\n\n.textComments {\n  padding-top: 7.5px;\n  cursor: pointer; }\n\n.textComments:hover {\n  text-decoration: underline; }\n\n.commentsNumber {\n  font-weight: 600; }\n\n.btnView button {\n  background-color: #0F76F7;\n  color: #FFF;\n  box-shadow: 0 3px 1px -2px transparent, 0 2px 2px 0 transparent, 0 1px 5px 0 transparent;\n  min-width: 68px; }\n\n.card-Comments {\n  border-top: 1px solid #E6E5E5; }\n\n.comments-header {\n  background-color: #F7F8FA;\n  padding-top: 15px;\n  padding-bottom: 5px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.card-user--comments-image {\n  padding-right: 10px; }\n\n.card-user--comments-image img {\n  width: 30px;\n  height: 30px;\n  border-radius: 30px;\n  margin-top: 1.5px; }\n\n.card-user-nd {\n  padding-left: 0; }\n\n.card-user-name-comments {\n  color: #4A4A4A;\n  font-weight: 600; }\n\n.card-date-comments {\n  margin-top: -3px;\n  color: #919191; }\n\n.card-option-comments {\n  padding-top: 3px; }\n\n.comments-content {\n  background-color: #F7F8FA;\n  padding-top: 10px;\n  padding-bottom: 15px;\n  border-left: 1px solid #E6E5E5;\n  border-right: 1px solid #E6E5E5; }\n\n.borderComments {\n  min-width: 100%;\n  height: 1px;\n  background-color: #E6E5E5;\n  margin-right: -15px;\n  margin-left: -15px; }\n\n.more-Comments {\n  width: 100%;\n  text-align: center;\n  height: 42px;\n  font-weight: 600;\n  border-bottom: 1px solid #E6E5E5;\n  padding-top: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  color: #919191; }\n\n.more-Comments:hover {\n  cursor: pointer;\n  color: #FF8A65; }\n\n.textMoreComments {\n  vertical-align: middle; }\n\n.moreIcon {\n  font-size: 24px;\n  font-weight: 700;\n  vertical-align: middle; }\n\n.insert-comment {\n  padding-top: 10px; }\n\n.btnSend {\n  padding-left: 0; }\n\n.btnSendIcon {\n  padding-top: 10px; }\n\n.btnSendIcon:hover {\n  cursor: pointer; }\n\n.btnSendColorBlue {\n  color: #0F76F7; }\n\n.btnSendColorGrey {\n  color: #E6E5E5; }\n\n.card-user-comments-image-comments {\n  padding-top: 5px; }\n\n.imgSlider {\n  margin-top: 10px; }\n\n.imgSliderInd {\n  height: 250px;\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.ball1, .ball2, .ball3 {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #0F76F7;\n  border: 1px solid #0F76F7;\n  border-radius: 50px; }\n\n.ball1Empty, .ball2Empty, .ball3Empty {\n  margin-top: 4px;\n  margin-right: 3px;\n  width: 7px;\n  height: 7px;\n  background: #E6E5E5;\n  border: 1px solid #E6E5E5;\n  border-radius: 50px; }\n\n.balls {\n  margin-left: 270px; }\n\n.rightArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 12;\n  background-color: #E6E5E5;\n  width: 70px;\n  margin-top: -260px;\n  margin-left: 470px;\n  cursor: pointer; }\n\n.rightArrow:hover {\n  opacity: 0.1; }\n\n.leftArrow {\n  height: 250px;\n  opacity: 0;\n  z-index: 10;\n  width: 70px;\n  margin-top: -254px;\n  background-color: #E6E5E5;\n  margin-left: 0;\n  cursor: pointer; }\n\n.leftArrow:hover {\n  opacity: 0.1; }\n\n.iconRight {\n  margin-top: 120px;\n  margin-left: 30px;\n  color: #fff; }\n\n.cardLikesContent {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 300px; }\n\n.btnBlack {\n  color: #4A4A4A !important; }\n\n.modalHeader {\n  background: #0F76F7;\n  padding: 15px 20px; }\n\n.day-w-border {\n  width: 60px;\n  border: 2px solid #FFFFFF;\n  border-radius: 7px;\n  font-size: 14px;\n  text-align: center;\n  color: #FFFFFF;\n  font-weight: 600;\n  padding: 5px; }\n\n.modalTitle {\n  margin-left: 10px;\n  margin-top: 3px; }\n\n.containerDatePlace {\n  margin-top: 10px; }\n\n.modalTitleDesc {\n  font-size: 18px;\n  color: #FFFFFF;\n  font-weight: 600; }\n\n.modalSubtitle {\n  font-size: 13px;\n  color: #FFFFFF; }\n\n.card-user-image img {\n  width: 45px;\n  height: 45px;\n  border-radius: 45px; }\n\n.card-user-nd {\n  padding-left: 10px; }\n\n.card-user-name {\n  color: #0F76F7;\n  font-weight: 600; }\n\n.card-date {\n  color: #919191; }\n\n.verified {\n  background-color: #fff;\n  color: #3C765A;\n  padding: 0;\n  margin-left: 5px;\n  font-size: 5px; }\n\n.modalContainer {\n  background: #FFFFFF;\n  padding: 20px;\n  padding-bottom: 0px; }\n\n.card-user-desc {\n  color: #4A4A4A; }\n\n.card-user-event {\n  color: #FF8A65;\n  font-weight: 600; }\n\n.btnCandidate {\n  background: #FFCB2B;\n  font-size: 12px;\n  border: 0;\n  border-radius: 4px;\n  color: #FFFFFF;\n  font-weight: 600;\n  padding: 12px 16px; }\n\n.modalTextArea {\n  margin-top: 15px;\n  text-indent: 30px;\n  text-align: justify; }\n\n.sectionDatePlace {\n  height: 10px;\n  width: 100%;\n  border-top: 1px solid #E6E5E5;\n  margin-top: 20px;\n  margin-bottom: 20px; }\n\n.iconDate {\n  font-size: 18px;\n  color: #4A4A4A;\n  margin-top: 15px; }\n\n.daysEvent {\n  font-weight: 600;\n  margin-top: 5px;\n  color: #4A4A4A; }\n\n.descDatePlace {\n  padding-left: 15px; }\n\n.daysEventFull {\n  font-weight: 300;\n  color: #4A4A4A; }\n\n.no-padding {\n  padding: 0 !important; }\n\n.no-padding-side {\n  padding-left: 0 !important;\n  padding-right: 0 !important; }\n\n.sebm-google-map-container {\n  height: 100px; }\n\n.mapContent {\n  margin-top: 40px; }\n\n.friendsContainer {\n  margin-top: 10px; }\n\n.likeImgs {\n  margin-top: 2.5px;\n  margin-left: 15px; }\n\n.likeImgs img {\n  border: 1px solid #FFF;\n  width: 30px;\n  height: 30px;\n  margin-left: -15px;\n  border-radius: 30px; }\n\n.numberYellow {\n  font-size: 18px;\n  color: #FFCB2B;\n  font-weight: 600; }\n\n.numberBlue {\n  font-size: 18px;\n  color: #0F76F7;\n  font-weight: 600; }\n\n.normalText {\n  font-size: 13px;\n  color: #4A4A4A; }\n\n.comments-back {\n  background: #E6E5E5; }\n\n.card-volum-footer {\n  padding: 0; }\n\n.card-volum-footer {\n  border-top: 1px solid #E6E5E5;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  width: 100%;\n  margin-top: 20px; }\n\n.comments-header, .comments-content {\n  margin-right: -20px;\n  margin-left: -20px; }\n\n.card-Comments {\n  border: 0px; }\n\n.modalTextBold {\n  font-weight: 600;\n  margin-top: 5px; }\n\n.typeVol {\n  background: orange;\n  border-radius: 10px;\n  padding: 2px 8px;\n  font-size: 12px;\n  color: white; }\n\n.insuBool {\n  background: #3C765A;\n  border-radius: 10px;\n  padding: 2px 8px;\n  font-size: 12px;\n  color: white;\n  margin-left: 6px; }\n\n.details-vol {\n  margin-top: 10px;\n  text-indent: 0px !important; }\n", ""]);
 
 // exports
 
@@ -2575,14 +2646,14 @@ webpackContext.id = 638;
 /***/ 641:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">VOLUM</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"cleanRequests()\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngFor=\"let request of requests\">\r\n\r\n\r\n                            <div class=\"image\">\r\n                                <img [src]=\"request.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p><b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>                                        </p>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"notification-info text-right\">\r\n                                <div class=\"btn-notification\">\r\n                                    <button class=\"btn btnConfirm\">VER</button>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown>\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"conversation.photo_url\">\r\n                            </div>\r\n                            <div class=\"message-info\" routerLink=\"/chat/msg/13\">\r\n                                <div>\r\n                                    <span class=\"nameMsg\">{{conversation.user_name}}</span>\r\n                                    <span class=\"time\">20:00</span>\r\n                                </div>\r\n\r\n                                <span class=\"textMsg\"> Olá Estatíco </span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-footer\" routerLink=\"/chat/msg\">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"cleanNotifications()\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\">\r\n                    Registar\r\n                </li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\">\r\n                    Entrar\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\">\r\n                    <span>{{user?.username}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O VOLUM</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
+module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">VOLUM</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getRequests(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!requests\">Loading...</div>\r\n                        <div class=\"message-item\" *ngFor=\"let request of requests\" routerLink='./profile/{{request.id_user}}/activity'>\r\n\r\n                            <div class=\"image\">\r\n                                <img [src]=\"request.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>\r\n                            </div>\r\n                            <div class=\"text-right\">\r\n                                <div class=\"btn-notification\">\r\n                                    <button class=\"btn btnConfirm\" routerLink='./profile/{{request.id_user}}/activity'>VER</button>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getConversations(user.id_user)\">\r\n\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!conversations\">Loading...</div>\r\n                        <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"conversation.photo_url\">\r\n                            </div>\r\n                            <div class=\"message-info\" (click)=\"goToMessages(conversation.id_user, conversation.user_name)\">\r\n                                <div>\r\n                                    <span class=\"nameMsg\">{{conversation.user_name}}</span>\r\n                                    <span class=\"time\">20:00</span>\r\n                                </div>\r\n\r\n                                <span class=\"textMsg\"> Olá Estatíco </span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-footer\" routerLink=\"/chat/msg\">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getNotifications(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n                        <div class=\"message-item\" *ngIf=\"!notifications\">Loading...</div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\"> Registar</li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\"> Entrar</li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\">\r\n                    <span>{{user?.username}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O VOLUM</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
 /***/ 642:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <!--\r\n<form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n    <br> Login <input type=\"text\" formControlName=\"login\">\r\n    <small *ngIf=\"!form.controls.login.valid && form.controls.login.dirty\" style=\"color:red\">Invalido</small>\r\n    <br> Password <input type=\"password\" formControlName=\"password\">\r\n    <br>\r\n    <button type=\"submit\">Login</button>\r\n</form>\r\n-->\r\n\r\n\r\n    <div class=\"row\">\r\n        <div class=\"col-12 containerLogin\">\r\n            <form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n                <div class=\"col-12\">\r\n                    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <button class=\"googleLogin\">Entrar com o Google</button>\r\n                </div>\r\n                <div class=\"col-12 text-center orLogin\">\r\n                    <span class=\"divider-or\">ou</span>\r\n                    <hr class=\"divider-hr\">\r\n                </div>\r\n                <div class=\"col-12\" *ngIf=\"error\">\r\n                    <div class=\"textError\">{{error}}</div>\r\n                </div>\r\n                <div class=\"col-12\" >\r\n                    <input [class.borda]=\"!form.controls.email.valid && form.controls.email.dirty\" type=\"email\" formControlName=\"email\"\r\n                        class=\"inputEmailLogin form-control\" placeholder=\"Endereço de e-mail\">\r\n                    <div *ngIf=\"!form.controls.email.valid && form.controls.email.dirty\" class=\"textError\">Endereço de email inválido.</div>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <input [class.borda]=\"!form.controls.password.valid && form.controls.password.dirty\"  type=\"password\" class=\"inputPasswordLogin form-control\" formControlName=\"password\" placeholder=\"Palavra-passe\">\r\n                    <div *ngIf=\"!form.controls.password.valid && form.controls.password.dirty\" class=\"textError\">Palavra passe inválida</div>\r\n                </div>\r\n                <div class=\"col-12 text-right forgotPass\">\r\n                    <span>Esqueceu a sua palavra passe?</span>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <button type=\"submit\" class=\"normalLogin\">Entrar</button>\r\n                </div>\r\n                <div class=\"col-12 footerLogin\">\r\n                    <hr>\r\n                </div>\r\n                <div class=\"col-6\">\r\n                    <span class=\"registerAdvice\">Ainda não tem uma conta?</span>\r\n                </div>\r\n                <div class=\"col text-right btnRegister\">\r\n                    <button class=\"registerBtn\">Registe-se</button>\r\n                </div>\r\n\r\n            </form>\r\n\r\n            <div class=\"container\">\r\n\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n    <!--\r\n<form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n    <br> Login <input type=\"text\" formControlName=\"login\">\r\n    <small *ngIf=\"!form.controls.login.valid && form.controls.login.touched\" style=\"color:red\">Invalido</small>\r\n    <br> Password <input type=\"password\" formControlName=\"password\">\r\n    <br>\r\n    <button type=\"submit\">Login</button>\r\n</form>\r\n-->\r\n\r\n\r\n    <div class=\"row\">\r\n        <div class=\"col-12 containerLogin\">\r\n            <form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n                <div class=\"col-12\">\r\n                    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <button class=\"googleLogin\">Entrar com o Google</button>\r\n                </div>\r\n                <div class=\"col-12 text-center orLogin\">\r\n                    <span class=\"divider-or\">ou</span>\r\n                    <hr class=\"divider-hr\">\r\n                </div>\r\n                <div class=\"col-12\" *ngIf=\"error\">\r\n                    <div class=\"textError\">{{error}}</div>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <input [class.borda]=\"!form.controls.email.valid && form.controls.email.touched\" type=\"email\" formControlName=\"email\" class=\"inputEmailLogin form-control\"\r\n                        placeholder=\"Endereço de e-mail\">\r\n                    <div *ngIf=\"!form.controls.email.valid && form.controls.email.touched\" class=\"textError\">Endereço de email inválido.</div>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <input [class.borda]=\"!form.controls.password.valid && form.controls.password.touched\" type=\"password\" class=\"inputPasswordLogin form-control\"\r\n                        formControlName=\"password\" placeholder=\"Palavra-passe\">\r\n                    <div *ngIf=\"!form.controls.password.valid && form.controls.password.touched\" class=\"textError\">Palavra passe inválida</div>\r\n                </div>\r\n                <div class=\"col-12 text-right forgotPass\">\r\n                    <span>Esqueceu a sua palavra passe?</span>\r\n                </div>\r\n                <div class=\"col-12\">\r\n                    <button type=\"submit\" class=\"normalLogin\">Entrar</button>\r\n                </div>\r\n                <div class=\"col-12 footerLogin\">\r\n                    <hr>\r\n                </div>\r\n                <div class=\"col-6\">\r\n                    <span class=\"registerAdvice\">Ainda não tem uma conta?</span>\r\n                </div>\r\n                <div class=\"col text-right btnRegister\">\r\n                    <button class=\"registerBtn\">Registe-se</button>\r\n                </div>\r\n\r\n            </form>\r\n\r\n            <div class=\"container\">\r\n\r\n            </div>\r\n        </div>\r\n    </div>"
 
 /***/ }),
 
@@ -2603,7 +2674,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /***/ 645:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n<!--\r\n<form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n    <br> Login <input type=\"text\" formControlName=\"login\">\r\n    <small *ngIf=\"!form.controls.login.valid && form.controls.login.dirty\" style=\"color:red\">Invalido</small>\r\n    <br> Password <input type=\"password\" formControlName=\"password\">\r\n    <br>\r\n    <button type=\"submit\">Login</button>\r\n</form>\r\n-->\r\n    <div class=\"row\">\r\n        <div class=\"col-12 containerLogin\">\r\n            <form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n                <div *ngIf=\"emailRegist==0\">\r\n                    <div class=\"col-12\">\r\n                        <button class=\"facebookLogin\">Registar com o Facebook</button>\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <button class=\"googleLogin\">Registar com o Google</button>\r\n                    </div>\r\n                    <div class=\"col-12 text-center orLogin\">\r\n                        <span class=\"divider-or\">ou</span>\r\n                        <hr class=\"divider-hr\">\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <button class=\"normalLogin\" (click)=\"openEmailRegist()\">Registar com o e-mail</button>\r\n                    </div>\r\n                </div>\r\n            \r\n                <div *ngIf=\"emailRegist==1\">\r\n                    <div class=\"col-12 text-center\">\r\n                        <span class=\"registerAdvice1\">Registe-se com o <span class=\"adviceSocial\">Facebook</span> ou <span class=\"adviceSocial\">Google</span>.</span>\r\n                    </div>\r\n                    <hr>\r\n                    <div class=\"col-12\">\r\n                        <input type=\"email\" [class.borda]=\"!form.controls.email.valid && form.controls.email.dirty\" formControlName=\"email\"\r\n                        class=\"inputEmailLogin form-control\" placeholder=\"Endereço de e-mail\">\r\n                        <div *ngIf=\"!form.controls.email.valid && form.controls.email.dirty\" class=\"textError\">Endereço de email inválido.</div>\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <input type=\"text\" [class.borda]=\"!form.controls.name.valid && form.controls.name.dirty\" formControlName=\"name\"\r\n                        class=\"inputEmailLogin form-control\" placeholder=\"Primeiro nome\">\r\n                        <div *ngIf=\"!form.controls.name.valid && form.controls.name.dirty\" class=\"textError\">Nome inválido</div>\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <input type=\"text\" [class.borda]=\"!form.controls.lastname.valid && form.controls.lastname.dirty\" formControlName=\"lastname\"\r\n                        class=\"inputEmailLogin form-control\" placeholder=\"Último Nome\">\r\n                        <div *ngIf=\"!form.controls.lastname.valid && form.controls.lastname.dirty\" class=\"textError\">Último Nome inválido</div>\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <input [class.borda]=\"!form.controls.password.valid && form.controls.password.dirty\"  type=\"password\" class=\"inputPasswordLogin form-control\" formControlName=\"password\" placeholder=\"Inserir palavra-passe\">\r\n                    </div>\r\n                    <div *ngIf=\"!form.controls.password.valid && form.controls.password.dirty\" class=\"textError\">Endereço de email inválido.</div>\r\n                    <div class=\"col-12\">\r\n                        <input [class.borda]=\"!form.controls.password2.valid && form.controls.password.dirty\"  type=\"password\" class=\"inputPasswordLogin form-control\" formControlName=\"password2\" placeholder=\"Confirmar palavra-passe\">\r\n                    </div>\r\n                    <div *ngIf=\"!form.controls.password2.valid && form.controls.password2.dirty\" class=\"textError\">Endereço de email inválido.</div>\r\n                    <div class=\"col-12\">\r\n                        <p class=\"serviceAdvice\">Ao fazer o registo, concordo com os Termos de Serviço e a Política de Privacidade da Volum. </p>\r\n                    </div>\r\n\r\n                    <div class=\"col-12\">\r\n                    <button class=\"normalLogin\" (click)=\"openConfirmationEmail()\">Registar com o e-mail</button>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"emailRegist==2\">\r\n                     <div class=\"col-12\">\r\n                        <span class=\"registerAdvice1\">Registo efetuado com sucesso.</span>\r\n                    </div>\r\n                    <hr>\r\n                    <div class=\"col-12\">\r\n                        <p class=\"registSuccess\">Obrigado por se registar!</p>\r\n                        <p class=\"registSuccess\">Irá receber um e-mail de confirmação. Clique no link para começar a utilizar a Volum.</p>\r\n                    </div>\r\n                </div>\r\n\r\n               <div *ngIf=\"emailRegist==1 || emailRegist==0\">\r\n                    <div class=\"col-12 footerLogin\">\r\n                        <hr>\r\n                    </div>\r\n                    <div class=\"col-6\">\r\n                        <span class=\"registerAdvice\">Já se encontra registado?</span>\r\n                    </div>\r\n                    <div class=\"col text-right btnRegister\">\r\n                        <button class=\"registerBtn\">Entrar</button>\r\n                    </div>\r\n                </div>\r\n               \r\n                \r\n                \r\n            </form>\r\n\r\n\r\n               <!-- registar com e-mail -->\r\n                \r\n\r\n\r\n                \r\n                <!-- registar com e-mail -->\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n    <!--\r\n<form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n    <button class=\"facebookLogin\">Entrar com o Facebook</button>\r\n    <br> Login <input type=\"text\" formControlName=\"login\">\r\n    <small *ngIf=\"!form.controls.login.valid && form.controls.login.touched\" style=\"color:red\">Invalido</small>\r\n    <br> Password <input type=\"password\" formControlName=\"password\">\r\n    <br>\r\n    <button type=\"submit\">Login</button>\r\n</form>\r\n-->\r\n    <div class=\"row\">\r\n        <div class=\"col-12 containerLogin\">\r\n            <form novalidate (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n                <div *ngIf=\"emailRegist==0\">\r\n                    <div class=\"col-12\">\r\n                        <button class=\"facebookLogin\">Registar com o Facebook</button>\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <button class=\"googleLogin\">Registar com o Google</button>\r\n                    </div>\r\n                    <div class=\"col-12 text-center orLogin\">\r\n                        <span class=\"divider-or\">ou</span>\r\n                        <hr class=\"divider-hr\">\r\n                    </div>\r\n                    <div class=\"col-12\">\r\n                        <button class=\"normalLogin\" (click)=\"openEmailRegist()\">Registar com o e-mail</button>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"emailRegist==1\">\r\n                    <div class=\"col-12 text-center\">\r\n                        <span class=\"registerAdvice1\">Registe-se com o <span class=\"adviceSocial\">Facebook</span> ou\r\n                        <span class=\"adviceSocial\">Google</span>.</span>\r\n                    </div>\r\n                    <hr>\r\n                    <form (ngSubmit)=\"onSubmit(form)\" [formGroup]=\"form\">\r\n                        <div class=\"col-12\">\r\n                            <input type=\"email\" maxlength=\"120\" [class.borda]=\"!form.controls.email.valid && form.controls.email.touched\" formControlName=\"email\"\r\n                                class=\"inputEmailLogin form-control\" placeholder=\"Endereço de e-mail\">\r\n                            <div *ngIf=\"!form.controls.email.error?.required && form.controls.email.touched\" class=\"textError\">Campo Obrigatório</div>\r\n                        </div>\r\n                        <div class=\"col-12\">\r\n                            <input type=\"text\" maxlength=\"120\" [class.borda]=\"!form.controls.name.valid && form.controls.name.touched\" formControlName=\"name\"\r\n                                class=\"inputEmailLogin form-control\" placeholder=\"Primeiro nome\">\r\n                            <div *ngIf=\"!form.controls.name.error?.required && form.controls.name.touched\" class=\"textError\">Campo Obrigatório</div>\r\n                        </div>\r\n                        <div class=\"col-12\">\r\n                            <input type=\"text\" maxlength=\"120\" [class.borda]=\"!form.controls.lastname.valid && form.controls.lastname.touched\" formControlName=\"lastname\"\r\n                                class=\"inputEmailLogin form-control\" placeholder=\"Último Nome\">\r\n                            <div *ngIf=\"!form.controls.lastname.error?.required && form.controls.lastname.touched\" class=\"textError\">Campo Obrigatório</div>\r\n                        </div>\r\n                        <div class=\"col-12\">\r\n                            <input maxlength=\"120\" [class.borda]=\"!form.controls.password.valid && form.controls.password.touched\" type=\"password\" class=\"inputPasswordLogin form-control\"\r\n                                formControlName=\"password\" placeholder=\"Inserir palavra-passe\">\r\n                            <div *ngIf=\"!form.controls.password.error?.required && form.controls.password.touched\" class=\"textError\">Campo Obrigatório</div>\r\n\r\n                        </div>\r\n                        <div class=\"col-12\">\r\n                            <input maxlength=\"120\" [class.borda]=\"!form.controls.password2.valid && form.controls.password.touched\" type=\"password\" class=\"inputPasswordLogin form-control\"\r\n                                formControlName=\"password2\" placeholder=\"Confirmar palavra-passe\">\r\n                            <div *ngIf=\"!form.controls.password2.error?.required && form.controls.password2.touched\" class=\"textError\">Campo Obrigatório</div>\r\n\r\n                        </div>\r\n                        <div class=\"col-12\">\r\n                            <p class=\"serviceAdvice\">Ao fazer o registo, concordo com os Termos de Serviço e a Política de Privacidade da Volum. </p>\r\n                        </div>\r\n\r\n                        <div class=\"col-12\">\r\n                            <button class=\"normalLogin\" type=\"submit\">Registar</button>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n\r\n                <div *ngIf=\"emailRegist==2\">\r\n                    <div class=\"col-12\">\r\n                        <span class=\"registerAdvice1\">Registo efetuado com sucesso.</span>\r\n                    </div>\r\n                    <hr>\r\n                    <div class=\"col-12\">\r\n                        <p class=\"registSuccess\">Obrigado por se registar!</p>\r\n                        <p class=\"registSuccess\">Irá receber um e-mail de confirmação. Clique no link para começar a utilizar a Volum.</p>\r\n                    </div>\r\n                </div>\r\n\r\n                <div *ngIf=\"emailRegist==1 || emailRegist==0\">\r\n                    <div class=\"col-12 footerLogin\">\r\n                        <hr>\r\n                    </div>\r\n                    <div class=\"col-6\">\r\n                        <span class=\"registerAdvice\">Já se encontra registado?</span>\r\n                    </div>\r\n                    <div class=\"col text-right btnRegister\">\r\n                        <button type=\"button\" class=\"registerBtn\">Entrar</button>\r\n                    </div>\r\n                </div>\r\n\r\n\r\n\r\n            </form>\r\n\r\n\r\n            <!-- registar com e-mail -->\r\n\r\n\r\n\r\n\r\n            <!-- registar com e-mail -->\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -2624,7 +2695,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /***/ 648:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-volum\">\r\n    <!-- HEADER CARD -->\r\n    <div class=\"row no-margin\">\r\n        <div (click)=\"onSelect(userCreator)\" class=\"col card-user-image col-md-auto\">\r\n            <img src=\"{{avatar}}\">\r\n        </div>\r\n        <div class=\"col-6 col-lg-8 card-user-nd\">\r\n            <div *ngIf=\"verified==1\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a>\r\n                <button type=\"button\" class=\"btn btn-secondary verified\" placement=\"right\" ngbTooltip=\"Instituição verificada\">\r\n                <i class=\"material-icons md-18\">verified_user</i></button></div>\r\n            <div *ngIf=\"verified==0\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a> </div>\r\n            <div class=\"card-date ts14\">{{dateCreation | amTimeAgo:true }}</div>\r\n        </div>\r\n        <div class=\"col card-option text-right\">\r\n            <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n            <md-menu #menu=\"mdMenu\">\r\n                <button md-menu-item>\r\n                <md-icon>share</md-icon>\r\n                <span>Partilhar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>do_not_disturb</md-icon>\r\n                <span>Denunciar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>visibility_off</md-icon>\r\n                <span>Bloquear</span>\r\n              </button>\r\n            </md-menu>\r\n        </div>\r\n    </div>\r\n    <!-- / HEADER CARD -->\r\n\r\n    <!-- CONTENT CARD -->\r\n    <div *ngIf=\"map!=true\">\r\n        <div class=\"imgSlider\">\r\n            <img *ngIf=\"foto1==1\" class=\"imgSliderInd\" src=\"../assets/imgs/banco_alimentar.jpg\">\r\n            <img *ngIf=\"foto2==1\" class=\"imgSliderInd\" src=\"../assets/imgs/testemaps.PNG\">\r\n            <img *ngIf=\"foto3==1\" class=\"imgSliderInd\" src=\"../assets/imgs/jardin.jpg\">\r\n        </div>\r\n        <div class=\"balls\">\r\n            <div class=\"row\">\r\n                <div (click)=\"changePhoto1()\" *ngIf=\"foto1==1\" class=\"ball1\"></div>\r\n                <div (click)=\"changePhoto1()\" *ngIf=\"foto1==0\" class=\"ball1Empty\"></div>\r\n                <div (click)=\"changePhoto2()\" *ngIf=\"foto2==1\" class=\"ball2\"></div>\r\n                <div (click)=\"changePhoto2()\" *ngIf=\"foto2==0\" class=\"ball2Empty\"></div>\r\n                <div (click)=\"changePhoto3()\" *ngIf=\"foto3==1\" class=\"ball3\"></div>\r\n                <div (click)=\"changePhoto3()\" *ngIf=\"foto3==0\" class=\"ball3Empty\"></div>\r\n            </div>\r\n        </div>\r\n        <!-- foto1 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(2)\" *ngIf=\"foto1==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(3)\" *ngIf=\"foto1==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n        <!-- foto2 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(3)\" *ngIf=\"foto2==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(1)\" *ngIf=\"foto2==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n        <!-- foto3 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(1)\" *ngIf=\"foto3==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(2)\" *ngIf=\"foto3==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n    </div>\r\n    <div class=\"row no-margin card-volum-content\">\r\n        <div class=\"col ts18 card-volum-title\">\r\n            {{title}}\r\n        </div>\r\n        <div class=\"col-12 ts14 card-volum-description\">\r\n            {{desc}}\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /CONTENT CARD -->\r\n\r\n    <!-- FOOTER CARD -->\r\n    <div class=\"card-volum-footer\">\r\n        <div class=\"cardLikes\">\r\n            <md-icon class=\"btnLike\">favorite</md-icon>\r\n        </div>\r\n        <div class=\"likesNumber ts12\">\r\n            {{likes}}\r\n        </div>\r\n        <div *ngIf=\"type=='private'\" class=\"likeImgs\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar3.png\">\r\n            <img src=\"assets/imgs/avatar04.png\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar.png\">\r\n        </div>\r\n        <div *ngIf=\"type=='private'\" class=\"likesText ts12\">\r\n            <span class=\"likesTestMe\">Tu,</span> <span class=\"likesTestSecond\">Araújo</span> e mais 298 gostaram disto\r\n        </div>\r\n        <div *ngIf=\"type=='private'\" class=\"cardComments ts12\">\r\n            <div>\r\n                <md-icon class=\"btnComments\">textsms</md-icon>\r\n            </div>\r\n            <div (click)=\"openComments()\" class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n        </div>\r\n        <div class=\"btnView\">\r\n            <button md-raised-button (click)=\"openVolDetails(idVol)\">VER</button>\r\n        </div>\r\n    </div>\r\n    <!-- /FOOTER CARD -->\r\n\r\n\r\n    <div *ngIf=\"type=='private' && comments==1\">\r\n        <div class=\"row no-margin card-Comments\">\r\n            <div class=\"col-12\">\r\n                <div class=\"row comments-header\">\r\n                    <div class=\"col card-user--comments-image col-md-auto\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col-8 card-user-nd\">\r\n                        <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                        <div class=\"card-date-comments ts12\">10 horas</div>\r\n                    </div>\r\n                    <div class=\"col card-option-comments text-right\">\r\n                        <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                        <md-menu #menu=\"mdMenu\">\r\n                            <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                            <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                            <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                        </md-menu>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row comments-content\">\r\n                    <div class=\"col-12 ts13\">\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse\r\n                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada\r\n                        ante eget\r\n                    </div>\r\n                </div>\r\n                <div class=\"borderComments\"></div>\r\n            </div>\r\n            <div class=\"col-12\">\r\n                <div class=\"row comments-header\">\r\n                    <div class=\"col card-user--comments-image col-md-auto\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col-8 card-user-nd\">\r\n                        <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                        <div class=\"card-date-comments ts12\">10 horas</div>\r\n                    </div>\r\n                    <div class=\"col card-option-comments text-right\">\r\n                        <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                        <md-menu #menu=\"mdMenu\">\r\n                            <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Partilhar</span>\r\n                  </button>\r\n                            <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Denunciar</span>\r\n                  </button>\r\n                            <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Bloquear</span>\r\n                  </button>\r\n                        </md-menu>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row comments-content\">\r\n                    <div class=\"col-12 ts13\">\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse\r\n                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada\r\n                        ante eget\r\n                    </div>\r\n                </div>\r\n                <div class=\"borderComments\"></div>\r\n            </div>\r\n\r\n            <div class=\"ts14 more-Comments\">\r\n                <span class=\"textMoreComments\">Carregar mais comentários</span><span class=\"moreIcon\"> +</span>\r\n            </div>\r\n\r\n            <div class=\"col-12 insert-comment\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1 card-user--comments-image card-user-comments-image-comments\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col\">\r\n                        <md-input-container class=\"width100\">\r\n                            <input mdInput>\r\n                        </md-input-container>\r\n                    </div>\r\n                    <div class=\"col-1 btnSend text-center\">\r\n                        <md-icon class=\"btnSendIcon btnSendColorGrey\">send</md-icon>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"card-volum\">\r\n    <!-- HEADER CARD -->\r\n    <div class=\"row no-margin\">\r\n        <div (click)=\"onSelect(userCreator)\" class=\"col card-user-image col-md-auto\">\r\n            <img src=\"{{avatar}}\">\r\n        </div>\r\n        <div class=\"col-6 col-lg-8 card-user-nd\">\r\n            <div *ngIf=\"verified==1\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a>\r\n                <button type=\"button\" class=\"btn btn-secondary verified\" placement=\"right\" ngbTooltip=\"Instituição verificada\">\r\n                <i class=\"material-icons md-18\">verified_user</i></button></div>\r\n            <div *ngIf=\"verified==0\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a> </div>\r\n            <div class=\"card-date ts14\">{{dateCreation | amTimeAgo:true }}</div>\r\n        </div>\r\n        <div class=\"col card-option text-right\">\r\n            <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n            <md-menu #menu=\"mdMenu\">\r\n                <button md-menu-item>\r\n                <md-icon>share</md-icon>\r\n                <span>Partilhar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>do_not_disturb</md-icon>\r\n                <span>Denunciar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>visibility_off</md-icon>\r\n                <span>Bloquear</span>\r\n              </button>\r\n            </md-menu>\r\n        </div>\r\n    </div>\r\n    <!-- / HEADER CARD -->\r\n\r\n    <!-- CONTENT CARD -->\r\n    <div *ngIf=\"map!=true\">\r\n        <div class=\"imgSlider\">\r\n            <img *ngIf=\"foto1==1\" class=\"imgSliderInd\" src=\"../assets/imgs/banco_alimentar.jpg\">\r\n            <img *ngIf=\"foto2==1\" class=\"imgSliderInd\" src=\"../assets/imgs/testemaps.PNG\">\r\n            <img *ngIf=\"foto3==1\" class=\"imgSliderInd\" src=\"../assets/imgs/jardin.jpg\">\r\n        </div>\r\n        <div class=\"balls\">\r\n            <div class=\"row\">\r\n                <div (click)=\"changePhoto1()\" *ngIf=\"foto1==1\" class=\"ball1\"></div>\r\n                <div (click)=\"changePhoto1()\" *ngIf=\"foto1==0\" class=\"ball1Empty\"></div>\r\n                <div (click)=\"changePhoto2()\" *ngIf=\"foto2==1\" class=\"ball2\"></div>\r\n                <div (click)=\"changePhoto2()\" *ngIf=\"foto2==0\" class=\"ball2Empty\"></div>\r\n                <div (click)=\"changePhoto3()\" *ngIf=\"foto3==1\" class=\"ball3\"></div>\r\n                <div (click)=\"changePhoto3()\" *ngIf=\"foto3==0\" class=\"ball3Empty\"></div>\r\n            </div>\r\n        </div>\r\n        <!-- foto1 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(2)\" *ngIf=\"foto1==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(3)\" *ngIf=\"foto1==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n        <!-- foto2 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(3)\" *ngIf=\"foto2==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(1)\" *ngIf=\"foto2==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n        <!-- foto3 -->\r\n        <div class=\"rightArrow\" (click)=\"showFoto(1)\" *ngIf=\"foto3==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_right</i>\r\n        </div>\r\n        <div class=\"leftArrow\" (click)=\"showFoto(2)\" *ngIf=\"foto3==1\">\r\n            <i class=\"material-icons iconRight\">keyboard_arrow_left</i>\r\n        </div>\r\n    </div>\r\n    <div class=\"row no-margin card-volum-content\">\r\n        <div class=\"col ts18 card-volum-title\">\r\n            {{title}}\r\n        </div>\r\n        <div class=\"col-12 ts14 card-volum-description\">\r\n            {{desc}}\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /CONTENT CARD -->\r\n\r\n    <!-- FOOTER CARD -->\r\n    <div class=\"card-volum-footer\">\r\n        <div class=\"cardLikesContent\">\r\n        <div class=\"cardLikes\">\r\n            <md-icon *ngIf=\"likeState==1\" class=\"btnLike\">favorite</md-icon>\r\n             <md-icon *ngIf=\"numberLikes<1 || !numberLikes || numberLikes==undefined || likeState==0 || !likeState || likeState==undefined\" class=\"btnLike btnBlack\">favorite_border</md-icon>\r\n        </div>\r\n        <div class=\"likesNumber ts12\">\r\n            {{numberLikes}}\r\n        </div>\r\n        <div *ngIf=\"type=='private' && numberLikes>=1\" class=\"likeImgs\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar3.png\">\r\n            <img src=\"assets/imgs/avatar04.png\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar.png\">\r\n        </div>\r\n        <div *ngIf=\"type=='private'&& numberLikes>=1\" class=\"likesText ts12\">\r\n           <!-- <span class=\"likesTestMe\">Tu,</span> <span class=\"likesTestSecond\">Araújo</span> e mais 298 gostaram disto -->\r\n           {{numberLikes}} pessoas gostam disto.\r\n        </div>\r\n        </div>\r\n        <div *ngIf=\"type=='private'\" class=\"cardComments ts12\">\r\n            <div>\r\n                <md-icon class=\"btnComments\">textsms</md-icon>\r\n            </div>\r\n            <div (click)=\"openComments()\" class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n        </div>\r\n        <div class=\"btnView\">\r\n            <button md-raised-button (click)=\"openVolDetails(idVol)\">VER</button>\r\n        </div>\r\n    </div>\r\n    <!-- /FOOTER CARD -->\r\n\r\n\r\n    <div *ngIf=\"type=='private' && comments==1\">\r\n        <div class=\"row no-margin card-Comments\">\r\n            <div class=\"col-12\">\r\n                <div class=\"row comments-header\">\r\n                    <div class=\"col card-user--comments-image col-md-auto\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col-8 card-user-nd\">\r\n                        <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                        <div class=\"card-date-comments ts12\">10 horas</div>\r\n                    </div>\r\n                    <div class=\"col card-option-comments text-right\">\r\n                        <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                        <md-menu #menu=\"mdMenu\">\r\n                            <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                            <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                            <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                        </md-menu>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row comments-content\">\r\n                    <div class=\"col-12 ts13\">\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse\r\n                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada\r\n                        ante eget\r\n                    </div>\r\n                </div>\r\n                <div class=\"borderComments\"></div>\r\n            </div>\r\n            <div class=\"col-12\">\r\n                <div class=\"row comments-header\">\r\n                    <div class=\"col card-user--comments-image col-md-auto\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col-8 card-user-nd\">\r\n                        <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                        <div class=\"card-date-comments ts12\">10 horas</div>\r\n                    </div>\r\n                    <div class=\"col card-option-comments text-right\">\r\n                        <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                        <md-menu #menu=\"mdMenu\">\r\n                            <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Partilhar</span>\r\n                  </button>\r\n                            <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Denunciar</span>\r\n                  </button>\r\n                            <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Bloquear</span>\r\n                  </button>\r\n                        </md-menu>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row comments-content\">\r\n                    <div class=\"col-12 ts13\">\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse\r\n                        platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada\r\n                        ante eget\r\n                    </div>\r\n                </div>\r\n                <div class=\"borderComments\"></div>\r\n            </div>\r\n\r\n            <div class=\"ts14 more-Comments\">\r\n                <span class=\"textMoreComments\">Carregar mais comentários</span><span class=\"moreIcon\"> +</span>\r\n            </div>\r\n\r\n            <div class=\"col-12 insert-comment\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1 card-user--comments-image card-user-comments-image-comments\">\r\n                        <img src=\"assets/imgs/avatar.png\">\r\n                    </div>\r\n                    <div class=\"col\">\r\n                        <md-input-container class=\"width100\">\r\n                            <input mdInput>\r\n                        </md-input-container>\r\n                    </div>\r\n                    <div class=\"col-1 btnSend text-center\">\r\n                        <md-icon class=\"btnSendIcon btnSendColorGrey\">send</md-icon>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -2652,14 +2723,14 @@ module.exports = "<div class=\"row text-center\">\r\n    <div class=\"col-12\">\
 /***/ 652:
 /***/ (function(module, exports) {
 
-module.exports = "<!-- CANDIDATOS -->\r\n\r\n<div *ngIf=\"context.type==1\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Candidatos\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- CONFIRMADOS -->\r\n\r\n<div *ngIf=\"context.type==2\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Confirmados\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnRemove\">REMOVER</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnRemove\">REMOVER</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnRemove\">REMOVER</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- CONVITES -->\r\n\r\n<div *ngIf=\"context.type==3\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Convites\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- REMOVER  CONFIRMADOS-->\r\n<div *ngIf=\"context.type==4\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Remover {{context.name}}\r\n      </div>\r\n      <div class=\"col-12 modal-remove-content\">\r\n        Tem a certeza que deseja remover {{context.name}} dos confirmados?\r\n      </div>\r\n      <div class=\"col-12 text-right modal-btns\">\r\n        <button class=\"btn btnCancel\">NÃO</button>\r\n        <button class=\"btn btnConfirm\">SIM</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<!-- REMOVER  CANDIDATOS-->\r\n<div *ngIf=\"context.type==5\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Recusar {{context.name}}\r\n      </div>\r\n      <div class=\"col-12 modal-remove-content\">\r\n        Tem a certeza que deseja recusar {{context.name}} como voluntário?\r\n      </div>\r\n      <div class=\"col-12 text-right modal-btns\">\r\n        <button class=\"btn btnCancel\">NÃO</button>\r\n        <button class=\"btn btnConfirm\">SIM</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<!-- CANDIDATOS -->\r\n\r\n<div *ngIf=\"context.type==1\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Candidatos\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li *ngFor=\"let candidate of candidates\" class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"{{candidate?.photo_url}}\">\r\n                <span class=\"candidateName\">{{candidate?.name}}</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnCancel\">RECUSAR</button>\r\n                <button type=\"button\" class=\"btn btn-outline-primary btnConfirm\">ACEITAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- CONFIRMADOS -->\r\n\r\n<div *ngIf=\"context.type==2\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Confirmados\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li *ngFor=\"let confirmed of confirmeds\" class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"{{candidate?.photo_url}}\">\r\n                <span class=\"candidateName\">{{candidate?.name}}</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnRemove\">REMOVER</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- CONVITES -->\r\n\r\n<div *ngIf=\"context.type==3\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Convites\r\n      </div>\r\n      <div class=\"modal-list-content\">\r\n        <ul class=\"list-group\">\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n          <li class=\"listPerson no-border no-margin\">\r\n            <div class=\"row no-margin\">\r\n              <div class=\"card-user-image\">\r\n                <img src=\"../assets/imgs/avatar04.png\">\r\n                <span class=\"candidateName\">Pedro Araújo</span>\r\n              </div>\r\n              <div class=\"col text-right btns-list no-padding\">\r\n                <button type=\"button\" class=\"btn btnCancel\">CANCELAR</button>\r\n              </div>\r\n            </div>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- REMOVER  CONFIRMADOS-->\r\n<div *ngIf=\"context.type==4\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Remover {{context.name}}\r\n      </div>\r\n      <div class=\"col-12 modal-remove-content\">\r\n        Tem a certeza que deseja remover {{context.name}} dos confirmados?\r\n      </div>\r\n      <div class=\"col-12 text-right modal-btns\">\r\n        <button class=\"btn btnCancel\">NÃO</button>\r\n        <button class=\"btn btnConfirm\">SIM</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<!-- REMOVER  CANDIDATOS-->\r\n<div *ngIf=\"context.type==5\" class=\"container-fluid no-padding\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <div class=\"modal-card\">\r\n        Recusar {{context.name}}\r\n      </div>\r\n      <div class=\"col-12 modal-remove-content\">\r\n        Tem a certeza que deseja recusar {{context.name}} como voluntário?\r\n      </div>\r\n      <div class=\"col-12 text-right modal-btns\">\r\n        <button class=\"btn btnCancel\">NÃO</button>\r\n        <button class=\"btn btnConfirm\">SIM</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ 653:
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                {{volDetails?.date_begin | date:\"MMM\" | uppercase}}\r\n            </div>\r\n            <div>\r\n                {{volDetails?.date_begin | date:\"d\"}}\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                {{volDetails?.name}}\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n                {{volDetails?.date_begin | date:\"fullDate\"}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modalContainer row\">\r\n\r\n    <div class=\"card-user-image col-md-auto\">\r\n        <img src={{volDetails?.user.photo_url}}>\r\n    </div>\r\n    <div class=\"card-user-nd\">\r\n        <div><span class=\"card-user-name ts16\">{{volDetails?.user.name}} </span><span class=\"ts14 card-user-desc\"> criou o </span>\r\n            <span class=\"card-user-event ts14\">evento</span>\r\n        </div>\r\n        <div class=\"card-date ts13\">{{volDetails?.date_creation | date:\"d/M\"}} às {{volDetails?.date_creation | date:\"shortTime\"}}</div>\r\n    </div>\r\n    <div class=\"col text-right no-padding\">\r\n        <button class=\"btn btnCandidate\" (click)=\"apply(volDetails.id_vol)\" *ngIf=\"state == 0\">CANDIDATAR</button>\r\n        <button class=\"btn btn-info\" *ngIf=\"state == 1\">À espera de confirmação</button>\r\n        <button class=\"btn btn-success \" *ngIf=\"state == 2\">Confirmado</button>\r\n\r\n    </div>\r\n\r\n    <div class=\"modalTextArea col-12 no-padding\">\r\n        <div class=\"ts13 col-12 no-padding\">\r\n            {{volDetails?.desc}}\r\n        </div>\r\n        <div class=\"details-vol\">\r\n            <span class=\"typeVol\">Solidariedade Social</span> <span class=\"insuBool\">Seguro</span>\r\n        </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"sectionDatePlace container\">\r\n        <div class=\"row containerDatePlace\">\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <i class=\"material-icons iconDate\">query_builder</i>\r\n                    </div>\r\n                    <div class=\"col descDatePlace\">\r\n                        <div class=\"daysEvent ts13\" *ngIf=\"!volDetails?.date_end\">\r\n                            Início a {{volDetails?.date_begin | date:\"d\"}} de {{volDetails?.date_begin | date:\"MMMM\"}}\r\n                        </div>\r\n                        <div class=\"daysEvent ts13\" *ngIf=\"volDetails?.date_end\">\r\n                            {{volDetails?.date_begin | date:\"d\"}} de {{volDetails?.date_begin | date:\"MMMM\"}} - {{volDetails?.date_end | date:\"d\"}} de\r\n                            {{volDetails?.date_end | date:\"MMMM\"}}\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\" *ngIf=\"volDetails?.duration > 1\">\r\n                            {{volDetails?.duration}} horas diárias\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\" *ngIf=\"volDetails?.duration < 2\">\r\n                            {{volDetails?.duration}} hora diária\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <i class=\"material-icons iconDate\">place</i>\r\n                    </div>\r\n                    <div class=\"col descDatePlace\">\r\n                        <div class=\"daysEvent ts13\">\r\n                            Universidade de Aveiro\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\">\r\n                            3810-164, Aveiro, Portugal\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    <div class=\"col-12 no-padding mapContent\">\r\n\r\n        <sebm-google-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"13\" [styles]=\"Terrain\">\r\n            <!--<sebm-google-map-marker [latitude]=\"lat\" [longitude]=\"lng\" ></sebm-google-map-marker>-->\r\n        </sebm-google-map>\r\n\r\n    </div>\r\n\r\n\r\n    <div class=\"friendsContainer container\">\r\n        <div class=\"row containerDatePlace\">\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col\">\r\n                        <div class=\"daysEventFull ts13\">\r\n                            <span class=\"numberYellow\">20</span><span class=\"normalText\"> candidatos</span>\r\n                        </div>\r\n                        <div class=\"likeImgs\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col \">\r\n                        <div class=\"ts13\">\r\n                            <span class=\"numberBlue\">20</span><span class=\"normalText\"> confirmados</span>\r\n                        </div>\r\n                        <div class=\"likeImgs\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n\r\n    <div class=\"card-volum-footer no-margin\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n\r\n                <div class=\"cardLikes\">\r\n                    <md-icon class=\"btnLike\">favorite</md-icon>\r\n                </div>\r\n                <div class=\"likesNumber ts12\">\r\n                    300\r\n                </div>\r\n\r\n                <div class=\"col-11 float-right\">\r\n                    <div class=\"cardComments ts12 float-right\">\r\n                        <div>\r\n                            <md-icon class=\"btnComments\">textsms</md-icon>\r\n                        </div>\r\n                        <div class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row no-margin card-Comments\">\r\n        <div class=\"col-12 comments-back no-padding\">\r\n            <div class=\"row comments-header\">\r\n                <div class=\"col card-user--comments-image col-md-auto\">\r\n                    <img src=\"assets/imgs/avatar.png\">\r\n                </div>\r\n                <div class=\"col-8 card-user-nd\">\r\n                    <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                    <div class=\"card-date-comments ts12\">10 horas</div>\r\n                </div>\r\n                <div class=\"col card-option-comments text-right\">\r\n                    <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                    <md-menu #menu=\"mdMenu\">\r\n                        <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                        <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                        <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                    </md-menu>\r\n                </div>\r\n            </div>\r\n            <div class=\"row comments-content\">\r\n                <div class=\"col-12 ts13\">\r\n                    Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac\r\n                    habitasse platea dictumst. Sed male suada ante eget\r\n                </div>\r\n            </div>\r\n            <div class=\"borderComments\"></div>\r\n        </div>\r\n        <div class=\"col-12 comments-back no-padding\">\r\n            <div class=\"row comments-header\">\r\n                <div class=\"col card-user--comments-image col-md-auto\">\r\n                    <img src=\"assets/imgs/avatar.png\">\r\n                </div>\r\n                <div class=\"col-8 card-user-nd\">\r\n                    <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                    <div class=\"card-date-comments ts12\">10 horas</div>\r\n                </div>\r\n                <div class=\"col card-option-comments text-right\">\r\n                    <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                    <md-menu #menu=\"mdMenu\">\r\n                        <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                        <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                        <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                    </md-menu>\r\n                </div>\r\n            </div>\r\n            <div class=\"row comments-content\">\r\n                <div class=\"col-12 ts13\">\r\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n                </div>\r\n            </div>\r\n            <div class=\"borderComments\"></div>\r\n        </div>\r\n        <div class=\"col-12 insert-comment no-padding-side\">\r\n            <div class=\"row\">\r\n                <div class=\"col-1 card-user--comments-image card-user-comments-image-comments\">\r\n                    <img src=\"assets/imgs/avatar3.png\">\r\n                </div>\r\n                <div class=\"col\">\r\n                    <md-input-container class=\"width100\">\r\n                        <input mdInput>\r\n                    </md-input-container>\r\n                </div>\r\n                <div class=\"col-1 btnSend text-center\">\r\n                    <md-icon class=\"btnSendIcon btnSendColorGrey\">send</md-icon>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n\r\n</div>"
+module.exports = "<div>\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                {{volDetails?.date_begin | date:\"MMM\" | uppercase}}\r\n            </div>\r\n            <div>\r\n                {{volDetails?.date_begin | date:\"d\"}}\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                {{volDetails?.name}}\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n                {{volDetails?.date_begin | date:\"fullDate\"}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modalContainer row\">\r\n\r\n    <div class=\"card-user-image col-md-auto\">\r\n        <img src={{volDetails?.user.photo_url}}>\r\n    </div>\r\n    <div class=\"card-user-nd\">\r\n        <div><span class=\"card-user-name ts16\">{{volDetails?.user.name}} </span><span class=\"ts14 card-user-desc\"> criou o </span>\r\n            <span class=\"card-user-event ts14\">evento</span>\r\n        </div>\r\n        <div class=\"card-date ts13\">{{volDetails?.date_creation | date:\"d/M\"}} às {{volDetails?.date_creation | date:\"shortTime\"}}</div>\r\n    </div>\r\n    <div class=\"col text-right no-padding\">\r\n        <button class=\"btn btnCandidate\" (click)=\"apply(volDetails.id_vol)\" *ngIf=\"state == 0\">CANDIDATAR</button>\r\n        <button class=\"btn btn-info\" *ngIf=\"state == 1\">À espera de confirmação</button>\r\n        <button class=\"btn btn-success \" *ngIf=\"state == 2\">Confirmado</button>\r\n        <button class=\"btn btn-success\" *ngIf=\"state == 3\">Sucesso <i class=\"fa fa-check\"></i></button>\r\n\r\n\r\n    </div>\r\n\r\n    <div class=\"modalTextArea col-12 no-padding\">\r\n        <div class=\"ts13 col-12 no-padding\">\r\n            {{volDetails?.desc}}\r\n        </div>\r\n        <div class=\"details-vol\">\r\n            <span class=\"typeVol\">Solidariedade Social</span> <span class=\"insuBool\">Seguro</span>\r\n        </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"sectionDatePlace container\">\r\n        <div class=\"row containerDatePlace\">\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <i class=\"material-icons iconDate\">query_builder</i>\r\n                    </div>\r\n                    <div class=\"col descDatePlace\">\r\n                        <div class=\"daysEvent ts13\" *ngIf=\"!volDetails?.date_end\">\r\n                            Início a {{volDetails?.date_begin | date:\"d\"}} de {{volDetails?.date_begin | date:\"MMMM\"}}\r\n                        </div>\r\n                        <div class=\"daysEvent ts13\" *ngIf=\"volDetails?.date_end\">\r\n                            {{volDetails?.date_begin | date:\"d\"}} de {{volDetails?.date_begin | date:\"MMMM\"}} - {{volDetails?.date_end | date:\"d\"}} de\r\n                            {{volDetails?.date_end | date:\"MMMM\"}}\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\" *ngIf=\"volDetails?.duration > 1\">\r\n                            {{volDetails?.duration}} horas diárias\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\" *ngIf=\"volDetails?.duration < 2\">\r\n                            {{volDetails?.duration}} hora diária\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-1\">\r\n                        <i class=\"material-icons iconDate\">place</i>\r\n                    </div>\r\n                    <div class=\"col descDatePlace\">\r\n                        <div class=\"daysEvent ts13\">\r\n                            Universidade de Aveiro\r\n                        </div>\r\n                        <div class=\"daysEventFull ts13\">\r\n                            3810-164, Aveiro, Portugal\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n\r\n    </div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    <div class=\"col-12 no-padding mapContent\">\r\n\r\n        <sebm-google-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"13\" [styles]=\"Terrain\">\r\n            <!--<sebm-google-map-marker [latitude]=\"lat\" [longitude]=\"lng\" ></sebm-google-map-marker>-->\r\n        </sebm-google-map>\r\n\r\n    </div>\r\n\r\n\r\n    <div class=\"friendsContainer container\">\r\n        <div class=\"row containerDatePlace\">\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col\">\r\n                        <div class=\"daysEventFull ts13\">\r\n                            <span class=\"numberYellow\">20</span><span class=\"normalText\"> candidatos</span>\r\n                        </div>\r\n                        <div class=\"likeImgs\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-6 no-padding\">\r\n                <div class=\"row\">\r\n                    <div class=\"col \">\r\n                        <div class=\"ts13\">\r\n                            <span class=\"numberBlue\">20</span><span class=\"normalText\"> confirmados</span>\r\n                        </div>\r\n                        <div class=\"likeImgs\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar3.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                            <img src=\"assets/imgs/avatar.png\">\r\n                            <img src=\"assets/imgs/avatar04.png\">\r\n                            <img src=\"assets/imgs/avatar2.png\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n\r\n    <div class=\"card-volum-footer no-margin\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n\r\n                <div class=\"cardLikes\">\r\n                    <md-icon class=\"btnLike\">favorite</md-icon>\r\n                </div>\r\n                <div class=\"likesNumber ts12\">\r\n                    300\r\n                </div>\r\n\r\n                <div class=\"col-11 float-right\">\r\n                    <div class=\"cardComments ts12 float-right\">\r\n                        <div>\r\n                            <md-icon class=\"btnComments\">textsms</md-icon>\r\n                        </div>\r\n                        <div class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row no-margin card-Comments\">\r\n        <div class=\"col-12 comments-back no-padding\">\r\n            <div class=\"row comments-header\">\r\n                <div class=\"col card-user--comments-image col-md-auto\">\r\n                    <img src=\"assets/imgs/avatar.png\">\r\n                </div>\r\n                <div class=\"col-8 card-user-nd\">\r\n                    <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                    <div class=\"card-date-comments ts12\">10 horas</div>\r\n                </div>\r\n                <div class=\"col card-option-comments text-right\">\r\n                    <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                    <md-menu #menu=\"mdMenu\">\r\n                        <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                        <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                        <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                    </md-menu>\r\n                </div>\r\n            </div>\r\n            <div class=\"row comments-content\">\r\n                <div class=\"col-12 ts13\">\r\n                    Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac\r\n                    habitasse platea dictumst. Sed male suada ante eget\r\n                </div>\r\n            </div>\r\n            <div class=\"borderComments\"></div>\r\n        </div>\r\n        <div class=\"col-12 comments-back no-padding\">\r\n            <div class=\"row comments-header\">\r\n                <div class=\"col card-user--comments-image col-md-auto\">\r\n                    <img src=\"assets/imgs/avatar.png\">\r\n                </div>\r\n                <div class=\"col-8 card-user-nd\">\r\n                    <div class=\"card-user-name-comments ts13\">Pedro Araújo</div>\r\n                    <div class=\"card-date-comments ts12\">10 horas</div>\r\n                </div>\r\n                <div class=\"col card-option-comments text-right\">\r\n                    <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n                    <md-menu #menu=\"mdMenu\">\r\n                        <button md-menu-item>\r\n                    <md-icon>dialpad</md-icon>\r\n                    <span>Redial</span>\r\n                  </button>\r\n                        <button md-menu-item disabled>\r\n                    <md-icon>voicemail</md-icon>\r\n                    <span>Check voicemail</span>\r\n                  </button>\r\n                        <button md-menu-item>\r\n                    <md-icon>notifications_off</md-icon>\r\n                    <span>Disable alerts</span>\r\n                  </button>\r\n                    </md-menu>\r\n                </div>\r\n            </div>\r\n            <div class=\"row comments-content\">\r\n                <div class=\"col-12 ts13\">\r\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.\r\n                </div>\r\n            </div>\r\n            <div class=\"borderComments\"></div>\r\n        </div>\r\n        <div class=\"col-12 insert-comment no-padding-side\">\r\n            <div class=\"row\">\r\n                <div class=\"col-1 card-user--comments-image card-user-comments-image-comments\">\r\n                    <img src=\"assets/imgs/avatar3.png\">\r\n                </div>\r\n                <div class=\"col\">\r\n                    <md-input-container class=\"width100\">\r\n                        <input mdInput>\r\n                    </md-input-container>\r\n                </div>\r\n                <div class=\"col-1 btnSend text-center\">\r\n                    <md-icon class=\"btnSendIcon btnSendColorGrey\">send</md-icon>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n\r\n</div>"
 
 /***/ }),
 
@@ -2675,6 +2746,70 @@ module.exports = "<div>\r\n    <div class=\"modalHeader row\">\r\n        <div c
 
 module.exports = __webpack_require__(471);
 
+
+/***/ }),
+
+/***/ 82:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global_constants__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SharedService = (function () {
+    function SharedService(http) {
+        this.http = http;
+    }
+    SharedService.prototype.getProfile = function (id) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getCandidates = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getConfirmed = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.countLikes = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/likes/count").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.checkLike = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/checkLike").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    return SharedService;
+}());
+SharedService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object])
+], SharedService);
+
+var _a;
+//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
 
 /***/ })
 

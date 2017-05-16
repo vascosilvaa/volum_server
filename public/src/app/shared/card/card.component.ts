@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../Auth/authentication.service';
 import { SharedService } from './../shared.service';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
@@ -36,12 +37,13 @@ export class CardComponent implements OnInit {
   public likeState: any;
 
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
+  constructor(private auth: AuthenticationService, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
     private router: Router) {
     overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {
+
     this.countLikes();
     this.checkLike();
     moment.locale('pt-pt');
@@ -63,14 +65,14 @@ export class CardComponent implements OnInit {
       }
     });
 
-  /*  this.sharedService.getComments(this.idVol)
-      .then(res => {
-        this.commentsResult = res.vols;
-        console.log(this.commentsResult);
-      })
-      .catch(err => console.log(err));
-
-      */
+    /*  this.sharedService.getComments(this.idVol)
+        .then(res => {
+          this.commentsResult = res.vols;
+          console.log(this.commentsResult);
+        })
+        .catch(err => console.log(err));
+  
+        */
   }
 
   openComments() {
@@ -81,8 +83,8 @@ export class CardComponent implements OnInit {
     }
   }
 
-  countLikes(){
-      this.sharedService.countLikes(this.idVol)
+  countLikes() {
+    this.sharedService.countLikes(this.idVol)
       .then(res => {
         this.numberLikes = res.likes;
       })
@@ -131,11 +133,15 @@ export class CardComponent implements OnInit {
       this.foto3 = 1;
     }
   }
-  checkLike(){
-     this.sharedService.checkLike(this.idVol)
-      .then(res => {
-        this.likeState = res.state;
-      })
-      .catch(err => console.log(err));
+  checkLike() {
+    if (this.auth.isAuthenticated()) {
+
+      this.sharedService.checkLike(this.idVol)
+        .then(res => {
+          this.likeState = res.state;
+        })
+        .catch(err => console.log(err));
+    }
+
   }
 }

@@ -181,8 +181,6 @@ app.get('/:id/checkLike', passport.authenticate('jwt'), function (req, res) {
     if (isNaN(parseInt(req.params.id))) {
         res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
     } else {
-        console.log("user", req.user.id_user)
-
         let users = [];
 
         db.get().query({
@@ -358,12 +356,12 @@ app.post('/', jwtCheck, function (req, res) {
  * @apiGroup Voluntariados 
  */
 
-app.post('/:id/comment', function (req, res) {
+app.post('/:id/comment', passport.authenticate('jwt'), function (req, res) {
 
-    if (req.body.id_user || req.body.message) {
+    if (req.body.message) {
 
         let body = {
-            id_user: req.body.id_user,
+            id_user: req.user.id_user,
             message: req.body.message,
             id_vol: req.params.id
         }
@@ -421,6 +419,29 @@ app.get('/:id/comments', function (req, res) {
     });
 });
 
+app.get('/:id/comments/count', function (req, res) {
+
+    let options = {
+        sql: 'SELECT COUNT(*) AS comments FROM likes WHERE id_vol = ? ',
+    };
+
+    db.get().query(options, [req.params['id']], function (error, comments, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+            let comments = comments[0].comments;
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, comments: 0 })
+            } else {
+                res.status(200);
+                res.send({ success: true, comments })
+            }
+        };
+
+    });
+});
 
 /**
  * @api {post} /vols/:id/apply Candidatar a Voluntariado
@@ -431,21 +452,16 @@ app.get('/:id/comments', function (req, res) {
 
 
 
-app.post('/:id/apply', function (req, res) {
+app.post('/:id/apply', passport.authenticate('jwt'), function (req, res) {
     if (!req.body) {
         res.json({
             success: false,
             message: 'Falta Enviar o Body'
         });
-    } else if (isNaN(req.body.id_user)) {
-        res.json({
-            success: false,
-            message: 'Id Inválido'
-        });
+
     } else {
-        console.log("a", req.body.id_user);
-        console.log("b", req.params.id);
-        db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.body.id_user, req.params.id],
+
+        db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
             function (error, results, fields) {
                 if (error) {
                     console.log(error);
@@ -457,7 +473,7 @@ app.post('/:id/apply', function (req, res) {
 
                     db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
                         function (error, results, fields) {
-                            console.log(results);
+
                             let id_creator = results[0].id_user_creator;
 
                             db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],

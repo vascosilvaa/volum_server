@@ -56,6 +56,16 @@ export class AuthenticationService {
     logout() {
         this.destroyUserCredentials();
     }
+    register(value) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/auth/register`, value).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                this.errorHandler(err);
+                return err.json();
+            });
+    }
 
     isAuthenticated(): boolean {
         return this.authenticated;

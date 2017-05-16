@@ -52,7 +52,8 @@
     border:0;
     font-size: 14px;
     text-align: left;
-    max-width: 50%
+    max-width: 50%;
+    word-wrap: break-word;
 }
 
 .item-friend {
@@ -75,6 +76,8 @@
     font-size: 14px;
     text-align: left;
     max-width: 50%;
+    word-wrap: break-word;
+
 }
 .item-friend .image img {
     border-radius: 50%;

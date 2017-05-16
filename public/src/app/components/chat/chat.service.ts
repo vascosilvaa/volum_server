@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ChatService {
-    public conversation: string = "ola"
+    public conversation: string;
     public conversationUpdate: Subject<string> = new Subject<string>();
 
     constructor(public http: HttpClient) {

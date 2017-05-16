@@ -22,7 +22,6 @@ export class ChatComponent implements OnInit {
       this.auth.userPromise.then(res => {
         this.id_user = res.user.id_user;
         this.getConversations(this.id_user);
-
       });
 
     }

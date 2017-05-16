@@ -10,12 +10,14 @@
                 <li *ngIf="user" routerLink="map">
                     <md-icon>place</md-icon>
                 </li>
-                <li *ngIf="user" ngbDropdown (click)="cleanRequests()">
+                <li *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
                     <md-icon ngbDropdownToggle>people</md-icon>
+
                     <span class="badge badge-notify" *ngIf="newRequestsCount > 0">{{newRequestsCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">PEDIDOS</div>
+                        <div class="message-item" *ngIf="!requests">Loading...</div>
                         <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
 
                             <div class="image">
@@ -37,11 +39,13 @@
                     </div>
                 </li>
 
-                <li *ngIf="user" ngbDropdown>
+                <li *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
+
                     <md-icon ngbDropdownToggle>chat_bubble</md-icon>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">MENSAGENS</div>
+                        <div class="message-item" *ngIf="!conversations">Loading...</div>
                         <div class="message-item" *ngFor="let conversation of conversations">
                             <div class="image">
                                 <img [src]="conversation.photo_url">
@@ -59,12 +63,13 @@
                     </div>
                 </li>
 
-                <li *ngIf="user" ngbDropdown (click)="cleanNotifications()">
+                <li *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
                     <md-icon ngbDropdownToggle>notifications</md-icon>
                     <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">NOTIFICAÇÕES</div>
+                        <div class="message-item" *ngIf="!notifications">Loading...</div>
 
                         <div class="message-item" *ngFor="let notification of notifications">
                             <div class="image">

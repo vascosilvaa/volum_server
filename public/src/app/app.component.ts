@@ -17,14 +17,15 @@ import * as moment from 'moment';
   providers: [SocketService, AppService, ChatService]
 })
 export class AppComponent implements OnInit {
+
   public isLoggedIn;
   public user: any;
   public idLogin: any;
-  public newNotificationCount: Number;
-  public newRequestsCount: Number;
+  public newNotificationCount: number;
+  public newRequestsCount: number;
   public conversations = [];
-  public notifications: any;
-  public requests: any;
+  public notifications = [];
+  public requests = [];
 
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService) {
@@ -49,20 +50,27 @@ export class AppComponent implements OnInit {
         yy: "%d anos"
       }
     });
+
+
+
     this.getUser();
+
   }
 
   getUser() {
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
         this.user = res.user;
-        console.log("USER", res.user);
+        this.socketService.onNotification().subscribe(res => {
+          this.newNotificationCount++;
+        });
+        this.socketService.onRequest().subscribe(res => {
+          this.newRequestsCount++;
+        });
+
         this.socketService.onConnect(res.user.id_user);
         this.getNotificationCount(res.user.id_user);
         this.getRequestCount(res.user.id_user);
-        this.getNotifications(res.user.id_user);
-        this.getRequests(res.user.id_user);
-        this.getConversations(res.user.id_user);
         let id = localStorage.getItem('USER_ID');
         this.idLogin = id;
       }
@@ -96,13 +104,14 @@ export class AppComponent implements OnInit {
     this.appService.getNotifications(id).then(res => {
       this.notifications = res.notifications;
       console.log("NOTIFICATIONS", res);
+      this.cleanNotifications();
 
     })
   }
   getRequests(id) {
     this.appService.getRequests(id).then(res => {
       this.requests = res.notifications;
-
+      this.cleanRequests();
       console.log("requests", res);
 
     })

@@ -1,9 +1,9 @@
 <div class="container">
-<!--
+    <!--
 <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
     <button class="facebookLogin">Entrar com o Facebook</button>
     <br> Login <input type="text" formControlName="login">
-    <small *ngIf="!form.controls.login.valid && form.controls.login.dirty" style="color:red">Invalido</small>
+    <small *ngIf="!form.controls.login.valid && form.controls.login.touched" style="color:red">Invalido</small>
     <br> Password <input type="password" formControlName="password">
     <br>
     <button type="submit">Login</button>
@@ -27,46 +27,53 @@
                         <button class="normalLogin" (click)="openEmailRegist()">Registar com o e-mail</button>
                     </div>
                 </div>
-            
+
                 <div *ngIf="emailRegist==1">
                     <div class="col-12 text-center">
-                        <span class="registerAdvice1">Registe-se com o <span class="adviceSocial">Facebook</span> ou <span class="adviceSocial">Google</span>.</span>
+                        <span class="registerAdvice1">Registe-se com o <span class="adviceSocial">Facebook</span> ou
+                        <span class="adviceSocial">Google</span>.</span>
                     </div>
                     <hr>
-                    <div class="col-12">
-                        <input type="email" [class.borda]="!form.controls.email.valid && form.controls.email.dirty" formControlName="email"
-                        class="inputEmailLogin form-control" placeholder="Endereço de e-mail">
-                        <div *ngIf="!form.controls.email.valid && form.controls.email.dirty" class="textError">Endereço de email inválido.</div>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" [class.borda]="!form.controls.name.valid && form.controls.name.dirty" formControlName="name"
-                        class="inputEmailLogin form-control" placeholder="Primeiro nome">
-                        <div *ngIf="!form.controls.name.valid && form.controls.name.dirty" class="textError">Nome inválido</div>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" [class.borda]="!form.controls.lastname.valid && form.controls.lastname.dirty" formControlName="lastname"
-                        class="inputEmailLogin form-control" placeholder="Último Nome">
-                        <div *ngIf="!form.controls.lastname.valid && form.controls.lastname.dirty" class="textError">Último Nome inválido</div>
-                    </div>
-                    <div class="col-12">
-                        <input [class.borda]="!form.controls.password.valid && form.controls.password.dirty"  type="password" class="inputPasswordLogin form-control" formControlName="password" placeholder="Inserir palavra-passe">
-                    </div>
-                    <div *ngIf="!form.controls.password.valid && form.controls.password.dirty" class="textError">Endereço de email inválido.</div>
-                    <div class="col-12">
-                        <input [class.borda]="!form.controls.password2.valid && form.controls.password.dirty"  type="password" class="inputPasswordLogin form-control" formControlName="password2" placeholder="Confirmar palavra-passe">
-                    </div>
-                    <div *ngIf="!form.controls.password2.valid && form.controls.password2.dirty" class="textError">Endereço de email inválido.</div>
-                    <div class="col-12">
-                        <p class="serviceAdvice">Ao fazer o registo, concordo com os Termos de Serviço e a Política de Privacidade da Volum. </p>
-                    </div>
+                    <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
+                        <div class="col-12">
+                            <input type="email" maxlength="120" [class.borda]="!form.controls.email.valid && form.controls.email.touched" formControlName="email"
+                                class="inputEmailLogin form-control" placeholder="Endereço de e-mail">
+                            <div *ngIf="!form.controls.email.error?.required && form.controls.email.touched" class="textError">Campo Obrigatório</div>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" maxlength="120" [class.borda]="!form.controls.name.valid && form.controls.name.touched" formControlName="name"
+                                class="inputEmailLogin form-control" placeholder="Primeiro nome">
+                            <div *ngIf="!form.controls.name.error?.required && form.controls.name.touched" class="textError">Campo Obrigatório</div>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" maxlength="120" [class.borda]="!form.controls.lastname.valid && form.controls.lastname.touched" formControlName="lastname"
+                                class="inputEmailLogin form-control" placeholder="Último Nome">
+                            <div *ngIf="!form.controls.lastname.error?.required && form.controls.lastname.touched" class="textError">Campo Obrigatório</div>
+                        </div>
+                        <div class="col-12">
+                            <input maxlength="120" [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
+                                formControlName="password" placeholder="Inserir palavra-passe">
+                            <div *ngIf="!form.controls.password.error?.required && form.controls.password.touched" class="textError">Campo Obrigatório</div>
 
-                    <div class="col-12">
-                    <button class="normalLogin" (click)="openConfirmationEmail()">Registar com o e-mail</button>
-                    </div>
+                        </div>
+                        <div class="col-12">
+                            <input maxlength="120" [class.borda]="!form.controls.password2.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
+                                formControlName="password2" placeholder="Confirmar palavra-passe">
+                            <div *ngIf="!form.controls.password2.error?.required && form.controls.password2.touched" class="textError">Campo Obrigatório</div>
+
+                        </div>
+                        <div class="col-12">
+                            <p class="serviceAdvice">Ao fazer o registo, concordo com os Termos de Serviço e a Política de Privacidade da Volum. </p>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="normalLogin" type="submit">Registar</button>
+                        </div>
+                    </form>
                 </div>
 
                 <div *ngIf="emailRegist==2">
-                     <div class="col-12">
+                    <div class="col-12">
                         <span class="registerAdvice1">Registo efetuado com sucesso.</span>
                     </div>
                     <hr>
@@ -76,7 +83,7 @@
                     </div>
                 </div>
 
-               <div *ngIf="emailRegist==1 || emailRegist==0">
+                <div *ngIf="emailRegist==1 || emailRegist==0">
                     <div class="col-12 footerLogin">
                         <hr>
                     </div>
@@ -84,22 +91,21 @@
                         <span class="registerAdvice">Já se encontra registado?</span>
                     </div>
                     <div class="col text-right btnRegister">
-                        <button class="registerBtn">Entrar</button>
+                        <button type="button" class="registerBtn">Entrar</button>
                     </div>
                 </div>
-               
-                
-                
+
+
+
             </form>
 
 
-               <!-- registar com e-mail -->
-                
+            <!-- registar com e-mail -->
 
 
-                
-                <!-- registar com e-mail -->
+
+
+            <!-- registar com e-mail -->
         </div>
     </div>
 </div>
-

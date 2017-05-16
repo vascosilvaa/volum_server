@@ -3,7 +3,7 @@
 <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
     <button class="facebookLogin">Entrar com o Facebook</button>
     <br> Login <input type="text" formControlName="login">
-    <small *ngIf="!form.controls.login.valid && form.controls.login.dirty" style="color:red">Invalido</small>
+    <small *ngIf="!form.controls.login.valid && form.controls.login.touched" style="color:red">Invalido</small>
     <br> Password <input type="password" formControlName="password">
     <br>
     <button type="submit">Login</button>
@@ -27,14 +27,15 @@
                 <div class="col-12" *ngIf="error">
                     <div class="textError">{{error}}</div>
                 </div>
-                <div class="col-12" >
-                    <input [class.borda]="!form.controls.email.valid && form.controls.email.dirty" type="email" formControlName="email"
-                        class="inputEmailLogin form-control" placeholder="Endereço de e-mail">
-                    <div *ngIf="!form.controls.email.valid && form.controls.email.dirty" class="textError">Endereço de email inválido.</div>
+                <div class="col-12">
+                    <input [class.borda]="!form.controls.email.valid && form.controls.email.touched" type="email" formControlName="email" class="inputEmailLogin form-control"
+                        placeholder="Endereço de e-mail">
+                    <div *ngIf="!form.controls.email.valid && form.controls.email.touched" class="textError">Endereço de email inválido.</div>
                 </div>
                 <div class="col-12">
-                    <input [class.borda]="!form.controls.password.valid && form.controls.password.dirty"  type="password" class="inputPasswordLogin form-control" formControlName="password" placeholder="Palavra-passe">
-                    <div *ngIf="!form.controls.password.valid && form.controls.password.dirty" class="textError">Palavra passe inválida</div>
+                    <input [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
+                        formControlName="password" placeholder="Palavra-passe">
+                    <div *ngIf="!form.controls.password.valid && form.controls.password.touched" class="textError">Palavra passe inválida</div>
                 </div>
                 <div class="col-12 text-right forgotPass">
                     <span>Esqueceu a sua palavra passe?</span>
@@ -56,6 +57,6 @@
 
             <div class="container">
 
+            </div>
         </div>
     </div>
-</div>
