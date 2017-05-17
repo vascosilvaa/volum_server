@@ -8,14 +8,18 @@ export class VolDetailsModalService {
     constructor(private http: Http) {
     }
 
+    getUser(id) {
+       return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
     getVol(idVol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + idVol).toPromise()
             .then(res => {
                 return res.json();
             })
-            .catch(err => {
-                return err.json();
-            });
+           .catch((error: any) => console.log(error))
     }
 
     checkState(id_user, id_vol) {
@@ -63,6 +67,12 @@ export class VolDetailsModalService {
     getComments(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/comments`).toPromise()
             .then(res => { return res.json()})
+            .catch(error => console.log(error));
+    }
+
+    sendComment(message, id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comment`, {  message: message}).toPromise()
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
