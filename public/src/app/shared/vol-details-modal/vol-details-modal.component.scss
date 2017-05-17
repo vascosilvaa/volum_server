@@ -23,6 +23,7 @@
     height: 30px;
     border-radius: 30px;
     margin-top: 1.5px;
+    object-fit: cover;
 }
 
 .card-user-nd {
@@ -110,8 +111,11 @@
 }
 
 .card-user-comments-image-comments {
-    padding-top: 5px;
+    margin-top:15px;
+    margin-left:5px!important;
+    max-width: 50px;
 }
+
 
 // COMMENTS
 

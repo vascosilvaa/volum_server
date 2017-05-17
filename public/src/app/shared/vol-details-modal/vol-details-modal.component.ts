@@ -34,6 +34,9 @@ export class VolDetailsModalComponent implements OnInit {
   public login: any;
   public showComments:any;
   public comments: any;
+  public user: any;
+  public userLogin: any;
+  public comentario: any;
 
 
   constructor(private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
@@ -46,11 +49,18 @@ export class VolDetailsModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     console.log(this.context.idVol);
     if (this.authService.isAuthenticated()) {
+      this.authService.userPromise.then(res => {
+        this.userLogin = res.user;
+        console.log(this.userLogin)
+      });
       this.login = 1;
       this.checkLike();
-      this.authService.userPromise.then(res => this.id_user = res.user.id_user);
+      this.authService.userPromise.then(res => { 
+        this.id_user = res.user.id_user;
+      });
     }
     else {
       this.login = 0;
@@ -66,8 +76,17 @@ export class VolDetailsModalComponent implements OnInit {
         this.lng = this.volDetails.long;
       })
       .catch(err => console.log(err));
-  }
 
+     
+  }
+  sendComment(comment) {
+       if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
+
+      this.volsService.sendComment(comment, this.context.idVol).then(res => {
+      });
+
+    }
+  }
   getComments() {
     if(!this.showComments){
       this.showComments=1;
