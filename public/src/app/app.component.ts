@@ -4,7 +4,7 @@ import { SocketService } from './shared/socket.service';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ViewContainerRef, OnInit } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
@@ -17,16 +17,17 @@ import * as moment from 'moment';
   providers: [SocketService, AppService, ChatService]
 })
 export class AppComponent implements OnInit {
+
   public isLoggedIn;
   public user: any;
   public idLogin: any;
-  public newNotificationCount: Number;
-  public newRequestsCount: Number;
+  public newNotificationCount: number;
+  public newRequestsCount: number;
   public conversations = [];
-  public notifications: any;
-  public requests: any;
+  public notifications = [];
+  public requests = [];
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
+  constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService) {
     overlay.defaultViewContainer = vcRef;
   }
@@ -41,28 +42,35 @@ export class AppComponent implements OnInit {
         mm: "%d m",
         h: "1h",
         hh: "%d hrs",
-        d: "1 day",
-        dd: "%d days",
-        M: "1 mo",
-        MM: "%d mos",
-        y: "1 yr",
-        yy: "%d yrs"
+        d: "1 dia",
+        dd: "%d dias",
+        M: "1 mês",
+        MM: "%d meses",
+        y: "1 ano",
+        yy: "%d anos"
       }
     });
+
+
+
     this.getUser();
+
   }
 
   getUser() {
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
         this.user = res.user;
-        console.log("USER", res.user);
+        this.socketService.onNotification().subscribe(res => {
+          this.newNotificationCount++;
+        });
+        this.socketService.onRequest().subscribe(res => {
+          this.newRequestsCount++;
+        });
+
         this.socketService.onConnect(res.user.id_user);
         this.getNotificationCount(res.user.id_user);
         this.getRequestCount(res.user.id_user);
-        this.getNotifications(res.user.id_user);
-        this.getRequests(res.user.id_user);
-        this.getConversations(res.user.id_user);
         let id = localStorage.getItem('USER_ID');
         this.idLogin = id;
       }
@@ -96,13 +104,14 @@ export class AppComponent implements OnInit {
     this.appService.getNotifications(id).then(res => {
       this.notifications = res.notifications;
       console.log("NOTIFICATIONS", res);
+      this.cleanNotifications();
 
     })
   }
   getRequests(id) {
     this.appService.getRequests(id).then(res => {
       this.requests = res.notifications;
-
+      this.cleanRequests();
       console.log("requests", res);
 
     })
@@ -125,6 +134,12 @@ export class AppComponent implements OnInit {
       });
 
     }
+  }
+
+  goToMessages(id, name) {
+    console.log("name", name)
+    this.chatService.conversation = name;
+    this.router.navigate(['./chat/msg', id], { relativeTo: this.route });
   }
 
 

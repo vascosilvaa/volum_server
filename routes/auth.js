@@ -22,7 +22,6 @@ let transporter = nodemailer.createTransport({
 });
 
 
-
 function createToken(user) {
     return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
 }
@@ -48,7 +47,7 @@ function hashUrl(id) {
 
 
 /**
- * @api {post} /create Registar 
+ * @api {post} /register Registar 
  * @apiName register
  * @apiGroup Autenticacao
  * @apiParam {String} login Username/login do utilizador
@@ -58,7 +57,7 @@ function hashUrl(id) {
  * @apiParam {JPEG} [photo] foto de perfil
  */
 
-app.post('/create', function(req, res) {
+app.post('/register', function(req, res) {
     console.log(req.body)
     if (!req.body.password || !req.body.email || !req.body.name) {
         return res.status(400).json({ success: false, message: "Falta enviar dados" });

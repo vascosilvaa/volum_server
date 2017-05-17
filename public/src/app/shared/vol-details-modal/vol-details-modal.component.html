@@ -35,6 +35,8 @@
         <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button>
         <button class="btn btn-info" *ngIf="state == 1">À espera de confirmação</button>
         <button class="btn btn-success " *ngIf="state == 2">Confirmado</button>
+        <button class="btn btn-success" *ngIf="state == 3">Sucesso <i class="fa fa-check"></i></button>
+
 
     </div>
 

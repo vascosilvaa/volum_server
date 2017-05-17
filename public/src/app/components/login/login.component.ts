@@ -49,8 +49,7 @@ export class LoginComponent implements OnInit {
                 if (res.success) {
                     this.dialog.close();
                     location.reload();
-                    this.socketService.onConnect(res.id_user);
-
+    
                 }
                 else {
                     this.error = res.message;

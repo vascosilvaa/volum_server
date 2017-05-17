@@ -1,15 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 header-msg text-center no-padding">
-      Diogo Monteiro
+      {{conversationName}}
     </div>
 
     <div class="col-12">
-      <div class="chat-content">
+      <div class="chat-content" #scrollMe>
         <div *ngFor="let message of messages" [class.item-mine]="message.id_user == id_user" [class.item-friend]="message.id_user == id_user2">
-          <div class="msg-text">
-            <button [class.msg-mine]="message.id_user == id_user" [class.msg-friend]="message.id_user == id_user2">{{message.message}}</button>
-          </div>
+          <button [class.msg-mine]="message.id_user == id_user" [class.msg-friend]="message.id_user == id_user2">{{message.message}}</button>
         </div>
       </div>
     </div>

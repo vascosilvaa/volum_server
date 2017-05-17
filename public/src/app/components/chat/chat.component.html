@@ -25,12 +25,13 @@
         </div>
 
         <div class="content-msgs">
-          <div class="msg-item" *ngFor="let conversation of conversations" [routerLink]="['./msg/', conversation.id_user]">
+          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_user, conversation.user_name)">
             <div class="image">
               <img [src]="conversation.photo_url">
             </div>
             <div class="message-info">
               <div>
+
                 <div class="nameMsg">{{conversation.user_name}}</div>
                 <div class="time">20:00</div>
               </div>

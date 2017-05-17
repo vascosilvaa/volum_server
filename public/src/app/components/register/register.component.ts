@@ -4,7 +4,7 @@ import { User } from './user.interface';
 import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
-import { FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
 
 
 export class ModalContext extends BSModalContext {
@@ -18,9 +18,9 @@ export class ModalContext extends BSModalContext {
 })
 
 export class RegisterComponent implements OnInit {
-    public emailRegist=0;
+    public emailRegist = 0;
     public wrongAnswer: boolean;
-    public form: any;
+    public form: FormGroup;
     context: ModalContext;
     constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
         this.context = dialog.context;
@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.form = this._fb.group({
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required,  Validators.minLength(6)]],
-            password2: ['', [Validators.required,  Validators.minLength(6)]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            password2: ['', [Validators.required, Validators.minLength(6)]],
             name: ['', [Validators.required, Validators.minLength(2)]],
             lastname: ['', [Validators.required, Validators.minLength(2)]],
         });
@@ -40,23 +40,31 @@ export class RegisterComponent implements OnInit {
 
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
         console.log(value, valid);
+        this.form.controls.email.markAsTouched();
+        this.form.controls.password.markAsTouched();
+        this.form.controls.password2.markAsTouched();
+        this.form.controls.name.markAsTouched();
+        this.form.controls.lastname.markAsTouched();
 
-        this.auth.login(value)
-            .then(res => {
-                console.log(res);
-                if (res.success) {
-                    this.dialog.close();
-                    location.reload();
-                }
-            })
-            .catch(err => console.log(err));
+        if (valid) {
+
+            this.auth.register(value)
+                .then(res => {
+                    console.log(res);
+                    if (res.success) {
+                        this.openConfirmationEmail();
+                    }
+                })
+                .catch(err => console.log(err));
+
+        }
     }
 
     openEmailRegist() {
-        this.emailRegist=1;
+        this.emailRegist = 1;
     }
 
     openConfirmationEmail() {
-        this.emailRegist=2;
+        this.emailRegist = 2;
     }
 }

@@ -23,16 +23,15 @@ var io = require('socket.io').listen(server);
 
 //ROUTES
 
-var vols = require('./routes/vols');
+var vols = require('./routes/vols')
 var auth = require('./routes/auth');
-var users = require('./routes/users');
-var notifications = require('./routes/notifications');
+var users = require('./routes/users')(io)
+var notifications = require('./routes/notifications')(io)
 var chat = require('./routes/chat');
 var db = require('./config/db');
 
 var searchData = [];
-var loggedUsers = [
-];
+loggedUsers = [];
 app.use(passport.initialize());
 app.use(morgan('dev'));
 app.use(cors());
@@ -89,9 +88,7 @@ app.get('/api/search', function (req, res) {
     }
 });
 
-app.use(function (req, res, next) {
-    res.status(404).send("NOT FOUND")
-})
+
 
 app.use('/*', express.static(path.join(__dirname, 'public/dist')));
 
@@ -100,10 +97,6 @@ app.use('/*', express.static(path.join(__dirname, 'public/dist')));
  * @apiGroup Geral
  * @apiParam {String} search Termo a pesquisar
  */
-
-//teste 
-
-//teste do branch
 
 
 function ensureUnauthenticated(req, res, next) {
@@ -115,37 +108,33 @@ function ensureUnauthenticated(req, res, next) {
 }
 
 
-
-
-
-/*
 io.on('connection', function (socket) {
-    console.log("entrou");
-    socket.on('connect', function (data) {
-        console.log('a user connected', data);
 
-        loggedUsers.push({ id: data.id_user, sockets: socket.id })
+    socket.on('user', function (id) {
+        console.log("entrou");
 
-        console.log(loggedUsers);
+        console.log("USER", id);
+        loggedUsers.push({ socket: socket.id, user: id })
+        console.log("logged", loggedUsers);
+        app.set('users', loggedUsers);
     });
 
-    socket.on('disconnect', function (socket) {
-        for (let i = 0; i < loggedUsers.length; i++) {
-            console.log(loggedUsers);
-            let index = loggedUsers[i].sockets.indexOf(socket.id);
-            loggedUsers[i].sockets.splice(index, 1);
-            console.log(index + "disconnected");
-        }
+
+
+
+    socket.on('disconnect', function () {
+        console.log("SOCKET", socket.id);
+
+        let index = loggedUsers.findIndex(x => x.socket == socket.id)
+        console.log("index", index);
+        console.log("USERS", loggedUsers)
+        loggedUsers.splice(index, 1);
+        app.set('users', loggedUsers);
 
     });
+
+
 });
-*/
-
-
-
-
-
-
 
 server.listen(process.env.PORT || 8080);
 console.log("Listening...");
