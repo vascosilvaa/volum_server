@@ -39,10 +39,20 @@ button{
     border:1px solid #4568B2 ;
 }
 
+.facebookLogin:hover {
+    background: #7996e4;
+    border:1px solid #7996e4 ;
+}
+
 .googleLogin {
     background: $white;
     color: $grey2;
     border:1px solid $grey1;
+}
+
+.googleLogin:hover {
+    color: $grey2;
+    border:1px solid #cccccc;
 }
 
 .normalLogin {
@@ -50,6 +60,11 @@ button{
     color: $white;
     border:1px solid $orange;
     margin-top:15px;
+}
+
+.normalLogin:hover {
+    background: #ffbb93;
+    border:1px solid #ffbb93;
 }
 
 .orLogin {
@@ -97,6 +112,12 @@ button{
     font-family: Lato;
     border:1px solid $orange;
 }
+
+.registerBtn:hover {
+    color: #ffbb93;
+     border:1px solid #ffbb93;
+}
+
 .btnRegister {
     margin-top:-30px;
 }

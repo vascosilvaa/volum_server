@@ -1,10 +1,124 @@
 @import '../../../styles';
 @import './../card/card.component';
 
+// COMMENTS
+.card-Comments {
+    border-top: 1px solid $grey1;
+    width:100%;
+}
+
+.comments-header {
+    background-color: $grey0;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+    padding: 15px 10px 0px 10px;
+}
+
+.card-user--comments-image {
+    padding-right: 10px;
+}
+
+.card-user--comments-image img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-top: 1.5px;
+}
+
+.card-user-nd {
+    padding-left: 0;
+}
+
+.card-user-name-comments {
+    color: $grey3;
+    font-weight: 600;
+}
+
+.card-date-comments {
+    margin-top: -3px;
+    color: $grey2;
+}
+
+.card-option-comments {
+    padding-top: 3px;
+}
+
+.comments-content {
+    background-color: $grey0;
+    padding-bottom: 15px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+    padding: 10px 10px 20px 10px;
+}
+
+.borderComments {
+    min-width: 100%;
+    height: 1px;
+    background-color: $grey1;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.more-Comments {
+    width: 100%;
+    text-align: center;
+    height: 42px;
+    font-weight: 600;
+    border-bottom: 1px solid $grey1;
+    padding-top: 2px;
+    transition: all 0.3s ease;
+    color: $grey2;
+}
+
+.more-Comments:hover {
+    cursor: pointer;
+    color: $orange;
+}
+
+.textMoreComments {
+    vertical-align: middle
+}
+
+.moreIcon {
+    font-size: 24px;
+    font-weight: 700;
+    vertical-align: middle
+}
+
+.insert-comment {
+    padding-top: 10px;
+}
+
+.btnSend {
+    padding-left: 0;
+}
+
+.btnSendIcon {
+    padding-top: 10px;
+}
+
+.btnSendIcon:hover {
+    cursor: pointer;
+}
+
+.btnSendColorBlue {
+    color: $blue;
+}
+
+.btnSendColorGrey {
+    color: $grey1;
+}
+
+.card-user-comments-image-comments {
+    padding-top: 5px;
+}
+
+// COMMENTS
+
+
 .modalHeader {
     background: $blue;
     padding:15px 20px;
-
 }
 
 .day-w-border {
@@ -55,6 +169,10 @@
     font-weight: 600;
 }
 
+.card-user-name:hover {
+    text-decoration: underline;
+}
+
 .card-date {
     color: $grey2;
 }
@@ -70,7 +188,7 @@
 .modalContainer {
     background: $white;
     padding: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 20px;
 }
 
 .card-user-desc {
@@ -99,11 +217,9 @@
 }
 
 .sectionDatePlace{
-    height: 10px;
     width: 100%;
     border-top:1px solid $grey1;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 
@@ -146,7 +262,7 @@
 }
 
 .mapContent {
-    margin-top:40px;
+    margin-top:15px;
 }
 
 .friendsContainer {
@@ -235,3 +351,8 @@
     margin-top:10px;
     text-indent:0px!important;
 }
+
+.likesNumber{
+    padding-top:10px;
+}
+
