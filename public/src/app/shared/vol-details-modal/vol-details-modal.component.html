@@ -1,4 +1,4 @@
-<div>
+<div class="no-padding">
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
@@ -26,7 +26,7 @@
         <img src={{volDetails?.user.photo_url}}>
     </div>
     <div class="card-user-nd">
-        <div><span class="card-user-name ts16">{{volDetails?.user.name}} </span><span class="ts14 card-user-desc"> criou o </span>
+        <div><span class="card-user-name ts16">{{volDetails?.user.name}}</span><span class="ts14 card-user-desc"> criou o </span>
             <span class="card-user-event ts14">evento</span>
         </div>
         <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
@@ -49,15 +49,14 @@
         </div>
     </div>
 
-
     <div class="sectionDatePlace container">
-        <div class="row containerDatePlace">
-            <div class="col-6 no-padding">
-                <div class="row">
-                    <div class="col-1">
+        <div class="row">
+            <div class="col-12 no-padding" style="display:flex">
+                <div style="display:flex; margin-top:5px">
+                    <div>
                         <i class="material-icons iconDate">query_builder</i>
                     </div>
-                    <div class="col descDatePlace">
+                    <div class="descDatePlace">
                         <div class="daysEvent ts13" *ngIf="!volDetails?.date_end">
                             Início a {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}}
                         </div>
@@ -73,127 +72,108 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 no-padding">
-                <div class="row">
-                    <div class="col-1">
+                <div style="margin-left: auto; display:flex; margin-top:5px">
+                    <div>
                         <i class="material-icons iconDate">place</i>
                     </div>
-                    <div class="col descDatePlace">
-                        <div class="daysEvent ts13">
-                            Universidade de Aveiro
+                    <div class="descDatePlace ">
+                        <div *ngIf="addressName" class="daysEvent ts13">
+                            {{addressName}}
                         </div>
-                        <div class="daysEventFull ts13">
-                            3810-164, Aveiro, Portugal
+                        <div *ngIf="address" class="daysEventFull ts13">
+                            {{address}}
                         </div>
+                        <div *ngIf="!addressName && !address" class="daysEvent ts13" style="padding-top:9px">Sem localização definida</div>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
-
-
-
-
-
-
-
-    <div class="col-12 no-padding mapContent">
+    <div class="col-12 no-padding mapContent" *ngIf="login">
 
         <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
-            <!--<sebm-google-map-marker [latitude]="lat" [longitude]="lng" ></sebm-google-map-marker>-->
+            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
         </sebm-google-map>
 
     </div>
 
-
-    <div class="friendsContainer container">
-        <div class="row containerDatePlace">
-            <div class="col-6 no-padding">
-                <div class="row">
-                    <div class="col">
-                        <div class="daysEventFull ts13">
-                            <span class="numberYellow">20</span><span class="normalText"> candidatos</span>
-                        </div>
-                        <div class="likeImgs">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar3.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar3.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                        </div>
+    <div class="container friendsContainer" *ngIf="login">
+        <div class="row">
+            <div class="col-12 no-padding" style="display:flex; margin-top:5px">
+                <div>
+                    <div class="daysEventFull ts13">
+                        <span class="numberYellow">20</span><span class="normalText"> candidatos</span>
+                    </div>
+                    <div *ngIf="login" class="likeImgs">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar3.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar3.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
                     </div>
                 </div>
-            </div>
-            <div class="col-6 no-padding">
-                <div class="row">
-                    <div class="col ">
-                        <div class="ts13">
-                            <span class="numberBlue">20</span><span class="normalText"> confirmados</span>
-                        </div>
-                        <div class="likeImgs">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar3.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar3.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                            <img src="assets/imgs/avatar.png">
-                            <img src="assets/imgs/avatar04.png">
-                            <img src="assets/imgs/avatar2.png">
-                        </div>
+                <div class="" style="text-align:right; margin-left:auto">
+                    <div class="ts13">
+                        <span class="numberBlue">20</span><span class="normalText"> confirmados</span>
+                    </div>
+                    <div *ngIf="login" class="likeImgs">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar3.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar3.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
+                        <img src="assets/imgs/avatar.png">
+                        <img src="assets/imgs/avatar04.png">
+                        <img src="assets/imgs/avatar2.png">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div class="card-volum-footer no-margin">
+    <div class="card-volum-footer" *ngIf="login">
         <div class="container">
             <div class="row">
-
-                <div class="cardLikes">
-                    <md-icon class="btnLike">favorite</md-icon>
-                </div>
-                <div class="likesNumber ts12">
-                    300
-                </div>
-
-                <div class="col-11 float-right">
-                    <div class="cardComments ts12 float-right">
-                        <div>
-                            <md-icon class="btnComments">textsms</md-icon>
+                <div class="col-12 no-padding" style="display:flex">
+                    <div class="cardLikes">
+                        <md-icon (click)="dislike(idVol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+                        <md-icon (click)="like(idVol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
+                    </div>
+                    <div class="likesNumber ts12">
+                        {{numberLikes}}
+                    </div>
+                    <div (click)="getComments()" class="text-right" style="margin-left:auto">
+                        <div class="cardComments ts12">
+                            <div>
+                                <md-icon class="btnComments">textsms</md-icon>
+                            </div>
+                            <div class="textComments"><span class="commentsNumber">16</span> comentários</div>
                         </div>
-                        <div class="textComments"><span class="commentsNumber">16</span> comentários</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row no-margin card-Comments">
-        <div class="col-12 comments-back no-padding">
+    <div class="row no-margin card-Comments" *ngIf="showComments && login">
+        <div class="col-12 comments-back no-padding" *ngFor="let comment of comments">
             <div class="row comments-header">
                 <div class="col card-user--comments-image col-md-auto">
-                    <img src="assets/imgs/avatar.png">
+                    <img src="{{comment.photo_url}}">
                 </div>
                 <div class="col-8 card-user-nd">
-                    <div class="card-user-name-comments ts13">Pedro Araújo</div>
+                    <div class="card-user-name-comments ts13">{{comment.name}}</div>
                     <div class="card-date-comments ts12">10 horas</div>
                 </div>
                 <div class="col card-option-comments text-right">
@@ -216,42 +196,7 @@
             </div>
             <div class="row comments-content">
                 <div class="col-12 ts13">
-                    Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac
-                    habitasse platea dictumst. Sed male suada ante eget
-                </div>
-            </div>
-            <div class="borderComments"></div>
-        </div>
-        <div class="col-12 comments-back no-padding">
-            <div class="row comments-header">
-                <div class="col card-user--comments-image col-md-auto">
-                    <img src="assets/imgs/avatar.png">
-                </div>
-                <div class="col-8 card-user-nd">
-                    <div class="card-user-name-comments ts13">Pedro Araújo</div>
-                    <div class="card-date-comments ts12">10 horas</div>
-                </div>
-                <div class="col card-option-comments text-right">
-                    <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
-                    <md-menu #menu="mdMenu">
-                        <button md-menu-item>
-                    <md-icon>dialpad</md-icon>
-                    <span>Redial</span>
-                  </button>
-                        <button md-menu-item disabled>
-                    <md-icon>voicemail</md-icon>
-                    <span>Check voicemail</span>
-                  </button>
-                        <button md-menu-item>
-                    <md-icon>notifications_off</md-icon>
-                    <span>Disable alerts</span>
-                  </button>
-                    </md-menu>
-                </div>
-            </div>
-            <div class="row comments-content">
-                <div class="col-12 ts13">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    {{comment.message}}
                 </div>
             </div>
             <div class="borderComments"></div>

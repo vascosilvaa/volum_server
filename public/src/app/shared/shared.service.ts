@@ -43,13 +43,16 @@ export class SharedService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
- 
 
-/*    getComments(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/comments`).toPromise()
-            .then(res => { return res.json()})
+    like(id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/like`,null).toPromise()
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-*/
+    dislike(id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/dislike`,null).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
     
 }

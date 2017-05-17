@@ -1,4 +1,7 @@
+
+import { RegisterComponent } from './../../components/register/register.component';
 import { AuthenticationService } from './../Auth/authentication.service';
+import { AuthenticationGuard } from './../Auth/authentication.guard';
 import { SharedService } from './../shared.service';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
@@ -8,7 +11,6 @@ import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { RouterModule, Router } from '@angular/router';
 
 import * as moment from 'moment';
-
 
 @Component({
   selector: 'vol-card',
@@ -34,18 +36,28 @@ export class CardComponent implements OnInit {
   public comments = 0;
   public commentsResult;
   public numberLikes: any;
-  public likeState: any;
+  public likeState: number;
+  public login: any;
 
 
-  constructor(private auth: AuthenticationService, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
-    private router: Router) {
+
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
+    private router: Router, public auth:AuthenticationService) {
+
     overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {
 
+    if(this.auth.isAuthenticated()) {
+      this.login=1;
+      this.checkLike();
+    } else {
+      this.login=0;
+    }
+
     this.countLikes();
-    this.checkLike();
+
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
@@ -75,12 +87,8 @@ export class CardComponent implements OnInit {
         */
   }
 
-  openComments() {
-    if (this.comments == 0) {
-      this.comments = 1;
-    } else {
-      this.comments = 0;
-    }
+  openRegister() {
+    return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
 
   countLikes() {
@@ -93,7 +101,6 @@ export class CardComponent implements OnInit {
 
   openVolDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
-
   }
 
   onSelect(profile) {
@@ -133,6 +140,7 @@ export class CardComponent implements OnInit {
       this.foto3 = 1;
     }
   }
+
   checkLike() {
     if (this.auth.isAuthenticated()) {
 
@@ -142,6 +150,22 @@ export class CardComponent implements OnInit {
         })
         .catch(err => console.log(err));
     }
-
+  }
+  
+  like(id_vol) {
+    this.likeState = 1;
+    this.numberLikes++;
+    this.sharedService.like(id_vol).then(res => {
+      
+      console.log(res);
+    });
+  }
+  dislike(id_vol) {
+    this.likeState = 0;
+    this.numberLikes--;
+    this.sharedService.dislike(id_vol).then(res => {
+      
+      console.log(res);
+    });
   }
 }

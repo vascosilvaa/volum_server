@@ -16,15 +16,15 @@
             <th class="tableBold tableTitle">{{vol.name}}</th>
 
             <td class="tablePlace">
-              <div class="tableBold">{{addressName[vol.id_vol]}}</div>
-              <div class="">{{address[vol.id_vol]}}</div>
+              <div class="tableBold">{{addressName}}</div>
+              <div class="">{{address}}</div>
 
             </td>
 
             <td class="tableDate">
               <div class="tableBold"> {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</div>
-              <!--<div class="">{{vols?.date_begin | date:"d"}} de {{vols?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vols?.date_end | date:"d"}} de {{vols?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}</div>
-           --> </td>
+              <div class="">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}</div>
+           </td>
 
             <td>
                 <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>

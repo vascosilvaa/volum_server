@@ -12,8 +12,8 @@ export class MyActionsComponent implements OnInit {
   constructor(private route:ActivatedRoute, private myactionsservice:MyActionsService, private router: Router) { }
   public idProfile:any;
   public myVols: any;
-  public address= [];
-  public addressName = [];
+  public address:any;
+  public addressName: any;
   public addressData: any;
   public hora_inicio: any;
   public hora_fim: any;
@@ -30,28 +30,38 @@ export class MyActionsComponent implements OnInit {
     this.myactionsservice.getMyActions(id)
      .then(res => {
         this.myVols = res.vols;
+        console.log(res.vols)
         /*
         this.hora_inicio = this.myVols.start_time.slice(0,2);
         this.minutos_inicio = this.myVols.start_time.slice(3,5);
         this.hora_fim = this.myVols.end_time.slice(0,2);
         this.minutos_fim = this.myVols.end_time.slice(3,5);
         */
-       this.getAddress();
-      })
-  }
-  getAddress() {
-    console.log(this.myVols)
-    for(let vol of this.myVols) {
+      for(let vol of this.myVols) {
+       this.getAddress(vol.lat, vol.long);
         this.myactionsservice.getAddress(vol.lat, vol.long)
-        .then(res => {
-          this.addressData = res.results;
-           this.address[vol.id_vol] = this.addressData[0].formatted_address;
-          console.log(this.address[vol.id_vol]);
-          this.addressName[vol.id_vol] = this.addressData[0].address_components[0].short_name;
-          console.log(this.addressName[vol.id_vol])
-        })
-       
-    } 
+        this.getTime(vol.start_time, vol.end_time);
+      }
+
+    })
+  }
+  
+  getTime(start, end) {
+    this.hora_inicio = start.slice(0,2);
+    this.minutos_inicio = start.slice(3,5);
+    this.hora_fim = end.slice(0,2);
+    this.minutos_fim = end.slice(3,5);
+  }
+
+  getAddress(lat, long) {
+    if(lat && long) {
+      this.myactionsservice.getAddress(lat, long)
+      .then(res => {
+        this.addressData = res.results;
+        this.address = this.addressData[0].formatted_address;
+        this.addressName = this.addressData[0].address_components[0].short_name;
+      })
+    }
   }
 
   seeDetails(id_vol) {
