@@ -658,7 +658,7 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
             nestTables: true
         };
 
-        db.get().query(options, [req.params.id, req.params.amount], function (error, results, fields) {
+        db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
             console.log(results);
             if (error) {
                 console.log(error);
