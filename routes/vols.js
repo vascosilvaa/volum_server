@@ -605,7 +605,7 @@ app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (
  * @apiName getCandidates
  * @apiGroup Voluntariados 
  */
-app.get('/:id/applies/candidates', , passport.authenticate('jwt'), function (req, res) {
+app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
 
     console.log("QUEERY", req.query);
     console.log("a")
