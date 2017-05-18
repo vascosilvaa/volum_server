@@ -176,24 +176,19 @@
 </div>
 
 <!-- Likes -->
-<div *ngIf="context.type==8">Likes</div>
-<!--
-<div *ngIf="context.type==2" class="container-fluid no-padding">
+<div *ngIf="context.type==8" class="container-fluid no-padding">
   <div class="row">
     <div class="col-12">
       <div class="modal-card">
-        Confirmados
+        Gostos
       </div>
       <div class="modal-list-content">
         <ul class="list-group">
-          <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
+          <li *ngFor="let like of likes" class="listPerson no-border no-margin">
             <div class="row no-margin user-desc">
-              <div class="card-user-image">
-                <img src="{{candidate?.photo_url}}">
-                <span class="candidateName">{{candidate?.name}}</span>
-              </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnRemove">REMOVER</button>
+              <div class="card-user-image full-width">
+                <img src="{{like?.photo_url}}">
+                <span class="candidateName">{{like?.name}}</span>
               </div>
             </div>
           </li>
@@ -202,4 +197,3 @@
     </div>
   </div>
 </div>
--->

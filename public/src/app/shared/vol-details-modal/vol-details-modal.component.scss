@@ -94,6 +94,10 @@
     padding-left: 0;
 }
 
+.btnLike {
+    padding-top:6px!important;
+}
+
 .btnSendIcon {
     padding-top: 10px;
 }
@@ -201,7 +205,7 @@
 .modalContainer {
     background: $white;
     padding: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 0px!important;
 }
 
 .card-user-desc {
@@ -235,15 +239,11 @@
     margin-top: 20px;
 }
 
-
-
 .iconDate {
     font-size: 18px;
     color: $grey3;
     margin-top: 15px;
 }
-
-
 
 .daysEvent {
     font-weight: $bold;
@@ -284,7 +284,7 @@
 
 .likeImgs {
     margin-top: 2.5px;
-    margin-left: 15px;
+    margin-left: 10px;
     display: flex;
 }
 
@@ -292,7 +292,7 @@
     border: 1px solid #FFF;
     width: 30px;
     height: 30px;
-    margin-left: -15px;
+    margin-left: -10px;
     border-radius: 30px;
 }
 
@@ -319,7 +319,7 @@
 }
 
 .card-volum-footer {
-    padding:0;
+    padding-bottom:0;
 }
 
 
@@ -366,9 +366,6 @@
     text-indent:0px!important;
 }
 
-.likesNumber{
-    padding-top:10px;
-}
 
 .see-all-participants {
    width: 30px;
@@ -379,10 +376,22 @@
   line-height: 30px;
   text-align: center;
   background: $blue;
-  margin-left:-15px;
+  margin-left:-10px;
   cursor: pointer;
 }
 
 .see-all-participants:hover {
     background: #6aa4ff;
+}
+
+.btnCancel:hover {
+    background: $white;
+    color: $grey2;
+}
+
+.loadingHeight {
+    height: 550px;
+}
+.btnCancel {
+    cursor: pointer;
 }

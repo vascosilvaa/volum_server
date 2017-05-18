@@ -42,10 +42,10 @@ export class VolDetailsModalService {
 
     }
 
-      countLikes(id_vol) {
+    countLikes(id_vol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/likes/count`).toPromise()
-            .then(res => { return res.json() })
-            .catch(error => console.log(error));
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
     }
 
     checkLike(id_vol) {
@@ -73,6 +73,35 @@ export class VolDetailsModalService {
 
     sendComment(message, id_vol) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comment`, {  message: message}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    
+    countCandidates(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/candidates/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+
+    countConfirmeds(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+    
+    getCandidates(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates`, { amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getConfirmed(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed`, { amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    countComments(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/comments/count`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

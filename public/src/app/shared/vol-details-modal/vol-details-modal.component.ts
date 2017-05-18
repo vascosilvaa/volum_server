@@ -33,7 +33,7 @@ export class VolDetailsModalComponent implements OnInit {
   public numberLikes: any;
   public likeState: number;
   public login: any;
-  public showComments:any;
+  public showComments: any;
   public comments: any;
   public user: any;
   public userLogin: any;
@@ -42,7 +42,12 @@ export class VolDetailsModalComponent implements OnInit {
   public photo: any;
   public name: any;
   public candCancel: any;
-
+  public numberConfirmeds: any;
+  public numberCandidates: any;
+  public numberComments: any;
+  public candidates: any;
+  public confirmeds: any;
+  public ready: boolean = false;
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
     this.context = dialog.context;
@@ -53,53 +58,98 @@ export class VolDetailsModalComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+
+    setTimeout(() => {
+
+      this.getCandidates();
+      this.getConfirmed();
+      console.log(this.context.idVol);
+      if (this.authService.isAuthenticated()) {
+        this.authService.userPromise.then(res => {
+          this.userLogin = res.user;
+          console.log(this.userLogin)
+        });
+        this.login = 1;
+        this.checkLike();
+        this.authService.userPromise.then(res => {
+          this.id_user = res.user.id_user;
+          this.photo = res.user.photo;
+          this.name = res.user.username;
+        });
+      }
+      else {
+        this.login = 0;
+      }
+      this.countConfirmeds();
+      this.countCandidates();
+      this.countLikes();
+      this.countComments();
+      this.volsService.getVol(this.context.idVol)
+        .then(res => {
+          this.volDetails = res.vol;
+          console.log(this.volDetails);
+          this.checkState(this.context.idVol);
+          this.getAddress(this.volDetails.lat, this.volDetails.long);
+          this.lat = this.volDetails.lat;
+          this.lng = this.volDetails.long;
+          this.ready = true;
+        })
+        .catch(err => console.log(err));
+
+
+
+    })
+  }
+
   ngOnInit() {
-    
-    console.log(this.context.idVol);
-    if (this.authService.isAuthenticated()) {
-      this.authService.userPromise.then(res => {
-        this.userLogin = res.user;
-        console.log(this.userLogin)
-      });
-      this.login = 1;
-      this.checkLike();
-      this.authService.userPromise.then(res => { 
-        this.id_user = res.user.id_user;
-        this.photo = res.user.photo;
-        this.name = res.user.username;
-      });
-    }
-    else {
-      this.login = 0;
-    }
-    this.countLikes();
-    this.volsService.getVol(this.context.idVol)
+
+  }
+
+  countComments() {
+    this.volsService.countComments(this.context.idVol)
       .then(res => {
-        this.volDetails = res.vol;
-        console.log(this.volDetails);
-        this.checkState(this.context.idVol);
-        this.getAddress(this.volDetails.lat, this.volDetails.long);
-        this.lat = this.volDetails.lat;
-        this.lng = this.volDetails.long;
+        this.numberComments = res.count;
       })
       .catch(err => console.log(err));
+  }
 
-     
+  getCandidates() {
+    this.volsService.getCandidates(this.context.idVol, 10)
+      .then(res => {
+        this.candidates = res.users;
+      })
+      .catch(err => console.log(err));
+  }
+
+  getConfirmed() {
+    this.volsService.getConfirmed(this.context.idVol, 10)
+      .then(res => {
+        this.confirmeds = res.users;
+      })
+      .catch(err => console.log(err));
+  }
+
+  openLikesModal(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
   }
 
   openCandidates(type, id_vol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: id_vol}, BSModalContext));
+    if ((type == 1 && this.numberCandidates > 0) || (type == 2 && this.numberConfirmeds > 0)) {
+      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+    }
   }
- openRemoveConfirm(type, name, id_user, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: idVol, nameVol: name, id_user: id_user}, BSModalContext));
+
+  openRemoveConfirm(type, name, id_user, idVol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol, nameVol: name, id_user: id_user }, BSModalContext));
   }
 
   sendComment(comment) {
-       if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
+    if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 
       this.volsService.sendComment(comment, this.context.idVol).then(res => {
-          this.comentario = '';
-          this.comments.push({
+        this.comentario = '';
+        this.comments.push({
           id_user: this.id_user,
           message: comment,
           photo_url: this.photo,
@@ -110,16 +160,18 @@ export class VolDetailsModalComponent implements OnInit {
     }
   }
   getComments() {
-    if(!this.showComments){
-      this.showComments=1;
-      this.volsService.getComments(this.context.idVol)
-      .then(res => {
-        this.comments = res.comments;
-        console.log(res)
-      })
-      .catch(err => console.log(err));
+    if (!this.showComments) {
+      this.showComments = 1;
+      if (this.numberComments > 0) {
+        this.volsService.getComments(this.context.idVol)
+          .then(res => {
+            this.comments = res.comments;
+            console.log(res)
+          })
+          .catch(err => console.log(err));
+      }
     } else {
-      this.showComments=0;
+      this.showComments = 0;
     }
   }
 
@@ -127,6 +179,24 @@ export class VolDetailsModalComponent implements OnInit {
     this.volsService.countLikes(this.context.idVol)
       .then(res => {
         this.numberLikes = res.likes;
+        console.log(this.numberLikes)
+      })
+      .catch(err => console.log(err));
+  }
+
+  countConfirmeds() {
+    this.volsService.countConfirmeds(this.context.idVol)
+      .then(res => {
+        this.numberConfirmeds = res.count;
+        console.log(this.numberLikes)
+      })
+      .catch(err => console.log(err));
+  }
+
+  countCandidates() {
+    this.volsService.countCandidates(this.context.idVol)
+      .then(res => {
+        this.numberCandidates = res.count;
         console.log(this.numberLikes)
       })
       .catch(err => console.log(err));

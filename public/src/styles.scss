@@ -124,7 +124,7 @@ body {
     font-size: 12px;
     border: 1px solid $grey2;
     color: $grey2;
-    width: 100px;
+    width: auto;
     background:#fff;
     cursor:pointer;
 }
@@ -208,3 +208,11 @@ body {
     color: $orange;
 }
 
+
+.modal-content {
+    border-radius:0;
+}
+
+.pointer {
+    cursor:pointer;
+}
