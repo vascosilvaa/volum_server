@@ -405,7 +405,7 @@ app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
 app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res) {
 
     let options = {
-        sql: 'SELECT COUNT(*) AS comments FROM likes WHERE id_vol = ? ',
+        sql: 'SELECT COUNT(*) AS comments FROM comments WHERE id_vol = ? ',
     };
 
     db.get().query(options, [req.params['id']], function (error, comments, fields) {
@@ -414,7 +414,7 @@ app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res)
             throw new Error(error);
         } else {
             let comments = comments[0].comments;
-            if (results.length == 0) {
+            if (comments.length == 0) {
                 res.status(404);
                 res.send({ success: true, comments: 0 })
             } else {
