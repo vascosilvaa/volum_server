@@ -62,13 +62,15 @@ var returnRouter = function (io) {
      * @apiParam id ID do user
      * @apiGroup Perfil
      */
-    
+
     app.get('/:id/my-vols', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
             res.status(400);
             res.send({ success: false, message: "Parâmetros Invalidos" });
         } else {
-            db.get().query('SELECT * FROM vols WHERE id_user_creator = ?', [req.params.id], function (err, results, fields) {
+            db.get().query({
+                sql: 'SELECT * FROM vols WHERE id_user_creator = ?', nestTables: true
+            }, [req.params.id], function (err, results, fields) {
                 if (err) {
                     res.status(400);
                     res.send({ success: false, message: "Parâmetros Invalidos" });
@@ -77,14 +79,14 @@ var returnRouter = function (io) {
                         let vols = [];
                         for (let i = 0; i < results.length; i++) {
                             vols.push({
-                                id_vol: results[i].id_vol,
-                                name: results[i].name,
-                                date_begin: results[i].date_begin,
-                                date_end: results[i].date_end,
-                                lat: results[i].lat,
-                                long: results[i].long,
-                                start_time: results[i].start_time,
-                                end_time: results[i].end_time
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                date_begin: results[i].vols.date_begin,
+                                date_end: results[i].vols.date_end,
+                                lat: results[i].vols.lat,
+                                long: results[i].vols.long,
+                                start_time: results[i].vols.start_time,
+                                end_time: results[i].vols.end_time
                             });
                         }
 

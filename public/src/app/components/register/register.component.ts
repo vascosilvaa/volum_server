@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AppComponent } from './../../app.component';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { User } from './user.interface';
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
     public wrongAnswer: boolean;
     public form: FormGroup;
     context: ModalContext;
-    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
+    constructor(private _fb: FormBuilder, private router: Router, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>) {
         this.context = dialog.context;
         this.context.isBlocking = false;
         this.context.keyboard = [27];
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.form = this._fb.group({
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             password2: ['', [Validators.required, Validators.minLength(6)]],
             name: ['', [Validators.required, Validators.minLength(2)]],
@@ -46,15 +47,17 @@ export class RegisterComponent implements OnInit {
         this.form.controls.name.markAsTouched();
         this.form.controls.lastname.markAsTouched();
 
+        console.log("FORMS", this.form);
+
         if (valid) {
 
             this.auth.register(value)
                 .then(res => {
-                    console.log(res);
-                    if (res.success) {
-                        this.openConfirmationEmail();
-                    }
+                    console.log("result", res);
+                    this.router.navigate(['/profile/', res.id_user], )
+
                 })
+
                 .catch(err => console.log(err));
 
         }
