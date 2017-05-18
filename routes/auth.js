@@ -156,9 +156,9 @@ app.post('/register', function (req, res) {
 
                                 //USER CRIADO
                                 //GERAR TOKEN
-
+                                let userId = result.insertId;
                                 newUser = {
-                                    id: result.insertId,
+                                    id: userId,
                                     password: hash,
                                     email: user.email,
                                     type_user: 1
