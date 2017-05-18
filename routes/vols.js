@@ -419,7 +419,7 @@ app.get('/:id/comments', function (req, res) {
     });
 });
 
-app.get('/:id/comments/count', function (req, res) {
+app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res) {
 
     let options = {
         sql: 'SELECT COUNT(*) AS comments FROM likes WHERE id_vol = ? ',
@@ -554,18 +554,26 @@ app.get('/:id/applies/confirmed', function (req, res) {
 
     let users = [];
 
+
     if (isNaN(parseInt(req.params.id))) {
         res.json({
             success: false,
             message: 'ID INVALIDO'
         });
     } else {
+
+        if (req.query.amount) {
+
+        } else {
+            req.query.amount = 18446744073709551610;
+        }
+
         let options = {
-            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ? LIMIT ?',
             nestTables: true
         };
 
-        db.get().query(options, [req.params.id], function (error, results, fields) {
+        db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
             console.log(results);
             if (error) {
                 console.log(error);
@@ -592,7 +600,7 @@ app.get('/:id/applies/confirmed', function (req, res) {
 });
 
 
-app.get('/:id/applies/confirmed/count', function (req, res) {
+app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (req, res) {
 
     let options = {
         sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ?',
@@ -624,7 +632,10 @@ app.get('/:id/applies/confirmed/count', function (req, res) {
  * @apiGroup Voluntariados 
  */
 
-app.get('/:id/applies/candidates', function (req, res) {
+app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
+
+
+    console.log(req.query.amount);
 
     let users = [];
 
@@ -634,13 +645,19 @@ app.get('/:id/applies/candidates', function (req, res) {
             message: 'ID INVALIDO'
         });
     } else {
+        if (req.query.amount) {
+
+        } else {
+            req.query.amount = 18446744073709551610;
+        }
 
         let options = {
-            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+            sql: 'SELECT users.id_user, users.photo_url, users.name FROM user_vol INNER JOIN users ON user_vol.id_user = users.id_user WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ? LIMIT ?',
             nestTables: true
         };
 
-        db.get().query(options, [req.params.id], function (error, results, fields) {
+
+        db.get().query(options, [req.params.id, req.params.a], function (error, results, fields) {
             console.log(results);
             if (error) {
                 console.log(error);
@@ -667,7 +684,7 @@ app.get('/:id/applies/candidates', function (req, res) {
 });
 
 
-app.get('/:id/applies/candidates/count', function (req, res) {
+app.get('/:id/applies/candidates/count', passport.authenticate('jwt'), function (req, res) {
 
     let options = {
         sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ?',
@@ -699,46 +716,32 @@ app.get('/:id/applies/candidates/count', function (req, res) {
  * @apiGroup Voluntariados 
  */
 
+app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+        if (error) {
+            res.json({
+                success: false,
+                error: error
+            });
+        } else if (results.affectedRows == 1 && results.changedRows == 0) {
+            res.json({
+                success: false,
+                message: 'Este User já está confirmado'
+            });
+        } else if (results.changedRows == 0) {
+            res.json({
+                success: false,
+                message: 'Este User não existe ou não é um candidato'
+            });
+        } else {
+            res.json({
+                success: true,
+                message: "Sucesso"
+            });
+        }
 
+    });
 
-app.post('/:id/applies/accept', function (req, res) {
-    if (isNaN(parseInt(req.body.id_user))) {
-        res.json({
-            success: false,
-            message: 'ID INVALIDO'
-        });
-    } else if (isNaN(parseInt(req.params.id))) {
-        res.json({
-            success: false,
-            message: 'ID INVALIDO'
-        });
-    } else {
-
-        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
-            if (error) {
-                res.json({
-                    success: false,
-                    error: error
-                });
-            } else if (results.affectedRows == 1 && results.changedRows == 0) {
-                res.json({
-                    success: false,
-                    message: 'Este User já está confirmado'
-                });
-            } else if (results.changedRows == 0) {
-                res.json({
-                    success: false,
-                    message: 'Este User não existe ou não é um candidato'
-                });
-            } else {
-                res.json({
-                    success: true,
-                    message: "Sucesso"
-                });
-            }
-
-        });
-    }
 });
 
 
