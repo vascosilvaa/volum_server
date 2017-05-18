@@ -405,21 +405,21 @@ app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
 app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res) {
 
     let options = {
-        sql: 'SELECT COUNT(*) AS comments FROM comments WHERE id_vol = ? ',
+        sql: 'SELECT COUNT(*) AS count FROM comments WHERE id_vol = ? ',
     };
 
-    db.get().query(options, [req.params['id']], function (error, comments, fields) {
+    db.get().query(options, [req.params['id']], function (error, results, fields) {
         if (error) {
             res.send({ success: false, message: error })
             throw new Error(error);
         } else {
-            let comments = comments[0].comments;
-            if (comments.length == 0) {
+            let count = results[0].count;
+            if (results.length == 0) {
                 res.status(404);
-                res.send({ success: true, comments: 0 })
+                res.send({ success: true, count: 0 })
             } else {
                 res.status(200);
-                res.send({ success: true, comments })
+                res.send({ success: true, count })
             }
         };
 
