@@ -562,8 +562,8 @@ app.get('/:id/applies/confirmed', function (req, res) {
         });
     } else {
 
-        if (req.query.amount) {
-            parseInt(req.query.amount);
+        if (req.query) {
+            req.query.amount = parseInt(req.query['amount']);
 
         } else {
             req.query.amount = 18446744073709551610;
@@ -646,8 +646,8 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
             message: 'ID INVALIDO'
         });
     } else {
-        if (req.query.amount) {
-            parseInt(req.query.amount);
+        if (req.query) {
+            req.query.amount = parseInt(req.query['amount']);
         } else {
             req.query.amount = 18446744073709551610;
         }
