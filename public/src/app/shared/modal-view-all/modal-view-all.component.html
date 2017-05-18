@@ -1,5 +1,4 @@
 <!-- CANDIDATOS -->
-
 <div *ngIf="context.type==1" class="container-fluid no-padding">
   <div class="row">
     <div class="col-12">
@@ -9,12 +8,12 @@
       <div class="modal-list-content">
         <ul class="list-group">
           <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin user-desc">
               <div class="card-user-image">
                 <img src="{{candidate?.photo_url}}">
                 <span class="candidateName">{{candidate?.name}}</span>
               </div>
-              <div class="col text-right btns-list no-padding">
+              <div class="col text-right no-padding">
                 <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
                 <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
               </div>
@@ -37,12 +36,12 @@
       <div class="modal-list-content">
         <ul class="list-group">
           <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin user-desc">
               <div class="card-user-image">
                 <img src="{{candidate?.photo_url}}">
                 <span class="candidateName">{{candidate?.name}}</span>
               </div>
-              <div class="col text-right btns-list no-padding">
+              <div class="col text-right no-padding">
                 <button type="button" class="btn btnRemove">REMOVER</button>
               </div>
             </div>
@@ -64,34 +63,34 @@
       <div class="modal-list-content">
         <ul class="list-group">
           <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin user-desc">
               <div class="card-user-image">
                 <img src="../assets/imgs/avatar04.png">
                 <span class="candidateName">Pedro Araújo</span>
               </div>
-              <div class="col text-right btns-list no-padding">
+              <div class="col text-right no-padding">
                 <button type="button" class="btn btnCancel">CANCELAR</button>
               </div>
             </div>
           </li>
           <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin user-desc">
               <div class="card-user-image">
                 <img src="../assets/imgs/avatar04.png">
                 <span class="candidateName">Pedro Araújo</span>
               </div>
-              <div class="col text-right btns-list no-padding">
+              <div class="col text-right no-padding">
                 <button type="button" class="btn btnCancel">CANCELAR</button>
               </div>
             </div>
           </li>
           <li class="listPerson no-border no-margin">
-            <div class="row no-margin">
+            <div class="row no-margin user-desc">
               <div class="card-user-image">
                 <img src="../assets/imgs/avatar04.png">
                 <span class="candidateName">Pedro Araújo</span>
               </div>
-              <div class="col text-right btns-list no-padding">
+              <div class="col text-right no-padding">
                 <button type="button" class="btn btnCancel">CANCELAR</button>
               </div>
             </div>
@@ -138,3 +137,69 @@
     </div>
   </div>
 </div>
+
+<!-- CONFIRMAR CANCELAR CANDIDATURA -->
+<div *ngIf="context.type==6" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="modal-card">
+        Cancelar candidatura
+      </div>
+      <div class="col-12 modal-remove-content">
+       Tem a certeza que quer cancelar a sua candidatura para a ação de voluntariado "{{context.nameVol}}"?
+      </div>
+      <div class="col-12 text-right modal-btns">
+        <button class="btn btnCancel">NÃO</button>
+        <button class="btn btnConfirm">SIM</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- CONFIRMAR CANDIDATURA -->
+<div *ngIf="context.type==7" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="modal-card">
+        Candidatar a Ação de voluntariado
+      </div>
+      <div class="col-12 modal-remove-content">
+        Tem a certeza que se quer candidatar como voluntário para a ação de voluntariado "{{context.name}}"?
+      </div>
+      <div class="col-12 text-right modal-btns">
+        <button class="btn btnCancel">NÃO</button>
+        <button class="btn btnConfirm">SIM</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Likes -->
+<div *ngIf="context.type==8">Likes</div>
+<!--
+<div *ngIf="context.type==2" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12">
+      <div class="modal-card">
+        Confirmados
+      </div>
+      <div class="modal-list-content">
+        <ul class="list-group">
+          <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
+            <div class="row no-margin user-desc">
+              <div class="card-user-image">
+                <img src="{{candidate?.photo_url}}">
+                <span class="candidateName">{{candidate?.name}}</span>
+              </div>
+              <div class="col text-right no-padding">
+                <button type="button" class="btn btnRemove">REMOVER</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+-->

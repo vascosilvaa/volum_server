@@ -8,6 +8,8 @@ import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 export class ModalContext extends BSModalContext {
     public idVol: any;
     public type: any;
+    public id_user: any;
+    public nameVol: any;
 
     
 
@@ -23,8 +25,6 @@ export class ModalContext extends BSModalContext {
 
 
 export class ModalViewAllComponent implements OnInit {
-  lat: number = 41.100856;
-  lng: number =  -8.544893;
   public volDetails: any;
   public candidates;
   public confirmeds;
@@ -41,13 +41,18 @@ export class ModalViewAllComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.context.type==1) {
+    if(this.context.type==1) { // Ver Candidatos
       this.getCandidates(this.context.idVol);
-    } else if (this.context.type==2){
+    } else if (this.context.type==2){ // Ver confirmados
       this.getConfirmed(this.context.idVol);
+    } else if (this.context.type==6) { // Confirmar cancelar candidatura
+      console.log(this.context.type, this.context.nameVol, this.context.id_user, this.context.idVol);
+    } else if(this.context.type==7) { //Confirmar candidatura
+
+    } else if(this.context.type==8) { // Ver likes
+
     }
 
-      
    
 }
 
