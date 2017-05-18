@@ -563,6 +563,7 @@ app.get('/:id/applies/confirmed', function (req, res) {
     } else {
 
         if (req.query.amount) {
+            parseInt(req.query.amount);
 
         } else {
             req.query.amount = 18446744073709551610;
@@ -646,7 +647,7 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
         });
     } else {
         if (req.query.amount) {
-
+            parseInt(req.query.amount);
         } else {
             req.query.amount = 18446744073709551610;
         }
