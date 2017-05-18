@@ -554,7 +554,7 @@ app.get('/:id/applies/confirmed', function (req, res) {
 
     let users = [];
 
-
+    console.log("QUERY", req.query);
     if (isNaN(parseInt(req.params.id))) {
         res.json({
             success: false,
@@ -636,7 +636,7 @@ app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (
 app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
 
 
-    console.log(req.query.amount);
+    console.log("QUEERY", req.query);
 
     let users = [];
 
