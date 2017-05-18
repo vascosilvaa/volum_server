@@ -36,6 +36,17 @@
     margin: 0;
 }
 
+.card-user-image {
+    max-width:250px;
+    display:flex;
+    align-items: center;
+}
+
+.user-desc {
+    display: flex;
+    align-items: center;
+}
+
 .listPerson{
  list-style-type: none;
  padding: 10px 0px;
@@ -46,9 +57,6 @@
   margin-left: 10px;
 }
 
-.btns-list {
-    margin-top:6px;
-}
 
 .modal-remove-content {
     padding:10px 20px

@@ -108,6 +108,8 @@
 
 .btnSendColorGrey {
     color: $grey1;
+    border: 0;
+    background: #fff;
 }
 
 .card-user-comments-image-comments {
@@ -116,6 +118,13 @@
     max-width: 50px;
 }
 
+.text-confirm {
+    color: $grey3;
+}
+.action-confirm {
+    font-weight: $bold;
+    color:$blue;
+}
 
 // COMMENTS
 
@@ -276,6 +285,7 @@
 .likeImgs {
     margin-top: 2.5px;
     margin-left: 15px;
+    display: flex;
 }
 
 .likeImgs img {
@@ -360,3 +370,19 @@
     padding-top:10px;
 }
 
+.see-all-participants {
+   width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  background: $blue;
+  margin-left:-15px;
+  cursor: pointer;
+}
+
+.see-all-participants:hover {
+    background: #6aa4ff;
+}

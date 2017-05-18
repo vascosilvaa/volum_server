@@ -32,8 +32,9 @@
         <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
     </div>
     <div class="col text-right no-padding">
-        <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button>
-        <button class="btn btn-info" *ngIf="state == 1">À espera de confirmação</button>
+       <!-- <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button> -->
+        <button class="btn btnCandidate" (click)="openRemoveConfirm(7, volDetails.name, id_user, volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button>
+        <button class="btn btnRemove" (click)="openRemoveConfirm(6, volDetails.name, id_user, volDetails.id_vol)" *ngIf="state == 1 && !candCancel">CANCELAR CANDIDATURA</button>
         <button class="btn btn-success " *ngIf="state == 2">Confirmado</button>
         <button class="btn btn-success" *ngIf="state == 3">Sucesso <i class="fa fa-check"></i></button>
 
@@ -101,7 +102,7 @@
         <div class="row">
             <div class="col-12 no-padding" style="display:flex; margin-top:5px">
                 <div>
-                    <div class="daysEventFull ts13">
+                    <div class="daysEventFull ts13" (click)="openCandidates(2, volDetails.id_vol)" style="cursor:pointer">
                         <span class="numberYellow">20</span><span class="normalText"> candidatos</span>
                     </div>
                     <div *ngIf="login" class="likeImgs">
@@ -116,11 +117,11 @@
                         <img src="assets/imgs/avatar2.png">
                         <img src="assets/imgs/avatar.png">
                         <img src="assets/imgs/avatar04.png">
-                        <img src="assets/imgs/avatar2.png">
+                        <div class="see-all-participants" (click)="openCandidates(1, volDetails.id_vol)">+20</div>
                     </div>
                 </div>
                 <div class="" style="text-align:right; margin-left:auto">
-                    <div class="ts13">
+                    <div class="ts13"  (click)="openCandidates(2, volDetails.id_vol)" style="cursor:pointer">
                         <span class="numberBlue">20</span><span class="normalText"> confirmados</span>
                     </div>
                     <div *ngIf="login" class="likeImgs">
@@ -136,6 +137,7 @@
                         <img src="assets/imgs/avatar.png">
                         <img src="assets/imgs/avatar04.png">
                         <img src="assets/imgs/avatar2.png">
+                        <div class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">+20</div>
                     </div>
                 </div>
             </div>
@@ -147,8 +149,8 @@
             <div class="row">
                 <div class="col-12 no-padding" style="display:flex">
                     <div class="cardLikes">
-                        <md-icon (click)="dislike(idVol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
-                        <md-icon (click)="like(idVol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
+                        <md-icon (click)="dislike(this.context.idVol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+                        <md-icon (click)="like(this.context.idVol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
                     </div>
                     <div class="likesNumber ts12">
                         {{numberLikes}}
@@ -208,12 +210,16 @@
                 </div>
                 <div class="col no-padding">
                     <md-input-container class="width100">
-                        <input mdInput [(ngModel)]="message">
+                        <input autofocus mdInput [(ngModel)]="comentario" (keyup.enter)="sendComment(comentario)">
                     </md-input-container>
                 </div>
-                <div class="col-1 btnSend text-right no-padding">
-                    <md-icon class="btnSendIcon btnSendColorGrey" (click)="sendComment(message)">send</md-icon>
-                </div>
+                <!--<div class="col-1 btnSend text-right no-padding">
+                    
+                </div>-->
+
+                <button (click)="sendComment(comentario)" type="submit" class="btnSendIcon btnSendColorGrey">
+                   <md-icon >send</md-icon>
+                </button>
             </div>
         </div>
 

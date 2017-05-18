@@ -1,8 +1,9 @@
+import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
 import { AuthenticationService } from './../Auth/authentication.service';
 import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
-import { Component, OnInit } from '@angular/core';
-import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
 export class ModalContext extends BSModalContext {
@@ -37,9 +38,13 @@ export class VolDetailsModalComponent implements OnInit {
   public user: any;
   public userLogin: any;
   public comentario: any;
+  public comment: any;
+  public photo: any;
+  public name: any;
+  public candCancel: any;
 
 
-  constructor(private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     if (this.authService.isAuthenticated()) {
@@ -60,6 +65,8 @@ export class VolDetailsModalComponent implements OnInit {
       this.checkLike();
       this.authService.userPromise.then(res => { 
         this.id_user = res.user.id_user;
+        this.photo = res.user.photo;
+        this.name = res.user.username;
       });
     }
     else {
@@ -79,10 +86,25 @@ export class VolDetailsModalComponent implements OnInit {
 
      
   }
+
+  openCandidates(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: id_vol}, BSModalContext));
+  }
+ openRemoveConfirm(type, name, id_user, idVol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: idVol, nameVol: name, id_user: id_user}, BSModalContext));
+  }
+
   sendComment(comment) {
        if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 
       this.volsService.sendComment(comment, this.context.idVol).then(res => {
+          this.comentario = '';
+          this.comments.push({
+          id_user: this.id_user,
+          message: comment,
+          photo_url: this.photo,
+          name: this.name,
+        })
       });
 
     }
@@ -122,7 +144,6 @@ export class VolDetailsModalComponent implements OnInit {
     this.likeState = 1;
     this.numberLikes++;
     this.volsService.like(id_vol).then(res => {
-
       console.log(res);
     });
   }

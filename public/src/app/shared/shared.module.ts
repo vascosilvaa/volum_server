@@ -43,6 +43,9 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
   exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
+  ],
+  entryComponents: [
+    ModalViewAllComponent
   ]
 })
 export class SharedModule { }

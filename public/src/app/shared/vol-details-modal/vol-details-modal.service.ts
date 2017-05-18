@@ -1,3 +1,4 @@
+import { HttpClient } from './../http-client';
 import { GlobalConstants } from './../../shared/global-constants';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class VolDetailsModalService {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     getUser(id) {
@@ -55,7 +56,7 @@ export class VolDetailsModalService {
 
     like(id_vol) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/like`,null).toPromise()
-            .then(res => { return res.json() })
+            .then(res => { return res.json(); })
             .catch(error => console.log(error));
     }
     dislike(id_vol) {
