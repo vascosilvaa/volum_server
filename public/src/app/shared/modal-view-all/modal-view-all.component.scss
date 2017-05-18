@@ -30,8 +30,8 @@
 }
 
 .card-user-image img{
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 45px;
     margin: 0;
 }
@@ -40,6 +40,10 @@
     max-width:250px;
     display:flex;
     align-items: center;
+}
+
+.full-width {
+    max-width: 100%!important;
 }
 
 .user-desc {

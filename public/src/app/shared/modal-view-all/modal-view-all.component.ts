@@ -11,9 +11,6 @@ export class ModalContext extends BSModalContext {
     public id_user: any;
     public nameVol: any;
 
-    
-
-
 }
 
 @Component({
@@ -28,16 +25,13 @@ export class ModalViewAllComponent implements OnInit {
   public volDetails: any;
   public candidates;
   public confirmeds;
+  public likes;
 
   context: ModalContext;
 
-
   constructor(private dialog: DialogRef<ModalContext>, /*private volsService: VolDetailsModalService,*/ public SharedService: SharedService ) {
     this.context = dialog.context;
-    this.context.isBlocking = false;
-
-  
-  
+    this.context.isBlocking = false; 
   }
 
   ngOnInit() {
@@ -50,14 +44,22 @@ export class ModalViewAllComponent implements OnInit {
     } else if(this.context.type==7) { //Confirmar candidatura
 
     } else if(this.context.type==8) { // Ver likes
-
+      this.getLikes(this.context.idVol);
     }
 
    
 }
 
+  getLikes(idVol) {
+    this.SharedService.getLikes(idVol)
+    .then(res => {
+        this.likes = res.body;
+      })
+      .catch(err => console.log(err));
+  }
+
   getCandidates(idVol) {
-    this.SharedService.getCandidates(idVol)
+    this.SharedService.getCandidates(idVol, 50)
       .then(res => {
         this.candidates = res.users;
       })
@@ -65,7 +67,7 @@ export class ModalViewAllComponent implements OnInit {
   }
 
    getConfirmed(idVol) {
-    this.SharedService.getConfirmed(idVol)
+    this.SharedService.getConfirmed(idVol, 50)
       .then(res => {
         this.confirmeds = res.users;
         console.log(this.confirmeds)
