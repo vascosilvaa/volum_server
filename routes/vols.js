@@ -635,7 +635,6 @@ app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (
 
 app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
 
-
     console.log("QUEERY", req.query);
 
     let users = [];
@@ -646,8 +645,10 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
             message: 'ID INVALIDO'
         });
     } else {
+
         if (req.query) {
             req.query.amount = parseInt(req.query['amount']);
+
         } else {
             req.query.amount = 18446744073709551610;
         }
@@ -657,8 +658,7 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
             nestTables: true
         };
 
-
-        db.get().query(options, [req.params.id, req.params.a], function (error, results, fields) {
+        db.get().query(options, [req.params.id, req.params.amount], function (error, results, fields) {
             console.log(results);
             if (error) {
                 console.log(error);
