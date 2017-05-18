@@ -591,6 +591,33 @@ app.get('/:id/applies/confirmed', function (req, res) {
     }
 });
 
+
+app.get('/:id/applies/confirmed/count', function (req, res) {
+
+    let options = {
+        sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+    };
+
+    db.get().query(options, [req.params['id']], function (error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+            let count = results[0].count;
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, count: 0 })
+            } else {
+                res.status(200);
+                res.send({ success: true, count })
+            }
+        };
+
+    });
+});
+
+
+
 /**
  * @api {get} /vols/:id/applies/confirmed Listar Candidatos
  * @apiName getCandidates
@@ -637,6 +664,31 @@ app.get('/:id/applies/candidates', function (req, res) {
             }
         });
     }
+});
+
+
+app.get('/:id/applies/candidates/count', function (req, res) {
+
+    let options = {
+        sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ?',
+    };
+
+    db.get().query(options, [req.params['id']], function (error, results, fields) {
+        if (error) {
+            res.send({ success: false, message: error })
+            throw new Error(error);
+        } else {
+            let count = results[0].count;
+            if (results.length == 0) {
+                res.status(404);
+                res.send({ success: true, count: 0 })
+            } else {
+                res.status(200);
+                res.send({ success: true, count })
+            }
+        };
+
+    });
 });
 
 /**

@@ -80,6 +80,7 @@ var returnRouter = function (io) {
                                 id_vol: results[i].id_vol,
                                 name: results[i].name,
                                 date_begin: results[i].date_begin,
+                                date_end: results[i].date_end,
                                 lat: results[i].lat,
                                 long: results[i].long,
                                 start_time: results[i].start_time,
@@ -178,13 +179,18 @@ var returnRouter = function (io) {
                         function (error, results, fields) {
                             console.log(results);
                             console.log(error);
+
+                            let index = loggedUsers.findIndex(x => x.user == req.body.id_user);
+                            console.log("mandou notificacao");
+                            console.log("INDEX 1", index);
+                            io.to(loggedUsers[index]).emit('request');
+
                             res.json({
                                 success: true,
                                 message: "Sucesso"
                             });
 
-                            let index = loggedUsers.findIndex(x => x.user == req.body.id_user)
-                            io.to(loggedUsers[index]).emit('request');
+
 
                         });
                 });
