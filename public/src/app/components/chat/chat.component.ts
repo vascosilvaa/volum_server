@@ -1,3 +1,4 @@
+import { SocketService } from './../../shared/socket.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { ChatService } from './chat.service';
@@ -14,7 +15,7 @@ export class ChatComponent implements OnInit {
   public id_user: Number;
   public conversations = [];
 
-  constructor(public chatService: ChatService, public route: ActivatedRoute, public router: Router, public auth: AuthenticationService) { }
+  constructor(public chatService: ChatService, public route: ActivatedRoute, public socket: SocketService, public router: Router, public auth: AuthenticationService) { }
 
   ngOnInit() {
 
@@ -27,11 +28,10 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  getConversations(id_user) {
-    this.chatService.getConversations(id_user).then(res => {
+  getConversations(id_conversation) {
+    this.chatService.getConversations(id_conversation).then(res => {
       this.conversations = res.conversations;
       console.log("CONVERSATIONS", this.conversations);
-
     });
 
   }
@@ -41,6 +41,7 @@ export class ChatComponent implements OnInit {
 
     this.chatService.conversation = name;
     this.router.navigate(['./msg', id], { relativeTo: this.route });
+    this.socket.joinRoom(id);
 
   }
 

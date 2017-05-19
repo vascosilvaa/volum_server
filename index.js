@@ -27,7 +27,7 @@ var vols = require('./routes/vols')
 var auth = require('./routes/auth');
 var users = require('./routes/users')(io)
 var notifications = require('./routes/notifications')(io)
-var chat = require('./routes/chat');
+var chat = require('./routes/chat')(io)
 var db = require('./config/db');
 
 var searchData = [];
@@ -118,9 +118,6 @@ io.on('connection', function (socket) {
         console.log("logged", loggedUsers);
         app.set('users', loggedUsers);
     });
-
-
-
 
     socket.on('disconnect', function () {
         console.log("SOCKET", socket.id);

@@ -25,18 +25,18 @@
         </div>
 
         <div class="content-msgs">
-          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_user, conversation.user_name)">
+          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.user_name)">
             <div class="image">
-              <img [src]="conversation.photo_url">
+              <img [src]="conversation?.photo_url">
             </div>
             <div class="message-info">
               <div>
 
-                <div class="nameMsg">{{conversation.user_name}}</div>
+                <div class="nameMsg">{{conversation.id_conversation}} {{conversation?.user_name}}</div>
                 <div class="time">20:00</div>
               </div>
 
-              <span class="textMsg"> Teste </span>
+              <span class="textMsg">User: {{conversation.id_user}} </span>
             </div>
           </div>
 

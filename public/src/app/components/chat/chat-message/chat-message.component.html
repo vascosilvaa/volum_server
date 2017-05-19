@@ -6,8 +6,8 @@
 
     <div class="col-12">
       <div class="chat-content" #scrollMe>
-        <div *ngFor="let message of messages" [class.item-mine]="message.id_user == id_user" [class.item-friend]="message.id_user == id_user2">
-          <button [class.msg-mine]="message.id_user == id_user" [class.msg-friend]="message.id_user == id_user2">{{message.message}}</button>
+        <div *ngFor="let message of messages" [class.item-mine]="message.from_id == id_user" [class.item-friend]="message.from_id != id_user">
+          <button [class.msg-mine]="message.from_id == id_user" [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
         </div>
       </div>
     </div>

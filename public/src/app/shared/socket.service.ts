@@ -33,7 +33,7 @@ export class SocketService {
 
         return observable;
     }
-    
+
     onRequest() {
         let observable = new Observable(observer => {
 
@@ -44,6 +44,23 @@ export class SocketService {
                 this.socket.disconnect();
             };
         })
+
+        return observable;
+    }
+    joinRoom(id) {
+        this.socket.emit("join", id)
+    }
+    
+    onMessage() {
+        let observable = new Observable(observer => {
+
+            this.socket.on('message', (data) => {
+                observer.next(data);
+            });
+            return () => {
+                this.socket.disconnect();
+            };
+        });
 
         return observable;
     }

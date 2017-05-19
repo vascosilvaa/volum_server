@@ -123,27 +123,50 @@ var returnRouter = function (io) {
             res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
         } else {
             let options = {
-                sql: "SELECT user_vol.id_vol, user_vol.confirm, vols.id_vol, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,  (SELECT COUNT(user_vol.id_vol)) AS confirmed, (SELECT COUNT(user_vol.id_vol)) AS candidates, users.photo_url, users.name" +
-                " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE user_vol.id_user = ? GROUP BY user_vol.id_vol" +
-                " LIMIT 0, 30"
+                sql: "SELECT DISTINCT * " +
+                " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE (user_vol.id_user = ? AND user_vol.confirm = 0)",
+                nestTables: true
             }
-            db.get().query(options, [req.params.id], function (err, vols, fields) {
+            db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
                 if (err) {
                     res.status(400);
                     res.send({ success: false, message: 'Erro' });
                     console.error(err);
                 } else {
-                    if (vols.length > 0) {
+                    console.log(results);
+                    if (results.length > 0) {
+
+                        let vols = [];
+                        for (let i = 0; i < results.length; i++) {
+                            vols.push({
+                                vol: {
+                                    id_vol: results[i].vols.id_vol,
+                                    name: results[i].vols.name,
+                                    desc: results[i].vols.desc,
+                                    date_begin: results[i].vols.date_begin,
+                                    date_creation: results[i].vols.date_creation,
+                                    duration: results[i].vols.duration,
+                                    lat: results[i].vols.lat,
+                                    long: results[i].vols.long,
+                                    photo_1: results[i].vols.photo_1
+                                },
+                                user: {
+                                    id_user: results[i].users.id_user,
+                                    name: results[i].users.name,
+                                    photo_url: results[i].users.photo_url
+                                }
+                            });
+                        }
 
                         res.send({
                             success: true,
                             vols
-                        });
+                        });;
 
                     } else {
                         res.send({
                             success: true,
-                            body: []
+                            vols: []
                         });
                     }
 
