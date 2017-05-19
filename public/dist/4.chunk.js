@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chat_routing__ = __webpack_require__(746);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_component__ = __webpack_require__(725);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_message_chat_message_component__ = __webpack_require__(723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ng_bootstrap_ng_bootstrap__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
@@ -480,10 +480,11 @@ var CollapseModule = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_service__ = __webpack_require__(475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chat_service__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatMessageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -498,10 +499,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChatMessageComponent = (function () {
-    function ChatMessageComponent(chatService, auth, activatedRoute) {
+    function ChatMessageComponent(chatService, auth, socket, activatedRoute) {
         this.chatService = chatService;
         this.auth = auth;
+        this.socket = socket;
         this.activatedRoute = activatedRoute;
         this.messages = [];
     }
@@ -516,12 +519,24 @@ var ChatMessageComponent = (function () {
             this.auth.userPromise.then(function (res) {
                 _this.id_user = res.user.id_user;
                 _this.activatedRoute.params.subscribe(function (params) {
-                    _this.id_user2 = params.id;
+                    _this.id_conversation = params.id;
+                    _this.socket.joinRoom(params.id);
                     _this.getMessages(params.id);
                 });
             });
         }
         this.scrollToBottom();
+        this.socket.onMessage().subscribe(function (res) {
+            console.log("rees", res);
+            if (res.from_id == _this.id_user) {
+            }
+            else {
+                _this.messages.push({
+                    from_id: res.from_id,
+                    message: res.message
+                });
+            }
+        });
     };
     ChatMessageComponent.prototype.ngAfterViewChecked = function () {
         this.scrollToBottom();
@@ -532,9 +547,9 @@ var ChatMessageComponent = (function () {
         }
         catch (err) { }
     };
-    ChatMessageComponent.prototype.getMessages = function (id_user) {
+    ChatMessageComponent.prototype.getMessages = function (id_conversation) {
         var _this = this;
-        this.chatService.getMessages(this.id_user, id_user).then(function (res) {
+        this.chatService.getMessages(this.id_conversation).then(function (res) {
             _this.messages = res.messages;
             console.log("messages", _this.messages);
         });
@@ -542,11 +557,10 @@ var ChatMessageComponent = (function () {
     ChatMessageComponent.prototype.sendMessage = function (message) {
         var _this = this;
         if (typeof message == 'string' && message.length > 0 && message && message.replace(/^\s+/g, '').length) {
-            this.chatService.sendMessage(this.id_user, this.id_user2, message).then(function (res) {
+            this.chatService.sendMessage(this.id_conversation, message).then(function (res) {
                 _this.message = '';
                 _this.messages.push({
-                    id_user: _this.id_user,
-                    id_user2: _this.id_user2,
+                    from_id: _this.id_user,
                     message: message
                 });
             });
@@ -555,19 +569,19 @@ var ChatMessageComponent = (function () {
     return ChatMessageComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["ViewChild"])('scrollMe'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_core__["ElementRef"]) === "function" && _a || Object)
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["ViewChild"])('scrollMe'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], ChatMessageComponent.prototype, "myScrollContainer", void 0);
 ChatMessageComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
         selector: 'app-chat-message',
         template: __webpack_require__(787),
         styles: [__webpack_require__(758)]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__chat_service__["a" /* ChatService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__["a" /* SocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__["a" /* SocketService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _e || Object])
 ], ChatMessageComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/chat-message.component.js.map
 
 /***/ }),
@@ -612,10 +626,11 @@ ChatNewComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_service__ = __webpack_require__(475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chat_service__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -630,10 +645,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChatComponent = (function () {
-    function ChatComponent(chatService, route, router, auth) {
+    function ChatComponent(chatService, route, socket, router, auth) {
         this.chatService = chatService;
         this.route = route;
+        this.socket = socket;
         this.router = router;
         this.auth = auth;
         this.searchAtive = 0;
@@ -648,9 +665,9 @@ var ChatComponent = (function () {
             });
         }
     };
-    ChatComponent.prototype.getConversations = function (id_user) {
+    ChatComponent.prototype.getConversations = function (id_conversation) {
         var _this = this;
-        this.chatService.getConversations(id_user).then(function (res) {
+        this.chatService.getConversations(id_conversation).then(function (res) {
             _this.conversations = res.conversations;
             console.log("CONVERSATIONS", _this.conversations);
         });
@@ -659,6 +676,7 @@ var ChatComponent = (function () {
         console.log(id);
         this.chatService.conversation = name;
         this.router.navigate(['./msg', id], { relativeTo: this.route });
+        this.socket.joinRoom(id);
     };
     ChatComponent.prototype.activeSearch = function () {
         if (this.searchAtive) {
@@ -671,16 +689,16 @@ var ChatComponent = (function () {
     return ChatComponent;
 }());
 ChatComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
         selector: 'app-chat',
         template: __webpack_require__(789),
         styles: [__webpack_require__(760)],
-        providers: [__WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_3__chat_service__["a" /* ChatService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__chat_service__["a" /* ChatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__chat_service__["a" /* ChatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__["a" /* SocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_socket_service__["a" /* SocketService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _e || Object])
 ], ChatComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/chat.component.js.map
 
 /***/ }),
@@ -693,7 +711,7 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chat_message_chat_message_component__ = __webpack_require__(723);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat_component__ = __webpack_require__(725);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(29);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -750,7 +768,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.chat-content {\n  overflow-y: scroll;\n  height: 800px; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 15px 0px 15px 0px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n\n.item-mine {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  margin-right: 10px;\n  text-align: right; }\n\n.item-mine .msg-mine {\n  border-radius: 20px;\n  background: #0F76F7;\n  color: #FFFFFF;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%;\n  word-wrap: break-word; }\n\n.item-friend {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  text-align: left; }\n\n.item-friend .msg-text {\n  margin-left: 10px; }\n\n.item-friend .msg-friend {\n  border-radius: 20px;\n  background: #E6E5E5;\n  color: #4A4A4A;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%;\n  word-wrap: break-word; }\n\n.item-friend .image img {\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: auto;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.modal-content {\n  border-radius: 0; }\n\n.pointer {\n  cursor: pointer; }\n\n.chat-content {\n  overflow-y: scroll;\n  height: 800px; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 15px 0px 15px 0px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n\n.item-mine {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  margin-right: 10px;\n  text-align: right; }\n\n.item-mine .msg-mine {\n  border-radius: 20px;\n  background: #0F76F7;\n  color: #FFFFFF;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%;\n  word-wrap: break-word; }\n\n.item-friend {\n  margin-top: 10px;\n  margin-bottom: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  text-align: left; }\n\n.item-friend .msg-text {\n  margin-left: 10px; }\n\n.item-friend .msg-friend {\n  border-radius: 20px;\n  background: #E6E5E5;\n  color: #4A4A4A;\n  padding: 5px 15px;\n  border: 0;\n  font-size: 14px;\n  text-align: left;\n  max-width: 50%;\n  word-wrap: break-word; }\n\n.item-friend .image img {\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n", ""]);
 
 // exports
 
@@ -768,7 +786,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 10px 0px 10px 15px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearch::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.span-input {\n  color: #0F76F7;\n  font-size: 14px;\n  font-weight: 600 !important;\n  margin-top: 7px; }\n\n.inputSearchHeader {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding-left: 5px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearchHeader::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: auto;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.modal-content {\n  border-radius: 0; }\n\n.pointer {\n  cursor: pointer; }\n\n.header-msg {\n  background: #FFFFFF;\n  padding: 10px 0px 10px 15px;\n  border-bottom: 1px solid #E6E5E5;\n  font-weight: 600;\n  font-size: 16px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.area-insert {\n  position: absolute;\n  top: calc( 100vh - 100px);\n  height: 50px;\n  background: #FFFFFF;\n  border: 1px solid #E6E5E5;\n  padding-top: 5px; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding: 15px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearch::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.span-input {\n  color: #0F76F7;\n  font-size: 14px;\n  font-weight: 600 !important;\n  margin-top: 7px; }\n\n.inputSearchHeader {\n  width: 100%;\n  height: 35px;\n  border: 0;\n  border-radius: 3px;\n  padding-left: 5px;\n  font-size: 14px;\n  color: #4A4A4A; }\n\n.inputSearchHeader::-webkit-input-placeholder {\n  color: #919191;\n  font-size: 13px; }\n\n.writeSection {\n  padding-right: 15px;\n  padding-top: 5px; }\n", ""]);
 
 // exports
 
@@ -786,7 +804,7 @@ exports = module.exports = __webpack_require__(11)();
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato);", ""]);
 
 // module
-exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: 100px;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.recent-msgs {\n  background: #FFFFFF;\n  height: calc( 100vh - 105px);\n  padding: 0;\n  overflow-y: auto;\n  border-right: 1px solid #E6E5E5; }\n\n.title-msgs {\n  color: #4A4A4A;\n  font-size: 16px;\n  font-weight: 600;\n  padding: 15px 0px 15px 0px; }\n\n.msg-item {\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px 15px 10px 15px; }\n\n.msg-item:hover {\n  background: #E6E5E5; }\n\n.msg-item .image img {\n  border-radius: 50%;\n  width: 50px;\n  height: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 5px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.content-msgs {\n  padding: 10px 0px; }\n\n.time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px;\n  float: right;\n  margin-top: -20px; }\n\n.search-msgs {\n  background: #FFFFFF;\n  padding: 0px 15px 0px 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 1px solid #E6E5E5;\n  border-radius: 0;\n  padding: 15px;\n  font-size: 14px;\n  color: #919191; }\n\n.recent-msgs::-webkit-scrollbar {\n  width: 5px;\n  border-radius: 10px; }\n\n.recent-msgs::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset #919191; }\n\n.recent-msgs::-webkit-scrollbar-thumb {\n  background-color: #919191; }\n\n.search-icon, .add-icon {\n  padding-top: 15px;\n  cursor: pointer; }\n\n.search-icon:focus, .add-icon:focus {\n  outline: 0 !important; }\n\n.search-icon i, .add-icon i {\n  color: #919191; }\n\n.search-icon i:hover, .add-icon i:hover {\n  color: #4A4A4A; }\n", ""]);
+exports.push([module.i, "search .dropdown-menu {\n  width: 100% !important; }\n\n.carousel-control-next-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_right.png\");\n  width: 20px;\n  height: 20px; }\n\n.carousel-control-prev-icon {\n  background-image: url(\"https://www.lithosdesign.com/images/arrow_b_left.png\");\n  height: 20px;\n  width: 20px;\n  margin-left: -20px; }\n\n.carousel-control-prev {\n  width: 5%;\n  margin-left: -40px; }\n\n.carousel-control-next {\n  width: 5%;\n  margin-right: -50px; }\n\n.ts10 {\n  font-size: 10px; }\n\n.ts12 {\n  font-size: 12px; }\n\n.ts13 {\n  font-size: 13px; }\n\n.ts14 {\n  font-size: 14px; }\n\n.ts16 {\n  font-size: 16px; }\n\n.ts18 {\n  font-size: 18px; }\n\n.no-margin {\n  margin-left: 0;\n  margin-right: 0; }\n\n.no-padding {\n  padding-left: 0;\n  padding-right: 0; }\n\n.width100 {\n  width: 100%; }\n\nbutton:focus {\n  outline: none !important; }\n\ntextarea:focus, input:focus {\n  outline: none; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: \"Lato\", sans-serif !important;\n  background-color: #F7F8FA;\n  color: #4A4A4A !important; }\n\n.btnConfirm {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #0F76F7;\n  color: #fff !important;\n  width: 100px;\n  cursor: pointer; }\n\n.btnConfirm a {\n  text-decoration: none;\n  color: #fff !important; }\n\n.btnCancel {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #919191;\n  width: auto;\n  background: #fff;\n  cursor: pointer; }\n\n.btnCancel a {\n  text-decoration: none;\n  color: #fff; }\n\n.btnCancel:hover {\n  font-size: 12px;\n  border: 1px solid #919191;\n  color: #fff;\n  background: #919191; }\n\n.btnConfirm:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #0F76F7;\n  background-color: #fff;\n  color: #0F76F7 !important; }\n\n.btnRemove {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #ff484a;\n  color: #fff;\n  cursor: pointer; }\n\n.btnRemove:hover {\n  border-radius: 3px !important;\n  font-size: 12px;\n  border: 1px solid #ff484a;\n  background-color: #fff;\n  color: #ff484a; }\n\n.fade.in {\n  opacity: 1; }\n\n.modal.in .modal-dialog {\n  -webkit-transform: translate(0, 0);\n  transform: translate(0, 0); }\n\n.modal-backdrop.in {\n  opacity: 0.5; }\n\n.borda {\n  border: 1px solid #E82C0C; }\n\n.textError {\n  margin-bottom: 10px;\n  color: #E82C0C !important;\n  font-size: 14px; }\n\n.thumbnail {\n  border-radius: 40px;\n  height: 40px;\n  width: 40px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.thumbnail4 {\n  border-radius: 0 !important;\n  height: 50px;\n  width: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.text-orange {\n  color: #FF8A65; }\n\n.modal-content {\n  border-radius: 0; }\n\n.pointer {\n  cursor: pointer; }\n\n.recent-msgs {\n  background: #FFFFFF;\n  height: calc( 100vh - 105px);\n  padding: 0;\n  overflow-y: auto;\n  border-right: 1px solid #E6E5E5; }\n\n.title-msgs {\n  color: #4A4A4A;\n  font-size: 16px;\n  font-weight: 600;\n  padding: 15px 0px 15px 0px; }\n\n.msg-item {\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  padding: 10px 15px 10px 15px; }\n\n.msg-item:hover {\n  background: #E6E5E5; }\n\n.msg-item .image img {\n  border-radius: 50%;\n  width: 50px;\n  height: 50px;\n  -o-object-fit: cover;\n     object-fit: cover; }\n\n.message-info {\n  margin-left: 12px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  width: 500px;\n  padding-top: 5px;\n  font-size: 14px;\n  margin-top: -1px; }\n\n.nameMsg {\n  font-weight: bold;\n  color: #4A4A4A;\n  font-size: 14px; }\n\n.textMsg {\n  color: #919191;\n  font-size: 13px; }\n\n.content-msgs {\n  padding: 10px 0px; }\n\n.time {\n  color: #919191;\n  font-weight: normal;\n  font-size: 11px;\n  float: right;\n  margin-top: -20px; }\n\n.search-msgs {\n  background: #FFFFFF;\n  padding: 0px 15px 0px 15px;\n  border-bottom: 1px solid #E6E5E5; }\n\n.inputSearch {\n  width: 100%;\n  height: 35px;\n  border: 1px solid #E6E5E5;\n  border-radius: 0;\n  padding: 15px;\n  font-size: 14px;\n  color: #919191; }\n\n.recent-msgs::-webkit-scrollbar {\n  width: 5px;\n  border-radius: 10px; }\n\n.recent-msgs::-webkit-scrollbar-track {\n  -webkit-box-shadow: inset #919191; }\n\n.recent-msgs::-webkit-scrollbar-thumb {\n  background-color: #919191; }\n\n.search-icon, .add-icon {\n  padding-top: 15px;\n  cursor: pointer; }\n\n.search-icon:focus, .add-icon:focus {\n  outline: 0 !important; }\n\n.search-icon i, .add-icon i {\n  color: #919191; }\n\n.search-icon i:hover, .add-icon i:hover {\n  color: #4A4A4A; }\n", ""]);
 
 // exports
 
@@ -799,7 +817,7 @@ module.exports = module.exports.toString();
 /***/ 787:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 header-msg text-center no-padding\">\r\n      {{conversationName}}\r\n    </div>\r\n\r\n    <div class=\"col-12\">\r\n      <div class=\"chat-content\" #scrollMe>\r\n        <div *ngFor=\"let message of messages\" [class.item-mine]=\"message.id_user == id_user\" [class.item-friend]=\"message.id_user == id_user2\">\r\n          <button [class.msg-mine]=\"message.id_user == id_user\" [class.msg-friend]=\"message.id_user == id_user2\">{{message.message}}</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-12 area-insert\">\r\n      <div class=\"writeSection row\">\r\n        <div class=\"col\">\r\n          <input autofocus type=\"text\" class=\"inputSearch\" [(ngModel)]=\"message\" placeholder=\"Escrever uma mensagem\" (keyup.enter)=\"sendMessage(message)\">\r\n\r\n        </div>\r\n        <div class=\".align-items-lg-end\">\r\n          <button class=\"btn btnConfirm\" (click)=\"sendMessage(message)\">ENVIAR</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12 header-msg text-center no-padding\">\r\n      {{conversationName}}\r\n    </div>\r\n\r\n    <div class=\"col-12\">\r\n      <div class=\"chat-content\" #scrollMe>\r\n        <div *ngFor=\"let message of messages\" [class.item-mine]=\"message.from_id == id_user\" [class.item-friend]=\"message.from_id != id_user\">\r\n          <button [class.msg-mine]=\"message.from_id == id_user\" [class.msg-friend]=\"message.from_id != id_user\">{{message.message}}</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-12 area-insert\">\r\n      <div class=\"writeSection row\">\r\n        <div class=\"col\">\r\n          <input autofocus type=\"text\" class=\"inputSearch\" [(ngModel)]=\"message\" placeholder=\"Escrever uma mensagem\" (keyup.enter)=\"sendMessage(message)\">\r\n\r\n        </div>\r\n        <div class=\".align-items-lg-end\">\r\n          <button class=\"btn btnConfirm\" (click)=\"sendMessage(message)\">ENVIAR</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -813,7 +831,7 @@ module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n  
 /***/ 789:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-3 no-padding\">\r\n\r\n      <div class=\"search-msgs d-flex justify-content-between\">\r\n\r\n        <div class=\"search-icon\" (click)=\"activeSearch()\">\r\n          <i class=\"material-icons\">search</i>\r\n        </div>\r\n\r\n        <div class=\"title-msgs text-center\">\r\n          Ultimas mensagens\r\n        </div>\r\n\r\n        <div class=\"add-icon\" routerLink=\"/chat/new\">\r\n          <i class=\"material-icons\">add</i>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"recent-msgs\">\r\n        <div class=\"searchSection\" *ngIf=\"searchAtive\" style=\"padding-top:5px;\">\r\n          <div class=\"areaInput\">\r\n            <input type=\"text\" class=\"inputSearch\" autofocus placeholder=\"Pesquisar contactos\">\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"content-msgs\">\r\n          <div class=\"msg-item\" *ngFor=\"let conversation of conversations\" (click)=\"navigate(conversation.id_user, conversation.user_name)\">\r\n            <div class=\"image\">\r\n              <img [src]=\"conversation.photo_url\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n\r\n                <div class=\"nameMsg\">{{conversation.user_name}}</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\"> Teste </span>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-9 no-padding\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col-3 no-padding\">\r\n\r\n      <div class=\"search-msgs d-flex justify-content-between\">\r\n\r\n        <div class=\"search-icon\" (click)=\"activeSearch()\">\r\n          <i class=\"material-icons\">search</i>\r\n        </div>\r\n\r\n        <div class=\"title-msgs text-center\">\r\n          Ultimas mensagens\r\n        </div>\r\n\r\n        <div class=\"add-icon\" routerLink=\"/chat/new\">\r\n          <i class=\"material-icons\">add</i>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"recent-msgs\">\r\n        <div class=\"searchSection\" *ngIf=\"searchAtive\" style=\"padding-top:5px;\">\r\n          <div class=\"areaInput\">\r\n            <input type=\"text\" class=\"inputSearch\" autofocus placeholder=\"Pesquisar contactos\">\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"content-msgs\">\r\n          <div class=\"msg-item\" *ngFor=\"let conversation of conversations\" (click)=\"navigate(conversation.id_conversation, conversation.user_name)\">\r\n            <div class=\"image\">\r\n              <img [src]=\"conversation?.photo_url\">\r\n            </div>\r\n            <div class=\"message-info\">\r\n              <div>\r\n\r\n                <div class=\"nameMsg\">{{conversation.id_conversation}} {{conversation?.user_name}}</div>\r\n                <div class=\"time\">20:00</div>\r\n              </div>\r\n\r\n              <span class=\"textMsg\">User: {{conversation.id_user}} </span>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-9 no-padding\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ })
 
