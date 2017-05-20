@@ -2,10 +2,10 @@
     <div class="col-12">
           <div class="card cardFriends text-center">
             <div class="friendsBackground">
-                <img class="coverImg" src='./assets/imgs/fundo_andre.jpg'>
+                <img class="coverImg" src='{{user?.photo}}'>
             </div>
             <div class="profile-user-picture text-center">
-                <img src="./assets/imgs/andre.jpg" alt="profile user picture" />
+                <img src="{{user?.photo}}" alt="profile user picture" />
             </div>
             <div class="col user-rate">
                     <md-icon class="rate1">star_rate</md-icon>
@@ -15,7 +15,7 @@
                     <md-icon>star_rate</md-icon>
                 </div>
             <div class="friendsName">
-              André Martins
+              {{user?.username}}
             </div>
             <div class="friendsPlace">
               Sever do Vouga, Aveiro
@@ -24,7 +24,7 @@
     </div>
     <div class="col-12 details">
       <div class="friendsCardNumber">E-mail</div>
-      <div class="friendsCardNumberDesc">vascosilvaa@gmail.com</div>
+      <div class="friendsCardNumberDesc">{{user?.email}}</div>
     </div>
     <div class="col-12 row-details">
       <div class="friendsCardNumber">Data de Nascimento</div>
@@ -39,7 +39,7 @@
       <button class="btn btnCancel">ELIMINAR</button>
     </div>
     <div class="col-6 btn-modal no-padding" style="padding-left:5px; text-align:left">
-      <button class="btn btnConfirm">VER</button>
+      <button class="btn btnConfirm" (click)="onSelect(userCreator)">VER</button>
     </div>
     
 

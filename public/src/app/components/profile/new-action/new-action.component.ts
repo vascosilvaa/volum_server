@@ -1,3 +1,4 @@
+import { ProfileService } from './../profile.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +11,16 @@ export class NewActionComponent implements OnInit {
   lng: number =  -8.544893;
   public schedule = 0;
   public img = 0;
-  constructor() { }
+  constructor(public profileService:ProfileService) { }
 
   ngOnInit() {
+  }
+
+  newAction() {
+      this.profileService.newAction('teste', 'teste-desc' ).then(res => {
+      console.log(res);
+    });
+
   }
   showSchedule(){
     this.schedule = 1;
