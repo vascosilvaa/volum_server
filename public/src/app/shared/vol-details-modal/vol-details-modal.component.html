@@ -19,18 +19,19 @@
         </div>
     </div>
 </div>
-
-<div class="modalContainer row" [class.loadingHeight]="!ready">
-
-    <div class="col-12" *ngIf="!ready">
+<div class="col-12" *ngIf="!ready">
         Loading..
     </div>
-    <ng-container *ngIf="ready">
+<ng-container *ngIf="ready">
+<div class="modalContainer row" [class.loadingHeight]="!ready">
+
+    
+    
         <div class="card-user-image col-md-auto">
             <img src={{volDetails?.user.photo_url}}>
         </div>
         <div class="card-user-nd">
-            <div><span class="card-user-name ts16">{{volDetails?.user.name}}</span><span class="ts14 card-user-desc"> criou o </span>
+            <div><span class="card-user-name ts16 pointer" data-dismiss="dialog" (click)="onSelect(volDetails.user.id_user)">{{volDetails?.user.name}}</span><span class="ts14 card-user-desc"> criou o </span>
                 <span class="card-user-event ts14">evento</span>
             </div>
             <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
@@ -110,7 +111,7 @@
                             <span class="numberYellow">{{numberCandidates}}</span><span class="normalText"> candidatos</span>
                         </div>
                         <div *ngIf="login" class="likeImgs">
-                            <img *ngFor="let candidate of candidates" src="{{candidate?.photo_url}}">
+                            <img *ngFor="let candidate of candidates" src="{{candidate?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
                             <div *ngIf="numberCandidates>10" class="see-all-participants" (click)="openCandidates(1, volDetails.id_vol)">{{numberCandidates-10}}</div>
                             <div *ngIf="!numberCandidates" class="ts13" style="margin-top:5px">Não existem candidatos.</div>
                         </div>
@@ -121,7 +122,7 @@
                             <span class="numberBlue">{{numberConfirmeds}}</span><span class="normalText"> confirmados</span>
                         </div>
                         <div *ngIf="login" class="likeImgs">
-                            <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}">
+                            <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
                             <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">{{numberConfirmeds-10}}</div>
                             <div *ngIf="!numberConfirmeds" class="ts13" style="margin-top:5px">Não existem confirmados.</div>
                         </div>
@@ -170,9 +171,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="row no-margin card-Comments" *ngIf="showComments && login">
-            <div class="col-12 comments-back no-padding" *ngFor="let comment of comments">
+</div>
+        <div class="row card-Comments" *ngIf="showComments && login">
+            <div class="scrollArea col-12 no-padding">
+            <div class="col-12 comments-back" *ngFor="let comment of comments">
                 <div class="row comments-header">
                     <div class="col card-user--comments-image col-md-auto">
                         <img src="{{comment.photo_url}}">
@@ -206,8 +208,9 @@
                 </div>
                 <div class="borderComments"></div>
             </div>
+            </div>
             <div class="col-12 insert-comment ">
-                <div class="row">
+                <div class="row" style="padding-left:15px; padding-right:15px;">
                     <div class="col no-padding card-user--comments-image card-user-comments-image-comments">
                         <img src="{{userLogin.photo}}">
                     </div>
@@ -229,4 +232,3 @@
         </div>
 
     </ng-container>
-</div>

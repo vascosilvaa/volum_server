@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
 import { AuthenticationService } from './../Auth/authentication.service';
 import { VolDetailsModalService } from './vol-details-modal.service';
@@ -5,6 +7,7 @@ import { AppModule } from './../../app.module';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
+
 
 export class ModalContext extends BSModalContext {
   public idVol: any;
@@ -49,7 +52,7 @@ export class VolDetailsModalComponent implements OnInit {
   public confirmeds: any;
   public ready: boolean = false;
 
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
+  constructor(private router: Router, overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     if (this.authService.isAuthenticated()) {
@@ -105,6 +108,15 @@ export class VolDetailsModalComponent implements OnInit {
   ngOnInit() {
 
   }
+  
+   onSelect(id_profile) {
+    this.dialog.dismiss();
+    this.router.navigate(['/profile/' + id_profile + '/activity']);
+  }
+
+  openProfileModal(idProfile) {
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
+  }  
 
   countComments() {
     this.volsService.countComments(this.context.idVol)

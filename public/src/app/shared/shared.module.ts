@@ -45,7 +45,8 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
   ],
   entryComponents: [
-    ModalViewAllComponent
+    ModalViewAllComponent,
+    ModalProfileComponent
   ]
 })
 export class SharedModule { }
