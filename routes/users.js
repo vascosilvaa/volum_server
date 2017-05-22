@@ -142,7 +142,7 @@ var returnRouter = function (io) {
                                 vol: {
                                     id_vol: results[i].vols.id_vol,
                                     name: results[i].vols.name,
-                                    desc: results[i].vols.desc,
+                                    description: results[i].vols.description,
                                     date_begin: results[i].vols.date_begin,
                                     date_creation: results[i].vols.date_creation,
                                     duration: results[i].vols.duration,

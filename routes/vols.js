@@ -27,20 +27,20 @@ app.get('/', function (req, res, next) {
 
     let vols = [];
     let options = {
-        sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+        sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
         'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
         options = {
-            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
             'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
-            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.desc, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
             'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2',
             nestTables: true
         };
@@ -60,7 +60,7 @@ app.get('/', function (req, res, next) {
                             vol: {
                                 id_vol: results[i].vols.id_vol,
                                 name: results[i].vols.name,
-                                desc: results[i].vols.desc,
+                                description: results[i].vols.description,
                                 date_begin: results[i].vols.date_begin,
                                 date_creation: results[i].vols.date_creation,
                                 duration: results[i].vols.duration,
@@ -80,7 +80,7 @@ app.get('/', function (req, res, next) {
                     success: true,
                     vols
                 });
-            }
+            } []
         });
 });
 
@@ -89,35 +89,43 @@ app.get('/', function (req, res, next) {
  * @api {post} /vols/ Novo Voluntariado
  * @apiName newVol
  * @apiParam name nome
- * @apiParam desc Descriçao
- * @apiParam photo_1 Descriçao
+ * @apiParam description descriptionriçao
+ * @apiParam photo_1 descriptionriçao
  * @apiParam lat Latitude
  * @apiParam long Longitude
  * @apiGroup Voluntariados 
  */
 
-app.post('/', jwtCheck, function (req, res) {
+app.post('/', passport.authenticate('jwt'), function (req, res) {
 
-    var name = req.body.name;
-    if (!req.body.name || !req.body.desc) {
-        return res.status(400).send("Falta enviar dados");
+    console.log("name", req.body)
 
-    }
-    if (!req.photo_1 && req.body.lat && req.body.long) {
-
-        req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.long + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
-
+    if (!req.body.name || !req.body.description || !req.body.category) {
+        res.status(400).json({
+            success: req.body,
+            message: "Falta Enviar Dados"
+        })
     } else {
 
+        if (!req.photo_1 && req.body.lat && req.body.long) {
+
+            req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.long + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
+
+        } else {
+
+        }
+
+        let query = db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, descriptionription, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
+            'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
+            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.long, req.body.photo_1], function (error, results, fields) {
+
+                if (error) throw error;
+                res.json({
+                    message: 'Success',
+                });
+            });
+
     }
-
-    var query = db.get().query('INSERT INTO vols SET ?', req.body, function (error, results, fields) {
-
-        if (error) throw error;
-        res.json({
-            message: 'Success',
-        });
-    });
 });
 
 /**
@@ -154,7 +162,7 @@ app.get('/:id', function (req, res, next) {
                         id_vol: results[i].vols.id_vol,
                         place: results[i].vols.address,
                         name: results[i].vols.name,
-                        desc: results[i].vols.desc,
+                        description: results[i].vols.description,
                         date_creation: results[i].vols.date_creation,
                         date_begin: results[i].vols.date_begin,
                         date_end: results[i].vols.date_end,
