@@ -43,12 +43,9 @@ module.exports = function(passport) {
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function() {
 
-                console.log("USER", profile._json.id);
 
                 getUserById(profile._json.id, function(user) {
-                    console.log(user);
                     if (user && user != undefined) {
-                        console.log("ja existe");
                         done(null, user);
                     } else {
 
@@ -78,14 +75,11 @@ module.exports = function(passport) {
         }));
 
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-        console.log(jwt_payload);
-        console.log("aagwgwa");
+     
         db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', jwt_payload.id, function(err, rows, fields) {
             if (err) {
-                console.log("erro");
                 done(null, false, { message: 'erro' })
             } else {
-                console.log(rows[0]);
                 done(null, rows[0]);
             }
         });

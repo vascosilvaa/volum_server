@@ -27,7 +27,7 @@ function createToken(user) {
 }
 
 function getUserDB(email, done) {
-    db.get().query('SELECT * FROM users WHERE email = ? LIMIT 1', [email], function(err, rows, fields) {
+    db.get().query('SELECT * FROM users WHERE email = ? LIMIT 1', [email], function (err, rows, fields) {
         if (err) {
             console.log(err);
         } else {
@@ -57,7 +57,7 @@ function hashUrl(id) {
  * @apiParam {JPEG} [photo] foto de perfil
  */
 
-app.post('/register', function(req, res) {
+app.post('/register', function (req, res) {
     console.log(req.body)
     if (!req.body.password || !req.body.email || !req.body.name) {
         return res.status(400).json({ success: false, message: "Falta enviar dados" });
@@ -65,13 +65,13 @@ app.post('/register', function(req, res) {
         return res.status(200).send('Foto invalida');
     } else {
 
-        getUserDB(req.body.login, function(user) {
+        getUserDB(req.body.login, function (user) {
             //SE USER NAO EXISTIR
             if (!user && req.files) {
                 console.log("mandou foto")
 
-                bcrypt.genSalt(saltRounds, function(err, salt) {
-                    bcrypt.hash(req.body.password, salt, function(err, hash) {
+                bcrypt.genSalt(saltRounds, function (err, salt) {
+                    bcrypt.hash(req.body.password, salt, function (err, hash) {
 
                         user = {
                             password: hash,
@@ -80,13 +80,13 @@ app.post('/register', function(req, res) {
                             name: req.body.name,
                             gender: 0,
                             birth_date: new Date()
+
                         };
 
-                        db.get().query('INSERT INTO users SET ?', [user], function(err, result) {
+                        db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
                             if (err) {
-                                throw new Error(err);
-
                                 res.json({ success: false, error: err })
+                                throw new Error(err);
                             } else {
                                 let url = hashUrl(result.insertId);
                                 let userId = result.insertId;
@@ -94,7 +94,7 @@ app.post('/register', function(req, res) {
                                 //GERAR TOKEN
 
                                 let sampleFile = req.files.photo;
-                                sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function(err) {
+                                sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function (err) {
 
                                     if (err) {
                                         return res.status(500).send(err);
@@ -102,7 +102,7 @@ app.post('/register', function(req, res) {
                                         console.log(url);
                                         console.log(userId);
 
-                                        db.get().query('UPDATE users SET photo_url = ? WHERE id_user = ?', [url, userId], function(err, result) {
+                                        db.get().query('UPDATE users SET photo_url = ? WHERE id_user = ?', [url, userId], function (err, result) {
                                             if (err) {
                                                 throw new Error(err);
 
@@ -119,6 +119,7 @@ app.post('/register', function(req, res) {
 
                                                 res.status(201).send({
                                                     message: "User criado com sucesso",
+                                                    id_user: userId,
                                                     id_token: createToken(newUser)
                                                 });
                                             }
@@ -134,8 +135,8 @@ app.post('/register', function(req, res) {
                 });
             } else if (!user && !req.files) {
                 console.log("nao mandou foto")
-                bcrypt.genSalt(saltRounds, function(err, salt) {
-                    bcrypt.hash(req.body.password, salt, function(err, hash) {
+                bcrypt.genSalt(saltRounds, function (err, salt) {
+                    bcrypt.hash(req.body.password, salt, function (err, hash) {
 
                         user = {
                             password: hash,
@@ -146,18 +147,18 @@ app.post('/register', function(req, res) {
                             birth_date: new Date()
                         };
 
-                        db.get().query('INSERT INTO users SET ?', [user], function(err, result) {
+                        db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
                             if (err) {
+                                res.json({ success: false, error: err })
                                 throw new Error(err);
 
-                                res.json({ success: false, error: err })
                             } else {
 
                                 //USER CRIADO
                                 //GERAR TOKEN
-
+                                let userId = result.insertId;
                                 newUser = {
-                                    id: result.insertId,
+                                    id: userId,
                                     password: hash,
                                     email: user.email,
                                     type_user: 1
@@ -185,6 +186,8 @@ app.post('/register', function(req, res) {
                                 res.status(201).send({
 
                                     message: "User criado com sucesso",
+                                    id_user: userId,
+
                                     id_token: createToken(newUser)
 
 
@@ -210,14 +213,14 @@ app.post('/register', function(req, res) {
  * @apiParam {String} password password
  */
 
-app.post('/login', function(req, res) {
+app.post('/login', function (req, res) {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             success: false,
             message: "Falta enviar dados"
         });
     }
-    getUserDB(req.body.email, function(user) {
+    getUserDB(req.body.email, function (user) {
         if (!user) {
             return res.status(401).json({
                 success: false,
@@ -226,7 +229,7 @@ app.post('/login', function(req, res) {
         }
 
 
-        bcrypt.compare(req.body.password, user.password, function(err, result) {
+        bcrypt.compare(req.body.password, user.password, function (err, result) {
             if (!result) {
                 return res.status(401).json({
                     success: false,
@@ -250,20 +253,20 @@ app.post('/login', function(req, res) {
     });
 });
 
-app.get('/confirm-email', function(req, res) {
+app.get('/confirm-email', function (req, res) {
 
     res.send(req.query.email + 'ativado com sucesso');
     // SET USER WHERE EMAIL = X ACTIVE = TRUE
 });
 
-app.get('/check/:login', function(req, res) {
+app.get('/check/:login', function (req, res) {
     if (!req.params.email) {
         return res.status(400).json({
             success: false,
             message: "Falta o User"
         });
     }
-    getUserDB(req.params.email, function(user) {
+    getUserDB(req.params.email, function (user) {
         if (!user) res.status(201).send({ login: "OK" });
         else res.status(400).json({
             success: false,

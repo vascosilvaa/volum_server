@@ -22,17 +22,17 @@ export class ChatService {
     }
 
     getConversations(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/chat/` + id_user).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/chat/`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-    getMessages(id_user, id_user2) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/chat/` + id_user, { id_user: id_user2 }).toPromise()
+    getMessages(id_conversation) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/chat/` + id_conversation + '/messages').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-    sendMessage(id_user, id_user2, message) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/chat/` + id_user + `/message`, { id_user: id_user2, message: message }).toPromise()
+    sendMessage(id_conversation, message) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/chat/` + id_conversation + `/message`, { message: message }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

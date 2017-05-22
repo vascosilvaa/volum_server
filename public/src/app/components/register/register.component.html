@@ -38,28 +38,30 @@
                         <div class="col-12">
                             <input type="email" maxlength="120" [class.borda]="!form.controls.email.valid && form.controls.email.touched" formControlName="email"
                                 class="inputEmailLogin form-control" placeholder="Endereço de e-mail">
-                            <div *ngIf="!form.controls.email.error?.required && form.controls.email.touched" class="textError">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.email.errors?.required && form.controls.email.touched" class="text-danger">Campo Obrigatório</div>
                         </div>
                         <div class="col-12">
                             <input type="text" maxlength="120" [class.borda]="!form.controls.name.valid && form.controls.name.touched" formControlName="name"
                                 class="inputEmailLogin form-control" placeholder="Primeiro nome">
-                            <div *ngIf="!form.controls.name.error?.required && form.controls.name.touched" class="textError">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.name.errors?.required && form.controls.name.touched" class="text-danger">Campo Obrigatório</div>
                         </div>
                         <div class="col-12">
                             <input type="text" maxlength="120" [class.borda]="!form.controls.lastname.valid && form.controls.lastname.touched" formControlName="lastname"
                                 class="inputEmailLogin form-control" placeholder="Último Nome">
-                            <div *ngIf="!form.controls.lastname.error?.required && form.controls.lastname.touched" class="textError">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.lastname.errors?.required && form.controls.lastname.touched" class="text-danger">Campo Obrigatório</div>
                         </div>
                         <div class="col-12">
                             <input maxlength="120" [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password" placeholder="Inserir palavra-passe">
-                            <div *ngIf="!form.controls.password.error?.required && form.controls.password.touched" class="textError">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.password.errors?.actualLength < form.controls.password.errors?.requiredLength && form.controls.password.touched" class="text-danger">A password não é forte o suficiente</div>
+                            <div *ngIf="form.controls.password.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
 
                         </div>
                         <div class="col-12">
                             <input maxlength="120" [class.borda]="!form.controls.password2.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password2" placeholder="Confirmar palavra-passe">
-                            <div *ngIf="!form.controls.password2.error?.required && form.controls.password2.touched" class="textError">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.password2.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.password2.errors?.actualLength < form.controls.password2.errors?.requiredLength && form.controls.password2.touched" class="text-danger">A password não é forte o suficiente</div>
 
                         </div>
                         <div class="col-12">
