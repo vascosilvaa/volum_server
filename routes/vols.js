@@ -100,10 +100,15 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
 
     console.log("name", req.body)
 
-    if (!req.body.name || !req.body.description || !req.body.category) {
+    if (!req.body.name || !req.body.description || !req.body.category || !req.body.date_begin) {
         res.status(400).json({
-            success: req.body,
+            success: false,
             message: "Falta Enviar Dados"
+        })
+    } else if (!Number(req.body.date_begin || !Number(req.body.date_end))) {
+        res.status(400).json({
+            success: false,
+            message: 'Datas Invalidas'
         })
     } else {
 
@@ -115,11 +120,16 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
 
         }
 
-        let query = db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, descriptionription, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
+        db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
             'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
-            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.long, req.body.photo_1], function (error, results, fields) {
+            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.long, req.body.photo_1],
+            function (error, results, fields) {
+                if (error) {
+                    res.json({
+                        error
+                    });
+                }
 
-                if (error) throw error;
                 res.json({
                     message: 'Success',
                 });
@@ -217,7 +227,7 @@ app.get('/:id/likes/count', function (req, res) {
     });
 });
 app.get('/:id/checkLike', passport.authenticate('jwt'), function (req, res) {
-    if (isNaN(parseInt(req.params.id))) {
+    if (!Number(req.params.id)) {
         res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
     } else {
         let users = [];
@@ -280,8 +290,8 @@ app.get('/:id/likes', passport.authenticate('jwt', { session: false }), function
  * @apiGroup Voluntariados 
  */
 
-app.get('/categories', passport.authenticate('jwt'), function (req, res) {
-    db.get().query('SELECT id_category, name FROM categories', function (error, results, fields) {
+app.get('/list/categories', passport.authenticate('jwt'), function (req, res) {
+    db.get().query('SELECT id_category, name FROM vol_categories WHERE active = 1', function (error, categories, fields) {
         if (error) {
             res.json({
                 success: false,
@@ -291,7 +301,7 @@ app.get('/categories', passport.authenticate('jwt'), function (req, res) {
         } else {
             res.json({
                 success: true,
-                message: results
+                categories
             });
         }
     });
@@ -524,7 +534,14 @@ app.post('/:id/checkState', passport.authenticate('jwt'), function (req, res) {
                             state: 2,
                             message: 'Ja estas confirmado'
                         });
+                    } else if (results[0].confirm == '2') {
+                        res.json({
+                            success: true,
+                            state: 4,
+                            message: 'Ninguem gosta de ti'
+                        });
                     }
+
 
                 }
             });
@@ -541,18 +558,19 @@ app.get('/:id/applies/confirmed', passport.authenticate('jwt'), function (req, r
     let users = [];
 
     console.log("QUERY", req.query);
-    if (isNaN(parseInt(req.params.id))) {
+    console.log("PARAMS", req.params);
+    if (!Number(req.params.id) || !req.params.id) {
         res.json({
             success: false,
             message: 'ID INVALIDO'
         });
     } else {
 
-        if (req.query) {
+        if (req.query.amount) {
             req.query.amount = parseInt(req.query['amount']);
 
         } else {
-            req.query.amount = 18446744073709551610;
+            req.query.amount = 100;
         }
 
         let options = {
@@ -561,7 +579,7 @@ app.get('/:id/applies/confirmed', passport.authenticate('jwt'), function (req, r
         };
 
         db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
-            console.log(results);
+            console.log("results", results);
             if (error) {
                 console.log(error);
             } else if (results.length == 0) {
@@ -613,6 +631,10 @@ app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (
  * @apiName getCandidates
  * @apiGroup Voluntariados 
  */
+
+// CONFIRM = 1 -> ACEITE CONFIRM = 2 -> NEGADO
+
+
 app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
 
     console.log("QUEERY", req.query);
@@ -735,6 +757,44 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
     }
 
 });
+
+
+app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) {
+
+    if (!Number(req.params.id)) {
+        res.json({
+            success: false,
+            message: 'Id Inválido'
+        });
+    } else {
+        db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+            if (error) {
+                res.json({
+                    success: false,
+                    error: error
+                });
+            } else if (results.affectedRows == 1 && results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Este User já está confirmado'
+                });
+            } else if (results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Este User não existe ou não é um candidato'
+                });
+            } else {
+                res.json({
+                    success: true,
+                    message: "Sucesso"
+                });
+            }
+
+        });
+    }
+
+});
+
 /**
  * @api {post} /vols/:id/comments Apagar Voluntariado
  * @apiName deleteVol
