@@ -17,8 +17,14 @@ export class ProfileService {
 
     }
 
-    newAction(name, desc) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`, { name: name, desc: desc }).toPromise()
+    getCategories() {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/list/categories`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    newAction(body) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`, body).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

@@ -124,7 +124,7 @@ body {
     font-size: 12px;
     border: 1px solid $grey2;
     color: $grey2;
-    width: auto;
+    min-width: 100px;
     background:#fff;
     cursor:pointer;
 }
