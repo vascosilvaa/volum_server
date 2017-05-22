@@ -93,9 +93,9 @@ export class VolDetailsModalComponent implements OnInit {
           this.volDetails = res.vol;
           console.log(this.volDetails);
           this.checkState(this.context.idVol);
-          this.getAddress(this.volDetails.lat, this.volDetails.long);
+          this.getAddress(this.volDetails.lat, this.volDetails.lng);
           this.lat = this.volDetails.lat;
-          this.lng = this.volDetails.long;
+          this.lng = this.volDetails.lng;
           this.ready = true;
         })
         .catch(err => console.log(err));

@@ -22,6 +22,7 @@
 <div class="col-12" *ngIf="!ready">
         Loading..
     </div>
+
 <ng-container *ngIf="ready">
 <div class="modalContainer row" [class.loadingHeight]="!ready">
 
@@ -113,7 +114,7 @@
                         <div *ngIf="login" class="likeImgs">
                             <img *ngFor="let candidate of candidates" src="{{candidate?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
                             <div *ngIf="numberCandidates>10" class="see-all-participants" (click)="openCandidates(1, volDetails.id_vol)">{{numberCandidates-10}}</div>
-                            <div *ngIf="!numberCandidates" class="ts13" style="margin-top:5px">Não existem candidatos.</div>
+                            <div *ngIf="!numberCandidates" class="ts13" style="margin-left: -10px; margin-top:5px">Não existem candidatos.</div>
                         </div>
 
                     </div>

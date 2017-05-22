@@ -61,7 +61,7 @@
           
            <div  *ngIf="img==1"class="col-6 inputProfile3">
               <div class="form-group">
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                <input type="file" multiple class="form-control-file" (change)="seeImages($event)" id="exampleInputFile" aria-describedby="fileHelp">
                 <small id="fileHelp" class="form-text text-muted">Pode inserir 3 fotografias selecionando na área de seleção. </small>
               </div>
             </div>

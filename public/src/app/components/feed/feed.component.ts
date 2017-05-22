@@ -32,7 +32,11 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
 
-    this.login=1;
+     if(this.auth.isAuthenticated()) {
+      this.login=1;
+    } else {
+      this.login=0;
+    }
     //VERIFICAR LOGIN
 
     if (this.login) {
