@@ -161,6 +161,7 @@ export class VolDetailsModalComponent implements OnInit {
 
       this.volsService.sendComment(comment, this.context.idVol).then(res => {
         this.comentario = '';
+        this.numberComments++;
         this.comments.push({
           id_user: this.id_user,
           message: comment,
@@ -174,14 +175,12 @@ export class VolDetailsModalComponent implements OnInit {
   getComments() {
     if (!this.showComments) {
       this.showComments = 1;
-      if (this.numberComments > 0) {
         this.volsService.getComments(this.context.idVol)
           .then(res => {
             this.comments = res.comments;
             console.log(res)
           })
           .catch(err => console.log(err));
-      }
     } else {
       this.showComments = 0;
     }

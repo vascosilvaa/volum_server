@@ -44,12 +44,13 @@
             <button class="btn btn-success " *ngIf="volDetails.active==1 && state == 2">Confirmado</button>
             <button class="btn btn-success" *ngIf="volDetails.active==1 && state == 3">Sucesso <i class="fa fa-check"></i></button>
             <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
+            <button class="btn btnCancel" *ngIf="volDetails.active==1 && state == 4" >CANDIDATURA REJEITADA</button>
 
         </div>
 
         <div class="modalTextArea col-12 no-padding">
             <div class="ts13 col-12 no-padding">
-                {{volDetails?.desc}}
+                {{volDetails?.description}}
             </div>
             <div class="details-vol">
                 <span class="typeVol">Solidariedade Social</span> <span class="insuBool">Seguro</span>
@@ -122,7 +123,7 @@
                         <div class="ts13" (click)="openCandidates(2, volDetails.id_vol)" [class.pointer]="numberConfirmeds > 0">
                             <span class="numberBlue">{{numberConfirmeds}}</span><span class="normalText"> confirmados</span>
                         </div>
-                        <div *ngIf="login" class="likeImgs">
+                        <div *ngIf="login" class="likeImgs Rgt">
                             <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
                             <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">{{numberConfirmeds-10}}</div>
                             <div *ngIf="!numberConfirmeds" class="ts13" style="margin-top:5px">Não existem confirmados.</div>
@@ -156,7 +157,7 @@
                             <span *ngIf="numberLikes>=1">{{numberLikes}} pessoa<span *ngIf="numberLikes>=1">s</span> gostam
                             disto.
                             </span>
-                            <span *ngIf="!numberLikes || numberLikes==0">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
+                            <span *ngIf="!numberLikes || numberLikes==0 ">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
 
                         </div>
                         <div (click)="getComments()" class="text-right" style="margin-left:auto">
