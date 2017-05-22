@@ -11,13 +11,17 @@ export class NewActionComponent implements OnInit {
   lng: number =  -8.544893;
   public schedule = 0;
   public img = 0;
+  public url;
   constructor(public profileService:ProfileService) { }
 
   ngOnInit() {
   }
-
+  
+  seeImages(event) {
+   
+  }
   newAction() {
-      this.profileService.newAction('teste', 'teste-desc' ).then(res => {
+      this.profileService.newAction('teste', 'teste-desc').then(res => {
       console.log(res);
     });
 

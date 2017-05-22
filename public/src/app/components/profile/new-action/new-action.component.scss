@@ -20,3 +20,12 @@
     margin-top: 15px;
     margin-bottom: 10px;
 }
+
+.btnSave {
+    cursor:pointer;
+    color: $white!important;
+}
+
+.btnSave:hover {
+    color: $blue!important;
+}

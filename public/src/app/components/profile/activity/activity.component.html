@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-6" *ngFor="let vol of volHistory">
       <vol-card [verified]="true" type='private' [idVol]="vol.vol?.id_vol" [avatar]="vol.user?.photo_url" [username]="vol.user?.name" [userCreator]="vol.vol?.id_user_creator"
-        [dateCreation]="vol.vol?.date_creation" [title]="vol.vol?.name" [desc]="vol.vol?.desc">
+        [dateCreation]="vol.vol?.date_creation" [title]="vol.vol?.name" [description]="vol.vol?.description">
       </vol-card>
     </div>
   </div>

@@ -22,7 +22,7 @@ export class CardComponent implements OnInit {
   @Input() userCreator;
   @Input() dateCreation;
   @Input() title;
-  @Input() desc;
+  @Input() description;
   @Input() avatar;
   @Input() username;
   @Input() verified;
