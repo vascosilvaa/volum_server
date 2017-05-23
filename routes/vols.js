@@ -99,47 +99,54 @@ app.get('/', function (req, res, next) {
 
 app.post('/', passport.authenticate('jwt'), function (req, res) {
 
-    console.log("name", req.body)
+    console.log("body", req.body)
 
     if (!req.body.name || !req.body.description || !req.body.category || !req.body.date_begin) {
         res.status(400).json({
             success: false,
             message: "Falta Enviar Dados"
         })
-    } else if (!Number(req.body.date_begin || !Number(req.body.date_end))) {
-        res.status(400).json({
-            success: false,
-            message: 'Datas Invalidas'
-        })
+
     } else {
 
-        if (!req.photo_1 && req.body.lat && req.body.lng) {
-
-            req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
+        if (!Number(req.body.date_begin || !Number(req.body.date_end))) {
+            res.status(400).json({
+                success: false,
+                message: 'Datas Invalidas'
+            })
 
         } else {
 
+
+
+            if (!req.photo_1 && req.body.lat && req.body.lng) {
+
+                req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
+
+            } else {
+
+            }
+
+            db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
+                'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
+                [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.photo_1],
+                function (error, results, fields) {
+                    if (error) {
+                        res.json({
+                            error
+                        });
+                    } else {
+
+                        res.json({
+                            message: 'Success',
+                            id_vol: results.insertId
+                        });
+
+                    }
+
+                });
+
         }
-
-        db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
-            'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
-            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.photo_1],
-            function (error, results, fields) {
-                if (error) {
-                    res.json({
-                        error
-                    });
-                } else {
-
-                    res.json({
-                        message: 'Success',
-                    });
-
-                }
-
-            });
-
-
 
     }
 });
