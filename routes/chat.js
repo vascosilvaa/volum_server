@@ -67,13 +67,13 @@ var returnRouter = function (io) {
 
                     conversations.push({
                         id_conversation: results[i].id_conversation,
-                        id_user: user[i].id_user2,
+                        id_user: results[i].id_user2,
                     });
 
                 } else {
                     conversations.push({
                         id_conversation: results[i].id_conversation,
-                        id_user: user[i].id_user,
+                        id_user: results[i].id_user,
                     });
                 }
             }
