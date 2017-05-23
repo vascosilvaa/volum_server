@@ -27,8 +27,8 @@ app.get('/', function (req, res, next) {
 
     let vols = [];
     let options = {
-        sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url) As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation ',
+        sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
@@ -67,7 +67,7 @@ app.get('/', function (req, res, next) {
                                 duration: results[i].vols.duration,
                                 lat: results[i].vols.lat,
                                 lng: results[i].vols.lng,
-                                photos: (results[i][''].photos).split(',')
+                                photos: (results[i][''].photos).split('->')
                             },
                             user: {
                                 id_user: results[i].users.id_user,
@@ -117,39 +117,45 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
 
         } else {
 
-
-
-            if (!req.photo_1 && req.body.lat && req.body.lng) {
-
-                req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
-
-            } else {
-
-            }
-
-            db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
-                'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
-                [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.photo_1],
+            db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
+                'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?)',
+                [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                 function (error, results, fields) {
                     if (error) {
                         res.json({
                             error
                         });
                     } else {
+                        if (!req.photo_1) {
 
-                        res.json({
-                            message: 'Success',
-                            id_vol: results.insertId
-                        });
+                            db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
+                                if (error) {
+                                    res.json({
+                                        error
+                                    });
+                                } else {
 
+                                    res.json({
+                                        message: 'Success',
+                                        id_vol: results.insertId
+                                    });
+
+
+                                }
+                            });
+                        } else {
+                            res.json({
+                                message: 'Success',
+                                id_vol: results.insertId
+                            });
+                        }
                     }
-
                 });
-
         }
-
     }
 });
+
+
 
 /**
  * @api {get} /vols/:id Listar Especifico
