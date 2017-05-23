@@ -27,21 +27,21 @@ app.get('/', function (req, res, next) {
 
     let vols = [];
     let options = {
-        sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user ORDER BY vols.date_creation ',
+        sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url) As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+        'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
         options = {
-            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1',
+            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.photo_1, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
-            sql: 'SELECT vols.id_vol, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2',
+            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
             nestTables: true
         };
     }
@@ -53,6 +53,7 @@ app.get('/', function (req, res, next) {
                 res.send({ success: false, message: error })
                 throw new Error(error);
             } else {
+                console.log(results);
                 if (results.length == 0) { } else {
 
                     for (let i = 0; i < results.length; i++) {
@@ -66,7 +67,7 @@ app.get('/', function (req, res, next) {
                                 duration: results[i].vols.duration,
                                 lat: results[i].vols.lat,
                                 lng: results[i].vols.lng,
-                                photo_1: results[i].vols.photo_1
+                                photos: (results[i][''].photos).split(',')
                             },
                             user: {
                                 id_user: results[i].users.id_user,
@@ -80,7 +81,7 @@ app.get('/', function (req, res, next) {
                     success: true,
                     vols
                 });
-            } []
+            }
         });
 });
 

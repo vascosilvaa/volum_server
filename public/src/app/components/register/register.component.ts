@@ -31,16 +31,19 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.form = this._fb.group({
-            email: ['', [Validators.required]],
+            email: ['', [Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]')]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             password2: ['', [Validators.required, Validators.minLength(6)]],
             name: ['', [Validators.required, Validators.minLength(2)]],
             lastname: ['', [Validators.required, Validators.minLength(2)]],
+
         });
     }
 
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
-        console.log(value, valid);
+        console.log("value", value);
+        console.log("valid", valid)
+        /*
         this.form.controls.email.markAsTouched();
         this.form.controls.password.markAsTouched();
         this.form.controls.password2.markAsTouched();
@@ -61,6 +64,7 @@ export class RegisterComponent implements OnInit {
                 .catch(err => console.log(err));
 
         }
+        */
     }
 
     openEmailRegist() {

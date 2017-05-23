@@ -19,6 +19,7 @@ import * as moment from 'moment';
 })
 export class AppComponent implements OnInit {
 
+  public notification = new Audio();
   public isLoggedIn;
   public user: any;
   public idLogin: any;
@@ -31,8 +32,13 @@ export class AppComponent implements OnInit {
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService, private profileService: ProfileService) {
     overlay.defaultViewContainer = vcRef;
+    this.notification.src = "http://www.wavsource.com/snds_2017-05-21_1278357624936861/sfx/boing_x.wav";
+
   }
   ngOnInit() {
+
+
+
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
@@ -65,11 +71,15 @@ export class AppComponent implements OnInit {
         this.socketService.onNotification().subscribe(res => {
           this.newNotificationCount++;
           console.log("NEW NOTIFICATION", res);
+          this.notification.play();
+
         });
 
         this.socketService.onRequest().subscribe(res => {
           this.newRequestsCount++;
           console.log("NEW REQUEST", res);
+
+          this.notification.play();
 
         });
 

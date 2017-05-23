@@ -68,6 +68,30 @@
 .card-date {
     color: $grey2;
 }
+.swiper-button-next{
+    background: none;
+    height: 100%;
+    top:0;
+    margin-top: initial;
+    margin-right: -10px;
+    
+
+}
+.swiper-button-prev{
+    top: 0;
+    background: none;
+    height: 100%;
+    margin-left: -10px;
+    margin-top: initial;
+}
+.swiper-button-prev:hover{
+   background: #fff;
+   opacity: 0.3;
+}
+.swiper-button-next:hover{
+   background: #fff;
+   opacity: 0.3;
+}
 
 .verified {
     background-color: #fff;

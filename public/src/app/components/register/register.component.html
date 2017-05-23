@@ -11,7 +11,7 @@
 -->
     <div class="row">
         <div class="col-12 containerLogin">
-            <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+            <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
                 <div *ngIf="emailRegist==0">
                     <div class="col-12">
                         <button class="facebookLogin">Registar com o Facebook</button>
@@ -53,7 +53,8 @@
                         <div class="col-12">
                             <input maxlength="120" [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password" placeholder="Inserir palavra-passe">
-                            <div *ngIf="form.controls.password.errors?.actualLength < form.controls.password.errors?.requiredLength && form.controls.password.touched" class="text-danger">A password não é forte o suficiente</div>
+                            <div *ngIf="form.controls.password.errors?.actualLength < form.controls.password.errors?.requiredLength && form.controls.password.touched"
+                                class="text-danger">A password não é forte o suficiente</div>
                             <div *ngIf="form.controls.password.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
 
                         </div>
@@ -61,7 +62,8 @@
                             <input maxlength="120" [class.borda]="!form.controls.password2.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password2" placeholder="Confirmar palavra-passe">
                             <div *ngIf="form.controls.password2.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
-                            <div *ngIf="form.controls.password2.errors?.actualLength < form.controls.password2.errors?.requiredLength && form.controls.password2.touched" class="text-danger">A password não é forte o suficiente</div>
+                            <div *ngIf="form.controls.password2.errors?.actualLength < form.controls.password2.errors?.requiredLength && form.controls.password2.touched"
+                                class="text-danger">A password não é forte o suficiente</div>
 
                         </div>
                         <div class="col-12">
