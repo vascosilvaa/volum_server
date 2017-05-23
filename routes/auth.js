@@ -269,8 +269,8 @@ app.post('/checkEmail/', function (req, res) {
     }
     console.log(req.body);
     getUserDB(req.body.email, function (user) {
-        if (!user) res.status(201).send({ success: true });
-        else res.status(400).json({
+        if (!user) res.status(200).send({ success: true });
+        else res.status(200).json({
             success: false,
             message: "Já existe"
         });
