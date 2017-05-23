@@ -118,10 +118,11 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
         } else {
 
             db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
-                'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?)',
+                'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ? , ?, ? , ? , ? )',
                 [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                 function (error, results, fields) {
                     if (error) {
+                        console.log(error);
                         res.json({
                             error
                         });
