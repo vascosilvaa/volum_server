@@ -21,7 +21,7 @@ export class ChatService {
         this.conversationUpdate.next(this.conversation);
     }
 
-    getConversations(id_user) {
+    getConversations() {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/chat/`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));

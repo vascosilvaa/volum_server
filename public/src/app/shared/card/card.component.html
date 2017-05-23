@@ -6,7 +6,7 @@
         </div>
         <div class="col-6 col-lg-8 card-user-nd">
             <div *ngIf="verified==1" class="card-user-name ts16">
-                <a *ngIf="login" class="clickableName" (click)="onSelect(userCreator)">{{username}}</a>
+                <a *ngIf="login" class="clickable clickableName" (click)="onSelect(userCreator)">{{username}}</a>
                 <a *ngIf="!login">{{username}}</a>
                 <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada">
                 <i class="material-icons md-18">verified_user</i></button></div>

@@ -52,7 +52,7 @@ var returnRouter = function (io) {
 
     app.get('/', passport.authenticate('jwt'), function (req, res) {
 
-        db.get().query('SELECT * FROM user_relations INNER JOIN users ON user_relations.id_user = users.id_user WHERE user_relations.id_user = ? OR user_relations.id_user2 = ? ORDER BY user_relations.date', [req.user.id_user, req.user.id_user], function (error, results, fields) {
+        db.get().query('SELECT * FROM user_relations INNER JOIN users ON user_relations.id_user = users.id_user WHERE user_relations.id_user = ? OR user_relations.id_user2 = ? ORDER BY user_relations.date DESC', [req.user.id_user, req.user.id_user], function (error, results, fields) {
             if (error) throw error;
             let conversations = [];
 

@@ -1,3 +1,4 @@
+import { ProfileService } from './components/profile/profile.service';
 import { ChatService } from './components/chat/chat.service';
 import { AppService } from './app.service';
 import { SocketService } from './shared/socket.service';
@@ -14,7 +15,7 @@ import * as moment from 'moment';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [SocketService, AppService, ChatService]
+  providers: [SocketService, AppService, ChatService, ProfileService]
 })
 export class AppComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
   public requests = [];
 
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
-    private socketService: SocketService, private appService: AppService, private chatService: ChatService) {
+    private socketService: SocketService, private appService: AppService, private chatService: ChatService, private profileService: ProfileService) {
     overlay.defaultViewContainer = vcRef;
   }
   ngOnInit() {
@@ -63,9 +64,13 @@ export class AppComponent implements OnInit {
         this.user = res.user;
         this.socketService.onNotification().subscribe(res => {
           this.newNotificationCount++;
+          console.log("NEW NOTIFICATION", res);
         });
+
         this.socketService.onRequest().subscribe(res => {
           this.newRequestsCount++;
+          console.log("NEW REQUEST", res);
+
         });
 
         this.socketService.onConnect(res.user.id_user);
@@ -78,13 +83,25 @@ export class AppComponent implements OnInit {
     }
   }
 
-  getConversations(id_user) {
-    this.chatService.getConversations(id_user).then(res => {
+  getConversations() {
+    this.chatService.getConversations().then(res => {
       this.conversations = res.conversations;
-      console.log(this.conversations);
+      console.log("Conversations", this.conversations);
+      this.getUsers();
 
     });
+  }
 
+  getUsers() {
+    for (let i = 0; i < this.conversations.length; i++) {
+
+      this.profileService.getProfile(this.conversations[i].id_user).then(res => {
+        this.conversations[i].photo_url = res.user.photo;
+        this.conversations[i].name = res.user.username;
+        console.log(res);
+      });
+
+    }
   }
 
   getNotificationCount(id) {

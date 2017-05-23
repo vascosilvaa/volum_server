@@ -65,7 +65,7 @@ app.get('/', function (req, res, next) {
                                 date_creation: results[i].vols.date_creation,
                                 duration: results[i].vols.duration,
                                 lat: results[i].vols.lat,
-                                long: results[i].vols.long,
+                                lng: results[i].vols.lng,
                                 photo_1: results[i].vols.photo_1
                             },
                             user: {
@@ -92,7 +92,7 @@ app.get('/', function (req, res, next) {
  * @apiParam description descriptionriçao
  * @apiParam photo_1 descriptionriçao
  * @apiParam lat Latitude
- * @apiParam long Longitude
+ * @apiParam lng lngitude
  * @apiGroup Voluntariados 
  */
 
@@ -112,9 +112,9 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
         })
     } else {
 
-        if (!req.photo_1 && req.body.lat && req.body.long) {
+        if (!req.photo_1 && req.body.lat && req.body.lng) {
 
-            req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.long + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
+            req.body.photo_1 = 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'
 
         } else {
 
@@ -122,7 +122,7 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
 
         db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, photo_1)' +
             'VALUES ( ? , ? , ? , ? , ? , ? , ?, ?, ? ,?, ? , ?, ?)',
-            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.long, req.body.photo_1],
+            [req.body.category, req.user.id_user, req.body.name, req.body.description, Date.now(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.photo_1],
             function (error, results, fields) {
                 if (error) {
                     res.json({
@@ -186,7 +186,7 @@ app.get('/:id', function (req, res, next) {
                         duration: results[i].vols.duration,
                         active: results[i].vols.active,
                         insurance: results[i].vols.insurance,
-                        long: results[i].vols.long,
+                        lng: results[i].vols.lng,
                         lat: results[i].vols.lat,
                         user: results[i].users
                     }

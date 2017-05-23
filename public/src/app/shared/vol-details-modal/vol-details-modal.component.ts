@@ -102,21 +102,21 @@ export class VolDetailsModalComponent implements OnInit {
 
 
 
-    })
+    }, 250)
   }
 
   ngOnInit() {
 
   }
-  
-   onSelect(id_profile) {
+
+  onSelect(id_profile) {
     this.dialog.dismiss();
     this.router.navigate(['/profile/' + id_profile + '/activity']);
   }
 
   openProfileModal(idProfile) {
     this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
-  }  
+  }
 
   countComments() {
     this.volsService.countComments(this.context.idVol)
@@ -175,12 +175,12 @@ export class VolDetailsModalComponent implements OnInit {
   getComments() {
     if (!this.showComments) {
       this.showComments = 1;
-        this.volsService.getComments(this.context.idVol)
-          .then(res => {
-            this.comments = res.comments;
-            console.log(res)
-          })
-          .catch(err => console.log(err));
+      this.volsService.getComments(this.context.idVol)
+        .then(res => {
+          this.comments = res.comments;
+          console.log(res)
+        })
+        .catch(err => console.log(err));
     } else {
       this.showComments = 0;
     }

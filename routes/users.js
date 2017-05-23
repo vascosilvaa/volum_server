@@ -208,7 +208,9 @@ var returnRouter = function (io) {
                             let index = loggedUsers.findIndex(x => x.user == req.body.id_user);
                             console.log("mandou notificacao");
                             console.log("INDEX 1", index);
-                            io.to(loggedUsers[index]).emit('request');
+                            console.log("LOOGED USERS", loggedUsers);
+                            console.log("teste", loggedUsers[index]);
+                            io.to(loggedUsers[index].socket).emit('request');
 
                             res.json({
                                 success: true,
