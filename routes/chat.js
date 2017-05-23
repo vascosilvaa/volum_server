@@ -56,8 +56,6 @@ var returnRouter = function (io) {
             if (error) throw error;
             let conversations = [];
 
-            
-            
 
             let userIds = [];
 
@@ -67,44 +65,25 @@ var returnRouter = function (io) {
 
                 if (results[i].id_user == req.user.id_user) {
 
-                    userIds.push(results[i].id_user2);
+                    conversations.push({
+                        id_conversation: results[i].id_conversation,
+                        id_user: user[i].id_user2,
+                    });
 
                 } else {
-                    userIds.push(results[i].id_user);
+                    conversations.push({
+                        id_conversation: results[i].id_conversation,
+                        id_user: user[i].id_user,
+                    });
                 }
             }
 
-             console.log("USEERS", userIds.map(Number));
-
-            db.get().query('SELECT users.id_user, users.photo_url, users.name FROM users WHERE users.id_user IN (?)', [userIds.map(Number)], function (error, user, fields) {
-
-                console.log("error", error)
-                console.log("user", user);
-
-                      var array = refSort(user, userIds).reverse();
-
-                for (let i = 0; i < resultArray.length; i++) {
-
-                    conversations.push({
-                        id_conversation: resultArray[i].id_conversation,
-                        user_name: user[i].name,
-                        id_user: user[i].id_user,
-                        photo_url: user[i].photo_url
-                    });
-
-                }
 
 
-
-                res.json({
-                    success: true,
-                    conversations
-                });
-
+            res.json({
+                success: true,
+                conversations
             });
-
-
-
 
 
         });

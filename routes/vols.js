@@ -128,12 +128,17 @@ app.post('/', passport.authenticate('jwt'), function (req, res) {
                     res.json({
                         error
                     });
+                } else {
+
+                    res.json({
+                        message: 'Success',
+                    });
+
                 }
 
-                res.json({
-                    message: 'Success',
-                });
             });
+
+
 
     }
 });
