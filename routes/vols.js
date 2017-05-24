@@ -33,15 +33,15 @@ app.get('/', function (req, res, next) {
     };
     if (req.query['type'] == 'inst') {
         options = {
-            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.photo_1, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
+            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
             nestTables: true
         };
     } else if (req.query['type'] == 'private') {
 
         options = {
-            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.photo_1, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
+            sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url) As photos, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
             nestTables: true
         };
     }
