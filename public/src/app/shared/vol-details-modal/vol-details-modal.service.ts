@@ -4,9 +4,10 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 
+
 @Injectable()
 export class VolDetailsModalService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, public HTTP: Http) {
     }
 
     getUser(id) {
@@ -36,7 +37,7 @@ export class VolDetailsModalService {
     }
 
     getAddress(lat, lng) {
-        return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
+        return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
         .then(res => {return res.json() })
         .catch(error => console.log(error));
 

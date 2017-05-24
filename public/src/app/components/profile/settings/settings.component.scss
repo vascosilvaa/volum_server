@@ -198,35 +198,14 @@
   font-family: Lato;
   color: $grey3;
 }
-.float-label input + label,
-.float-label textarea + label {
-  position: absolute;
-  top: 10px;
-  transition: top 0.5s ease;
-  opacity: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ccc;
-}
-.float-label input:valid + label,
-.float-label textarea:valid + label {  //label up
-  opacity: 1;
-  color: $grey2;
-  font-size: 10px;
-}
-.float-label input:focus + label,
-.float-label textarea:focus + label {  // label quando estamos a escrever
-  color: $grey2;
-  font-style: 8px!important;
-  font-size: 10px;
-}
+
 
 .float-label .control{  // div input
-  border: 1px solid $grey1!important;
+  border: 1px solid $grey1;
   border-radius: 5px;
   padding-left: 15px;
   padding-bottom: 10px;
-  padding-top: 20px;
+  padding-top: 22px;
 }
 
 .titlePlaceholder {
@@ -253,13 +232,6 @@
 }
 
 
-.input-group-lg>.input-group-btn>select.btn:not([size]):not([multiple]), .input-group-lg>select.form-control:not([size]):not([multiple]), .input-group-lg>select.input-group-addon:not([size]):not([multiple]), select.form-control-lg:not([size]):not([multiple]) {
-  font-size: 15px;
-  font-family: Lato;
-  color: #4A4A4A;
-  padding-bottom: 0;
-  padding-top: 18px;
-}
 
 .textAreaProfile {
   margin-left: -2px;
