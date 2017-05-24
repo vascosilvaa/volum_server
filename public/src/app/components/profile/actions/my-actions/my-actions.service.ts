@@ -30,5 +30,28 @@ export class MyActionsService {
 
     }
 
+    countCandidates(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/candidates/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+
+    countConfirmeds(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+     getCandidates(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates`, { amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getConfirmed(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed`, { amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
 
 }

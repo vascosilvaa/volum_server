@@ -27,20 +27,6 @@
     border-right: 1px solid $grey-border;
 }
 
-/deep/ .dropdown-item{
-    padding: 5px 0px!important;
-    height: 70px;
-    font-family: Lato;
-
-}
-/deep/ .dropdown-item.active{
-   background: $blue;
-
-}
-
-/deep/ .dropdown-menu {
-    padding: 0;
-}
 
 .namePerson {
     font-size: 16px;

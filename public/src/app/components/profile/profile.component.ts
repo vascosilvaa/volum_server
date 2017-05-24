@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.navigate(['../../activity']);
     this.route.params.subscribe((params) => {
 
       this.idProfile = this.route.snapshot.params['id'];

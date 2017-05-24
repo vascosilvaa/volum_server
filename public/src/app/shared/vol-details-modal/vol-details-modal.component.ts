@@ -30,7 +30,7 @@ export class VolDetailsModalComponent implements OnInit {
   public id_user: Number;
   public addressData: any;
   public address: any;
-  public addressName: any;
+  //public addressName: any;
   public candidatesNumber: any;
   public confirmedNumber: any;
   public numberLikes: any;
@@ -94,8 +94,9 @@ export class VolDetailsModalComponent implements OnInit {
           console.log(this.volDetails);
           this.checkState(this.context.idVol);
           this.getAddress(this.volDetails.lat, this.volDetails.lng);
-          this.lat = this.volDetails.lat;
-          this.lng = this.volDetails.lng;
+          this.lat = parseFloat(this.volDetails.lat);
+          this.lng = parseFloat(this.volDetails.lng);
+          console.log(this.lat, this.lng)
           this.ready = true;
         })
         .catch(err => console.log(err));
@@ -243,7 +244,7 @@ export class VolDetailsModalComponent implements OnInit {
         .then(res => {
           this.addressData = res.results;
           this.address = this.addressData[0].formatted_address;
-          this.addressName = this.addressData[0].address_components[0].short_name;
+          //this.addressName = this.addressData[0].address_components[0].short_name;
         })
     }
 

@@ -26,20 +26,18 @@
               <div class="">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}</div>
            </td>
 
+            <!--<td *ngIf="numberCandidates>=5"> 
+                <span *ngFor="let candidate of candidates" class="table-user-image"><img src="{{candidate?.photo_url}}"></span>
+            </td>-->
             <td>
-                <span class="table-user-image"><img src="../assets/imgs/abrigoseguro.jpg"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/andre.jpg"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/cunha.jpg"></span>
-                <span class="table-user-image margin"><img src="../assets/imgs/ondaverde.jpg"></span>
+               <span >{{vol?.numberCandidates}}</span>
             </td>
 
-            <td>
-              <span class="table-user-image"><img src="../assets/imgs/avatar.png"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/caritas_logo.gif"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/pedro.jpg"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/fundo_vasco.jpg"></span>
-              <span class="table-user-image margin"><img src="../assets/imgs/vasco.jpg"></span>
+            <!--<td *ngIf="numberConfirmeds>=5">
+              <span  *ngFor="let confirmed of confirmeds" class="table-user-image"><img src="{{confirmed?.photo_url}}"></span>
+            </td>-->
+             <td>
+               <span >{{vol?.numberConfirmeds}}</span>
             </td>
 
 

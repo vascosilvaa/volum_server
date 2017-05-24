@@ -85,10 +85,7 @@
                             <i class="material-icons iconDate">place</i>
                         </div>
                         <div class="descDatePlace ">
-                            <div *ngIf="addressName" class="daysEvent ts13">
-                                {{addressName}}
-                            </div>
-                            <div *ngIf="address" class="daysEventFull ts13">
+                            <div *ngIf="address" class="daysEvent ts13" style="padding-top:10px">
                                 {{address}}
                             </div>
                             <div *ngIf="!addressName && !address" class="daysEvent ts13" style="padding-top:9px">Sem localização definida</div>
