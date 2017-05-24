@@ -50,9 +50,9 @@
                             <div class="image">
                                 <img [src]="conversation.photo_url">
                             </div>
-                            <div class="message-info" (click)="goToMessages(conversation.id_user, conversation.user_name)">
+                            <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
                                 <div>
-                                    <span class="nameMsg">{{conversation.user_name}}</span>
+                                    <span class="nameMsg">{{conversation.name}}</span>
                                     <span class="time">20:00</span>
                                 </div>
 

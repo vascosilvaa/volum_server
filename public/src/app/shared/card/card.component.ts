@@ -5,7 +5,7 @@ import { AuthenticationGuard } from './../Auth/authentication.guard';
 import { SharedService } from './../shared.service';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
-import { Component, ViewContainerRef, OnInit, Input } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, Input, ViewChild } from '@angular/core';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { RouterModule, Router } from '@angular/router';
@@ -29,6 +29,7 @@ export class CardComponent implements OnInit {
   @Input() map;
   @Input() likes;
   @Input() idVol;
+  @Input() photos;
 
   public foto1 = 1;
   public foto2 = 0;
@@ -39,21 +40,28 @@ export class CardComponent implements OnInit {
   public likeState: number;
   public login: any;
 
+  config: Object = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    noSwiping	: true
+  };
 
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
-    private router: Router, public auth:AuthenticationService) {
+    private router: Router, public auth: AuthenticationService) {
 
     overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {
-
-    if(this.auth.isAuthenticated()) {
-      this.login=1;
+    console.log("photos", this.photos);
+    if (this.auth.isAuthenticated()) {
+      this.login = 1;
       this.checkLike();
     } else {
-      this.login=0;
+      this.login = 0;
     }
 
     this.countLikes();
@@ -151,12 +159,12 @@ export class CardComponent implements OnInit {
         .catch(err => console.log(err));
     }
   }
-  
+
   like(id_vol) {
     this.likeState = 1;
     this.numberLikes++;
     this.sharedService.like(id_vol).then(res => {
-      
+
       console.log(res);
     });
   }
@@ -164,7 +172,7 @@ export class CardComponent implements OnInit {
     this.likeState = 0;
     this.numberLikes--;
     this.sharedService.dislike(id_vol).then(res => {
-      
+
       console.log(res);
     });
   }

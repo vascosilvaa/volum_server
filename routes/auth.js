@@ -259,16 +259,18 @@ app.get('/confirm-email', function (req, res) {
     // SET USER WHERE EMAIL = X ACTIVE = TRUE
 });
 
-app.get('/check/:login', function (req, res) {
-    if (!req.params.email) {
+
+app.post('/checkEmail/', function (req, res) {
+    if (!req.body.email) {
         return res.status(400).json({
             success: false,
             message: "Falta o User"
         });
     }
-    getUserDB(req.params.email, function (user) {
-        if (!user) res.status(201).send({ login: "OK" });
-        else res.status(400).json({
+    console.log(req.body);
+    getUserDB(req.body.email, function (user) {
+        if (!user) res.status(200).send({ success: true });
+        else res.status(200).json({
             success: false,
             message: "Já existe"
         });

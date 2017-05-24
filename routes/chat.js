@@ -16,6 +16,26 @@ var app = module.exports = express.Router();
  * @apiGroup Chat
  */
 
+function refSort(targetData, refData) {
+    // Create an array of indices [0, 1, 2, ...N].
+    var indices = Object.keys(refData);
+
+    // Sort array of indices according to the reference data.
+    indices.sort(function (indexA, indexB) {
+        if (refData[indexA] < refData[indexB]) {
+            return -1;
+        } else if (refData[indexA] > refData[indexB]) {
+            return 1;
+        }
+        return 0;
+    });
+
+    // Map array of indices to corresponding values of the target array.
+    return indices.map(function (index) {
+        return targetData[index];
+    });
+}
+
 var returnRouter = function (io) {
 
     io.on('connection', function (socket) {
@@ -32,11 +52,10 @@ var returnRouter = function (io) {
 
     app.get('/', passport.authenticate('jwt'), function (req, res) {
 
-        db.get().query('SELECT * FROM user_relations WHERE user_relations.id_user = ? OR user_relations.id_user2 = ?', [req.user.id_user, req.user.id_user], function (error, results, fields) {
+        db.get().query('SELECT * FROM user_relations INNER JOIN users ON user_relations.id_user = users.id_user WHERE user_relations.id_user = ? OR user_relations.id_user2 = ? ORDER BY user_relations.date DESC', [req.user.id_user, req.user.id_user], function (error, results, fields) {
             if (error) throw error;
             let conversations = [];
 
-            console.log("RESULTS", results);
 
             let userIds = [];
 
@@ -46,38 +65,25 @@ var returnRouter = function (io) {
 
                 if (results[i].id_user == req.user.id_user) {
 
-                    userIds.push(results[i].id_user2);
+                    conversations.push({
+                        id_conversation: results[i].id_conversation,
+                        id_user: results[i].id_user2,
+                    });
 
                 } else {
-                    userIds.push(results[i].id_user);
+                    conversations.push({
+                        id_conversation: results[i].id_conversation,
+                        id_user: results[i].id_user,
+                    });
                 }
             }
 
-            console.log("USEERS", userIds.map(Number));
 
-            db.get().query('SELECT id_user, photo_url, name FROM users WHERE id_user IN (?)', [userIds.map(Number)], function (error, user, fields) {
 
-                console.log("error", error)
-                console.log("user", user);
-
-                for (let i = 0; i < user.length; i++) {
-                    conversations.push({
-                        id_conversation: results[i].id_conversation,
-                        //      user_name: user[i].name,
-                        //  id_user: user[i].id_user,
-                        // photo_url: user[i].photo_url
-                    })
-
-                }
-                res.json({
-                    success: true,
-                    conversations
-                });
-
+            res.json({
+                success: true,
+                conversations
             });
-
-
-
 
 
         });
@@ -101,7 +107,6 @@ var returnRouter = function (io) {
                 if (error) throw error;
 
             } else {
-                console.log(messages);
                 res.json({
                     success: true,
                     messages

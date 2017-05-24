@@ -84,7 +84,7 @@ var returnRouter = function (io) {
                                 date_begin: results[i].vols.date_begin,
                                 date_end: results[i].vols.date_end,
                                 lat: results[i].vols.lat,
-                                long: results[i].vols.long,
+                                lng: results[i].vols.lng,
                                 start_time: results[i].vols.start_time,
                                 end_time: results[i].vols.end_time
                             });
@@ -147,7 +147,7 @@ var returnRouter = function (io) {
                                     date_creation: results[i].vols.date_creation,
                                     duration: results[i].vols.duration,
                                     lat: results[i].vols.lat,
-                                    long: results[i].vols.long,
+                                    lng: results[i].vols.lng,
                                     photo_1: results[i].vols.photo_1
                                 },
                                 user: {
@@ -208,7 +208,9 @@ var returnRouter = function (io) {
                             let index = loggedUsers.findIndex(x => x.user == req.body.id_user);
                             console.log("mandou notificacao");
                             console.log("INDEX 1", index);
-                            io.to(loggedUsers[index]).emit('request');
+                            console.log("LOOGED USERS", loggedUsers);
+                            console.log("teste", loggedUsers[index]);
+                            io.to(loggedUsers[index].socket).emit('request');
 
                             res.json({
                                 success: true,
