@@ -1,3 +1,4 @@
+import { SwiperModule } from 'angular2-useful-swiper';
 import { MomentModule } from 'angular2-moment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
@@ -36,6 +37,7 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
     NgbModule.forRoot(),
     MomentModule,
     BootstrapModalModule,
+    SwiperModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),

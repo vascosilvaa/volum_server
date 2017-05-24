@@ -32,35 +32,36 @@ export class FeedComponent implements OnInit {
 
   ngOnInit() {
 
-     if(this.auth.isAuthenticated()) {
-      this.login=1;
+    if (this.auth.isAuthenticated()) {
+      this.login = 1;
     } else {
-      this.login=0;
+      this.login = 0;
     }
     //VERIFICAR LOGIN
 
     if (this.login) {
       this.feedService.getVols()
-      .then(res => {
-        this.vols = res.vols;
-        this.ready = true;
-      })
-      .catch(err => console.log(err));
+        .then(res => {
+          this.vols = res.vols;
+          console.log("VOLS", this.vols)
+          this.ready = true;
+        })
+        .catch(err => console.log(err));
 
     } else if (!this.login) {
       this.feedService.getPrivates()
-      .then(res => {
-        this.privateVols = res.vols;
-        this.ready = true;
-      })
-      .catch(err => console.log(err));
+        .then(res => {
+          this.privateVols = res.vols;
+          this.ready = true;
+        })
+        .catch(err => console.log(err));
 
       this.feedService.getInstVol()
-      .then(res => {
-        this.instVols = res.vols;
-        console.log(res);
-      })
-      .catch(err => console.log(err));
+        .then(res => {
+          this.instVols = res.vols;
+          console.log(res);
+        })
+        .catch(err => console.log(err));
     }
   }
 }

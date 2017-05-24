@@ -9,8 +9,8 @@ import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { RouterModule, Router } from '@angular/router';
 
 export class ModalContext extends BSModalContext {
-    public idVol: any;
-    public idProfile: any;
+  public idVol: any;
+  public idProfile: any;
 }
 
 @Component({
@@ -28,20 +28,20 @@ export class ModalProfileComponent implements OnInit {
   context: ModalContext;
 
 
-  constructor(private router: Router, public modal: Modal, public sharedService: SharedService , private dialog: DialogRef<ModalContext>/*, private volsService: VolDetailsModalService*/) {
+  constructor(private router: Router, public modal: Modal, public sharedService: SharedService, private dialog: DialogRef<ModalContext>/*, private volsService: VolDetailsModalService*/) {
     this.context = dialog.context;
-    this.context.isBlocking = false; 
+    this.context.isBlocking = false;
   }
 
   ngOnInit() {
-
+    
   }
 
   ngAfterViewInit() {
 
     setTimeout(() => {
-          this.getUser();
-    })
+      this.getUser();
+    }, 250)
   }
 
 
@@ -53,7 +53,9 @@ export class ModalProfileComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
- onSelect(profile) {
+  onSelect(profile) {
+    this.dialog.dismiss();
+
     this.router.navigate(['/profile/' + this.context.idProfile + '/activity']);
   }
 }
