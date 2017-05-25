@@ -4,7 +4,7 @@
     <div class="container sub-header-profile">
         <div class="row">
             <div class="col-md-3 col-sm-12 col-12 profile-user-picture">
-                <img src={{user?.photo}} alt="profile user picture">
+                <img src={{user?.photo}} alt="{{user?.name}}" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
                 <div class="col user-rate">
                     <md-icon class="rate1">star_rate</md-icon>
                     <md-icon>star_rate</md-icon>
@@ -16,6 +16,7 @@
             <div class="col-md-9 col-sm-12 col-12 profile-user-name-location">
                 <div class="user-name">
                     {{user?.username}}
+                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()">message</md-icon>
                 </div>
                 <div class="user-location">
                     Aveiro, Sever do Vouga

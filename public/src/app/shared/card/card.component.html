@@ -2,7 +2,7 @@
     <!-- HEADER CARD -->
     <div class="row no-margin">
         <div (click)="onSelect(userCreator)" class="col card-user-image col-md-auto">
-            <img src="{{avatar}}">
+            <img src="{{avatar}}" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
         </div>
         <div class="col-6 col-lg-8 card-user-nd">
             <div *ngIf="verified==1" class="card-user-name ts16">
@@ -35,16 +35,7 @@
 
     <!-- CONTENT CARD -->
     <div *ngIf="map!=true">
-        <div class="imgSlider">
-            <swiper [config]="config">
-                <div class="swiper-wrapper swiper-no-swiping">
-                    <img *ngFor="let photo of photos" class="imgSliderInd swiper-slide" [src]="photo">
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </swiper>
-        </div>
+        <img class="imgSliderInd " [src]="photos[0]">
 
     </div>
     <div class="row no-margin card-volum-content" (click)="openVolDetails(idVol)">

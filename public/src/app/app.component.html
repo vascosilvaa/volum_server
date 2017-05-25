@@ -48,7 +48,7 @@
                         <div class="message-item" *ngIf="!conversations">Loading...</div>
                         <div class="message-item" *ngFor="let conversation of conversations">
                             <div class="image">
-                                <img [src]="conversation.photo_url">
+                                <img [src]="conversation.photo_url" onerror="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
                             </div>
                             <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
                                 <div>
@@ -97,7 +97,7 @@
                 <li *ngIf="user" class="nameDropdown" ngbDropdown ngbDropdownToggle>
 
                     <span>
-                    <img class="navbar-user-picture" [src]="user?.photo">
+                    <img class="navbar-user-picture" [src]="user?.photo" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'"> 
                     <span>{{user?.username}}</span>
                     <i class="material-icons arrow_dropdown">arrow_drop_down</i>
 

@@ -59,93 +59,24 @@ function hashUrl(id) {
 
 app.post('/register', function (req, res) {
     console.log(req.body)
-    if (!req.body.password || !req.body.email || !req.body.name) {
+    if (!req.body.password || !req.body.email || !req.body.name || !req.body.type) {
         return res.status(400).json({ success: false, message: "Falta enviar dados" });
-    } else if (req.files && req.files.photo.mimetype != 'image/jpeg') {
-        return res.status(200).send('Foto invalida');
     } else {
-
-        getUserDB(req.body.login, function (user) {
-            //SE USER NAO EXISTIR
-            if (!user && req.files) {
-                console.log("mandou foto")
-
+        getUserDB(req.body.email, function (user) {
+            if (!user) {
+                console.log("body register", req.body)
                 bcrypt.genSalt(saltRounds, function (err, salt) {
                     bcrypt.hash(req.body.password, salt, function (err, hash) {
 
                         user = {
                             password: hash,
                             email: req.body.email,
-                            type_user: 1,
+                            type_user: req.body.type,
+                            birth_date: req.body.birth_date,
                             name: req.body.name,
-                            gender: 0,
-                            birth_date: new Date()
-
+                            gender: req.body.gender,
                         };
-
-                        db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
-                            if (err) {
-                                res.json({ success: false, error: err })
-                                throw new Error(err);
-                            } else {
-                                let url = hashUrl(result.insertId);
-                                let userId = result.insertId;
-                                //USER CRIADO
-                                //GERAR TOKEN
-
-                                let sampleFile = req.files.photo;
-                                sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function (err) {
-
-                                    if (err) {
-                                        return res.status(500).send(err);
-                                    } else {
-                                        console.log(url);
-                                        console.log(userId);
-
-                                        db.get().query('UPDATE users SET photo_url = ? WHERE id_user = ?', [url, userId], function (err, result) {
-                                            if (err) {
-                                                throw new Error(err);
-
-                                            } else {
-                                                newUser = {
-                                                    id: userId,
-                                                    password: hash,
-                                                    email: user.email,
-                                                    type_user: 1
-                                                };
-
-
-
-
-                                                res.status(201).send({
-                                                    message: "User criado com sucesso",
-                                                    id_user: userId,
-                                                    id_token: createToken(newUser)
-                                                });
-                                            }
-                                        });
-                                    }
-
-                                });
-
-
-                            }
-                        });
-                    });
-                });
-            } else if (!user && !req.files) {
-                console.log("nao mandou foto")
-                bcrypt.genSalt(saltRounds, function (err, salt) {
-                    bcrypt.hash(req.body.password, salt, function (err, hash) {
-
-                        user = {
-                            password: hash,
-                            email: req.body.email,
-                            type_user: 1,
-                            name: req.body.name,
-                            gender: 0,
-                            birth_date: new Date()
-                        };
+                        console.log("user register", user)
 
                         db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
                             if (err) {
@@ -160,29 +91,27 @@ app.post('/register', function (req, res) {
                                 newUser = {
                                     id: userId,
                                     password: hash,
-                                    email: user.email,
+                                    email: req.body.email,
                                     type_user: 1
                                 };
 
-                                let mailOptions = {
-                                    from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
-                                    to: user.email, // list of receivers
-                                    subject: 'Lindo', // Subject line
-                                    html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
-                                };
-
-                                // send mail with defined transport object
-                                transporter.sendMail(mailOptions, (error, info) => {
-                                    if (error) {
-                                        return console.log(error);
-                                    }
-                                    console.log('Message %s sent: %s', info.messageId, info.response);
-                                });
-
-
-                                // setup email data with unicode symbols
-
-
+                                /*
+                                                            // setup email data with unicode symbols
+                                                            let mailOptions = {
+                                                                from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
+                                                                to: user.email, // list of receivers
+                                                                subject: 'Lindo', // Subject line
+                                                                html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
+                                                            };
+                                
+                                                            // send mail with defined transport object
+                                                            transporter.sendMail(mailOptions, (error, info) => {
+                                                                if (error) {
+                                                                    return console.log(error);
+                                                                }
+                                                                console.log('Message %s sent: %s', info.messageId, info.response);
+                                                            });
+                                */
                                 res.status(201).send({
 
                                     message: "User criado com sucesso",
@@ -203,6 +132,24 @@ app.post('/register', function (req, res) {
         });
     }
 });
+
+//PHOTO
+/*
+
+                                let sampleFile = req.files.photo;
+                                sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function (err) {
+
+                                    if (err) {
+                                        return res.status(500).send(err);
+                                    } else {
+                                        console.log(url);
+                                        console.log(userId);
+
+                                        db.get().query('UPDATE users SET photo_url = ? WHERE id_user = ?', [url, userId], function (err, result) {
+                                            if (err) {
+                                                throw new Error(err);
+
+                                                */
 
 
 /**

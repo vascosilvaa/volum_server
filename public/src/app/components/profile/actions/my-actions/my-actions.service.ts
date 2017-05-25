@@ -16,12 +16,6 @@ export class MyActionsService {
     }
 
 
-    getMyActions(id) {
-    return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/my-vols`).toPromise()
-        .then(res => { return res.json() })
-        .catch(error => console.log(error));
-
-    }
 
     getAddress(lat, lng) {
         return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()

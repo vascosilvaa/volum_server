@@ -169,7 +169,9 @@ body {
 .fade.in {
     opacity: 1;
 }
-
+.clickable {
+    cursor:pointer;
+}
 .modal.in .modal-dialog {
     -webkit-transform: translate(0, 0);
     -o-transform: translate(0, 0);

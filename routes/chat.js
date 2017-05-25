@@ -147,6 +147,33 @@ var returnRouter = function (io) {
         });
 
     });
+
+
+    app.post('/', passport.authenticate('jwt'), function (req, res) {
+        console.log("aaa")
+        console.log(req.body.id_user);
+        console.log(req.user.id_user);
+        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?)', [req.user.id_user, req.body.id_user],
+            function (error, results, fields) {
+                if (error) {
+                    res.json({
+                        success: true,
+
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        id_conversation: results.insertId
+                    });
+                }
+                console.log(fields)
+
+
+            });
+
+    });
+
+
     return app;
 }
 
