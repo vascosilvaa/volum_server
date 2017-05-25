@@ -119,13 +119,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-content">
+                <div class="card-content" style="display: flex; height:67px">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="addressTitle">
-                                {{addressName[vols?.id_vol]}}
-                            </div>
-                            <div class="Address">
+                        <div class="col-12" style="display:flex">
+                            <div class="addressTitle"  style="display:flex; align-items: center" >
                                 {{address[vols?.id_vol]}}
                             </div>
                         </div>
@@ -283,100 +280,66 @@
                 <div class="card-header cardTitle">
                     <div class="row">
                         <div class="col titleCard no-padding">
-                            <div>Discussão</div>
+                            <div>Comentários</div>
                             <div class="see-all ml-auto"></div>
                         </div>
                     </div>
                 </div>
-                <div class="comments-section row">
-                    
-                    <div class="row card-Comments no-padding">
-                        <div class="col-12 ">
-                            <div class="row comments-header">
-                                <div class="col card-user--comments-image col-md-auto">
-                                    <img src="assets/imgs/avatar.png">
+                <div class="comments-section">
+                    <div class="card-Comments" *ngIf="numberComments>0">
+                            <div class="col-12"  *ngFor="let comment of comments">
+                                <div class="row comments-header">
+                                    <div class="col card-user--comments-image col-md-auto">
+                                        <img src="{{comment.photo_url}}">
+                                    </div>
+                                    <div class="col-8 card-user-nd">
+                                        <div class="card-user-name-comments ts13">{{comment.name}}</div>
+                                        <div class="card-date-comments ts12">10 horas</div>
+                                    </div>
+                                    <div class="col card-option-comments text-right">
+                                        <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
+                                        <md-menu #menu="mdMenu">
+                                            <button md-menu-item>
+                                    <md-icon>dialpad</md-icon>
+                                    <span>Redial</span>
+                                </button>
+                                            <button md-menu-item disabled>
+                                    <md-icon>voicemail</md-icon>
+                                    <span>Check voicemail</span>
+                                </button>
+                                            <button md-menu-item>
+                                    <md-icon>notifications_off</md-icon>
+                                    <span>Disable alerts</span>
+                                </button>
+                                        </md-menu>
+                                    </div>
                                 </div>
-                                <div class="col-8 card-user-nd">
-                                    <div class="card-user-name-comments ts13">Pedro Araújo</div>
-                                    <div class="card-date-comments ts12">10 horas</div>
+                                <div class="row comments-content">
+                                    <div class="col-12 ts13">
+                                    {{comment.message}}    
+                                    </div>
                                 </div>
-                                <div class="col card-option-comments text-right">
-                                    <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
-                                    <md-menu #menu="mdMenu">
-                                        <button md-menu-item>
-                                <md-icon>dialpad</md-icon>
-                                <span>Redial</span>
-                            </button>
-                                        <button md-menu-item disabled>
-                                <md-icon>voicemail</md-icon>
-                                <span>Check voicemail</span>
-                            </button>
-                                        <button md-menu-item>
-                                <md-icon>notifications_off</md-icon>
-                                <span>Disable alerts</span>
-                            </button>
-                                    </md-menu>
-                                </div>
+                                <div class="borderComments"></div>
                             </div>
-                            <div class="row comments-content">
-                                <div class="col-12 ts13">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada ante eget
-                                </div>
-                            </div>
-                            <div class="borderComments"></div>
-                        </div>
-                        <div class="col-12 ">
-                            <div class="row comments-header">
-                                <div class="col card-user--comments-image col-md-auto">
-                                    <img src="assets/imgs/avatar.png">
-                                </div>
-                                <div class="col-8 card-user-nd">
-                                    <div class="card-user-name-comments ts13">Pedro Araújo</div>
-                                    <div class="card-date-comments ts12">10 horas</div>
-                                </div>
-                                <div class="col card-option-comments text-right">
-                                    <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
-                                    <md-menu #menu="mdMenu">
-                                        <button md-menu-item>
-                                <md-icon>dialpad</md-icon>
-                                <span>Redial</span>
-                            </button>
-                                        <button md-menu-item disabled>
-                                <md-icon>voicemail</md-icon>
-                                <span>Check voicemail</span>
-                            </button>
-                                        <button md-menu-item>
-                                <md-icon>notifications_off</md-icon>
-                                <span>Disable alerts</span>
-                            </button>
-                                    </md-menu>
-                                </div>
-                            </div>
-                            <div class="row comments-content">
-                                <div class="col-12 ts13">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla diam id tellus convallis finibus. In hac habitasse platea dictumst. Sed m alesuada ante eget lorem In hac habitasse platea dictumst. Sed male suada ante eget
-                                </div>
-                            </div>
-                            <div class="borderComments"></div>
-                        </div>
-                        </div>
+                    </div> 
                 </div>
         </div>
+        <!--
         <div class="ts14 more-Comments">
                 <span class="textMoreComments">Carregar mais comentários</span><span class="moreIcon"> +</span>
-            </div>
-
+        </div>
+        -->
             <div class="col-12 insert-comment">
-                <div class="row">
-                    <div class="col-1 card-user--comments-image card-user-comments-image-comments">
-                        <img src="assets/imgs/avatar.png">
+                <div style="display:flex">
+                    <div class="card-user--comments-image card-user-comments-image-comments">
+                        <img src="{{vols?.user.photo_url}}">
                     </div>
-                    <div class="col">
+                    <div style="width:93%">
                         <md-input-container class="width100">
-                            <input mdInput>
+                            <input mdInput [(ngModel)]="comentario" (keyup.enter)="sendComment(comentario)">
                         </md-input-container>
                     </div>
-                    <div class="col-1 btnSend text-center">
+                    <div class="text-center" style="padding-left:15px;">
                         <md-icon class="btnSendIcon btnSendColorGrey">send</md-icon>
                     </div>
                 </div>

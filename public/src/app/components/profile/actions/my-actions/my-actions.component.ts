@@ -1,15 +1,23 @@
+import { ModalProfileComponent } from './../../../../shared/modal-profile/modal-profile.component';
+import { SharedModule } from './../../../../shared/shared.module';
+import { ModalViewAllComponent } from './../../../../shared/modal-view-all/modal-view-all.component';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyActionsService } from './my-actions.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
 @Component({
   selector: 'app-my-actions',
   templateUrl: './my-actions.component.html',
   styleUrls: ['./my-actions.component.scss'],
-  providers: [MyActionsService]
+  providers: [MyActionsService],
+  entryComponents: [ModalViewAllComponent]
 })
 export class MyActionsComponent implements OnInit {
-  constructor(private route:ActivatedRoute, private myactionsservice:MyActionsService, private router: Router) { }
+  constructor(public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef, private route:ActivatedRoute, private myactionsservice:MyActionsService, private router: Router) {
+        overlay.defaultViewContainer = vcRef;
+   }
   public idProfile:any;
   public myVols: any;
   public address:any;
@@ -23,6 +31,7 @@ export class MyActionsComponent implements OnInit {
   public numberCandidates: any;
   public candidates: any;
   public confirmeds: any;
+  
   ngOnInit() {
     this.route.params.subscribe((params) => {
         this.idProfile = this.route.parent.parent.parent.snapshot.params['id'];
@@ -31,54 +40,86 @@ export class MyActionsComponent implements OnInit {
     
   }
 
-    countConfirmeds(id) {
-    this.myactionsservice.countConfirmeds(id)
-      .then(res => {
-        this.numberConfirmeds = res.count;
-        console.log(this.myVols[id]);
-        
-      })
-      .catch(err => console.log(err));
+  openCandidates(type, id_vol) {
+    
+      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
   }
 
-  countCandidates(id) {
-    this.myactionsservice.countCandidates(id)
-      .then(res => {
-        this.numberCandidates = res.count;
-      })
-      .catch(err => console.log(err));
-  } 
-  getCandidates(id) {
-    this.myactionsservice.getCandidates(id, 5)
-      .then(res => {
-        this.candidates = res.users;
-      })
-      .catch(err => console.log(err));
-  }
-
-  getConfirmed(id) {
-    this.myactionsservice.getConfirmed(id, 5)
-      .then(res => {
-        this.confirmeds = res.users;
-      })
-      .catch(err => console.log(err));
+  openProfileModal(idProfile) {
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
   }
 
   getMyActions(id) {
     this.myactionsservice.getMyActions(id)
      .then(res => {
         this.myVols = res.vols;
-        console.log(res.vols)
-        for(let vol of this.myVols) {
-          this.getAddress(vol.lat, vol.lng);
-          this.myactionsservice.getAddress(vol.lat, vol.lng)
-          this.getTime(vol.start_time, vol.end_time);
-          this.countCandidates(vol.id_vol);
-          this.countConfirmeds(vol.id_vol);
-      }
-
+        this.countCandidates();
+        this.countConfirmeds();
+        this.getAddress();
     })
   }
+
+    getAddress() {
+    for(let i =0; i < this.myVols.length; i++) {
+      if(this.myVols[i].lat && this.myVols[i].lng){
+       this.myactionsservice.getAddress(this.myVols[i].lat, this.myVols[i].lng)
+       .then(res => {
+        this.addressData = res.results;
+        this.myVols[i].address = this.addressData[0].formatted_address;
+      });
+      }
+    }
+  }
+
+   getConfirmed(i, id) {
+    this.myactionsservice.getConfirmed(id, 5)
+      .then(res => {
+        this.confirmeds = res.users;
+        this.myVols[i].confirmeds=this.confirmeds;
+      })
+      .catch(err => console.log(err));
+  }
+
+
+
+  countConfirmeds() {
+    for(let i =0; i < this.myVols.length; i++) {
+    this.myactionsservice.countConfirmeds(this.myVols[i].id_vol)
+      .then(res => {
+        this.numberConfirmeds = res.count;
+        this.myVols[i].numberConfirmeds = this.numberConfirmeds;
+        if(this.numberConfirmeds>0) {
+          this.getConfirmed(i, this.myVols[i].id_vol);
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  }
+
+  getCandidates(i, id) {
+    this.myactionsservice.getCandidates(id, 5)
+      .then(res => {
+        this.candidates = res.users;
+        this.myVols[i].candidates=this.candidates;
+      })
+      .catch(err => console.log(err));
+  }
+
+
+
+  countCandidates() {
+    for(let i =0; i < this.myVols.length; i++) {
+    this.myactionsservice.countCandidates(this.myVols[i].id_vol)
+      .then(res => {
+        this.numberCandidates = res.count;
+        this.myVols[i].numberCandidates = this.numberCandidates;
+        if(this.numberCandidates>0) {
+          this.getCandidates(i, this.myVols[i].id_vol);
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  } 
   
   getTime(start, end) {
     this.hora_inicio = start.slice(0,2);
@@ -87,18 +128,7 @@ export class MyActionsComponent implements OnInit {
     this.minutos_fim = end.slice(3,5);
   }
 
-  getAddress(lat, long) {
-    if(lat && long) {
-      this.myactionsservice.getAddress(lat, long)
-      .then(res => {
-        this.addressData = res.results;
-        this.address = this.addressData[0].formatted_address;
-    //    this.addressName = this.addressData[0].address_components[0].short_name;
-      })
-    }
-  }
-
-  seeDetails(id_vol) {
+seeDetails(id_vol) {
     this.router.navigate(['/profile/' + this.idProfile + '/details/' + id_vol]);
   }
 }

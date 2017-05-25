@@ -16,7 +16,9 @@ export class ActionsComponent implements OnInit {
   public userLogin: any;
   public idLogin: any;
   constructor(public route: ActivatedRoute, public http: Http, private profileService: ProfileService,
-  private auth: AuthenticationService, private router: Router) { }
+  private auth: AuthenticationService, private router: Router) {
+
+   }
 
   ngOnInit() {
   /*this.route.params.subscribe((params) => {

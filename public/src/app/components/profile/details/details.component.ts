@@ -34,6 +34,9 @@ export class DetailsComponent implements OnInit {
   public addressName=[];
   public candidates:any;
   public confirmeds:any;
+  public numberComments: any;
+  public comments: any;
+  public comentario: any;
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
   public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService, 
   private router: Router, private detailsservice: DetailsService) {
@@ -49,8 +52,43 @@ export class DetailsComponent implements OnInit {
     this.getVol(this.idVol);
     this.getCandidates(this.idVol);
     this.getConfirmed(this.idVol);
+    this.countComments(this.idVol);
+  }
 
-    
+  sendComment(comment) {
+    if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
+
+      this.detailsservice.sendComment(comment, this.idVol).then(res => {
+        this.comentario = '';
+        this.numberComments++;
+        this.comments.push({
+          id_user: this.vols.user.id_user,
+          message: comment,
+          photo_url: this.vols.user.photo_url,
+          name: this.vols.user.name,
+        })
+      });
+
+    }
+  }
+
+  countComments(idVol) {
+    this.detailsservice.countComments(idVol)
+      .then(res => {
+        this.numberComments = res.count;
+        if(this.numberComments>0) {
+          this.getComments(idVol);
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  getComments(idVol) {
+    this.detailsservice.getComments(idVol)
+        .then(res => {
+          this.comments = res.comments;
+        })
+        .catch(err => console.log(err));
   }
 
   getVol(idVol) {
@@ -59,7 +97,7 @@ export class DetailsComponent implements OnInit {
         this.vols = res.vol;
         this.getAddress();
         this.lat = parseFloat(this.vols.lat);
-        this.lng = parseFloat(this.vols.long);
+        this.lng = parseFloat(this.vols.lng);
         this.hora_inicio = this.vols.start_time.slice(0,2);
         this.minutos_inicio = this.vols.start_time.slice(3,5);
         this.hora_fim = this.vols.end_time.slice(0,2);
@@ -85,7 +123,7 @@ export class DetailsComponent implements OnInit {
   }
 
     getAddress() {
-        this.detailsservice.getAddress(this.vols.lat, this.vols.long)
+        this.detailsservice.getAddress(this.vols.lat, this.vols.lng)
         .then(res => {
           this.addressData = res.results;
            this.address[this.vols.id_vol] = this.addressData[0].formatted_address;

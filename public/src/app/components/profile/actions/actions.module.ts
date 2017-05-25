@@ -1,3 +1,6 @@
+import { SharedModule } from './../../../shared/shared.module';
+import { ModalProfileComponent } from './../../../shared/modal-profile/modal-profile.component';
+import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
 import { ActionsComponent } from './actions.component';
 import { ActionsRoutingModule } from './actions.routing';
 import { WaitingComponent } from './waiting/waiting.component';
@@ -15,8 +18,10 @@ import { ProfileComponent } from '../profile.component';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
+    NgbModule.forRoot(),
     RouterModule,
     ReactiveFormsModule,
     MaterialModule,
@@ -26,6 +31,10 @@ import { ProfileComponent } from '../profile.component';
   declarations: [ActionsComponent, MyActionsComponent, InvitesComponent, WaitingComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
+  ],
+  entryComponents: [
+    ModalViewAllComponent,
+    ModalProfileComponent
   ]
 })
 
