@@ -815,6 +815,41 @@ app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) 
 
 });
 
+app.post('/:id/applies/cancel', passport.authenticate('jwt'), function (req, res) {
+    if (!Number(req.params.id)) {
+        res.json({
+            success: false,
+            message: 'Id Inválido'
+        });
+    } else {
+        db.get().query('DELETE FROM user_vol WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+            console.log(results);
+            if (error) {
+                res.json({
+                    success: false,
+                    error: error
+                });
+            } else if (results.affectedRows == 1 && results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Sucesso'
+                });
+            } else if (results.changedRows == 0) {
+                res.json({
+                    success: false,
+                    message: 'Este Voluntariado nao existe ou o user nao é candidato'
+                });
+            } else {
+                res.json({
+                    success: false,
+                    message: "Erro Desconhecido"
+                });
+            }
+
+        });
+    }
+});
+
 /**
  * @api {post} /vols/:id/comments Apagar Voluntariado
  * @apiName deleteVol

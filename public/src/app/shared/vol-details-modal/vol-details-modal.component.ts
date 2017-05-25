@@ -162,7 +162,7 @@ export class VolDetailsModalComponent implements OnInit {
       .then((d) => d.result)
       .then((r) => { console.log(r); this.state = 3 }, (error) => { console.log(error); });
   }
-
+  
   sendComment(comment) {
     if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 

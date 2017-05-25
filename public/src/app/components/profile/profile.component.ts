@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   i: any;
   usernames: any;
   userId: any;
+  public online: number = 0;
   idProfile: any;
   private user: any = {}
   private userLogin: any;
@@ -44,7 +45,7 @@ export class ProfileComponent implements OnInit {
   constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private route: ActivatedRoute, private router: Router, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
-     }
+  }
 
   ngOnInit() {
 
@@ -53,7 +54,10 @@ export class ProfileComponent implements OnInit {
       this.idProfile = this.route.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
-        this.profileService.saveActiveUser(this.user)
+        this.profileService.saveActiveUser(this.user);
+        this.profileService.checkOnline(this.user.id_user).then(res => {
+          this.online = res.state;
+        })
 
       });
 
@@ -71,6 +75,7 @@ export class ProfileComponent implements OnInit {
           this.userLogin = res.user;
           let id = localStorage.getItem('USER_ID');
           this.idLogin = id;
+
         }
 
       }
