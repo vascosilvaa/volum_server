@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Http } from '@angular/http';
 import { GlobalConstants } from './../../shared/global-constants';
 import { HttpClient } from './../../shared/http-client';
@@ -7,8 +8,8 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
-import { Component} from '@angular/core';
-import { Jsonp, URLSearchParams} from '@angular/http';
+import { Component } from '@angular/core';
+import { Jsonp, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
@@ -24,9 +25,21 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class ProfileService {
 
+    private dataStringSource = new Subject<Object>();
+
+    // Observable string stream
+    dataString$ = this.dataStringSource.asObservable();
+
+    // Service message commands
+    saveActiveUser(data: {}) {
+        this.dataStringSource.next(data)
+    }
+
     constructor(private http: HttpClient, private HTTP: Http) {
 
     }
+
+
 
     search(term) {
         if (term === '') {
@@ -45,9 +58,9 @@ export class ProfileService {
 
     getCoord(address) {
         console.log(address);
-        return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?address=`+address+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
-        .then(res => {return res.json() })
-        .catch(error => console.log(error));
+        return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?address=` + address + `&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
 
     }
 
@@ -75,7 +88,7 @@ export class ProfileService {
             .catch(error => console.log(error));
     }
     getMyVols(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/my-vols').toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/my-vols`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -121,6 +134,12 @@ export class ProfileService {
 
     checkState(id_user) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/checkFollow').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    engageConversation(id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/chat/`, { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

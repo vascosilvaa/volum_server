@@ -56,7 +56,6 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("photos", this.photos);
     if (this.auth.isAuthenticated()) {
       this.login = 1;
       this.checkLike();
@@ -66,24 +65,8 @@ export class CardComponent implements OnInit {
 
     this.countLikes();
 
-    moment.locale('pt-pt');
-    moment.updateLocale('pt', {
-      relativeTime: {
-        future: "in %s",
-        past: "%s",
-        s: "Agora mesmo",
-        m: "há 1 min",
-        mm: "há %d m",
-        h: "há 1h",
-        hh: "há %d horas",
-        d: "há 1 dia",
-        dd: "há %d dias",
-        M: "há 1 mo",
-        MM: "há %d meses",
-        y: "1 yr",
-        yy: "%d yrs"
-      }
-    });
+    moment.locale('pt-   pt');
+     
 
     /*  this.sharedService.getComments(this.idVol)
         .then(res => {

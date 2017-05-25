@@ -15,7 +15,7 @@ import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NewActionComponent implements OnInit {
   lat: number = 41.100856;
-  lng: number =  -8.544893;
+  lng: number = -8.544893;
   public category: any;
   public schedule = 0;
   public img = 0;
@@ -33,70 +33,75 @@ export class NewActionComponent implements OnInit {
   public coord: any;
   public coordAdvice: any;
   public idProfile: any;
-  
-  constructor(public Router: Router, public router: ActivatedRoute, public parser: NgbDateParserFormatter , private _fb: FormBuilder, private auth: AuthenticationService, public profileService:ProfileService) { }
+
+  constructor(public Router: Router, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
 
   ngOnInit() {
-      this.router.params.subscribe((params) => {
+    this.router.params.subscribe((params) => {
       this.idProfile = this.router.parent.parent.snapshot.params['id'];
 
     });
     this.profileService.getCategories().then(res => {
-        this.categories = res.categories;
-        console.log(res);
+      this.categories = res.categories;
+      console.log(res);
     });
-      this.form = this._fb.group({
-            name: ['', [Validators.required]],
-            description: ['', [Validators.required]],
-            category: ['', [Validators.required]],
-            insurance: ['', [Validators.required]],
-            date_begin: ['', [Validators.required]],
-            date_end: ['', [Validators.pattern('^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$')]],
-            start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-            end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-            duration: ['',],
-        });
+    this.form = this._fb.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      insurance: ['', [Validators.required]],
+      date_begin: ['', [Validators.required]],
+      date_end: ['', [Validators.pattern('^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$')]],
+      start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+      end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+      duration: ['',],
+    });
   }
 
-  onSubmit(form: any) {  
+  onSubmit(form: any) {
     this.form.controls.name.markAsTouched();
-      this.form.controls.description.markAsTouched();
-      this.form.controls.category.markAsTouched();
-      this.form.controls.insurance.markAsTouched()
-      this.form.controls.date_begin.markAsTouched();
-      this.form.controls.date_end.markAsTouched();
-      this.form.controls.start_time.markAsTouched();
-      this.form.controls.end_time.markAsTouched();
-      this.form.controls.duration.markAsTouched();  
-    if(form.valid && this.coord) {
-      
+    this.form.controls.description.markAsTouched();
+    this.form.controls.category.markAsTouched();
+    this.form.controls.insurance.markAsTouched()
+    this.form.controls.date_begin.markAsTouched();
+    this.form.controls.date_end.markAsTouched();
+    this.form.controls.start_time.markAsTouched();
+    this.form.controls.end_time.markAsTouched();
+    this.form.controls.duration.markAsTouched();
+    if (form.valid && this.coord) {
 
-    console.log('you submitted value:', form.value);
-      
-      form.value.date_begin = new Date(this.parser.format(form.value.date_begin)).getTime();
-      form.value.date_end = new Date(this.parser.format(form.value.date_end)).getTime();
+
+      console.log('you submitted value:', form.value);
+      if (form.value.date_begin instanceof Date) {
+
+      } else {
+        form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
+        form.value.date_end = new Date(this.parser.format(form.value.date_end));
+      }
+
+
       form.value.lat = this.lat;
       form.value.lng = this.lng;
-      
-      this.profileService.newAction( form.value ).then(res => {
+      console.log("VALUE", form.value);
+      this.profileService.newAction(form.value).then(res => {
         console.log(res);
-        if(res.error) {
+        if (res.error) {
           console.log('erro')
         } else {
-           this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
+          this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
         }
-    });
-           
+      });
+
     } else {
       this.coordAdvice = true;
     }
-  } 
-  navigate(lat, lng) {
-    this.lat=lat;
-    this.lng= lng;
-    this.coord=true;
   }
-  
+  navigate(lat, lng) {
+    this.lat = lat;
+    this.lng = lng;
+    this.coord = true;
+  }
+
   formatter = (x: {
     formatted_address: string
   }) => x.formatted_address;
@@ -116,7 +121,7 @@ export class NewActionComponent implements OnInit {
           }))
       .do(() => this.searching = false);
 
-  
+
 
   /*change(id) {
     if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name
@@ -157,18 +162,18 @@ export class NewActionComponent implements OnInit {
     }
   }
 */
-  showSchedule(){
+  showSchedule() {
     this.schedule = 1;
   }
 
-  hideSchedule(){
+  hideSchedule() {
     this.schedule = 0;
   }
 
-  showImgs(){
+  showImgs() {
     this.img = 1;
   }
-  hideImgs(){
+  hideImgs() {
     this.img = 0;
   }
 }

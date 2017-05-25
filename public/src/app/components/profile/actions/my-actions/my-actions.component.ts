@@ -1,7 +1,9 @@
+
 import { ModalProfileComponent } from './../../../../shared/modal-profile/modal-profile.component';
 import { SharedModule } from './../../../../shared/shared.module';
 import { ModalViewAllComponent } from './../../../../shared/modal-view-all/modal-view-all.component';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { ProfileService } from './../../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyActionsService } from './my-actions.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
@@ -14,13 +16,14 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   providers: [MyActionsService],
   entryComponents: [ModalViewAllComponent]
 })
+
 export class MyActionsComponent implements OnInit {
   constructor(public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef, private route:ActivatedRoute, private myactionsservice:MyActionsService, private router: Router) {
         overlay.defaultViewContainer = vcRef;
    }
   public idProfile:any;
   public myVols: any;
-  public address:any;
+  public address: any;
   // public addressName: any;
   public addressData: any;
   public hora_inicio: any;
@@ -34,10 +37,10 @@ export class MyActionsComponent implements OnInit {
   
   ngOnInit() {
     this.route.params.subscribe((params) => {
-        this.idProfile = this.route.parent.parent.parent.snapshot.params['id'];
+      this.idProfile = this.route.parent.parent.parent.snapshot.params['id'];
     });
     this.getMyActions(this.idProfile);
-    
+
   }
 
   openCandidates(type, id_vol) {
@@ -49,15 +52,6 @@ export class MyActionsComponent implements OnInit {
     this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
   }
 
-  getMyActions(id) {
-    this.myactionsservice.getMyActions(id)
-     .then(res => {
-        this.myVols = res.vols;
-        this.countCandidates();
-        this.countConfirmeds();
-        this.getAddress();
-    })
-  }
 
     getAddress() {
     for(let i =0; i < this.myVols.length; i++) {
@@ -96,7 +90,8 @@ export class MyActionsComponent implements OnInit {
     }
   }
 
-  getCandidates(i, id) {
+
+  getCandidates(id) {
     this.myactionsservice.getCandidates(id, 5)
       .then(res => {
         this.candidates = res.users;
@@ -121,14 +116,45 @@ export class MyActionsComponent implements OnInit {
     }
   } 
   
-  getTime(start, end) {
-    this.hora_inicio = start.slice(0,2);
-    this.minutos_inicio = start.slice(3,5);
-    this.hora_fim = end.slice(0,2);
-    this.minutos_fim = end.slice(3,5);
+
   }
 
-seeDetails(id_vol) {
+  getMyActions(id) {
+    this.profileService.getMyVols(id)
+      .then(res => {
+        this.myVols = res.vols;
+        console.log(res.vols)
+        for (let vol of this.myVols) {
+          this.getAddress(vol.lat, vol.lng);
+          this.myactionsservice.getAddress(vol.lat, vol.lng)
+          this.getTime(vol.start_time, vol.end_time);
+          this.countCandidates(vol.id_vol);
+          this.countConfirmeds(vol.id_vol);
+        }
+
+      })
+  }
+
+  getTime(start, end) {
+    this.hora_inicio = start.slice(0, 2);
+    this.minutos_inicio = start.slice(3, 5);
+    this.hora_fim = end.slice(0, 2);
+    this.minutos_fim = end.slice(3, 5);
+  }
+
+
+  getAddress(lat, long) {
+    if (lat && long) {
+      this.myactionsservice.getAddress(lat, long)
+        .then(res => {
+          this.addressData = res.results;
+          this.address = this.addressData[0].formatted_address;
+          //    this.addressName = this.addressData[0].address_components[0].short_name;
+        })
+    }
+  }
+
+  seeDetails(id_vol) {
     this.router.navigate(['/profile/' + this.idProfile + '/details/' + id_vol]);
   }
 }

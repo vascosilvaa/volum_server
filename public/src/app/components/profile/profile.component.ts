@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
   usernames: any;
   userId: any;
   idProfile: any;
-  private user: any;
+  private user: any = {}
   private userLogin: any;
   public idLogin: any;
   public state: Number;
@@ -53,6 +53,8 @@ export class ProfileComponent implements OnInit {
       this.idProfile = this.route.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
+        this.profileService.saveActiveUser(this.user)
+
       });
 
     });
@@ -62,10 +64,15 @@ export class ProfileComponent implements OnInit {
   getUser() {
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
-        this.userLogin = res.user;
-        console.log(this.userLogin);
-        let id = localStorage.getItem('USER_ID');
-        this.idLogin = id;
+        if (!res.user) {
+          this.auth.logout();
+        } else {
+          console.log(this.userLogin);
+          this.userLogin = res.user;
+          let id = localStorage.getItem('USER_ID');
+          this.idLogin = id;
+        }
+
       }
       );
     }
@@ -88,5 +95,14 @@ export class ProfileComponent implements OnInit {
     this.profileService.checkState(this.idProfile).then(res => {
       this.state = res.state;
     });
+  }
+  engageConversation() {
+    this.profileService.engageConversation(this.user['id_user']).then(res => {
+      console.log(res);
+      this.router.navigate(['./chat/msg/', res.id_conversation])
+    }).catch(err => {
+      this.router.navigate(['./chat/msg/'])
+
+    })
   }
 }
