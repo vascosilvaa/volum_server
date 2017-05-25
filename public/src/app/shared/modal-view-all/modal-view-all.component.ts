@@ -74,6 +74,8 @@ export class ModalViewAllComponent implements OnInit {
       })
       .catch(err => console.log(err));
   }
+
+  
   
 }
 /*
@@ -85,4 +87,6 @@ export class ModalViewAllComponent implements OnInit {
       .catch(err => console.log(err));
   }
 */
+
+
 

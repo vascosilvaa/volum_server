@@ -6,8 +6,8 @@
             <th>TITULO</th>
             <th>LOCALIZAÇÃO</th>
             <th>DATA</th>
-            <th>CONFIRMADOS</th>
             <th>CANDIDATOS</th>
+            <th>CONFIRMADOS</th>
             <th></th>
           </tr>
         </thead>
@@ -16,8 +16,8 @@
             <th class="tableBold tableTitle">{{vol.name}}</th>
 
             <td class="tablePlace">
-              <div class="tableBold">{{addressName}}</div>
-              <div class="">{{address}}</div>
+              <div class="tableBold">{{vol?.addressName}}</div>
+              <div class="">{{vol?.address}}</div>
 
             </td>
 
@@ -26,18 +26,34 @@
               <div class="">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}</div>
            </td>
 
-            <!--<td *ngIf="numberCandidates>=5"> 
-                <span *ngFor="let candidate of candidates" class="table-user-image"><img src="{{candidate?.photo_url}}"></span>
-            </td>-->
-            <td>
-               <span >{{vol?.numberCandidates}}</span>
+
+            <td *ngIf="vol.numberCandidates>=5" > 
+              <div style="display:flex">
+                <div *ngFor="let candidate of vol?.candidates" (click)="openProfileModal(candidate.id_user)" class="table-user-image"><img src="{{candidate?.photo_url}}"></div>
+                <div (click)="openCandidates(1, vol.id_vol)" *ngIf="vol.numberCandidates>5" class="pointer see-all-participants">+ {{vol.numberCandidates - 5}}</div>
+              </div>
+            </td>
+            
+            <td *ngIf="vol.numberCandidates==0">
+               <span class="numberIn blue">{{vol?.numberCandidates}}</span><span>  candidatos</span>
+            </td>
+            <td  class="pointer" *ngIf="vol.numberCandidates<5 && vol.numberCandidates > 0" (click)="openCandidates(1, vol.id_vol)">
+               <span class="numberIn yellow">{{vol?.numberCandidates}}</span><span>  candidato<span *ngIf="vol.numberCandidates!=1">s</span></span>
             </td>
 
-            <!--<td *ngIf="numberConfirmeds>=5">
-              <span  *ngFor="let confirmed of confirmeds" class="table-user-image"><img src="{{confirmed?.photo_url}}"></span>
-            </td>-->
-             <td>
-               <span >{{vol?.numberConfirmeds}}</span>
+
+             <td *ngIf="vol.numberConfirmeds>=5"> 
+              <div style="display:flex">
+                <div *ngFor="let confirmed of vol?.confirmeds" (click)="openProfileModal(confirmed.id_user)" class="table-user-image"><img src="{{confirmed?.photo_url}}"></div>
+                <div (click)="openCandidates(2, vol.id_vol)" *ngIf="vol.numberConfirmeds>5" class="pointer see-all-participants">+ {{vol.numberConfirmeds - 5}}</div>
+              </div>
+            </td>
+
+            <td *ngIf="vol.numberConfirmeds==0">
+               <span class="numberIn blue">{{vol?.numberConfirmeds}}</span><span>  confirmados</span>
+            </td>
+             <td class="pointer"  (click)="openCandidates(2, vol.id_vol)" *ngIf="vol.numberConfirmeds<5 && vol.numberConfirmeds > 0 ">
+               <span class="numberIn blue">{{vol?.numberConfirmeds}}</span><span>  confirmado<span *ngIf="vol.numberConfirmeds!=1">s</span></span>
             </td>
 
 

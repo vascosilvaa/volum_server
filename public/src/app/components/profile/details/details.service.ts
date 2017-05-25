@@ -37,5 +37,23 @@ export class DetailsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    countComments(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/comments/count`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getComments(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/comments`).toPromise()
+            .then(res => { return res.json()})
+            .catch(error => console.log(error));
+    }
+
+    sendComment(message, id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comment`, {  message: message}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
  
 }

@@ -1,8 +1,8 @@
 <ng-template #rt let-r="result" let-t="term">
 
     <!-- SE FOR INSTITUICAO -->
-    <div class="container">
-        <div class="row content-search">
+    <div class="">
+        <div class="row">
             <div class="img-search" (click)="navigate(model.id, model.type)">
                 <img *ngIf="!r.photo_url" src="assets/imgs/volunteer.png">
                 <img *ngIf="r.photo_url" [src]="r.photo_url">

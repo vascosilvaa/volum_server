@@ -29,8 +29,10 @@ export class AppComponent implements OnInit {
   public notifications = [];
   public requests = [];
 
-  constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal, private router: Router, private auth: AuthenticationService,
-    private socketService: SocketService, private appService: AppService, private chatService: ChatService, private profileService: ProfileService) {
+  constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
+    private router: Router, private auth: AuthenticationService,
+    private socketService: SocketService, private appService: AppService, private chatService: ChatService,
+    private profileService: ProfileService) {
     overlay.defaultViewContainer = vcRef;
     this.notification.src = "http://www.wavsource.com/snds_2017-05-21_1278357624936861/sfx/boing_x.wav";
 

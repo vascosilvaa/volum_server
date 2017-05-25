@@ -1,7 +1,8 @@
+import { Overlay } from 'angular2-modal';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { ProfileService } from './profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';
 
 
@@ -40,8 +41,10 @@ export class ProfileComponent implements OnInit {
   public idLogin: any;
   public state: Number;
 
-  constructor(public http: Http, private route: ActivatedRoute, private router: Router, private profileService: ProfileService,
-    private auth: AuthenticationService) { }
+  constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private route: ActivatedRoute, private router: Router, private profileService: ProfileService,
+    private auth: AuthenticationService) {
+    overlay.defaultViewContainer = vcRef;
+     }
 
   ngOnInit() {
 
