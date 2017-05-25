@@ -17,7 +17,7 @@
                 <div class="user-name">
                     {{user?.username}}
                     <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
-                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()">message</md-icon>
+                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()" *ngIf="idProfile != idLogin">message</md-icon>
                 </div>
                 <div class="user-location">
                     Aveiro, Sever do Vouga

@@ -36,4 +36,9 @@ export class ChatService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+    getLastMessage(id_conversation) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/chat/` + id_conversation + `/messages/last`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

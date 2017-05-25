@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   public conversations = [];
   public notifications = [];
   public requests = [];
-
+  public messagesReady: boolean = false;
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
     private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService,
@@ -99,12 +99,12 @@ export class AppComponent implements OnInit {
     this.chatService.getConversations().then(res => {
       this.conversations = res.conversations;
       console.log("Conversations", this.conversations);
-      this.getUsers();
+      this.getUsersAndLastMessage();
 
     });
   }
 
-  getUsers() {
+  getUsersAndLastMessage() {
     for (let i = 0; i < this.conversations.length; i++) {
 
       this.profileService.getProfile(this.conversations[i].id_user).then(res => {
@@ -112,8 +112,17 @@ export class AppComponent implements OnInit {
         this.conversations[i].name = res.user.username;
         console.log(res);
       });
+      this.chatService.getLastMessage(this.conversations[i].id_conversation).then(res => {
+        this.conversations[i].message = res.messages[0].message;
+        this.conversations[i].date = res.messages[0].date;
+        this.messagesReady = true;
+        console.log(res);
+      });
 
     }
+  }
+  getLastMessage(id) {
+
   }
 
   getNotificationCount(id) {
