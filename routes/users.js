@@ -122,6 +122,29 @@ var returnRouter = function (io) {
      * @apiGroup Perfil
      */
 
+    app.get('/:id/checkOnline', passport.authenticate('jwt'), function (req, res) {
+
+        if (!Number(req.params.id)) {
+            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+        } else {
+            let index = loggedUsers.findIndex(x => x.user == req.params.id);
+
+            if (index !== -1) {
+                res.send({
+                    success: true,
+                    state: 0
+                });;
+            } else {
+                res.send({
+                    success: true,
+                    state: 1
+                });;
+            }
+        }
+
+
+    });
+
     app.get('/:id/vols', passport.authenticate('jwt'), function (req, res) {
         console.log(typeof req.params.id)
         console.log(req.params.id);
