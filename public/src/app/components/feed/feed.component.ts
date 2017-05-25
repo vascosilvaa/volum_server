@@ -45,6 +45,12 @@ export class FeedComponent implements OnInit {
           this.vols = res.vols;
           console.log("VOLS", this.vols)
           this.ready = true;
+          for (let i = 0; i < this.vols.length; i++) {
+            this.feedService.countLikes(this.vols[i].vol.id_vol)
+              .then(res => {
+                this.vols[i].vol.likes = res.likes;
+              })
+          }
         })
         .catch(err => console.log(err));
 
@@ -64,6 +70,9 @@ export class FeedComponent implements OnInit {
         .catch(err => console.log(err));
     }
   }
+
+
+
 }
 
 

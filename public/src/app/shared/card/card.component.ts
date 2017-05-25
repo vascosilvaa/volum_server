@@ -30,13 +30,12 @@ export class CardComponent implements OnInit {
   @Input() likes;
   @Input() idVol;
   @Input() photos;
-
+  @Input() index;
   public foto1 = 1;
   public foto2 = 0;
   public foto3 = 0;
   public comments = 0;
   public commentsResult;
-  public numberLikes: any;
   public likeState: number;
   public login: any;
 
@@ -62,10 +61,10 @@ export class CardComponent implements OnInit {
     } else {
       this.login = 0;
     }
+  
+    console.log("LIKES", this.likes)
 
-    this.countLikes();
-
-    moment.locale('pt-   pt');
+    moment.locale('pt-pt');
      
 
     /*  this.sharedService.getComments(this.idVol)
@@ -82,16 +81,8 @@ export class CardComponent implements OnInit {
     return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
 
-  countLikes() {
-    this.sharedService.countLikes(this.idVol)
-      .then(res => {
-        this.numberLikes = res.likes;
-      })
-      .catch(err => console.log(err));
-  }
-
   openVolDetails(idVol) {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: this.index }, BSModalContext));
   }
 
   onSelect(profile) {
@@ -145,7 +136,7 @@ export class CardComponent implements OnInit {
 
   like(id_vol) {
     this.likeState = 1;
-    this.numberLikes++;
+    this.likes++;
     this.sharedService.like(id_vol).then(res => {
 
       console.log(res);
@@ -153,7 +144,7 @@ export class CardComponent implements OnInit {
   }
   dislike(id_vol) {
     this.likeState = 0;
-    this.numberLikes--;
+    this.likes--;
     this.sharedService.dislike(id_vol).then(res => {
 
       console.log(res);

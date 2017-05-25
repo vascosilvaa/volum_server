@@ -132,12 +132,12 @@ var returnRouter = function (io) {
             if (index !== -1) {
                 res.send({
                     success: true,
-                    state: 0
+                    state: 1
                 });;
             } else {
                 res.send({
                     success: true,
-                    state: 1
+                    state: 0
                 });;
             }
         }

@@ -1,3 +1,4 @@
+import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -32,7 +33,7 @@ import { SearchComponent } from './search/search.component';
         ReactiveFormsModule,
         SharedModule,
         AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+            apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
         })],
     declarations: [FeedComponent, SearchComponent],
     entryComponents: [VolDetailsModalComponent],

@@ -48,7 +48,8 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
   ],
   entryComponents: [
     ModalViewAllComponent,
-    ModalProfileComponent
+    ModalProfileComponent,
+    VolDetailsModalComponent
   ]
 })
 export class SharedModule { }

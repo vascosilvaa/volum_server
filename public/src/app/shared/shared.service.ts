@@ -45,11 +45,6 @@ export class SharedService {
         }
     }
 
-    countLikes(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/likes/count`).toPromise()
-            .then(res => { return res.json() })
-            .catch(error => console.log(error));
-    }
 
     checkLike(id_vol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/checkLike`).toPromise()

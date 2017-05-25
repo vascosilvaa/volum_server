@@ -146,7 +146,7 @@
         Cancelar candidatura
       </div>
       <div class="col-12 modal-remove-content">
-       Tem a certeza que quer cancelar a sua candidatura para a ação de voluntariado "{{context.nameVol}}"?
+        Tem a certeza que quer cancelar a sua candidatura para a ação de voluntariado "{{context.nameVol}}"?
       </div>
       <div class="col-12 text-right modal-btns">
         <button class="btn btnCancel">NÃO</button>
@@ -168,8 +168,8 @@
         Tem a certeza que se quer candidatar como voluntário para a ação de voluntariado "{{context.nameVol}}"?
       </div>
       <div class="col-12 text-right modal-btns">
-        <button class="btn btnCancel">NÃO</button>
-        <button class="btn btnConfirm">SIM</button>
+        <button class="btn btnCancel" (click)="close()">NÃO</button>
+        <button class="btn btnConfirm" (click)="apply(context.idVol)">SIM</button>
       </div>
     </div>
   </div>

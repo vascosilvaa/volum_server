@@ -56,7 +56,7 @@ function hashUrl(id) {
  * @apiParam {String} name name
  * @apiParam {JPEG} [photo] foto de perfil
  */
-
+    
 app.post('/register', function (req, res) {
     console.log(req.body)
     if (!req.body.password || !req.body.email || !req.body.name || !req.body.type) {

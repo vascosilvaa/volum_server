@@ -1,3 +1,5 @@
+import { ModalEndComponent } from './shared/modal-end/modal-end.component';
+import { ModalViewAllComponent } from './shared/modal-view-all/modal-view-all.component';
 
 import { SharedModule } from './shared/shared.module';
 import { MapModule } from './components/map/map.module';
@@ -16,7 +18,7 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import {MomentModule} from 'angular2-moment';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 
@@ -64,7 +66,7 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  entryComponents: [LoginComponent, RegisterComponent],
+  entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
   providers: [AuthenticationService, HttpClient],
   bootstrap: [AppComponent],
 })

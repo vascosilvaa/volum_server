@@ -35,6 +35,7 @@ export class ActivityComponent implements OnInit {
 
         this.profileService.dataString$.subscribe(
           data => {
+
             this.activeUser = data;
             console.log("USER TYPE", this.activeUser.type)
 
