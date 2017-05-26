@@ -37,4 +37,5 @@ export class AppService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+ 
 }

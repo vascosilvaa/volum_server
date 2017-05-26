@@ -25,7 +25,8 @@
         </div>
 
         <div class="content-msgs">
-          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.username)">
+          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.username)"
+            routerLinkActive="active">
             <div class="image">
               <img [src]="conversation?.photo_url">
             </div>
@@ -33,10 +34,10 @@
               <div>
 
                 <div class="nameMsg">{{conversation?.name}}</div>
-                <div class="time">20:00</div>
+                <div class="time">{{conversation.date | amTimeAgo:true}}</div>
               </div>
 
-              <span class="textMsg">User: {{conversation.id_user}} </span>
+              <span class="textMsg">{{conversation.message}} </span>
             </div>
           </div>
 

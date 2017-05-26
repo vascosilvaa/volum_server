@@ -44,7 +44,6 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
     RegisterComponent,
     SearchComponent,
     NotificationsComponent,
-
     SocialRequestsComponent,
   ],
   imports: [

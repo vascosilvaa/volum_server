@@ -20,6 +20,19 @@
     border: solid 5px $white;
     object-fit: cover
 }
+.circle{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.online{
+    background: limegreen;
+}
+.offline{
+    background: #ccc;
+}
 .user-rate{
      padding-left: 0;
      padding-top: 5px;

@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit {
     this.chatService.getConversations().then(res => {
       this.conversations = res.conversations;
       console.log("CONVERSATIONS", this.conversations);
-      this.getUsers();
+      this.getUsersAndLastMessage();
     });
 
   }
@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit {
 
   }
 
-  getUsers() {
+  getUsersAndLastMessage() {
     for (let i = 0; i < this.conversations.length; i++) {
 
       this.profileService.getProfile(this.conversations[i].id_user).then(res => {
@@ -56,8 +56,15 @@ export class ChatComponent implements OnInit {
         console.log(res);
       });
 
+      this.chatService.getLastMessage(this.conversations[i].id_conversation).then(res => {
+        this.conversations[i].message = res.messages[0].message;
+        this.conversations[i].date = res.messages[0].date;
+        console.log(res);
+      });
+
     }
   }
+ 
 
   activeSearch() {
     if (this.searchAtive) {

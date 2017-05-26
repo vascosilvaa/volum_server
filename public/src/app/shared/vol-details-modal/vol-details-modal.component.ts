@@ -170,7 +170,7 @@ export class VolDetailsModalComponent implements OnInit {
         }, 
         (error) => { console.log(error); });
   }
-
+  
   sendComment(comment) {
     if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 

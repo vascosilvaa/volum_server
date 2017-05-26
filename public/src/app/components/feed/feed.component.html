@@ -1,157 +1,157 @@
 <div class="header">
-    <div class="container">
-        <div class="container headerFeed no-padding">
-            <div class="v-header-title">Da compaixão à ação.</div>
-            <div class="v-header-subtitle">A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.
-            </div>
-        </div>
-
-        <div class="container" style="padding: 0; margin-top: 25px">
-            <!-- TODO: LIMPAR ESTE CSS -->
-            <search></search>
-        </div>
-
+  <div class="container">
+    <div class="container headerFeed no-padding">
+      <div class="v-header-title">Da compaixão à ação.</div>
+      <div class="v-header-subtitle">A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.
+      </div>
     </div>
+
+    <div class="container" style="padding: 0; margin-top: 25px">
+      <!-- TODO: LIMPAR ESTE CSS -->
+      <search></search>
+    </div>
+
+  </div>
 </div>
 
 <div *ngIf="!login" class="container">
-    <!-- PUBLICO -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="titleFeed">Instituições</div>
-        </div>
+  <!-- PUBLICO -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="titleFeed">Instituições</div>
     </div>
-    <div class="slider">
-        <swiper [config]="config" #swiper1>
-            <div class="swiper-wrapper">
-                <vol-card *ngFor="let vol of instVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [idVol]="vol.vol.id_vol" [likes]="vol.vol.likes"
-                    [verified]="true" class="swiper-slide" [type]="private" [avatar]="vol.user.photo_url" [username]="vol.user.name"
-                    [dateCreation]="vol.vol.date_begin" [title]="vol.name" [description]="vol.vol.description" [photos]="vol.vol.photos">
-                </vol-card>
-            </div>
-            <!-- Add Pagination -->
-            <!-- Add Arrows -->
-        </swiper>
+  </div>
+  <div class="slider">
+    <swiper [config]="config" #swiper1>
+      <div class="swiper-wrapper">
+        <vol-card *ngFor="let vol of instVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [idVol]="vol.vol.id_vol" [likes]="vol.vol.likes"
+          [verified]="true" class="swiper-slide" [type]="private" [avatar]="vol.user.photo_url" [username]="vol.user.name"
+          [dateCreation]="vol.vol.date_begin" [title]="vol.name" [description]="vol.vol.description" [photos]="vol.vol.photos">
+        </vol-card>
+      </div>
+      <!-- Add Pagination -->
+      <!-- Add Arrows -->
+    </swiper>
 
-        <!--   <div class="swiper-button-prev slider-prev1" (click)="swiper1.Swiper.slidePrev()"></div>
+    <!--   <div class="swiper-button-prev slider-prev1" (click)="swiper1.Swiper.slidePrev()"></div>
            <div class="swiper-button-next slider-next1" (click)="swiper1.Swiper.slideNext()"></div> -->
-        <md-icon class="slider-buttons slider-prev1" (click)="swiper1.Swiper.slidePrev()">keyboard_arrow_left</md-icon>
-        <md-icon class="slider-buttons slider-next1" (click)="swiper1.Swiper.slideNext()">keyboard_arrow_right</md-icon>
+    <md-icon class="slider-buttons slider-prev1" (click)="swiper1.Swiper.slidePrev()">keyboard_arrow_left</md-icon>
+    <md-icon class="slider-buttons slider-next1" (click)="swiper1.Swiper.slideNext()">keyboard_arrow_right</md-icon>
+  </div>
+
+  <!-- PUBLICO -->
+  <!-- PRIVADO -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="titleFeed">Privado</div>
     </div>
+  </div>
 
-    <!-- PUBLICO -->
-    <!-- PRIVADO -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="titleFeed">Privado</div>
-        </div>
+  <div class="slider">
+    <swiper [config]="config" #swiper2>
+      <div class="swiper-wrapper">
+        <vol-card *ngFor="let vol of privateVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes"
+          [idVol]="vol.vol.id_vol" [verified]="true" [type]="private" class="swiper-slide" [avatar]="vol.user.photo_url" [username]="vol.user.name"
+          [dateCreation]="vol.vol.date_begin" [description]="vol.vol.description" [photos]="vol.vol.photos">
+        </vol-card>
+      </div>
+      <!-- Add Pagination -->
+      <!-- Add Arrows -->
+    </swiper>
+
+    <md-icon class="slider-buttons slider-prev2" (click)="swiper2.Swiper.slidePrev()">keyboard_arrow_left</md-icon>
+    <md-icon class="slider-buttons slider-next2" (click)="swiper2.Swiper.slideNext()">keyboard_arrow_right</md-icon>
+  </div>
+
+
+  <!-- PRIVADO -->
+  <!-- CIDADES -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="titleFeed">Cidades</div>
     </div>
-
-    <div class="slider">
-        <swiper [config]="config" #swiper2>
-            <div class="swiper-wrapper">
-                <vol-card *ngFor="let vol of privateVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes"
-                    [idVol]="vol.vol.id_vol" [verified]="true" [type]="private" class="swiper-slide" [avatar]="vol.user.photo_url"
-                    [username]="vol.user.name" [dateCreation]="vol.vol.date_begin" [description]="vol.vol.description" [photos]="vol.vol.photos">
-                </vol-card>
-            </div>
-            <!-- Add Pagination -->
-            <!-- Add Arrows -->
-        </swiper>
-
-        <md-icon class="slider-buttons slider-prev2" (click)="swiper2.Swiper.slidePrev()">keyboard_arrow_left</md-icon>
-        <md-icon class="slider-buttons slider-next2" (click)="swiper2.Swiper.slideNext()">keyboard_arrow_right</md-icon>
+  </div>
+  <div class="row">
+    <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city1">
+      <div class="cityCard cityAveiro">
+        <div class="cityText">Aveiro</div>
+      </div>
     </div>
-
-
-    <!-- PRIVADO -->
-    <!-- CIDADES -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="titleFeed">Cidades</div>
-        </div>
+    <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city2">
+      <div class="cityCard cityPorto">
+        <div class="cityText">Porto</div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city1">
-            <div class="cityCard cityAveiro">
-                <div class="cityText">Aveiro</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city2">
-            <div class="cityCard cityPorto">
-                <div class="cityText">Porto</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city3">
-            <div class="cityCard cityLisboa">
-                <div class="cityText">Lisboa</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-2 col-sm-3 col-md-3 city city4">
-            <div class="cityCard cityCoimbra">
-                <div class="cityText">Coimbra</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-2 col-md-2 city city5">
-            <div class="cityCard cityBraga">
-                <div class="cityText">Braga</div>
-            </div>
-        </div>
-        <div class="col-6 col-lg-2 col-md-2 city city6">
-            <div class="cityCard cityGuimaraes">
-                <div class="cityText">Guimarães</div>
-            </div>
-        </div>
+    <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city3">
+      <div class="cityCard cityLisboa">
+        <div class="cityText">Lisboa</div>
+      </div>
     </div>
-    <!-- CIDADES -->
-    <!-- QUESTIONS -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="titleFeed">Perguntas Frequentes</div>
-        </div>
+    <div class="col-6 col-lg-2 col-sm-3 col-md-3 city city4">
+      <div class="cityCard cityCoimbra">
+        <div class="cityText">Coimbra</div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="col-lg-12 askedQuestions">
-            </div>
-            <div class="titleAskedQuestions">
-                O que é a Volum?
-            </div>
-            <div class="textAskedQuestions">
-                A Volum foi lançada pela ENTRAJUDA em 2006. É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda
-                a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social. Trata-se de uma
-                ferramenta de gestão e desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado
-                e permite a capacitação das organizações. </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="col-lg-12 askedQuestions">
+    <div class="col-6 col-lg-2 col-md-2 city city5">
+      <div class="cityCard cityBraga">
+        <div class="cityText">Braga</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-2 col-md-2 city city6">
+      <div class="cityCard cityGuimaraes">
+        <div class="cityText">Guimarães</div>
+      </div>
+    </div>
+  </div>
+  <!-- CIDADES -->
+  <!-- QUESTIONS -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="titleFeed">Perguntas Frequentes</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="col-lg-12 askedQuestions">
+      </div>
+      <div class="titleAskedQuestions">
+        O que é a Volum?
+      </div>
+      <div class="textAskedQuestions">
+        A Volum foi lançada pela ENTRAJUDA em 2006. É um projecto inovador, de âmbito nacional, sem fronteiras, transversal a toda
+        a sociedade e economia que fomenta o exercício da Cidadania e da Responsabilidade Social. Trata-se de uma ferramenta
+        de gestão e desenvolvimento on line em tempo real, que aproveita as qualificações dos voluntariado e permite a capacitação
+        das organizações. </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="col-lg-12 askedQuestions">
 
-            </div>
-            <div class="titleAskedQuestions">
-                Como funciona a Volum?
-            </div>
-            <div class="textAskedQuestions">
+      </div>
+      <div class="titleAskedQuestions">
+        Como funciona a Volum?
+      </div>
+      <div class="textAskedQuestions">
 
 
-                Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de
-                tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social,
-                procurar uma instituição ou organização perto do local da sua residência, participar numa acção pontual.
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="col-lg-12 askedQuestions">
-            </div>
-            <div class="titleAskedQuestions">
-                A Volum é só para atuais voluntários?
-            </div>
-            <div class="textAskedQuestions">
-                Não, porque o voluntariado não se limita à área da solidariedade Social. São contempladas outras áreas onde o voluntariado
-                tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto,
-                Direitos Humanos, entre outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade
-            </div>
-        </div>
+        Os Voluntários podem escolher onde pretendem realizar a sua actividade, de acordo com as suas aptidões, disponibilidade de
+        tempo, áreas de interesse, preferência de localização. Podem seleccionar uma causa ou necessidade social, procurar
+        uma instituição ou organização perto do local da sua residência, participar numa acção pontual.
+      </div>
     </div>
-    <!-- QUESTIONS -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 askedQuestions">
+      </div>
+      <div class="titleAskedQuestions">
+        A Volum é só para atuais voluntários?
+      </div>
+      <div class="textAskedQuestions">
+        Não, porque o voluntariado não se limita à área da solidariedade Social. São contempladas outras áreas onde o voluntariado
+        tem grande expressão e pode ser uma mais-valia: Ambiente/Animais, Cultura, Cidadania e Política, Desporto, Direitos
+        Humanos, entre outras. Qualquer pessoa com vontade de ajudar o próximo pode fazer parte desta comunidade
+      </div>
+    </div>
+  </div>
+  <!-- QUESTIONS -->
 </div>
 
 
@@ -160,6 +160,7 @@
 <!-- LOGADO -->
 
 <div *ngIf="login" class="container">
+
     <div class="row">
         <div class="col-6" *ngFor="let vol of vols; let i = index;">
             <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
@@ -168,7 +169,8 @@
             </vol-card>
         </div>
     </div>
-</div>
+  </div>
+
 
 
 <app-footer></app-footer>

@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    loginFacebook() {
+        window.open('http://localhost:8080/api/auth/facebook');
+    }
+
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
         console.log(value, valid);
 
@@ -48,8 +52,8 @@ export class LoginComponent implements OnInit {
                 console.log(res);
                 if (res.success) {
                     this.dialog.close();
-                    location.reload();
-    
+                        location.reload();
+
                 }
                 else {
                     this.error = res.message;

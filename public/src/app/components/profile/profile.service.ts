@@ -82,6 +82,12 @@ export class ProfileService {
             .catch(error => console.log(error));
     }
 
+    checkOnline(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + `/checkOnline`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
     getVolHistory(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/vols').toPromise()
             .then(res => { return res.json() })

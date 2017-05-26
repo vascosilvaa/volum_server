@@ -16,7 +16,8 @@
             <div class="col-md-9 col-sm-12 col-12 profile-user-name-location">
                 <div class="user-name">
                     {{user?.username}}
-                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()">message</md-icon>
+                    <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
+                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()" *ngIf="idProfile != idLogin">message</md-icon>
                 </div>
                 <div class="user-location">
                     Aveiro, Sever do Vouga
@@ -42,7 +43,7 @@
                     <button md-menu-item>A seguir</button>
                     <button md-menu-item>Definições</button>
                 </md-menu>
-                
+
             </div>
             <div *ngIf="idProfile==idLogin" class="col-sm-2 col-6 col-new-action text-right">
                 <a routerLink="/profile/{{idProfile}}/new" class="btn-new-action" md-raised-button routerLink="."><span class="btn-new-action-text" >NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>

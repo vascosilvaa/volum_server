@@ -3,9 +3,10 @@ var express = require('express'),
     config = require('../config'),
     jwt = require('jsonwebtoken'),
     db = require('../config/db');
+var passport = require('passport');
 
 var app = module.exports = express.Router();
-var secretKey = "teste";
+var secretKey = config.secretKey;
 var bcrypt = require('bcryptjs');
 
 const saltRounds = 10;
@@ -23,7 +24,9 @@ let transporter = nodemailer.createTransport({
 
 
 function createToken(user) {
-    return jwt.sign(_.omit(user, 'password'), config.secretKey, { expiresIn: 60 * 60 * 5 });
+    return jwt.sign(_.omit(user, 'password'), config.secretKey, {
+        expiresIn: 60 * 60 * 5
+    });
 }
 
 function getUserDB(email, done) {
@@ -56,11 +59,14 @@ function hashUrl(id) {
  * @apiParam {String} name name
  * @apiParam {JPEG} [photo] foto de perfil
  */
-    
+
 app.post('/register', function (req, res) {
     console.log(req.body)
     if (!req.body.password || !req.body.email || !req.body.name || !req.body.type) {
-        return res.status(400).json({ success: false, message: "Falta enviar dados" });
+        return res.status(400).json({
+            success: false,
+            message: "Falta enviar dados"
+        });
     } else {
         getUserDB(req.body.email, function (user) {
             if (!user) {
@@ -80,7 +86,10 @@ app.post('/register', function (req, res) {
 
                         db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
                             if (err) {
-                                res.json({ success: false, error: err })
+                                res.json({
+                                    success: false,
+                                    error: err
+                                })
                                 throw new Error(err);
 
                             } else {
@@ -183,11 +192,13 @@ app.post('/login', function (req, res) {
                     message: "Login e Password não coincidem"
                 });
             } else {
-                var token = jwt.sign({ id: user.id_user }, secretKey);
+                var token = jwt.sign({
+                    id: user.id_user
+                }, secretKey);
 
                 res.status(201).send({
                     success: true,
-                    user_id: user.id_user,
+                    id_user: user.id_user,
                     id_token: "JWT " + token
                 });
 
@@ -216,10 +227,32 @@ app.post('/checkEmail/', function (req, res) {
     }
     console.log(req.body);
     getUserDB(req.body.email, function (user) {
-        if (!user) res.status(200).send({ success: true });
+        if (!user) res.status(200).send({
+            success: true
+        });
         else res.status(200).json({
             success: false,
             message: "Já existe"
         });
     });
 });
+
+app.get('/facebook', passport.authenticate('facebook', {
+    session: false,
+    scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday']
+}));
+
+// handle the callback after facebook has authenticated the user
+app.get('/facebook/callback',
+    passport.authenticate('facebook', {
+        session: false,
+        failureRedirect: "/"
+    }),
+    function (req, res) {
+        var token = jwt.sign({
+            id: req.user.id_user
+        }, secretKey);
+
+
+        res.redirect("http://localhost:4200/profile/" + req.user.id_user + "?id_token=JWT " + token);
+    });

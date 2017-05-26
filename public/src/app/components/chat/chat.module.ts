@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { ChatRoutingModule } from './chat.routing';
 import { ChatComponent } from './chat.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
@@ -23,6 +24,7 @@ import { ChatNewComponent } from './chat-new/chat-new.component';
     MaterialModule,
     NgbModule.forRoot(),
     AccordionModule.forRoot(),
+    MomentModule
   ],
   declarations: [ChatMessageComponent, ChatComponent, ChatNewComponent],
   providers: [

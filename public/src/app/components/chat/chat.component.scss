@@ -28,6 +28,10 @@
 .msg-item:hover {
     background:$grey1;
 }
+.active{
+        background:$grey1 !important;
+
+}
 
 .msg-item .image img {
     border-radius: 50%;

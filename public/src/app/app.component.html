@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-2 col-12 brandBackground">
             <div class="titleBrand">
-                <a routerLink="/feed">VOLUM</a>
+                <a routerLink="/feed">BEVOLUN</a>
             </div>
         </div>
         <div class="col-sm-10 col-12 menuHeader">
@@ -17,7 +17,24 @@
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">PEDIDOS</div>
-                        <div class="message-item" *ngIf="!requests">Loading...</div>
+                        <div class="message-item" *ngIf="!requests">
+
+                            <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+
+                        </div>
                         <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
 
                             <div class="image">
@@ -45,20 +62,39 @@
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">MENSAGENS</div>
-                        <div class="message-item" *ngIf="!conversations">Loading...</div>
-                        <div class="message-item" *ngFor="let conversation of conversations">
-                            <div class="image">
-                                <img [src]="conversation.photo_url" onerror="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
-                            </div>
-                            <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
-                                <div>
-                                    <span class="nameMsg">{{conversation.name}}</span>
-                                    <span class="time">20:00</span>
-                                </div>
+                        <div class="message-item" *ngIf="!messagesReady">
 
-                                <span class="textMsg"> Olá Estatíco </span>
+                            <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
                             </div>
+
                         </div>
+                        <ng-container *ngIf="messagesReady">
+                            <div class="message-item" *ngFor="let conversation of conversations">
+                                <div class="image">
+                                    <img [src]="conversation.photo_url" onerror="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+                                </div>
+                                <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
+                                    <div>
+                                        <span class="nameMsg">{{conversation.name}}</span>
+                                        <span class="time">{{conversation.date | amTimeAgo:true}}</span>
+                                    </div>
+
+                                    <span class="textMsg"> {{conversation.message }}</span>
+                                </div>
+                            </div>
+                        </ng-container>
                         <div class="dropdown-footer" routerLink="/chat/msg">Ver todas as mensagens</div>
                     </div>
                 </li>
@@ -69,7 +105,25 @@
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">NOTIFICAÇÕES</div>
-                        <div class="message-item" *ngIf="!notifications">Loading...</div>
+                        <div class="message-item" *ngIf="!notifications">
+
+
+                            <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                            </div>
+
+                        </div>
 
                         <div class="message-item" *ngFor="let notification of notifications">
                             <div class="image">

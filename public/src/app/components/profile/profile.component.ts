@@ -1,8 +1,9 @@
+import { AppComponent } from './../../app.component';
 import { Overlay } from 'angular2-modal';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { ProfileService } from './profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Injector, OnInit, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';
 
 
@@ -35,25 +36,45 @@ export class ProfileComponent implements OnInit {
   i: any;
   usernames: any;
   userId: any;
+  public online: number = 0;
   idProfile: any;
   private user: any = {}
   private userLogin: any;
   public idLogin: any;
   public state: Number;
 
-  constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private route: ActivatedRoute, private router: Router, private profileService: ProfileService,
+  constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
-     }
+  }
 
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
+      console.log(params);
+
+      this.route.queryParams.subscribe((query => {
+        console.log(query);
+        if (query.id_token) {
+
+          this.auth.storeUserCredentials(query.id_token);
+          this.auth.reloadUser(params.id, true).then(res => {
+            this.injector.get(AppComponent).getUser();
+
+          })
+          localStorage.setItem("USER_ID", params.id);
+
+        }
+
+      }))
 
       this.idProfile = this.route.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
-        this.profileService.saveActiveUser(this.user)
+        this.profileService.saveActiveUser(this.user);
+        this.profileService.checkOnline(this.user.id_user).then(res => {
+          this.online = res.state;
+        })
 
       });
 
@@ -71,6 +92,7 @@ export class ProfileComponent implements OnInit {
           this.userLogin = res.user;
           let id = localStorage.getItem('USER_ID');
           this.idLogin = id;
+
         }
 
       }

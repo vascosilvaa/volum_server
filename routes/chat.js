@@ -9,6 +9,7 @@ var express = require('express'),
 var app = module.exports = express.Router();
 
 
+
 /**
  * @api {get} /chat/:id Listar Conversas
  * @apiName getConversations
@@ -127,7 +128,7 @@ var returnRouter = function (io) {
      */
 
     app.post('/:id/message', passport.authenticate('jwt'), function (req, res) {
-
+        console.log("wgwag", req)
         console.log(req.params.id);
         console.log(req.body.id_user);
         db.get().query('INSERT INTO chat VALUES (NULL, ?, ?, ?, ?)', [req.body.message, new Date(), req.params.id, req.user.id_user], function (error, results, fields) {
@@ -137,8 +138,13 @@ var returnRouter = function (io) {
                 from_id: req.user.id_user,
                 message: req.body.message
             }
+            let index = loggedUsers.findIndex(x => x.user == req.body.id_user);
 
             io.to(req.params.id).emit('message', data);
+
+
+            //    io.to(loggedUsers[index].socket).emit('new message');
+
 
             res.json({
                 success: true,
@@ -148,28 +154,75 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/:id/messages/last', function (req, res) {
+
+
+        db.get().query('SELECT * FROM chat WHERE id_conversation = ?  ORDER BY id_message DESC LIMIT 1', [req.params.id], function (error, messages, fields) {
+            if (error) {
+                console.log(error);
+                if (error) throw error;
+
+            } else {
+                res.json({
+                    success: true,
+                    messages
+                });
+
+            }
+        });
+
+    });
+
 
     app.post('/', passport.authenticate('jwt'), function (req, res) {
         console.log("aaa")
         console.log(req.body.id_user);
         console.log(req.user.id_user);
-        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?)', [req.user.id_user, req.body.id_user],
+
+        db.get().query('SELECT * FROM user_relations WHERE ((id_user = ? AND id_user2 = ?) OR (id_user2 = ? AND id_user = ?))', [req.user.id_user, req.body.id_user, req.user.id_user, req.body.id_user],
             function (error, results, fields) {
                 if (error) {
                     res.json({
-                        success: true,
-
+                        success: false,
+                        error
                     });
                 } else {
-                    res.json({
-                        success: true,
-                        id_conversation: results.insertId
-                    });
+                    if (results.length > 0) {
+                        console.log("results", results[0].id_conversation);
+                        res.json({
+                            success: true,
+                            id_conversation: results[0].id_conversation
+                        });
+
+                    } else {
+
+                        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?)', [req.user.id_user, req.body.id_user],
+                            function (error, results, fields) {
+                                if (error) {
+                                    res.json({
+                                        success: false,
+
+                                    });
+                                } else {
+                                    res.json({
+                                        success: true,
+                                        id_conversation: results.insertId
+                                    });
+                                }
+
+
+                            });
+
+                    }
                 }
-                console.log(fields)
 
 
             });
+
+        /*
+               
+        
+                    */
 
     });
 

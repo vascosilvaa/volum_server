@@ -1,5 +1,5 @@
 <div class="container">
-    <!--
+  <!--
 <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
     <button class="facebookLogin">Entrar com o Facebook</button>
     <br> Login <input type="text" formControlName="login">
@@ -11,52 +11,52 @@
 -->
 
 
-    <div class="row">
-        <div class="col-12 containerLogin">
-            <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
-                <div class="col-12">
-                    <button class="facebookLogin">Entrar com o Facebook</button>
-                </div>
-                <div class="col-12">
-                    <button class="googleLogin">Entrar com o Google</button>
-                </div>
-                <div class="col-12 text-center orLogin">
-                    <span class="divider-or">ou</span>
-                    <hr class="divider-hr">
-                </div>
-                <div class="col-12" *ngIf="error">
-                    <div class="textError">{{error}}</div>
-                </div>
-                <div class="col-12">
-                    <input [class.borda]="!form.controls.email.valid && form.controls.email.touched" type="email" formControlName="email" class="inputEmailLogin form-control"
-                        placeholder="Endereço de e-mail">
-                    <div *ngIf="!form.controls.email.valid && form.controls.email.touched" class="textError">Endereço de email inválido.</div>
-                </div>
-                <div class="col-12">
-                    <input [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
-                        formControlName="password" placeholder="Palavra-passe">
-                    <div *ngIf="!form.controls.password.valid && form.controls.password.touched" class="textError">Palavra passe inválida</div>
-                </div>
-                <div class="col-12 text-right forgotPass">
-                    <span>Esqueceu a sua palavra passe?</span>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="normalLogin">Entrar</button>
-                </div>
-                <div class="col-12 footerLogin">
-                    <hr>
-                </div>
-                <div class="col-6">
-                    <span class="registerAdvice">Ainda não tem uma conta?</span>
-                </div>
-                <div class="col text-right btnRegister">
-                    <button class="registerBtn">Registe-se</button>
-                </div>
-
-            </form>
-
-            <div class="container">
-
-            </div>
+  <div class="row">
+    <div class="col-12 containerLogin">
+      <form novalidate (ngSubmit)="onSubmit(form)" [formGroup]="form">
+        <div class="col-12">
+          <button class="facebookLogin" type="button" (click)="loginFacebook()">Entrar com o Facebook</button>
         </div>
+        <div class="col-12">
+          <button class="googleLogin">Entrar com o Google</button>
+        </div>
+        <div class="col-12 text-center orLogin">
+          <span class="divider-or">ou</span>
+          <hr class="divider-hr">
+        </div>
+        <div class="col-12" *ngIf="error">
+          <div class="textError">{{error}}</div>
+        </div>
+        <div class="col-12">
+          <input [class.borda]="!form.controls.email.valid && form.controls.email.touched" type="email" formControlName="email" class="inputEmailLogin form-control"
+            placeholder="Endereço de e-mail">
+          <div *ngIf="!form.controls.email.valid && form.controls.email.touched" class="textError">Endereço de email inválido.</div>
+        </div>
+        <div class="col-12">
+          <input [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
+            formControlName="password" placeholder="Palavra-passe">
+          <div *ngIf="!form.controls.password.valid && form.controls.password.touched" class="textError">Palavra passe inválida</div>
+        </div>
+        <div class="col-12 text-right forgotPass">
+          <span>Esqueceu a sua palavra passe?</span>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="normalLogin">Entrar</button>
+        </div>
+        <div class="col-12 footerLogin">
+          <hr>
+        </div>
+        <div class="col-6">
+          <span class="registerAdvice">Ainda não tem uma conta?</span>
+        </div>
+        <div class="col text-right btnRegister">
+          <button class="registerBtn">Registe-se</button>
+        </div>
+
+      </form>
+
+      <div class="container">
+
+      </div>
     </div>
+  </div>
