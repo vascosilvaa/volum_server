@@ -57,7 +57,7 @@ app.get('/', function (req, res, next) {
                 throw new Error(error);
             } else {
                 console.log(results);
-                if (results.length == 0) {} else {  
+                if (results.length == 0) {} else {
 
                     for (let i = 0; i < results.length; i++) {
                         vols.push({
@@ -716,11 +716,11 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
         });
     } else {
 
-        if (req.query) {
+        if (req.query.amount) {
             req.query.amount = parseInt(req.query['amount']);
 
         } else {
-            req.query.amount = 18446744073709551610;
+            req.query.amount = 100;
         }
 
         let options = {
@@ -729,11 +729,12 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
         };
 
         db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
-            console.log(results);
+
+            console.error(error)
             if (error) {
                 res.json({
                     success: false,
-                    error: error
+                    error: "ERRO"
                 });
             } else if (results.length == 0) {
                 res.json({
@@ -821,7 +822,7 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
             } else if (results.changedRows == 0) {
                 res.json({
                     success: false,
-                    message: 'Este User não existe ou não é um candidato'
+                    message: 'Este User ou voluntariado não existe ou não é um candidato'
                 });
             } else {
                 res.json({
@@ -837,7 +838,7 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
 
 
 app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) {
-
+    console.log(req.params.id);
     if (!Number(req.params.id)) {
         res.json({
             success: false,
