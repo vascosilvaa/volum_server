@@ -9,21 +9,29 @@ var JwtStrategy = require('passport-jwt').Strategy,
 
 
 function getUserById(id, done) {
-    db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function(err, rows, fields) {
+    db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function (err, rows, fields) {
         if (err) throw err;
         done(rows[0]);
     });
 }
 
-module.exports = function(passport) {
 
-    passport.serializeUser(function(user, done) {
+function getUserByEmail(email, done) {
+    db.get().query('SELECT * FROM users WHERE email = ? LIMIT 1', [email], function (err, rows, fields) {
+        if (err) throw err;
+        done(rows[0]);
+    });
+}
+
+module.exports = function (passport) {
+
+    passport.serializeUser(function (user, done) {
         done(null, user.id_user);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', id, function(err, rows, fields) {
+    passport.deserializeUser(function (id, done) {
+        db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', id, function (err, rows, fields) {
             done(err, rows[0]);
 
         });
@@ -37,15 +45,16 @@ module.exports = function(passport) {
     passport.use(new FacebookStrategy({
             clientID: '1657614757878644',
             clientSecret: '36b1c065c723b228239c4504dc7a6396',
-            callbackURL: 'http://localhost:' + 8080 + '/auth/facebook/callback',
+            callbackURL: 'http://volum.ddns.net/api/auth/facebook/callback',
             profileFields: ['id', 'displayName', 'photos', 'email', 'birthday']
         },
-        function(accessToken, refreshToken, profile, done) {
-            process.nextTick(function() {
+        function (accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
 
 
-                getUserById(profile._json.id, function(user) {
+                getUserByEmail(profile._json.email, function (user) {
                     if (user && user != undefined) {
+                        console.log("user ja existe")
                         done(null, user);
                     } else {
 
@@ -59,7 +68,7 @@ module.exports = function(passport) {
                             birth_date: new Date(profile._json.birthday).getTime()
                         };
 
-                        db.get().query('INSERT INTO users SET ?', [newUser], function(err, result) {
+                        db.get().query('INSERT INTO users SET ?', [newUser], function (err, result) {
                             if (err) {
                                 throw new Error(err);
                             } else {
@@ -74,11 +83,13 @@ module.exports = function(passport) {
             });
         }));
 
-    passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-     
-        db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', jwt_payload.id, function(err, rows, fields) {
+    passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
+
+        db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', jwt_payload.id, function (err, rows, fields) {
             if (err) {
-                done(null, false, { message: 'erro' })
+                done(null, false, {
+                    message: 'erro'
+                })
             } else {
                 done(null, rows[0]);
             }
@@ -87,4 +98,3 @@ module.exports = function(passport) {
 
 
 }
-
