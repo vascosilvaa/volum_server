@@ -50,6 +50,10 @@ export class FeedComponent implements OnInit {
               .then(res => {
                 this.vols[i].vol.likes = res.likes;
               })
+            this.feedService.checkLike(this.vols[i].vol.id_vol)
+              .then(res => {
+                this.vols[i].vol.likeState = parseInt(res.state);
+              })
           }
         })
         .catch(err => console.log(err));

@@ -227,8 +227,8 @@
                                     <span class="candidateName">{{candidate?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(4, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
-                                    <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
+                                    <button type="button" class="btn btn-outline-primary btnConfirm" (click)="confirmCandidate(candidate?.id_user)">ACEITAR</button>
                                 </div>
                             </div>
                         </li>

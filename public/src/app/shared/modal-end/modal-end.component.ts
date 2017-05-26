@@ -1,3 +1,4 @@
+import { SharedService } from './../shared.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
@@ -8,13 +9,15 @@ import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 export class ModalContext extends BSModalContext {
     public idVol: any;
     public type: any;
+    public date: any;
+    public name: any;
 }
 
 @Component({
   selector: 'modal-end',
   templateUrl: './modal-end.component.html',
   styleUrls: ['./modal-end.component.scss'],
-  //providers: [VolDetailsModalService]
+  providers: [SharedService]
 })
 
 
@@ -23,7 +26,6 @@ export class ModalEndComponent implements OnInit {
   lng: number =  -8.544893;
   public volDetails: any;
   public evaluation: any;
-  
   public evalAll: any;
   public eval1 = Array;
   public eval2 = Array;
@@ -99,7 +101,7 @@ export class ModalEndComponent implements OnInit {
   context: ModalContext;
 
 
-  constructor(private dialog: DialogRef<ModalContext>/*, private volsService: VolDetailsModalService*/) {
+  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     if(this.context.type==1) {
@@ -111,17 +113,18 @@ export class ModalEndComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.context.type==2){
     this.evaluation=1;
     this.evalAll=0;
-    console.log(this.context.idVol);  
-     /*this.volsService.getVol(this.context.idVol)
-      .then(res => {
-        this.volDetails = res.vol;
-        console.log(this.volDetails);
-      })
-      .catch(err => console.log(err));
-      */
+    }
+ }
 
+  deleteAction(id_vol) {
+      this.SharedService.deleteAction(id_vol).then(
+        res => {
+        console.log(res);
+      }
+      )
   }
 
   ev(id, estrela) {
@@ -133,6 +136,10 @@ export class ModalEndComponent implements OnInit {
     for(let i = 0; i <= this.people.length; i++) {
       this.people[i].eval = this.evalAll;
     }
+  }
+  
+  close() {
+    this.dialog.dismiss();
   }
 
 

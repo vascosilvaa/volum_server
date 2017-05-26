@@ -111,7 +111,6 @@ export class VolDetailsModalComponent implements OnInit {
 
   ngOnInit() {
     this.feed = this.injector.get(FeedComponent);
-
   }
 
   onSelect(id_profile) {
@@ -160,7 +159,16 @@ export class VolDetailsModalComponent implements OnInit {
   openRemoveConfirm(type, name, id_user, idVol) {
     return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol, nameVol: name, id_user: id_user }, BSModalContext))
       .then((d) => d.result)
-      .then((r) => { console.log(r); this.state = 3 }, (error) => { console.log(error); });
+      .then((r) => {
+         console.log(r.result);
+         if(this.state==1) { // Cancelar 
+           this.state=0; // Candidatar
+         }
+         else if (this.state==0) { // Candidatar 
+           this.state=3;  //Sucesso
+         }
+        }, 
+        (error) => { console.log(error); });
   }
   
   sendComment(comment) {
@@ -233,6 +241,7 @@ export class VolDetailsModalComponent implements OnInit {
     this.numberLikes++;
     this.volsService.like(id_vol).then(res => {
       this.feed.vols[this.context.indexVol].vol.likes = this.numberLikes;
+      this.feed.vols[this.context.indexVol].vol.likeState = 1;
     });
   }
 
@@ -241,7 +250,7 @@ export class VolDetailsModalComponent implements OnInit {
     this.numberLikes--;
     this.volsService.dislike(id_vol).then(res => {
       this.feed.vols[this.context.indexVol].vol.likes = this.numberLikes;
-
+      this.feed.vols[this.context.indexVol].vol.likeState = 0;
       console.log(res);
     });
   }

@@ -131,8 +131,8 @@
         Tem a certeza que deseja recusar {{context.name}} como voluntário?
       </div>
       <div class="col-12 text-right modal-btns">
-        <button class="btn btnCancel">NÃO</button>
-        <button class="btn btnConfirm">SIM</button>
+        <button class="btn btnCancel" (click)="close()">NÃO</button>
+        <button class="btn btnConfirm" (click)="denyCandidate(this.context.idUser)">SIM</button>
       </div>
     </div>
   </div>
@@ -149,8 +149,8 @@
         Tem a certeza que quer cancelar a sua candidatura para a ação de voluntariado "{{context.nameVol}}"?
       </div>
       <div class="col-12 text-right modal-btns">
-        <button class="btn btnCancel">NÃO</button>
-        <button class="btn btnConfirm">SIM</button>
+        <button class="btn btnCancel" (click)="close()">NÃO</button>
+        <button class="btn btnConfirm" (click)="cancelApply(context.idVol)">SIM</button>
       </div>
     </div>
   </div>

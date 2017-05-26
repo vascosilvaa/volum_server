@@ -27,13 +27,13 @@ export class DetailsService {
 
     }
 
-    getCandidates(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates`).toPromise()
+    getCandidates(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates`, { amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-    getConfirmed(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed`).toPromise()
+    getConfirmed(id_vol, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed`, { amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -55,5 +55,12 @@ export class DetailsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    confirmCandidate(id_vol, id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/accept`, {id_user: id_user}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+   
  
 }

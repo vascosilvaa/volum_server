@@ -166,6 +166,33 @@ body {
     color: #ff484a;
 }
 
+.btnGreenOut {
+    border-radius: 3px!important;
+    font-size: 12px;
+    border: 1px solid #0CB754;
+    background-color: $white;
+    color: #0CB754;
+    cursor:pointer;
+}
+
+.btnGreen {
+    border-radius: 3px!important;
+    font-size: 12px;
+    border: 1px solid #0CB754;
+    background-color: #0CB754;
+    color: $white;
+    cursor:pointer;
+}
+
+.btnGreen:hover {
+     border-radius: 3px!important;
+    font-size: 12px;
+    border: 1px solid #0CB754;
+    background-color: #fff;
+    color: #0CB754;
+}
+
+
 .fade.in {
     opacity: 1;
 }

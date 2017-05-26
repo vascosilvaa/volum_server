@@ -89,26 +89,29 @@ export class ModalViewAllComponent implements OnInit {
   apply(id_vol) {
     console.log(id_vol);
     this.volsService.apply(this.context.id_user, id_vol).then(res => {
-
-      this.dialog.close("done");
+      this.dialog.close("applied");
 
     });
   }
+  cancelApply(id_vol) {
+    console.log(id_vol);
+    this.volsService.cancelApply(this.context.id_user, id_vol).then(res => {
+      this.dialog.close("canceled");
+    });
+  }
+
   close() {
     this.dialog.dismiss();
   }
 
-
-}
-/*
-     this.volsService.getVol(this.context.idVol)
-      .then(res => {
-        this.volDetails = res.vol;
-        console.log(this.volDetails);
-      })
-      .catch(err => console.log(err));
+  denyCandidate(id_user) {
+    this.SharedService.denyCandidate(this.context.idVol, id_user)
+    .then(res => {
+      console.log(res);
+    })
   }
-*/
 
+ 
+}
 
 
