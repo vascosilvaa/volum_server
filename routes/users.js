@@ -25,15 +25,21 @@ var app = module.exports = express.Router();
 var returnRouter = function (io) {
 
 
-    app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
-        if (isNaN(parseInt(req.params.id))) {
-            res.status(400);
-            res.send({ success: false, message: "Parâmetros Invalidos aa" });
+    app.get('/:id', passport.authenticate(['jwt'], ['facebook']), function (req, res) {
+        if (!req.params.id) {
+
+            res.send({
+                success: false,
+                user: req.user
+            });
         } else {
             getUserById(req.params.id, function (user) {
                 if (!user) {
                     res.status(400);
-                    res.send({ success: false, message: "Utilizador Não Encontrado" })
+                    res.send({
+                        success: false,
+                        message: "Utilizador Não Encontrado"
+                    })
 
                 } else {
                     res.status(200);
@@ -66,15 +72,22 @@ var returnRouter = function (io) {
 
     app.get('/:id/my-vols', passport.authenticate('jwt'), function (req, res) {
         if (!Number(req.params.id)) {
-            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
         } else {
             db.get().query({
                 sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-                'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ', nestTables: true
+                    'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+                nestTables: true
             }, [req.params.id], function (err, results, fields) {
                 if (err) {
                     console.log(err)
-                    res.send({ success: false, err });
+                    res.send({
+                        success: false,
+                        err
+                    });
                 } else {
                     console.log(results)
                     if (results.length > 0) {
@@ -125,7 +138,10 @@ var returnRouter = function (io) {
     app.get('/:id/checkOnline', passport.authenticate('jwt'), function (req, res) {
 
         if (!Number(req.params.id)) {
-            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
         } else {
             let index = loggedUsers.findIndex(x => x.user == req.params.id);
 
@@ -149,17 +165,23 @@ var returnRouter = function (io) {
         console.log(typeof req.params.id)
         console.log(req.params.id);
         if (!Number(req.params.id)) {
-            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
         } else {
             let options = {
                 sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
-                " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)",
+                    " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)",
                 nestTables: true
             }
             db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
                 if (err) {
                     res.status(400);
-                    res.send({ success: false, message: 'Erro' });
+                    res.send({
+                        success: false,
+                        message: 'Erro'
+                    });
                     console.error(err);
                 } else {
                     console.log(results);
@@ -221,7 +243,10 @@ var returnRouter = function (io) {
 
 
         if (isNaN(parseInt(req.body.id_user))) {
-            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
         } else {
 
             console.log("body", req.body.id_user)
@@ -258,7 +283,10 @@ var returnRouter = function (io) {
 
     app.post('/unfollow', passport.authenticate('jwt'), function (req, res) {
         if (isNaN(parseInt(req.body.id_user))) {
-            res.status(400).send({ success: false, message: "Parametros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
         } else {
 
             db.get().query('DELETE FROM follows WHERE id_user = ? AND id_user2 = ?', [req.user.id_user, req.body.id_user],
@@ -274,15 +302,18 @@ var returnRouter = function (io) {
 
     app.get('/:id/checkFollow', passport.authenticate('jwt'), function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
-            res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
         } else {
             console.log("user", req.body)
 
             let users = [];
 
             db.get().query({
-                sql: 'SELECT COUNT(*) AS count FROM follows WHERE id_user = ? AND id_user2 = ?'
-            }, [req.user.id_user, req.params.id],
+                    sql: 'SELECT COUNT(*) AS count FROM follows WHERE id_user = ? AND id_user2 = ?'
+                }, [req.user.id_user, req.params.id],
                 function (error, count, fields) {
                     if (count[0].count == 1) {
                         res.json({
@@ -305,15 +336,19 @@ var returnRouter = function (io) {
 
     app.get('/:id/follows/users', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
-            res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
         } else {
             console.log("user", req.body)
 
             let users = [];
 
             db.get().query({
-                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2', nestTables: true
-            }, [req.params.id],
+                    sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2',
+                    nestTables: true
+                }, [req.params.id],
                 function (error, results, fields) {
                     if (results) {
 
@@ -342,15 +377,19 @@ var returnRouter = function (io) {
 
     app.get('/:id/follows/inst', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
-            res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
         } else {
             console.log("user", req.body)
 
             let institutions = [];
 
             db.get().query({
-                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1', nestTables: true
-            }, [req.params.id],
+                    sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1',
+                    nestTables: true
+                }, [req.params.id],
                 function (error, results, fields) {
                     if (results) {
 
@@ -379,15 +418,18 @@ var returnRouter = function (io) {
 
     app.get('/:id/follows/users/count', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
-            res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
         } else {
             console.log("user", req.body)
 
             let count;
 
             db.get().query({
-                sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 2'
-            }, [req.params.id],
+                    sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 2'
+                }, [req.params.id],
                 function (error, results, fields) {
                     count = results[0].count
 
@@ -402,15 +444,18 @@ var returnRouter = function (io) {
 
     app.get('/:id/follows/inst/count', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
-            res.status(400).send({ success: false, message: "Parâmetros Invalidos" });
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
         } else {
             console.log("user", req.body)
 
             let count;
 
             db.get().query({
-                sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 1'
-            }, [req.params.id],
+                    sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 1'
+                }, [req.params.id],
                 function (error, results, fields) {
                     count = results[0].count
 
@@ -423,15 +468,7 @@ var returnRouter = function (io) {
         }
     });
 
-    app.get('/auth/facebook', passport.authenticate('facebook', { session: false, scope: ['user_friends', 'user_friends', 'email', 'user_photos', 'user_birthday'] }));
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/',
-            failureRedirect: '/',
-            session: false
-        }));
 
     return app;
 }

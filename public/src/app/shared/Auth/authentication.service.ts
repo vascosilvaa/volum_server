@@ -45,7 +45,8 @@ export class AuthenticationService {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/auth/login`, loginInfo).toPromise()
             .then(res => {
                 this.storeUserCredentials(res.json().id_token);
-                localStorage.setItem("USER_ID", res.json().user_id);
+                localStorage.setItem("USER_ID", res.json().id_user);
+                
                 return res.json();
             })
             .catch(err => {
@@ -80,7 +81,7 @@ export class AuthenticationService {
         }
     }
 
-    private storeUserCredentials(token: string) {
+    public storeUserCredentials(token: string) {
         localStorage.setItem(this.LOCAL_TOKEN_KEY, token);
         this.useCredentials(token);
     }
