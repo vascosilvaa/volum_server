@@ -47,5 +47,4 @@ export class MyActionsService {
             .catch(error => console.log(error));
     }
 
-
 }

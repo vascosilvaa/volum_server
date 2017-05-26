@@ -3,23 +3,19 @@
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
-                MAR
-                <!--{{volDetails?.date_begin | date:"MMM" | uppercase}}-->
+                {{this.context.date | date:"MMM" | uppercase}}
             </div>
             <div>
-                23
-                <!--{{volDetails?.date_begin | date:"d"}}-->
+                {{this.context.date | date:"d"}}
             </div>
         </div>
 
         <div class="modalTitle">
             <div class="modalTitleDesc">
-                Ajudar os pobres
-                <!--{{volDetails?.name}}-->
+                {{this.context.name}}
             </div>
             <div class="modalSubtitle">
-                sabado, 29 de Abril de 2019
-                <!--{{volDetails?.date_begin | date:"fullDate"}}-->
+               {{this.context.date | date:"fullDate"}}
             </div>
         </div>
     </div>
@@ -34,8 +30,8 @@
             <textarea rows="4" class="modal-textarea" placeholder="Escrever motivo de cancelamento da ação..."></textarea>
         </div>
         <div class="col-12 modal-end-footer text-right">
-            <button class="btn btnCancel">NÃO</button>
-            <button class="btn btnConfirm">SIM</button>
+            <button class="btn btnCancel" (click)="close()">NÃO</button>
+            <button class="btn btnConfirm" (click)="deleteAction(this.context.idVol)">SIM</button>
         </div>
     </div>
 </div>

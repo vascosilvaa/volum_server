@@ -107,7 +107,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getCandidates(idVol) {
-    this.detailsservice.getCandidates(idVol)
+    this.detailsservice.getCandidates(idVol, 3)
       .then(res => {
         this.candidates = res.users;
       })
@@ -115,7 +115,7 @@ export class DetailsComponent implements OnInit {
   }
   
   getConfirmed(idVol) {
-    this.detailsservice.getConfirmed(idVol)
+    this.detailsservice.getConfirmed(idVol, 3)
       .then(res => {
         this.confirmeds = res.users;
       })
@@ -146,6 +146,11 @@ export class DetailsComponent implements OnInit {
 
   }
 
-
+  confirmCandidate(id_user) {
+    this.detailsservice.confirmCandidate(this.vols.id_vol, id_user)
+    .then(res => {
+      console.log(res);
+    })
+  }
 
 }

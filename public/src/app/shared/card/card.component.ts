@@ -31,12 +31,12 @@ export class CardComponent implements OnInit {
   @Input() idVol;
   @Input() photos;
   @Input() index;
+  @Input() likeState;
   public foto1 = 1;
   public foto2 = 0;
   public foto3 = 0;
   public comments = 0;
   public commentsResult;
-  public likeState: number;
   public login: any;
 
   config: Object = {
@@ -57,7 +57,6 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
       this.login = 1;
-      this.checkLike();
     } else {
       this.login = 0;
     }
@@ -89,57 +88,11 @@ export class CardComponent implements OnInit {
     this.router.navigate(['/profile/' + profile + '/activity']);
   }
 
-  changePhoto1() {
-    this.foto1 = 1;
-    this.foto3 = 0;
-    this.foto2 = 0;
-  }
-  changePhoto2() {
-    this.foto1 = 0;
-    this.foto2 = 1;
-    this.foto3 = 0;
-  }
-  changePhoto3() {
-    this.foto1 = 0;
-    this.foto2 = 0;
-    this.foto3 = 1;
-  }
-
-  showFoto(foto) {
-    if (foto == 1) {
-      this.foto1 = 1;
-      this.foto2 = 0;
-      this.foto3 = 0;
-    }
-    if (foto == 2) {
-      this.foto1 = 0;
-      this.foto2 = 1;
-      this.foto3 = 0;
-    }
-    if (foto == 3) {
-      this.foto1 = 0;
-      this.foto2 = 0;
-      this.foto3 = 1;
-    }
-  }
-
-  checkLike() {
-    if (this.auth.isAuthenticated()) {
-
-      this.sharedService.checkLike(this.idVol)
-        .then(res => {
-          this.likeState = res.state;
-        })
-        .catch(err => console.log(err));
-    }
-  }
-
   like(id_vol) {
     this.likeState = 1;
     this.likes++;
     this.sharedService.like(id_vol).then(res => {
-
-      console.log(res);
+    console.log(res);
     });
   }
   dislike(id_vol) {

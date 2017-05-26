@@ -36,6 +36,12 @@ export class VolDetailsModalService {
             .catch(error => console.log(error));
     }
 
+    cancelApply(id_user, id_vol) {
+       return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+id_vol+`/applies/cancel`, {id_user: id_user}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
     getAddress(lat, lng) {
         return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
         .then(res => {return res.json() })

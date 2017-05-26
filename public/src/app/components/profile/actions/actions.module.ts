@@ -1,3 +1,4 @@
+import { ModalEndComponent } from './../../../shared/modal-end/modal-end.component';
 import { SharedModule } from './../../../shared/shared.module';
 import { ModalProfileComponent } from './../../../shared/modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
@@ -34,7 +35,8 @@ import { ProfileComponent } from '../profile.component';
   ],
   entryComponents: [
     ModalViewAllComponent,
-    ModalProfileComponent
+    ModalProfileComponent,
+    ModalEndComponent
   ]
 })
 

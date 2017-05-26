@@ -1,3 +1,4 @@
+import { ModalEndComponent } from './../../../../shared/modal-end/modal-end.component';
 import { ProfileService } from './../../profile.service';
 import { ModalProfileComponent } from './../../../../shared/modal-profile/modal-profile.component';
 import { SharedModule } from './../../../../shared/shared.module';
@@ -12,8 +13,7 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   selector: 'app-my-actions',
   templateUrl: './my-actions.component.html',
   styleUrls: ['./my-actions.component.scss'],
-  providers: [MyActionsService],
-  entryComponents: [ModalViewAllComponent]
+  providers: [MyActionsService]
 })
 export class MyActionsComponent implements OnInit {
   constructor(public modal: Modal, overlay: Overlay, public profileService: ProfileService, vcRef: ViewContainerRef, private route: ActivatedRoute, private myactionsservice: MyActionsService, private router: Router) {
@@ -41,8 +41,7 @@ export class MyActionsComponent implements OnInit {
 
   }
 
-  openCandidates(type, id_vol) {
-
+  openModal(type, id_vol) {
     return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
   }
 
@@ -131,5 +130,9 @@ export class MyActionsComponent implements OnInit {
 
   seeDetails(id_vol) {
     this.router.navigate(['/profile/' + this.idProfile + '/details/' + id_vol]);
+  }
+
+  openDelete(type, id_vol, date, name) {
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name}, BSModalContext));
   }
 }

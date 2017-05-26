@@ -68,5 +68,17 @@ export class SharedService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    deleteAction(id_vol) {
+         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/delete`, { id_vol: id_vol }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    denyCandidate(id_vol, id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/deny`, {id_user: id_user}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
     
 }

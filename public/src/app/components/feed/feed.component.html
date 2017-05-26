@@ -163,7 +163,7 @@
     <div class="row">
         <div class="col-6" *ngFor="let vol of vols; let i = index;">
             <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
-                type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name"
+                type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name" [likeState]="vol.vol.likeState"
                 [dateCreation]="vol.vol.date_creation" [description]="vol.vol.description" [index]="i">
             </vol-card>
         </div>
