@@ -254,5 +254,5 @@ app.get('/facebook/callback',
         }, secretKey);
 
 
-        res.redirect("http://localhost:4200/profile/" + req.user.id_user + "?id_token=JWT " + token);
+        res.redirect("http://volum.ddns.net/profile/" + req.user.id_user + "?id_token=JWT " + token);
     });
