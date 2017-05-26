@@ -822,7 +822,7 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
             message: 'Id Inválido'
         });
     } else {
-        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
             if (error) {
                 res.json({
                     success: false,
@@ -859,7 +859,7 @@ app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) 
             message: 'Id Inválido'
         });
     } else {
-        db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+        db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
             if (error) {
                 res.json({
                     success: false,
