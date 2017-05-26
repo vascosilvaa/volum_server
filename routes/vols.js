@@ -517,36 +517,50 @@ app.post('/:id/apply', passport.authenticate('jwt'), function (req, res) {
         });
 
     } else {
+        db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id], function (error, results, fields) {
+            if (results[0].id_user_creator == req.user.id_user) {
 
-        db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.json({
-                        success: false,
-                        error: "Ja te candidataste a este voluntariado"
-                    });
-                } else {
+                res.json({
+                    success: false,
+                    message: "Não te podes candidatar a uma ação criada por ti"
+                });
 
-                    db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
-                        function (error, results, fields) {
+            } else {
 
-                            let id_creator = results[0].id_user_creator;
 
-                            db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],
+                db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
+                    function (error, results, fields) {
+                        if (error) {
+                            console.log(error);
+                            res.json({
+                                success: false,
+                                error: "Ja te candidataste a este voluntariado"
+                            });
+                        } else {
+
+                            db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
                                 function (error, results, fields) {
-                                    console.log(results);
-                                    console.log(error);
-                                    res.json({
-                                        success: true,
-                                        message: "Sucesso"
-                                    });
+
+                                    let id_creator = results[0].id_user_creator;
+
+                                    db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],
+                                        function (error, results, fields) {
+                                            console.log(results);
+                                            console.log(error);
+                                            res.json({
+                                                success: true,
+                                                message: "Sucesso"
+                                            });
+                                        });
                                 });
-                        });
 
 
-                }
-            });
+                        }
+                    });
+
+            }
+        });
+
     }
 });
 /**
@@ -597,7 +611,7 @@ app.post('/:id/checkState', passport.authenticate('jwt'), function (req, res) {
                         res.json({
                             success: true,
                             state: 4,
-                            message: 'Ninguem gosta de ti'
+                            message: ':('
                         });
                     }
 
