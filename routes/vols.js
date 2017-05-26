@@ -28,7 +28,7 @@ app.get('/', function (req, res, next) {
     let vols = [];
     let options = {
         sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
@@ -57,7 +57,7 @@ app.get('/', function (req, res, next) {
                 throw new Error(error);
             } else {
                 console.log(results);
-                if (results.length == 0) {} else {
+                if (results.length == 0) {} else {  
 
                     for (let i = 0; i < results.length; i++) {
                         vols.push({
