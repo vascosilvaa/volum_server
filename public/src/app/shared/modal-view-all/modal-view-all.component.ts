@@ -1,3 +1,5 @@
+import { DetailsService } from './../../components/profile/details/details.service';
+import { DetailsComponent } from './../../components/profile/details/details.component';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
 import { VolDetailsModalService } from './../vol-details-modal/vol-details-modal.service';
@@ -13,6 +15,7 @@ export class ModalContext extends BSModalContext {
   public type: any;
   public id_user: any;
   public nameVol: any;
+  public index?: any;
 
 }
 
@@ -20,7 +23,8 @@ export class ModalContext extends BSModalContext {
   selector: 'view-all-modal',
   templateUrl: './modal-view-all.component.html',
   styleUrls: ['./modal-view-all.component.scss'],
-  providers: [VolDetailsModalService]
+  providers: [VolDetailsModalService, DetailsService]
+
 })
 
 
@@ -30,7 +34,10 @@ export class ModalViewAllComponent implements OnInit {
   public confirmeds;
   public likes;
   public main_modal;
+  public detailsPage;
+  public confirmedArray = []
   context: ModalContext;
+
 
   constructor(private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: VolDetailsModalService, public SharedService: SharedService) {
 
@@ -106,12 +113,14 @@ export class ModalViewAllComponent implements OnInit {
 
   denyCandidate(id_user) {
     this.SharedService.denyCandidate(this.context.idVol, id_user)
-    .then(res => {
-      console.log(res);
-    })
+      .then(res => {
+        this.dialog.close(1)
+      })
   }
 
- 
+
+
+
 }
 
 

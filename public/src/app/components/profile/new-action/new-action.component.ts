@@ -4,7 +4,7 @@ import { ModalContext } from './../../../shared/modal-view-all/modal-view-all.co
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
 import { ProfileService } from './../profile.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -19,7 +19,9 @@ export class NewActionComponent implements OnInit {
   public category: any;
   public schedule = 0;
   public img = 0;
-  public url;
+  public url1;
+  public url2;
+  public url3;
   public form: FormGroup;
   public categories: any;
   public name: any;
@@ -33,6 +35,7 @@ export class NewActionComponent implements OnInit {
   public coord: any;
   public coordAdvice: any;
   public idProfile: any;
+  public errorFiles:any;
 
   constructor(public Router: Router, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
 
@@ -51,7 +54,7 @@ export class NewActionComponent implements OnInit {
       category: ['', [Validators.required]],
       insurance: ['', [Validators.required]],
       date_begin: ['', [Validators.required]],
-      date_end: ['', [Validators.pattern('^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$')]],
+      date_end: ['', ],
       start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       duration: ['',],
@@ -122,6 +125,55 @@ export class NewActionComponent implements OnInit {
       .do(() => this.searching = false);
 
 
+  readUrl(event) {
+    console.log(event.target.files.length);
+    if(event.target.files.length > 3){
+      this.errorFiles=1;
+    } else {
+       this.errorFiles=0;
+       if (event.target.files && event.target.files[0] && event.target.files[1]) {
+          var reader = new FileReader()
+          reader.onload = (event) => {
+           this.url1 = event.target['result'];
+          }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+      if (event.target.files && event.target.files[0] && !event.target.files[1]) {
+          var reader = new FileReader()
+          reader.onload = (event) => {
+           this.url1 = event.target['result'];
+           this.url2 = undefined;
+           this.url3 = undefined;
+          }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    if (event.target.files && event.target.files[1] && event.target.files[2] ) {
+          var reader = new FileReader()
+          reader.onload = (event) => {
+           this.url2 = event.target['result'];
+           }
+      reader.readAsDataURL(event.target.files[1]);
+    }
+     if (event.target.files && event.target.files[1] && !event.target.files[2] ) {
+          var reader = new FileReader()
+          reader.onload = (event) => {
+           this.url2 = event.target['result'];
+           this.url3 = undefined;
+           }
+      reader.readAsDataURL(event.target.files[1]);
+    }
+    
+
+     if (event.target.files && event.target.files[2]) {
+          var reader = new FileReader()
+          reader.onload = (event) => {
+           this.url3 = event.target['result'];
+          }
+      reader.readAsDataURL(event.target.files[2]);
+    }
+    
+  }
+}
 
   /*change(id) {
     if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name

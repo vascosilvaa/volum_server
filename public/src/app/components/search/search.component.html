@@ -5,11 +5,39 @@
     <div class="col-12">
       <div class="for-input">
         <div class="headerInput">Procurar pessoas/instituições ou ações de voluntariado</div>
-        <input type="text" class="inputSearch" placeholder="Pesquisa pessoas/instituições ou ações de voluntariado" >
+        
+        <input type="text" [(ngModel)]="model"  class="inputSearch" placeholder="Pesquisa pessoas/instituições ou ações de voluntariado"><button (keyup.enter)="search(model)" (click)="search(model)" class="btn btnConfirm btnConfirmPadding">PESQUISAR</button>
 
       </div>
     </div>
   </div>
+
+  <div class="title-filter">
+    Utilizadores
+  </div>
+  <div class="row card-people">
+      <div *ngFor="let element of elements" class="col-4"> 
+         <div class="container">
+        <div class="mini-card-social row">
+          <div class="col for-img">
+              <img class="thumbnail" src="{{element?.photo_url}}">
+          </div>
+          <div class="col text-person">
+          <div class="ts14 name-person">{{element?.name}}</div>
+          <div class="ts13 desc-person" *ngIf="element.type==0">Ação de Voluntariado</div>
+          <div class="ts13 desc-person" *ngIf="element.type==1">Utilizador</div>
+          <div class="ts13 desc-person" *ngIf="element.type==2">Instituição</div>
+          </div>
+           <div class="col btn-person text-right for-btn">
+             <button class="btnConfirm">VER</button>
+          </div>
+            
+</div>
+        </div>
+      </div>
+  </div>
+
+  <!--
   <div class="title-filter">
     Utilizadores
   </div>
@@ -364,6 +392,7 @@
         </div>
       </div>
   </div>
+  -->
 </div>
 
 <app-footer></app-footer>

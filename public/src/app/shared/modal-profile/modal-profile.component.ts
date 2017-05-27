@@ -54,8 +54,10 @@ export class ModalProfileComponent implements OnInit {
   }
 
   onSelect(profile) {
-    this.dialog.dismiss();
+    this.dialog.close("done");  
+  }
 
-    this.router.navigate(['/profile/' + this.context.idProfile + '/activity']);
+  close() {
+    this.dialog.dismiss();
   }
 }

@@ -1,9 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { ProfileService } from './../profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { FeedService } from './../../feed/feed.service';
 import { GlobalConstants } from '../../../shared/global-constants';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 
 
@@ -13,7 +14,7 @@ import { Http } from '@angular/http';
   styleUrls: ['./activity.component.css'],
   providers: [FeedService]
 })
-export class ActivityComponent implements OnInit {
+export class ActivityComponent implements OnInit, OnDestroy {
   public privateVols: any;
 
   public instVols: any;
@@ -22,6 +23,8 @@ export class ActivityComponent implements OnInit {
   public userLogin: any;
   public idLogin: any;
   public user: any;
+  observable: any;
+
   public activeUser: any;
   constructor(public http: Http, private feedService: FeedService, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService) { }
@@ -31,11 +34,10 @@ export class ActivityComponent implements OnInit {
       console.log("PARAMS", params['id']);
       this.auth.userPromise.then(res => {
         this.user = res.user;
-        console.log(this.user)
-
-        this.profileService.dataString$.subscribe(
+        console.log("user2", this.user)
+      this.observable =  this.profileService.dataString$.subscribe(
           data => {
-
+            console.log("data", data);
             this.activeUser = data;
             console.log("USER TYPE", this.activeUser.type)
 
@@ -62,8 +64,18 @@ export class ActivityComponent implements OnInit {
 
 
 
+
+
     });
   }
+
+  ngOnDestroy() {
+
+    this.observable.unsubscribe()
+
+  }
+
+
 
 }
 

@@ -3,11 +3,11 @@ import { ModalEndComponent } from './../../../shared/modal-end/modal-end.compone
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
 import { SharedService } from './../../../shared/shared.service';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
-import { Overlay, overlayConfigFactory} from 'angular2-modal';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { ProfileService } from './../profile.service';
 import { Http } from '@angular/http';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
-import { Router, ActivatedRoute  } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import * as moment from 'moment';
 
@@ -30,29 +30,49 @@ export class DetailsComponent implements OnInit {
   public minutos_inicio: any;
   public minutos_fim: any;
   public addressData: any;
-  public address=[];
-  public addressName=[];
-  public candidates:any;
-  public confirmeds:any;
+  public address = [];
+  public addressName = [];
+  public candidates = [];
+  public confirmeds = [];
   public numberComments: any;
-  public comments: any;
+  public comments = [];
   public comentario: any;
+  public numberCandidates: any;
+  public numberConfirms: any;
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
-  public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService, 
-  private router: Router, private detailsservice: DetailsService) {
+    public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
+    private router: Router, private detailsservice: DetailsService) {
     overlay.defaultViewContainer = vcRef;
-   }
+  }
 
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-        this.idVol = this.route.snapshot.params['id'];
-        this.idLogin = this.route.parent.parent.snapshot.params['id'];
+      this.idVol = this.route.snapshot.params['id'];
+      this.idLogin = this.route.parent.parent.snapshot.params['id'];
     });
     this.getVol(this.idVol);
     this.getCandidates(this.idVol);
     this.getConfirmed(this.idVol);
     this.countComments(this.idVol);
+    this.countCandidates(this.idVol);
+    this.countConfirmed(this.idVol);
+  }
+
+  countCandidates(id_vol) {
+    this.detailsservice.countCandidates(id_vol)
+      .then(res => {
+        this.numberCandidates = res.count;
+      })
+      .catch(err => console.log(err));
+  }
+
+  countConfirmed(id_vol) {
+    this.detailsservice.countConfirmed(id_vol)
+      .then(res => {
+        this.numberConfirms = res.count;
+      })
+      .catch(err => console.log(err));
   }
 
   sendComment(comment) {
@@ -76,7 +96,7 @@ export class DetailsComponent implements OnInit {
     this.detailsservice.countComments(idVol)
       .then(res => {
         this.numberComments = res.count;
-        if(this.numberComments>0) {
+        if (this.numberComments > 0) {
           this.getComments(idVol);
         }
       })
@@ -85,10 +105,10 @@ export class DetailsComponent implements OnInit {
 
   getComments(idVol) {
     this.detailsservice.getComments(idVol)
-        .then(res => {
-          this.comments = res.comments;
-        })
-        .catch(err => console.log(err));
+      .then(res => {
+        this.comments = res.comments;
+      })
+      .catch(err => console.log(err));
   }
 
   getVol(idVol) {
@@ -98,10 +118,10 @@ export class DetailsComponent implements OnInit {
         this.getAddress();
         this.lat = parseFloat(this.vols.lat);
         this.lng = parseFloat(this.vols.lng);
-        this.hora_inicio = this.vols.start_time.slice(0,2);
-        this.minutos_inicio = this.vols.start_time.slice(3,5);
-        this.hora_fim = this.vols.end_time.slice(0,2);
-        this.minutos_fim = this.vols.end_time.slice(3,5);
+        this.hora_inicio = this.vols.start_time.slice(0, 2);
+        this.minutos_inicio = this.vols.start_time.slice(3, 5);
+        this.hora_fim = this.vols.end_time.slice(0, 2);
+        this.minutos_fim = this.vols.end_time.slice(3, 5);
       })
       .catch(err => console.log(err));
   }
@@ -113,7 +133,7 @@ export class DetailsComponent implements OnInit {
       })
       .catch(err => console.log(err));
   }
-  
+
   getConfirmed(idVol) {
     this.detailsservice.getConfirmed(idVol, 3)
       .then(res => {
@@ -122,35 +142,62 @@ export class DetailsComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-    getAddress() {
-        this.detailsservice.getAddress(this.vols.lat, this.vols.lng)
-        .then(res => {
-          this.addressData = res.results;
-           this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
-          this.addressName[this.vols.id_vol] = this.addressData[0].address_components[0].short_name;
-        })
-       
+  getAddress() {
+    this.detailsservice.getAddress(this.vols.lat, this.vols.lng)
+      .then(res => {
+        this.addressData = res.results;
+        this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
+        this.addressName[this.vols.id_vol] = this.addressData[0].address_components[0].short_name;
+      })
+
   }
 
   openViewAll(type, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({type: type, idVol: idVol}, BSModalContext));
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol }, BSModalContext));
 
   }
 
-   openRemoveConfirm(type, idVol, idUser, name) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol:idVol, idUser:idUser}, BSModalContext));
+  openRemoveConfirm(type, idVol, idUser, name, i) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol: idVol, idUser: idUser, index: i }, BSModalContext)).then((d) => d.result)
+      .then((r) => {
+        console.log(r);
+        let index = this.candidates.findIndex(x => x.id_user == idUser);
+        this.confirmeds.splice(index, 1);
+         this.numberConfirms--;
+      },
+      (error) => { console.log(error); });
   }
-  
+
+   openDelete(type, id_vol, date, name) {
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name}, BSModalContext));
+  }
+
+  openRemoveConfirmCandidate(type, idVol, idUser, name, i) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol: idVol, idUser: idUser, index: i }, BSModalContext)).then((d) => d.result)
+      .then((r) => {
+        console.log(r);
+        let index = this.candidates.findIndex(x => x.id_user == idUser);
+        this.candidates.splice(index, 1);
+        this.numberCandidates--;
+      },
+      (error) => { console.log(error); });
+  }
+
   openEnd(type, idVol) {
-    return this.modal.open(ModalEndComponent, overlayConfigFactory({ idVol: idVol, type: type}, BSModalContext));
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ idVol: idVol, type: type }, BSModalContext));
 
   }
 
   confirmCandidate(id_user) {
     this.detailsservice.confirmCandidate(this.vols.id_vol, id_user)
-    .then(res => {
-      console.log(res);
-    })
+      .then(res => {
+        let index = this.candidates.findIndex(x => x.id_user == id_user);
+        this.confirmeds.unshift(this.candidates[index])
+        this.candidates.splice(index, 1);
+        this.numberConfirms++;
+        this.numberCandidates--;
+        console.log(res);
+      })
   }
 
 }

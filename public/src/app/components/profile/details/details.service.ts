@@ -61,6 +61,19 @@ export class DetailsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    countCandidates(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/candidates/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+
+    countConfirmed(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+    
    
  
 }
