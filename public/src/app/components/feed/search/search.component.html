@@ -1,9 +1,8 @@
 <ng-template #rt let-r="result" let-t="term">
 
-    <!-- SE FOR INSTITUICAO -->
     <div class="">
-        <div class="row">
-            <div class="img-search" (click)="navigate(model.id, model.type)">
+        <div class="row pointer" (click)="navigate(model.id, model.type)" style="padding:5px 0px;">
+            <div class="img-search">
                 <img *ngIf="!r.photo_url" src="assets/imgs/volunteer.png">
                 <img *ngIf="r.photo_url" [src]="r.photo_url">
             </div>
@@ -31,7 +30,7 @@
         </div>
 
         <div class="col-search-btn btnSearch">
-            <button md-raised-button class="btnConfirm btn-search" routerLink="/search">PROCURAR</button>
+            <button md-raised-button class="btnConfirm btn-search" (click)="goToSearch()">PROCURAR</button>
         </div>
     </div>
 </div>

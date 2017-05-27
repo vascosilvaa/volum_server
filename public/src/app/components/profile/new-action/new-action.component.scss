@@ -110,3 +110,13 @@ textarea:focus + label {
     padding: 10px 0px;
     display: flex;
 }
+
+.imgPreview {
+    height: 75px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.text-red {
+    color: $red!important;
+}

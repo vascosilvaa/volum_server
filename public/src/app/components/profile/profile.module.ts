@@ -48,6 +48,7 @@ import { NewActionComponent } from './new-action/new-action.component';
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
   ],
+  entryComponents: [ModalViewAllComponent]
 })
 
 export class ProfileModule { }

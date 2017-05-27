@@ -54,12 +54,18 @@
         </div>
         <div class="col text-right no-padding">
             <!-- <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button> -->
-            <button class="btn btnCandidate" (click)="openRemoveConfirm(7, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails.active==1 && state == 0">CANDIDATAR</button>
-            <button class="btn btnRemove" (click)="openRemoveConfirm(6, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails.active==1 && state == 1 && !candCancel">CANCELAR CANDIDATURA</button>
-            <button class="btn btnGreen " *ngIf="volDetails.active==1 && state == 2">CONFIRMADO COMO PARTICIPANTE</button>
-            <button class="btn btnGreenOut" *ngIf="volDetails.active==1 && state == 3">CANDIDATURA ENVIADA COM SUCESSO</button>
-            <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
-            <button class="btn btnCancel" *ngIf="volDetails.active==1 && state == 4">CANDIDATURA REJEITADA</button>
+            <div *ngIf="volDetails.user.id_user!=id_user">
+                <button class="btn pointer btnCandidate" (click)="openRemoveConfirm(7, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails.active==1 && state == 0">CANDIDATAR</button>
+                <button class="btn pointer btnRemove" (click)="openRemoveConfirm(6, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails.active==1 && state == 1 && !candCancel">CANCELAR CANDIDATURA</button>
+                <button class="btn pointer btnGreen " *ngIf="volDetails.active==1 && state == 2">CONFIRMADO COMO PARTICIPANTE</button>
+                <button class="btn pointer btnGreenOut" *ngIf="volDetails.active==1 && state == 3">CANDIDATURA ENVIADA COM SUCESSO</button>
+                <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
+                <button class="btn pointer btnCancel" *ngIf="volDetails.active==1 && state == 4">CANDIDATURA REJEITADA</button>
+            </div>
+              <div *ngIf="volDetails.user.id_user==id_user">
+                <button class="btn pointer btnCandidate" (click)="goDetails(volDetails.id_vol)" *ngIf="volDetails.active==1">ÁREA DE GESTÃO</button>
+                <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
+            </div>
 
         </div>
 
@@ -136,7 +142,7 @@
                             <span class="numberBlue">{{numberConfirmeds}}</span><span class="normalText"> confirmados</span>
                         </div>
                         <div *ngIf="login" class="likeImgs Rgt">
-                            <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
+                            <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(confirmed?.id_user)" class="pointer">
                             <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">{{numberConfirmeds-10}}</div>
                             <div *ngIf="!numberConfirmeds" class="ts13" style="margin-top:5px">Não existem confirmados.</div>
                         </div>

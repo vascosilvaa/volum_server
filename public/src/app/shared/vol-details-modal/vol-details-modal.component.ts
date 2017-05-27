@@ -57,17 +57,12 @@ export class VolDetailsModalComponent implements OnInit {
   constructor(private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
-
     if (this.authService.isAuthenticated()) {
       this.context.size = "lg";
     }
-
   }
-
   ngAfterViewInit() {
-
     setTimeout(() => {
-
       this.getCandidates();
       this.getConfirmed();
       console.log(this.context.idVol);
@@ -94,7 +89,7 @@ export class VolDetailsModalComponent implements OnInit {
       this.volsService.getVol(this.context.idVol)
         .then(res => {
           this.volDetails = res.vol;
-          console.log(this.volDetails);
+          console.log("vol-details ----- > ", this.volDetails);
           this.checkState(this.context.idVol);
           this.getAddress(this.volDetails.lat, this.volDetails.lng);
           this.lat = parseFloat(this.volDetails.lat);
@@ -103,12 +98,8 @@ export class VolDetailsModalComponent implements OnInit {
           this.ready = true;
         })
         .catch(err => console.log(err));
-
-
-
     }, 250)
   }
-
   ngOnInit() {
     this.feed = this.injector.get(FeedComponent);
   }
@@ -119,7 +110,14 @@ export class VolDetailsModalComponent implements OnInit {
   }
 
   openProfileModal(idProfile) {
-    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext)).then((d) => d.result)
+      .then((r) => {
+        this.dialog.dismiss();
+        setTimeout(() => {
+      this.router.navigate(['/profile/' + idProfile + '/activity']);
+    }, 500);  
+      },
+      (error) => { console.log(error); });;
   }
 
   countComments() {
@@ -160,17 +158,17 @@ export class VolDetailsModalComponent implements OnInit {
     return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol, nameVol: name, id_user: id_user }, BSModalContext))
       .then((d) => d.result)
       .then((r) => {
-         console.log(r.result);
-         if(this.state==1) { // Cancelar 
-           this.state=0; // Candidatar
-         }
-         else if (this.state==0) { // Candidatar 
-           this.state=3;  //Sucesso
-         }
-        }, 
-        (error) => { console.log(error); });
+        console.log(r.result);
+        if (this.state == 1) { // Cancelar 
+          this.state = 0; // Candidatar
+        }
+        else if (this.state == 0) { // Candidatar 
+          this.state = 3;  //Sucesso
+        }
+      },
+      (error) => { console.log(error); });
   }
-  
+
   sendComment(comment) {
     if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 
@@ -274,6 +272,16 @@ export class VolDetailsModalComponent implements OnInit {
       this.state = res.state;
       console.log(res);
     });
+  }
+
+  goDetails(id_vol) {
+
+    this.dialog.dismiss();
+    setTimeout(() => {
+      this.router.navigate(['/profile/' + this.id_user + '/details/' + id_vol]);
+
+    }, 500);
+
   }
 
 

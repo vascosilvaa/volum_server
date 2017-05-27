@@ -11,6 +11,7 @@ export class ModalContext extends BSModalContext {
     public type: any;
     public date: any;
     public name: any;
+    public idUser: any;
 }
 
 @Component({

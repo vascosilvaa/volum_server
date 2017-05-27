@@ -80,5 +80,6 @@ export class SharedService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
     
 }

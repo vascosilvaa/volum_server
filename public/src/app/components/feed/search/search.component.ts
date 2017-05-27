@@ -54,4 +54,8 @@ export class SearchComponent implements OnInit {
       //Abrir VOL DETAILS
     }
   }
+
+  goToSearch() {
+     this.router.navigate(['/search', { q: this.model }]);
+  }
 }

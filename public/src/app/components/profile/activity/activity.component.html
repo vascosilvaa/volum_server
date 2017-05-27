@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="vols">
     <div class="col-6" *ngFor="let vol of vols">
       <vol-card *ngIf="activeUser.type == 1" [verified]="false" type='private' [idVol]="vol.id_vol" [avatar]="activeUser.photo" [username]="activeUser.username"
         [userCreator]="activeUser.id_user" [dateCreation]="vol.date_creation" [title]="vol.name" [photos]="vol.photos" [description]="vol.description">

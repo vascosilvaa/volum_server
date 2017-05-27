@@ -213,8 +213,8 @@
                 <div class="card-header cardTitle">
                     <div class="row">
                         <div class="col titleCard no-padding">
-                            <div>Candidatos (7)</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="candidates!=undefined">Ver todos</div>
+                            <div>Candidatos <span *ngIf="numberCandidates!=0">({{numberCandidates}})</span></div>
+                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="numberCandidates!=0">Ver todos</div>
                     </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                                     <span class="candidateName">{{candidate?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirm(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
+                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirmCandidate(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
                                     <button type="button" class="btn btn-outline-primary btnConfirm" (click)="confirmCandidate(candidate?.id_user)">ACEITAR</button>
                                 </div>
                             </div>
@@ -245,21 +245,21 @@
                 <div class="card-header cardTitle">
                     <div class="row">
                         <div class="col titleCard no-padding">
-                            <div>Confirmados (12)</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(2,idVol)" *ngIf="confirmeds!=undefined">Ver todos</div>
+                            <div>Confirmados <span *ngIf="numberConfirms!=0">({{numberConfirms}})</span></div>
+                            <div class="see-all ml-auto" (click)="openViewAll(2,idVol)" *ngIf="numberConfirms!=0">Ver todos</div>
                         </div>
                     </div>
                 </div>
                 <div class="card-content candidates-zone">
                     <ul class="list-group">
-                        <li *ngFor="let confirmed of confirmeds"class="listPerson no-border no-margin">
+                        <li *ngFor="let confirmed of confirmeds; let i= index"class="listPerson no-border no-margin">
                             <div class="row no-margin">
                                 <div class="card-user-image">
                                     <img src="{{confirmed?.photo_url}}">
                                     <span class="candidateName">{{confirmed?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4, idVol, confirmed?.id_user, confirmed?.name)">REMOVER</button>
+                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4, idVol, confirmed?.id_user, confirmed?.name, i)">REMOVER</button>
                                 </div>
                             </div>
                         </li>
@@ -340,7 +340,7 @@
                         </md-input-container>
                     </div>
                     <div class="text-center" style="padding-left:15px;">
-                        <md-icon class="btnSendIcon btnSendColorGrey">send</md-icon>
+                        <md-icon class="btnSendIcon btnSendColorGrey" click="sendComment(comentario)">send</md-icon>
                     </div>
                 </div>
             </div>
@@ -352,7 +352,7 @@
  
     <div class="row btnsBack">
         <div class="col-6">
-            <button class="btn btnCancel1" (click)="openEnd(1,1)">APAGAR AÇÃO</button>
+            <button class="btn btnCancel1" (click)="openDelete(1, vols.id_vol, vols.date_begin, vols.name)">APAGAR AÇÃO</button>
         </div>
         <div class="col-6">
             <button class="btn btnEnd" (click)="openEnd(2,1)">FINALIZAR AÇÃO</button>
