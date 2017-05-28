@@ -25,9 +25,9 @@ var app = module.exports = express.Router();
 var returnRouter = function (io) {
 
 
-    app.get('/:id', passport.authenticate(['jwt'], ['facebook']), function (req, res) {
+    app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
         if (!req.params.id) {
-
+            console.log("gawagaw", req.user)
             res.send({
                 success: false,
                 user: req.user
@@ -42,6 +42,7 @@ var returnRouter = function (io) {
                     })
 
                 } else {
+                    console.log("USER", user)
                     res.status(200);
                     res.send({
                         success: true,
@@ -53,7 +54,8 @@ var returnRouter = function (io) {
                             photo: user.photo_url,
                             birth_date: user.birth_date,
                             verified: user.verified,
-                            type: user.type_user
+                            type: user.type_user,
+                            about: user.about
                         }
                     });
                 }
@@ -79,7 +81,7 @@ var returnRouter = function (io) {
         } else {
             db.get().query({
                 sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-                    'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+                'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
                 nestTables: true
             }, [req.params.id], function (err, results, fields) {
                 if (err) {
@@ -127,6 +129,111 @@ var returnRouter = function (io) {
         }
     });
 
+    //VOLS A QUE ESTA CANDIDATO
+
+    app.get('/vols/my-applies', passport.authenticate('jwt'), function (req, res) {
+        db.get().query({
+            sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
+            'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND user_vol.id_user = ? AND user_vol.confirm = 1 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC  ',
+            nestTables: true
+        }, [req.user.id_user], function (err, results, fields) {
+            if (err) {
+                console.log(err)
+                res.send({
+                    success: false,
+                    err
+                });
+            } else {
+                console.log(results)
+                if (results.length > 0) {
+                    let vols = [];
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            id_vol: results[i].vols.id_vol,
+                            name: results[i].vols.name,
+                            date_begin: results[i].vols.date_begin,
+                            description: results[i].vols.description,
+                            date_creation: results[i].vols.date_creation,
+                            date_end: results[i].vols.date_end,
+                            lat: results[i].vols.lat,
+                            lng: results[i].vols.lng,
+                            start_time: results[i].vols.start_time,
+                            end_time: results[i].vols.end_time,
+                            photos: (results[i][''].photos).split('->')
+                        });
+                    }
+
+                    res.send({
+                        success: true,
+                        vols
+                    });
+
+                } else {
+                    res.send({
+                        success: true,
+                        body: "Sem Registos"
+                    });
+                }
+
+            }
+
+
+        });
+
+    });
+
+    //VOLS QUE ESTA CONFIRMADO
+
+    app.get('/vols/confirmed', passport.authenticate('jwt'), function (req, res) {
+        db.get().query({
+            sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
+            'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND user_vol.id_user = ? AND user_vol.confirm = 2 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC  ',
+            nestTables: true
+        }, [req.user.id_user], function (err, results, fields) {
+            if (err) {
+                console.log(err)
+                res.send({
+                    success: false,
+                    err
+                });
+            } else {
+                console.log(results)
+                if (results.length > 0) {
+                    let vols = [];
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            id_vol: results[i].vols.id_vol,
+                            name: results[i].vols.name,
+                            date_begin: results[i].vols.date_begin,
+                            description: results[i].vols.description,
+                            date_creation: results[i].vols.date_creation,
+                            date_end: results[i].vols.date_end,
+                            lat: results[i].vols.lat,
+                            lng: results[i].vols.lng,
+                            start_time: results[i].vols.start_time,
+                            end_time: results[i].vols.end_time,
+                            photos: (results[i][''].photos).split('->')
+                        });
+                    }
+
+                    res.send({
+                        success: true,
+                        vols
+                    });
+
+                } else {
+                    res.send({
+                        success: true,
+                        body: "Sem Registos"
+                    });
+                }
+
+            }
+
+
+        });
+
+    });
 
     /**
      * @api {get} /profile/:id Retornar Vols em que participei 
@@ -172,7 +279,7 @@ var returnRouter = function (io) {
         } else {
             let options = {
                 sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
-                    " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)  AND vols.deleted = 0",
+                " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)  AND vols.deleted = 0",
                 nestTables: true
             }
             db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
@@ -312,8 +419,8 @@ var returnRouter = function (io) {
             let users = [];
 
             db.get().query({
-                    sql: 'SELECT COUNT(*) AS count FROM follows WHERE id_user = ? AND id_user2 = ?'
-                }, [req.user.id_user, req.params.id],
+                sql: 'SELECT COUNT(*) AS count FROM follows WHERE id_user = ? AND id_user2 = ?'
+            }, [req.user.id_user, req.params.id],
                 function (error, count, fields) {
                     if (count[0].count == 1) {
                         res.json({
@@ -346,9 +453,9 @@ var returnRouter = function (io) {
             let users = [];
 
             db.get().query({
-                    sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2',
-                    nestTables: true
-                }, [req.params.id],
+                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2',
+                nestTables: true
+            }, [req.params.id],
                 function (error, results, fields) {
                     if (results) {
 
@@ -387,9 +494,9 @@ var returnRouter = function (io) {
             let institutions = [];
 
             db.get().query({
-                    sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1',
-                    nestTables: true
-                }, [req.params.id],
+                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1',
+                nestTables: true
+            }, [req.params.id],
                 function (error, results, fields) {
                     if (results) {
 
@@ -428,8 +535,8 @@ var returnRouter = function (io) {
             let count;
 
             db.get().query({
-                    sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 2'
-                }, [req.params.id],
+                sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 2'
+            }, [req.params.id],
                 function (error, results, fields) {
                     count = results[0].count
 
@@ -454,8 +561,8 @@ var returnRouter = function (io) {
             let count;
 
             db.get().query({
-                    sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 1'
-                }, [req.params.id],
+                sql: 'SELECT COUNT(*) AS count FROM follows INNER JOIN users ON follows.id_user2 = users.id_user WHERE follows.id_user = ? AND users.type_user = 1'
+            }, [req.params.id],
                 function (error, results, fields) {
                     count = results[0].count
 

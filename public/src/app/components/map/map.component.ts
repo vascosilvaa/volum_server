@@ -11,39 +11,36 @@ import { Component, OnInit } from '@angular/core';
 export class MapComponent implements OnInit {
   lat: number;
   lng: number;
-  
-  public privateVols: any;
-  public instVols: any;
-  
+
+  public vols: any;
+
   constructor(public http: Http, private feedService: FeedService) { }
   location = {};
-   setPosition(position){
-      this.location = position.coords;
-      console.log(position.coords.latitude);
-      this.lat=position.coords.latitude;
-      this.lng=position.coords.longitude;
-      }
+  setPosition(position) {
+    this.location = position.coords;
+    console.log(position.coords.latitude);
+    this.lat = position.coords.latitude;
+    this.lng = position.coords.longitude;
+  }
   ngOnInit() {
     this.getLocation()
-    this.feedService.getPrivates()
+    this.feedService.getVols()
       .then(res => {
-        this.privateVols = res.vols;
-        console.log(this.privateVols);
+        this.vols = res.vols;
+
       })
       .catch(err => console.log(err));
 
-    this.feedService.getInstVol().then(res => {
-      this.instVols = res.vols;
-
-    }).catch(err => {
-
-    })
 
   }
-  getLocation(){
-     if(window.navigator.geolocation){
-            window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-            };
+
+  private convertStringToNumber(value: string): number {
+    return +value;
+  }
+  getLocation() {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+    };
 
   }
 }

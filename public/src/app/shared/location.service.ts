@@ -12,7 +12,7 @@ export class LocationService {
             s: "Agora mesmo",
             m: "1 min",
             mm: "%d m",
-            h: "1h",
+            h: "%d h",
             hh: "%d hrs",
             d: "1 dia",
             dd: "%d dias",

@@ -1,3 +1,4 @@
+import { timeAgoPipe } from './../pipes/timeago.pipe';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { MomentModule } from 'angular2-moment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +26,8 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
     FooterComponent,
     ModalViewAllComponent,
     ModalEndComponent,
-    ModalProfileComponent
+    ModalProfileComponent,
+    timeAgoPipe
   ],
   imports: [
     FormsModule,

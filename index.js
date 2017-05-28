@@ -23,7 +23,7 @@ var io = require('socket.io').listen(server);
 
 //ROUTES
 
-var vols = require('./routes/vols')
+var vols = require('./routes/vols')(io)
 var auth = require('./routes/auth');
 var users = require('./routes/users')(io)
 var notifications = require('./routes/notifications')(io)

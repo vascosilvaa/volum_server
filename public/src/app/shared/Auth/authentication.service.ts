@@ -46,7 +46,7 @@ export class AuthenticationService {
             .then(res => {
                 this.storeUserCredentials(res.json().id_token);
                 localStorage.setItem("USER_ID", res.json().id_user);
-                
+
                 return res.json();
             })
             .catch(err => {

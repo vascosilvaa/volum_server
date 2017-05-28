@@ -10,8 +10,8 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { RouterModule, Router } from '@angular/router';
 
-import * as moment from 'moment';
-
+import * as moment from 'moment-timezone';
+import 'moment-timezone'
 @Component({
   selector: 'vol-card',
   templateUrl: './card.component.html',
@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
     paginationClickable: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
-    noSwiping	: true
+    noSwiping: true
   };
 
 
@@ -60,11 +60,28 @@ export class CardComponent implements OnInit {
     } else {
       this.login = 0;
     }
-  
-    console.log("LIKES", this.likes)
 
-    moment.locale('pt-pt');
-     
+    console.log("LIKES", this.likes)
+    moment.tz("Europe/Lisbon")
+
+    moment.tz("Europe/Lisbon").locale('pt-pt');
+    moment.updateLocale('pt', {
+      relativeTime: {
+        future: "Daqui a %s",
+        past: "%s",
+        s: "Agora mesmo",
+        m: "1 min",
+        mm: "%d m",
+        h: "1h",
+        hh: "%d hrs",
+        d: "1 dia",
+        dd: "%d dias",
+        M: "1 mês",
+        MM: "%d meses",
+        y: "1 ano",
+        yy: "%d anos"
+      }
+    });
 
     /*  this.sharedService.getComments(this.idVol)
         .then(res => {
@@ -72,35 +89,38 @@ export class CardComponent implements OnInit {
           console.log(this.commentsResult);
         })
         .catch(err => console.log(err));
-  
+   
         */
   }
 
-  openRegister() {
-    return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
-  }
 
-  openVolDetails(idVol) {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: this.index }, BSModalContext));
-  }
 
-  onSelect(profile) {
-    this.router.navigate(['/profile/' + profile + '/activity']);
-  }
 
-  like(id_vol) {
-    this.likeState = 1;
-    this.likes++;
-    this.sharedService.like(id_vol).then(res => {
+openRegister() {
+  return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+}
+
+openVolDetails(idVol) {
+  return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: this.index }, BSModalContext));
+}
+
+onSelect(profile) {
+  this.router.navigate(['/profile/' + profile + '/activity']);
+}
+
+like(id_vol) {
+  this.likeState = 1;
+  this.likes++;
+  this.sharedService.like(id_vol).then(res => {
     console.log(res);
-    });
-  }
-  dislike(id_vol) {
-    this.likeState = 0;
-    this.likes--;
-    this.sharedService.dislike(id_vol).then(res => {
+  });
+}
+dislike(id_vol) {
+  this.likeState = 0;
+  this.likes--;
+  this.sharedService.dislike(id_vol).then(res => {
 
-      console.log(res);
-    });
-  }
+    console.log(res);
+  });
+}
 }
