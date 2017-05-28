@@ -15,7 +15,8 @@ var jwtCheck = jwt({
 var comments = [];
 let user = {};
 let vol = {};
-
+let startAt = 0;
+let amount = 0;
 
 var returnRouter = function (io) {
 
@@ -26,68 +27,78 @@ var returnRouter = function (io) {
      */
 
     app.get('/', function (req, res, next) {
+        if (!req.query.amount && !req.query.startAt) {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            }
+            )
+        } else {
 
-        let vols = [];
-        let options = {
-            sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
-            nestTables: true
-        };
-        if (req.query['type'] == 'inst') {
-            options = {
-                sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
+            let vols = [];
+            let options = {
+                sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC LIMIT ?, ?',
                 nestTables: true
             };
-        } else if (req.query['type'] == 'private') {
+            if (req.query['type'] == 'inst') {
+                options = {
+                    sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
+                    nestTables: true
+                };
+            } else if (req.query['type'] == 'private') {
 
-            options = {
-                sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
-                nestTables: true
-            };
-        }
+                options = {
+                    sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
+                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
+                    nestTables: true
+                };
+            }
 
-        db.get().query(options,
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.send({
-                        success: false,
-                        message: error
-                    })
-                    throw new Error(error);
-                } else {
-                    console.log(results);
-                    if (results.length == 0) { } else {
+            db.get().query(options, [parseInt(req.query.startAt), parseInt(req.query.amount)],
+                function (error, results, fields) {
+                    if (error) {
+                        console.log(error);
+                        res.send({
+                            success: false,
+                            message: error
+                        })
+                        throw new Error(error);
+                    } else {
+                        console.log(results);
+                        if (results.length == 0) { } else {
 
-                        for (let i = 0; i < results.length; i++) {
-                            vols.push({
-                                vol: {
-                                    id_vol: results[i].vols.id_vol,
-                                    name: results[i].vols.name,
-                                    description: results[i].vols.description,
-                                    date_begin: results[i].vols.date_begin,
-                                    date_creation: results[i].vols.date_creation,
-                                    duration: results[i].vols.duration,
-                                    lat: results[i].vols.lat,
-                                    lng: results[i].vols.lng,
-                                    photos: (results[i][''].photos).split('->')
-                                },
-                                user: {
-                                    id_user: results[i].users.id_user,
-                                    name: results[i].users.name,
-                                    photo_url: results[i].users.photo_url
-                                }
-                            });
+                            for (let i = 0; i < results.length; i++) {
+                                vols.push({
+                                    vol: {
+                                        id_vol: results[i].vols.id_vol,
+                                        name: results[i].vols.name,
+                                        description: results[i].vols.description,
+                                        date_begin: results[i].vols.date_begin,
+                                        date_creation: results[i].vols.date_creation,
+                                        duration: results[i].vols.duration,
+                                        lat: results[i].vols.lat,
+                                        lng: results[i].vols.lng,
+                                        photos: (results[i][''].photos).split('->')
+                                    },
+                                    user: {
+                                        id_user: results[i].users.id_user,
+                                        name: results[i].users.name,
+                                        photo_url: results[i].users.photo_url
+                                    }
+                                });
+                            }
                         }
+                        res.json({
+                            success: true,
+                            vols
+                        });
                     }
-                    res.json({
-                        success: true,
-                        vols
-                    });
-                }
-            });
+                });
+
+        }
     });
 
 

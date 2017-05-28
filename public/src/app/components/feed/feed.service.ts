@@ -37,8 +37,8 @@ export class FeedService {
             .catch(error => console.log(error));
     }
 
-    getVols() {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`).toPromise()
+    getVols(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { startAt: startAt, amount: amount}).toPromise()
             .then(res => {
                 return res.json();
             })

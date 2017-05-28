@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     this.getLocation()
-    this.feedService.getVols()
+    this.feedService.getVols(0, 10)
       .then(res => {
         this.vols = res.vols;
 

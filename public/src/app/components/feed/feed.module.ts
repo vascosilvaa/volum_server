@@ -3,7 +3,7 @@ import { FooterComponent } from './../../shared/footer/footer.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SharedModule } from './../../shared/shared.module';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { FeedRoutingModule } from './feed.routing';
 import { RouterModule } from '@angular/router';
@@ -29,6 +29,7 @@ import { SearchComponent } from './search/search.component';
         NgbModule.forRoot(),
         CommonModule,
         FormsModule,
+        InfiniteScrollModule,
         SwiperModule,
         ReactiveFormsModule,
         SharedModule,
