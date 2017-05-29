@@ -35,7 +35,7 @@ export class ChatMessageComponent implements OnInit {
         this.id_user = res.user.id_user;
         this.activatedRoute.params.subscribe((params) => {
           this.id_conversation = params.id;
-        
+
           this.socket.joinRoom(params.id);
           this.getMessages(params.id);
         });

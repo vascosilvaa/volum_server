@@ -82,19 +82,20 @@
           
            <div  *ngIf="img==1"class="col-6 inputProfile3">
               <div class="form-group">
-                <input type="file" multiple class="form-control-file" (change)="seeImages($event)" id="exampleInputFile" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">Pode inserir 3 fotografias selecionando na área de seleção. </small>
+                <input type="file" multiple class="form-control-file" (change)="readUrl($event)" id="exampleInputFile" aria-describedby="fileHelp">
+                <small *ngIf="errorFiles==0" id="fileHelp" class="form-text text-muted">Pode inserir 3 fotografias selecionando na área de seleção. </small>
+                <small *ngIf="errorFiles==1" id="fileHelp" class="form-text text-muted text-red"><strong>Erro! </strong>Só pode inserir 3 fotografias!</small>
               </div>
             </div>
 
                 <div *ngIf="img==1" class="col-2 ">
-                  <div class="imageVol"></div>
+                  <div class="imageVol"><img *ngIf="url1" class="imgPreview" [src]="url1"></div>
                 </div>
                 <div  *ngIf="img==1"class="col-2 ">
-                  <div class="imageVol"></div>
+                  <div class="imageVol"><img *ngIf="url2" class="imgPreview" [src]="url2"></div>
                 </div>
                 <div *ngIf="img==1" class="col-2 ">
-                  <div class="imageVol"></div>
+                  <div class="imageVol"><img  *ngIf="url3" class="imgPreview" [src]="url3"></div>
                 </div>
 
      

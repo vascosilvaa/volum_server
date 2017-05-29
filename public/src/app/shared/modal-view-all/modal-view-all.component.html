@@ -38,8 +38,8 @@
           <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
             <div class="row no-margin user-desc">
               <div class="card-user-image">
-                <img src="{{candidate?.photo_url}}">
-                <span class="candidateName">{{candidate?.name}}</span>
+                <img src="{{confirmed?.photo_url}}">
+                <span class="candidateName">{{confirmed?.name}}</span>
               </div>
               <div class="col text-right no-padding">
                 <button type="button" class="btn btnRemove">REMOVER</button>
@@ -112,8 +112,8 @@
         Tem a certeza que deseja remover {{context.name}} dos confirmados?
       </div>
       <div class="col-12 text-right modal-btns">
-        <button class="btn btnCancel">NÃO</button>
-        <button class="btn btnConfirm">SIM</button>
+        <button class="btn btnCancel" (click)="close()">NÃO</button>
+        <button class="btn btnConfirm" (click)="denyCandidate(this.context.idUser)">SIM</button>
       </div>
     </div>
   </div>

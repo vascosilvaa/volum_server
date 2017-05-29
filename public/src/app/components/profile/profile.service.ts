@@ -26,7 +26,7 @@ import 'rxjs/add/operator/switchMap';
 export class ProfileService {
 
     private dataStringSource = new Subject<Object>();
-
+    
     // Observable string stream
     dataString$ = this.dataStringSource.asObservable();
 

@@ -17,6 +17,7 @@ import { SharedService } from './shared.service';
 import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component';
 import { ModalEndComponent } from './modal-end/modal-end.component';
 import { ModalProfileComponent } from './modal-profile/modal-profile.component';
+import { ModalInviteComponent } from './modal-invite/modal-invite.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
     ModalViewAllComponent,
     ModalEndComponent,
     ModalProfileComponent,
-    timeAgoPipe
+    timeAgoPipe,
+    ModalInviteComponent
   ],
   imports: [
     FormsModule,

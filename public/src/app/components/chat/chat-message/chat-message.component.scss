@@ -3,7 +3,7 @@
 
 .chat-content{
     overflow-y: scroll;
-    height: 800px;
+    height:calc(100vh - 155px);
 }
 .header-msg {
     background: $white;
@@ -11,6 +11,8 @@
     border-bottom:1px solid $grey1;
     font-weight: $bold;
     font-size: 16px;
+    width: 100%;
+    height: 55px;
 }
 
 .area-insert {
@@ -61,6 +63,7 @@
     margin-bottom:10px;
     display: flex;
     text-align: left;
+    padding: 15px 10px;
 }
 
 .item-friend .msg-text {
@@ -84,4 +87,63 @@
     width: 30px;
     height: 30px;
     object-fit: cover;
+}
+
+
+.chat-content::-webkit-scrollbar {
+    width: 5px;
+    border-radius:10px;
+}
+ 
+.chat-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset $grey2;
+}
+ 
+.chat-content::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+
+}
+
+.area-profile {
+    border-left: 1px solid $grey1;
+    height:calc( 100vh - 105px );
+    width: 100%;
+    background: $white;
+}
+
+.img-profile {
+    margin-top: 30px;
+}
+
+.img-profile img {
+    border-radius: 100px;
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.desc-profile {
+    margin-top:20px;
+}
+
+.name-profile {
+    font-weight: $bold;
+    font-size: 19px;
+    color:$grey3;
+}
+.desc-name-profile {
+    color: $grey2;
+    font-size: 16px;
+}
+
+.details-profile {
+    margin-top:10px;
+    display: flex;
+}
+
+.img-user {
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
 }

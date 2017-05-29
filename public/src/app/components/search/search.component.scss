@@ -19,13 +19,34 @@
 
 .name-person {
     font-weight: $bold;
+     display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-justify: inter-word;
+    word-break: break-word;
+
 }
 .desc-person {
     color: $grey2;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-justify: inter-word;
+    word-break: break-word;
 }
 .btnConfirm {
     padding: 5px;
 }
+
+.btnConfirmPadding {
+    padding: 10px!important;
+    margin-left: 10px;
+}
+
 .for-btn {
     margin-top: 5px;
 }
@@ -39,7 +60,7 @@
 }
 
 .inputSearch {
-  width: 100%;
+  width: 89%;
   height: 40px;
   border: 1px solid $grey1;
   border-radius: 3px;
