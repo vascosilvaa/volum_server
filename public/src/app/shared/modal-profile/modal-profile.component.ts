@@ -1,7 +1,6 @@
+import { SharedService } from './../services/shared.service';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
-import { SharedService } from './../shared.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
 import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';

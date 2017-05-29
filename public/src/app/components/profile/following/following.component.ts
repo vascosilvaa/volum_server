@@ -1,4 +1,4 @@
-import { ProfileService } from './../profile.service';
+import { ProfileService } from './../../../shared/services/profile.service';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';

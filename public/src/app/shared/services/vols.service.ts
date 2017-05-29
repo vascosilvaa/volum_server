@@ -1,30 +1,36 @@
-import { HttpClient } from './../http-client';
+import { HttpClient } from './../../shared/http-client';
 import { GlobalConstants } from './../../shared/global-constants';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-
-
 @Injectable()
-export class VolDetailsModalService {
-    constructor(private http: HttpClient, public HTTP: Http) {
+export class volsService {
+
+    constructor(private http: HttpClient) {
+
     }
 
-    getUser(id) {
-       return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+    
+    confirmCandidate(id_vol, id_user) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/accept`, {id_user: id_user}).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
-    getVol(idVol) {
+
+    countConfirmed(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
+        .then(res => { return res.json() })
+        .catch(error => console.log(error));
+    }
+ getVol(idVol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + idVol).toPromise()
             .then(res => {
                 return res.json();
             })
            .catch((error: any) => console.log(error))
     }
-
-    checkState(id_user, id_vol) {
+ checkState(id_user, id_vol) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + '/checkState', { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
@@ -38,25 +44,6 @@ export class VolDetailsModalService {
 
     cancelApply(id_user, id_vol) {
        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+id_vol+`/applies/cancel`, {id_user: id_user}).toPromise()
-            .then(res => { return res.json() })
-            .catch(error => console.log(error));
-    }
-
-    getAddress(lat, lng) {
-        return this.HTTP.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
-        .then(res => {return res.json() })
-        .catch(error => console.log(error));
-
-    }
-
-    countLikes(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/likes/count`).toPromise()
-        .then(res => { return res.json() })
-        .catch(error => console.log(error));
-    }
-
-    checkLike(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/checkLike`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -113,4 +100,53 @@ export class VolDetailsModalService {
             .catch(error => console.log(error));
     }
 
+
+    getPrivates() {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/?type=private`).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
+
+    getInstVol() {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/?type=inst`).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
+
+
+    countLikes(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/likes/count`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getVols(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { startAt: startAt, amount: amount}).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
+    
+    checkLike(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/checkLike`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    search(query){
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=`+query).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

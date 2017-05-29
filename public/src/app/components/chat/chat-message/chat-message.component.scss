@@ -30,6 +30,7 @@
   border: 0;
   border-radius: 3px;
   padding: 15px;
+  padding-top: 10px;
   font-size: 14px;
   color: $grey3;
 }
@@ -109,21 +110,21 @@
     height:calc( 100vh - 105px );
     width: 100%;
     background: $white;
+    display: flex;
+    overflow: auto;
 }
 
 .img-profile {
-    margin-top: 30px;
-}
-
-.img-profile img {
     border-radius: 100px;
     height: 130px;
     width: 130px;
     object-fit: cover;
+    margin-bottom: 20px;
 }
 
 .desc-profile {
-    margin-top:20px;
+    width: 100%;
+    margin-top: 50px;
 }
 
 .name-profile {
@@ -146,4 +147,17 @@
     height: 30px;
     width: 30px;
     margin-right: 5px;
+}
+
+.table-flex {
+    display: flex;
+    font-size: 14px;
+    color: $grey2;
+    margin-top: 10px;
+}
+
+.bold {
+    font-weight: $bold;
+    color: $grey3;
+    padding-right: 5px;
 }

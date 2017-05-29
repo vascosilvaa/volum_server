@@ -1,10 +1,11 @@
+import { volsService } from './../../../shared/services/vols.service';
+import { SharedService } from './../../../shared/services/shared.service';
+import { ProfileService } from './../../../shared/services/profile.service';
 import { DetailsService } from './details.service';
 import { ModalEndComponent } from './../../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
-import { SharedService } from './../../../shared/shared.service';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
-import { ProfileService } from './../profile.service';
 import { Http } from '@angular/http';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,7 +17,7 @@ import * as moment from 'moment';
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
-  providers: [DetailsService]
+  providers: [ProfileService, volsService]
 })
 export class DetailsComponent implements OnInit {
   lat: number;
@@ -41,7 +42,7 @@ export class DetailsComponent implements OnInit {
   public numberConfirms: any;
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
-    private router: Router, private detailsservice: DetailsService) {
+    private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService) {
     overlay.defaultViewContainer = vcRef;
   }
 
@@ -60,7 +61,7 @@ export class DetailsComponent implements OnInit {
   }
 
   countCandidates(id_vol) {
-    this.detailsservice.countCandidates(id_vol)
+    this.volsService.countCandidates(id_vol)
       .then(res => {
         this.numberCandidates = res.count;
       })
@@ -68,7 +69,7 @@ export class DetailsComponent implements OnInit {
   }
 
   countConfirmed(id_vol) {
-    this.detailsservice.countConfirmed(id_vol)
+    this.volsService.countConfirmeds(id_vol)
       .then(res => {
         this.numberConfirms = res.count;
       })
@@ -78,7 +79,7 @@ export class DetailsComponent implements OnInit {
   sendComment(comment) {
     if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 
-      this.detailsservice.sendComment(comment, this.idVol).then(res => {
+      this.volsService.sendComment(comment, this.idVol).then(res => {
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
@@ -93,7 +94,7 @@ export class DetailsComponent implements OnInit {
   }
 
   countComments(idVol) {
-    this.detailsservice.countComments(idVol)
+    this.volsService.countComments(idVol)
       .then(res => {
         this.numberComments = res.count;
         if (this.numberComments > 0) {
@@ -104,7 +105,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getComments(idVol) {
-    this.detailsservice.getComments(idVol)
+    this.volsService.getComments(idVol)
       .then(res => {
         this.comments = res.comments;
       })
@@ -112,7 +113,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getVol(idVol) {
-    this.detailsservice.getVol(idVol)
+    this.volsService.getVol(idVol)
       .then(res => {
         this.vols = res.vol;
         this.getAddress();
@@ -127,7 +128,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getCandidates(idVol) {
-    this.detailsservice.getCandidates(idVol, 3)
+    this.volsService.getCandidates(idVol, 3)
       .then(res => {
         this.candidates = res.users;
       })
@@ -135,7 +136,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getConfirmed(idVol) {
-    this.detailsservice.getConfirmed(idVol, 3)
+    this.volsService.getConfirmed(idVol, 3)
       .then(res => {
         this.confirmeds = res.users;
       })
@@ -143,7 +144,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getAddress() {
-    this.detailsservice.getAddress(this.vols.lat, this.vols.lng)
+    this.sharedService.getAddress(this.vols.lat, this.vols.lng)
       .then(res => {
         this.addressData = res.results;
         this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
@@ -189,7 +190,7 @@ export class DetailsComponent implements OnInit {
   }
 
   confirmCandidate(id_user) {
-    this.detailsservice.confirmCandidate(this.vols.id_vol, id_user)
+    this.volsService.confirmCandidate(this.vols.id_vol, id_user)
       .then(res => {
         let index = this.candidates.findIndex(x => x.id_user == id_user);
         this.confirmeds.unshift(this.candidates[index])

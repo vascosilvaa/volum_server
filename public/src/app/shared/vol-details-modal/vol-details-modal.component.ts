@@ -1,11 +1,11 @@
-import { FeedService } from './../../components/feed/feed.service';
+import { SharedService } from './../services/shared.service';
+import { volsService } from './../services/vols.service';
+import { ProfileService } from './../services/profile.service';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { Router } from '@angular/router';
 import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
-import { AuthenticationService } from './../Auth/authentication.service';
-import { VolDetailsModalService } from './vol-details-modal.service';
-import { AppModule } from './../../app.module';
+import { AuthenticationService } from './../Auth/authentication.service';import { AppModule } from './../../app.module';
 import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
@@ -20,7 +20,7 @@ export class ModalContext extends BSModalContext {
   selector: 'vol-details-modal',
   templateUrl: './vol-details-modal.component.html',
   styleUrls: ['./vol-details-modal.component.scss'],
-  providers: [VolDetailsModalService, FeedComponent, FeedService]
+  providers: [ProfileService, FeedComponent, SharedService]
 })
 
 
@@ -55,7 +55,7 @@ export class VolDetailsModalComponent implements OnInit {
   public confirmeds: any;
   public ready: boolean = false;
   public feed: any;
-  constructor(private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, private dialog: DialogRef<ModalContext>, private volsService: VolDetailsModalService, private authService: AuthenticationService) {
+  constructor(private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, private dialog: DialogRef<ModalContext>, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     if (this.authService.isAuthenticated()) {
@@ -256,7 +256,7 @@ export class VolDetailsModalComponent implements OnInit {
 
   getAddress(lat, long) {
     if (lat && long) {
-      this.volsService.getAddress(lat, long)
+      this.SharedService.getAddress(lat, long)
         .then(res => {
           this.addressData = res.results;
           this.address = this.addressData[0].formatted_address;

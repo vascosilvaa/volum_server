@@ -1,4 +1,4 @@
-import { FeedService } from './../feed/feed.service';
+import { volsService } from './../../shared/services/vols.service';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  providers: [FeedService],
+  providers: [volsService],
 })
 export class MapComponent implements OnInit {
   lat: number;
@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
 
   public vols: any;
 
-  constructor(public http: Http, private feedService: FeedService) { }
+  constructor(public http: Http, private volsService: volsService) { }
   location = {};
   setPosition(position) {
     this.location = position.coords;
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     this.getLocation()
-    this.feedService.getVols(0, 10)
+    this.volsService.getVols(0, 10)
       .then(res => {
         this.vols = res.vols;
 

@@ -1,5 +1,5 @@
-import { ProfileService } from './components/profile/profile.service';
-import { ChatService } from './components/chat/chat.service';
+import { ProfileService } from './shared/services/profile.service';
+import { ChatService } from './shared/services/chat.service';
 import { AppService } from './app.service';
 import { SocketService } from './shared/socket.service';
 import { RegisterComponent } from './components/register/register.component';

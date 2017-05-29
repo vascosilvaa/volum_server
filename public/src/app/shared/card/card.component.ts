@@ -1,8 +1,7 @@
-
+import { SharedService } from './../services/shared.service';
 import { RegisterComponent } from './../../components/register/register.component';
 import { AuthenticationService } from './../Auth/authentication.service';
 import { AuthenticationGuard } from './../Auth/authentication.guard';
-import { SharedService } from './../shared.service';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
 import { Component, ViewContainerRef, OnInit, Input, ViewChild } from '@angular/core';

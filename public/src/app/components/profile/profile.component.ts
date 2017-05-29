@@ -1,7 +1,7 @@
+import { ProfileService } from './../../shared/services/profile.service';
 import { AppComponent } from './../../app.component';
 import { Overlay } from 'angular2-modal';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { ProfileService } from './profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Injector, OnInit, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';

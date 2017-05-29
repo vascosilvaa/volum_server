@@ -1,9 +1,9 @@
+import { ProfileService } from './../../../shared/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ModalContext } from './../../../shared/modal-view-all/modal-view-all.component';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
-import { ProfileService } from './../profile.service';
 import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 

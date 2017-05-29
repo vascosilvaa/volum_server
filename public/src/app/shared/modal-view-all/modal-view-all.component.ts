@@ -1,14 +1,14 @@
+import { volsService } from './../services/vols.service';
+import { SharedService } from './../services/shared.service';
 import { DetailsService } from './../../components/profile/details/details.service';
 import { DetailsComponent } from './../../components/profile/details/details.component';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
-import { VolDetailsModalService } from './../vol-details-modal/vol-details-modal.service';
-import { SharedService } from './../shared.service';
-// import { VolDetailsModalService } from './vol-details-modal.service';
 import { AppModule } from './../../app.module';
 import { Component, OnInit, Injector } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
+
 
 export class ModalContext extends BSModalContext {
   public idVol: any;
@@ -23,7 +23,7 @@ export class ModalContext extends BSModalContext {
   selector: 'view-all-modal',
   templateUrl: './modal-view-all.component.html',
   styleUrls: ['./modal-view-all.component.scss'],
-  providers: [VolDetailsModalService, DetailsService]
+  providers: [volsService, DetailsService]
 
 })
 
@@ -39,7 +39,7 @@ export class ModalViewAllComponent implements OnInit {
   context: ModalContext;
 
 
-  constructor(private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: VolDetailsModalService, public SharedService: SharedService) {
+  constructor(private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService , public SharedService: SharedService) {
 
     this.context = dialog.context;
     this.context.isBlocking = false;
