@@ -16,7 +16,6 @@ import { SharedService } from './shared.service';
 import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component';
 import { ModalEndComponent } from './modal-end/modal-end.component';
 import { ModalProfileComponent } from './modal-profile/modal-profile.component';
-import { ModalComponent } from './modal/modal.component';
 import { ModalInviteComponent } from './modal-invite/modal-invite.component';
 
 
@@ -28,7 +27,6 @@ import { ModalInviteComponent } from './modal-invite/modal-invite.component';
     ModalViewAllComponent,
     ModalEndComponent,
     ModalProfileComponent,
-    ModalComponent,
     ModalInviteComponent
   ],
   imports: [
