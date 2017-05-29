@@ -154,6 +154,40 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/:id/user', passport.authenticate('jwt'), function (req, res) {
+        let id_user;
+        db.get().query('SELECT id_user, id_user2 FROM user_relations WHERE id_conversation = ?', [req.params.id, req.user.id_user, req.user.id_user], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                if (error) throw error;
+            } else {
+
+                console.log("aa", results[0].id_user)
+                if (results[0].id_user == req.user.id_user) {
+                    id_user = results[0].id_user2;
+                } else {
+                    id_user = results[0].id_user
+                }
+
+                db.get().query('SELECT * FROM users WHERE id_user = ?', [id_user], function (error, result, fields) {
+                    res.json({
+                        success: true,
+                        result
+                    });
+                });
+
+            }
+
+            console.log(id_user)
+
+
+
+
+        });
+
+
+    });
+
     app.get('/:id/messages/last', function (req, res) {
 
 
