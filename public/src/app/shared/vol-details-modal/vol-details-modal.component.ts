@@ -1,3 +1,4 @@
+import { FeedService } from './../../components/feed/feed.service';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { Router } from '@angular/router';
 import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
@@ -19,7 +20,7 @@ export class ModalContext extends BSModalContext {
   selector: 'vol-details-modal',
   templateUrl: './vol-details-modal.component.html',
   styleUrls: ['./vol-details-modal.component.scss'],
-  providers: [VolDetailsModalService]
+  providers: [VolDetailsModalService, FeedComponent, FeedService]
 })
 
 

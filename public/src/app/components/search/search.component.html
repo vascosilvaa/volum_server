@@ -12,7 +12,8 @@
     </div>
   </div>
 
-  <div class="title-filter">
+<div *ngIf="elements!=0">
+<div class="title-filter">
     Utilizadores
   </div>
   <div class="row card-people">
@@ -29,13 +30,15 @@
           <div class="ts13 desc-person" *ngIf="element.type==2">Instituição</div>
           </div>
            <div class="col btn-person text-right for-btn">
-             <button class="btnConfirm">VER</button>
+             <button class="btnConfirm" (click)="openVolDetails(element.id)">VER</button>
           </div>
             
 </div>
         </div>
       </div>
   </div>
+  </div>
+  <div *ngIf="elements==0">Não existem resultados.</div>
 
   <!--
   <div class="title-filter">

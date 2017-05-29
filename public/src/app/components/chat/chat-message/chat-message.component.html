@@ -1,13 +1,16 @@
 <div class="container-fluid">
   <div class="row">
+<div class="col-8 no-padding">
+  <div class="container-fluid">
+  <div class="row">
     <div class="col-12 header-msg text-center no-padding">
-      {{conversationName}}
+      {{conversationName}} Nome do utilizador
     </div>
 
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="chat-content" #scrollMe>
         <div *ngFor="let message of messages" [class.item-mine]="message.from_id == id_user" [class.item-friend]="message.from_id != id_user">
-          <button [class.msg-mine]="message.from_id == id_user" [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
+          <div><img class="img-user" *ngIf="message.from_id != id_user" src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12088492_971622779542536_5564850995072033872_n.jpg?oh=7fc01fce0fb18898427fbad00f1ea47b&oe=59E4AC19"></div><button [class.msg-mine]="message.from_id == id_user" [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
         </div>
       </div>
     </div>
@@ -24,4 +27,29 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+<div class="col-4 no-padding">
+  <div class="container">
+    <div class="row">
+      <div class="header-msg text-center ">
+      
+      </div>
+      <div class="area-profile text-center">
+        <div class="img-profile">
+          <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12088492_971622779542536_5564850995072033872_n.jpg?oh=7fc01fce0fb18898427fbad00f1ea47b&oe=59E4AC19">
+        </div>
+        <div class="desc-profile">
+          <div class="name-profile">
+            Conceição Lopes
+          </div>
+          <div class="desc-name-profile">
+            Aveiro, Portugal
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
 </div>
