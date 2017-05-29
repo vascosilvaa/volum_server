@@ -79,7 +79,7 @@ var returnRouter = function (io) {
         } else {
             db.get().query({
                 sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-                    'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+                    'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
                 nestTables: true
             }, [req.params.id], function (err, results, fields) {
                 if (err) {
@@ -172,7 +172,7 @@ var returnRouter = function (io) {
         } else {
             let options = {
                 sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
-                    " FROM vols INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)",
+                    " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)  AND vols.deleted = 0",
                 nestTables: true
             }
             db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {

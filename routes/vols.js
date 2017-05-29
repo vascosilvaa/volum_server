@@ -28,7 +28,7 @@ app.get('/', function (req, res, next) {
     let vols = [];
     let options = {
         sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+            'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
         nestTables: true
     };
     if (req.query['type'] == 'inst') {
@@ -517,36 +517,50 @@ app.post('/:id/apply', passport.authenticate('jwt'), function (req, res) {
         });
 
     } else {
+        db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id], function (error, results, fields) {
+            if (results[0].id_user_creator == req.user.id_user) {
 
-        db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
-            function (error, results, fields) {
-                if (error) {
-                    console.log(error);
-                    res.json({
-                        success: false,
-                        error: "Ja te candidataste a este voluntariado"
-                    });
-                } else {
+                res.json({
+                    success: false,
+                    message: "Não te podes candidatar a uma ação criada por ti"
+                });
 
-                    db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
-                        function (error, results, fields) {
+            } else {
 
-                            let id_creator = results[0].id_user_creator;
 
-                            db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],
+                db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
+                    function (error, results, fields) {
+                        if (error) {
+                            console.log(error);
+                            res.json({
+                                success: false,
+                                error: "Ja te candidataste a este voluntariado"
+                            });
+                        } else {
+
+                            db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
                                 function (error, results, fields) {
-                                    console.log(results);
-                                    console.log(error);
-                                    res.json({
-                                        success: true,
-                                        message: "Sucesso"
-                                    });
+
+                                    let id_creator = results[0].id_user_creator;
+
+                                    db.get().query('INSERT INTO notifications VALUES (NULL, ?, ?, ?, 1, NULL, NULL)', [id_creator, req.body.id_user, req.params.id],
+                                        function (error, results, fields) {
+                                            console.log(results);
+                                            console.log(error);
+                                            res.json({
+                                                success: true,
+                                                message: "Sucesso"
+                                            });
+                                        });
                                 });
-                        });
 
 
-                }
-            });
+                        }
+                    });
+
+            }
+        });
+
     }
 });
 /**
@@ -597,7 +611,7 @@ app.post('/:id/checkState', passport.authenticate('jwt'), function (req, res) {
                         res.json({
                             success: true,
                             state: 4,
-                            message: 'Ninguem gosta de ti'
+                            message: ':('
                         });
                     }
 
@@ -716,11 +730,11 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
         });
     } else {
 
-        if (req.query) {
+        if (req.query.amount) {
             req.query.amount = parseInt(req.query['amount']);
 
         } else {
-            req.query.amount = 18446744073709551610;
+            req.query.amount = 100;
         }
 
         let options = {
@@ -729,11 +743,12 @@ app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, 
         };
 
         db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
-            console.log(results);
+
+            console.error(error)
             if (error) {
                 res.json({
                     success: false,
-                    error: error
+                    error: "ERRO"
                 });
             } else if (results.length == 0) {
                 res.json({
@@ -807,7 +822,7 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
             message: 'Id Inválido'
         });
     } else {
-        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+        db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
             if (error) {
                 res.json({
                     success: false,
@@ -821,7 +836,7 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
             } else if (results.changedRows == 0) {
                 res.json({
                     success: false,
-                    message: 'Este User não existe ou não é um candidato'
+                    message: 'Este User ou voluntariado não existe ou não é um candidato'
                 });
             } else {
                 res.json({
@@ -837,14 +852,14 @@ app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res
 
 
 app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) {
-
+    console.log(req.params.id);
     if (!Number(req.params.id)) {
         res.json({
             success: false,
             message: 'Id Inválido'
         });
     } else {
-        db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+        db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
             if (error) {
                 res.json({
                     success: false,
