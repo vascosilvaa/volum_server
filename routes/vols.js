@@ -113,6 +113,8 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
+
+
     app.post('/', passport.authenticate('jwt'), function (req, res) {
 
         console.log("body", req.body)
@@ -169,6 +171,146 @@ var returnRouter = function (io) {
                     });
             }
         }
+    });
+
+
+    app.get('/bounds', function (req, res, next) {
+        console.log("query", req.query);
+
+        let vols = [];
+
+        let a = parseFloat(req.query.swlat);
+        let b = parseFloat(req.query.swlng);
+        let c = parseFloat(req.query.nwlat);
+        let d = parseFloat(req.query.nwlng);
+
+        console.log(a, b, c, d)
+
+        let options = {
+            sql: 'SELECT vols.id_vol, vols.name, vols.id_vol, GROUP_CONCAT( photos.url ' +
+            'SEPARATOR  "->" ) AS photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted,' +
+            'vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url ' +
+            'FROM vols ' +
+            'INNER JOIN users ON vols.id_user_creator = users.id_user ' +
+            'INNER JOIN photos ON vols.id_vol = photos.id_vol ' +
+            '' +
+            'WHERE' +
+            '(? < ? AND vols.lat BETWEEN ? AND ?) OR (? < ? AND vols.lat BETWEEN ? AND ?)' +
+            ' AND' +
+            '(? < ? AND vols.lng BETWEEN ? AND ?) OR (? < ? AND vols.lng BETWEEN ? AND ?) GROUP BY vols.id_vol '
+            ,
+            nestTables: true
+        };
+
+
+        console.log(options.sql)
+        db.get().query(options, [a, c, a, c, c, a, c, a, b, d, b, d, d, b, d, b], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                console.log(results);
+                if (results.length == 0) { } else {
+
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                description: results[i].vols.description,
+                                date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].vols.date_creation,
+                                duration: results[i].vols.duration,
+                                lat: results[i].vols.lat,
+                                lng: results[i].vols.lng,
+                                photos: (results[i][''].photos).split('->')
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            }
+                        });
+                    }
+                }
+                res.json({
+                    success: true,
+                    vols
+                });
+            }
+        });
+
+    });
+
+
+
+
+    app.get('/nearby', function (req, res, next) {
+        console.log("query", req.query);
+
+        let vols = [];
+
+        let options = {
+            sql: 'SELECT vols.id_vol, vols.name, vols.id_vol, GROUP_CONCAT( photos.url ' +
+            'SEPARATOR  "->" ) AS photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted,' +
+            'vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url,' +
+            '(6371 * ACOS(COS(RADIANS( ? )) * COS(RADIANS(vols.lat)) * COS(RADIANS(vols.lng) - RADIANS( ? )) + SIN(RADIANS( ?)) * SIN(RADIANS(vols.lat)))) AS distance' +
+            '    FROM vols ' +
+            '    INNER JOIN users ON vols.id_user_creator = users.id_user' +
+            '    INNER JOIN photos ON vols.id_vol = photos.id_vol' +
+            '    GROUP BY vols.id_vol' +
+            '    HAVING distance < 25' +
+            '  ORDER BY distance' +
+            '    LIMIT 0 , 30',
+            nestTables: true
+        };
+
+
+        console.log(options.sql)
+        db.get().query(options, [req.query.lat, req.query.lng, req.query.lat], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                console.log(results);
+                if (results.length == 0) { } else {
+
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                description: results[i].vols.description,
+                                date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].vols.date_creation,
+                                duration: results[i].vols.duration,
+                                lat: results[i].vols.lat,
+                                lng: results[i].vols.lng,
+                                photos: (results[i][''].photos).split('->')
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            }
+                        });
+                    }
+                }
+                res.json({
+                    success: true,
+                    vols
+                });
+            }
+        });
+
     });
 
 
