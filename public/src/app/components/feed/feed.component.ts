@@ -1,5 +1,5 @@
+import { volsService } from './../../shared/services/vols.service';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { FeedService } from './feed.service';
 import { GlobalConstants } from './../../shared/global-constants';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
   selector: 'feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
-  providers: [FeedService]
+  providers: [volsService]
 })
 
 export class FeedComponent implements OnInit {
@@ -29,7 +29,7 @@ export class FeedComponent implements OnInit {
     zoom: true
   };
 
-  constructor(public http: Http, private feedService: FeedService, private auth: AuthenticationService) { }
+  constructor(public http: Http, private volsService: volsService, private auth: AuthenticationService) { }
 
   ngOnInit() {
 
@@ -45,14 +45,14 @@ export class FeedComponent implements OnInit {
 
 
     } else if (!this.login) {
-      this.feedService.getPrivates()
+      this.volsService.getPrivates()
         .then(res => {
           this.privateVols = res.vols;
           this.ready = true;
         })
         .catch(err => console.log(err));
 
-      this.feedService.getInstVol()
+      this.volsService.getInstVol()
         .then(res => {
           this.instVols = res.vols;
           console.log(res);
@@ -62,7 +62,7 @@ export class FeedComponent implements OnInit {
   }
 
   getVols(startAt, amount, replace) {
-    this.feedService.getVols(startAt, amount)
+    this.volsService.getVols(startAt, amount)
       .then(res => {
         if (replace) {
           this.vols = res.vols;
@@ -76,11 +76,11 @@ export class FeedComponent implements OnInit {
         console.log("VOLS", this.vols)
         this.ready = true;
         for (let i = 0; i < this.vols.length; i++) {
-          this.feedService.countLikes(this.vols[i].vol.id_vol)
+          this.volsService.countLikes(this.vols[i].vol.id_vol)
             .then(res => {
               this.vols[i].vol.likes = res.likes;
             })
-          this.feedService.checkLike(this.vols[i].vol.id_vol)
+          this.volsService.checkLike(this.vols[i].vol.id_vol)
             .then(res => {
               this.vols[i].vol.likeState = parseInt(res.state);
             })

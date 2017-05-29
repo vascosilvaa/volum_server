@@ -381,3 +381,7 @@ body {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
 }
+
+.underline:hover {
+    text-decoration: underline;
+}

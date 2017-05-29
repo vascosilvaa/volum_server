@@ -1,8 +1,8 @@
+import { ProfileService } from './../../shared/services/profile.service';
 import { MomentModule } from 'angular2-moment';
 import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
 import { ModalEndComponent } from './../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
-import { ProfileService } from './profile.service';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
 import { SharedModule } from './../../shared/shared.module';
 import { FeedModule } from './../feed/feed.module';

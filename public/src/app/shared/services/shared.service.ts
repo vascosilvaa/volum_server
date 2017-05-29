@@ -1,5 +1,6 @@
-import { GlobalConstants } from './global-constants';
-import { HttpClient } from './http-client';
+import { Http } from '@angular/http';
+import { HttpClient } from './../http-client';
+import { GlobalConstants } from './../global-constants';
 
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -11,10 +12,15 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SharedService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, public Http: Http) {
 
     }
+ getAddress(lat, lng) {
+        return this.Http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=`+lat+`,`+lng+`&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y`).toPromise()
+        .then(res => {return res.json() })
+        .catch(error => console.log(error));
 
+    }
     getProfile(id){
        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
         .then(res => { return res.json()})

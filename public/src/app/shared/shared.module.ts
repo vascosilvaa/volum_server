@@ -1,3 +1,4 @@
+import { SharedService } from './services/shared.service';
 import { timeAgoPipe } from './../pipes/timeago.pipe';
 import { SwiperModule } from 'angular2-useful-swiper';
 import { MomentModule } from 'angular2-moment';
@@ -13,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { RouterModule } from '@angular/router';
-import { SharedService } from './shared.service';
 import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component';
 import { ModalEndComponent } from './modal-end/modal-end.component';
 import { ModalProfileComponent } from './modal-profile/modal-profile.component';

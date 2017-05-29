@@ -1,8 +1,8 @@
+import { volsService } from './../../../shared/services/vols.service';
+import { ProfileService } from './../../../shared/services/profile.service';
 import { Observable } from 'rxjs/Observable';
-import { ProfileService } from './../profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
-import { FeedService } from './../../feed/feed.service';
 import { GlobalConstants } from '../../../shared/global-constants';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
@@ -12,7 +12,7 @@ import { Http } from '@angular/http';
   selector: 'app-activity',
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.css'],
-  providers: [FeedService]
+  providers: [volsService]
 })
 export class ActivityComponent implements OnInit, OnDestroy {
   public privateVols: any;
@@ -26,7 +26,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   observable: any;
 
   public activeUser: any;
-  constructor(public http: Http, private feedService: FeedService, private route: ActivatedRoute, private profileService: ProfileService,
+  constructor(public http: Http, private volsService: volsService, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService) { }
 
   ngOnInit() {

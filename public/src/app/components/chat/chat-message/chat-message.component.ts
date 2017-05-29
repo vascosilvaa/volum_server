@@ -1,7 +1,7 @@
+import { ChatService } from './../../../shared/services/chat.service';
 import { SocketService } from './../../../shared/socket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
-import { ChatService } from './../chat.service';
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
@@ -19,7 +19,8 @@ export class ChatMessageComponent implements OnInit {
   public messages = [];
   public message: string;
   public conversationName: string;
-  constructor(public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
+  public profile: any;
+  constructor(public router: Router ,public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -35,7 +36,7 @@ export class ChatMessageComponent implements OnInit {
         this.id_user = res.user.id_user;
         this.activatedRoute.params.subscribe((params) => {
           this.id_conversation = params.id;
-
+          this.getProfile(this.id_conversation);
           this.socket.joinRoom(params.id);
           this.getMessages(params.id);
         });
@@ -60,7 +61,16 @@ export class ChatMessageComponent implements OnInit {
 
   }
 
+  navigate_profile(profile) {
+    this.router.navigate(['/profile/' + profile + '/activity']);
+  }
 
+  getProfile(id_conversation) {
+    this.chatService.getProfile(id_conversation).then(res => {
+      this.profile = res.result;
+      console.log(this.profile);
+    });
+  }
 
   ngAfterViewChecked() {
     this.scrollToBottom();

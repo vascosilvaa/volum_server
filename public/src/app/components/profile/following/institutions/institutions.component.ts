@@ -1,7 +1,7 @@
-import { ProfileService } from './../../profile.service';
+import { SharedService } from './../../../../shared/services/shared.service';
+import { ProfileService } from './../../../../shared/services/profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../../shared/Auth/authentication.service';
-import { SharedService } from './../../../../shared/shared.service';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { ModalProfileComponent } from './../../../../shared/modal-profile/modal-profile.component';

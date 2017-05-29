@@ -1,8 +1,8 @@
-import { ProfileService } from './../profile/profile.service';
+import { ProfileService } from './../../shared/services/profile.service';
+import { ChatService } from './../../shared/services/chat.service';
 import { SocketService } from './../../shared/socket.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { ChatService } from './chat.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

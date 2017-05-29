@@ -1,55 +1,150 @@
-<div class="container-fluid">
+<div *ngFor="let prof of profile" class="container-fluid">
   <div class="row">
-<div class="col-8 no-padding">
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-12 header-msg text-center no-padding">
-      {{conversationName}} Nome do utilizador
-    </div>
+    <div class="col-8 no-padding">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 header-msg text-center no-padding">
+            {{prof.name}}
+          </div>
 
-    <div class="col-12 no-padding">
-      <div class="chat-content" #scrollMe>
-        <div *ngFor="let message of messages" [class.item-mine]="message.from_id == id_user" [class.item-friend]="message.from_id != id_user">
-          <div><img class="img-user" *ngIf="message.from_id != id_user" src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12088492_971622779542536_5564850995072033872_n.jpg?oh=7fc01fce0fb18898427fbad00f1ea47b&oe=59E4AC19"></div><button [class.msg-mine]="message.from_id == id_user" [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
+          <div class="col-12 no-padding">
+            <div class="chat-content" #scrollMe>
+              <div *ngFor="let message of messages" [class.item-mine]="message.from_id == id_user" [class.item-friend]="message.from_id != id_user">
+                <div><img class="img-user" *ngIf="message.from_id != id_user" src="{{prof.photo_url}}"></div><button [class.msg-mine]="message.from_id == id_user"
+                  [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 area-insert">
+            <div class="writeSection row">
+              <div class="col">
+                <input autofocus type="text" class="inputSearch" [(ngModel)]="message" placeholder="Escrever uma mensagem" (keyup.enter)="sendMessage(message)">
+
+              </div>
+              <div class=".align-items-lg-end">
+                <button class="btn btnConfirm" (click)="sendMessage(message)">ENVIAR</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-4 no-padding">
+      <div class="container">
+        <div class="row">
+          <div class="header-msg text-center ">
 
-    <div class="col-12 area-insert">
-      <div class="writeSection row">
-        <div class="col">
-          <input autofocus type="text" class="inputSearch" [(ngModel)]="message" placeholder="Escrever uma mensagem" (keyup.enter)="sendMessage(message)">
+          </div>
+          <div class="area-profile text-center">
+             
+            <div class="desc-profile">
+               <img class="img-profile" src="{{prof.photo_url}}">
+              <div class="name-profile pointer underline" (click)="navigate_profile(prof.id_user)">
+                {{prof.name}}
+              </div>
 
-        </div>
-        <div class=".align-items-lg-end">
-          <button class="btn btnConfirm" (click)="sendMessage(message)">ENVIAR</button>
+              <div class="desc-name-profile" *ngIf="prof.type_user==2">
+                Voluntário
+              </div>
+
+              <div class="desc-name-profile" *ngIf="prof.type_user==1">
+                Instituição de voluntariado
+              </div>
+
+            <div class="desc-name-profile" *ngIf="prof.type_user==3">
+                Voluntário/ Instituição de voluntariado
+              </div>
+
+              <div style="margin-top:40px">
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    E-mail:
+                  </div>
+                  <div class="">
+                    {{prof.email}}
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Vive em:
+                  </div>
+                  <div class="">
+                    Aveiro, Portugal
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Data de Nascimento
+                  </div>
+                  <div class="">
+                    {{prof.birth_date | date}}
+                  </div>
+                </div>
+                
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Profissão:
+                  </div>
+                  <div class="">
+                    Estudante
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                   Já participou em:
+                  </div>
+                  <div class="">
+                    7 ações de voluntariado
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Classificação média:
+                  </div>
+                  <div class="">
+                    4
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex" style="margin-top: 40px;">
+                  <div class="bold">
+                    Facebook:
+                  </div>
+                  <div class="">
+                    https://www.facebook.com/vascorafaelsilva
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Linkedin:
+                  </div>
+                  <div class="">
+                    https://www.facebook.com/vascorafaelsilva
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Instagram:
+                  </div>
+                  <div class="">
+                    https://www.facebook.com/vascorafaelsilva
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex">
+                  <div class="bold">
+                    Twitter:
+                  </div>
+                  <div class="">
+                    https://www.facebook.com/vascorafaelsilva
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-<div class="col-4 no-padding">
-  <div class="container">
-    <div class="row">
-      <div class="header-msg text-center ">
-      
-      </div>
-      <div class="area-profile text-center">
-        <div class="img-profile">
-          <img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12088492_971622779542536_5564850995072033872_n.jpg?oh=7fc01fce0fb18898427fbad00f1ea47b&oe=59E4AC19">
-        </div>
-        <div class="desc-profile">
-          <div class="name-profile">
-            Conceição Lopes
-          </div>
-          <div class="desc-name-profile">
-            Aveiro, Portugal
-          </div>
-        </div>
-        </div>
-    </div>
-  </div>
-</div>
-</div>
 </div>
