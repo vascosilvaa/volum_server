@@ -22,8 +22,13 @@ export class ChatComponent implements OnInit {
 
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
+
+        this.router.navigate(['./msg', 26], { relativeTo: this.route }).then((a => {
+          this.getConversations();
+        }));
+
         this.id_user = res.user.id_user;
-        this.getConversations();
+
       });
 
     }
@@ -33,6 +38,7 @@ export class ChatComponent implements OnInit {
     this.chatService.getConversations().then(res => {
       this.conversations = res.conversations;
       console.log("CONVERSATIONS", this.conversations);
+
       this.getUsersAndLastMessage();
     });
 
@@ -64,7 +70,7 @@ export class ChatComponent implements OnInit {
 
     }
   }
- 
+
 
   activeSearch() {
     if (this.searchAtive) {

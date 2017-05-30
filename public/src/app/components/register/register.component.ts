@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
 
 
 export class ModalContext extends BSModalContext {
@@ -31,25 +32,31 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.form = this._fb.group({
-            email: ['', [Validators.pattern('([01]?[0-9]|2[0-3]):[0-5][0-9]')]],
+            email: ['', [CustomValidators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             password2: ['', [Validators.required, Validators.minLength(6)]],
             name: ['', [Validators.required, Validators.minLength(2)]],
             lastname: ['', [Validators.required, Validators.minLength(2)]],
+            birth_date: [''],
+            type: [''],
+            gender: ['']
+
 
         });
     }
 
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
+
+
         console.log("value", value);
         console.log("valid", valid)
-        /*
+
         this.form.controls.email.markAsTouched();
         this.form.controls.password.markAsTouched();
         this.form.controls.password2.markAsTouched();
         this.form.controls.name.markAsTouched();
         this.form.controls.lastname.markAsTouched();
-
+        this.form.patchValue({ type: 2, birth_date: '17-07-1996', gender: [''] })
         console.log("FORMS", this.form);
 
         if (valid) {
@@ -57,14 +64,20 @@ export class RegisterComponent implements OnInit {
             this.auth.register(value)
                 .then(res => {
                     console.log("result", res);
-                    this.router.navigate(['/profile/', res.id_user], )
+
+                    if (res.success) {
+                        this.router.navigate(['/profile/', res.id_user], )
+                            location.reload();
+                    } else {
+
+                    }
 
                 })
 
                 .catch(err => console.log(err));
 
         }
-        */
+
     }
 
     openEmailRegist() {

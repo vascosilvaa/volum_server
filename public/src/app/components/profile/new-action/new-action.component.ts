@@ -1,10 +1,11 @@
+import { SharedService } from './../../../shared/services/shared.service';
 import { ProfileService } from './../../../shared/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ModalContext } from './../../../shared/modal-view-all/modal-view-all.component';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
-import { Component, OnInit, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, ViewChild } from '@angular/core';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -35,9 +36,13 @@ export class NewActionComponent implements OnInit {
   public coord: any;
   public coordAdvice: any;
   public idProfile: any;
-  public errorFiles:any;
+  public errorFiles: any;
+  public model: any;
 
-  constructor(public Router: Router, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
+  public photos = [];
+  @ViewChild("input") input;
+
+  constructor(public Router: Router, public sharedService: SharedService, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
 
   ngOnInit() {
     this.router.params.subscribe((params) => {
@@ -54,51 +59,15 @@ export class NewActionComponent implements OnInit {
       category: ['', [Validators.required]],
       insurance: ['', [Validators.required]],
       date_begin: ['', [Validators.required]],
-      date_end: ['', ],
+      date_end: ['',],
       start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       duration: ['',],
+      photos: []
     });
   }
 
-  onSubmit(form: any) {
-    this.form.controls.name.markAsTouched();
-    this.form.controls.description.markAsTouched();
-    this.form.controls.category.markAsTouched();
-    this.form.controls.insurance.markAsTouched()
-    this.form.controls.date_begin.markAsTouched();
-    this.form.controls.date_end.markAsTouched();
-    this.form.controls.start_time.markAsTouched();
-    this.form.controls.end_time.markAsTouched();
-    this.form.controls.duration.markAsTouched();
-    if (form.valid && this.coord) {
 
-
-      console.log('you submitted value:', form.value);
-      if (form.value.date_begin instanceof Date) {
-
-      } else {
-        form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
-        form.value.date_end = new Date(this.parser.format(form.value.date_end));
-      }
-
-
-      form.value.lat = this.lat;
-      form.value.lng = this.lng;
-      console.log("VALUE", form.value);
-      this.profileService.newAction(form.value).then(res => {
-        console.log(res);
-        if (res.error) {
-          console.log('erro')
-        } else {
-          this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
-        }
-      });
-
-    } else {
-      this.coordAdvice = true;
-    }
-  }
   navigate(lat, lng) {
     this.lat = lat;
     this.lng = lng;
@@ -127,53 +96,75 @@ export class NewActionComponent implements OnInit {
 
   readUrl(event) {
     console.log(event.target.files.length);
-    if(event.target.files.length > 3){
-      this.errorFiles=1;
+    if (event.target.files.length > 3) {
+      this.errorFiles = 1;
     } else {
-       this.errorFiles=0;
-       if (event.target.files && event.target.files[0] && event.target.files[1]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url1 = event.target['result'];
-          }
-      reader.readAsDataURL(event.target.files[0]);
-    }
+      this.errorFiles = 0;
+      if (event.target.files && event.target.files[0] && event.target.files[1]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url1 = event.target['result'];
+          this.photos.push(event.target);
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
       if (event.target.files && event.target.files[0] && !event.target.files[1]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url1 = event.target['result'];
-           this.url2 = undefined;
-           this.url3 = undefined;
-          }
-      reader.readAsDataURL(event.target.files[0]);
-    }
-    if (event.target.files && event.target.files[1] && event.target.files[2] ) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url2 = event.target['result'];
-           }
-      reader.readAsDataURL(event.target.files[1]);
-    }
-     if (event.target.files && event.target.files[1] && !event.target.files[2] ) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url2 = event.target['result'];
-           this.url3 = undefined;
-           }
-      reader.readAsDataURL(event.target.files[1]);
-    }
-    
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url1 = event.target['result'];
+          this.url2 = undefined;
+          this.url3 = undefined;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
+      if (event.target.files && event.target.files[1] && event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url2 = event.target['result'];
+        }
+        reader.readAsDataURL(event.target.files[1]);
+      }
+      if (event.target.files && event.target.files[1] && !event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url2 = event.target['result'];
+          this.url3 = undefined;
+        }
+        reader.readAsDataURL(event.target.files[1]);
+      }
 
-     if (event.target.files && event.target.files[2]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url3 = event.target['result'];
-          }
-      reader.readAsDataURL(event.target.files[2]);
+
+      if (event.target.files && event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url3 = event.target['result'];
+        }
+        reader.readAsDataURL(event.target.files[2]);
+      }
+
     }
-    
   }
-}
+
+
+  markerDragEnd(m, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+    this.lat = $event['coords']['lat'];
+    this.lng = $event['coords']['lng'];
+    console.log(this.lat);
+    console.log(this.lng)
+
+    console.log("model 1", this.model)
+    this.sharedService.getAddress(this.lat, this.lng).then(res => {
+      console.log(res);
+      if (res.results.length > 0) {
+
+        this.input.nativeElement.value = res.results["0"].formatted_address;
+        this.coord = true;
+
+      }
+      console.log("model 2", this.model)
+    })
+  }
 
   /*change(id) {
     if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name
@@ -228,4 +219,56 @@ export class NewActionComponent implements OnInit {
   hideImgs() {
     this.img = 0;
   }
+
+  onSubmit(form: any) {
+    this.form.controls.name.markAsTouched();
+    this.form.controls.description.markAsTouched();
+    this.form.controls.category.markAsTouched();
+    this.form.controls.insurance.markAsTouched()
+    this.form.controls.date_begin.markAsTouched();
+    this.form.controls.date_end.markAsTouched();
+    this.form.controls.start_time.markAsTouched();
+    this.form.controls.end_time.markAsTouched();
+    this.form.controls.duration.markAsTouched();
+    form.value.lat = this.lat;
+    form.value.lng = this.lng;
+    let array = []
+    form.value.category = 1;
+    array.push(this.url1);
+    form.value.photos = array;
+    console.log('you submitted value:', form.value);
+
+    if (this.coord) {
+
+
+
+      if (form.value.date_begin instanceof Date) {
+
+      } else {
+        form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
+        form.value.date_end = new Date(this.parser.format(form.value.date_end));
+      }
+
+
+      form.value.lat = this.lat;
+      form.value.lng = this.lng;
+      console.log("VALUE", form.value);
+      this.profileService.newAction(form.value).then(res => {
+        console.log(res);
+        if (res.error) {
+          console.log('erro')
+        } else {
+          this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
+        }
+      });
+
+    } else {
+      this.coordAdvice = true;
+    }
+
+
+
+  }
+
+
 }

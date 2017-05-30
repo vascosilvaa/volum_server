@@ -3,6 +3,7 @@ var express = require('express'),
     config = require('../config'),
     db = require('../config/db');
 var passport = require('passport');
+var fs = require('fs');
 
 var app = module.exports = express.Router();
 
@@ -17,6 +18,24 @@ let user = {};
 let vol = {};
 let startAt = 0;
 let amount = 0;
+
+
+
+
+function decodeBase64Image(dataString) {
+    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+
+    if (matches.length !== 3) {
+        return new Error('Invalid input string');
+    }
+
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+
+    return response;
+}
+
 
 var returnRouter = function (io) {
 
@@ -115,9 +134,10 @@ var returnRouter = function (io) {
 
 
 
-    app.post('/', passport.authenticate('jwt'), function (req, res) {
+    app.post('/', function (req, res) {
 
         console.log("body", req.body)
+        let photos = []
 
         if (!req.body.name || !req.body.description || !req.body.category || !req.body.date_begin) {
             res.status(400).json({
@@ -133,8 +153,21 @@ var returnRouter = function (io) {
                     message: 'Datas Invalidas'
                 })
 
+
             } else {
 
+                for (let i = 0; i < req.body.photos.length; i++) {
+                    fs.writeFile('./public/storage/vol_photos/' + Math.random() * 10 + '.jpg', decodeBase64Image(req.photos[i]), function (err) {
+
+                    });
+
+
+
+
+                }
+                /*
+         
+         
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
                     'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ? )', [req.body.category, req.user.id_user, req.body.name, req.body.description, req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                     function (error, results, fields) {
@@ -145,20 +178,20 @@ var returnRouter = function (io) {
                             });
                         } else {
                             if (!req.photo_1) {
-
+         
                                 db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
                                     if (error) {
                                         res.json({
                                             error
                                         });
                                     } else {
-
+         
                                         res.json({
                                             message: 'Success',
                                             id_vol: results.insertId
                                         });
-
-
+         
+         
                                     }
                                 });
                             } else {
@@ -169,7 +202,9 @@ var returnRouter = function (io) {
                             }
                         }
                     });
+                       */
             }
+
         }
     });
 
