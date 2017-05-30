@@ -357,6 +357,46 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
+    app.put('/:id', function (req, res, next) {
+
+
+        let options = {
+            sql: 'UPDATE vols SET' +
+            ' name = IFNULL( ?, name), ' +
+            ' description = IFNULL(?, name),' +
+            ' date_end = IFNULL(?, date_end),' +
+            ' start_time = IFNULL(?, start_time),' +
+            ' end_time = IFNULL(?, end_time),' +
+            ' insurance = IFNULL(?, insurance),' +
+            ' lat = IFNULL(?, lat),' +
+            ' lng = IFNULL(?, lng)' +
+            '  WHERE id_vol = ?;'
+        };
+        console.log(options.sql)
+
+        console.log(req.body);
+
+        db.get().query(options, [req.body.name, req.body.description, req.body.date_end, req.body.start_time, req.body.end_time, req.body.insurance, req.body.lat, req.body.lng, req.params.id], function (error, results, fields) {
+            console.log(error);
+            console.log(fields);
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                res.send({
+                    success: true,
+                    results
+                })
+
+            }
+        });
+
+
+
+    });
 
     app.get('/:id', function (req, res, next) {
         console.log("query", req.query);

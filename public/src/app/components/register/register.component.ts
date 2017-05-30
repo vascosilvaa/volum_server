@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
 
                     if (res.success) {
                         this.router.navigate(['/profile/', res.id_user], )
-                            location.reload();
+                        location.reload();
                     } else {
 
                     }
