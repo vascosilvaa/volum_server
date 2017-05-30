@@ -18,6 +18,7 @@ import { ModalViewAllComponent } from './modal-view-all/modal-view-all.component
 import { ModalEndComponent } from './modal-end/modal-end.component';
 import { ModalProfileComponent } from './modal-profile/modal-profile.component';
 import { ModalInviteComponent } from './modal-invite/modal-invite.component';
+import { EditModalComponent } from './edit-modal/edit-modal.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ModalInviteComponent } from './modal-invite/modal-invite.component';
     ModalEndComponent,
     ModalProfileComponent,
     timeAgoPipe,
-    ModalInviteComponent
+    ModalInviteComponent,
+    EditModalComponent
   ],
   imports: [
     FormsModule,

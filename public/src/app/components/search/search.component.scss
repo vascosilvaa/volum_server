@@ -4,9 +4,10 @@
 }
 .mini-card-social {
     background: $white;
-    padding: 20px 0px;
     margin-top: 15px;
     border-radius: 3px;
+    display: flex;
+    padding: 15px 15px;
 }
 .for-img {
     max-width: 48px;
@@ -26,6 +27,9 @@
     text-overflow: ellipsis;
     text-justify: inter-word;
     word-break: break-word;
+    padding: 0px 10px;
+    min-width: 170px;
+    max-width: 170px;
 
 }
 .desc-person {
@@ -37,6 +41,9 @@
     text-overflow: ellipsis;
     text-justify: inter-word;
     word-break: break-word;
+    padding: 0px 10px;
+    min-width: 170px;
+    max-width: 170px;
 }
 .btnConfirm {
     padding: 5px;

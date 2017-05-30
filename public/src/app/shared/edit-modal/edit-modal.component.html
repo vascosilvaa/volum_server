@@ -1,0 +1,166 @@
+<ng-template #rt let-r="result" let-t="term" id="template-search">
+        <div (click)="navigate(r.geometry.location.lat, r.geometry.location.lng)" class="row no-padding content-search">
+            <span class="searched"> {{r.formatted_address}}</span>
+        </div>
+</ng-template>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              Editar ação de voluntariado
+            </div>
+          </div>
+        </div>
+
+      <div class="card-block">
+        <form class="float-label" [formGroup]="form" (ngSubmit)="onSubmit(form)" >
+          <div class="row">
+              <div class="col-12 inputProfile no-margin">
+                <div class="control">
+                 <input type="text" minlength="10" maxlength="60" formControlName="name" class="" name="title" placeholder="Título da ação de voluntariado" [(ngModel)]="name" required />
+                 <label [class.error-label]="!form.controls.name.valid && form.controls.name.touched" for="title">
+                   Título
+                    <span class="text-error" *ngIf="form.controls.name.errors?.maxlength && form.controls.name.touched" >
+                    - - Inválido
+                    </span>
+                    <span class="text-error" *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" >
+                     - Inválido
+                    </span>
+
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12 inputProfile">
+                <div class="control">
+                  <textarea class="textAreaProfile" minlength="50" formControlName="description" name="textarea" required rows="4" [(ngModel)]="desc" placeholder="Descrição">Descrição das funções do voluntário</textarea>
+                  <label [class.error-label]="!form.controls.description.valid && form.controls.description.touched" for="textarea">
+                    Descrição
+                    <span *ngIf="form.controls.description.errors?.minlength && form.controls.description.touched" class="text-error">- Inválido.</span>
+                  </label>
+                </div>
+              </div>
+
+            <div class="col-6 inputProfile" >
+              <select name="categorie" class="form-control select-input inputText form-control-lg disabled" formControlName="category">
+                <option *ngFor="let category of categories" [value]='category.id_category'>{{category.name}}</option>
+              </select>
+               <label [class.error-label]="!form.controls.category.valid && form.controls.category.touched" for="categorie" class="label-for-select">
+                 Categoria
+                 </label>
+            </div>
+              
+               <div class="col-6 inputProfile">
+              <select class="form-control inputText  select-input form-control-lg disabled" formControlName="insurance">
+                <option selected value="1">Sim</option>
+                <option value="0">Não</option>
+              </select>
+              <label [class.error-label]="!form.controls.insurance.valid && form.controls.insurance.touched" for="insurance" class="label-for-select">
+                Seguro
+              </label>
+            </div>
+
+        
+     
+
+                 <div class="col-12 inputProfile">
+                <div class="control">
+                 <input type="text" class="" [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado"  required />
+                 <label  for="localization">Localização
+                 </label>
+                </div>
+              </div>
+
+              <div class="col-12 inputProfile">
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng" ></sebm-google-map-marker>
+                </sebm-google-map>
+             
+               </div>
+
+
+               <div class="col-6 inputProfile2">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control date_picker" 
+                           name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_begin" placeholder="aaaa-mm-dd">
+                    <div class="input-group-addon" (click)="d.toggle()" >
+                      <i class="data_range_icon material-icons">date_range</i>
+                    </div>
+                  </div>
+                   <label  [class.error-label]="!form.controls.date_begin.valid && form.controls.date_begin.touched" for="dp" class="label-for-select">
+                     Data de início
+                    </label>  
+                </div>
+            </div>
+
+        <div class="col-6 inputProfile2">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control date_picker"
+                           name="dp2" ngbDatepicker #d2="ngbDatepicker" formControlName="date_end" placeholder="aaaa-mm-dd">
+                    <div class="input-group-addon" (click)="d2.toggle()" >
+                      <i class="data_range_icon material-icons">date_range</i>
+                    </div>
+                  </div>
+                   <label for="dp2" [class.error-label]="!form.controls.date_end.valid && form.controls.date_end.touched" class="label-for-select">
+                     Data de fim
+                     <span *ngIf="form.controls.date_end.errors?.pattern && form.controls.date_end.touched" class="text-error">- - Inválido.</span>
+                     </label>
+                </div>
+            </div>
+
+
+  
+
+          <div  class="col-6 inputProfile">
+                  <div class="control">
+                    <input type="text" class="" name="date_begin" placeholder="Hora de entrada" [(ngModel)]="start_time" formControlName="start_time" value="09:00" required />
+                     <label [class.error-label]="!form.controls.start_time.valid && form.controls.start_time.touched" for="date_begin">
+                       Hora de entrada
+                       <span  *ngIf="form.controls.start_time.errors?.pattern && form.controls.start_time.touched" class="text-error">- - Inválido.</span>
+                       </label>
+                  </div>              
+                  
+                </div>
+          <div  class="col-6 inputProfile">
+                  <div class="control">
+                  <input type="text" class="" name="date_end" placeholder="Hora de saída"  [(ngModel)]="end_time" formControlName="end_time" value="17:00" required />
+                     <label [class.error-label]="!form.controls.end_time.valid && form.controls.end_time.touched" for="date_end">
+                       Hora de saída
+                       <span *ngIf="form.controls.end_time.errors?.pattern && form.controls.end_time.touched" class="text-error">- - Inválido.</span>
+                       </label>
+                  </div>          
+                </div>
+          <div class="col-12 inputProfile">
+                  <div class="control">
+                  <input type="number" class="" name="duration" placeholder="Duração diária em horas" [(ngModel)]="duration" formControlName="duration" value="5" required />
+                     <label for="duration">Duração</label>
+                  </div>
+                </div>
+
+
+         
+
+
+
+               
+
+
+              <div class="col-6">
+                  <a class="btn btn-outline-primary btnDescart" routerLink="/">CANCELAR</a>
+              </div>
+              <div class="col-6 ">
+                <button class="btn btn-outline-primary btnSave" type="submit">GUARDAR</button>
+              </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>

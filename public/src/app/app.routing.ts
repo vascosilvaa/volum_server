@@ -1,3 +1,4 @@
+import { ActionComponent } from './components/action/action.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionsComponent } from './components/profile/actions/actions.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
       {
         path: 'profile/:id',
         loadChildren: '../app/components/profile/profile.module#ProfileModule'
+      },
+      {
+        path: 'action/:id',
+        component: ActionComponent
       },
       {
         path: 'feed',

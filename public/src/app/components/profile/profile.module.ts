@@ -1,3 +1,5 @@
+import { volsService } from './../../shared/services/vols.service';
+import { EditModalComponent } from './../../shared/edit-modal/edit-modal.component';
 import { ProfileService } from './../../shared/services/profile.service';
 import { MomentModule } from 'angular2-moment';
 import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
@@ -46,9 +48,9 @@ import { NewActionComponent } from './new-action/new-action.component';
   ],
   declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService
+    { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService, volsService
   ],
-  entryComponents: [ModalViewAllComponent]
+  entryComponents: [ModalViewAllComponent, EditModalComponent]
 })
 
 export class ProfileModule { }

@@ -1,3 +1,4 @@
+import { volsService } from './shared/services/vols.service';
 import { ModalEndComponent } from './shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './shared/modal-view-all/modal-view-all.component';
 
@@ -35,6 +36,7 @@ import { SearchComponent } from './components/search/search.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
+import { ActionComponent } from './components/action/action.component';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
     SearchComponent,
     NotificationsComponent,
     SocialRequestsComponent,
+    ActionComponent,
   ],
   imports: [
     SharedModule,
@@ -66,7 +69,7 @@ import { SocialRequestsComponent } from './components/social-requests/social-req
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
-  providers: [AuthenticationService, HttpClient],
+  providers: [AuthenticationService, HttpClient, volsService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

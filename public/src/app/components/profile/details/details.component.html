@@ -5,11 +5,11 @@
                 <div class="card-content">
                     <div class="row iconBack">
                         <a routerLink="/profile/{{idLogin}}/actions"><i class="material-icons arrow">arrow_back</i></a>
-                        <div class="col titleCard titleVol vcenter">
+                        <div  class="col titleCard titleVol vcenter">
                             {{vols?.name}}
                         </div>
-                        <div class="col text-right iconCard">
-                            <i class="material-icons edit">create</i>
+                         <div class="col text-right iconCard pointer underline" (click)="openEditModal(1)">
+                            Editar ação
                         </div>
                     </div>
                 </div>
@@ -23,9 +23,6 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             Descrição
-                        </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
                         </div>
                     </div>
                 </div>
@@ -47,9 +44,6 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             Detalhes da Ação
-                        </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
                         </div>
                     </div>
                 </div>
@@ -73,9 +67,6 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             Fotografias da Ação
-                        </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
                         </div>
                     </div>
                 </div>
@@ -114,9 +105,6 @@
                         <div class="col titleCard no-padding">
                             Localização
                         </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
-                        </div>
                     </div>
                 </div>
                 <div class="card-content" style="display: flex; height:67px">
@@ -136,9 +124,6 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             Data
-                        </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
                         </div>
                     </div>
                 </div>
@@ -165,9 +150,6 @@
                     <div class="row">
                         <div class="col titleCard no-padding">
                             Mapa
-                        </div>
-                        <div class="col text-right iconCard no-padding">
-                            <i class="material-icons edit">create</i>
                         </div>
                     </div>
                 </div>

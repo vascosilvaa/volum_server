@@ -1,3 +1,4 @@
+import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
 import { volsService } from './../../shared/services/vols.service';
 import { FeedComponent } from './../feed/feed.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
@@ -45,5 +46,9 @@ export class SearchComponent implements OnInit {
 
    openVolDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
+  }
+
+  openUser(id_user) {
+    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: id_user }, BSModalContext));
   }
 }

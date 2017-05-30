@@ -1,6 +1,5 @@
 import { volsService } from './../services/vols.service';
 import { SharedService } from './../services/shared.service';
-import { DetailsService } from './../../components/profile/details/details.service';
 import { DetailsComponent } from './../../components/profile/details/details.component';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
@@ -23,7 +22,7 @@ export class ModalContext extends BSModalContext {
   selector: 'view-all-modal',
   templateUrl: './modal-view-all.component.html',
   styleUrls: ['./modal-view-all.component.scss'],
-  providers: [volsService, DetailsService]
+  providers: [volsService]
 
 })
 

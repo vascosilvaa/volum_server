@@ -59,12 +59,12 @@
                 <button class="btn pointer btnRemove" (click)="openRemoveConfirm(6, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails.active==1 && state == 1 && !candCancel">CANCELAR CANDIDATURA</button>
                 <button class="btn pointer btnGreen " *ngIf="volDetails.active==1 && state == 2">CONFIRMADO COMO PARTICIPANTE</button>
                 <button class="btn pointer btnGreenOut" *ngIf="volDetails.active==1 && state == 3">CANDIDATURA ENVIADA COM SUCESSO</button>
-                <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
-                <button class="btn pointer btnCancel" *ngIf="volDetails.active==1 && state == 4">CANDIDATURA REJEITADA</button>
+                <button disabled class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
+                <button disabled class="btn btnCancel" *ngIf="volDetails.active==1 && state == 4">CANDIDATURA REJEITADA</button>
             </div>
               <div *ngIf="volDetails.user.id_user==id_user">
                 <button class="btn pointer btnCandidate" (click)="goDetails(volDetails.id_vol)" *ngIf="volDetails.active==1">ÁREA DE GESTÃO</button>
-                <button class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
+                <button disabled class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
             </div>
 
         </div>

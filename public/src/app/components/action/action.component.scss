@@ -1,0 +1,417 @@
+@import '../../../styles';
+@import '../../shared/card/card.component';
+
+// COMMENTS
+.card-Comments {
+    border-top: 1px solid $grey1;
+}
+
+.comments-header {
+    background-color: $grey0;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+    padding: 15px 10px 0px 10px;
+}
+
+.card-user--comments-image {
+    padding-right: 10px;
+}
+
+.card-user--comments-image img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-top: 1.5px;
+    object-fit: cover;
+}
+
+.card-user-nd {
+    padding-left: 0;
+}
+
+.card-user-name-comments {
+    color: $grey3;
+    font-weight: 600;
+}
+
+.card-date-comments {
+    margin-top: -3px;
+    color: $grey2;
+}
+
+.card-option-comments {
+    padding-top: 3px;
+}
+
+.comments-content {
+    background-color: $grey0;
+    padding-bottom: 15px;
+    border-left: 1px solid $grey1;
+    border-right: 1px solid $grey1;
+    padding: 10px 10px 20px 10px;
+}
+
+.borderComments {
+    min-width: 100%;
+    height: 1px;
+    background-color: $grey1;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.more-Comments {
+    width: 100%;
+    text-align: center;
+    height: 42px;
+    font-weight: 600;
+    border-bottom: 1px solid $grey1;
+    padding-top: 2px;
+    transition: all 0.3s ease;
+    color: $grey2;
+}
+
+.more-Comments:hover {
+    cursor: pointer;
+    color: $orange;
+}
+
+.textMoreComments {
+    vertical-align: middle
+}
+
+.moreIcon {
+    font-size: 24px;
+    font-weight: 700;
+    vertical-align: middle
+}
+
+.insert-comment {
+    background: $white;
+}
+
+.btnSend {
+    padding-left: 0;
+}
+
+.btnLike {
+    padding-top:6px!important;
+}
+
+.btnSendIcon {
+    padding-top: 10px;
+}
+
+.btnSendIcon:hover {
+    cursor: pointer;
+}
+
+.btnSendColorBlue {
+    color: $blue;
+}
+
+.btnSendColorGrey {
+    color: $grey1;
+    border: 0;
+    background: #fff;
+}
+
+.card-user-comments-image-comments {
+    margin-top:15px;
+    margin-left:5px!important;
+    max-width: 50px;
+}
+
+.text-confirm {
+    color: $grey3;
+}
+.action-confirm {
+    font-weight: $bold;
+    color:$blue;
+}
+
+// COMMENTS
+
+
+.modalHeader {
+    background: $blue;
+    padding:15px 20px;
+}
+
+.day-w-border {
+    width: 60px;
+    border: 2px solid $white;
+    border-radius: 7px;
+    font-size: 14px;
+    text-align: center;
+    color:$white;
+    font-weight: $bold;
+    padding: 5px;
+}
+
+.modalTitle {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.containerDatePlace {
+    margin-top: 10px;
+}
+
+.modalTitleDesc {
+    font-size: 18px;
+    color: $white;
+    font-weight: $bold;
+
+}
+
+.modalSubtitle {
+    font-size: 13px;
+    color: $white;
+
+}
+
+.card-user-image img {
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+}
+
+.card-user-nd {
+    padding-left: 10px;
+}
+
+.card-user-name {
+    color: $blue;
+    font-weight: 600;
+}
+
+.card-user-name:hover {
+    text-decoration: underline;
+}
+
+.card-date {
+    color: $grey2;
+}
+
+.verified {
+    background-color: #fff;
+    color: #3C765A;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 5px;
+}
+
+.modalContainer {
+    background: $white;
+    padding: 15px;
+    padding-bottom: 0px!important;
+}
+
+.card-user-desc {
+    color: $grey3;
+}
+
+.card-user-event {
+    color: $orange;
+    font-weight: $bold;
+}
+
+.btnCandidate{
+    background: $yellow;
+    font-size: 12px;
+    border: 0;
+    border-radius:4px;
+    color: $white;
+    font-weight: $bold;
+    padding: 12px 16px;
+}
+
+.modalTextArea{
+    margin-top: 15px;
+    text-align: justify; 
+}
+
+.sectionDatePlace{
+    width: 100%;
+    border-top:1px solid $grey1;
+    margin-top: 20px;
+}
+
+.iconDate {
+    font-size: 18px;
+    color: $grey3;
+    margin-top: 15px;
+}
+
+.daysEvent {
+    font-weight: $bold;
+     margin-top: 5px;
+     color: $grey3;
+}
+
+.descDatePlace {
+    padding-left: 15px;
+}
+
+
+.daysEventFull {
+    font-weight: 300;
+    color: $grey3;
+}
+
+.no-padding {
+    padding:0!important;
+}
+
+.no-padding-side {
+    padding-left:0!important;
+    padding-right:0!important;
+}
+
+.sebm-google-map-container {
+  height: 100px;
+}
+
+.mapContent {
+    margin-top:15px;
+}
+
+.friendsContainer {
+    margin-top: 10px;
+}
+
+.likeImgs {
+    margin-top: 2.5px;
+    margin-left: 10px;
+    display: flex;
+}
+
+.likeImgs img {
+    border: 1px solid #FFF;
+    width: 30px;
+    height: 30px;
+    margin-left: -10px;
+    border-radius: 30px;
+}
+
+.numberYellow{
+    font-size: 18px;
+    color: $yellow;
+    font-weight: $bold;
+}
+
+.numberBlue{
+    font-size: 18px;
+    color: $blue;
+    font-weight: $bold;
+}
+
+
+.normalText {
+    font-size: 13px;
+    color: $grey3;
+}
+
+.comments-back {
+    background: $grey1;
+}
+
+.card-volum-footer {
+    padding-bottom:0;
+}
+
+
+.card-volum-footer {
+    border-top: 1px solid $grey1;
+    padding-top:10px;
+    padding-bottom:10px;
+    width:100%;
+    margin-top: 20px;
+}
+
+.comments-header, .comments-content {
+}
+
+.card-Comments{
+    border:0px;
+}
+
+.scrollArea {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height:297px;
+}
+
+.scrollArea::-webkit-scrollbar {
+    width: 5px;
+    background: $grey1;
+    border:0;
+}
+ 
+.scrollArea::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+      border:0;
+
+}
+
+.modalTextBold {
+    font-weight: $bold;
+        border:0;
+    margin-top: 5px;
+}
+
+.typeVol {
+   background: orange;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    color: white;
+}
+
+.insuBool {
+   background: #3C765A;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+    color: white;
+    margin-left: 6px;
+}
+
+.details-vol {
+    margin-top:10px;
+    text-indent:0px!important;
+}
+
+.Rgt {
+    justify-content: flex-end;
+}
+
+
+.see-all-participants {
+   width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  background: $blue;
+  margin-left:-10px;
+  cursor: pointer;
+}
+
+.see-all-participants:hover {
+    background: #6aa4ff;
+}
+
+.btnCancel:hover {
+    background: $white;
+    color: $grey2;
+}
+
+.loadingHeight {
+    height: 550px;
+}
+.btnCancel {
+    cursor: pointer;
+}
