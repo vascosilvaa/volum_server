@@ -1,0 +1,133 @@
+@import '../../../styles';
+@import '../../components/profile/settings/settings.component';
+
+.inputProfile2 {
+    margin-top: 30px;
+}
+
+.inputProfile3 {
+    margin-top: 27px;
+}
+
+.addEducation {
+    padding-left: 20px;
+}
+
+.imageVol{
+    height: 75px;
+    border: 1px dashed $grey1;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.btnSave {
+    cursor:pointer;
+    color: $white!important;
+}
+
+.btnSave:hover {
+    color: $blue!important;
+}
+
+.text-error {
+    color: $red;
+    font-size:11px;
+    padding-top:5px;
+}
+
+form > .control {
+  position: relative;
+}
+form > .control > label {
+  position: absolute;
+
+}
+
+label {
+  position: absolute;
+  top:10px;
+  font-size:11px;
+  color: $grey2;
+}
+input:focus + label {
+    font-weight: $bold;
+    color: $blue;
+}
+.error-label {
+    font-weight: $bold;
+}
+
+.label-for-select {
+     position: absolute;
+     padding-left: 15px; 
+    z-index:10!important;
+}
+
+select:focus + label {
+    font-weight: $bold;
+    color: $blue; 
+}
+
+textarea:focus + label {
+    font-weight: $bold;
+    color: $blue; 
+}
+
+.select-input {
+    padding-top:25px;
+    height: 60px!important;
+    font-size:14px!important;
+}
+
+.date_picker {
+    padding-left:15px!important;
+}
+
+/deep/ .dropdown-item {
+    margin-left: 0px!important;
+    font-size:14px;
+    color: $grey2;
+}
+
+/deep/ .dropdown-item.active {
+    background: $blue;
+    color: $white;
+}
+
+/deep/ .control .dropdown-menu {
+    width: 447px!important;
+    left:15px!important;
+    border-radius:0!important;
+    top: 54px!important;
+    padding:0px;
+}
+.searched {
+    padding-left:5px;
+}
+
+.content-search {
+    padding: 10px 0px;
+    display: flex;
+}
+
+.imgPreview {
+    height: 75px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.text-red {
+    color: $red!important;
+}
+.sebm-google-map-container {
+    height: 150px;
+}
+
+.primaryCard{
+    margin-top: 15px;
+}
+
+.card-block {
+    padding: 20px 10px;
+}

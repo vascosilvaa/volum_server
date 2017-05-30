@@ -1,7 +1,7 @@
+import { EditModalComponent } from './../../../shared/edit-modal/edit-modal.component';
 import { volsService } from './../../../shared/services/vols.service';
 import { SharedService } from './../../../shared/services/shared.service';
 import { ProfileService } from './../../../shared/services/profile.service';
-import { DetailsService } from './details.service';
 import { ModalEndComponent } from './../../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
@@ -40,6 +40,9 @@ export class DetailsComponent implements OnInit {
   public comentario: any;
   public numberCandidates: any;
   public numberConfirms: any;
+  public editTitle : any;
+
+
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
     private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService) {
@@ -58,6 +61,11 @@ export class DetailsComponent implements OnInit {
     this.countComments(this.idVol);
     this.countCandidates(this.idVol);
     this.countConfirmed(this.idVol);
+  }
+
+  
+  openEditModal(id_vol) {
+    return this.modal.open(EditModalComponent, overlayConfigFactory({id_vol: id_vol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -199,6 +207,16 @@ export class DetailsComponent implements OnInit {
         this.numberCandidates--;
         console.log(res);
       })
+  }
+
+  edit(field) {
+    if(field==1) { //titulo
+      if(this.editTitle==1){
+        this.editTitle=0;
+      } else {
+        this.editTitle=1;
+      }
+    }
   }
 
 }

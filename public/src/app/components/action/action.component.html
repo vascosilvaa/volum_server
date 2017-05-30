@@ -1,0 +1,243 @@
+<div class="container" style="background:white; margin-top:50px">
+  <div class="no-padding">
+    <div class="modalHeader row">
+      <div class="day-w-border">
+        <div>
+          {{volDetails?.date_begin | date:"MMM" | uppercase}}
+        </div>
+        <div>
+          {{volDetails?.date_begin | date:"d"}}
+        </div>
+      </div>
+
+      <div class="modalTitle">
+        <div class="modalTitleDesc">
+          {{volDetails?.name}}
+        </div>
+        <div class="modalSubtitle">
+          {{volDetails?.date_begin | date:"fullDate"}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <ng-container>
+
+
+      <div style="display:flex; margin-top:20px">
+        <div class="card-user-image col-md-auto">
+        <img src={{volDetails?.user.photo_url}}>
+      </div>
+      <div class="card-user-nd">
+        <div><span class="card-user-name ts16 pointer" data-dismiss="dialog" (click)="onSelect(volDetails?.user.id_user)">{{volDetails?.user.name}}</span>
+          <span class="ts14 card-user-desc"> criou o </span>
+          <span class="card-user-event ts14">evento</span>
+        </div>
+        <div class="card-date ts13">{{volDetails?.date_creation | date:"d/M"}} às {{volDetails?.date_creation | date:"shortTime"}}</div>
+      </div>
+      <div class="col text-right no-padding">
+        <!-- <button class="btn btnCandidate" (click)="apply(volDetails.id_vol)" *ngIf="state == 0">CANDIDATAR</button> -->
+        <div *ngIf="volDetails?.user.id_user!=id_user">
+          <button class="btn pointer btnCandidate" (click)="openRemoveConfirm(7, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails?.active==1 && state == 0">CANDIDATAR</button>
+          <button class="btn pointer btnRemove" (click)="openRemoveConfirm(6, volDetails.name, id_user, volDetails.id_vol)" *ngIf="volDetails?.active==1 && state == 1 && !candCancel">CANCELAR CANDIDATURA</button>
+          <button class="btn pointer btnGreen " *ngIf="volDetails?.active==1 && state == 2">CONFIRMADO COMO PARTICIPANTE</button>
+          <button class="btn pointer btnGreenOut" *ngIf="volDetails?.active==1 && state == 3">CANDIDATURA ENVIADA COM SUCESSO</button>
+          <button class="btn btnCancel" *ngIf="volDetails?.active==0">AÇÃO FINALIZADA</button>
+          <button class="btn pointer btnCancel" *ngIf="volDetails?.active==1 && state == 4">CANDIDATURA REJEITADA</button>
+        </div>
+        <div *ngIf="volDetails?.user.id_user==id_user">
+          <button class="btn pointer btnCandidate" (click)="goDetails(volDetails?.id_vol)" *ngIf="volDetails?.active==1">ÁREA DE GESTÃO</button>
+          <button class="btn btnCancel" *ngIf="volDetail?.active==0">AÇÃO FINALIZADA</button>
+        </div>
+
+      </div>
+      </div>
+
+      <div class="modalTextArea col-12 no-padding">
+        <div class="ts14 col-12 no-padding" style="font-weight: bold">
+          {{volDetails?.name}}
+        </div>
+        <div class="ts13 col-12 no-padding">
+          {{volDetails?.description}}
+        </div>
+        <div class="details-vol">
+          <span class="typeVol">Solidariedade Social</span> <span class="insuBool">Seguro</span>
+        </div>
+      </div>
+
+      <div class="sectionDatePlace container">
+        <div class="row">
+          <div class="col-12 no-padding" style="display:flex">
+            <div style="display:flex; margin-top:5px">
+              <div>
+                <i class="material-icons iconDate">query_builder</i>
+              </div>
+              <div class="descDatePlace">
+                <div class="daysEvent ts13" *ngIf="!volDetails?.date_end">
+                  Início a {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}}
+                </div>
+                <div class="daysEvent ts13" *ngIf="volDetails?.date_end">
+                  {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}} - {{volDetails?.date_end | date:"d"}} de
+                  {{volDetails?.date_end | date:"MMMM"}}
+                </div>
+                <div class="daysEventFull ts13" *ngIf="volDetails?.duration > 1">
+                  {{volDetails?.duration}} horas diárias
+                </div>
+                <div class="daysEventFull ts13" *ngIf="volDetails?.duration < 2">
+                  {{volDetails?.duration}} hora diária
+                </div>
+              </div>
+            </div>
+            <div style="margin-left: auto; display:flex; margin-top:5px">
+              <div>
+                <i class="material-icons iconDate">place</i>
+              </div>
+              <div class="descDatePlace ">
+                <div *ngIf="address" class="daysEvent ts13" style="padding-top:10px">
+                  {{address}}
+                </div>
+                <div *ngIf="!addressName && !address" class="daysEvent ts13" style="padding-top:9px">Sem localização definida</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 no-padding mapContent" *ngIf="login">
+
+        <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+          <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+        </sebm-google-map>
+
+      </div>
+
+      <div class="container friendsContainer" *ngIf="login">
+        <div class="row">
+          <div class="col-12 no-padding" style="display:flex; margin-top:5px">
+            <div>
+              <div class="daysEventFull ts13" (click)="openCandidates(1, volDetails.id_vol)" [class.pointer]="numberCandidates > 0">
+                <span class="numberYellow">{{numberCandidates}}</span><span class="normalText"> candidatos</span>
+              </div>
+              <div *ngIf="login" class="likeImgs">
+                <img *ngFor="let candidate of candidates" src="{{candidate?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
+                <div *ngIf="numberCandidates>10" class="see-all-participants" (click)="openCandidates(1, volDetails.id_vol)">{{numberCandidates-10}}</div>
+                <div *ngIf="!numberCandidates" class="ts13" style="margin-left: -10px; margin-top:5px">Não existem candidatos.</div>
+              </div>
+
+            </div>
+            <div class="" style="text-align:right; margin-left:auto">
+              <div class="ts13" (click)="openCandidates(2, volDetails.id_vol)" [class.pointer]="numberConfirmeds > 0">
+                <span class="numberBlue">{{numberConfirmeds}}</span><span class="normalText"> confirmados</span>
+              </div>
+              <div *ngIf="login" class="likeImgs Rgt">
+                <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(confirmed?.id_user)" class="pointer">
+                <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">{{numberConfirmeds-10}}</div>
+                <div *ngIf="!numberConfirmeds" class="ts13" style="margin-top:5px">Não existem confirmados.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-volum-footer no-padding-side" *ngIf="login">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 no-padding" style="display:flex; align-items:center">
+              <div class="cardLikes">
+                <md-icon (click)="dislike(this.vol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+                <md-icon (click)="like(this.vol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
+              </div>
+              <div *ngIf="login" class="likesText ts12">
+                <!-- <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto -->
+                <span *ngIf="likeState==1" class="likesTestMe">Tu</span>
+                <span *ngIf="likeState==1 && numberLikes<2">gostas disto.</span>
+                <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">e mais</span>
+                <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">{{numberLikes-1}} pessoa<span *ngIf="numberLikes>2">s</span>                gostam disto.</span>
+                <span *ngIf="likeState==0 && numberLikes>=1" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">{{numberLikes}} pessoa<span *ngIf="numberLikes>=2">s</span>                gosta
+                <span *ngIf="numberLikes>=2">m
+                                      </span> disto.
+                </span>
+                <span *ngIf="likeState==0 && !numberLikes">Sê o primeiro a gostar disto!</span>
+              </div>
+              <div *ngIf="!login" class="likesText ts12">
+                <span *ngIf="numberLikes>=1">{{numberLikes}} pessoa<span *ngIf="numberLikes>=1">s</span> gostam disto.
+                </span>
+                <span *ngIf="!numberLikes || numberLikes==0 ">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
+
+              </div>
+              <div (click)="getComments()" class="text-right" style="margin-left:auto">
+                <div class="cardComments ts12">
+                  <div>
+                    <md-icon class="btnComments">textsms</md-icon>
+                  </div>
+                  <div *ngIf="numberComments>0" class="textComments"><span class="commentsNumber">{{numberComments}}</span> comentário<span *ngIf="numberComments>1">s</span></div>
+                  <div *ngIf="numberComments==0" class="textComments">Sê o primeiro a comentar!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  <div class="row card-Comments" *ngIf="showComments && login">
+    <div class="scrollArea col-12 no-padding">
+      <div class="col-12 comments-back" *ngFor="let comment of comments">
+        <div class="row comments-header">
+          <div class="col card-user--comments-image col-md-auto">
+            <img src="{{comment.photo_url}}">
+          </div>
+          <div class="col-8 card-user-nd">
+            <div class="card-user-name-comments ts13">{{comment.name}}</div>
+            <div class="card-date-comments ts12">10 horas</div>
+          </div>
+          <div class="col no-padding card-option-comments text-right">
+            <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
+            <md-menu #menu="mdMenu">
+              <button md-menu-item>
+                      <md-icon>dialpad</md-icon>
+                      <span>Redial</span>
+                    </button>
+              <button md-menu-item disabled>
+                      <md-icon>voicemail</md-icon>
+                      <span>Check voicemail</span>
+                    </button>
+              <button md-menu-item>
+                      <md-icon>notifications_off</md-icon>
+                      <span>Disable alerts</span>
+                    </button>
+            </md-menu>
+          </div>
+        </div>
+        <div class="row comments-content">
+          <div class="col-12 ts13">
+            {{comment.message}}
+          </div>
+        </div>
+        <div class="borderComments"></div>
+      </div>
+    </div>
+    <div class="col-12 insert-comment ">
+      <div class="row" style="padding-left:15px; padding-right:15px;">
+        <div class="col no-padding card-user--comments-image card-user-comments-image-comments">
+          <img src="{{userLogin.photo}}">
+        </div>
+        <div class="col no-padding">
+          <md-input-container class="width100">
+            <input autofocus mdInput [(ngModel)]="comentario" (keyup.enter)="sendComment(comentario)">
+          </md-input-container>
+        </div>
+        <!--<div class="col-1 btnSend text-right no-padding">
+                      
+                  </div>-->
+
+        <button (click)="sendComment(comentario)" type="submit" class="btnSendIcon btnSendColorGrey">
+                    <md-icon class="send">send</md-icon>
+                  </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

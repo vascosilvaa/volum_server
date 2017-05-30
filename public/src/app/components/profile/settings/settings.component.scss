@@ -94,7 +94,7 @@
 
 .inputProfile2 {
   height: 50px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .no-margin {
@@ -160,6 +160,8 @@
   border:1px solid $blue;
   border-radius:0px;
   margin-top: 40px;
+  cursor:pointer;
+  color: $white!important;
 }
 
 .btnDescart:hover {
@@ -275,4 +277,108 @@
   margin-top: 20px!important;
   margin-bottom: -5px!important;
   cursor: pointer;
+}
+
+
+
+
+///////
+
+
+
+
+.inputProfile3 {
+    margin-top: 27px;
+}
+
+
+.text-error {
+    color: $red;
+    font-size:11px;
+    padding-top:5px;
+}
+
+form > .control {
+  position: relative;
+}
+form > .control > label {
+  position: absolute;
+
+}
+
+label {
+  position: absolute;
+  top:10px;
+  font-size:11px;
+  color: $grey2;
+}
+input:focus + label {
+    font-weight: $bold;
+    color: $blue;
+}
+.error-label {
+    font-weight: $bold;
+}
+
+.label-for-select {
+     position: absolute;
+     padding-left: 15px; 
+    z-index:10!important;
+}
+
+select:focus + label {
+    font-weight: $bold;
+    color: $blue; 
+}
+
+textarea:focus + label {
+    font-weight: $bold;
+    color: $blue; 
+}
+
+.select-input {
+    padding-top:25px;
+    height: 60px!important;
+    font-size:14px!important;
+}
+
+.date_picker {
+    padding-left:15px!important;
+}
+
+/deep/ .dropdown-item {
+    margin-left: 0px!important;
+    font-size:14px;
+    color: $grey2;
+}
+
+/deep/ .dropdown-item.active {
+    background: $blue;
+    color: $white;
+}
+
+/deep/ .control .dropdown-menu {
+    width: 1070px;
+    left:15px!important;
+    border-radius:0!important;
+    top: 54px!important;
+    padding:0px;
+}
+.searched {
+    padding-left:5px;
+}
+
+.content-search {
+    padding: 10px 0px;
+    display: flex;
+}
+
+.imgPreview {
+    height: 75px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.text-red {
+    color: $red!important;
 }

@@ -1,17 +1,19 @@
 <ng-template #rt let-r="result" let-t="term">
 
     <div class="">
-        <div class="row pointer" (click)="navigate(model.id, model.type)" style="padding:5px 0px;">
+        <div class="row hover-style pointer" (click)="navigate(r.id, r.type)" style="padding:5px 0px;">
             <div class="img-search">
-                <img *ngIf="!r.photo_url" src="assets/imgs/volunteer.png">
-                <img *ngIf="r.photo_url" [src]="r.photo_url">
+                <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
+                <img *ngIf="r.type==1 || r.type==2" [src]="r.photo_url">
             </div>
             <div class="desc-search">
                 <div class="namePerson">
                     {{ r.name}}
                 </div>
                 <div class="descPerson">
-                    Solidariedade Social
+                    <span *ngIf="r.type==0"> Ação de Voluntariado</span>
+                    <span *ngIf="r.type==1"> Voluntário</span>
+                    <span *ngIf="r.type==2"> Instituição</span>
                 </div>
             </div>
         </div>
