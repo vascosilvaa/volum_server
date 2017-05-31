@@ -260,7 +260,7 @@ export class NewActionComponent implements OnInit {
         form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
         form.value.date_end = new Date(this.parser.format(form.value.date_end));
       }
-      
+        
       console.log("VALUE", form.value);
       this.profileService.newAction(form.value).then(res => {
         console.log(res);

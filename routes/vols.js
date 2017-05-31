@@ -719,6 +719,24 @@ var returnRouter = function (io) {
             }
         });
     });
+
+    app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
+
+        db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function (error, comments, fields) {
+            if (error) {
+                res.json({
+                    success: false
+                });
+                throw error;
+            } else {
+                res.json({
+                    success: true,
+                    comments
+                });
+            }
+        });
+    });
+
     app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res) {
 
         let options = {
