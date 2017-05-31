@@ -12,7 +12,7 @@
   <div class="col-lg-3 col-12" *ngFor="let inst of institutions">
     <div class="card cardFriends text-center">
       <div class="friendsBackground">
-        <img class="coverImg" src='./assets/imgs/backgroundOV.jpg'>
+        <img class="coverImg" src='{{inst.photo_url}}'>
       </div>
       <div class="profile-user-picture text-center">
         <img [src]="inst.photo_url" alt="profile user picture" />
@@ -38,7 +38,7 @@
           <a class="btn btn-outline-primary btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
         </div>
         <div class="col-6 ">
-          <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(1)">VER</a>
+          <a class="btn btn-outline-primary btnConfirm marginBtnR" (click)="openProfileModal(inst.id_user)">VER</a>
         </div>
       </div>
     </div>

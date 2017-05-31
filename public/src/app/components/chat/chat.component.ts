@@ -34,6 +34,7 @@ export class ChatComponent implements OnInit {
       this.conversations = res.conversations;
       console.log("CONVERSATIONS", this.conversations);
       this.getUsersAndLastMessage();
+      this.navigate(this.conversations[0].id_conversation, this.conversations[0].id_user);
     });
 
   }
