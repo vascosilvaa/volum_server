@@ -10,29 +10,28 @@ export class volsService {
 
     }
 
-    
+
     confirmCandidate(id_vol, id_user) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/accept`, {id_user: id_user}).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/accept`, { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
 
     countConfirmed(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
-        .then(res => { return res.json() })
-        .catch(error => console.log(error));
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed/count`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
 
-   
- getVol(idVol) {
+    getVol(idVol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + idVol).toPromise()
             .then(res => {
                 return res.json();
             })
-           .catch((error: any) => console.log(error))
+            .catch((error: any) => console.log(error))
     }
- checkState(id_user, id_vol) {
+    checkState(id_user, id_vol) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + '/checkState', { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
@@ -45,46 +44,46 @@ export class volsService {
     }
 
     cancelApply(id_user, id_vol) {
-       return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+id_vol+`/applies/cancel`, {id_user: id_user}).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/cancel`, { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
     like(id_vol) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/like`,null).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/like`, null).toPromise()
             .then(res => { return res.json(); })
             .catch(error => console.log(error));
     }
     dislike(id_vol) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/dislike`,null).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/dislike`, null).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
     getComments(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/comments`).toPromise()
-            .then(res => { return res.json()})
+            .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
     sendComment(message, id_vol) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comment`, {  message: message}).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comment`, { message: message }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-    
+
     countCandidates(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/candidates/count`).toPromise()
-        .then(res => { return res.json() })
-        .catch(error => console.log(error));
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates/count`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
 
     countConfirmeds(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/applies/confirmed/count`).toPromise()
-        .then(res => { return res.json() })
-        .catch(error => console.log(error));
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/confirmed/count`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
-    
+
     getCandidates(id_vol, amount) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/applies/candidates`, { amount: amount }).toPromise()
             .then(res => { return res.json() })
@@ -97,7 +96,7 @@ export class volsService {
             .catch(error => console.log(error));
     }
     countComments(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/comments/count`).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/comments/count`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -131,7 +130,7 @@ export class volsService {
     }
 
     getVols(startAt, amount) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { startAt: startAt, amount: amount}).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { startAt: startAt, amount: amount }).toPromise()
             .then(res => {
                 return res.json();
             })
@@ -139,15 +138,25 @@ export class volsService {
                 return err.json();
             });
     }
-    
+
     checkLike(id_vol) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+ id_vol + `/checkLike`).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/checkLike`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
-    search(query){
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=`+query).toPromise()
+    search(query) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=` + query).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    } 
+    nearby(lat, lng) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/nearby/`, { lat: lat, lng: lng }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    bounds(swlat, swlng, nwlat, nwlng) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/bounds/`, { swlat: swlat, swlng: swlng, nwlat: nwlat, nwlng: nwlng }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

@@ -3,9 +3,16 @@ var express = require('express'),
     config = require('../config'),
     db = require('../config/db');
 var passport = require('passport');
+var fs = require('fs');
+var cloudinary = require('cloudinary');
 
 var app = module.exports = express.Router();
 
+cloudinary.config({
+    cloud_name: 'dbbmwchww',
+    api_key: '266298598993945',
+    api_secret: 'UjQ9gFhIgaBJvt5X5uXl5xh9zYc'
+});
 
 var jwtCheck = jwt({
     secret: config.secretKey
@@ -17,6 +24,24 @@ let user = {};
 let vol = {};
 let startAt = 0;
 let amount = 0;
+
+
+
+
+function decodeBase64Image(dataString) {
+    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+
+    if (matches.length !== 3) {
+        return new Error('Invalid input string');
+    }
+
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+
+    return response;
+}
+
 
 var returnRouter = function (io) {
 
@@ -113,9 +138,12 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/', passport.authenticate('jwt'), function (req, res) {
 
+
+    app.post('/', passport.authenticate('jwt'), function (req, res) {
+        let result_id;
         console.log("body", req.body)
+        let photos = []
 
         if (!req.body.name || !req.body.description || !req.body.category || !req.body.date_begin) {
             res.status(400).json({
@@ -131,7 +159,10 @@ var returnRouter = function (io) {
                     message: 'Datas Invalidas'
                 })
 
+
             } else {
+
+
 
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
                     'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ? )', [req.body.category, req.user.id_user, req.body.name, req.body.description, req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
@@ -142,7 +173,7 @@ var returnRouter = function (io) {
                                 error
                             });
                         } else {
-                            if (!req.photo_1) {
+                            if (!req.body.photos) {
 
                                 db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
                                     if (error) {
@@ -160,15 +191,180 @@ var returnRouter = function (io) {
                                     }
                                 });
                             } else {
-                                res.json({
-                                    message: 'Success',
-                                    id_vol: results.insertId
-                                });
+
+                                for (let i = 0; i < req.body.photos.length; i++) {
+                                    cloudinary.uploader.upload(req.body.photos[i], function (result) {
+
+                                        db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function (error, result, field) {
+                                            if (error) {
+                                                res.json({
+                                                    error
+                                                });
+                                            } else {
+                                                if (i == (req.body.photos.length - 1)) {
+
+                                                    res.json({
+                                                        message: 'Success',
+                                                        id_vol: results.insertId
+                                                    });
+
+                                                }
+
+                                            }
+                                        });
+
+                                    });
+                                }
                             }
                         }
                     });
+
+
             }
+
         }
+
+    });
+
+
+
+    app.get('/bounds', function (req, res, next) {
+        console.log("query", req.query);
+
+        let vols = [];
+
+        let a = parseFloat(req.query.swlat);
+        let b = parseFloat(req.query.swlng);
+        let c = parseFloat(req.query.nwlat);
+        let d = parseFloat(req.query.nwlng);
+
+        console.log(a, b, c, d)
+
+        let options = {
+            sql: 'SELECT vols.id_vol, vols.name, vols.id_vol, GROUP_CONCAT( photos.url ' +
+            'SEPARATOR  "->" ) AS photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted,' +
+            'vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url ' +
+            'FROM vols ' +
+            'INNER JOIN users ON vols.id_user_creator = users.id_user ' +
+            'INNER JOIN photos ON vols.id_vol = photos.id_vol ' +
+            '' +
+            'WHERE' +
+            '(? < ? AND vols.lat BETWEEN ? AND ?) OR (? < ? AND vols.lat BETWEEN ? AND ?)' +
+            ' AND' +
+            '(? < ? AND vols.lng BETWEEN ? AND ?) OR (? < ? AND vols.lng BETWEEN ? AND ?) GROUP BY vols.id_vol '
+            ,
+            nestTables: true
+        };
+
+
+        console.log(options.sql)
+        db.get().query(options, [a, c, a, c, c, a, c, a, b, d, b, d, d, b, d, b], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                console.log(results);
+                if (results.length == 0) { } else {
+
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                description: results[i].vols.description,
+                                date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].vols.date_creation,
+                                duration: results[i].vols.duration,
+                                lat: results[i].vols.lat,
+                                lng: results[i].vols.lng,
+                                photos: (results[i][''].photos).split('->')
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            }
+                        });
+                    }
+                }
+                res.json({
+                    success: true,
+                    vols
+                });
+            }
+        });
+
+    });
+
+
+
+
+    app.get('/nearby', function (req, res, next) {
+        console.log("query", req.query);
+
+        let vols = [];
+
+        let options = {
+            sql: 'SELECT vols.id_vol, vols.name, vols.id_vol, GROUP_CONCAT( photos.url ' +
+            'SEPARATOR  "->" ) AS photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted,' +
+            'vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url,' +
+            '(6371 * ACOS(COS(RADIANS( ? )) * COS(RADIANS(vols.lat)) * COS(RADIANS(vols.lng) - RADIANS( ? )) + SIN(RADIANS( ?)) * SIN(RADIANS(vols.lat)))) AS distance' +
+            '    FROM vols ' +
+            '    INNER JOIN users ON vols.id_user_creator = users.id_user' +
+            '    INNER JOIN photos ON vols.id_vol = photos.id_vol' +
+            '    GROUP BY vols.id_vol' +
+            '    HAVING distance < 25' +
+            '  ORDER BY distance' +
+            '    LIMIT 0 , 30',
+            nestTables: true
+        };
+
+
+        console.log(options.sql)
+        db.get().query(options, [req.query.lat, req.query.lng, req.query.lat], function (error, results, fields) {
+            if (error) {
+                console.log(error);
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                console.log(results);
+                if (results.length == 0) { } else {
+
+                    for (let i = 0; i < results.length; i++) {
+                        vols.push({
+                            vol: {
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                description: results[i].vols.description,
+                                date_begin: results[i].vols.date_begin,
+                                date_creation: results[i].vols.date_creation,
+                                duration: results[i].vols.duration,
+                                lat: results[i].vols.lat,
+                                lng: results[i].vols.lng,
+                                photos: (results[i][''].photos).split('->')
+                            },
+                            user: {
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            }
+                        });
+                    }
+                }
+                res.json({
+                    success: true,
+                    vols
+                });
+            }
+        });
+
     });
 
 
@@ -180,6 +376,46 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
+    app.put('/:id', function (req, res, next) {
+
+
+        let options = {
+            sql: 'UPDATE vols SET' +
+            ' name = IFNULL( ?, name), ' +
+            ' description = IFNULL(?, name),' +
+            ' date_end = IFNULL(?, date_end),' +
+            ' start_time = IFNULL(?, start_time),' +
+            ' end_time = IFNULL(?, end_time),' +
+            ' insurance = IFNULL(?, insurance),' +
+            ' lat = IFNULL(?, lat),' +
+            ' lng = IFNULL(?, lng)' +
+            '  WHERE id_vol = ?;'
+        };
+        console.log(options.sql)
+
+        console.log(req.body);
+
+        db.get().query(options, [req.body.name, req.body.description, req.body.date_end, req.body.start_time, req.body.end_time, req.body.insurance, req.body.lat, req.body.lng, req.params.id], function (error, results, fields) {
+            console.log(error);
+            console.log(fields);
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                res.send({
+                    success: true,
+                    results
+                })
+
+            }
+        });
+
+
+
+    });
 
     app.get('/:id', function (req, res, next) {
         console.log("query", req.query);

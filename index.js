@@ -37,14 +37,13 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());
 require('./config/passport')(passport);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 app.use(express.static(path.join(__dirname, 'public/dist')));
 app.use('/api', express.static(path.join(__dirname, 'docs')))
-app.use('/teste', express.static(path.join(__dirname, 'testes')))
+app.use('/mobile', express.static(path.join(__dirname, 'www')))
 
 //ROUTES
 app.use('/api/auth', auth);
@@ -64,7 +63,7 @@ app.get('/api/search', function (req, res) {
 
         let query = (req.query.search).replace(/['"]+/g, '');
 
-        db.get().query('SELECT vols.id_vol AS id, vols.name from vols where vols.name LIKE ?; SELECT users.id_user AS id, users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ?', ['%' + query + '%', '%' + query + '%'],
+        db.get().query('SELECT vols.id_vol AS id, vols.name from vols where vols.name LIKE ?; SELECT users.id_user AS id, users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ? LIMIT 10', ['%' + query + '%', '%' + query + '%'],
             function (error, results, fields) {
                 console.log(results);
                 if (error) {

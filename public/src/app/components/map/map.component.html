@@ -1,7 +1,7 @@
 <div class="container-fluid no-padding mapFull">
     <div class="row no-padding">
         <div class="col-7 map">
-            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15" [styles]="Terrain">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15" [styles]="Terrain" (boundsChange)="getVols($event)">
 
                 <sebm-google-map-marker *ngFor="let vol of vols; let i = index" [latitude]="convertStringToNumber(vol.vol.lat)" [longitude]="convertStringToNumber(vol.vol.lng)">
 
@@ -32,6 +32,8 @@
                         </div>
                     </div>
                 </div>
+
+                <button type="submit" (click)="search()">Search</button>
                 <div class="cardsSection col-12">
                     <div class="col-12" *ngFor="let vol of vols">
                         <vol-card [map]="true" [likes]="33" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"

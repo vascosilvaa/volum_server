@@ -55,13 +55,54 @@ var returnRouter = function (io) {
                             birth_date: user.birth_date,
                             verified: user.verified,
                             type: user.type_user,
-                            about: user.about
+                            about: user.about,
+                            lat: user.lat,
+                            lng: user.lng
                         }
                     });
                 }
             });
 
         }
+    });
+
+    app.put('/', passport.authenticate('jwt'), function (req, res, next) {
+
+
+        let options = {
+            sql: 'UPDATE users SET' +
+            ' name = IFNULL( ?, name), ' +
+            ' gender = IFNULL(?, gender),' +
+            ' email = IFNULL(?, email),' +
+            ' about = IFNULL(?, about),' +
+            ' lat = IFNULL(?, lat),' +
+            ' lng = IFNULL(?, lng)' +
+            '  WHERE id_user = ?;'
+        };
+        console.log(options.sql)
+
+        console.log(req.body);
+
+        db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, req.body.lat, req.body.lng, req.user.id_user], function (error, results, fields) {
+            console.log(error);
+            console.log(fields);
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                res.send({
+                    success: true,
+                    results
+                })
+
+            }
+        });
+
+
+
     });
 
 

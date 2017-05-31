@@ -177,11 +177,7 @@ var returnRouter = function (io) {
                 });
 
             }
-
-            console.log(id_user)
-
-
-
+            
 
         });
 
@@ -206,7 +202,6 @@ var returnRouter = function (io) {
         });
 
     });
-
 
     app.post('/', passport.authenticate('jwt'), function (req, res) {
         console.log("aaa")

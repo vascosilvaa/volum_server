@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs/Subject';
-import { Http } from '@angular/http';
+import { Http, Jsonp } from '@angular/http';
 import { GlobalConstants } from './../../shared/global-constants';
 import { HttpClient } from './../../shared/http-client';
 
@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
 import { Component } from '@angular/core';
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
@@ -26,7 +26,7 @@ import 'rxjs/add/operator/switchMap';
 export class ProfileService {
 
     private dataStringSource = new Subject<Object>();
-    
+
     // Observable string stream
     dataString$ = this.dataStringSource.asObservable();
 
@@ -35,7 +35,7 @@ export class ProfileService {
         this.dataStringSource.next(data)
     }
 
-    constructor(private http: HttpClient, private HTTP: Http) {
+    constructor(private http: HttpClient, private HTTP: Http, private jsonp: Jsonp) {
 
     }
 
@@ -62,6 +62,12 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
 
+    }
+
+    getCountries() {
+        return this.jsonp.get('http://battuta.medunes.net/api/country/all/?key=1727cb239d0a8f0d3d8ea64518801e45&callback=?"').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
 
     getCategories() {

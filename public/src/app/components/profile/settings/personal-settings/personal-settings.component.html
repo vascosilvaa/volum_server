@@ -62,7 +62,10 @@
 
         <div class="col-4 inputProfile">
           <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="País" value="Portugal" required />
+            <select name="categoria" class="form-control inputText form-control-lg disabled" style="padding-top:22px;">
+              <option disabled selected> Selecione um</option>
+                <option *ngFor="let country of countries"> {{country.name}}</option>
+              </select>
             <label for="title" class="titlePlaceholder">País</label>
           </div>
         </div>
