@@ -11,6 +11,20 @@
   content: "\e900";
 }
 
+/*
+$loading-ios-background:#0F76F7;
+$loading-ios-spinner-color: #FFFFFF;
+$loading-ios-text-color:#FFFFFF;
+$loading-md-background:#0F76F7;
+$loading-md-box-shadow:none;
+$loading-md-spinner-color: #FFFFFF;
+$loading-md-text-color:#FFFFFF;
+
+ion-loading ion-backdrop{
+  opacity: 1!important;
+  background-color: #0F76F7!important;
+}
+*/
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -55058,6 +55072,73 @@ ion-navbar.toolbar {
   border-radius: 3px;
 }
 
+.toast-success .toast-container {
+  background: #32db64;
+  border-radius: 3px;
+}
+
+.alert-ios .alert-wrapper {
+  border-radius: 8px;
+}
+
+.alert-title {
+  color: #4A4A4A;
+}
+
+.alert-message {
+  color: #4A4A4A !important;
+}
+
+.closeAlert {
+  color: #f53d3d !important;
+}
+
+ion-avatar img {
+  object-fit: cover !important;
+}
+
+.inputColor {
+  color: #4A4A4A !important;
+}
+
+.listLoadPicture {
+  margin-bottom: 0px;
+}
+
+.newAction-Slide {
+  height: auto !important;
+}
+
+.newAction-Slide img {
+  width: 100% !important;
+  max-height: 30vh !important;
+  object-fit: cover !important;
+}
+
+.marginList {
+  margin-top: 30px;
+}
+
+.newAction-Slide .swiper-pagination {
+  bottom: 0 !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.newAction-Slide .swiper-pagination {
+  background-color: #FFF !important;
+}
+
+.btnNewAction {
+  border-radius: 3px;
+  color: #FFF;
+}
+
+.md page-modal-location .stauts-spinner ion-spinner {
+  width: 50px;
+  height: 50px;
+}
+
 .action-sheets-chat .ion-md-close {
   color: #4A4A4A;
 }
@@ -55191,43 +55272,6 @@ textarea {
 
 .header-feed-title {
   letter-spacing: 3px;
-}
-
-.inputColor {
-  color: #4A4A4A !important;
-}
-
-.listLoadPicture {
-  margin-bottom: 0px;
-}
-
-.newAction-Slide {
-  height: auto !important;
-}
-
-.newAction-Slide img {
-  width: 100% !important;
-  max-height: 30vh !important;
-  object-fit: cover !important;
-}
-
-.marginList {
-  margin-top: 30px;
-}
-
-.newAction-Slide .swiper-pagination {
-  bottom: 0 !important;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.newAction-Slide .swiper-pagination {
-  background-color: #FFF !important;
-}
-
-.btnNewAction {
-  border-radius: 3px;
-  color: #FFF;
 }
 
 .iconList {
@@ -55483,7 +55527,10 @@ page-card-details .volun {
   height: 180px;
   padding-top: 12px;
   padding-right: 10px;
-  margin-bottom: 16px;
+}
+
+page-card-details .marginBottomVol {
+  margin-bottom: 95px;
 }
 
 page-card-details .v-imgs-confirm {
@@ -55557,6 +55604,41 @@ page-card-details .btnOffer {
 page-card-details .listTimeLocation ion-item ion-icon {
   min-height: 2rem;
   font-size: 2rem;
+}
+
+page-card-details .btnFooter {
+  width: 100%;
+  padding: 16px;
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 50px;
+}
+
+page-card-details .btnFooterNoFixed {
+  width: 100%;
+  padding: 16px;
+  background-color: #FFFFFF;
+}
+
+page-card-details .actionEnd {
+  width: 100%;
+  text-align: center;
+  background-color: #FF8A65;
+  color: #FFF;
+  padding: 12px;
+  border-radius: 2px;
+  font-size: 1.5rem;
+}
+
+.formDiscussion {
+  height: 95%;
+}
+
+.textareaStyle {
+  border-radius: 0;
+  background-color: transparent;
+  border-color: transparent;
+  min-height: 95% !important;
 }
 
 .popover-ios .popover-content {

@@ -1,14 +1,14 @@
 webpackJsonp([20],{
 
-/***/ 292:
+/***/ 432:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_settings__ = __webpack_require__(636);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalSettingsModule", function() { return ModalSettingsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register5__ = __webpack_require__(652);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register5Module", function() { return Register5Module; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ModalSettingsModule = (function () {
-    function ModalSettingsModule() {
+var Register5Module = (function () {
+    function Register5Module() {
     }
-    return ModalSettingsModule;
+    return Register5Module;
 }());
-ModalSettingsModule = __decorate([
+Register5Module = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_settings__["a" /* ModalSettings */],
+            __WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__modal_settings__["a" /* ModalSettings */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_settings__["a" /* ModalSettings */]
+            __WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */]
         ]
     })
-], ModalSettingsModule);
+], Register5Module);
 
-//# sourceMappingURL=modal-settings.module.js.map
+//# sourceMappingURL=register5.module.js.map
 
 /***/ }),
 
-/***/ 636:
+/***/ 652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalSettings; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register5; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,61 +59,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the ModalSettings page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var ModalSettings = (function () {
-    function ModalSettings(navCtrl, navParams, viewCtrl, modalController) {
+var Register5 = (function () {
+    function Register5(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.modalController = modalController;
-        this.typeSettings = navParams.get('typeSettings');
-        if (this.typeSettings == 0) {
-            this.textHeader = "Sobre mim";
-        }
-        else if (this.typeSettings == 1) {
-            this.textHeader = "Hobbies e interesses";
-        }
-        else if (this.typeSettings == 2) {
-            this.textHeader = "Tipos de voluntariado favoritos";
-        }
-        else if (this.typeSettings == 3) {
-            this.textHeader = "Historial do voluntariado";
-        }
-        else if (this.typeSettings == 9) {
-            this.textHeader = "Privacidade";
-            this.textHeaderList = "Quem pode ver a minha actividade";
-        }
-        else if (this.typeSettings == 10) {
-            this.textHeader = "Privacidade";
-            this.textHeaderList = "Quem me pode contactar";
-        }
+        // GET DATA
+        this.type = this.navParams.get('type');
+        this.name = this.navParams.get('name');
+        this.email = this.navParams.get('email');
+        this.password = this.navParams.get('password');
+        this.birthday = this.navParams.get('birthday');
+        this.gender = 0;
     }
-    ModalSettings.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ModalSettings');
+    Register5.prototype.onSubmit = function () {
+        this.navCtrl.push("Register6", { type: this.type, name: this.name, email: this.email, password: this.password, birthday: this.birthday, gender: this.gender });
     };
-    ModalSettings.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
-    };
-    ModalSettings.prototype.openModalChoose = function () {
-        var modal = this.modalController.create("ModalChoose", { typeSettings: this.typeSettings });
-        modal.present();
-    };
-    return ModalSettings;
+    return Register5;
 }());
-ModalSettings = __decorate([
+Register5 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-modal-settings',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\settings\profile-settings\modal-settings\modal-settings.html"*/'<ion-header no-border>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n        {{textHeader}}\n\n    </ion-title>\n\n    <ion-buttons start showWhen="ios">\n\n      <button ion-button (click)="dismiss()">\n\n        <span ion-text color="light" showWhen="ios">Cancelar</span>\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons start showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n         <ion-icon name="checkmark" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()">\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="ios">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n        <span ion-text color="light" showWhen="ios">Guardar</span>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="content-background">\n\n    <ion-list no-lines no-border margin-top *ngIf="typeSettings == 1">\n\n        <ion-item class="font-md bold font-grey4 border-bottom">Ações criadas</ion-item>\n\n            <button ion-item (tap)="openModalChoose()">\n\n                <p text-wrap><span class="bold font-grey4">Tipo</span></p>\n\n                <p class="font-sm"><span color="grey3">{{textHeader}}</span></p>\n\n            </button>\n\n        </ion-list>\n\n\n\n\n\n\n\n    <!--PRIVACITY -->\n\n\n\n    <!-- QUEM PODE VER A MINHA ATIVIDADE -->\n\n    <ion-list radio-group no-lines no-border margin-top *ngIf="typeSettings == 9">\n\n        <ion-item class="font-md bold font-grey4 border-bottom">{{textHeaderList}}</ion-item>\n\n        <ion-item>\n\n            <ion-label color="grey4" class="bold font-md">Público</ion-label>\n\n            <ion-radio value="0" checked></ion-radio>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label color="grey4" class="bold font-md">Seguidores</ion-label>\n\n            <ion-radio value="1"></ion-radio>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label color="grey4" class="bold font-md">Apenas eu</ion-label>\n\n            <ion-radio value="2"></ion-radio>\n\n        </ion-item>\n\n    </ion-list>\n\n\n\n    <!-- QUEM ME PODE CONTACTAR -->\n\n    <ion-list no-lines no-border margin-top *ngIf="typeSettings == 10">\n\n        <ion-item class="font-md bold font-grey4 border-bottom">{{textHeaderList}}</ion-item>\n\n            <button ion-item (tap)="openModalChoose()">\n\n                <p text-wrap><span class="bold font-grey4">Tipo</span></p>\n\n                <p class="font-sm"><span color="grey3">{{textHeader}}</span></p>\n\n            </button>\n\n    </ion-list>\n\n\n\n    <!--PRIVACITY -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\settings\profile-settings\modal-settings\modal-settings.html"*/,
+        selector: 'page-register5',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register5\register5.html"*/'<ion-header no-border>\n\n    <ion-navbar transparent color="primary">\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding-top class="backgroundBlue">\n\n    <ion-list class="listRegister" no-lines radio-group [(ngModel)]="gender">\n\n        <ion-item>\n\n            <h1 class="textWhite" text-wrap>Qual é o seu género?</h1>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label>Feminino</ion-label>\n\n            <ion-radio value="0" color="secondary"></ion-radio>\n\n        </ion-item>\n\n        <ion-item padding-bottom>\n\n            <ion-label>Masculino</ion-label>\n\n            <ion-radio value="1" color="secondary"></ion-radio>\n\n        </ion-item>\n\n        <ion-item padding-top>\n\n            <button ion-fab color="light" item-right no-margin mode="ios" (tap)="onSubmit()"><ion-icon name="arrow-forward"></ion-icon></button>\n\n        </ion-item>\n\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register5\register5.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
-], ModalSettings);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], Register5);
 
-//# sourceMappingURL=modal-settings.js.map
+//# sourceMappingURL=register5.js.map
 
 /***/ })
 

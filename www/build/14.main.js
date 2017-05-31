@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 299:
+/***/ 418:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_discussion__ = __webpack_require__(645);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalDiscussionModule", function() { return ModalDiscussionModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs__ = __webpack_require__(531);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TabsModule", function() { return TabsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ModalDiscussionModule = (function () {
-    function ModalDiscussionModule() {
+var TabsModule = (function () {
+    function TabsModule() {
     }
-    return ModalDiscussionModule;
+    return TabsModule;
 }());
-ModalDiscussionModule = __decorate([
+TabsModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_discussion__["a" /* ModalDiscussion */],
+            __WEBPACK_IMPORTED_MODULE_2__tabs__["a" /* Tabs */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__modal_discussion__["a" /* ModalDiscussion */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tabs__["a" /* Tabs */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_discussion__["a" /* ModalDiscussion */]
+            __WEBPACK_IMPORTED_MODULE_2__tabs__["a" /* Tabs */]
         ]
     })
-], ModalDiscussionModule);
+], TabsModule);
 
-//# sourceMappingURL=modal-discussion.module.js.map
+//# sourceMappingURL=tabs.module.js.map
 
 /***/ }),
 
-/***/ 645:
+/***/ 531:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalDiscussion; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Tabs; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,25 +59,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var ModalDiscussion = (function () {
-    function ModalDiscussion(navParams, viewCtrl) {
+var Tabs = (function () {
+    function Tabs(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
+        this.tab1Root = "Feed";
+        this.tab2Root = "Search";
+        this.tab3Root = "Actions";
+        this.tab4Root = "Chat";
+        this.tab5Root = "Notifications";
+        this.tabIndex = 0;
+        var tabIndex = this.navParams.get('tabIndex');
+        if (tabIndex) {
+            this.tabIndex = tabIndex;
+        }
     }
-    ModalDiscussion.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
-    };
-    return ModalDiscussion;
+    return Tabs;
 }());
-ModalDiscussion = __decorate([
+Tabs = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-modal-discussion',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\shared\modal-discussion\modal-discussion.html"*/'<ion-header no-border>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n        Nova publicação\n\n    </ion-title>\n\n    <ion-buttons start showWhen="ios">\n\n      <button ion-button (click)="dismiss()">\n\n        <span ion-text color="light" showWhen="ios">Cancelar</span>\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons start showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n         <ion-icon name="checkmark" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()">\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="ios">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n        <span ion-text color="light" showWhen="ios">Publicar</span>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\shared\modal-discussion\modal-discussion.html"*/,
+        selector: 'page-tabs',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\tabs\tabs.html"*/'<ion-tabs no-shadow #tabsVolum [selectedIndex]=\'tabIndex\'>\n\n    <ion-tab [root]="tab1Root" tabTitle="Feed" tabIcon="md-list"></ion-tab>\n\n    <ion-tab [root]="tab2Root" tabTitle="Procurar" tabIcon="search"></ion-tab>\n\n    <ion-tab [root]="tab3Root" tabTitle="Ações" tabIcon="icon-volum"></ion-tab>\n\n    <ion-tab [root]="tab4Root" tabTitle="Mensagens" tabIcon="chatbubbles" tabBadge="1" tabBadgeStyle="danger"></ion-tab>\n\n    <ion-tab [root]="tab5Root" tabTitle="Notificações" tabIcon="notifications" tabBadge="3" tabBadgeStyle="danger"></ion-tab>\n\n</ion-tabs>\n\n '/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\tabs\tabs.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
-], ModalDiscussion);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], Tabs);
 
-//# sourceMappingURL=modal-discussion.js.map
+//# sourceMappingURL=tabs.js.map
 
 /***/ })
 

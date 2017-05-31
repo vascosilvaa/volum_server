@@ -1,13 +1,13 @@
-webpackJsonp([0],Array(279).concat([
-/* 279 */
+webpackJsonp([0],Array(429).concat([
+/* 429 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register2__ = __webpack_require__(622);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_validation__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register2__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_validation__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_validation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_validation__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register2Module", function() { return Register2Module; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -43,29 +43,22 @@ Register2Module = __decorate([
 //# sourceMappingURL=register2.module.js.map
 
 /***/ }),
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79,35 +72,34 @@ function isDate(obj) {
     return !/Invalid|NaN/.test(new Date(obj).toString());
 }
 exports.isDate = isDate;
+//# sourceMappingURL=lang.js.map 
 //# sourceMappingURL=lang.js.map
 
 /***/ }),
-/* 303 */
+/* 446 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+    ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if (typeof __g == 'number')
+    __g = global; // eslint-disable-line no-undef
+//# sourceMappingURL=_global.js.map
 
 /***/ }),
-/* 304 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store      = __webpack_require__(468)('wks')
-  , uid        = __webpack_require__(470)
-  , Symbol     = __webpack_require__(303).Symbol
-  , USE_SYMBOL = typeof Symbol == 'function';
-
-var $exports = module.exports = function(name){
-  return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+var store = __webpack_require__(484)('wks'), uid = __webpack_require__(486), Symbol = __webpack_require__(446).Symbol, USE_SYMBOL = typeof Symbol == 'function';
+var $exports = module.exports = function (name) {
+    return store[name] || (store[name] =
+        USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 };
-
 $exports.store = store;
+//# sourceMappingURL=_wks.js.map
 
 /***/ }),
-/* 305 */
+/* 448 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -142,97 +134,77 @@ $exports.store = store;
 /* harmony export (immutable) */ __webpack_exports__["s"] = get_type_shared_cost;
 /* unused harmony export get_country_phone_code */
 function get_phone_code(country_metadata) {
-	return country_metadata[0];
+    return country_metadata[0];
 }
-
 function get_national_number_pattern(country_metadata) {
-	return country_metadata[1];
+    return country_metadata[1];
 }
-
 function get_formats(country_metadata) {
-	return country_metadata[2] || [];
+    return country_metadata[2] || [];
 }
-
 function get_national_prefix(country_metadata) {
-	return country_metadata[3];
+    return country_metadata[3];
 }
-
 function get_national_prefix_formatting_rule(country_metadata) {
-	return country_metadata[4];
+    return country_metadata[4];
 }
-
 function get_national_prefix_for_parsing(country_metadata) {
-	var national_prefix_for_parsing = country_metadata[5];
-
-	// If `national_prefix_for_parsing` is not set explicitly,
-	// then infer it from `national_prefix` (if any)
-	if (!national_prefix_for_parsing) {
-		national_prefix_for_parsing = get_national_prefix(country_metadata);
-	}
-
-	return national_prefix_for_parsing;
+    var national_prefix_for_parsing = country_metadata[5];
+    // If `national_prefix_for_parsing` is not set explicitly,
+    // then infer it from `national_prefix` (if any)
+    if (!national_prefix_for_parsing) {
+        national_prefix_for_parsing = get_national_prefix(country_metadata);
+    }
+    return national_prefix_for_parsing;
 }
-
 function get_national_prefix_transform_rule(country_metadata) {
-	return country_metadata[6];
+    return country_metadata[6];
 }
-
 function get_national_prefix_is_optional_when_formatting(country_metadata) {
-	return country_metadata[7];
+    return country_metadata[7];
 }
-
 function get_leading_digits(country_metadata) {
-	return country_metadata[8];
+    return country_metadata[8];
 }
-
 function get_format_pattern(format_array) {
-	return format_array[0];
+    return format_array[0];
 }
-
 function get_format_format(format_array) {
-	return format_array[1];
+    return format_array[1];
 }
-
 function get_format_leading_digits_patterns(format_array) {
-	return format_array[2] || [];
+    return format_array[2] || [];
 }
-
 function get_format_national_prefix_formatting_rule(format_array, country_metadata) {
-	return format_array[3] || get_national_prefix_formatting_rule(country_metadata);
+    return format_array[3] || get_national_prefix_formatting_rule(country_metadata);
 }
-
 function get_format_national_prefix_is_optional_when_formatting(format_array, country_metadata) {
-	return format_array[4] || get_national_prefix_is_optional_when_formatting(country_metadata);
+    return format_array[4] || get_national_prefix_is_optional_when_formatting(country_metadata);
 }
-
 function get_format_national_prefix_is_mandatory_when_formatting(format_array, country_metadata) {
-	var national_prefix_formatting_rule = get_format_national_prefix_formatting_rule(format_array, country_metadata);
-
-	// National prefix is omitted if there's no national prefix formatting rule
-	// set for this country, or when the national prefix formatting rule
-	// contains no national prefix itself, or when this rule is set but
-	// national prefix is optional for this phone number format
-	// (and it is not enforced explicitly)
-	return national_prefix_formatting_rule &&
-	// Check that national prefix formatting rule is not a dummy one.
-	// Check that national prefix formatting rule actually has national prefix digit(s).
-	get_format_uses_national_prefix(national_prefix_formatting_rule) &&
-	// Or maybe national prefix is optional for this format
-	!get_format_national_prefix_is_optional_when_formatting(format_array, country_metadata);
+    var national_prefix_formatting_rule = get_format_national_prefix_formatting_rule(format_array, country_metadata);
+    // National prefix is omitted if there's no national prefix formatting rule
+    // set for this country, or when the national prefix formatting rule
+    // contains no national prefix itself, or when this rule is set but
+    // national prefix is optional for this phone number format
+    // (and it is not enforced explicitly)
+    return national_prefix_formatting_rule &&
+        // Check that national prefix formatting rule is not a dummy one.
+        // Check that national prefix formatting rule actually has national prefix digit(s).
+        get_format_uses_national_prefix(national_prefix_formatting_rule) &&
+        // Or maybe national prefix is optional for this format
+        !get_format_national_prefix_is_optional_when_formatting(format_array, country_metadata);
 }
-
 // Checks whether national prefix formatting rule contains national prefix
 function get_format_uses_national_prefix(national_prefix_formatting_rule) {
-	// Check that national prefix formatting rule is not a dummy one
-	return national_prefix_formatting_rule !== '$1' &&
-	// Check that national prefix formatting rule actually has national prefix digit(s)
-	/\d/.test(national_prefix_formatting_rule.replace('$1', ''));
+    // Check that national prefix formatting rule is not a dummy one
+    return national_prefix_formatting_rule !== '$1' &&
+        // Check that national prefix formatting rule actually has national prefix digit(s)
+        /\d/.test(national_prefix_formatting_rule.replace('$1', ''));
 }
-
 function get_format_international_format(format_array) {
-	return format_array[5] || get_format_format(format_array);
+    return format_array[5] || get_format_format(format_array);
 }
-
 // Formatting information for regions which share
 // a country calling code is contained by only one region
 // for performance reasons. For example, for NANPA region
@@ -240,76 +212,95 @@ function get_format_international_format(format_array) {
 //  which includes USA, Canada, Cayman Islands, Bahamas, etc)
 // it will be contained in the metadata for `US`.
 function get_metadata_by_country_phone_code(country_phone_code, metadata) {
-	var country_code = metadata.country_phone_code_to_countries[country_phone_code][0];
-	return metadata.countries[country_code];
+    var country_code = metadata.country_phone_code_to_countries[country_phone_code][0];
+    return metadata.countries[country_code];
 }
-
 function get_types(country_metadata) {
-	return country_metadata[9];
+    return country_metadata[9];
 }
-
 function get_type(country_metadata, index) {
-	return get_types(country_metadata) ? get_types(country_metadata)[index] : undefined;
+    return get_types(country_metadata) ? get_types(country_metadata)[index] : undefined;
 }
-
 function get_type_fixed_line(country_metadata) {
-	return get_type(country_metadata, 0);
+    return get_type(country_metadata, 0);
 }
-
 function get_type_mobile(country_metadata) {
-	return get_type(country_metadata, 1);
+    return get_type(country_metadata, 1);
 }
-
 function get_type_toll_free(country_metadata) {
-	return get_type(country_metadata, 2);
+    return get_type(country_metadata, 2);
 }
-
 function get_type_premium_rate(country_metadata) {
-	return get_type(country_metadata, 3);
+    return get_type(country_metadata, 3);
 }
-
 function get_type_personal_number(country_metadata) {
-	return get_type(country_metadata, 4);
+    return get_type(country_metadata, 4);
 }
-
 function get_type_voice_mail(country_metadata) {
-	return get_type(country_metadata, 5);
+    return get_type(country_metadata, 5);
 }
-
 function get_type_uan(country_metadata) {
-	return get_type(country_metadata, 6);
+    return get_type(country_metadata, 6);
 }
-
 function get_type_pager(country_metadata) {
-	return get_type(country_metadata, 7);
+    return get_type(country_metadata, 7);
 }
-
 function get_type_voip(country_metadata) {
-	return get_type(country_metadata, 8);
+    return get_type(country_metadata, 8);
 }
-
 function get_type_shared_cost(country_metadata) {
-	return get_type(country_metadata, 9);
+    return get_type(country_metadata, 9);
 }
-
 function get_country_phone_code(country, country_metadata) {
-	return get_phone_code(country_metadata[country]);
+    return get_phone_code(country_metadata[country]);
 }
+//# sourceMappingURL=metadata.js.map 
 //# sourceMappingURL=metadata.js.map
 
 /***/ }),
-/* 306 */
+/* 449 */
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.4.0' };
+if (typeof __e == 'number')
+    __e = core; // eslint-disable-line no-undef
+//# sourceMappingURL=_core.js.map
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(463)(function () {
+    return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+//# sourceMappingURL=_descriptors.js.map
+
+/***/ }),
+/* 451 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(456), createDesc = __webpack_require__(482);
+module.exports = __webpack_require__(450) ? function (object, key, value) {
+    return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+    object[key] = value;
+    return object;
+};
+//# sourceMappingURL=_hide.js.map
+
+/***/ }),
+/* 452 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__format__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__get_number_type__ = __webpack_require__(441);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__get_number_type__ = __webpack_require__(459);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PLUS_CHARS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return VALID_DIGITS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return VALID_PUNCTUATION; });
@@ -331,18 +322,10 @@ function get_country_phone_code(country, country_metadata) {
 
 
 
-
-
-
-
-
-
 var PLUS_CHARS = '+\uFF0B';
-
 // Digits accepted in phone numbers
 // (ascii, fullwidth, arabic-indic, and eastern arabic digits).
 var VALID_DIGITS = '0-9\uFF10-\uFF19\u0660-\u0669\u06F0-\u06F9';
-
 // `DASHES` will be right after the opening square bracket of the "character class"
 var DASHES = '-\u2010-\u2015\u2212\u30FC\uFF0D';
 var SLASHES = '\uFF0F/';
@@ -350,13 +333,11 @@ var DOTS = '\uFF0E.';
 var WHITESPACE = ' \xA0\xAD\u200B\u2060\u3000';
 var BRACKETS = '()\uFF08\uFF09\uFF3B\uFF3D\\[\\]';
 var TILDES = '~\u2053\u223C\uFF5E';
-
 // Regular expression of acceptable punctuation found in phone numbers. This
 // excludes punctuation found as a leading character only. This consists of dash
 // characters, white space characters, full stops, slashes, square brackets,
 // parentheses and tildes. Full-width variants are also present.
 var VALID_PUNCTUATION = '' + DASHES + SLASHES + DOTS + WHITESPACE + BRACKETS + TILDES;
-
 //  Regular expression of viable phone numbers. This is location independent.
 //  Checks we have at least three leading digits, and only valid punctuation,
 //  alpha characters and digits in the phone number. Does not include extension
@@ -386,90 +367,79 @@ var MIN_LENGTH_PHONE_NUMBER_PATTERN = '[' + VALID_DIGITS + ']{' + MIN_LENGTH_FOR
 // (see MIN_LENGTH_PHONE_NUMBER_PATTERN for a full description of this reg-exp)
 //
 var VALID_PHONE_NUMBER = '[' + PLUS_CHARS + ']{0,1}' + '(?:' + '[' + VALID_PUNCTUATION + ']*' + '[' + VALID_DIGITS + ']' + '){3,}' + '[' + VALID_PUNCTUATION + VALID_DIGITS + ']*';
-
 // The combined regular expression for valid phone numbers:
 //
 var VALID_PHONE_NUMBER_PATTERN = new RegExp(
 // Either a short two-digit-only phone number
 '^' + MIN_LENGTH_PHONE_NUMBER_PATTERN + '$' + '|' +
-// Or a longer fully parsed phone number (min 3 characters)
-'^' + VALID_PHONE_NUMBER +
-// screw phone number extensions
-// '(?:' + EXTN_PATTERNS_FOR_PARSING + ')?' +
-'$', 'i');
-
+    // Or a longer fully parsed phone number (min 3 characters)
+    '^' + VALID_PHONE_NUMBER +
+    // screw phone number extensions
+    // '(?:' + EXTN_PATTERNS_FOR_PARSING + ')?' +
+    '$', 'i');
 // This consists of the plus symbol, digits, and arabic-indic digits.
 var PHONE_NUMBER_START_PATTERN = new RegExp('[' + PLUS_CHARS + VALID_DIGITS + ']');
-
 // Regular expression of trailing characters that we want to remove.
 var AFTER_PHONE_NUMBER_END_PATTERN = new RegExp('[^' + VALID_DIGITS + ']+$');
-
 var LEADING_PLUS_CHARS_PATTERN = new RegExp('^[' + PLUS_CHARS + ']+');
-
 // These mappings map a character (key) to a specific digit that should
 // replace it for normalization purposes. Non-European digits that
 // may be used in phone numbers are mapped to a European equivalent.
 var DIGIT_MAPPINGS = {
-	'0': '0',
-	'1': '1',
-	'2': '2',
-	'3': '3',
-	'4': '4',
-	'5': '5',
-	'6': '6',
-	'7': '7',
-	'8': '8',
-	'9': '9',
-	'\uFF10': '0', // Fullwidth digit 0
-	'\uFF11': '1', // Fullwidth digit 1
-	'\uFF12': '2', // Fullwidth digit 2
-	'\uFF13': '3', // Fullwidth digit 3
-	'\uFF14': '4', // Fullwidth digit 4
-	'\uFF15': '5', // Fullwidth digit 5
-	'\uFF16': '6', // Fullwidth digit 6
-	'\uFF17': '7', // Fullwidth digit 7
-	'\uFF18': '8', // Fullwidth digit 8
-	'\uFF19': '9', // Fullwidth digit 9
-	'\u0660': '0', // Arabic-indic digit 0
-	'\u0661': '1', // Arabic-indic digit 1
-	'\u0662': '2', // Arabic-indic digit 2
-	'\u0663': '3', // Arabic-indic digit 3
-	'\u0664': '4', // Arabic-indic digit 4
-	'\u0665': '5', // Arabic-indic digit 5
-	'\u0666': '6', // Arabic-indic digit 6
-	'\u0667': '7', // Arabic-indic digit 7
-	'\u0668': '8', // Arabic-indic digit 8
-	'\u0669': '9', // Arabic-indic digit 9
-	'\u06F0': '0', // Eastern-Arabic digit 0
-	'\u06F1': '1', // Eastern-Arabic digit 1
-	'\u06F2': '2', // Eastern-Arabic digit 2
-	'\u06F3': '3', // Eastern-Arabic digit 3
-	'\u06F4': '4', // Eastern-Arabic digit 4
-	'\u06F5': '5', // Eastern-Arabic digit 5
-	'\u06F6': '6', // Eastern-Arabic digit 6
-	'\u06F7': '7', // Eastern-Arabic digit 7
-	'\u06F8': '8', // Eastern-Arabic digit 8
-	'\u06F9': '9' // Eastern-Arabic digit 9
+    '0': '0',
+    '1': '1',
+    '2': '2',
+    '3': '3',
+    '4': '4',
+    '5': '5',
+    '6': '6',
+    '7': '7',
+    '8': '8',
+    '9': '9',
+    '\uFF10': '0',
+    '\uFF11': '1',
+    '\uFF12': '2',
+    '\uFF13': '3',
+    '\uFF14': '4',
+    '\uFF15': '5',
+    '\uFF16': '6',
+    '\uFF17': '7',
+    '\uFF18': '8',
+    '\uFF19': '9',
+    '\u0660': '0',
+    '\u0661': '1',
+    '\u0662': '2',
+    '\u0663': '3',
+    '\u0664': '4',
+    '\u0665': '5',
+    '\u0666': '6',
+    '\u0667': '7',
+    '\u0668': '8',
+    '\u0669': '9',
+    '\u06F0': '0',
+    '\u06F1': '1',
+    '\u06F2': '2',
+    '\u06F3': '3',
+    '\u06F4': '4',
+    '\u06F5': '5',
+    '\u06F6': '6',
+    '\u06F7': '7',
+    '\u06F8': '8',
+    '\u06F9': '9' // Eastern-Arabic digit 9
 };
-
 // The maximum length of the country calling code.
 var MAX_LENGTH_COUNTRY_CODE = 3;
-
 // The minimum length of the national significant number.
 var MIN_LENGTH_FOR_NSN = 2;
-
 // The ITU says the maximum length should be 15,
 // but one can find longer numbers in Germany.
 var MAX_LENGTH_FOR_NSN = 17;
-
 // We don't allow input strings for parsing to be longer than 250 chars.
 // This prevents malicious input from consuming CPU.
 var MAX_INPUT_STRING_LENGTH = 250;
-
 var default_options = {
-	country: {}
+    country: {}
 };
-
 // `options`:
 //  {
 //    country:
@@ -497,189 +467,151 @@ var default_options = {
 // ```
 //
 function parse(first_argument, second_argument, third_argument) {
-	var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument),
-	    text = _sort_out_arguments.text,
-	    options = _sort_out_arguments.options,
-	    metadata = _sort_out_arguments.metadata;
-
-	if (!options) {
-		options = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, default_options);
-	}
-
-	// Validate country codes
-
-	// Validate `default` country
-	if (options.country.default && !metadata.countries[options.country.default]) {
-		throw new Error('Unknown country code: ' + options.country.default);
-	}
-
-	// Validate `restrict` country
-	if (options.country.restrict && !metadata.countries[options.country.restrict]) {
-		throw new Error('Unknown country code: ' + options.country.restrict);
-	}
-
-	// Parse the phone number
-
-	var formatted_phone_number = extract_formatted_phone_number(text);
-
-	// If the phone number is not viable, then abort.
-	if (!is_viable_phone_number(formatted_phone_number)) {
-		return {};
-	}
-
-	var _parse_phone_number_a = parse_phone_number_and_country_phone_code(formatted_phone_number, metadata),
-	    country_phone_code = _parse_phone_number_a.country_phone_code,
-	    number = _parse_phone_number_a.number;
-
-	// Maybe invalid country phone code encountered
-
-
-	if (!number) {
-		return {};
-	}
-
-	var country = void 0;
-	var country_metadata = void 0;
-
-	// Whether the phone number is formatted as an international phone number
-	var is_international = false;
-
-	if (country_phone_code) {
-		is_international = true;
-
-		// Check country restriction
-		if (options.country.restrict && country_phone_code !== __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(metadata.countries[options.country.restrict])) {
-			return {};
-		}
-
-		// Formatting information for regions which share
-		// a country calling code is contained by only one region
-		// for performance reasons. For example, for NANPA region
-		// ("North American Numbering Plan Administration",
-		//  which includes USA, Canada, Cayman Islands, Bahamas, etc)
-		// it will be contained in the metadata for `US`.
-		country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, metadata);
-
-		// `country` will be set later,
-		// because, for example, for NANPA countries
-		// there are several countries corresponding
-		// to the same `1` country phone code.
-		// Therefore, to reliably determine the exact country,
-		// national (significant) number should be parsed first.
-	} else if (options.country.restrict || options.country.default) {
-		country = options.country.restrict || options.country.default;
-		country_metadata = metadata.countries[country];
-
-		number = normalize(text);
-	}
-
-	if (!country_metadata) {
-		return {};
-	}
-
-	var national_number = strip_national_prefix(number, country_metadata);
-
-	var did_have_national_prefix = national_number !== number;
-
-	// https://github.com/halt-hammerzeit/libphonenumber-js/issues/67
-	// if (!is_international && !did_have_national_prefix &&
-	// 		is_national_prefix_required(national_number, country_metadata))
-	// {
-	// 	return {}
-	// }
-
-	// Sometimes there are several countries
-	// corresponding to the same country phone code
-	// (e.g. NANPA countries all having `1` country phone code).
-	// Therefore, to reliably determine the exact country,
-	// national (significant) number should have been parsed first.
-	//
-	if (!country) {
-		// When `metadata.json` is generated, all "ambiguous" country phone codes
-		// get their countries populated with the full set of
-		// "phone number type" regular expressions.
-		country = find_country_code(country_phone_code, national_number, metadata);
-
-		// Just in case there appears to be a bug in Google's metadata
-		// and the exact country could not be extracted from the phone number.
-		/* istanbul ignore if */
-		if (!country) {
-			return {};
-		}
-
-		// Update metadata to be for this specific country
-		country_metadata = metadata.countries[country];
-	}
-
-	// Validate national (significant) number length.
-	//
-	// A sidenote:
-	//
-	// They say that sometimes national (significant) numbers
-	// can be longer than `MAX_LENGTH_FOR_NSN` (e.g. in Germany).
-	// https://github.com/googlei18n/libphonenumber/blob/7e1748645552da39c4e1ba731e47969d97bdb539/resources/phonenumber.proto#L36
-	// Such numbers will just be discarded.
-	//
-	if (national_number.length > MAX_LENGTH_FOR_NSN) {
-		return {};
-	}
-
-	// National number pattern is different for each country,
-	// even for those ones which are part of the "NANPA" group.
-	var national_number_rule = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["k" /* get_national_number_pattern */])(country_metadata));
-
-	// Check if national phone number pattern matches the number
-	if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(national_number, national_number_rule)) {
-		return {};
-	}
-
-	return { country: country, phone: national_number };
+    var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument), text = _sort_out_arguments.text, options = _sort_out_arguments.options, metadata = _sort_out_arguments.metadata;
+    if (!options) {
+        options = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, default_options);
+    }
+    // Validate country codes
+    // Validate `default` country
+    if (options.country.default && !metadata.countries[options.country.default]) {
+        throw new Error('Unknown country code: ' + options.country.default);
+    }
+    // Validate `restrict` country
+    if (options.country.restrict && !metadata.countries[options.country.restrict]) {
+        throw new Error('Unknown country code: ' + options.country.restrict);
+    }
+    // Parse the phone number
+    var formatted_phone_number = extract_formatted_phone_number(text);
+    // If the phone number is not viable, then abort.
+    if (!is_viable_phone_number(formatted_phone_number)) {
+        return {};
+    }
+    var _parse_phone_number_a = parse_phone_number_and_country_phone_code(formatted_phone_number, metadata), country_phone_code = _parse_phone_number_a.country_phone_code, number = _parse_phone_number_a.number;
+    // Maybe invalid country phone code encountered
+    if (!number) {
+        return {};
+    }
+    var country = void 0;
+    var country_metadata = void 0;
+    // Whether the phone number is formatted as an international phone number
+    var is_international = false;
+    if (country_phone_code) {
+        is_international = true;
+        // Check country restriction
+        if (options.country.restrict && country_phone_code !== __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(metadata.countries[options.country.restrict])) {
+            return {};
+        }
+        // Formatting information for regions which share
+        // a country calling code is contained by only one region
+        // for performance reasons. For example, for NANPA region
+        // ("North American Numbering Plan Administration",
+        //  which includes USA, Canada, Cayman Islands, Bahamas, etc)
+        // it will be contained in the metadata for `US`.
+        country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, metadata);
+        // `country` will be set later,
+        // because, for example, for NANPA countries
+        // there are several countries corresponding
+        // to the same `1` country phone code.
+        // Therefore, to reliably determine the exact country,
+        // national (significant) number should be parsed first.
+    }
+    else if (options.country.restrict || options.country.default) {
+        country = options.country.restrict || options.country.default;
+        country_metadata = metadata.countries[country];
+        number = normalize(text);
+    }
+    if (!country_metadata) {
+        return {};
+    }
+    var national_number = strip_national_prefix(number, country_metadata);
+    var did_have_national_prefix = national_number !== number;
+    // https://github.com/halt-hammerzeit/libphonenumber-js/issues/67
+    // if (!is_international && !did_have_national_prefix &&
+    // 		is_national_prefix_required(national_number, country_metadata))
+    // {
+    // 	return {}
+    // }
+    // Sometimes there are several countries
+    // corresponding to the same country phone code
+    // (e.g. NANPA countries all having `1` country phone code).
+    // Therefore, to reliably determine the exact country,
+    // national (significant) number should have been parsed first.
+    //
+    if (!country) {
+        // When `metadata.json` is generated, all "ambiguous" country phone codes
+        // get their countries populated with the full set of
+        // "phone number type" regular expressions.
+        country = find_country_code(country_phone_code, national_number, metadata);
+        // Just in case there appears to be a bug in Google's metadata
+        // and the exact country could not be extracted from the phone number.
+        /* istanbul ignore if */
+        if (!country) {
+            return {};
+        }
+        // Update metadata to be for this specific country
+        country_metadata = metadata.countries[country];
+    }
+    // Validate national (significant) number length.
+    //
+    // A sidenote:
+    //
+    // They say that sometimes national (significant) numbers
+    // can be longer than `MAX_LENGTH_FOR_NSN` (e.g. in Germany).
+    // https://github.com/googlei18n/libphonenumber/blob/7e1748645552da39c4e1ba731e47969d97bdb539/resources/phonenumber.proto#L36
+    // Such numbers will just be discarded.
+    //
+    if (national_number.length > MAX_LENGTH_FOR_NSN) {
+        return {};
+    }
+    // National number pattern is different for each country,
+    // even for those ones which are part of the "NANPA" group.
+    var national_number_rule = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["k" /* get_national_number_pattern */])(country_metadata));
+    // Check if national phone number pattern matches the number
+    if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(national_number, national_number_rule)) {
+        return {};
+    }
+    return { country: country, phone: national_number };
 }
-
 // Normalizes a string of characters representing a phone number.
 // This converts wide-ascii and arabic-indic numerals to European numerals,
 // and strips punctuation and alpha characters.
 function normalize(number) {
-	return replace_characters(number, DIGIT_MAPPINGS);
+    return replace_characters(number, DIGIT_MAPPINGS);
 }
-
 // For any character not being part of `replacements`
 // it is removed from the phone number.
 function replace_characters(text, replacements) {
-	var replaced = '';
-
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
-
-	try {
-		for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(text), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var character = _step.value;
-
-			var replacement = replacements[character.toUpperCase()];
-
-			if (replacement !== undefined) {
-				replaced += replacement;
-			}
-		}
-	} catch (err) {
-		_didIteratorError = true;
-		_iteratorError = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion && _iterator.return) {
-				_iterator.return();
-			}
-		} finally {
-			if (_didIteratorError) {
-				throw _iteratorError;
-			}
-		}
-	}
-
-	return replaced;
+    var replaced = '';
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+    try {
+        for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(text), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var character = _step.value;
+            var replacement = replacements[character.toUpperCase()];
+            if (replacement !== undefined) {
+                replaced += replacement;
+            }
+        }
+    }
+    catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    }
+    finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        }
+        finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+    return replaced;
 }
-
 // Checks to see if the string of characters could possibly be a phone number at
 // all. At the moment, checks to see that the string begins with at least 2
 // digits, ignoring any punctuation commonly found in phone numbers. This method
@@ -688,48 +620,35 @@ function replace_characters(text, replacements) {
 // `extract_possible_number`.
 //
 function is_viable_phone_number(number) {
-	return number.length >= MIN_LENGTH_FOR_NSN && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(number, VALID_PHONE_NUMBER_PATTERN);
+    return number.length >= MIN_LENGTH_FOR_NSN && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(number, VALID_PHONE_NUMBER_PATTERN);
 }
-
 function extract_formatted_phone_number(text) {
-	if (!text || text.length > MAX_INPUT_STRING_LENGTH) {
-		return '';
-	}
-
-	// Attempt to extract a possible number from the string passed in
-
-	var starts_at = text.search(PHONE_NUMBER_START_PATTERN);
-
-	if (starts_at < 0) {
-		return '';
-	}
-
-	return text
-	// Trim everything to the left of the phone number
-	.slice(starts_at)
-	// Remove trailing non-numerical characters
-	.replace(AFTER_PHONE_NUMBER_END_PATTERN, '');
+    if (!text || text.length > MAX_INPUT_STRING_LENGTH) {
+        return '';
+    }
+    // Attempt to extract a possible number from the string passed in
+    var starts_at = text.search(PHONE_NUMBER_START_PATTERN);
+    if (starts_at < 0) {
+        return '';
+    }
+    return text
+        .slice(starts_at)
+        .replace(AFTER_PHONE_NUMBER_END_PATTERN, '');
 }
-
 // Parses a formatted phone number.
 function parse_phone_number(number) {
-	if (!number) {
-		return '';
-	}
-
-	var is_international = LEADING_PLUS_CHARS_PATTERN.test(number);
-
-	// Remove non-digits
-	// (and strip the possible leading '+')
-	number = normalize(number);
-
-	if (is_international) {
-		return '+' + number;
-	}
-
-	return number;
+    if (!number) {
+        return '';
+    }
+    var is_international = LEADING_PLUS_CHARS_PATTERN.test(number);
+    // Remove non-digits
+    // (and strip the possible leading '+')
+    number = normalize(number);
+    if (is_international) {
+        return '+' + number;
+    }
+    return number;
 }
-
 // Parses a formatted phone number
 // and returns `{ country_phone_code, number }`
 // where `number` is the national (significant) phone number.
@@ -737,161 +656,135 @@ function parse_phone_number(number) {
 // (aka `maybeExtractCountryPhoneCode`)
 //
 function parse_phone_number_and_country_phone_code(number, metadata) {
-	number = parse_phone_number(number);
-
-	if (!number) {
-		return {};
-	}
-
-	// If this is not an international phone number,
-	// then don't extract country phone code.
-	if (number[0] !== '+') {
-		return { number: number };
-	}
-
-	// Strip the leading '+' sign
-	number = number.slice(1);
-
-	// Fast abortion: country codes do not begin with a '0'
-	if (number[0] === '0') {
-		return {};
-	}
-
-	// The thing with country phone codes
-	// is that they are orthogonal to each other
-	// i.e. there's no such country phone code A
-	// for which country phone code B exists
-	// where B starts with A.
-	// Therefore, while scanning digits,
-	// if a valid country code is found,
-	// that means that it is the country code.
-	//
-	var i = 1;
-	while (i <= MAX_LENGTH_COUNTRY_CODE && i <= number.length) {
-		var country_phone_code = number.slice(0, i);
-
-		if (metadata.country_phone_code_to_countries[country_phone_code]) {
-			return { country_phone_code: country_phone_code, number: number.slice(i) };
-		}
-
-		i++;
-	}
-
-	return {};
+    number = parse_phone_number(number);
+    if (!number) {
+        return {};
+    }
+    // If this is not an international phone number,
+    // then don't extract country phone code.
+    if (number[0] !== '+') {
+        return { number: number };
+    }
+    // Strip the leading '+' sign
+    number = number.slice(1);
+    // Fast abortion: country codes do not begin with a '0'
+    if (number[0] === '0') {
+        return {};
+    }
+    // The thing with country phone codes
+    // is that they are orthogonal to each other
+    // i.e. there's no such country phone code A
+    // for which country phone code B exists
+    // where B starts with A.
+    // Therefore, while scanning digits,
+    // if a valid country code is found,
+    // that means that it is the country code.
+    //
+    var i = 1;
+    while (i <= MAX_LENGTH_COUNTRY_CODE && i <= number.length) {
+        var country_phone_code = number.slice(0, i);
+        if (metadata.country_phone_code_to_countries[country_phone_code]) {
+            return { country_phone_code: country_phone_code, number: number.slice(i) };
+        }
+        i++;
+    }
+    return {};
 }
-
 // Strips any national prefix (such as 0, 1) present in the number provided
 function strip_national_prefix(number, country_metadata) {
-	var national_prefix_for_parsing = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["l" /* get_national_prefix_for_parsing */])(country_metadata);
-
-	if (!number || !national_prefix_for_parsing) {
-		return number;
-	}
-
-	// Attempt to parse the first digits as a national prefix
-	var national_prefix_pattern = new RegExp('^(?:' + national_prefix_for_parsing + ')');
-	var national_prefix_matcher = national_prefix_pattern.exec(number);
-
-	// If no national prefix is present in the phone number,
-	// but if the national prefix is optional for this country,
-	// then consider this phone number valid.
-	//
-	// Google's reference `libphonenumber` implementation
-	// wouldn't recognize such phone numbers as valid,
-	// but I think it would perfectly make sense
-	// to consider such phone numbers as valid
-	// because if a national phone number was originally
-	// formatted without the national prefix
-	// then it must be parseable back into the original national number.
-	// In other words, `parse(format(number))`
-	// must always be equal to `number`.
-	//
-	if (!national_prefix_matcher) {
-		return number;
-	}
-
-	var national_significant_number = void 0;
-
-	// `national_prefix_for_parsing` capturing groups
-	// (used only for really messy cases: Argentina, Brazil, Mexico, Somalia)
-	var any_groups_were_captured = national_prefix_matcher[national_prefix_matcher.length - 1];
-	var national_prefix_transform_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["m" /* get_national_prefix_transform_rule */])(country_metadata);
-
-	// If the national number tranformation is needed then do it
-	if (national_prefix_transform_rule && any_groups_were_captured) {
-		national_significant_number = number.replace(national_prefix_pattern, national_prefix_transform_rule);
-	}
-	// Else, no transformation is necessary,
-	// and just strip the national prefix.
-	else {
-			national_significant_number = number.slice(national_prefix_matcher[0].length);
-		}
-
-	// Verify the parsed national (significant) number for this country
-	var national_number_rule = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["k" /* get_national_number_pattern */])(country_metadata));
-
-	// If the original number (before stripping national prefix) was viable,
-	// and the resultant number is not, then prefer the original phone number.
-	// This is because for some countries (e.g. Russia) the same digit could be both
-	// a national prefix and a leading digit of a valid national phone number,
-	// like `8` is the national prefix for Russia and both
-	// `8 800 555 35 35` and `800 555 35 35` are valid numbers.
-	if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(number, national_number_rule) && !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(national_significant_number, national_number_rule)) {
-		return number;
-	}
-
-	// Return the parsed national (significant) number
-	return national_significant_number;
+    var national_prefix_for_parsing = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["l" /* get_national_prefix_for_parsing */])(country_metadata);
+    if (!number || !national_prefix_for_parsing) {
+        return number;
+    }
+    // Attempt to parse the first digits as a national prefix
+    var national_prefix_pattern = new RegExp('^(?:' + national_prefix_for_parsing + ')');
+    var national_prefix_matcher = national_prefix_pattern.exec(number);
+    // If no national prefix is present in the phone number,
+    // but if the national prefix is optional for this country,
+    // then consider this phone number valid.
+    //
+    // Google's reference `libphonenumber` implementation
+    // wouldn't recognize such phone numbers as valid,
+    // but I think it would perfectly make sense
+    // to consider such phone numbers as valid
+    // because if a national phone number was originally
+    // formatted without the national prefix
+    // then it must be parseable back into the original national number.
+    // In other words, `parse(format(number))`
+    // must always be equal to `number`.
+    //
+    if (!national_prefix_matcher) {
+        return number;
+    }
+    var national_significant_number = void 0;
+    // `national_prefix_for_parsing` capturing groups
+    // (used only for really messy cases: Argentina, Brazil, Mexico, Somalia)
+    var any_groups_were_captured = national_prefix_matcher[national_prefix_matcher.length - 1];
+    var national_prefix_transform_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["m" /* get_national_prefix_transform_rule */])(country_metadata);
+    // If the national number tranformation is needed then do it
+    if (national_prefix_transform_rule && any_groups_were_captured) {
+        national_significant_number = number.replace(national_prefix_pattern, national_prefix_transform_rule);
+    }
+    else {
+        national_significant_number = number.slice(national_prefix_matcher[0].length);
+    }
+    // Verify the parsed national (significant) number for this country
+    var national_number_rule = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["k" /* get_national_number_pattern */])(country_metadata));
+    // If the original number (before stripping national prefix) was viable,
+    // and the resultant number is not, then prefer the original phone number.
+    // This is because for some countries (e.g. Russia) the same digit could be both
+    // a national prefix and a leading digit of a valid national phone number,
+    // like `8` is the national prefix for Russia and both
+    // `8 800 555 35 35` and `800 555 35 35` are valid numbers.
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(number, national_number_rule) && !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common__["a" /* matches_entirely */])(national_significant_number, national_number_rule)) {
+        return number;
+    }
+    // Return the parsed national (significant) number
+    return national_significant_number;
 }
-
 function find_country_code(country_phone_code, national_phone_number, metadata) {
-	// Is always non-empty, because `country_phone_code` is always valid
-	var possible_countries = metadata.country_phone_code_to_countries[country_phone_code];
-
-	// If there's just one country corresponding to the country code,
-	// then just return it, without further phone number digits validation.
-	if (possible_countries.length === 1) {
-		return possible_countries[0];
-	}
-
-	var _iteratorNormalCompletion2 = true;
-	var _didIteratorError2 = false;
-	var _iteratorError2 = undefined;
-
-	try {
-		for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(possible_countries), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-			var country_code = _step2.value;
-
-			var country = metadata.countries[country_code];
-
-			// Leading digits check would be the simplest one
-			if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["n" /* get_leading_digits */])(country)) {
-				if (national_phone_number && national_phone_number.search(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["n" /* get_leading_digits */])(country)) === 0) {
-					return country_code;
-				}
-			}
-			// Else perform full validation with all of those bulky
-			// fixed-line/mobile/etc regular expressions.
-			else if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__get_number_type__["a" /* default */])({ phone: national_phone_number, country: country_code }, metadata)) {
-					return country_code;
-				}
-		}
-	} catch (err) {
-		_didIteratorError2 = true;
-		_iteratorError2 = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion2 && _iterator2.return) {
-				_iterator2.return();
-			}
-		} finally {
-			if (_didIteratorError2) {
-				throw _iteratorError2;
-			}
-		}
-	}
+    // Is always non-empty, because `country_phone_code` is always valid
+    var possible_countries = metadata.country_phone_code_to_countries[country_phone_code];
+    // If there's just one country corresponding to the country code,
+    // then just return it, without further phone number digits validation.
+    if (possible_countries.length === 1) {
+        return possible_countries[0];
+    }
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+    try {
+        for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(possible_countries), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var country_code = _step2.value;
+            var country = metadata.countries[country_code];
+            // Leading digits check would be the simplest one
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["n" /* get_leading_digits */])(country)) {
+                if (national_phone_number && national_phone_number.search(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["n" /* get_leading_digits */])(country)) === 0) {
+                    return country_code;
+                }
+            }
+            else if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__get_number_type__["a" /* default */])({ phone: national_phone_number, country: country_code }, metadata)) {
+                return country_code;
+            }
+        }
+    }
+    catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    }
+    finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        }
+        finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
 }
-
 // export function is_national_prefix_required(national_number, country_metadata)
 // {
 // 	const format = choose_format_for_number(get_formats(country_metadata), national_number)
@@ -901,279 +794,402 @@ function find_country_code(country_phone_code, national_phone_number, metadata) 
 // 		return get_format_national_prefix_is_mandatory_when_formatting(format, country_metadata)
 // 	}
 // }
-
 // Sort out arguments
 function sort_out_arguments(first_argument, second_argument, third_argument) {
-	var text = void 0;
-	var options = void 0;
-	var metadata = void 0;
-
-	if (typeof first_argument === 'string') {
-		text = first_argument;
-	}
-
-	// Covert `resrict` country to an `options` object
-	if (typeof second_argument === 'string') {
-		var restrict_to_country = second_argument;
-
-		options = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, default_options, {
-
-			country: {
-				restrict: restrict_to_country
-			}
-		});
-
-		metadata = third_argument;
-	} else {
-		// Differentiate `metadata` from `options`
-		if (second_argument && second_argument.countries) {
-			metadata = second_argument;
-		} else {
-			options = second_argument;
-			metadata = third_argument;
-		}
-	}
-
-	// Sanity check
-	if (!metadata) {
-		throw new Error('Metadata not passed');
-	}
-
-	return { text: text, options: options, metadata: metadata };
+    var text = void 0;
+    var options = void 0;
+    var metadata = void 0;
+    if (typeof first_argument === 'string') {
+        text = first_argument;
+    }
+    // Covert `resrict` country to an `options` object
+    if (typeof second_argument === 'string') {
+        var restrict_to_country = second_argument;
+        options = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_extends___default()({}, default_options, {
+            country: {
+                restrict: restrict_to_country
+            }
+        });
+        metadata = third_argument;
+    }
+    else {
+        // Differentiate `metadata` from `options`
+        if (second_argument && second_argument.countries) {
+            metadata = second_argument;
+        }
+        else {
+            options = second_argument;
+            metadata = third_argument;
+        }
+    }
+    // Sanity check
+    if (!metadata) {
+        throw new Error('Metadata not passed');
+    }
+    return { text: text, options: options, metadata: metadata };
 }
+//# sourceMappingURL=parse.js.map 
 //# sourceMappingURL=parse.js.map
 
 /***/ }),
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */,
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */
-/***/ (function(module, exports) {
-
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ }),
-/* 317 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(449)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 318 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP         = __webpack_require__(437)
-  , createDesc = __webpack_require__(466);
-module.exports = __webpack_require__(317) ? function(object, key, value){
-  return dP.f(object, key, createDesc(1, value));
-} : function(object, key, value){
-  object[key] = value;
-  return object;
+var isObject = __webpack_require__(464);
+module.exports = function (it) {
+    if (!isObject(it))
+        throw TypeError(it + ' is not an object!');
+    return it;
 };
+//# sourceMappingURL=_an-object.js.map
 
 /***/ }),
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(450);
-module.exports = function(it){
-  if(!isObject(it))throw TypeError(it + ' is not an object!');
-  return it;
-};
-
-/***/ }),
-/* 435 */
+/* 454 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function(it, key){
-  return hasOwnProperty.call(it, key);
+module.exports = function (it, key) {
+    return hasOwnProperty.call(it, key);
 };
+//# sourceMappingURL=_has.js.map
 
 /***/ }),
-/* 436 */
+/* 455 */
 /***/ (function(module, exports) {
 
 module.exports = {};
+//# sourceMappingURL=_iterators.js.map
 
 /***/ }),
-/* 437 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject       = __webpack_require__(434)
-  , IE8_DOM_DEFINE = __webpack_require__(521)
-  , toPrimitive    = __webpack_require__(536)
-  , dP             = Object.defineProperty;
-
-exports.f = __webpack_require__(317) ? Object.defineProperty : function defineProperty(O, P, Attributes){
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if(IE8_DOM_DEFINE)try {
-    return dP(O, P, Attributes);
-  } catch(e){ /* empty */ }
-  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-  if('value' in Attributes)O[P] = Attributes.value;
-  return O;
+var anObject = __webpack_require__(453), IE8_DOM_DEFINE = __webpack_require__(546), toPrimitive = __webpack_require__(561), dP = Object.defineProperty;
+exports.f = __webpack_require__(450) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+    anObject(O);
+    P = toPrimitive(P, true);
+    anObject(Attributes);
+    if (IE8_DOM_DEFINE)
+        try {
+            return dP(O, P, Attributes);
+        }
+        catch (e) { }
+    if ('get' in Attributes || 'set' in Attributes)
+        throw TypeError('Accessors not supported!');
+    if ('value' in Attributes)
+        O[P] = Attributes.value;
+    return O;
 };
+//# sourceMappingURL=_object-dp.js.map
 
 /***/ }),
-/* 438 */,
-/* 439 */
+/* 457 */,
+/* 458 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = matches_entirely;
 // Checks whether the entire input sequence can be matched
 // against the regular expression.
+// Checks whether the entire input sequence can be matched
 function matches_entirely() {
-	var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-	var regular_expression = arguments[1];
-
-	if (typeof regular_expression === 'string') {
-		regular_expression = '^(?:' + regular_expression + ')$';
-	}
-
-	var matched_groups = text.match(regular_expression);
-	return matched_groups && matched_groups[0].length === text.length;
+    var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var regular_expression = arguments[1];
+    if (typeof regular_expression === 'string') {
+        regular_expression = '^(?:' + regular_expression + ')$';
+    }
+    var matched_groups = text.match(regular_expression);
+    return matched_groups && matched_groups[0].length === text.length;
 }
+//# sourceMappingURL=common.js.map 
 //# sourceMappingURL=common.js.map
 
 /***/ }),
-/* 440 */
+/* 459 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parse__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__metadata__ = __webpack_require__(448);
+/* harmony export (immutable) */ __webpack_exports__["a"] = get_number_type;
+/* unused harmony export is_of_type */
+/* harmony export (immutable) */ __webpack_exports__["b"] = sort_out_arguments;
+
+
+
+// Finds out national phone number type (fixed line, mobile, etc)
+function get_number_type(first_argument, second_argument, third_argument) {
+    var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument), input = _sort_out_arguments.input, metadata = _sort_out_arguments.metadata;
+    // Sanity check
+    if (!metadata) {
+        throw new Error('Metadata not passed');
+    }
+    // When no input was passed
+    if (!input) {
+        return;
+    }
+    // When `parse()` returned `{}`
+    // meaning that the phone number is not a valid one.
+    if (!input.country) {
+        return;
+    }
+    var national_number = input.phone;
+    var country_metadata = metadata.countries[input.country];
+    // The following is copy-pasted from the original function:
+    // https://github.com/googlei18n/libphonenumber/blob/3ea547d4fbaa2d0b67588904dfa5d3f2557c27ff/javascript/i18n/phonenumbers/phonenumberutil.js#L2835
+    // Is this national number even valid for this country
+    if (!is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["k" /* get_national_number_pattern */])(country_metadata))) {
+        return; // 'UNKNOWN'
+    }
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["q" /* get_type_premium_rate */])(country_metadata))) {
+        return 'PREMIUM_RATE';
+    }
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["r" /* get_type_toll_free */])(country_metadata))) {
+        return 'TOLL_FREE';
+    }
+    /* istanbul ignore if */
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["s" /* get_type_shared_cost */])(country_metadata))) {
+        return 'SHARED_COST';
+    }
+    /* istanbul ignore if */
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["t" /* get_type_voip */])(country_metadata))) {
+        return 'VOIP';
+    }
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["u" /* get_type_personal_number */])(country_metadata))) {
+        return 'PERSONAL_NUMBER';
+    }
+    /* istanbul ignore if */
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["v" /* get_type_pager */])(country_metadata))) {
+        return 'PAGER';
+    }
+    /* istanbul ignore if */
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["w" /* get_type_uan */])(country_metadata))) {
+        return 'UAN';
+    }
+    /* istanbul ignore if */
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["x" /* get_type_voice_mail */])(country_metadata))) {
+        return 'VOICEMAIL';
+    }
+    // Is it fixed line number
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["y" /* get_type_fixed_line */])(country_metadata))) {
+        // Because duplicate regular expressions are removed
+        // to reduce metadata size, if there's no "mobile" pattern
+        // then it means it was removed due to being a duplicate of some other pattern.
+        //
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata)) {
+            return 'FIXED_LINE_OR_MOBILE';
+        }
+        // Check if the number happens to qualify as both fixed line and mobile.
+        // (no such country in the minimal metadata set)
+        /* istanbul ignore if */
+        if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata))) {
+            return 'FIXED_LINE_OR_MOBILE';
+        }
+        return 'FIXED_LINE';
+    }
+    if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata))) {
+        return 'MOBILE';
+    }
+    // return 'UNKNOWN'
+}
+function is_of_type(national_number, type) {
+    // // Check if any possible number lengths are present;
+    // // if so, we use them to avoid checking
+    // // the validation pattern if they don't match.
+    // // If they are absent, this means they match
+    // // the general description, which we have
+    // // already checked before a specific number type.
+    // if (get_possible_lengths(type) &&
+    // 	get_possible_lengths(type).indexOf(national_number.length) === -1)
+    // {
+    // 	return false
+    // }
+    // get_type_pattern(type) === type
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common__["a" /* matches_entirely */])(national_number, type);
+}
+// Sort out arguments
+function sort_out_arguments(first_argument, second_argument, third_argument) {
+    var input = void 0;
+    var metadata = void 0;
+    if (typeof first_argument === 'string') {
+        // If country code is supplied
+        if (typeof second_argument === 'string') {
+            metadata = third_argument;
+            // `parse` extracts phone numbers from raw text,
+            // therefore it will cut off all "garbage" characters,
+            // while this `validate` function needs to verify
+            // that the phone number contains no "garbage"
+            // therefore the explicit `is_viable_phone_number` check.
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument)) {
+                input = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["a" /* default */])(first_argument, second_argument, metadata);
+            }
+        }
+        else {
+            metadata = second_argument;
+            // `parse` extracts phone numbers from raw text,
+            // therefore it will cut off all "garbage" characters,
+            // while this `validate` function needs to verify
+            // that the phone number contains no "garbage"
+            // therefore the explicit `is_viable_phone_number` check.
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument)) {
+                input = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["a" /* default */])(first_argument, metadata);
+            }
+        }
+    }
+    else {
+        // The `first_argument` must be a valid phone number
+        // as a whole, not just a part of it which gets parsed here.
+        if (first_argument && first_argument.phone && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument.phone)) {
+            input = first_argument;
+        }
+        metadata = second_argument;
+    }
+    return { input: input, metadata: metadata };
+}
+//# sourceMappingURL=get number type.js.map 
+//# sourceMappingURL=get number type.js.map
+
+/***/ }),
+/* 460 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(537), __esModule: true };
+//# sourceMappingURL=get-iterator.js.map
+
+/***/ }),
+/* 461 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+    if (it == undefined)
+        throw TypeError("Can't call method on  " + it);
+    return it;
+};
+//# sourceMappingURL=_defined.js.map
+
+/***/ }),
+/* 462 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(446), core = __webpack_require__(449), ctx = __webpack_require__(544), hide = __webpack_require__(451), PROTOTYPE = 'prototype';
+var $export = function (type, name, source) {
+    var IS_FORCED = type & $export.F, IS_GLOBAL = type & $export.G, IS_STATIC = type & $export.S, IS_PROTO = type & $export.P, IS_BIND = type & $export.B, IS_WRAP = type & $export.W, exports = IS_GLOBAL ? core : core[name] || (core[name] = {}), expProto = exports[PROTOTYPE], target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE], key, own, out;
+    if (IS_GLOBAL)
+        source = name;
+    for (key in source) {
+        // contains in native
+        own = !IS_FORCED && target && target[key] !== undefined;
+        if (own && key in exports)
+            continue;
+        // export native or passed
+        out = own ? target[key] : source[key];
+        // prevent global pollution for namespaces
+        exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+            : IS_BIND && own ? ctx(out, global)
+                : IS_WRAP && target[key] == out ? (function (C) {
+                    var F = function (a, b, c) {
+                        if (this instanceof C) {
+                            switch (arguments.length) {
+                                case 0: return new C;
+                                case 1: return new C(a);
+                                case 2: return new C(a, b);
+                            }
+                            return new C(a, b, c);
+                        }
+                        return C.apply(this, arguments);
+                    };
+                    F[PROTOTYPE] = C[PROTOTYPE];
+                    return F;
+                    // make static versions for prototype methods
+                })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+        // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+        if (IS_PROTO) {
+            (exports.virtual || (exports.virtual = {}))[key] = out;
+            // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+            if (type & $export.R && expProto && !expProto[key])
+                hide(expProto, key, out);
+        }
+    }
+};
+// type bitmap
+$export.F = 1; // forced
+$export.G = 2; // global
+$export.S = 4; // static
+$export.P = 8; // proto
+$export.B = 16; // bind
+$export.W = 32; // wrap
+$export.U = 64; // safe
+$export.R = 128; // real proto method for `library` 
+module.exports = $export;
+//# sourceMappingURL=_export.js.map
+
+/***/ }),
+/* 463 */
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+    try {
+        return !!exec();
+    }
+    catch (e) {
+        return true;
+    }
+};
+//# sourceMappingURL=_fails.js.map
+
+/***/ }),
+/* 464 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+    return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+//# sourceMappingURL=_is-object.js.map
+
+/***/ }),
+/* 465 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__(484)('keys'), uid = __webpack_require__(486);
+module.exports = function (key) {
+    return shared[key] || (shared[key] = uid(key));
+};
+//# sourceMappingURL=_shared-key.js.map
+
+/***/ }),
+/* 466 */
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil, floor = Math.floor;
+module.exports = function (it) {
+    return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+//# sourceMappingURL=_to-integer.js.map
+
+/***/ }),
+/* 467 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__(479), defined = __webpack_require__(461);
+module.exports = function (it) {
+    return IObject(defined(it));
+};
+//# sourceMappingURL=_to-iobject.js.map
+
+/***/ }),
+/* 468 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__parse__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__parse__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(448);
 /* harmony export (immutable) */ __webpack_exports__["a"] = format;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FIRST_GROUP_PATTERN; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = format_national_number_using_format;
@@ -1185,10 +1201,6 @@ function matches_entirely() {
 // `phonenumberutil.js` of 17th November, 2016.
 //
 // https://github.com/googlei18n/libphonenumber/commits/master/javascript/i18n/phonenumbers/phonenumberutil.js
-
-
-
-
 
 
 
@@ -1206,731 +1218,362 @@ function matches_entirely() {
 // ```
 //
 function format(first_argument, second_argument, third_argument, fourth_argument) {
-	var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument, fourth_argument),
-	    input = _sort_out_arguments.input,
-	    format_type = _sort_out_arguments.format_type,
-	    metadata = _sort_out_arguments.metadata;
-
-	var country_metadata = void 0;
-
-	if (input.country) {
-		country_metadata = metadata.countries[input.country];
-	}
-
-	var _parse_phone_number_a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__parse__["g" /* parse_phone_number_and_country_phone_code */])(input.phone, metadata),
-	    country_phone_code = _parse_phone_number_a.country_phone_code,
-	    number = _parse_phone_number_a.number;
-
-	if (country_phone_code) {
-		// Check country restriction
-		if (input.country && country_metadata && country_phone_code !== __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata)) {
-			return input.phone;
-		}
-
-		country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, metadata);
-	}
-
-	if (!country_metadata) {
-		return input.phone;
-	}
-
-	switch (format_type) {
-		case 'International':
-			if (!number) {
-				return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata);
-			}
-			var national_number = format_national_number(number, 'International', false, country_metadata);
-			return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata) + ' ' + national_number;
-
-		case 'International_plaintext':
-			return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata) + input.phone;
-
-		case 'National':
-			if (!number) {
-				return '';
-			}
-			return format_national_number(number, 'National', false, country_metadata);
-	}
+    var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument, fourth_argument), input = _sort_out_arguments.input, format_type = _sort_out_arguments.format_type, metadata = _sort_out_arguments.metadata;
+    var country_metadata = void 0;
+    if (input.country) {
+        country_metadata = metadata.countries[input.country];
+    }
+    var _parse_phone_number_a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__parse__["g" /* parse_phone_number_and_country_phone_code */])(input.phone, metadata), country_phone_code = _parse_phone_number_a.country_phone_code, number = _parse_phone_number_a.number;
+    if (country_phone_code) {
+        // Check country restriction
+        if (input.country && country_metadata && country_phone_code !== __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata)) {
+            return input.phone;
+        }
+        country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, metadata);
+    }
+    if (!country_metadata) {
+        return input.phone;
+    }
+    switch (format_type) {
+        case 'International':
+            if (!number) {
+                return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata);
+            }
+            var national_number = format_national_number(number, 'International', false, country_metadata);
+            return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata) + ' ' + national_number;
+        case 'International_plaintext':
+            return '+' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["a" /* get_phone_code */])(country_metadata) + input.phone;
+        case 'National':
+            if (!number) {
+                return '';
+            }
+            return format_national_number(number, 'National', false, country_metadata);
+    }
 }
-
 // This was originally set to $1 but there are some countries for which the
 // first group is not used in the national pattern (e.g. Argentina) so the $1
 // group does not match correctly.  Therefore, we use \d, so that the first
 // group actually used in the pattern will be matched.
 var FIRST_GROUP_PATTERN = /(\$\d)/;
-
 function format_national_number_using_format(number, format, international, enforce_national_prefix, country_metadata) {
-	var format_pattern_matcher = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format));
-
-	var national_prefix_formatting_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["h" /* get_format_national_prefix_formatting_rule */])(format, country_metadata);
-
-	// National prefix is omitted if there's no national prefix formatting rule
-	// set for this country, or when this rule is set but
-	// national prefix is optional for this phone number format
-	// (and it is not enforced explicitly)
-	var national_prefix_may_be_omitted = !national_prefix_formatting_rule || national_prefix_formatting_rule && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["o" /* get_format_national_prefix_is_optional_when_formatting */])(format, country_metadata) && !enforce_national_prefix;
-
-	if (!international && !national_prefix_may_be_omitted) {
-		return number.replace(format_pattern_matcher, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format).replace(FIRST_GROUP_PATTERN, national_prefix_formatting_rule));
-	}
-
-	var formatted_number = number.replace(format_pattern_matcher, international ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format));
-
-	if (international) {
-		return local_to_international_style(formatted_number);
-	}
-
-	return formatted_number;
+    var format_pattern_matcher = new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format));
+    var national_prefix_formatting_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["h" /* get_format_national_prefix_formatting_rule */])(format, country_metadata);
+    // National prefix is omitted if there's no national prefix formatting rule
+    // set for this country, or when this rule is set but
+    // national prefix is optional for this phone number format
+    // (and it is not enforced explicitly)
+    var national_prefix_may_be_omitted = !national_prefix_formatting_rule || national_prefix_formatting_rule && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["o" /* get_format_national_prefix_is_optional_when_formatting */])(format, country_metadata) && !enforce_national_prefix;
+    if (!international && !national_prefix_may_be_omitted) {
+        return number.replace(format_pattern_matcher, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format).replace(FIRST_GROUP_PATTERN, national_prefix_formatting_rule));
+    }
+    var formatted_number = number.replace(format_pattern_matcher, international ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format));
+    if (international) {
+        return local_to_international_style(formatted_number);
+    }
+    return formatted_number;
 }
-
 function format_national_number(number, format_as, enforce_national_prefix, country_metadata) {
-	var format = choose_format_for_number(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* get_formats */])(country_metadata), number);
-
-	if (!format) {
-		return number;
-	}
-
-	return format_national_number_using_format(number, format, format_as === 'International', enforce_national_prefix, country_metadata);
+    var format = choose_format_for_number(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* get_formats */])(country_metadata), number);
+    if (!format) {
+        return number;
+    }
+    return format_national_number_using_format(number, format, format_as === 'International', enforce_national_prefix, country_metadata);
 }
-
 function choose_format_for_number(available_formats, national_number) {
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
-
-	try {
-		for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(available_formats), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var _format = _step.value;
-
-			// Validate leading digits
-			if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format).length > 0) {
-				// The last leading_digits_pattern is used here, as it is the most detailed
-				var last_leading_digits_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format)[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format).length - 1];
-
-				// If leading digits don't match then move on to the next phone number format
-				if (national_number.search(last_leading_digits_pattern) !== 0) {
-					continue;
-				}
-			}
-
-			// Check that the national number matches the phone number format regular expression
-			if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common__["a" /* matches_entirely */])(national_number, new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(_format)))) {
-				return _format;
-			}
-		}
-	} catch (err) {
-		_didIteratorError = true;
-		_iteratorError = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion && _iterator.return) {
-				_iterator.return();
-			}
-		} finally {
-			if (_didIteratorError) {
-				throw _iteratorError;
-			}
-		}
-	}
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+    try {
+        for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(available_formats), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _format = _step.value;
+            // Validate leading digits
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format).length > 0) {
+                // The last leading_digits_pattern is used here, as it is the most detailed
+                var last_leading_digits_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format)[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(_format).length - 1];
+                // If leading digits don't match then move on to the next phone number format
+                if (national_number.search(last_leading_digits_pattern) !== 0) {
+                    continue;
+                }
+            }
+            // Check that the national number matches the phone number format regular expression
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common__["a" /* matches_entirely */])(national_number, new RegExp(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(_format)))) {
+                return _format;
+            }
+        }
+    }
+    catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    }
+    finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        }
+        finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
 }
-
 // Removes brackets and replaces dashes with spaces.
 //
 // E.g. "(999) 111-22-33" -> "999 111 22 33"
 //
 function local_to_international_style(local) {
-	return local
-	// Remove brackets
-	.replace(/[\(\)]/g, '')
-	// Replace dashes with spaces
-	.replace(/\-/g, ' ').trim();
+    return local
+        .replace(/[\(\)]/g, '')
+        .replace(/\-/g, ' ').trim();
 }
-
 // Sort out arguments
 function sort_out_arguments() {
-	var first_argument = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-	var second_argument = arguments[1];
-	var third_argument = arguments[2];
-	var fourth_argument = arguments[3];
-
-	var input = void 0;
-	var format_type = void 0;
-	var metadata = void 0;
-
-	// Sort out arguments
-	if (typeof first_argument === 'string') {
-		// If country code is supplied
-		if (typeof third_argument === 'string') {
-			// Will be `parse()`d later in code
-			input = {
-				phone: first_argument,
-				country: second_argument
-			};
-
-			format_type = third_argument;
-			metadata = fourth_argument;
-		}
-		// Just an international phone number is supplied
-		else {
-				// Will be `parse()`d later in code
-				input = {
-					phone: first_argument
-				};
-
-				if (typeof second_argument !== 'string') {
-					throw new Error('Format type argument not passed for `format()`');
-				}
-
-				format_type = second_argument;
-				metadata = third_argument;
-			}
-	} else {
-		input = first_argument;
-		format_type = second_argument;
-		metadata = third_argument;
-	}
-
-	// Sanity check
-	if (!metadata) {
-		throw new Error('Metadata not passed');
-	}
-
-	switch (format_type) {
-		case 'International':
-		case 'International_plaintext':
-		case 'National':
-			break;
-		default:
-			throw new Error('Unknown format type argument passed to "format()": "' + format_type + '"');
-	}
-
-	return { input: input, format_type: format_type, metadata: metadata };
+    var first_argument = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var second_argument = arguments[1];
+    var third_argument = arguments[2];
+    var fourth_argument = arguments[3];
+    var input = void 0;
+    var format_type = void 0;
+    var metadata = void 0;
+    // Sort out arguments
+    if (typeof first_argument === 'string') {
+        // If country code is supplied
+        if (typeof third_argument === 'string') {
+            // Will be `parse()`d later in code
+            input = {
+                phone: first_argument,
+                country: second_argument
+            };
+            format_type = third_argument;
+            metadata = fourth_argument;
+        }
+        else {
+            // Will be `parse()`d later in code
+            input = {
+                phone: first_argument
+            };
+            if (typeof second_argument !== 'string') {
+                throw new Error('Format type argument not passed for `format()`');
+            }
+            format_type = second_argument;
+            metadata = third_argument;
+        }
+    }
+    else {
+        input = first_argument;
+        format_type = second_argument;
+        metadata = third_argument;
+    }
+    // Sanity check
+    if (!metadata) {
+        throw new Error('Metadata not passed');
+    }
+    switch (format_type) {
+        case 'International':
+        case 'International_plaintext':
+        case 'National':
+            break;
+        default:
+            throw new Error('Unknown format type argument passed to "format()": "' + format_type + '"');
+    }
+    return { input: input, format_type: format_type, metadata: metadata };
 }
+//# sourceMappingURL=format.js.map 
 //# sourceMappingURL=format.js.map
 
 /***/ }),
-/* 441 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parse__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__metadata__ = __webpack_require__(305);
-/* harmony export (immutable) */ __webpack_exports__["a"] = get_number_type;
-/* unused harmony export is_of_type */
-/* harmony export (immutable) */ __webpack_exports__["b"] = sort_out_arguments;
-
-
-
-
-
-
-// Finds out national phone number type (fixed line, mobile, etc)
-function get_number_type(first_argument, second_argument, third_argument) {
-	var _sort_out_arguments = sort_out_arguments(first_argument, second_argument, third_argument),
-	    input = _sort_out_arguments.input,
-	    metadata = _sort_out_arguments.metadata;
-
-	// Sanity check
-
-
-	if (!metadata) {
-		throw new Error('Metadata not passed');
-	}
-
-	// When no input was passed
-	if (!input) {
-		return;
-	}
-
-	// When `parse()` returned `{}`
-	// meaning that the phone number is not a valid one.
-	if (!input.country) {
-		return;
-	}
-
-	var national_number = input.phone;
-	var country_metadata = metadata.countries[input.country];
-
-	// The following is copy-pasted from the original function:
-	// https://github.com/googlei18n/libphonenumber/blob/3ea547d4fbaa2d0b67588904dfa5d3f2557c27ff/javascript/i18n/phonenumbers/phonenumberutil.js#L2835
-
-	// Is this national number even valid for this country
-	if (!is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["k" /* get_national_number_pattern */])(country_metadata))) {
-		return; // 'UNKNOWN'
-	}
-
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["q" /* get_type_premium_rate */])(country_metadata))) {
-		return 'PREMIUM_RATE';
-	}
-
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["r" /* get_type_toll_free */])(country_metadata))) {
-		return 'TOLL_FREE';
-	}
-
-	/* istanbul ignore if */
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["s" /* get_type_shared_cost */])(country_metadata))) {
-		return 'SHARED_COST';
-	}
-
-	/* istanbul ignore if */
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["t" /* get_type_voip */])(country_metadata))) {
-		return 'VOIP';
-	}
-
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["u" /* get_type_personal_number */])(country_metadata))) {
-		return 'PERSONAL_NUMBER';
-	}
-
-	/* istanbul ignore if */
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["v" /* get_type_pager */])(country_metadata))) {
-		return 'PAGER';
-	}
-
-	/* istanbul ignore if */
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["w" /* get_type_uan */])(country_metadata))) {
-		return 'UAN';
-	}
-
-	/* istanbul ignore if */
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["x" /* get_type_voice_mail */])(country_metadata))) {
-		return 'VOICEMAIL';
-	}
-
-	// Is it fixed line number
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["y" /* get_type_fixed_line */])(country_metadata))) {
-		// Because duplicate regular expressions are removed
-		// to reduce metadata size, if there's no "mobile" pattern
-		// then it means it was removed due to being a duplicate of some other pattern.
-		//
-		if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata)) {
-			return 'FIXED_LINE_OR_MOBILE';
-		}
-
-		// Check if the number happens to qualify as both fixed line and mobile.
-		// (no such country in the minimal metadata set)
-		/* istanbul ignore if */
-		if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata))) {
-			return 'FIXED_LINE_OR_MOBILE';
-		}
-
-		return 'FIXED_LINE';
-	}
-
-	if (is_of_type(national_number, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["z" /* get_type_mobile */])(country_metadata))) {
-		return 'MOBILE';
-	}
-
-	// return 'UNKNOWN'
-}
-
-function is_of_type(national_number, type) {
-	// // Check if any possible number lengths are present;
-	// // if so, we use them to avoid checking
-	// // the validation pattern if they don't match.
-	// // If they are absent, this means they match
-	// // the general description, which we have
-	// // already checked before a specific number type.
-	// if (get_possible_lengths(type) &&
-	// 	get_possible_lengths(type).indexOf(national_number.length) === -1)
-	// {
-	// 	return false
-	// }
-
-	// get_type_pattern(type) === type
-	return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common__["a" /* matches_entirely */])(national_number, type);
-}
-
-// Sort out arguments
-function sort_out_arguments(first_argument, second_argument, third_argument) {
-	var input = void 0;
-	var metadata = void 0;
-
-	if (typeof first_argument === 'string') {
-		// If country code is supplied
-		if (typeof second_argument === 'string') {
-			metadata = third_argument;
-
-			// `parse` extracts phone numbers from raw text,
-			// therefore it will cut off all "garbage" characters,
-			// while this `validate` function needs to verify
-			// that the phone number contains no "garbage"
-			// therefore the explicit `is_viable_phone_number` check.
-			if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument)) {
-				input = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["a" /* default */])(first_argument, second_argument, metadata);
-			}
-		}
-		// Just an international phone number is supplied
-		else {
-				metadata = second_argument;
-
-				// `parse` extracts phone numbers from raw text,
-				// therefore it will cut off all "garbage" characters,
-				// while this `validate` function needs to verify
-				// that the phone number contains no "garbage"
-				// therefore the explicit `is_viable_phone_number` check.
-				if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument)) {
-					input = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["a" /* default */])(first_argument, metadata);
-				}
-			}
-	} else {
-		// The `first_argument` must be a valid phone number
-		// as a whole, not just a part of it which gets parsed here.
-		if (first_argument && first_argument.phone && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parse__["j" /* is_viable_phone_number */])(first_argument.phone)) {
-			input = first_argument;
-		}
-
-		metadata = second_argument;
-	}
-
-	return { input: input, metadata: metadata };
-}
-//# sourceMappingURL=get number type.js.map
-
-/***/ }),
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(512), __esModule: true };
-
-/***/ }),
-/* 447 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-/***/ }),
-/* 448 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global    = __webpack_require__(303)
-  , core      = __webpack_require__(316)
-  , ctx       = __webpack_require__(519)
-  , hide      = __webpack_require__(318)
-  , PROTOTYPE = 'prototype';
-
-var $export = function(type, name, source){
-  var IS_FORCED = type & $export.F
-    , IS_GLOBAL = type & $export.G
-    , IS_STATIC = type & $export.S
-    , IS_PROTO  = type & $export.P
-    , IS_BIND   = type & $export.B
-    , IS_WRAP   = type & $export.W
-    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-    , expProto  = exports[PROTOTYPE]
-    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-    , key, own, out;
-  if(IS_GLOBAL)source = name;
-  for(key in source){
-    // contains in native
-    own = !IS_FORCED && target && target[key] !== undefined;
-    if(own && key in exports)continue;
-    // export native or passed
-    out = own ? target[key] : source[key];
-    // prevent global pollution for namespaces
-    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-    // bind timers to global for call from export context
-    : IS_BIND && own ? ctx(out, global)
-    // wrap global constructors for prevent change them in library
-    : IS_WRAP && target[key] == out ? (function(C){
-      var F = function(a, b, c){
-        if(this instanceof C){
-          switch(arguments.length){
-            case 0: return new C;
-            case 1: return new C(a);
-            case 2: return new C(a, b);
-          } return new C(a, b, c);
-        } return C.apply(this, arguments);
-      };
-      F[PROTOTYPE] = C[PROTOTYPE];
-      return F;
-    // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-    if(IS_PROTO){
-      (exports.virtual || (exports.virtual = {}))[key] = out;
-      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
-    }
-  }
-};
-// type bitmap
-$export.F = 1;   // forced
-$export.G = 2;   // global
-$export.S = 4;   // static
-$export.P = 8;   // proto
-$export.B = 16;  // bind
-$export.W = 32;  // wrap
-$export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
-module.exports = $export;
-
-/***/ }),
-/* 449 */
-/***/ (function(module, exports) {
-
-module.exports = function(exec){
-  try {
-    return !!exec();
-  } catch(e){
-    return true;
-  }
-};
-
-/***/ }),
-/* 450 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-/***/ }),
-/* 451 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var shared = __webpack_require__(468)('keys')
-  , uid    = __webpack_require__(470);
-module.exports = function(key){
-  return shared[key] || (shared[key] = uid(key));
-};
-
-/***/ }),
-/* 452 */
-/***/ (function(module, exports) {
-
-// 7.1.4 ToInteger
-var ceil  = Math.ceil
-  , floor = Math.floor;
-module.exports = function(it){
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-/***/ }),
-/* 453 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(463)
-  , defined = __webpack_require__(447);
-module.exports = function(it){
-  return IObject(defined(it));
-};
-
-/***/ }),
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
-
-module.exports = function(it){
-  return toString.call(it).slice(8, -1);
+module.exports = function (it) {
+    return toString.call(it).slice(8, -1);
 };
+//# sourceMappingURL=_cof.js.map
 
 /***/ }),
-/* 461 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(450)
-  , document = __webpack_require__(303).document
-  // in old IE typeof document.createElement is 'object'
-  , is = isObject(document) && isObject(document.createElement);
-module.exports = function(it){
-  return is ? document.createElement(it) : {};
+var isObject = __webpack_require__(464), document = __webpack_require__(446).document
+// in old IE typeof document.createElement is 'object'
+, is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+    return is ? document.createElement(it) : {};
 };
+//# sourceMappingURL=_dom-create.js.map
 
 /***/ }),
-/* 462 */
+/* 478 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
-module.exports = (
-  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-).split(',');
+module.exports = ('constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf').split(',');
+//# sourceMappingURL=_enum-bug-keys.js.map
 
 /***/ }),
-/* 463 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(460);
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-  return cof(it) == 'String' ? it.split('') : Object(it);
+var cof = __webpack_require__(476);
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+    return cof(it) == 'String' ? it.split('') : Object(it);
 };
+//# sourceMappingURL=_iobject.js.map
 
 /***/ }),
-/* 464 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var LIBRARY        = __webpack_require__(524)
-  , $export        = __webpack_require__(448)
-  , redefine       = __webpack_require__(532)
-  , hide           = __webpack_require__(318)
-  , has            = __webpack_require__(435)
-  , Iterators      = __webpack_require__(436)
-  , $iterCreate    = __webpack_require__(522)
-  , setToStringTag = __webpack_require__(467)
-  , getPrototypeOf = __webpack_require__(529)
-  , ITERATOR       = __webpack_require__(304)('iterator')
-  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
-  , FF_ITERATOR    = '@@iterator'
-  , KEYS           = 'keys'
-  , VALUES         = 'values';
-
-var returnThis = function(){ return this; };
-
-module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
-  $iterCreate(Constructor, NAME, next);
-  var getMethod = function(kind){
-    if(!BUGGY && kind in proto)return proto[kind];
-    switch(kind){
-      case KEYS: return function keys(){ return new Constructor(this, kind); };
-      case VALUES: return function values(){ return new Constructor(this, kind); };
-    } return function entries(){ return new Constructor(this, kind); };
-  };
-  var TAG        = NAME + ' Iterator'
-    , DEF_VALUES = DEFAULT == VALUES
-    , VALUES_BUG = false
-    , proto      = Base.prototype
-    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-    , $default   = $native || getMethod(DEFAULT)
-    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
-    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
-    , methods, key, IteratorPrototype;
-  // Fix native
-  if($anyNative){
-    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
-    if(IteratorPrototype !== Object.prototype){
-      // Set @@toStringTag to native iterators
-      setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
-    }
-  }
-  // fix Array#{values, @@iterator}.name in V8 / FF
-  if(DEF_VALUES && $native && $native.name !== VALUES){
-    VALUES_BUG = true;
-    $default = function values(){ return $native.call(this); };
-  }
-  // Define iterator
-  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
-    hide(proto, ITERATOR, $default);
-  }
-  // Plug for library
-  Iterators[NAME] = $default;
-  Iterators[TAG]  = returnThis;
-  if(DEFAULT){
-    methods = {
-      values:  DEF_VALUES ? $default : getMethod(VALUES),
-      keys:    IS_SET     ? $default : getMethod(KEYS),
-      entries: $entries
+var LIBRARY = __webpack_require__(549), $export = __webpack_require__(462), redefine = __webpack_require__(557), hide = __webpack_require__(451), has = __webpack_require__(454), Iterators = __webpack_require__(455), $iterCreate = __webpack_require__(547), setToStringTag = __webpack_require__(483), getPrototypeOf = __webpack_require__(554), ITERATOR = __webpack_require__(447)('iterator'), BUGGY = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
+, FF_ITERATOR = '@@iterator', KEYS = 'keys', VALUES = 'values';
+var returnThis = function () { return this; };
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+    $iterCreate(Constructor, NAME, next);
+    var getMethod = function (kind) {
+        if (!BUGGY && kind in proto)
+            return proto[kind];
+        switch (kind) {
+            case KEYS: return function keys() { return new Constructor(this, kind); };
+            case VALUES: return function values() { return new Constructor(this, kind); };
+        }
+        return function entries() { return new Constructor(this, kind); };
     };
-    if(FORCED)for(key in methods){
-      if(!(key in proto))redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
-  }
-  return methods;
+    var TAG = NAME + ' Iterator', DEF_VALUES = DEFAULT == VALUES, VALUES_BUG = false, proto = Base.prototype, $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT], $default = $native || getMethod(DEFAULT), $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined, $anyNative = NAME == 'Array' ? proto.entries || $native : $native, methods, key, IteratorPrototype;
+    // Fix native
+    if ($anyNative) {
+        IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
+        if (IteratorPrototype !== Object.prototype) {
+            // Set @@toStringTag to native iterators
+            setToStringTag(IteratorPrototype, TAG, true);
+            // fix for some old engines
+            if (!LIBRARY && !has(IteratorPrototype, ITERATOR))
+                hide(IteratorPrototype, ITERATOR, returnThis);
+        }
+    }
+    // fix Array#{values, @@iterator}.name in V8 / FF
+    if (DEF_VALUES && $native && $native.name !== VALUES) {
+        VALUES_BUG = true;
+        $default = function values() { return $native.call(this); };
+    }
+    // Define iterator
+    if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+        hide(proto, ITERATOR, $default);
+    }
+    // Plug for library
+    Iterators[NAME] = $default;
+    Iterators[TAG] = returnThis;
+    if (DEFAULT) {
+        methods = {
+            values: DEF_VALUES ? $default : getMethod(VALUES),
+            keys: IS_SET ? $default : getMethod(KEYS),
+            entries: $entries
+        };
+        if (FORCED)
+            for (key in methods) {
+                if (!(key in proto))
+                    redefine(proto, key, methods[key]);
+            }
+        else
+            $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+    }
+    return methods;
 };
+//# sourceMappingURL=_iter-define.js.map
 
 /***/ }),
-/* 465 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = __webpack_require__(530)
-  , enumBugKeys = __webpack_require__(462);
-
-module.exports = Object.keys || function keys(O){
-  return $keys(O, enumBugKeys);
+var $keys = __webpack_require__(555), enumBugKeys = __webpack_require__(478);
+module.exports = Object.keys || function keys(O) {
+    return $keys(O, enumBugKeys);
 };
+//# sourceMappingURL=_object-keys.js.map
 
 /***/ }),
-/* 466 */
+/* 482 */
 /***/ (function(module, exports) {
 
-module.exports = function(bitmap, value){
-  return {
-    enumerable  : !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable    : !(bitmap & 4),
-    value       : value
-  };
+module.exports = function (bitmap, value) {
+    return {
+        enumerable: !(bitmap & 1),
+        configurable: !(bitmap & 2),
+        writable: !(bitmap & 4),
+        value: value
+    };
 };
+//# sourceMappingURL=_property-desc.js.map
 
 /***/ }),
-/* 467 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(437).f
-  , has = __webpack_require__(435)
-  , TAG = __webpack_require__(304)('toStringTag');
-
-module.exports = function(it, tag, stat){
-  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+var def = __webpack_require__(456).f, has = __webpack_require__(454), TAG = __webpack_require__(447)('toStringTag');
+module.exports = function (it, tag, stat) {
+    if (it && !has(it = stat ? it : it.prototype, TAG))
+        def(it, TAG, { configurable: true, value: tag });
 };
+//# sourceMappingURL=_set-to-string-tag.js.map
 
 /***/ }),
-/* 468 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(303)
-  , SHARED = '__core-js_shared__'
-  , store  = global[SHARED] || (global[SHARED] = {});
-module.exports = function(key){
-  return store[key] || (store[key] = {});
+var global = __webpack_require__(446), SHARED = '__core-js_shared__', store = global[SHARED] || (global[SHARED] = {});
+module.exports = function (key) {
+    return store[key] || (store[key] = {});
 };
+//# sourceMappingURL=_shared.js.map
 
 /***/ }),
-/* 469 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(447);
-module.exports = function(it){
-  return Object(defined(it));
+var defined = __webpack_require__(461);
+module.exports = function (it) {
+    return Object(defined(it));
 };
+//# sourceMappingURL=_to-object.js.map
 
 /***/ }),
-/* 470 */
+/* 486 */
 /***/ (function(module, exports) {
 
-var id = 0
-  , px = Math.random();
-module.exports = function(key){
-  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+var id = 0, px = Math.random();
+module.exports = function (key) {
+    return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
+//# sourceMappingURL=_uid.js.map
 
 /***/ }),
-/* 471 */
+/* 487 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parse__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__format__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common__ = __webpack_require__(439);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__metadata__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parse__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__format__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common__ = __webpack_require__(458);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DIGIT_PLACEHOLDER; });
 /* unused harmony export close_dangling_braces */
 /* unused harmony export count_occurences */
@@ -1946,11 +1589,6 @@ module.exports = function(key){
 
 
 
-
-
-
-
-
 // Used in phone number format template creation.
 // Could be any digit, I guess.
 var DUMMY_DIGIT = '9';
@@ -1960,24 +1598,20 @@ var LONGEST_NATIONAL_PHONE_NUMBER_LENGTH = 15;
 // Create a phone number consisting only of the digit 9 that matches the
 // `number_pattern` by applying the pattern to the "longest phone number" string.
 var LONGEST_DUMMY_PHONE_NUMBER = repeat(DUMMY_DIGIT, LONGEST_NATIONAL_PHONE_NUMBER_LENGTH);
-
 // The digits that have not been entered yet will be represented by a \u2008,
 // the punctuation space.
 var DIGIT_PLACEHOLDER = 'x'; // '\u2008' (punctuation space)
 var DIGIT_PLACEHOLDER_MATCHER = new RegExp(DIGIT_PLACEHOLDER);
 var DIGIT_PLACEHOLDER_MATCHER_GLOBAL = new RegExp(DIGIT_PLACEHOLDER, 'g');
-
 // A pattern that is used to match character classes in regular expressions.
 // An example of a character class is "[1-4]".
 var CHARACTER_CLASS_PATTERN = /\[([^\[\]])*\]/g;
-
 // Any digit in a regular expression that actually denotes a digit. For
 // example, in the regular expression "80[0-2]\d{6,10}", the first 2 digits
 // (8 and 0) are standalone digits, but the rest are not.
 // Two look-aheads are needed because the number following \\d could be a
 // two-digit number, since the phone number can be as long as 15 digits.
 var STANDALONE_DIGIT_PATTERN = /\d(?=[^,}][^,}])/g;
-
 // A pattern that is used to determine if a `format` is eligible
 // to be used by the "as you type formatter".
 // It is eligible when the `format` contains groups of the dollar sign
@@ -1985,806 +1619,661 @@ var STANDALONE_DIGIT_PATTERN = /\d(?=[^,}][^,}])/g;
 // This prevents invalid punctuation (such as the star sign in Israeli star numbers)
 // getting into the output of the "as you type formatter".
 var ELIGIBLE_FORMAT_PATTERN = new RegExp('^' + '[' + __WEBPACK_IMPORTED_MODULE_4__parse__["b" /* VALID_PUNCTUATION */] + ']*' + '(\\$\\d[' + __WEBPACK_IMPORTED_MODULE_4__parse__["b" /* VALID_PUNCTUATION */] + ']*)+' + '$');
-
 // This is the minimum length of the leading digits of a phone number
 // to guarantee the first "leading digits pattern" for a phone number format
 // to be preemptive.
 var MIN_LEADING_DIGITS_LENGTH = 3;
-
 var VALID_INCOMPLETE_PHONE_NUMBER = '[' + __WEBPACK_IMPORTED_MODULE_4__parse__["c" /* PLUS_CHARS */] + ']{0,1}' + '[' + __WEBPACK_IMPORTED_MODULE_4__parse__["b" /* VALID_PUNCTUATION */] + __WEBPACK_IMPORTED_MODULE_4__parse__["d" /* VALID_DIGITS */] + ']*';
-
 var VALID_INCOMPLETE_PHONE_NUMBER_PATTERN = new RegExp('^' + VALID_INCOMPLETE_PHONE_NUMBER + '$', 'i');
-
 var as_you_type = function () {
-	function as_you_type(country_code, metadata) {
-		__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, as_you_type);
-
-		// Sanity check
-		if (!metadata) {
-			throw new Error('Metadata not passed');
-		}
-
-		if (country_code && metadata.countries[country_code]) {
-			this.default_country = country_code;
-		}
-
-		this.metadata = metadata;
-
-		this.reset();
-	}
-
-	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(as_you_type, [{
-		key: 'input',
-		value: function input(text) {
-			// Parse input
-
-			var extracted_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["e" /* extract_formatted_phone_number */])(text);
-
-			// Special case for a lone '+' sign
-			// since it's not considered a possible phone number.
-			if (!extracted_number) {
-				if (text && text.indexOf('+') >= 0) {
-					extracted_number = '+';
-				}
-			}
-
-			// Validate possible first part of a phone number
-			if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common__["a" /* matches_entirely */])(extracted_number, VALID_INCOMPLETE_PHONE_NUMBER_PATTERN)) {
-				return this.current_output;
-			}
-
-			return this.process_input(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["f" /* parse_phone_number */])(extracted_number));
-		}
-	}, {
-		key: 'process_input',
-		value: function process_input(input) {
-			// If an out of position '+' sign detected
-			// (or a second '+' sign),
-			// then just drop it from the input.
-			if (input[0] === '+') {
-				if (!this.parsed_input) {
-					this.parsed_input += '+';
-
-					// If a default country was set
-					// then reset it because an explicitly international
-					// phone number is being entered
-					this.reset_countriness();
-				}
-
-				input = input.slice(1);
-			}
-
-			// Raw phone number
-			this.parsed_input += input;
-
-			// // Reset phone number validation state
-			// this.valid = false
-
-			// Add digits to the national number
-			this.national_number += input;
-
-			// Try to format the parsed input
-
-			if (this.is_international()) {
-				if (!this.country_phone_code) {
-					// If one looks at country phone codes
-					// then he can notice that no one country phone code
-					// is ever a (leftmost) substring of another country phone code.
-					// So if a valid country code is extracted so far
-					// then it means that this is the country code.
-
-					// If no country phone code could be extracted so far,
-					// then just return the raw phone number,
-					// because it has no way of knowing
-					// how to format the phone number so far.
-					if (!this.extract_country_phone_code()) {
-						// Return raw phone number
-						return this.parsed_input;
-					}
-
-					// Initialize country-specific data
-					this.initialize_phone_number_formats_for_this_country_phone_code();
-					this.reset_format();
-					this.determine_the_country();
-				}
-				// `this.country` could be `undefined`,
-				// for instance, when there is ambiguity
-				// in a form of several different countries
-				// each corresponding to the same country phone code
-				// (e.g. NANPA: USA, Canada, etc),
-				// and there's not enough digits entered
-				// to reliably determine the country
-				// the phone number belongs to.
-				// Therefore, in cases of such ambiguity,
-				// each time something is input,
-				// try to determine the country
-				// (if it's not determined yet).
-				else if (!this.country) {
-						this.determine_the_country();
-					}
-			} else {
-				// Some national prefixes are substrings of other national prefixes
-				// (for the same country), therefore try to extract national prefix each time
-				// because a longer national prefix might be available at some point in time.
-
-				var previous_national_prefix = this.national_prefix;
-				this.national_number = this.national_prefix + this.national_number;
-
-				// Possibly extract a national prefix
-				this.extract_national_prefix();
-
-				if (this.national_prefix !== previous_national_prefix) {
-					// National number has changed
-					// (due to another national prefix been extracted)
-					// therefore national number has changed
-					// therefore reset all previous formatting data.
-					// (and leading digits matching state)
-					this.matching_formats = this.available_formats;
-					this.reset_format();
-				}
-			}
-
-			// Check the available phone number formats
-			// based on the currently available leading digits.
-			this.match_formats_by_leading_digits();
-
-			// Format the phone number (given the next digits)
-			var formatted_national_phone_number = this.format_national_phone_number(input);
-
-			// If the phone number could be formatted,
-			// then return it, possibly prepending with country phone code
-			// (for international phone numbers only)
-			if (formatted_national_phone_number) {
-				return this.full_phone_number(formatted_national_phone_number);
-			}
-
-			// If the phone number couldn't be formatted,
-			// then just fall back to the raw phone number.
-			return this.parsed_input;
-		}
-	}, {
-		key: 'format_national_phone_number',
-		value: function format_national_phone_number(next_digits) {
-			// Format the next phone number digits
-			// using the previously chosen phone number format.
-			//
-			// This is done here because if `attempt_to_format_complete_phone_number`
-			// was placed before this call then the `template`
-			// wouldn't reflect the situation correctly (and would therefore be inconsistent)
-			//
-			var national_number_formatted_with_previous_format = void 0;
-			if (this.chosen_format) {
-				national_number_formatted_with_previous_format = this.format_next_national_number_digits(next_digits);
-			}
-
-			// See if the input digits can be formatted properly already. If not,
-			// use the results from format_next_national_number_digits(), which does formatting
-			// based on the formatting pattern chosen.
-
-			var formatted_number = this.attempt_to_format_complete_phone_number();
-
-			// Just because a phone number doesn't have a suitable format
-			// that doesn't mean that the phone is invalid
-			// because phone number formats only format phone numbers,
-			// they don't validate them and some (rare) phone numbers
-			// are meant to stay non-formatted.
-			if (formatted_number) {
-				// if (this.country)
-				// {
-				// 	this.valid = true
-				// }
-
-				return formatted_number;
-			}
-
-			// For some phone number formats national prefix
-
-			// If the previously chosen phone number format
-			// didn't match the next (current) digit being input
-			// (leading digits pattern didn't match).
-			if (this.choose_another_format()) {
-				// And a more appropriate phone number format
-				// has been chosen for these `leading digits`,
-				// then format the national phone number (so far)
-				// using the newly selected phone number pattern.
-
-				// Will return `undefined` if it couldn't format
-				// the supplied national number
-				// using the selected phone number pattern.
-
-				return this.reformat_national_number();
-			}
-
-			// If could format the next (current) digit
-			// using the previously chosen phone number format
-			// then return the formatted number so far.
-
-			// If no new phone number format could be chosen,
-			// and couldn't format the supplied national number
-			// using the selected phone number pattern,
-			// then it will return `undefined`.
-
-			return national_number_formatted_with_previous_format;
-		}
-	}, {
-		key: 'reset',
-		value: function reset() {
-			// Input stripped of non-phone-number characters.
-			// Can only contain a possible leading '+' sign and digits.
-			this.parsed_input = '';
-
-			this.current_output = '';
-
-			// This contains the national prefix that has been extracted. It contains only
-			// digits without formatting.
-			this.national_prefix = '';
-
-			this.national_number = '';
-
-			this.reset_countriness();
-
-			this.reset_format();
-
-			// this.valid = false
-
-			return this;
-		}
-	}, {
-		key: 'reset_country',
-		value: function reset_country() {
-			if (this.default_country && !this.is_international()) {
-				this.country = this.default_country;
-			} else {
-				this.country = undefined;
-			}
-		}
-	}, {
-		key: 'reset_countriness',
-		value: function reset_countriness() {
-			this.reset_country();
-
-			if (this.default_country && !this.is_international()) {
-				this.country_metadata = this.metadata.countries[this.default_country];
-				this.country_phone_code = this.country_metadata.phone_code;
-
-				this.initialize_phone_number_formats_for_this_country_phone_code();
-			} else {
-				this.country_metadata = undefined;
-				this.country_phone_code = undefined;
-
-				this.available_formats = [];
-				this.matching_formats = this.available_formats;
-			}
-		}
-	}, {
-		key: 'reset_format',
-		value: function reset_format() {
-			this.chosen_format = undefined;
-			this.template = undefined;
-			this.partially_populated_template = undefined;
-			this.last_match_position = -1;
-		}
-
-		// Format each digit of national phone number (so far)
-		// using the newly selected phone number pattern.
-
-	}, {
-		key: 'reformat_national_number',
-		value: function reformat_national_number() {
-			// Format each digit of national phone number (so far)
-			// using the selected phone number pattern.
-			return this.format_next_national_number_digits(this.national_number);
-		}
-	}, {
-		key: 'initialize_phone_number_formats_for_this_country_phone_code',
-		value: function initialize_phone_number_formats_for_this_country_phone_code() {
-			// Get all "eligible" phone number formats for this country
-			this.available_formats = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* get_formats */])(this.country_metadata).filter(function (format) {
-				return ELIGIBLE_FORMAT_PATTERN.test(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format));
-			});
-
-			this.matching_formats = this.available_formats;
-		}
-	}, {
-		key: 'match_formats_by_leading_digits',
-		value: function match_formats_by_leading_digits() {
-			var leading_digits = this.national_number;
-
-			// "leading digits" patterns start with a maximum 3 digits,
-			// and then with each additional digit
-			// a more precise "leading digits" pattern is specified.
-			// They could make "leading digits" patterns start
-			// with a maximum of a single digit, but they didn't,
-			// so it's possible that some phone number formats
-			// will be falsely rejected until there are at least
-			// 3 digits in the national (significant) number being input.
-
-			var index_of_leading_digits_pattern = leading_digits.length - MIN_LEADING_DIGITS_LENGTH;
-
-			if (index_of_leading_digits_pattern < 0) {
-				index_of_leading_digits_pattern = 0;
-			}
-
-			this.matching_formats = this.get_relevant_phone_number_formats().filter(function (format) {
-				var leading_digits_pattern_count = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(format).length;
-
-				// Keep everything that isn't restricted by leading digits.
-				if (leading_digits_pattern_count === 0) {
-					return true;
-				}
-
-				var leading_digits_pattern_index = Math.min(index_of_leading_digits_pattern, leading_digits_pattern_count - 1);
-				var leading_digits_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(format)[leading_digits_pattern_index];
-
-				// Brackets are required for `^` to be applied to
-				// all or-ed (`|`) parts, not just the first one.
-				return new RegExp('^(' + leading_digits_pattern + ')').test(leading_digits);
-			});
-
-			// If there was a phone number format chosen
-			// and it no longer holds given the new leading digits then reset it
-			if (this.chosen_format && this.matching_formats.indexOf(this.chosen_format) === -1) {
-				this.reset_format();
-			}
-		}
-	}, {
-		key: 'get_relevant_phone_number_formats',
-		value: function get_relevant_phone_number_formats() {
-			var leading_digits = this.national_number;
-
-			// "leading digits" patterns start with a maximum 3 digits,
-			// and then with each additional digit
-			// a more precise "leading digits" pattern is specified.
-			// They could make "leading digits" patterns start
-			// with a maximum of a single digit, but they didn't,
-			// so it's possible that some phone number formats
-			// will be falsely rejected until there are at least
-			// 3 digits in the national (significant) number being input.
-
-			if (leading_digits.length <= MIN_LEADING_DIGITS_LENGTH) {
-				return this.available_formats;
-			}
-
-			return this.matching_formats;
-		}
-
-		// Check to see if there is an exact pattern match for these digits. If so, we
-		// should use this instead of any other formatting template whose
-		// leadingDigitsPattern also matches the input.
-
-	}, {
-		key: 'attempt_to_format_complete_phone_number',
-		value: function attempt_to_format_complete_phone_number() {
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(this.get_relevant_phone_number_formats()), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var format = _step.value;
-
-					var matcher = new RegExp('^(?:' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format) + ')$');
-
-					if (!matcher.test(this.national_number)) {
-						continue;
-					}
-
-					if (!this.validate_format(format)) {
-						continue;
-					}
-
-					// To leave the formatter in a consistent state
-					this.reset_format();
-					this.chosen_format = format;
-
-					var formatted_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__format__["b" /* format_national_number_using_format */])(this.national_number, format, this.is_international(), this.national_prefix.length > 0, this.country_metadata);
-
-					// Set `this.template` and `this.partially_populated_template`
-					//
-					// `else` case doesn't ever happen
-					// with the current metadata,
-					// but just in case.
-					//
-					/* istanbul ignore else */
-					if (this.create_formatting_template(format)) {
-						// Populate `this.partially_populated_template`
-						this.reformat_national_number();
-					} else {
-						var full_number = this.full_phone_number(formatted_number);
-
-						this.template = full_number.replace(/[\d\+]/g, DIGIT_PLACEHOLDER);
-						this.partially_populated_template = full_number;
-					}
-
-					return formatted_number;
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
-		}
-
-		// Combines the national number with the appropriate prefix
-
-	}, {
-		key: 'full_phone_number',
-		value: function full_phone_number(formatted_national_number) {
-			if (this.is_international()) {
-				return '+' + this.country_phone_code + ' ' + formatted_national_number;
-			}
-
-			return formatted_national_number;
-		}
-
-		// Extracts the country calling code from the beginning
-		// of the entered `national_number` (so far),
-		// and places the remaining input into the `national_number`.
-
-	}, {
-		key: 'extract_country_phone_code',
-		value: function extract_country_phone_code() {
-			if (!this.national_number) {
-				return;
-			}
-
-			var _parse_phone_number_a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["g" /* parse_phone_number_and_country_phone_code */])(this.parsed_input, this.metadata),
-			    country_phone_code = _parse_phone_number_a.country_phone_code,
-			    number = _parse_phone_number_a.number;
-
-			if (!country_phone_code) {
-				return;
-			}
-
-			this.country_phone_code = country_phone_code;
-			this.national_number = number;
-
-			return this.country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, this.metadata);
-		}
-	}, {
-		key: 'extract_national_prefix',
-		value: function extract_national_prefix() {
-			this.national_prefix = '';
-
-			if (!this.country_metadata) {
-				return;
-			}
-
-			var national_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["h" /* strip_national_prefix */])(this.national_number, this.country_metadata);
-
-			if (national_number !== this.national_number) {
-				this.national_prefix = this.national_number.slice(0, this.national_number.length - national_number.length);
-				this.national_number = national_number;
-			}
-
-			return this.national_prefix;
-		}
-	}, {
-		key: 'choose_another_format',
-		value: function choose_another_format() {
-			// When there are multiple available formats, the formatter uses the first
-			// format where a formatting template could be created.
-			var _iteratorNormalCompletion2 = true;
-			var _didIteratorError2 = false;
-			var _iteratorError2 = undefined;
-
-			try {
-				for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(this.get_relevant_phone_number_formats()), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-					var format = _step2.value;
-
-					// If this format is currently being used
-					// and is still possible, then stick to it.
-					if (this.chosen_format === format) {
-						return;
-					}
-
-					// If this `format` is suitable for "as you type",
-					// then extract the template from this format
-					// and use it to format the phone number being input.
-
-					if (!this.validate_format(format)) {
-						continue;
-					}
-
-					if (!this.create_formatting_template(format)) {
-						continue;
-					}
-
-					this.chosen_format = format;
-
-					// With a new formatting template, the matched position
-					// using the old template needs to be reset.
-					this.last_match_position = -1;
-
-					return true;
-				}
-
-				// No format matches the phone number,
-				// therefore set `country` to `undefined`
-				// (or to the default country).
-			} catch (err) {
-				_didIteratorError2 = true;
-				_iteratorError2 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion2 && _iterator2.return) {
-						_iterator2.return();
-					}
-				} finally {
-					if (_didIteratorError2) {
-						throw _iteratorError2;
-					}
-				}
-			}
-
-			this.reset_country();
-
-			// No format matches the national phone number entered
-			this.reset_format();
-		}
-	}, {
-		key: 'validate_format',
-		value: function validate_format(format) {
-			// If national prefix is mandatory for this phone number format
-			// and the user didn't input the national prefix,
-			// then this phone number format isn't suitable.
-			if (!this.is_international() && !this.national_prefix && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["g" /* get_format_national_prefix_is_mandatory_when_formatting */])(format, this.country_metadata)) {
-				return;
-			}
-
-			return true;
-		}
-	}, {
-		key: 'create_formatting_template',
-		value: function create_formatting_template(format) {
-			// The formatter doesn't format numbers when numberPattern contains '|', e.g.
-			// (20|3)\d{4}. In those cases we quickly return.
-			// (Though there's no such format in current metadata)
-			/* istanbul ignore if */
-			if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format).indexOf('|') >= 0) {
-				return;
-			}
-
-			var national_prefix_formatting_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["h" /* get_format_national_prefix_formatting_rule */])(format, this.country_metadata);
-
-			// A very smart trick by the guys at Google
-			var number_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format)
-			// Replace anything in the form of [..] with \d
-			.replace(CHARACTER_CLASS_PATTERN, '\\d')
-			// Replace any standalone digit (not the one in `{}`) with \d
-			.replace(STANDALONE_DIGIT_PATTERN, '\\d');
-
-			// This match will always succeed,
-			// because the "longest dummy phone number"
-			// has enough length to accomodate any possible
-			// national phone number format pattern.
-			var dummy_phone_number_matching_format_pattern = LONGEST_DUMMY_PHONE_NUMBER.match(number_pattern)[0];
-
-			// If the national number entered is too long
-			// for any phone number format, then abort.
-			if (this.national_number.length > dummy_phone_number_matching_format_pattern.length) {
-				return;
-			}
-
-			// Now prepare phone number format
-			var number_format = this.get_format_format(format);
-
-			// If national prefix formatting rule is set
-			// for this phone number format
-			if (national_prefix_formatting_rule) {
-				// If the user did input the national prefix
-				// (or if the national prefix formatting rule does not require national prefix)
-				// then maybe make it part of the phone number template
-				if (this.national_prefix || !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["i" /* get_format_uses_national_prefix */])(national_prefix_formatting_rule)) {
-					// Make the national prefix part of the phone number template
-					number_format = number_format.replace(__WEBPACK_IMPORTED_MODULE_5__format__["c" /* FIRST_GROUP_PATTERN */], national_prefix_formatting_rule);
-				}
-			}
-
-			// Get a formatting template which can be used to efficiently format
-			// a partial number where digits are added one by one.
-
-			// Create formatting template for this phone number format
-			var template = dummy_phone_number_matching_format_pattern
-			// Format the dummy phone number according to the format
-			.replace(new RegExp(number_pattern, 'g'), number_format)
-			// Replace each dummy digit with a DIGIT_PLACEHOLDER
-			.replace(DUMMY_DIGIT_MATCHER, DIGIT_PLACEHOLDER);
-
-			// This one is for national number only
-			this.partially_populated_template = template;
-
-			// For convenience, the public `.template` property
-			// is gonna contain the whole international number
-			// if the phone number being input is international.
-			if (this.is_international()) {
-				template = DIGIT_PLACEHOLDER + repeat(DIGIT_PLACEHOLDER, this.country_phone_code.length) + ' ' + template;
-			}
-			// For local numbers, replace national prefix
-			// with a digit placeholder.
-			else {
-					template = template.replace(/\d/g, DIGIT_PLACEHOLDER);
-				}
-
-			// This one is for the full phone number
-			return this.template = template;
-		}
-	}, {
-		key: 'format_next_national_number_digits',
-		value: function format_next_national_number_digits(digits) {
-			var _iteratorNormalCompletion3 = true;
-			var _didIteratorError3 = false;
-			var _iteratorError3 = undefined;
-
-			try {
-				for (var _iterator3 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(digits), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-					var digit = _step3.value;
-
-					// If there is room for more digits in current `template`,
-					// then set the next digit in the `template`,
-					// and return the formatted digits so far.
-
-					// If more digits are entered than the current format could handle
-					if (this.partially_populated_template.slice(this.last_match_position + 1).search(DIGIT_PLACEHOLDER_MATCHER) === -1) {
-						// Reset the current format,
-						// so that the new format will be chosen
-						// in a subsequent `this.choose_another_format()` call
-						// later in code.
-						this.chosen_format = undefined;
-						this.template = undefined;
-						this.partially_populated_template = undefined;
-						return;
-					}
-
-					this.last_match_position = this.partially_populated_template.search(DIGIT_PLACEHOLDER_MATCHER);
-					this.partially_populated_template = this.partially_populated_template.replace(DIGIT_PLACEHOLDER_MATCHER, digit);
-				}
-
-				// Return the formatted phone number so far
-			} catch (err) {
-				_didIteratorError3 = true;
-				_iteratorError3 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion3 && _iterator3.return) {
-						_iterator3.return();
-					}
-				} finally {
-					if (_didIteratorError3) {
-						throw _iteratorError3;
-					}
-				}
-			}
-
-			return close_dangling_braces(this.partially_populated_template, this.last_match_position + 1).replace(DIGIT_PLACEHOLDER_MATCHER_GLOBAL, ' ');
-		}
-	}, {
-		key: 'is_international',
-		value: function is_international() {
-			return this.parsed_input && this.parsed_input[0] === '+';
-		}
-	}, {
-		key: 'get_format_format',
-		value: function get_format_format(format) {
-			if (this.is_international()) {
-				return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__format__["d" /* local_to_international_style */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format));
-			}
-
-			return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format);
-		}
-
-		// Determines the country of the phone number
-		// entered so far based on the country phone code
-		// and the national phone number.
-
-	}, {
-		key: 'determine_the_country',
-		value: function determine_the_country() {
-			this.country = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["i" /* find_country_code */])(this.country_phone_code, this.national_number, this.metadata);
-		}
-	}]);
-
-	return as_you_type;
+    function as_you_type(country_code, metadata) {
+        __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, as_you_type);
+        // Sanity check
+        if (!metadata) {
+            throw new Error('Metadata not passed');
+        }
+        if (country_code && metadata.countries[country_code]) {
+            this.default_country = country_code;
+        }
+        this.metadata = metadata;
+        this.reset();
+    }
+    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(as_you_type, [{
+            key: 'input',
+            value: function input(text) {
+                // Parse input
+                var extracted_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["e" /* extract_formatted_phone_number */])(text);
+                // Special case for a lone '+' sign
+                // since it's not considered a possible phone number.
+                if (!extracted_number) {
+                    if (text && text.indexOf('+') >= 0) {
+                        extracted_number = '+';
+                    }
+                }
+                // Validate possible first part of a phone number
+                if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__common__["a" /* matches_entirely */])(extracted_number, VALID_INCOMPLETE_PHONE_NUMBER_PATTERN)) {
+                    return this.current_output;
+                }
+                return this.process_input(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["f" /* parse_phone_number */])(extracted_number));
+            }
+        }, {
+            key: 'process_input',
+            value: function process_input(input) {
+                // If an out of position '+' sign detected
+                // (or a second '+' sign),
+                // then just drop it from the input.
+                if (input[0] === '+') {
+                    if (!this.parsed_input) {
+                        this.parsed_input += '+';
+                        // If a default country was set
+                        // then reset it because an explicitly international
+                        // phone number is being entered
+                        this.reset_countriness();
+                    }
+                    input = input.slice(1);
+                }
+                // Raw phone number
+                this.parsed_input += input;
+                // // Reset phone number validation state
+                // this.valid = false
+                // Add digits to the national number
+                this.national_number += input;
+                // Try to format the parsed input
+                if (this.is_international()) {
+                    if (!this.country_phone_code) {
+                        // If one looks at country phone codes
+                        // then he can notice that no one country phone code
+                        // is ever a (leftmost) substring of another country phone code.
+                        // So if a valid country code is extracted so far
+                        // then it means that this is the country code.
+                        // If no country phone code could be extracted so far,
+                        // then just return the raw phone number,
+                        // because it has no way of knowing
+                        // how to format the phone number so far.
+                        if (!this.extract_country_phone_code()) {
+                            // Return raw phone number
+                            return this.parsed_input;
+                        }
+                        // Initialize country-specific data
+                        this.initialize_phone_number_formats_for_this_country_phone_code();
+                        this.reset_format();
+                        this.determine_the_country();
+                    }
+                    else if (!this.country) {
+                        this.determine_the_country();
+                    }
+                }
+                else {
+                    // Some national prefixes are substrings of other national prefixes
+                    // (for the same country), therefore try to extract national prefix each time
+                    // because a longer national prefix might be available at some point in time.
+                    var previous_national_prefix = this.national_prefix;
+                    this.national_number = this.national_prefix + this.national_number;
+                    // Possibly extract a national prefix
+                    this.extract_national_prefix();
+                    if (this.national_prefix !== previous_national_prefix) {
+                        // National number has changed
+                        // (due to another national prefix been extracted)
+                        // therefore national number has changed
+                        // therefore reset all previous formatting data.
+                        // (and leading digits matching state)
+                        this.matching_formats = this.available_formats;
+                        this.reset_format();
+                    }
+                }
+                // Check the available phone number formats
+                // based on the currently available leading digits.
+                this.match_formats_by_leading_digits();
+                // Format the phone number (given the next digits)
+                var formatted_national_phone_number = this.format_national_phone_number(input);
+                // If the phone number could be formatted,
+                // then return it, possibly prepending with country phone code
+                // (for international phone numbers only)
+                if (formatted_national_phone_number) {
+                    return this.full_phone_number(formatted_national_phone_number);
+                }
+                // If the phone number couldn't be formatted,
+                // then just fall back to the raw phone number.
+                return this.parsed_input;
+            }
+        }, {
+            key: 'format_national_phone_number',
+            value: function format_national_phone_number(next_digits) {
+                // Format the next phone number digits
+                // using the previously chosen phone number format.
+                //
+                // This is done here because if `attempt_to_format_complete_phone_number`
+                // was placed before this call then the `template`
+                // wouldn't reflect the situation correctly (and would therefore be inconsistent)
+                //
+                var national_number_formatted_with_previous_format = void 0;
+                if (this.chosen_format) {
+                    national_number_formatted_with_previous_format = this.format_next_national_number_digits(next_digits);
+                }
+                // See if the input digits can be formatted properly already. If not,
+                // use the results from format_next_national_number_digits(), which does formatting
+                // based on the formatting pattern chosen.
+                var formatted_number = this.attempt_to_format_complete_phone_number();
+                // Just because a phone number doesn't have a suitable format
+                // that doesn't mean that the phone is invalid
+                // because phone number formats only format phone numbers,
+                // they don't validate them and some (rare) phone numbers
+                // are meant to stay non-formatted.
+                if (formatted_number) {
+                    // if (this.country)
+                    // {
+                    // 	this.valid = true
+                    // }
+                    return formatted_number;
+                }
+                // For some phone number formats national prefix
+                // If the previously chosen phone number format
+                // didn't match the next (current) digit being input
+                // (leading digits pattern didn't match).
+                if (this.choose_another_format()) {
+                    // And a more appropriate phone number format
+                    // has been chosen for these `leading digits`,
+                    // then format the national phone number (so far)
+                    // using the newly selected phone number pattern.
+                    // Will return `undefined` if it couldn't format
+                    // the supplied national number
+                    // using the selected phone number pattern.
+                    return this.reformat_national_number();
+                }
+                // If could format the next (current) digit
+                // using the previously chosen phone number format
+                // then return the formatted number so far.
+                // If no new phone number format could be chosen,
+                // and couldn't format the supplied national number
+                // using the selected phone number pattern,
+                // then it will return `undefined`.
+                return national_number_formatted_with_previous_format;
+            }
+        }, {
+            key: 'reset',
+            value: function reset() {
+                // Input stripped of non-phone-number characters.
+                // Can only contain a possible leading '+' sign and digits.
+                this.parsed_input = '';
+                this.current_output = '';
+                // This contains the national prefix that has been extracted. It contains only
+                // digits without formatting.
+                this.national_prefix = '';
+                this.national_number = '';
+                this.reset_countriness();
+                this.reset_format();
+                // this.valid = false
+                return this;
+            }
+        }, {
+            key: 'reset_country',
+            value: function reset_country() {
+                if (this.default_country && !this.is_international()) {
+                    this.country = this.default_country;
+                }
+                else {
+                    this.country = undefined;
+                }
+            }
+        }, {
+            key: 'reset_countriness',
+            value: function reset_countriness() {
+                this.reset_country();
+                if (this.default_country && !this.is_international()) {
+                    this.country_metadata = this.metadata.countries[this.default_country];
+                    this.country_phone_code = this.country_metadata.phone_code;
+                    this.initialize_phone_number_formats_for_this_country_phone_code();
+                }
+                else {
+                    this.country_metadata = undefined;
+                    this.country_phone_code = undefined;
+                    this.available_formats = [];
+                    this.matching_formats = this.available_formats;
+                }
+            }
+        }, {
+            key: 'reset_format',
+            value: function reset_format() {
+                this.chosen_format = undefined;
+                this.template = undefined;
+                this.partially_populated_template = undefined;
+                this.last_match_position = -1;
+            }
+            // Format each digit of national phone number (so far)
+            // using the newly selected phone number pattern.
+        }, {
+            key: 'reformat_national_number',
+            value: function reformat_national_number() {
+                // Format each digit of national phone number (so far)
+                // using the selected phone number pattern.
+                return this.format_next_national_number_digits(this.national_number);
+            }
+        }, {
+            key: 'initialize_phone_number_formats_for_this_country_phone_code',
+            value: function initialize_phone_number_formats_for_this_country_phone_code() {
+                // Get all "eligible" phone number formats for this country
+                this.available_formats = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["b" /* get_formats */])(this.country_metadata).filter(function (format) {
+                    return ELIGIBLE_FORMAT_PATTERN.test(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format));
+                });
+                this.matching_formats = this.available_formats;
+            }
+        }, {
+            key: 'match_formats_by_leading_digits',
+            value: function match_formats_by_leading_digits() {
+                var leading_digits = this.national_number;
+                // "leading digits" patterns start with a maximum 3 digits,
+                // and then with each additional digit
+                // a more precise "leading digits" pattern is specified.
+                // They could make "leading digits" patterns start
+                // with a maximum of a single digit, but they didn't,
+                // so it's possible that some phone number formats
+                // will be falsely rejected until there are at least
+                // 3 digits in the national (significant) number being input.
+                var index_of_leading_digits_pattern = leading_digits.length - MIN_LEADING_DIGITS_LENGTH;
+                if (index_of_leading_digits_pattern < 0) {
+                    index_of_leading_digits_pattern = 0;
+                }
+                this.matching_formats = this.get_relevant_phone_number_formats().filter(function (format) {
+                    var leading_digits_pattern_count = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(format).length;
+                    // Keep everything that isn't restricted by leading digits.
+                    if (leading_digits_pattern_count === 0) {
+                        return true;
+                    }
+                    var leading_digits_pattern_index = Math.min(index_of_leading_digits_pattern, leading_digits_pattern_count - 1);
+                    var leading_digits_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["d" /* get_format_leading_digits_patterns */])(format)[leading_digits_pattern_index];
+                    // Brackets are required for `^` to be applied to
+                    // all or-ed (`|`) parts, not just the first one.
+                    return new RegExp('^(' + leading_digits_pattern + ')').test(leading_digits);
+                });
+                // If there was a phone number format chosen
+                // and it no longer holds given the new leading digits then reset it
+                if (this.chosen_format && this.matching_formats.indexOf(this.chosen_format) === -1) {
+                    this.reset_format();
+                }
+            }
+        }, {
+            key: 'get_relevant_phone_number_formats',
+            value: function get_relevant_phone_number_formats() {
+                var leading_digits = this.national_number;
+                // "leading digits" patterns start with a maximum 3 digits,
+                // and then with each additional digit
+                // a more precise "leading digits" pattern is specified.
+                // They could make "leading digits" patterns start
+                // with a maximum of a single digit, but they didn't,
+                // so it's possible that some phone number formats
+                // will be falsely rejected until there are at least
+                // 3 digits in the national (significant) number being input.
+                if (leading_digits.length <= MIN_LEADING_DIGITS_LENGTH) {
+                    return this.available_formats;
+                }
+                return this.matching_formats;
+            }
+            // Check to see if there is an exact pattern match for these digits. If so, we
+            // should use this instead of any other formatting template whose
+            // leadingDigitsPattern also matches the input.
+        }, {
+            key: 'attempt_to_format_complete_phone_number',
+            value: function attempt_to_format_complete_phone_number() {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+                try {
+                    for (var _iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(this.get_relevant_phone_number_formats()), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var format = _step.value;
+                        var matcher = new RegExp('^(?:' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format) + ')$');
+                        if (!matcher.test(this.national_number)) {
+                            continue;
+                        }
+                        if (!this.validate_format(format)) {
+                            continue;
+                        }
+                        // To leave the formatter in a consistent state
+                        this.reset_format();
+                        this.chosen_format = format;
+                        var formatted_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__format__["b" /* format_national_number_using_format */])(this.national_number, format, this.is_international(), this.national_prefix.length > 0, this.country_metadata);
+                        // Set `this.template` and `this.partially_populated_template`
+                        //
+                        // `else` case doesn't ever happen
+                        // with the current metadata,
+                        // but just in case.
+                        //
+                        /* istanbul ignore else */
+                        if (this.create_formatting_template(format)) {
+                            // Populate `this.partially_populated_template`
+                            this.reformat_national_number();
+                        }
+                        else {
+                            var full_number = this.full_phone_number(formatted_number);
+                            this.template = full_number.replace(/[\d\+]/g, DIGIT_PLACEHOLDER);
+                            this.partially_populated_template = full_number;
+                        }
+                        return formatted_number;
+                    }
+                }
+                catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                }
+                finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    }
+                    finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }
+            // Combines the national number with the appropriate prefix
+        }, {
+            key: 'full_phone_number',
+            value: function full_phone_number(formatted_national_number) {
+                if (this.is_international()) {
+                    return '+' + this.country_phone_code + ' ' + formatted_national_number;
+                }
+                return formatted_national_number;
+            }
+            // Extracts the country calling code from the beginning
+            // of the entered `national_number` (so far),
+            // and places the remaining input into the `national_number`.
+        }, {
+            key: 'extract_country_phone_code',
+            value: function extract_country_phone_code() {
+                if (!this.national_number) {
+                    return;
+                }
+                var _parse_phone_number_a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["g" /* parse_phone_number_and_country_phone_code */])(this.parsed_input, this.metadata), country_phone_code = _parse_phone_number_a.country_phone_code, number = _parse_phone_number_a.number;
+                if (!country_phone_code) {
+                    return;
+                }
+                this.country_phone_code = country_phone_code;
+                this.national_number = number;
+                return this.country_metadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["f" /* get_metadata_by_country_phone_code */])(country_phone_code, this.metadata);
+            }
+        }, {
+            key: 'extract_national_prefix',
+            value: function extract_national_prefix() {
+                this.national_prefix = '';
+                if (!this.country_metadata) {
+                    return;
+                }
+                var national_number = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["h" /* strip_national_prefix */])(this.national_number, this.country_metadata);
+                if (national_number !== this.national_number) {
+                    this.national_prefix = this.national_number.slice(0, this.national_number.length - national_number.length);
+                    this.national_number = national_number;
+                }
+                return this.national_prefix;
+            }
+        }, {
+            key: 'choose_another_format',
+            value: function choose_another_format() {
+                // When there are multiple available formats, the formatter uses the first
+                // format where a formatting template could be created.
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+                try {
+                    for (var _iterator2 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(this.get_relevant_phone_number_formats()), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var format = _step2.value;
+                        // If this format is currently being used
+                        // and is still possible, then stick to it.
+                        if (this.chosen_format === format) {
+                            return;
+                        }
+                        // If this `format` is suitable for "as you type",
+                        // then extract the template from this format
+                        // and use it to format the phone number being input.
+                        if (!this.validate_format(format)) {
+                            continue;
+                        }
+                        if (!this.create_formatting_template(format)) {
+                            continue;
+                        }
+                        this.chosen_format = format;
+                        // With a new formatting template, the matched position
+                        // using the old template needs to be reset.
+                        this.last_match_position = -1;
+                        return true;
+                    }
+                    // No format matches the phone number,
+                    // therefore set `country` to `undefined`
+                    // (or to the default country).
+                }
+                catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                }
+                finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    }
+                    finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+                this.reset_country();
+                // No format matches the national phone number entered
+                this.reset_format();
+            }
+        }, {
+            key: 'validate_format',
+            value: function validate_format(format) {
+                // If national prefix is mandatory for this phone number format
+                // and the user didn't input the national prefix,
+                // then this phone number format isn't suitable.
+                if (!this.is_international() && !this.national_prefix && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["g" /* get_format_national_prefix_is_mandatory_when_formatting */])(format, this.country_metadata)) {
+                    return;
+                }
+                return true;
+            }
+        }, {
+            key: 'create_formatting_template',
+            value: function create_formatting_template(format) {
+                // The formatter doesn't format numbers when numberPattern contains '|', e.g.
+                // (20|3)\d{4}. In those cases we quickly return.
+                // (Though there's no such format in current metadata)
+                /* istanbul ignore if */
+                if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format).indexOf('|') >= 0) {
+                    return;
+                }
+                var national_prefix_formatting_rule = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["h" /* get_format_national_prefix_formatting_rule */])(format, this.country_metadata);
+                // A very smart trick by the guys at Google
+                var number_pattern = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["e" /* get_format_pattern */])(format)
+                    .replace(CHARACTER_CLASS_PATTERN, '\\d')
+                    .replace(STANDALONE_DIGIT_PATTERN, '\\d');
+                // This match will always succeed,
+                // because the "longest dummy phone number"
+                // has enough length to accomodate any possible
+                // national phone number format pattern.
+                var dummy_phone_number_matching_format_pattern = LONGEST_DUMMY_PHONE_NUMBER.match(number_pattern)[0];
+                // If the national number entered is too long
+                // for any phone number format, then abort.
+                if (this.national_number.length > dummy_phone_number_matching_format_pattern.length) {
+                    return;
+                }
+                // Now prepare phone number format
+                var number_format = this.get_format_format(format);
+                // If national prefix formatting rule is set
+                // for this phone number format
+                if (national_prefix_formatting_rule) {
+                    // If the user did input the national prefix
+                    // (or if the national prefix formatting rule does not require national prefix)
+                    // then maybe make it part of the phone number template
+                    if (this.national_prefix || !__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["i" /* get_format_uses_national_prefix */])(national_prefix_formatting_rule)) {
+                        // Make the national prefix part of the phone number template
+                        number_format = number_format.replace(__WEBPACK_IMPORTED_MODULE_5__format__["c" /* FIRST_GROUP_PATTERN */], national_prefix_formatting_rule);
+                    }
+                }
+                // Get a formatting template which can be used to efficiently format
+                // a partial number where digits are added one by one.
+                // Create formatting template for this phone number format
+                var template = dummy_phone_number_matching_format_pattern
+                    .replace(new RegExp(number_pattern, 'g'), number_format)
+                    .replace(DUMMY_DIGIT_MATCHER, DIGIT_PLACEHOLDER);
+                // This one is for national number only
+                this.partially_populated_template = template;
+                // For convenience, the public `.template` property
+                // is gonna contain the whole international number
+                // if the phone number being input is international.
+                if (this.is_international()) {
+                    template = DIGIT_PLACEHOLDER + repeat(DIGIT_PLACEHOLDER, this.country_phone_code.length) + ' ' + template;
+                }
+                else {
+                    template = template.replace(/\d/g, DIGIT_PLACEHOLDER);
+                }
+                // This one is for the full phone number
+                return this.template = template;
+            }
+        }, {
+            key: 'format_next_national_number_digits',
+            value: function format_next_national_number_digits(digits) {
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+                try {
+                    for (var _iterator3 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(digits), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var digit = _step3.value;
+                        // If there is room for more digits in current `template`,
+                        // then set the next digit in the `template`,
+                        // and return the formatted digits so far.
+                        // If more digits are entered than the current format could handle
+                        if (this.partially_populated_template.slice(this.last_match_position + 1).search(DIGIT_PLACEHOLDER_MATCHER) === -1) {
+                            // Reset the current format,
+                            // so that the new format will be chosen
+                            // in a subsequent `this.choose_another_format()` call
+                            // later in code.
+                            this.chosen_format = undefined;
+                            this.template = undefined;
+                            this.partially_populated_template = undefined;
+                            return;
+                        }
+                        this.last_match_position = this.partially_populated_template.search(DIGIT_PLACEHOLDER_MATCHER);
+                        this.partially_populated_template = this.partially_populated_template.replace(DIGIT_PLACEHOLDER_MATCHER, digit);
+                    }
+                    // Return the formatted phone number so far
+                }
+                catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                }
+                finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    }
+                    finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
+                }
+                return close_dangling_braces(this.partially_populated_template, this.last_match_position + 1).replace(DIGIT_PLACEHOLDER_MATCHER_GLOBAL, ' ');
+            }
+        }, {
+            key: 'is_international',
+            value: function is_international() {
+                return this.parsed_input && this.parsed_input[0] === '+';
+            }
+        }, {
+            key: 'get_format_format',
+            value: function get_format_format(format) {
+                if (this.is_international()) {
+                    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__format__["d" /* local_to_international_style */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["c" /* get_format_international_format */])(format));
+                }
+                return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__metadata__["j" /* get_format_format */])(format);
+            }
+            // Determines the country of the phone number
+            // entered so far based on the country phone code
+            // and the national phone number.
+        }, {
+            key: 'determine_the_country',
+            value: function determine_the_country() {
+                this.country = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__parse__["i" /* find_country_code */])(this.country_phone_code, this.national_number, this.metadata);
+            }
+        }]);
+    return as_you_type;
 }();
-
 /* harmony default export */ __webpack_exports__["a"] = as_you_type;
-
-
 function close_dangling_braces(template, cut_before) {
-	var retained_template = template.slice(0, cut_before);
-
-	var opening_braces = count_occurences('(', retained_template);
-	var closing_braces = count_occurences(')', retained_template);
-
-	var dangling_braces = opening_braces - closing_braces;
-
-	while (dangling_braces > 0 && cut_before < template.length) {
-		if (template[cut_before] === ')') {
-			dangling_braces--;
-		}
-		cut_before++;
-	}
-
-	return template.slice(0, cut_before);
+    var retained_template = template.slice(0, cut_before);
+    var opening_braces = count_occurences('(', retained_template);
+    var closing_braces = count_occurences(')', retained_template);
+    var dangling_braces = opening_braces - closing_braces;
+    while (dangling_braces > 0 && cut_before < template.length) {
+        if (template[cut_before] === ')') {
+            dangling_braces--;
+        }
+        cut_before++;
+    }
+    return template.slice(0, cut_before);
 }
-
 // Counts all occurences of a symbol in a string
 function count_occurences(symbol, string) {
-	var count = 0;
-
-	var _iteratorNormalCompletion4 = true;
-	var _didIteratorError4 = false;
-	var _iteratorError4 = undefined;
-
-	try {
-		for (var _iterator4 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(string), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-			var character = _step4.value;
-
-			if (character === symbol) {
-				count++;
-			}
-		}
-	} catch (err) {
-		_didIteratorError4 = true;
-		_iteratorError4 = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion4 && _iterator4.return) {
-				_iterator4.return();
-			}
-		} finally {
-			if (_didIteratorError4) {
-				throw _iteratorError4;
-			}
-		}
-	}
-
-	return count;
+    var count = 0;
+    var _iteratorNormalCompletion4 = true;
+    var _didIteratorError4 = false;
+    var _iteratorError4 = undefined;
+    try {
+        for (var _iterator4 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(string), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var character = _step4.value;
+            if (character === symbol) {
+                count++;
+            }
+        }
+    }
+    catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+    }
+    finally {
+        try {
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                _iterator4.return();
+            }
+        }
+        finally {
+            if (_didIteratorError4) {
+                throw _iteratorError4;
+            }
+        }
+    }
+    return count;
 }
-
 // Repeats a string (or a symbol) N times.
 // http://stackoverflow.com/questions/202605/repeat-string-javascript
 function repeat(string, times) {
-	if (times < 1) {
-		return '';
-	}
-
-	var result = '';
-
-	while (times > 1) {
-		if (times & 1) {
-			result += string;
-		}
-
-		times >>= 1;
-		string += string;
-	}
-
-	return result + string;
+    if (times < 1) {
+        return '';
+    }
+    var result = '';
+    while (times > 1) {
+        if (times & 1) {
+            result += string;
+        }
+        times >>= 1;
+        string += string;
+    }
+    return result + string;
 }
+//# sourceMappingURL=as you type.js.map 
 //# sourceMappingURL=as you type.js.map
 
 /***/ }),
-/* 472 */
+/* 488 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parse__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get_number_type__ = __webpack_require__(441);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__metadata__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__get_number_type__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__metadata__ = __webpack_require__(448);
 /* harmony export (immutable) */ __webpack_exports__["a"] = is_valid;
-
-
-
 
 
 // Checks if a given phone number is valid
@@ -2801,260 +2290,27 @@ function repeat(string, times) {
 // ```
 //
 function is_valid(first_argument, second_argument, third_argument) {
-	var _sort_out_arguments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__get_number_type__["b" /* sort_out_arguments */])(first_argument, second_argument, third_argument),
-	    input = _sort_out_arguments.input,
-	    metadata = _sort_out_arguments.metadata;
-
-	// Sanity check
-
-
-	if (!metadata) {
-		throw new Error('Metadata not passed');
-	}
-
-	if (!input) {
-		return false;
-	}
-
-	if (!input.country) {
-		return false;
-	}
-
-	var country_metadata = metadata.countries[input.country];
-
-	if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__metadata__["p" /* get_types */])(country_metadata)) {
-		if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__get_number_type__["a" /* default */])(input, metadata)) {
-			return false;
-		}
-	}
-
-	return true;
+    var _sort_out_arguments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__get_number_type__["b" /* sort_out_arguments */])(first_argument, second_argument, third_argument), input = _sort_out_arguments.input, metadata = _sort_out_arguments.metadata;
+    // Sanity check
+    if (!metadata) {
+        throw new Error('Metadata not passed');
+    }
+    if (!input) {
+        return false;
+    }
+    if (!input.country) {
+        return false;
+    }
+    var country_metadata = metadata.countries[input.country];
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__metadata__["p" /* get_types */])(country_metadata)) {
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__get_number_type__["a" /* default */])(input, metadata)) {
+            return false;
+        }
+    }
+    return true;
 }
+//# sourceMappingURL=validate.js.map 
 //# sourceMappingURL=validate.js.map
-
-/***/ }),
-/* 473 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(547));
-__export(__webpack_require__(548));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 474 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(549));
-__export(__webpack_require__(550));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 475 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(551));
-__export(__webpack_require__(552));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 476 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(553));
-__export(__webpack_require__(554));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 477 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(555));
-__export(__webpack_require__(556));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 478 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(557));
-__export(__webpack_require__(558));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 479 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(559));
-__export(__webpack_require__(560));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 480 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(561));
-__export(__webpack_require__(562));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 481 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(563));
-__export(__webpack_require__(564));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 482 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(565));
-__export(__webpack_require__(566));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 483 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(567));
-__export(__webpack_require__(568));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 484 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(569));
-__export(__webpack_require__(570));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 485 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(571));
-__export(__webpack_require__(572));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 486 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(573));
-__export(__webpack_require__(574));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 487 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(575));
-__export(__webpack_require__(576));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 488 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(577));
-__export(__webpack_require__(578));
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 /* 489 */
@@ -3063,11 +2319,14 @@ __export(__webpack_require__(578));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(579));
-__export(__webpack_require__(580));
+__export(__webpack_require__(572));
+__export(__webpack_require__(573));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3077,11 +2336,14 @@ __export(__webpack_require__(580));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(581));
-__export(__webpack_require__(582));
+__export(__webpack_require__(574));
+__export(__webpack_require__(575));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3091,11 +2353,14 @@ __export(__webpack_require__(582));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(583));
-__export(__webpack_require__(584));
+__export(__webpack_require__(576));
+__export(__webpack_require__(577));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3105,11 +2370,14 @@ __export(__webpack_require__(584));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(585));
-__export(__webpack_require__(586));
+__export(__webpack_require__(578));
+__export(__webpack_require__(579));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3119,11 +2387,14 @@ __export(__webpack_require__(586));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(587));
-__export(__webpack_require__(588));
+__export(__webpack_require__(580));
+__export(__webpack_require__(581));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3133,11 +2404,14 @@ __export(__webpack_require__(588));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(589));
-__export(__webpack_require__(590));
+__export(__webpack_require__(582));
+__export(__webpack_require__(583));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3147,11 +2421,14 @@ __export(__webpack_require__(590));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(591));
-__export(__webpack_require__(592));
+__export(__webpack_require__(584));
+__export(__webpack_require__(585));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3161,11 +2438,14 @@ __export(__webpack_require__(592));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(593));
-__export(__webpack_require__(594));
+__export(__webpack_require__(586));
+__export(__webpack_require__(587));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -3175,47 +2455,336 @@ __export(__webpack_require__(594));
 "use strict";
 
 function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(595));
-__export(__webpack_require__(596));
+__export(__webpack_require__(588));
+__export(__webpack_require__(589));
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 498 */,
+/* 498 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(590));
+__export(__webpack_require__(591));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
 /* 499 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(592));
+__export(__webpack_require__(593));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 500 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(594));
+__export(__webpack_require__(595));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 501 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(596));
+__export(__webpack_require__(597));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 502 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(598));
+__export(__webpack_require__(599));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(600));
+__export(__webpack_require__(601));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(602));
+__export(__webpack_require__(603));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(604));
+__export(__webpack_require__(605));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(606));
+__export(__webpack_require__(607));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(608));
+__export(__webpack_require__(609));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 508 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(610));
+__export(__webpack_require__(611));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 509 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(612));
+__export(__webpack_require__(613));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 510 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(614));
+__export(__webpack_require__(615));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 511 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(616));
+__export(__webpack_require__(617));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 512 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(618));
+__export(__webpack_require__(619));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 513 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m)
+        if (!exports.hasOwnProperty(p))
+            exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(620));
+__export(__webpack_require__(621));
+//# sourceMappingURL=index.js.map 
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var base64_1 = __webpack_require__(473);
-var credit_card_1 = __webpack_require__(474);
-var date_1 = __webpack_require__(476);
-var date_ios_1 = __webpack_require__(475);
-var digits_1 = __webpack_require__(477);
-var email_1 = __webpack_require__(478);
-var equal_1 = __webpack_require__(480);
-var equal_to_1 = __webpack_require__(479);
-var greater_than_1 = __webpack_require__(482);
-var greater_than_equal_1 = __webpack_require__(481);
-var json_1 = __webpack_require__(483);
-var less_than_1 = __webpack_require__(485);
-var less_than_equal_1 = __webpack_require__(484);
-var max_1 = __webpack_require__(487);
-var max_date_1 = __webpack_require__(486);
-var min_1 = __webpack_require__(489);
-var min_date_1 = __webpack_require__(488);
-var not_equal_1 = __webpack_require__(491);
-var not_equal_to_1 = __webpack_require__(490);
-var number_1 = __webpack_require__(492);
-var phone_1 = __webpack_require__(493);
-var range_1 = __webpack_require__(495);
-var range_length_1 = __webpack_require__(494);
-var url_1 = __webpack_require__(496);
-var uuid_1 = __webpack_require__(497);
+var base64_1 = __webpack_require__(489);
+var credit_card_1 = __webpack_require__(490);
+var date_1 = __webpack_require__(492);
+var date_ios_1 = __webpack_require__(491);
+var digits_1 = __webpack_require__(493);
+var email_1 = __webpack_require__(494);
+var equal_1 = __webpack_require__(496);
+var equal_to_1 = __webpack_require__(495);
+var greater_than_1 = __webpack_require__(498);
+var greater_than_equal_1 = __webpack_require__(497);
+var json_1 = __webpack_require__(499);
+var less_than_1 = __webpack_require__(501);
+var less_than_equal_1 = __webpack_require__(500);
+var max_1 = __webpack_require__(503);
+var max_date_1 = __webpack_require__(502);
+var min_1 = __webpack_require__(505);
+var min_date_1 = __webpack_require__(504);
+var not_equal_1 = __webpack_require__(507);
+var not_equal_to_1 = __webpack_require__(506);
+var number_1 = __webpack_require__(508);
+var phone_1 = __webpack_require__(509);
+var range_1 = __webpack_require__(511);
+var range_length_1 = __webpack_require__(510);
+var url_1 = __webpack_require__(512);
+var uuid_1 = __webpack_require__(513);
 exports.CustomValidators = {
     base64: base64_1.base64,
     creditCard: credit_card_1.creditCard,
@@ -3284,19 +2853,18 @@ CustomFormsModule.decorators = [
 /** @nocollapse */
 CustomFormsModule.ctorParameters = function () { return []; };
 exports.CustomFormsModule = CustomFormsModule;
+//# sourceMappingURL=index.js.map 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 500 */,
-/* 501 */,
-/* 502 */
+/* 530 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EntryService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3342,627 +2910,592 @@ EntryService = __decorate([
 //# sourceMappingURL=entry.service.js.map
 
 /***/ }),
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(513), __esModule: true };
-
-/***/ }),
-/* 508 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(514), __esModule: true };
-
-/***/ }),
-/* 509 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-/***/ }),
-/* 510 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _defineProperty = __webpack_require__(508);
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-/***/ }),
-/* 511 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(507);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/***/ }),
-/* 512 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(543);
-__webpack_require__(542);
-module.exports = __webpack_require__(538);
-
-/***/ }),
-/* 513 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(540);
-module.exports = __webpack_require__(316).Object.assign;
-
-/***/ }),
-/* 514 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(541);
-var $Object = __webpack_require__(316).Object;
-module.exports = function defineProperty(it, key, desc){
-  return $Object.defineProperty(it, key, desc);
-};
-
-/***/ }),
-/* 515 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-/***/ }),
-/* 516 */
-/***/ (function(module, exports) {
-
-module.exports = function(){ /* empty */ };
-
-/***/ }),
-/* 517 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = __webpack_require__(453)
-  , toLength  = __webpack_require__(535)
-  , toIndex   = __webpack_require__(534);
-module.exports = function(IS_INCLUDES){
-  return function($this, el, fromIndex){
-    var O      = toIObject($this)
-      , length = toLength(O.length)
-      , index  = toIndex(fromIndex, length)
-      , value;
-    // Array#includes uses SameValueZero equality algorithm
-    if(IS_INCLUDES && el != el)while(length > index){
-      value = O[index++];
-      if(value != value)return true;
-    // Array#toIndex ignores holes, Array#includes - not
-    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
-      if(O[index] === el)return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-/***/ }),
-/* 518 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(460)
-  , TAG = __webpack_require__(304)('toStringTag')
-  // ES3 wrong here
-  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function(it, key){
-  try {
-    return it[key];
-  } catch(e){ /* empty */ }
-};
-
-module.exports = function(it){
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-/***/ }),
-/* 519 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// optional / simple context binding
-var aFunction = __webpack_require__(515);
-module.exports = function(fn, that, length){
-  aFunction(fn);
-  if(that === undefined)return fn;
-  switch(length){
-    case 1: return function(a){
-      return fn.call(that, a);
-    };
-    case 2: return function(a, b){
-      return fn.call(that, a, b);
-    };
-    case 3: return function(a, b, c){
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function(/* ...args */){
-    return fn.apply(that, arguments);
-  };
-};
-
-/***/ }),
-/* 520 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(303).document && document.documentElement;
-
-/***/ }),
-/* 521 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = !__webpack_require__(317) && !__webpack_require__(449)(function(){
-  return Object.defineProperty(__webpack_require__(461)('div'), 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 522 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var create         = __webpack_require__(526)
-  , descriptor     = __webpack_require__(466)
-  , setToStringTag = __webpack_require__(467)
-  , IteratorPrototype = {};
-
-// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(318)(IteratorPrototype, __webpack_require__(304)('iterator'), function(){ return this; });
-
-module.exports = function(Constructor, NAME, next){
-  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
-  setToStringTag(Constructor, NAME + ' Iterator');
-};
-
-/***/ }),
-/* 523 */
-/***/ (function(module, exports) {
-
-module.exports = function(done, value){
-  return {value: value, done: !!done};
-};
-
-/***/ }),
-/* 524 */
-/***/ (function(module, exports) {
-
-module.exports = true;
-
-/***/ }),
-/* 525 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(465)
-  , gOPS     = __webpack_require__(528)
-  , pIE      = __webpack_require__(531)
-  , toObject = __webpack_require__(469)
-  , IObject  = __webpack_require__(463)
-  , $assign  = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(449)(function(){
-  var A = {}
-    , B = {}
-    , S = Symbol()
-    , K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function(k){ B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-  var T     = toObject(target)
-    , aLen  = arguments.length
-    , index = 1
-    , getSymbols = gOPS.f
-    , isEnum     = pIE.f;
-  while(aLen > index){
-    var S      = IObject(arguments[index++])
-      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-      , length = keys.length
-      , j      = 0
-      , key;
-    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
-  } return T;
-} : $assign;
-
-/***/ }),
-/* 526 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject    = __webpack_require__(434)
-  , dPs         = __webpack_require__(527)
-  , enumBugKeys = __webpack_require__(462)
-  , IE_PROTO    = __webpack_require__(451)('IE_PROTO')
-  , Empty       = function(){ /* empty */ }
-  , PROTOTYPE   = 'prototype';
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function(){
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(461)('iframe')
-    , i      = enumBugKeys.length
-    , lt     = '<'
-    , gt     = '>'
-    , iframeDocument;
-  iframe.style.display = 'none';
-  __webpack_require__(520).appendChild(iframe);
-  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-  // createDict = iframe.contentWindow.Object;
-  // html.removeChild(iframe);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-  iframeDocument.close();
-  createDict = iframeDocument.F;
-  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
-  return createDict();
-};
-
-module.exports = Object.create || function create(O, Properties){
-  var result;
-  if(O !== null){
-    Empty[PROTOTYPE] = anObject(O);
-    result = new Empty;
-    Empty[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = createDict();
-  return Properties === undefined ? result : dPs(result, Properties);
-};
-
-
-/***/ }),
-/* 527 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP       = __webpack_require__(437)
-  , anObject = __webpack_require__(434)
-  , getKeys  = __webpack_require__(465);
-
-module.exports = __webpack_require__(317) ? Object.defineProperties : function defineProperties(O, Properties){
-  anObject(O);
-  var keys   = getKeys(Properties)
-    , length = keys.length
-    , i = 0
-    , P;
-  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
-  return O;
-};
-
-/***/ }),
-/* 528 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-/***/ }),
-/* 529 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has         = __webpack_require__(435)
-  , toObject    = __webpack_require__(469)
-  , IE_PROTO    = __webpack_require__(451)('IE_PROTO')
-  , ObjectProto = Object.prototype;
-
-module.exports = Object.getPrototypeOf || function(O){
-  O = toObject(O);
-  if(has(O, IE_PROTO))return O[IE_PROTO];
-  if(typeof O.constructor == 'function' && O instanceof O.constructor){
-    return O.constructor.prototype;
-  } return O instanceof Object ? ObjectProto : null;
-};
-
-/***/ }),
-/* 530 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var has          = __webpack_require__(435)
-  , toIObject    = __webpack_require__(453)
-  , arrayIndexOf = __webpack_require__(517)(false)
-  , IE_PROTO     = __webpack_require__(451)('IE_PROTO');
-
-module.exports = function(object, names){
-  var O      = toIObject(object)
-    , i      = 0
-    , result = []
-    , key;
-  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while(names.length > i)if(has(O, key = names[i++])){
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
-
-/***/ }),
-/* 531 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-/***/ }),
+/* 531 */,
 /* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(318);
+module.exports = { "default": __webpack_require__(538), __esModule: true };
+//# sourceMappingURL=assign.js.map
 
 /***/ }),
 /* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(452)
-  , defined   = __webpack_require__(447);
-// true  -> String#at
-// false -> String#codePointAt
-module.exports = function(TO_STRING){
-  return function(that, pos){
-    var s = String(defined(that))
-      , i = toInteger(pos)
-      , l = s.length
-      , a, b;
-    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-    a = s.charCodeAt(i);
-    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-      ? TO_STRING ? s.charAt(i) : a
-      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-  };
-};
+module.exports = { "default": __webpack_require__(539), __esModule: true };
+//# sourceMappingURL=define-property.js.map
 
 /***/ }),
 /* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(452)
-  , max       = Math.max
-  , min       = Math.min;
-module.exports = function(index, length){
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
+"use strict";
+
+exports.__esModule = true;
+exports.default = function (instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
 };
+//# sourceMappingURL=classCallCheck.js.map
 
 /***/ }),
 /* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 7.1.15 ToLength
-var toInteger = __webpack_require__(452)
-  , min       = Math.min;
-module.exports = function(it){
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
+"use strict";
+
+exports.__esModule = true;
+var _defineProperty = __webpack_require__(533);
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.default = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor)
+                descriptor.writable = true;
+            (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+        }
+    }
+    return function (Constructor, protoProps, staticProps) {
+        if (protoProps)
+            defineProperties(Constructor.prototype, protoProps);
+        if (staticProps)
+            defineProperties(Constructor, staticProps);
+        return Constructor;
+    };
+}();
+//# sourceMappingURL=createClass.js.map
 
 /***/ }),
 /* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(450);
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function(it, S){
-  if(!isObject(it))return it;
-  var fn, val;
-  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  throw TypeError("Can't convert object to primitive value");
+"use strict";
+
+exports.__esModule = true;
+var _assign = __webpack_require__(532);
+var _assign2 = _interopRequireDefault(_assign);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.default = _assign2.default || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
 };
+//# sourceMappingURL=extends.js.map
 
 /***/ }),
 /* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(518)
-  , ITERATOR  = __webpack_require__(304)('iterator')
-  , Iterators = __webpack_require__(436);
-module.exports = __webpack_require__(316).getIteratorMethod = function(it){
-  if(it != undefined)return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
+__webpack_require__(568);
+__webpack_require__(567);
+module.exports = __webpack_require__(563);
+//# sourceMappingURL=get-iterator.js.map
 
 /***/ }),
 /* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(434)
-  , get      = __webpack_require__(537);
-module.exports = __webpack_require__(316).getIterator = function(it){
-  var iterFn = get(it);
-  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
-  return anObject(iterFn.call(it));
-};
+__webpack_require__(565);
+module.exports = __webpack_require__(449).Object.assign;
+//# sourceMappingURL=assign.js.map
 
 /***/ }),
 /* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var addToUnscopables = __webpack_require__(516)
-  , step             = __webpack_require__(523)
-  , Iterators        = __webpack_require__(436)
-  , toIObject        = __webpack_require__(453);
-
-// 22.1.3.4 Array.prototype.entries()
-// 22.1.3.13 Array.prototype.keys()
-// 22.1.3.29 Array.prototype.values()
-// 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(464)(Array, 'Array', function(iterated, kind){
-  this._t = toIObject(iterated); // target
-  this._i = 0;                   // next index
-  this._k = kind;                // kind
-// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , kind  = this._k
-    , index = this._i++;
-  if(!O || index >= O.length){
-    this._t = undefined;
-    return step(1);
-  }
-  if(kind == 'keys'  )return step(0, index);
-  if(kind == 'values')return step(0, O[index]);
-  return step(0, [index, O[index]]);
-}, 'values');
-
-// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-Iterators.Arguments = Iterators.Array;
-
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
+__webpack_require__(566);
+var $Object = __webpack_require__(449).Object;
+module.exports = function defineProperty(it, key, desc) {
+    return $Object.defineProperty(it, key, desc);
+};
+//# sourceMappingURL=define-property.js.map
 
 /***/ }),
 /* 540 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(448);
-
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(525)});
+module.exports = function (it) {
+    if (typeof it != 'function')
+        throw TypeError(it + ' is not a function!');
+    return it;
+};
+//# sourceMappingURL=_a-function.js.map
 
 /***/ }),
 /* 541 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var $export = __webpack_require__(448);
-// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(317), 'Object', {defineProperty: __webpack_require__(437).f});
+module.exports = function () { };
+//# sourceMappingURL=_add-to-unscopables.js.map
 
 /***/ }),
 /* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var $at  = __webpack_require__(533)(true);
-
-// 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(464)(String, 'String', function(iterated){
-  this._t = String(iterated); // target
-  this._i = 0;                // next index
-// 21.1.5.2.1 %StringIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , index = this._i
-    , point;
-  if(index >= O.length)return {value: undefined, done: true};
-  point = $at(O, index);
-  this._i += point.length;
-  return {value: point, done: false};
-});
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__(467), toLength = __webpack_require__(560), toIndex = __webpack_require__(559);
+module.exports = function (IS_INCLUDES) {
+    return function ($this, el, fromIndex) {
+        var O = toIObject($this), length = toLength(O.length), index = toIndex(fromIndex, length), value;
+        // Array#includes uses SameValueZero equality algorithm
+        if (IS_INCLUDES && el != el)
+            while (length > index) {
+                value = O[index++];
+                if (value != value)
+                    return true;
+                // Array#toIndex ignores holes, Array#includes - not
+            }
+        else
+            for (; length > index; index++)
+                if (IS_INCLUDES || index in O) {
+                    if (O[index] === el)
+                        return IS_INCLUDES || index || 0;
+                }
+        return !IS_INCLUDES && -1;
+    };
+};
+//# sourceMappingURL=_array-includes.js.map
 
 /***/ }),
 /* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(539);
-var global        = __webpack_require__(303)
-  , hide          = __webpack_require__(318)
-  , Iterators     = __webpack_require__(436)
-  , TO_STRING_TAG = __webpack_require__(304)('toStringTag');
-
-for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
-  var NAME       = collections[i]
-    , Collection = global[NAME]
-    , proto      = Collection && Collection.prototype;
-  if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
-  Iterators[NAME] = Iterators.Array;
-}
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(476), TAG = __webpack_require__(447)('toStringTag')
+// ES3 wrong here
+, ARG = cof(function () { return arguments; }()) == 'Arguments';
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+    try {
+        return it[key];
+    }
+    catch (e) { }
+};
+module.exports = function (it) {
+    var O, T, B;
+    return it === undefined ? 'Undefined' : it === null ? 'Null'
+        : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+            : ARG ? cof(O)
+                : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+//# sourceMappingURL=_classof.js.map
 
 /***/ }),
-/* 544 */,
-/* 545 */,
+/* 544 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(540);
+module.exports = function (fn, that, length) {
+    aFunction(fn);
+    if (that === undefined)
+        return fn;
+    switch (length) {
+        case 1: return function (a) {
+            return fn.call(that, a);
+        };
+        case 2: return function (a, b) {
+            return fn.call(that, a, b);
+        };
+        case 3: return function (a, b, c) {
+            return fn.call(that, a, b, c);
+        };
+    }
+    return function () {
+        return fn.apply(that, arguments);
+    };
+};
+//# sourceMappingURL=_ctx.js.map
+
+/***/ }),
+/* 545 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(446).document && document.documentElement;
+//# sourceMappingURL=_html.js.map
+
+/***/ }),
 /* 546 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(450) && !__webpack_require__(463)(function () {
+    return Object.defineProperty(__webpack_require__(477)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+//# sourceMappingURL=_ie8-dom-define.js.map
+
+/***/ }),
+/* 547 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var create = __webpack_require__(551), descriptor = __webpack_require__(482), setToStringTag = __webpack_require__(483), IteratorPrototype = {};
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__(451)(IteratorPrototype, __webpack_require__(447)('iterator'), function () { return this; });
+module.exports = function (Constructor, NAME, next) {
+    Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+    setToStringTag(Constructor, NAME + ' Iterator');
+};
+//# sourceMappingURL=_iter-create.js.map
+
+/***/ }),
+/* 548 */
+/***/ (function(module, exports) {
+
+module.exports = function (done, value) {
+    return { value: value, done: !!done };
+};
+//# sourceMappingURL=_iter-step.js.map
+
+/***/ }),
+/* 549 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+//# sourceMappingURL=_library.js.map
+
+/***/ }),
+/* 550 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(481), gOPS = __webpack_require__(553), pIE = __webpack_require__(556), toObject = __webpack_require__(485), IObject = __webpack_require__(479), $assign = Object.assign;
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(463)(function () {
+    var A = {}, B = {}, S = Symbol(), K = 'abcdefghijklmnopqrst';
+    A[S] = 7;
+    K.split('').forEach(function (k) { B[k] = k; });
+    return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) {
+    var T = toObject(target), aLen = arguments.length, index = 1, getSymbols = gOPS.f, isEnum = pIE.f;
+    while (aLen > index) {
+        var S = IObject(arguments[index++]), keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S), length = keys.length, j = 0, key;
+        while (length > j)
+            if (isEnum.call(S, key = keys[j++]))
+                T[key] = S[key];
+    }
+    return T;
+} : $assign;
+//# sourceMappingURL=_object-assign.js.map
+
+/***/ }),
+/* 551 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __webpack_require__(453), dPs = __webpack_require__(552), enumBugKeys = __webpack_require__(478), IE_PROTO = __webpack_require__(465)('IE_PROTO'), Empty = function () { }, PROTOTYPE = 'prototype';
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+    // Thrash, waste and sodomy: IE GC bug
+    var iframe = __webpack_require__(477)('iframe'), i = enumBugKeys.length, lt = '<', gt = '>', iframeDocument;
+    iframe.style.display = 'none';
+    __webpack_require__(545).appendChild(iframe);
+    iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+    // createDict = iframe.contentWindow.Object;
+    // html.removeChild(iframe);
+    iframeDocument = iframe.contentWindow.document;
+    iframeDocument.open();
+    iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+    iframeDocument.close();
+    createDict = iframeDocument.F;
+    while (i--)
+        delete createDict[PROTOTYPE][enumBugKeys[i]];
+    return createDict();
+};
+module.exports = Object.create || function create(O, Properties) {
+    var result;
+    if (O !== null) {
+        Empty[PROTOTYPE] = anObject(O);
+        result = new Empty;
+        Empty[PROTOTYPE] = null;
+        // add "__proto__" for Object.getPrototypeOf polyfill
+        result[IE_PROTO] = O;
+    }
+    else
+        result = createDict();
+    return Properties === undefined ? result : dPs(result, Properties);
+};
+//# sourceMappingURL=_object-create.js.map
+
+/***/ }),
+/* 552 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(456), anObject = __webpack_require__(453), getKeys = __webpack_require__(481);
+module.exports = __webpack_require__(450) ? Object.defineProperties : function defineProperties(O, Properties) {
+    anObject(O);
+    var keys = getKeys(Properties), length = keys.length, i = 0, P;
+    while (length > i)
+        dP.f(O, P = keys[i++], Properties[P]);
+    return O;
+};
+//# sourceMappingURL=_object-dps.js.map
+
+/***/ }),
+/* 553 */
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+//# sourceMappingURL=_object-gops.js.map
+
+/***/ }),
+/* 554 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __webpack_require__(454), toObject = __webpack_require__(485), IE_PROTO = __webpack_require__(465)('IE_PROTO'), ObjectProto = Object.prototype;
+module.exports = Object.getPrototypeOf || function (O) {
+    O = toObject(O);
+    if (has(O, IE_PROTO))
+        return O[IE_PROTO];
+    if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+        return O.constructor.prototype;
+    }
+    return O instanceof Object ? ObjectProto : null;
+};
+//# sourceMappingURL=_object-gpo.js.map
+
+/***/ }),
+/* 555 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var has = __webpack_require__(454), toIObject = __webpack_require__(467), arrayIndexOf = __webpack_require__(542)(false), IE_PROTO = __webpack_require__(465)('IE_PROTO');
+module.exports = function (object, names) {
+    var O = toIObject(object), i = 0, result = [], key;
+    for (key in O)
+        if (key != IE_PROTO)
+            has(O, key) && result.push(key);
+    // Don't enum bug & hidden keys
+    while (names.length > i)
+        if (has(O, key = names[i++])) {
+            ~arrayIndexOf(result, key) || result.push(key);
+        }
+    return result;
+};
+//# sourceMappingURL=_object-keys-internal.js.map
+
+/***/ }),
+/* 556 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+//# sourceMappingURL=_object-pie.js.map
+
+/***/ }),
+/* 557 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(451);
+//# sourceMappingURL=_redefine.js.map
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(466), defined = __webpack_require__(461);
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+    return function (that, pos) {
+        var s = String(defined(that)), i = toInteger(pos), l = s.length, a, b;
+        if (i < 0 || i >= l)
+            return TO_STRING ? '' : undefined;
+        a = s.charCodeAt(i);
+        return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+            ? TO_STRING ? s.charAt(i) : a
+            : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+    };
+};
+//# sourceMappingURL=_string-at.js.map
+
+/***/ }),
+/* 559 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(466), max = Math.max, min = Math.min;
+module.exports = function (index, length) {
+    index = toInteger(index);
+    return index < 0 ? max(index + length, 0) : min(index, length);
+};
+//# sourceMappingURL=_to-index.js.map
+
+/***/ }),
+/* 560 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__(466), min = Math.min;
+module.exports = function (it) {
+    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+//# sourceMappingURL=_to-length.js.map
+
+/***/ }),
+/* 561 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(464);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+    if (!isObject(it))
+        return it;
+    var fn, val;
+    if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))
+        return val;
+    if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))
+        return val;
+    if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))
+        return val;
+    throw TypeError("Can't convert object to primitive value");
+};
+//# sourceMappingURL=_to-primitive.js.map
+
+/***/ }),
+/* 562 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof = __webpack_require__(543), ITERATOR = __webpack_require__(447)('iterator'), Iterators = __webpack_require__(455);
+module.exports = __webpack_require__(449).getIteratorMethod = function (it) {
+    if (it != undefined)
+        return it[ITERATOR]
+            || it['@@iterator']
+            || Iterators[classof(it)];
+};
+//# sourceMappingURL=core.get-iterator-method.js.map
+
+/***/ }),
+/* 563 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(453), get = __webpack_require__(562);
+module.exports = __webpack_require__(449).getIterator = function (it) {
+    var iterFn = get(it);
+    if (typeof iterFn != 'function')
+        throw TypeError(it + ' is not iterable!');
+    return anObject(iterFn.call(it));
+};
+//# sourceMappingURL=core.get-iterator.js.map
+
+/***/ }),
+/* 564 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__(541), step = __webpack_require__(548), Iterators = __webpack_require__(455), toIObject = __webpack_require__(467);
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__(480)(Array, 'Array', function (iterated, kind) {
+    this._t = toIObject(iterated); // target
+    this._i = 0; // next index
+    this._k = kind; // kind
+    // 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function () {
+    var O = this._t, kind = this._k, index = this._i++;
+    if (!O || index >= O.length) {
+        this._t = undefined;
+        return step(1);
+    }
+    if (kind == 'keys')
+        return step(0, index);
+    if (kind == 'values')
+        return step(0, O[index]);
+    return step(0, [index, O[index]]);
+}, 'values');
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+//# sourceMappingURL=es6.array.iterator.js.map
+
+/***/ }),
+/* 565 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(462);
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(550) });
+//# sourceMappingURL=es6.object.assign.js.map
+
+/***/ }),
+/* 566 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(462);
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__(450), 'Object', { defineProperty: __webpack_require__(456).f });
+//# sourceMappingURL=es6.object.define-property.js.map
+
+/***/ }),
+/* 567 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $at = __webpack_require__(558)(true);
+// 21.1.3.27 String.prototype[@@iterator]()
+__webpack_require__(480)(String, 'String', function (iterated) {
+    this._t = String(iterated); // target
+    this._i = 0; // next index
+    // 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function () {
+    var O = this._t, index = this._i, point;
+    if (index >= O.length)
+        return { value: undefined, done: true };
+    point = $at(O, index);
+    this._i += point.length;
+    return { value: point, done: false };
+});
+//# sourceMappingURL=es6.string.iterator.js.map
+
+/***/ }),
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(564);
+var global = __webpack_require__(446), hide = __webpack_require__(451), Iterators = __webpack_require__(455), TO_STRING_TAG = __webpack_require__(447)('toStringTag');
+for (var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++) {
+    var NAME = collections[i], Collection = global[NAME], proto = Collection && Collection.prototype;
+    if (proto && !proto[TO_STRING_TAG])
+        hide(proto, TO_STRING_TAG, NAME);
+    Iterators[NAME] = Iterators.Array;
+}
+//# sourceMappingURL=web.dom.iterable.js.map
+
+/***/ }),
+/* 569 */,
+/* 570 */,
+/* 571 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__metadata_min_json__ = __webpack_require__(599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__metadata_min_json__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__es6_parse__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__es6_get_number_type__ = __webpack_require__(441);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__es6_format__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__es6_validate__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__es6_metadata__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__es6_parse__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__es6_get_number_type__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__es6_format__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__es6_validate__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__es6_metadata__ = __webpack_require__(448);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "parseCustom", function() { return __WEBPACK_IMPORTED_MODULE_1__es6_parse__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "formatCustom", function() { return __WEBPACK_IMPORTED_MODULE_3__es6_format__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "isValidNumberCustom", function() { return __WEBPACK_IMPORTED_MODULE_4__es6_validate__["a"]; });
@@ -3986,99 +3519,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-
-
-function parse()
-{
-	var parameters = Array.prototype.slice.call(arguments)
-	parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
-	return __WEBPACK_IMPORTED_MODULE_1__es6_parse__["a" /* default */].apply(this, parameters)
+function parse() {
+    var parameters = Array.prototype.slice.call(arguments);
+    parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
+    return __WEBPACK_IMPORTED_MODULE_1__es6_parse__["a" /* default */].apply(this, parameters);
 }
-
-function format()
-{
-	var parameters = Array.prototype.slice.call(arguments)
-	parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
-	return __WEBPACK_IMPORTED_MODULE_3__es6_format__["a" /* default */].apply(this, parameters)
+function format() {
+    var parameters = Array.prototype.slice.call(arguments);
+    parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
+    return __WEBPACK_IMPORTED_MODULE_3__es6_format__["a" /* default */].apply(this, parameters);
 }
-
-function get_number_type()
-{
-	var parameters = Array.prototype.slice.call(arguments)
-	parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
-	return __WEBPACK_IMPORTED_MODULE_2__es6_get_number_type__["a" /* default */].apply(this, parameters)
+function get_number_type() {
+    var parameters = Array.prototype.slice.call(arguments);
+    parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
+    return __WEBPACK_IMPORTED_MODULE_2__es6_get_number_type__["a" /* default */].apply(this, parameters);
 }
-
 // camelCase alias
-function getNumberType()
-{
-	return is_valid_number.apply(this, arguments)
+function getNumberType() {
+    return is_valid_number.apply(this, arguments);
 }
-
-function is_valid_number()
-{
-	var parameters = Array.prototype.slice.call(arguments)
-	parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
-	return __WEBPACK_IMPORTED_MODULE_4__es6_validate__["a" /* default */].apply(this, parameters)
+function is_valid_number() {
+    var parameters = Array.prototype.slice.call(arguments);
+    parameters.push(__WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
+    return __WEBPACK_IMPORTED_MODULE_4__es6_validate__["a" /* default */].apply(this, parameters);
 }
-
 // camelCase alias
-function isValidNumber()
-{
-	return is_valid_number.apply(this, arguments)
+function isValidNumber() {
+    return is_valid_number.apply(this, arguments);
 }
-
-function as_you_type(country)
-{
-	__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].call(this, country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
+function as_you_type(country) {
+    __WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].call(this, country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
 }
-
-as_you_type.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].prototype, {})
-as_you_type.prototype.constructor = as_you_type
-
+as_you_type.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].prototype, {});
+as_you_type.prototype.constructor = as_you_type;
 // camelCase alias
-
-function asYouType(country)
-{
-	__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].call(this, country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
+function asYouType(country) {
+    __WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].call(this, country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
 }
-
-asYouType.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].prototype, {})
-asYouType.prototype.constructor = asYouType
-
+asYouType.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_5__es6_as_you_type__["a" /* default */].prototype, {});
+asYouType.prototype.constructor = asYouType;
 
 
 
 
 
-
-
-function getPhoneCode(country)
-{
-	return getPhoneCodeCustom(country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a)
+function getPhoneCode(country) {
+    return getPhoneCodeCustom(country, __WEBPACK_IMPORTED_MODULE_0__metadata_min_json___default.a);
 }
-
-function getPhoneCodeCustom(country, metadata)
-{
-	if (!metadata.countries[country])
-	{
-		throw new Error('Unknown country: "' + country + '"')
-	}
-
-	return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__es6_metadata__["a" /* get_phone_code */])(metadata.countries[country])
+function getPhoneCodeCustom(country, metadata) {
+    if (!metadata.countries[country]) {
+        throw new Error('Unknown country: "' + country + '"');
+    }
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__es6_metadata__["a" /* get_phone_code */])(metadata.countries[country]);
 }
+//# sourceMappingURL=index.es6.js.map
 
 /***/ }),
-/* 547 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(473);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(489);
 var BASE64_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return Base64Validator; }),
@@ -4101,35 +3606,37 @@ Base64Validator.decorators = [
 /** @nocollapse */
 Base64Validator.ctorParameters = function () { return []; };
 exports.Base64Validator = Base64Validator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 548 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.base64 = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^(?:[A-Z0-9+\/]{4})*(?:[A-Z0-9+\/]{2}==|[A-Z0-9+\/]{3}=|[A-Z0-9+\/]{4})$/i.test(v) ? null : { 'base64': true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 549 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(474);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(490);
 var CREDIT_CARD_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return CreditCardValidator; }),
@@ -4152,17 +3659,18 @@ CreditCardValidator.decorators = [
 /** @nocollapse */
 CreditCardValidator.ctorParameters = function () { return []; };
 exports.CreditCardValidator = CreditCardValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 550 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.creditCard = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
@@ -4198,18 +3706,19 @@ exports.creditCard = function (control) {
     }
     return { creditCard: true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 551 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(475);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(491);
 var DATE_ISO_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return DateISOValidator; }),
@@ -4232,35 +3741,37 @@ DateISOValidator.decorators = [
 /** @nocollapse */
 DateISOValidator.ctorParameters = function () { return []; };
 exports.DateISOValidator = DateISOValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 552 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.dateISO = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(v) ? null : { dateISO: true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 553 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(476);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(492);
 var DATE_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return DateValidator; }),
@@ -4283,35 +3794,37 @@ DateValidator.decorators = [
 /** @nocollapse */
 DateValidator.ctorParameters = function () { return []; };
 exports.DateValidator = DateValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 554 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.date = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return lang_1.isDate(v) ? null : { date: true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 555 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(477);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(493);
 var DIGITS_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return DigitsValidator; }),
@@ -4334,35 +3847,37 @@ DigitsValidator.decorators = [
 /** @nocollapse */
 DigitsValidator.ctorParameters = function () { return []; };
 exports.DigitsValidator = DigitsValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 556 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.digits = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^\d+$/.test(v) ? null : { digits: true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 557 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var index_1 = __webpack_require__(478);
+var forms_1 = __webpack_require__(15);
+var index_1 = __webpack_require__(494);
 var EMAIL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return EmailValidator; }),
@@ -4385,35 +3900,37 @@ EmailValidator.decorators = [
 /** @nocollapse */
 EmailValidator.ctorParameters = function () { return []; };
 exports.EmailValidator = EmailValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 558 */
+/* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.email = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) ? null : { 'email': true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 559 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(479);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(495);
 var EQUAL_TO_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return EqualToValidator; }),
@@ -4442,10 +3959,11 @@ EqualToValidator.propDecorators = {
     'equalTo': [{ type: core_1.Input },],
 };
 exports.EqualToValidator = EqualToValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 560 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4464,18 +3982,19 @@ exports.equalTo = function (equalControl) {
         return equalControl.value === v ? null : { equalTo: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 561 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var index_1 = __webpack_require__(480);
+var forms_1 = __webpack_require__(15);
+var index_1 = __webpack_require__(496);
 var EQUAL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return EqualValidator; }),
@@ -4516,17 +4035,18 @@ EqualValidator.propDecorators = {
     'equal': [{ type: core_1.Input },],
 };
 exports.EqualValidator = EqualValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 562 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.equal = function (val) {
     return function (control) {
         if (lang_1.isPresent(forms_1.Validators.required(control)))
@@ -4535,18 +4055,19 @@ exports.equal = function (val) {
         return val === v ? null : { equal: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 563 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(481);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(497);
 var GREATER_THAN_EQUAL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return GreaterThanEqualValidator; }),
@@ -4587,17 +4108,18 @@ GreaterThanEqualValidator.propDecorators = {
     'gte': [{ type: core_1.Input },],
 };
 exports.GreaterThanEqualValidator = GreaterThanEqualValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 564 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.gte = function (gte) {
     return function (control) {
         if (!lang_1.isPresent(gte))
@@ -4608,18 +4130,19 @@ exports.gte = function (gte) {
         return v >= +gte ? null : { gte: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 565 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(482);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(498);
 var GREATER_THAN_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return GreaterThanValidator; }),
@@ -4660,17 +4183,18 @@ GreaterThanValidator.propDecorators = {
     'gt': [{ type: core_1.Input },],
 };
 exports.GreaterThanValidator = GreaterThanValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 566 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.gt = function (gt) {
     return function (control) {
         if (!lang_1.isPresent(gt))
@@ -4681,18 +4205,19 @@ exports.gt = function (gt) {
         return v > +gt ? null : { gt: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 567 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(483);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(499);
 var JSON_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return JSONValidator; }),
@@ -4715,17 +4240,18 @@ JSONValidator.decorators = [
 /** @nocollapse */
 JSONValidator.ctorParameters = function () { return []; };
 exports.JSONValidator = JSONValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 568 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.json = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
@@ -4740,18 +4266,19 @@ exports.json = function (control) {
     }
     return { json: true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 569 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(484);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(500);
 var LESS_THAN_EQUAL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return LessThanEqualValidator; }),
@@ -4792,17 +4319,18 @@ LessThanEqualValidator.propDecorators = {
     'lte': [{ type: core_1.Input },],
 };
 exports.LessThanEqualValidator = LessThanEqualValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 570 */
+/* 595 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.lte = function (lte) {
     return function (control) {
         if (!lang_1.isPresent(lte))
@@ -4813,18 +4341,19 @@ exports.lte = function (lte) {
         return v <= +lte ? null : { lte: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 571 */
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(485);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(501);
 var LESS_THAN_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return LessThanValidator; }),
@@ -4865,17 +4394,18 @@ LessThanValidator.propDecorators = {
     'lt': [{ type: core_1.Input },],
 };
 exports.LessThanValidator = LessThanValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 572 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.lt = function (lt) {
     return function (control) {
         if (!lang_1.isPresent(lt))
@@ -4886,18 +4416,19 @@ exports.lt = function (lt) {
         return v < +lt ? null : { lt: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 573 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(486);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(502);
 var MAX_DATE_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return MaxDateValidator; }),
@@ -4938,17 +4469,18 @@ MaxDateValidator.propDecorators = {
     'maxDate': [{ type: core_1.Input },],
 };
 exports.MaxDateValidator = MaxDateValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 574 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.maxDate = function (maxDate) {
     if (!lang_1.isDate(maxDate) && !(maxDate instanceof Function)) {
         throw Error('maxDate value must be or return a formatted date');
@@ -4964,18 +4496,19 @@ exports.maxDate = function (maxDate) {
         return d <= new Date(maxDate) ? null : { maxDate: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 575 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(487);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(503);
 var MAX_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return MaxValidator; }),
@@ -5016,17 +4549,18 @@ MaxValidator.propDecorators = {
     'max': [{ type: core_1.Input },],
 };
 exports.MaxValidator = MaxValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 576 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.max = function (max) {
     return function (control) {
         if (!lang_1.isPresent(max))
@@ -5037,18 +4571,19 @@ exports.max = function (max) {
         return v <= +max ? null : { actualValue: v, requiredValue: +max, max: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 577 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(488);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(504);
 var MIN_DATE_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return MinDateValidator; }),
@@ -5089,17 +4624,18 @@ MinDateValidator.propDecorators = {
     'minDate': [{ type: core_1.Input },],
 };
 exports.MinDateValidator = MinDateValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 578 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.minDate = function (minDate) {
     if (!lang_1.isDate(minDate) && !(minDate instanceof Function)) {
         throw Error('minDate value must be or return a formatted date');
@@ -5115,18 +4651,19 @@ exports.minDate = function (minDate) {
         return d >= new Date(minDate) ? null : { minDate: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 579 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(489);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(505);
 var MIN_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return MinValidator; }),
@@ -5167,17 +4704,18 @@ MinValidator.propDecorators = {
     'min': [{ type: core_1.Input },],
 };
 exports.MinValidator = MinValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 580 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.min = function (min) {
     return function (control) {
         if (!lang_1.isPresent(min))
@@ -5188,18 +4726,19 @@ exports.min = function (min) {
         return v >= +min ? null : { actualValue: v, requiredValue: +min, min: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 581 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(490);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(506);
 var NOT_EQUAL_TO_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return NotEqualToValidator; }),
@@ -5228,10 +4767,11 @@ NotEqualToValidator.propDecorators = {
     'notEqualTo': [{ type: core_1.Input },],
 };
 exports.NotEqualToValidator = NotEqualToValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 582 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5250,18 +4790,19 @@ exports.notEqualTo = function (notEqualControl) {
         return notEqualControl.value !== v ? null : { notEqualTo: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 583 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var index_1 = __webpack_require__(491);
+var forms_1 = __webpack_require__(15);
+var index_1 = __webpack_require__(507);
 var NOT_EQUAL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return NotEqualValidator; }),
@@ -5302,17 +4843,18 @@ NotEqualValidator.propDecorators = {
     'notEqual': [{ type: core_1.Input },],
 };
 exports.NotEqualValidator = NotEqualValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 584 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.notEqual = function (val) {
     return function (control) {
         if (lang_1.isPresent(forms_1.Validators.required(control)))
@@ -5321,18 +4863,19 @@ exports.notEqual = function (val) {
         return val !== v ? null : { notEqual: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 585 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(492);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(508);
 var NUMBER_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return NumberValidator; }),
@@ -5355,35 +4898,37 @@ NumberValidator.decorators = [
 /** @nocollapse */
 NumberValidator.ctorParameters = function () { return []; };
 exports.NumberValidator = NumberValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 586 */
+/* 611 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.number = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(v) ? null : { 'number': true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 587 */
+/* 612 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(493);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(509);
 var PHONE_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return PhoneValidator; }),
@@ -5424,18 +4969,19 @@ PhoneValidator.propDecorators = {
     'phone': [{ type: core_1.Input },],
 };
 exports.PhoneValidator = PhoneValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 588 */
+/* 613 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var libphonenumber_js_1 = __webpack_require__(546);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var libphonenumber_js_1 = __webpack_require__(571);
+var lang_1 = __webpack_require__(445);
 exports.phone = function (country) {
     return function (control) {
         if (lang_1.isPresent(forms_1.Validators.required(control)))
@@ -5444,18 +4990,19 @@ exports.phone = function (country) {
         return libphonenumber_js_1.isValidNumber({ phone: v, country: country }) ? null : { phone: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 589 */
+/* 614 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(494);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(510);
 var RANGE_LENGTH_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return RangeLengthValidator; }),
@@ -5496,17 +5043,18 @@ RangeLengthValidator.propDecorators = {
     'rangeLength': [{ type: core_1.Input },],
 };
 exports.RangeLengthValidator = RangeLengthValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 590 */
+/* 615 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.rangeLength = function (rangeLength) {
     return function (control) {
         if (!lang_1.isPresent(rangeLength))
@@ -5517,18 +5065,19 @@ exports.rangeLength = function (rangeLength) {
         return v.length >= rangeLength[0] && v.length <= rangeLength[1] ? null : { rangeLength: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 591 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(495);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(511);
 var RANGE_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return RangeValidator; }),
@@ -5569,17 +5118,18 @@ RangeValidator.propDecorators = {
     'range': [{ type: core_1.Input },],
 };
 exports.RangeValidator = RangeValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 592 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.range = function (range) {
     return function (control) {
         if (!lang_1.isPresent(range))
@@ -5590,18 +5140,19 @@ exports.range = function (range) {
         return v >= range[0] && v <= range[1] ? null : { actualValue: v, requiredValue: range, range: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 593 */
+/* 618 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(496);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(512);
 var URL_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return UrlValidator; }),
@@ -5624,35 +5175,37 @@ UrlValidator.decorators = [
 /** @nocollapse */
 UrlValidator.ctorParameters = function () { return []; };
 exports.UrlValidator = UrlValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 594 */
+/* 619 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 exports.url = function (control) {
     if (lang_1.isPresent(forms_1.Validators.required(control)))
         return null;
     var v = control.value;
     return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(v) ? null : { 'url': true };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 595 */
+/* 620 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(13);
-var _1 = __webpack_require__(497);
+var forms_1 = __webpack_require__(15);
+var _1 = __webpack_require__(513);
 var UUID_VALIDATOR = {
     provide: forms_1.NG_VALIDATORS,
     useExisting: core_1.forwardRef(function () { return UUIDValidator; }),
@@ -5693,17 +5246,18 @@ UUIDValidator.propDecorators = {
     'uuid': [{ type: core_1.Input },],
 };
 exports.UUIDValidator = UUIDValidator;
+//# sourceMappingURL=directive.js.map 
 //# sourceMappingURL=directive.js.map
 
 /***/ }),
-/* 596 */
+/* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var forms_1 = __webpack_require__(13);
-var lang_1 = __webpack_require__(302);
+var forms_1 = __webpack_require__(15);
+var lang_1 = __webpack_require__(445);
 var uuids = {
     '3': /^[0-9A-F]{8}-[0-9A-F]{4}-3[0-9A-F]{3}-[0-9A-F]{4}-[0-9A-F]{12}$/i,
     '4': /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i,
@@ -5719,12 +5273,13 @@ exports.uuid = function (version) {
         return (new RegExp(pattern)).test(v) ? null : { uuid: true };
     };
 };
+//# sourceMappingURL=validator.js.map 
 //# sourceMappingURL=validator.js.map
 
 /***/ }),
-/* 597 */,
-/* 598 */,
-/* 599 */
+/* 622 */,
+/* 623 */,
+/* 624 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -14093,37 +13648,39 @@ module.exports = {
 };
 
 /***/ }),
-/* 600 */,
-/* 601 */,
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */,
-/* 606 */,
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */,
-/* 622 */
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */,
+/* 647 */,
+/* 648 */,
+/* 649 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__entry_service__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__entry_service__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_validation_dist__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_validation_dist__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_validation_dist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_validation_dist__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register2; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -14195,7 +13752,7 @@ Register2 = __decorate([
         selector: 'page-register2',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register2\register2.html"*/'<ion-header no-border>\n\n    <ion-navbar transparent color="primary">\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding-top class="backgroundBlue">\n\n    <ion-list class="listRegister" no-lines>\n\n        <form [formGroup]="registo2" (ngSubmit)="onSubmit(registo2.value, registo2.valid)">\n\n            <ion-item>\n\n                <h1 class="textWhite" text-wrap *ngIf="type == 0">O seu email.</h1>\n\n                <h1 class="textWhite" text-wrap *ngIf="type == 1">O email da sua instituição.</h1>\n\n            </ion-item>\n\n            <ion-item padding-top padding-bottom>\n\n                <ion-label stacked mode="ios">EMAIL</ion-label>\n\n                <ion-input type="email" formControlName="email" (blur)="validate()"></ion-input>\n\n            </ion-item>\n\n            <ion-item padding-top>\n\n                <button ion-fab color="light" item-right no-margin [disabled]="!registo2.valid" disable mode="ios" type="submit"><ion-icon name="arrow-forward"></ion-icon></button>\n\n            </ion-item>\n\n        </form>\n\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register2\register2.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_0__entry_service__["a" /* EntryService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ToastController */], __WEBPACK_IMPORTED_MODULE_0__entry_service__["a" /* EntryService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* ToastController */], __WEBPACK_IMPORTED_MODULE_0__entry_service__["a" /* EntryService */]])
 ], Register2);
 
 //# sourceMappingURL=register2.js.map

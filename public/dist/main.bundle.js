@@ -4,10 +4,10 @@ webpackJsonp([7,10],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(21);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51,13 +51,13 @@ var FeedComponent = (function () {
             this.getVols(0, 5, true);
         }
         else if (!this.login) {
-            this.volsService.getPrivates()
+            this.volsService.getPrivates(0, 10)
                 .then(function (res) {
                 _this.privateVols = res.vols;
                 _this.ready = true;
             })
                 .catch(function (err) { return console.log(err); });
-            this.volsService.getInstVol()
+            this.volsService.getInstVol(0, 10)
                 .then(function (res) {
                 _this.instVols = res.vols;
                 console.log(res);
@@ -246,7 +246,7 @@ var _a, _b, _c, _d;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipes_timeago_pipe__ = __webpack_require__(605);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_useful_swiper__ = __webpack_require__(552);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_useful_swiper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_useful_swiper__);
@@ -270,6 +270,7 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modal_profile_modal_profile_component__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modal_invite_modal_invite_component__ = __webpack_require__(608);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__edit_modal_edit_modal_component__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_http__ = __webpack_require__(21);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -277,6 +278,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -317,6 +319,7 @@ SharedModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_20__edit_modal_edit_modal_component__["a" /* EditModalComponent */]
         ],
         imports: [
+            __WEBPACK_IMPORTED_MODULE_21__angular_http__["f" /* JsonpModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["ReactiveFormsModule"],
             __WEBPACK_IMPORTED_MODULE_15__angular_router__["a" /* RouterModule */],
@@ -351,7 +354,7 @@ SharedModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
@@ -717,6 +720,112 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global_constants__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SharedService = (function () {
+    function SharedService(http, Http) {
+        this.http = http;
+        this.Http = Http;
+    }
+    SharedService.prototype.getAddress = function (lat, lng) {
+        return this.Http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getProfile = function (id) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getCandidates = function (id_vol, amount) {
+        if (amount == null) {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates").toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates", { amount: amount }).toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+    };
+    SharedService.prototype.getConfirmed = function (id_vol, amount) {
+        if (amount == null) {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed").toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed", { amount: amount }).toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+    };
+    SharedService.prototype.checkLike = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/checkLike").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.like = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/like", null).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.dislike = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/dislike", null).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getLikes = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/likes").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.deleteAction = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/delete", { id_vol: id_vol }).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.denyCandidate = function (id_vol, id_user) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/deny", { id_user: id_user }).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    return SharedService;
+}());
+SharedService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === "function" && _b || Object])
+], SharedService);
+
+var _a, _b;
+//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
+
+/***/ }),
+
+/***/ 29:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_http_client__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_global_constants__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
@@ -815,8 +924,8 @@ var volsService = (function () {
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
-    volsService.prototype.getPrivates = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/?type=private").toPromise()
+    volsService.prototype.getPrivates = function (startAt, amount) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols", { type: 'private', startAt: startAt, amount: amount }).toPromise()
             .then(function (res) {
             return res.json();
         })
@@ -824,8 +933,8 @@ var volsService = (function () {
             return err.json();
         });
     };
-    volsService.prototype.getInstVol = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/?type=inst").toPromise()
+    volsService.prototype.getInstVol = function (startAt, amount) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols", { type: 'inst', startAt: startAt, amount: amount }).toPromise()
             .then(function (res) {
             return res.json();
         })
@@ -867,6 +976,11 @@ var volsService = (function () {
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
+    volsService.prototype.editAction = function (id_vol, body) {
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol, body).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
     return volsService;
 }());
 volsService = __decorate([
@@ -888,8 +1002,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_modal_profile_modal_profile_component__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_profile_service__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_vols_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_feed_feed_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_core__ = __webpack_require__(0);
@@ -1253,8 +1367,8 @@ var _a, _b, _c, _d;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1380,7 +1494,7 @@ NotificationsComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_modal_profile_modal_profile_component__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feed_feed_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_vol_details_modal_vol_details_modal_component__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
@@ -1495,112 +1609,6 @@ SocialRequestsComponent = __decorate([
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global_constants__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var SharedService = (function () {
-    function SharedService(http, Http) {
-        this.http = http;
-        this.Http = Http;
-    }
-    SharedService.prototype.getAddress = function (lat, lng) {
-        return this.Http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getProfile = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getCandidates = function (id_vol, amount) {
-        if (amount == null) {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates").toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates", { amount: amount }).toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-    };
-    SharedService.prototype.getConfirmed = function (id_vol, amount) {
-        if (amount == null) {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed").toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed", { amount: amount }).toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-    };
-    SharedService.prototype.checkLike = function (id_vol) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/checkLike").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.like = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/like", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.dislike = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/dislike", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getLikes = function (id_vol) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/likes").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.deleteAction = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/delete", { id_vol: id_vol }).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.denyCandidate = function (id_vol, id_user) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/deny", { id_user: id_user }).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    return SharedService;
-}());
-SharedService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === "function" && _b || Object])
-], SharedService);
-
-var _a, _b;
-//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
-
-/***/ }),
-
 /***/ 35:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1610,14 +1618,12 @@ var GlobalConstants = (function () {
     function GlobalConstants() {
     }
     Object.defineProperty(GlobalConstants, "API_ENDPOINT", {
-        //  public static get API_ENDPOINT(): string { return 'http://localhost:8080/api'; }
-        // public static get SOCKET_ENDPOINT(): string { return 'http://localhost:8080/'; }
-        get: function () { return 'http://146.185.137.215/api'; },
+        get: function () { return 'http://localhost:8080/api'; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(GlobalConstants, "SOCKET_ENDPOINT", {
-        get: function () { return 'http://146.185.137.215/'; },
+        get: function () { return 'http://localhost:8080/'; },
         enumerable: true,
         configurable: true
     });
@@ -1633,7 +1639,7 @@ var GlobalConstants = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpClient; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1665,28 +1671,28 @@ var HttpClient = (function () {
     };
     HttpClient.prototype.get = function (url, queryParams) {
         if (queryParams === void 0) { queryParams = null; }
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Headers */]();
         this.createAuthorizationHeader(headers);
         return this.http.get(url + this.serialize(queryParams), {
             headers: headers
         });
     };
     HttpClient.prototype.put = function (url, data) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Headers */]();
         this.createAuthorizationHeader(headers);
         return this.http.put(url, data, {
             headers: headers
         });
     };
     HttpClient.prototype.delete = function (url, data) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Headers */]();
         this.createAuthorizationHeader(headers);
         return this.http.delete(url, {
             headers: headers
         });
     };
     HttpClient.prototype.post = function (url, data) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]();
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Headers */]();
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
             headers: headers
@@ -1785,16 +1791,17 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_profile_service__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_vols_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_modal__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_profile_service__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular2_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditModalComponent; });
 var __extends = (this && this.__extends) || (function () {
@@ -1825,25 +1832,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ModalContext = (function (_super) {
     __extends(ModalContext, _super);
     function ModalContext() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return ModalContext;
-}(__WEBPACK_IMPORTED_MODULE_8_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
+}(__WEBPACK_IMPORTED_MODULE_9_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
 
 var EditModalComponent = (function () {
-    function EditModalComponent(router, dialog, parser, _fb, volsService, ProfileService) {
+    function EditModalComponent(SharedService, router, dialog, parser, _fb, volsService, ProfileService) {
         var _this = this;
+        this.SharedService = SharedService;
         this.router = router;
         this.dialog = dialog;
         this.parser = parser;
         this._fb = _fb;
         this.volsService = volsService;
         this.ProfileService = ProfileService;
-        this.lat = 41.100856;
-        this.lng = -8.544893;
         this.schedule = 0;
         this.img = 0;
         this.formatter = function (x) { return x.formatted_address; };
@@ -1857,7 +1864,7 @@ var EditModalComponent = (function () {
                     .do(function () { _this.searchFailed = false; })
                     .catch(function () {
                     _this.searchFailed = true;
-                    return __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__["Observable"].of([]);
+                    return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].of([]);
                 });
             })
                 .do(function () { return _this.searching = false; });
@@ -1871,6 +1878,39 @@ var EditModalComponent = (function () {
         this.ProfileService.getCategories().then(function (res) {
             _this.categories = res.categories;
             console.log(res);
+            console.log("ID MODEL ->>" + _this.context.id_vol);
+        });
+        this.volsService.getVol(this.context.id_vol).then(function (res) {
+            _this.vol = res.vol;
+            _this.model_title = _this.vol.name;
+            _this.model_desc = _this.vol.description;
+            _this.model_category = _this.vol.category;
+            _this.model_insurance = _this.vol.insurance;
+            _this.model_date_begin = _this.vol.date_begin;
+            _this.model_date_end = _this.vol.date_end;
+            _this.model_lat = parseFloat(_this.vol.lat);
+            _this.model_lng = parseFloat(_this.vol.lng);
+            _this.SharedService.getAddress(_this.vol.lat, _this.vol.lng).then(function (res) {
+                _this.modelData = res.results;
+                _this.model = _this.modelData[0].formatted_address;
+            });
+            if (_this.vol.start_time != "00:00:00.000000" && _this.vol.start_time) {
+                _this.hora_inicio = _this.vol.start_time.slice(0, 2);
+                _this.minutos_inicio = _this.vol.start_time.slice(3, 5);
+                _this.start_time = _this.hora_inicio + ":" + _this.minutos_inicio;
+            }
+            else {
+                _this.start_time = "";
+            }
+            if (_this.vol.end_time != "00:00:00.000000" && _this.vol.end_time) {
+                _this.hora_fim = _this.vol.end_time.slice(0, 2);
+                _this.minutos_fim = _this.vol.end_time.slice(3, 5);
+                _this.end_time = _this.hora_fim + ":" + _this.minutos_fim;
+            }
+            else {
+                _this.end_time = "";
+            }
+            _this.model_duration = _this.vol.duration;
         });
         this.form = this._fb.group({
             name: ['', []],
@@ -1879,51 +1919,53 @@ var EditModalComponent = (function () {
             insurance: ['', []],
             date_begin: ['', []],
             date_end: ['',],
-            start_time: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-            end_time: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+            start_time: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+            end_time: ['', [__WEBPACK_IMPORTED_MODULE_3__angular_forms__["Validators"].pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
             duration: ['',],
         });
     };
     EditModalComponent.prototype.onSubmit = function (form) {
-        var _this = this;
-        this.form.controls.name.markAsTouched();
-        this.form.controls.description.markAsTouched();
-        this.form.controls.category.markAsTouched();
-        this.form.controls.insurance.markAsTouched();
-        this.form.controls.date_begin.markAsTouched();
-        this.form.controls.date_end.markAsTouched();
-        this.form.controls.start_time.markAsTouched();
-        this.form.controls.end_time.markAsTouched();
-        this.form.controls.duration.markAsTouched();
-        if (form.valid && this.coord) {
-            console.log('you submitted value:', form.value);
-            if (form.value.date_begin instanceof Date) {
+        if (this.formChanged == 1) {
+            console.log(form.valid);
+            this.form.controls.name.markAsTouched();
+            this.form.controls.description.markAsTouched();
+            this.form.controls.category.markAsTouched();
+            this.form.controls.insurance.markAsTouched();
+            this.form.controls.date_begin.markAsTouched();
+            this.form.controls.date_end.markAsTouched();
+            this.form.controls.start_time.markAsTouched();
+            this.form.controls.end_time.markAsTouched();
+            this.form.controls.duration.markAsTouched();
+            if (form.valid) {
+                if (form.value.date_begin == "") {
+                    form.value.date_begin = "";
+                    form.value.date_begin = this.model_date_begin;
+                }
+                if (form.value.date_end == "") {
+                    form.value.date_end = "";
+                    form.value.date_end = this.model_date_end;
+                }
+                form.value.lat = this.model_lat;
+                form.value.lng = this.model_lng;
+                console.log("VALUE", form.value);
+                this.volsService.editAction(this.context.id_vol, form.value).then(function (res) {
+                    console.log(res);
+                    if (res.error) {
+                        console.log('erro');
+                    }
+                    else {
+                        console.log('updated');
+                    }
+                });
             }
             else {
-                form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
-                form.value.date_end = new Date(this.parser.format(form.value.date_end));
+                this.coordAdvice = true;
             }
-            form.value.lat = this.lat;
-            form.value.lng = this.lng;
-            console.log("VALUE", form.value);
-            this.ProfileService.newAction(form.value).then(function (res) {
-                console.log(res);
-                if (res.error) {
-                    console.log('erro');
-                }
-                else {
-                    _this.router.navigate(['/profile/' + _this.idProfile + '/details/' + res.id_vol]);
-                }
-            });
-        }
-        else {
-            this.coordAdvice = true;
         }
     };
     EditModalComponent.prototype.navigate = function (lat, lng) {
-        this.lat = lat;
-        this.lng = lng;
-        this.coord = true;
+        this.model_lat = lat;
+        this.model_lng = lng;
     };
     EditModalComponent.prototype.readUrl = function (event) {
         var _this = this;
@@ -1973,45 +2015,6 @@ var EditModalComponent = (function () {
             }
         }
     };
-    /*change(id) {
-      if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name
-        this.name="";
-      } else if (id==2 && this.desc=="Descrição das funções do voluntário") {// descrição
-         this.desc="";
-      }
-      else if (id==3 &&  this.localization == "Insira a localização do voluntariado") {// localização
-         this.localization="";
-      }
-      else if (id==4 && this.start_time== "Hora inicial da ação de voluntariado") {// start time
-         this.start_time="";
-      }
-      else if (id==5 && this.end_time=="Hora final da ação de voluntariado") {// end time
-         this.end_time="";
-      }
-      else if (id==6 && this.duration == "Duração diária da ação de voluntariado") {// duração
-         this.duration="";
-      }
-    }
-     changeOut(id) {
-      if (id==1 && this.name == "") { // name
-        this.name="Insira aqui o título da ação de voluntariado";
-      } else if (id==2 && this.desc =="") {// descrição
-        this.desc="Descrição das funções do voluntário";
-      }
-      else if (id==3 && this.localization == "") {// localização
-        this.localization = "Insira a localização do voluntariado";
-      }
-      else if (id==4 && this.start_time == "") {// start time
-        this.start_time="Hora inicial da ação de voluntariado ";
-      }
-      else if (id==5 && this.end_time == "") {// end time
-        this.end_time="Hora final da ação de voluntariado";
-      }
-      else if (id==6 && this.duration == "") {// duração
-        this.duration = "Duração diária da ação de voluntariado";
-      }
-    }
-  */
     EditModalComponent.prototype.showSchedule = function () {
         this.schedule = 1;
     };
@@ -2024,18 +2027,21 @@ var EditModalComponent = (function () {
     EditModalComponent.prototype.hideImgs = function () {
         this.img = 0;
     };
+    EditModalComponent.prototype.changed = function () {
+        this.formChanged = 1;
+    };
     return EditModalComponent;
 }());
 EditModalComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_core__["Component"])({
         selector: 'app-edit-modal',
         template: __webpack_require__(818),
         styles: [__webpack_require__(741)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7_angular2_modal__["b" /* DialogRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbDateParserFormatter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["c" /* NgbDateParserFormatter */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_vols_service__["a" /* volsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_vols_service__["a" /* volsService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__services_profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_profile_service__["a" /* ProfileService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shared_service__["a" /* SharedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_angular2_modal__["b" /* DialogRef */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbDateParserFormatter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["c" /* NgbDateParserFormatter */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormBuilder"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__services_vols_service__["a" /* volsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_vols_service__["a" /* volsService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__services_profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_profile_service__["a" /* ProfileService */]) === "function" && _g || Object])
 ], EditModalComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/edit-modal.component.js.map
 
 /***/ }),
@@ -2293,6 +2299,9 @@ var AppComponent = (function () {
         this.chatService.conversation = name;
         this.router.navigate(['./chat/msg', id], { relativeTo: this.route });
     };
+    AppComponent.prototype.goToMessagesAll = function () {
+        this.router.navigate(['./chat/msg', this.conversations[0].id_conversation], { relativeTo: this.route });
+    };
     AppComponent.prototype.openLogin = function () {
         return this.modal.open(__WEBPACK_IMPORTED_MODULE_6__components_login_login_component__["a" /* LoginComponent */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9_angular2_modal__["n" /* overlayConfigFactory */])({ num1: 2, num2: 3 }, __WEBPACK_IMPORTED_MODULE_10_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
     };
@@ -2330,7 +2339,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_modal_end_modal_end_component__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_shared_module__ = __webpack_require__(201);
@@ -2342,7 +2351,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_forms__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_material__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_platform_browser_animations__ = __webpack_require__(597);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular2_google_maps_core__ = __webpack_require__(58);
@@ -2724,7 +2733,7 @@ timeAgoPipe = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_register_register_component__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Auth_authentication_service__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vol_details_modal_vol_details_modal_component__ = __webpack_require__(74);
@@ -2999,7 +3008,7 @@ var environment = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_global_constants__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_http_client__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
@@ -3047,9 +3056,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProfileService = (function () {
-    function ProfileService(http, HTTP) {
+    function ProfileService(http, HTTP, jsonp) {
         this.http = http;
         this.HTTP = HTTP;
+        this.jsonp = jsonp;
         this.dataStringSource = new __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__["Subject"]();
         // Observable string stream
         this.dataString$ = this.dataStringSource.asObservable();
@@ -3073,6 +3083,11 @@ var ProfileService = (function () {
     ProfileService.prototype.getCoord = function (address) {
         console.log(address);
         return this.HTTP.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    ProfileService.prototype.getCountries = function () {
+        return this.jsonp.get('http://battuta.medunes.net/api/country/all/?key=1727cb239d0a8f0d3d8ea64518801e45&callback=?"').toPromise()
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
@@ -3154,10 +3169,10 @@ var ProfileService = (function () {
 }());
 ProfileService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__shared_http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Jsonp */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Jsonp */]) === "function" && _c || Object])
 ], ProfileService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/profile.service.js.map
 
 /***/ }),
@@ -3166,7 +3181,7 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
@@ -3231,7 +3246,16 @@ var ModalProfileComponent = (function () {
             .catch(function (err) { return console.log(err); });
     };
     ModalProfileComponent.prototype.onSelect = function (profile) {
-        this.dialog.close("done");
+        var _this = this;
+        if (this.context.inProfile == 1) {
+            this.dialog.dismiss();
+            setTimeout(function () {
+                _this.router.navigate(['/profile/' + _this.context.idProfile + '/activity']);
+            }, 250);
+        }
+        else {
+            this.dialog.close("done");
+        }
     };
     ModalProfileComponent.prototype.close = function () {
         this.dialog.dismiss();
@@ -3256,8 +3280,8 @@ var _a, _b, _c, _d;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shared_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shared_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
@@ -3554,8 +3578,8 @@ module.exports = module.exports.toString();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_vols_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_vols_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_profile_service__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_feed_feed_component__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(17);
@@ -3663,6 +3687,7 @@ var VolDetailsModalComponent = (function () {
     };
     VolDetailsModalComponent.prototype.ngOnInit = function () {
         this.feed = this.injector.get(__WEBPACK_IMPORTED_MODULE_3__components_feed_feed_component__["a" /* FeedComponent */]);
+        console.log(this.feed);
     };
     VolDetailsModalComponent.prototype.onSelect = function (id_profile) {
         this.dialog.dismiss();
@@ -4252,7 +4277,7 @@ webpackContext.id = 754;
 /***/ 808:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">BEVOLUN</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getRequests(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!requests\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <div class=\"message-item\" *ngFor=\"let request of requests\" routerLink='./profile/{{request.id_user}}/activity'>\r\n\r\n                            <div class=\"image\">\r\n                                <img [src]=\"request.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>\r\n                            </div>\r\n                            <div class=\"text-right\">\r\n                                <div class=\"btn-notification\">\r\n                                    <button class=\"btn btnConfirm\" routerLink='./profile/{{request.id_user}}/activity'>VER</button>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getConversations(user.id_user)\">\r\n\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!messagesReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"messagesReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"conversation.photo_url\" onerror=\"http://santetotal.com/wp-content/uploads/2014/05/default-user.png\">\r\n                                </div>\r\n                                <div class=\"message-info\" (click)=\"goToMessages(conversation.id_conversation, conversation.user_name)\">\r\n                                    <div>\r\n                                        <span class=\"nameMsg\">{{conversation.name}}</span>\r\n                                        <span class=\"time\">{{conversation.date | amTimeAgo:true}}</span>\r\n                                    </div>\r\n\r\n                                    <span class=\"textMsg\"> {{conversation.message }}</span>\r\n                                </div>\r\n                            </div>\r\n                        </ng-container>\r\n                        <div class=\"dropdown-footer\" [routerLink]=\"['/chat/msg/', conversations[0]?.id_conversation] \">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getNotifications(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n                        <div class=\"message-item\" *ngIf=\"!notifications\">\r\n\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\"> Registar</li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\"> Entrar</li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\" (error)=\"this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\"> \r\n                    <span>{{user?.username}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O VOLUM</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
+module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">BEVOLUN</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getRequests(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!requests\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <div class=\"message-item\" *ngFor=\"let request of requests\" routerLink='./profile/{{request.id_user}}/activity'>\r\n\r\n                            <div class=\"image\">\r\n                                <img [src]=\"request.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>\r\n                            </div>\r\n                            <div class=\"text-right\">\r\n                                <div class=\"btn-notification\">\r\n                                    <button class=\"btn btnConfirm\" routerLink='./profile/{{request.id_user}}/activity'>VER</button>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getConversations(user.id_user)\">\r\n\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!messagesReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"messagesReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"conversation.photo_url\" onerror=\"http://santetotal.com/wp-content/uploads/2014/05/default-user.png\">\r\n                                </div>\r\n                                <div class=\"message-info\" (click)=\"goToMessages(conversation.id_conversation, conversation.user_name)\">\r\n                                    <div>\r\n                                        <span class=\"nameMsg\">{{conversation.name}}</span>\r\n                                        <span class=\"time\">{{conversation.date | amTimeAgo:true}}</span>\r\n                                    </div>\r\n\r\n                                    <span class=\"textMsg\"> {{conversation.message }}</span>\r\n                                </div>\r\n                            </div>\r\n                        </ng-container>\r\n\r\n                        <div class=\"dropdown-footer\" (click)=\"goToMessagesAll()\">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getNotifications(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n                        <div class=\"message-item\" *ngIf=\"!notifications\">\r\n\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\"> Registar</li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\"> Entrar</li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\" (error)=\"this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\"> \r\n                    <span>{{user?.username}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O VOLUM</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -4315,14 +4340,14 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /***/ 817:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-volum\">\r\n    <!-- HEADER CARD -->\r\n    <div class=\"row no-margin\">\r\n        <div (click)=\"onSelect(userCreator)\" class=\"col card-user-image col-md-auto\">\r\n            <img src=\"{{avatar}}\" (error)=\"this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\">\r\n        </div>\r\n        <div class=\"col-6 col-lg-8 card-user-nd\">\r\n            <div *ngIf=\"verified==1\" class=\"card-user-name ts16\">\r\n                <a *ngIf=\"login\" class=\"clickable clickableName\" (click)=\"onSelect(userCreator)\">{{username}}</a>\r\n                <a *ngIf=\"!login\">{{username}}</a>\r\n                <button type=\"button\" class=\"btn btn-secondary verified\" placement=\"right\" ngbTooltip=\"Instituição verificada\">\r\n                <i class=\"material-icons md-18\">verified_user</i></button></div>\r\n            <div *ngIf=\"verified==0\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a> </div>\r\n            <div class=\"card-date ts14\">{{dateCreation | timeAgo}}</div>\r\n        </div>\r\n        <div *ngIf=\"login==1\" class=\"col card-option text-right\">\r\n            <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n            <md-menu #menu=\"mdMenu\">\r\n                <button md-menu-item>\r\n                <md-icon>share</md-icon>\r\n                <span>Partilhar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>do_not_disturb</md-icon>\r\n                <span>Denunciar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>visibility_off</md-icon>\r\n                <span>Bloquear</span>\r\n              </button>\r\n            </md-menu>\r\n        </div>\r\n    </div>\r\n    <!-- / HEADER CARD -->\r\n\r\n    <!-- CONTENT CARD -->\r\n    \r\n        <img class=\"imgSliderInd \" [src]=\"photos[0]\">\r\n\r\n    <div class=\"row no-margin card-volum-content\" (click)=\"openVolDetails(idVol)\">\r\n        <div class=\"col ts18 card-volum-title\">\r\n            {{title}}\r\n        </div>\r\n        <div class=\"col-12 ts14 card-volum-description\">\r\n            {{description}}\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /CONTENT CARD -->\r\n\r\n    <!-- FOOTER CARD -->\r\n    <div class=\"card-volum-footer\">\r\n        <div class=\"cardLikesContent\">\r\n            <div class=\"cardLikes\">\r\n                <md-icon (click)=\"dislike(idVol)\" *ngIf=\"login && (likeState==1)\" class=\"btnLike\">favorite</md-icon>\r\n                <md-icon (click)=\"like(idVol)\" *ngIf=\"login && (!likes || likeState==0)\" class=\"btnLike btnBlack\">favorite_border</md-icon>\r\n                <md-icon *ngIf=\"!login\" class=\"btnLike\">favorite</md-icon>\r\n            </div>\r\n            <!--<div class=\"likesNumber ts12\">\r\n            {{likes}}\r\n        </div>\r\n        -->\r\n            <!--<div *ngIf=\"login &&type=='private' && likes>=1\" class=\"likeImgs\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar3.png\">\r\n            <img src=\"assets/imgs/avatar04.png\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar.png\">\r\n        </div>\r\n        -->\r\n            <div *ngIf=\"login &&  type=='private'\" class=\"likesText ts12\">\r\n                <!-- <span class=\"likesTestMe\">Tu,</span> <span class=\"likesTestSecond\">Araújo</span> e mais 298 gostaram disto -->\r\n                <span *ngIf=\"likeState==1\" class=\"likesTestMe\">Tu</span>\r\n                <span *ngIf=\"likeState==1 && likes<2\">gostas disto.</span>\r\n                <span *ngIf=\"likeState==1 && likes>=2\">e mais</span>\r\n                <span *ngIf=\"likeState==1 && likes>=2\">{{likes-1}} pessoa<span *ngIf=\"likes>2\">s</span> gostam disto.</span>\r\n                <span *ngIf=\"likeState==0 && likes>=1\">{{likes}} pessoa<span *ngIf=\"likes>=2\">s</span> gosta\r\n                <span *ngIf=\"likes>=2\">m\r\n                    </span> disto.\r\n                </span>\r\n                <span *ngIf=\"likeState==0 && !likes\">Sê o primeiro a gostar disto!</span>\r\n            </div>\r\n            <div *ngIf=\"!login\" class=\"likesText ts12\">\r\n                <span *ngIf=\"likes>=1\">{{likes}} pessoa<span *ngIf=\"likes>=1\">s</span> gostam disto.</span>\r\n                <span *ngIf=\"!likes || likes==0\">Sê o primeiro a gostar disto. <span (click)=\"openRegister()\" class=\"likesTestMe clickable\" style=\"cursor:pointer\">Regista-te já</span></span>\r\n\r\n            </div>\r\n        </div>\r\n        <!--\r\n        <div *ngIf=\"type=='private'\" class=\"cardComments ts12\">\r\n            <div>\r\n                <md-icon class=\"btnComments\">textsms</md-icon>\r\n            </div>\r\n            <div (click)=\"openComments()\" class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n        </div>\r\n        -->\r\n        <div class=\"btnView\">\r\n            <button md-raised-button (click)=\"openVolDetails(idVol)\">VER</button>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /FOOTER CARD -->\r\n\r\n\r\n\r\n</div>"
+module.exports = "<div class=\"card-volum\">\r\n    <!-- HEADER CARD -->\r\n    <div class=\"row no-margin\" style=\"display:flex\">\r\n        <div (click)=\"onSelect(userCreator)\" class=\"col card-user-image col-md-auto\">\r\n            <img src=\"{{avatar}}\" (error)=\"this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\">\r\n        </div>\r\n        <div class=\"card-user-nd\">\r\n            <div *ngIf=\"verified==1\" class=\"card-user-name ts16\">\r\n                <a *ngIf=\"login\" class=\"clickable clickableName\" (click)=\"onSelect(userCreator)\">{{username}}</a>\r\n                <a *ngIf=\"!login\">{{username}}</a>\r\n                <button type=\"button\" class=\"btn btn-secondary verified\" placement=\"right\" ngbTooltip=\"Instituição verificada\">\r\n                <i class=\"material-icons md-18\">verified_user</i></button></div>\r\n            <div *ngIf=\"verified==0\" class=\"card-user-name ts16\"><a (click)=\"onSelect(userCreator)\">{{username}}</a> </div>\r\n            <div class=\"card-date ts14\">{{dateCreation | timeAgo}}</div>\r\n        </div>\r\n        <div *ngIf=\"login==1\" class=\"col card-option text-right\">\r\n            <md-icon class=\"card-btn-option\" [mdMenuTriggerFor]=\"menu\">more_vert</md-icon>\r\n            <md-menu #menu=\"mdMenu\">\r\n                <button md-menu-item>\r\n                <md-icon>share</md-icon>\r\n                <span>Partilhar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>do_not_disturb</md-icon>\r\n                <span>Denunciar</span>\r\n              </button>\r\n                <button md-menu-item>\r\n                <md-icon>visibility_off</md-icon>\r\n                <span>Bloquear</span>\r\n              </button>\r\n            </md-menu>\r\n        </div>\r\n    </div>\r\n    <!-- / HEADER CARD -->\r\n\r\n    <!-- CONTENT CARD -->\r\n    \r\n        <img class=\"imgSliderInd \" [src]=\"photos[0]\">\r\n\r\n    <div class=\"row no-margin card-volum-content\" (click)=\"openVolDetails(idVol)\">\r\n        <div class=\"col ts18 card-volum-title\">\r\n            {{title}}\r\n        </div>\r\n        <div class=\"col-12 ts14 card-volum-description\">\r\n            {{description}}\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /CONTENT CARD -->\r\n\r\n    <!-- FOOTER CARD -->\r\n    <div class=\"card-volum-footer\">\r\n        <div class=\"cardLikesContent\">\r\n            <div class=\"cardLikes\">\r\n                <md-icon (click)=\"dislike(idVol)\" *ngIf=\"login && (likeState==1)\" class=\"btnLike\">favorite</md-icon>\r\n                <md-icon (click)=\"like(idVol)\" *ngIf=\"login && (!likes || likeState==0)\" class=\"btnLike btnBlack\">favorite_border</md-icon>\r\n                <md-icon *ngIf=\"!login\" class=\"btnLike\">favorite</md-icon>\r\n            </div>\r\n            <!--<div class=\"likesNumber ts12\">\r\n            {{likes}}\r\n        </div>\r\n        -->\r\n            <!--<div *ngIf=\"login &&type=='private' && likes>=1\" class=\"likeImgs\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar3.png\">\r\n            <img src=\"assets/imgs/avatar04.png\">\r\n            <img src=\"assets/imgs/avatar2.png\">\r\n            <img src=\"assets/imgs/avatar.png\">\r\n        </div>\r\n        -->\r\n            <div *ngIf=\"login &&  type=='private'\" class=\"likesText ts12\">\r\n                <!-- <span class=\"likesTestMe\">Tu,</span> <span class=\"likesTestSecond\">Araújo</span> e mais 298 gostaram disto -->\r\n                <span *ngIf=\"likeState==1\" class=\"likesTestMe\">Tu</span>\r\n                <span *ngIf=\"likeState==1 && likes<2\">gostas disto.</span>\r\n                <span *ngIf=\"likeState==1 && likes>=2\">e mais</span>\r\n                <span *ngIf=\"likeState==1 && likes>=2\">{{likes-1}} pessoa<span *ngIf=\"likes>2\">s</span> gostam disto.</span>\r\n                <span *ngIf=\"likeState==0 && likes>=1\">{{likes}} pessoa<span *ngIf=\"likes>=2\">s</span> gosta\r\n                <span *ngIf=\"likes>=2\">m\r\n                    </span> disto.\r\n                </span>\r\n                <span *ngIf=\"likeState==0 && !likes\">Sê o primeiro a gostar disto!</span>\r\n            </div>\r\n            <div *ngIf=\"!login\" class=\"likesText ts12\">\r\n                <span *ngIf=\"likes>=1\">{{likes}} pessoa<span *ngIf=\"likes>=1\">s</span> gostam disto.</span>\r\n                <span *ngIf=\"!likes || likes==0\">Sê o primeiro a gostar disto. <span (click)=\"openRegister()\" class=\"likesTestMe clickable\" style=\"cursor:pointer\">Regista-te já</span></span>\r\n\r\n            </div>\r\n        </div>\r\n        <!--\r\n        <div *ngIf=\"type=='private'\" class=\"cardComments ts12\">\r\n            <div>\r\n                <md-icon class=\"btnComments\">textsms</md-icon>\r\n            </div>\r\n            <div (click)=\"openComments()\" class=\"textComments\"><span class=\"commentsNumber\">16</span> comentários</div>\r\n        </div>\r\n        -->\r\n        <div class=\"btnView\">\r\n            <button md-raised-button (click)=\"openVolDetails(idVol)\">VER</button>\r\n        </div>\r\n    </div>\r\n\r\n    <!-- /FOOTER CARD -->\r\n\r\n\r\n\r\n</div>"
 
 /***/ }),
 
 /***/ 818:
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #rt let-r=\"result\" let-t=\"term\" id=\"template-search\">\r\n        <div (click)=\"navigate(r.geometry.location.lat, r.geometry.location.lng)\" class=\"row no-padding content-search\">\r\n            <span class=\"searched\"> {{r.formatted_address}}</span>\r\n        </div>\r\n</ng-template>\r\n\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"row\">\r\n            <div class=\"col titleCard\">\r\n              Editar ação de voluntariado\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n      <div class=\"card-block\">\r\n        <form class=\"float-label\" [formGroup]=\"form\" (ngSubmit)=\"onSubmit(form)\" >\r\n          <div class=\"row\">\r\n              <div class=\"col-12 inputProfile no-margin\">\r\n                <div class=\"control\">\r\n                 <input type=\"text\" minlength=\"10\" maxlength=\"60\" formControlName=\"name\" class=\"\" name=\"title\" placeholder=\"Título da ação de voluntariado\" [(ngModel)]=\"name\" required />\r\n                 <label [class.error-label]=\"!form.controls.name.valid && form.controls.name.touched\" for=\"title\">\r\n                   Título\r\n                    <span class=\"text-error\" *ngIf=\"form.controls.name.errors?.maxlength && form.controls.name.touched\" >\r\n                    - - Inválido\r\n                    </span>\r\n                    <span class=\"text-error\" *ngIf=\"form.controls.name.errors?.minlength && form.controls.name.touched\" >\r\n                     - Inválido\r\n                    </span>\r\n\r\n                  </label>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-12 inputProfile\">\r\n                <div class=\"control\">\r\n                  <textarea class=\"textAreaProfile\" minlength=\"50\" formControlName=\"description\" name=\"textarea\" required rows=\"4\" [(ngModel)]=\"desc\" placeholder=\"Descrição\">Descrição das funções do voluntário</textarea>\r\n                  <label [class.error-label]=\"!form.controls.description.valid && form.controls.description.touched\" for=\"textarea\">\r\n                    Descrição\r\n                    <span *ngIf=\"form.controls.description.errors?.minlength && form.controls.description.touched\" class=\"text-error\">- Inválido.</span>\r\n                  </label>\r\n                </div>\r\n              </div>\r\n\r\n            <div class=\"col-6 inputProfile\" >\r\n              <select name=\"categorie\" class=\"form-control select-input inputText form-control-lg disabled\" formControlName=\"category\">\r\n                <option *ngFor=\"let category of categories\" [value]='category.id_category'>{{category.name}}</option>\r\n              </select>\r\n               <label [class.error-label]=\"!form.controls.category.valid && form.controls.category.touched\" for=\"categorie\" class=\"label-for-select\">\r\n                 Categoria\r\n                 </label>\r\n            </div>\r\n              \r\n               <div class=\"col-6 inputProfile\">\r\n              <select class=\"form-control inputText  select-input form-control-lg disabled\" formControlName=\"insurance\">\r\n                <option selected value=\"1\">Sim</option>\r\n                <option value=\"0\">Não</option>\r\n              </select>\r\n              <label [class.error-label]=\"!form.controls.insurance.valid && form.controls.insurance.touched\" for=\"insurance\" class=\"label-for-select\">\r\n                Seguro\r\n              </label>\r\n            </div>\r\n\r\n        \r\n     \r\n\r\n                 <div class=\"col-12 inputProfile\">\r\n                <div class=\"control\">\r\n                 <input type=\"text\" class=\"\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"model\" (keyup.enter)=\"navigate(model.geometry.location.lat, model.geometry.location.lng)\" [ngbTypeahead]=\"search\" [resultTemplate]=\"rt\" [inputFormatter]=\"formatter\" name=\"localization\" placeholder=\"Insira a localização do voluntariado\"  required />\r\n                 <label  for=\"localization\">Localização\r\n                 </label>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-12 inputProfile\">\r\n                <sebm-google-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"13\" [styles]=\"Terrain\">\r\n                <sebm-google-map-marker [latitude]=\"lat\" [longitude]=\"lng\" ></sebm-google-map-marker>\r\n                </sebm-google-map>\r\n             \r\n               </div>\r\n\r\n\r\n               <div class=\"col-6 inputProfile2\">\r\n                <div class=\"form-group\">\r\n                  <div class=\"input-group\">\r\n                    <input class=\"form-control date_picker\" \r\n                           name=\"dp\" ngbDatepicker #d=\"ngbDatepicker\" formControlName=\"date_begin\" placeholder=\"aaaa-mm-dd\">\r\n                    <div class=\"input-group-addon\" (click)=\"d.toggle()\" >\r\n                      <i class=\"data_range_icon material-icons\">date_range</i>\r\n                    </div>\r\n                  </div>\r\n                   <label  [class.error-label]=\"!form.controls.date_begin.valid && form.controls.date_begin.touched\" for=\"dp\" class=\"label-for-select\">\r\n                     Data de início\r\n                    </label>  \r\n                </div>\r\n            </div>\r\n\r\n        <div class=\"col-6 inputProfile2\">\r\n                <div class=\"form-group\">\r\n                  <div class=\"input-group\">\r\n                    <input class=\"form-control date_picker\"\r\n                           name=\"dp2\" ngbDatepicker #d2=\"ngbDatepicker\" formControlName=\"date_end\" placeholder=\"aaaa-mm-dd\">\r\n                    <div class=\"input-group-addon\" (click)=\"d2.toggle()\" >\r\n                      <i class=\"data_range_icon material-icons\">date_range</i>\r\n                    </div>\r\n                  </div>\r\n                   <label for=\"dp2\" [class.error-label]=\"!form.controls.date_end.valid && form.controls.date_end.touched\" class=\"label-for-select\">\r\n                     Data de fim\r\n                     <span *ngIf=\"form.controls.date_end.errors?.pattern && form.controls.date_end.touched\" class=\"text-error\">- - Inválido.</span>\r\n                     </label>\r\n                </div>\r\n            </div>\r\n\r\n\r\n  \r\n\r\n          <div  class=\"col-6 inputProfile\">\r\n                  <div class=\"control\">\r\n                    <input type=\"text\" class=\"\" name=\"date_begin\" placeholder=\"Hora de entrada\" [(ngModel)]=\"start_time\" formControlName=\"start_time\" value=\"09:00\" required />\r\n                     <label [class.error-label]=\"!form.controls.start_time.valid && form.controls.start_time.touched\" for=\"date_begin\">\r\n                       Hora de entrada\r\n                       <span  *ngIf=\"form.controls.start_time.errors?.pattern && form.controls.start_time.touched\" class=\"text-error\">- - Inválido.</span>\r\n                       </label>\r\n                  </div>              \r\n                  \r\n                </div>\r\n          <div  class=\"col-6 inputProfile\">\r\n                  <div class=\"control\">\r\n                  <input type=\"text\" class=\"\" name=\"date_end\" placeholder=\"Hora de saída\"  [(ngModel)]=\"end_time\" formControlName=\"end_time\" value=\"17:00\" required />\r\n                     <label [class.error-label]=\"!form.controls.end_time.valid && form.controls.end_time.touched\" for=\"date_end\">\r\n                       Hora de saída\r\n                       <span *ngIf=\"form.controls.end_time.errors?.pattern && form.controls.end_time.touched\" class=\"text-error\">- - Inválido.</span>\r\n                       </label>\r\n                  </div>          \r\n                </div>\r\n          <div class=\"col-12 inputProfile\">\r\n                  <div class=\"control\">\r\n                  <input type=\"number\" class=\"\" name=\"duration\" placeholder=\"Duração diária em horas\" [(ngModel)]=\"duration\" formControlName=\"duration\" value=\"5\" required />\r\n                     <label for=\"duration\">Duração</label>\r\n                  </div>\r\n                </div>\r\n\r\n\r\n         \r\n\r\n\r\n\r\n               \r\n\r\n\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnDescart\" routerLink=\"/\">CANCELAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <button class=\"btn btn-outline-primary btnSave\" type=\"submit\">GUARDAR</button>\r\n              </div>\r\n          </div>\r\n        </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    </div>\r\n"
+module.exports = "<ng-template #rt let-r=\"result\" let-t=\"term\" id=\"template-search\">\r\n        <div (click)=\" navigate(r.geometry.location.lat, r.geometry.location.lng);\" class=\"row no-padding content-search\">\r\n            <span class=\"searched\"> {{r.formatted_address}}</span>\r\n        </div>\r\n</ng-template>\r\n\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"row\">\r\n            <div class=\"col titleCard\">\r\n              Editar ação de voluntariado\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n      <div class=\"card-block\">\r\n        <form class=\"float-label\" [formGroup]=\"form\" (ngSubmit)=\"onSubmit(form)\" >\r\n          <div class=\"row\">\r\n              <div class=\"col-12 inputProfile no-margin\">\r\n                <div class=\"control\">\r\n                 <input (change)=\"changed()\" [(ngModel)]=\"model_title\" type=\"text\" minlength=\"10\" maxlength=\"60\" formControlName=\"name\" class=\"\" name=\"title\" placeholder=\"Título da ação de voluntariado\" [(ngModel)]=\"name\" required />\r\n                 <label [class.error-label]=\"!form.controls.name.valid && form.controls.name.touched\" for=\"title\">\r\n                   Título\r\n                    <span class=\"text-error\" *ngIf=\"form.controls.name.errors?.maxlength && form.controls.name.touched\" >\r\n                    - Inválido\r\n                    </span>\r\n                    <span class=\"text-error\" *ngIf=\"form.controls.name.errors?.minlength && form.controls.name.touched\" >\r\n                     - Inválido\r\n                    </span>\r\n\r\n                  </label>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-12 inputProfile\">\r\n                <div class=\"control\">\r\n                  <textarea [(ngModel)]=\"model_desc\" class=\"textAreaProfile\" minlength=\"50\" formControlName=\"description\" name=\"textarea\" required rows=\"4\" [(ngModel)]=\"desc\" placeholder=\"Descrição\">Descrição das funções do voluntário</textarea>\r\n                  <label [class.error-label]=\"!form.controls.description.valid && form.controls.description.touched\" for=\"textarea\">\r\n                    Descrição\r\n                    <span *ngIf=\"form.controls.description.errors?.minlength && form.controls.description.touched\" class=\"text-error\">- Inválido.</span>\r\n                  </label>\r\n                </div>\r\n              </div>\r\n\r\n            <div class=\"col-6 inputProfile\" >\r\n              <select [(ngModel)]=\"model_category\" name=\"categorie\" class=\"form-control select-input inputText form-control-lg disabled\" formControlName=\"category\">\r\n                <option *ngFor=\"let category of categories\" [value]='category.id_category'>{{category.name}}</option>\r\n              </select>\r\n               <label [class.error-label]=\"!form.controls.category.valid && form.controls.category.touched\" for=\"categorie\" class=\"label-for-select\">\r\n                 Categoria\r\n                 </label>\r\n            </div>\r\n              \r\n               <div class=\"col-6 inputProfile\">\r\n              <select [(ngModel)]=\"model_insurance\" class=\"form-control inputText  select-input form-control-lg disabled\" formControlName=\"insurance\">\r\n                <option selected value=\"1\">Sim</option>\r\n                <option value=\"0\">Não</option>\r\n              </select>\r\n              <label [class.error-label]=\"!form.controls.insurance.valid && form.controls.insurance.touched\" for=\"insurance\" class=\"label-for-select\">\r\n                Seguro\r\n              </label>\r\n            </div>\r\n\r\n        \r\n     \r\n\r\n                 <div class=\"col-12 inputProfile\">\r\n                <div class=\"control\">\r\n                 <input type=\"text\" class=\"\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"model\" (keyup.enter)=\"navigate(model.geometry.location.lat, model.geometry.location.lng)\" [ngbTypeahead]=\"search\" [resultTemplate]=\"rt\" [inputFormatter]=\"formatter\" name=\"localization\" placeholder=\"Insira a localização do voluntariado\"  required />\r\n                 <label  for=\"localization\">Localização\r\n                 </label>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-12 inputProfile\">\r\n                <sebm-google-map [latitude]=\"model_lat\" [longitude]=\"model_lng\" [zoom]=\"13\" [styles]=\"Terrain\">\r\n                <sebm-google-map-marker [latitude]=\"model_lat\" [longitude]=\"model_lng\" ></sebm-google-map-marker>\r\n                </sebm-google-map>\r\n             \r\n               </div>\r\n\r\n\r\n               <div class=\"col-6 inputProfile2\">\r\n                <div class=\"form-group\">\r\n                  <div class=\"input-group\">\r\n                    <input class=\"form-control date_picker\" name=\"dp\" ngbDatepicker #d=\"ngbDatepicker\" formControlName=\"date_begin\" placeholder=\"{{model_date_begin | date}}\">\r\n                    <div class=\"input-group-addon\" (click)=\"d.toggle()\" >\r\n                      <i class=\"data_range_icon material-icons\">date_range</i>\r\n                    </div>\r\n                  </div>\r\n                   <label  [class.error-label]=\"!form.controls.date_begin.valid && form.controls.date_begin.touched\" for=\"dp\" class=\"label-for-select\">\r\n                     Data de início\r\n                    </label>  \r\n                </div>\r\n            </div>\r\n\r\n        <div class=\"col-6 inputProfile2\">\r\n                <div class=\"form-group\">\r\n                  <div class=\"input-group\">\r\n                    <input class=\"form-control date_picker\" \r\n                           name=\"dp2\" ngbDatepicker #d2=\"ngbDatepicker\" formControlName=\"date_end\" placeholder=\"{{model_date_end | date}}\">\r\n                    <div class=\"input-group-addon\" (click)=\"d2.toggle()\" >\r\n                      <i class=\"data_range_icon material-icons\">date_range</i>\r\n                    </div>\r\n                  </div>\r\n                   <label for=\"dp2\" [class.error-label]=\"!form.controls.date_end.valid && form.controls.date_end.touched\" class=\"label-for-select\">\r\n                     Data de fim\r\n                     <span *ngIf=\"form.controls.date_end.errors?.pattern && form.controls.date_end.touched\" class=\"text-error\">- Inválido.</span>\r\n                     </label>\r\n                </div>\r\n            </div>\r\n\r\n\r\n  \r\n\r\n          <div  class=\"col-6 inputProfile\">\r\n                  <div class=\"control\">\r\n                    <input type=\"text\" class=\"\" name=\"date_begin\" placeholder=\"Hora de entrada\" [(ngModel)]=\"start_time\" formControlName=\"start_time\" value=\"09:00\" required />\r\n                     <label [class.error-label]=\"!form.controls.start_time.valid && form.controls.start_time.touched\" for=\"date_begin\">\r\n                       Hora de entrada\r\n                       <span  *ngIf=\"form.controls.start_time.errors?.pattern && form.controls.start_time.touched\" class=\"text-error\">- Inválido.</span>\r\n                       </label>\r\n                  </div>              \r\n                  \r\n                </div>\r\n          <div  class=\"col-6 inputProfile\">\r\n                  <div class=\"control\">\r\n                  <input type=\"text\" class=\"\" name=\"date_end\" placeholder=\"Hora de saída\"  [(ngModel)]=\"end_time\" formControlName=\"end_time\" value=\"17:00\" required />\r\n                     <label [class.error-label]=\"!form.controls.end_time.valid && form.controls.end_time.touched\" for=\"date_end\">\r\n                       Hora de saída\r\n                       <span *ngIf=\"form.controls.end_time.errors?.pattern && form.controls.end_time.touched\" class=\"text-error\">- Inválido.</span>\r\n                       </label>\r\n                  </div>          \r\n                </div>\r\n          <div class=\"col-12 inputProfile\">\r\n                  <div class=\"control\">\r\n                  <input type=\"number\" class=\"\" name=\"duration\" placeholder=\"Duração diária em horas\" [(ngModel)]=\"model_duration\" formControlName=\"duration\" value=\"5\" required />\r\n                     <label for=\"duration\">Duração</label>\r\n                  </div>\r\n                </div>\r\n\r\n\r\n         \r\n\r\n\r\n\r\n               \r\n\r\n\r\n              <div class=\"col-6\">\r\n                  <a class=\"btn btn-outline-primary btnDescart\" routerLink=\"/\">CANCELAR</a>\r\n              </div>\r\n              <div class=\"col-6 \">\r\n                <button *ngIf=\"!formChanged\" class=\"btn btn-outline-primary btnSave\" disabled>GUARDAR</button>\r\n                <button *ngIf=\"formChanged==1\" class=\"btn btn-outline-primary btnSave\" type=\"submit\">GUARDAR</button>\r\n              </div>\r\n          </div>\r\n        </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    </div>\r\n"
 
 /***/ }),
 
@@ -4350,7 +4375,7 @@ module.exports = "<p>\r\n  modal-invite works!\r\n</p>\r\n"
 /***/ 822:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row text-center\">\r\n    <div class=\"col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='{{user?.photo}}'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"{{user?.photo}}\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"col user-rate\">\r\n                    <md-icon class=\"rate1\">star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                </div>\r\n            <div class=\"friendsName\">\r\n              {{user?.username}}\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Sever do Vouga, Aveiro\r\n            </div>\r\n          </div>\r\n    </div>\r\n    <div class=\"col-12 details\">\r\n      <div class=\"friendsCardNumber\">E-mail</div>\r\n      <div class=\"friendsCardNumberDesc\">{{user?.email}}</div>\r\n    </div>\r\n    <div class=\"col-12 row-details\">\r\n      <div class=\"friendsCardNumber\">Data de Nascimento</div>\r\n      <div class=\"friendsCardNumberDesc\">18 de Janeiro de 1996</div>\r\n    </div>\r\n    <div class=\"col-md-8 offset-md-2 row-details\">\r\n      <div class=\"friendsCardNumber\">Descrição</div>\r\n      <div class=\"friendsCardNumberDesc\">Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.</div>\r\n    </div>\r\n\r\n    <div class=\"col-6 text-right no-padding btn-modal\" style=\"padding-right:5px;\">\r\n      <button class=\"btn btnCancel\" (click)=\"close()\">FECHAR</button>\r\n    </div>\r\n    <div class=\"col-6 btn-modal no-padding\" style=\"padding-left:5px; text-align:left\">\r\n      <button class=\"btn btnConfirm\" (click)=\"onSelect(userCreator)\">VER</button>\r\n    </div>\r\n    \r\n\r\n  </div>"
+module.exports = "<div class=\"row text-center\">\r\n    <div class=\"col-12\">\r\n          <div class=\"card cardFriends text-center\">\r\n            <div class=\"friendsBackground\">\r\n                <img class=\"coverImg\" src='{{user?.photo}}'>\r\n            </div>\r\n            <div class=\"profile-user-picture text-center\">\r\n                <img src=\"{{user?.photo}}\" alt=\"profile user picture\" />\r\n            </div>\r\n            <div class=\"col user-rate\">\r\n                    <md-icon class=\"rate1\">star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                    <md-icon>star_rate</md-icon>\r\n                </div>\r\n            <div class=\"friendsName\">\r\n              {{user?.username}}\r\n            </div>\r\n            <div class=\"friendsPlace\">\r\n              Sever do Vouga, Aveiro\r\n            </div>\r\n          </div>\r\n    </div>\r\n    <div class=\"col-12 details\">\r\n      <div class=\"friendsCardNumber\">E-mail</div>\r\n      <div class=\"friendsCardNumberDesc\">{{user?.email}}</div>\r\n    </div>\r\n    <div class=\"col-12 row-details\">\r\n      <div class=\"friendsCardNumber\">Data de Nascimento</div>\r\n      <div class=\"friendsCardNumberDesc\">18 de Janeiro de 1996</div>\r\n    </div>\r\n    <div class=\"col-md-8 offset-md-2 row-details\">\r\n      <div class=\"friendsCardNumber\">Descrição</div>\r\n      <div class=\"friendsCardNumberDesc\">Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.</div>\r\n    </div>\r\n\r\n    <div class=\"col-6 text-right no-padding btn-modal\" style=\"padding-right:5px;\">\r\n      <button class=\"btn btnCancel\" (click)=\"close()\">FECHAR</button>\r\n    </div>\r\n    <div class=\"col-6 btn-modal no-padding\" style=\"padding-left:5px; text-align:left\">\r\n      <button class=\"btn btnConfirm\" (click)=\"onSelect(user?.user_id)\">VER</button>\r\n    </div>\r\n    \r\n\r\n  </div>"
 
 /***/ }),
 

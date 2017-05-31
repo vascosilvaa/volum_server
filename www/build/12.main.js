@@ -1,14 +1,14 @@
 webpackJsonp([12],{
 
-/***/ 289:
+/***/ 440:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__notifications__ = __webpack_require__(633);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationsModule", function() { return NotificationsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__participants__ = __webpack_require__(661);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ParticipantsModule", function() { return ParticipantsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var NotificationsModule = (function () {
-    function NotificationsModule() {
+var ParticipantsModule = (function () {
+    function ParticipantsModule() {
     }
-    return NotificationsModule;
+    return ParticipantsModule;
 }());
-NotificationsModule = __decorate([
+ParticipantsModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */],
+            __WEBPACK_IMPORTED_MODULE_2__participants__["a" /* Participants */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__participants__["a" /* Participants */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__notifications__["a" /* Notifications */]
+            __WEBPACK_IMPORTED_MODULE_2__participants__["a" /* Participants */]
         ]
     })
-], NotificationsModule);
+], ParticipantsModule);
 
-//# sourceMappingURL=notifications.module.js.map
+//# sourceMappingURL=participants.module.js.map
 
 /***/ }),
 
-/***/ 633:
+/***/ 661:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_notifications_service__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(99);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Notifications; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Participants; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,127 +61,77 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the Notifications page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var Notifications = (function () {
-    function Notifications(navCtrl, notificationService, navParams, popoverCtrl) {
+var Participants = (function () {
+    function Participants(navCtrl, navParams, volsService, loadingCtrl) {
         this.navCtrl = navCtrl;
-        this.notificationService = notificationService;
         this.navParams = navParams;
-        this.popoverCtrl = popoverCtrl;
-        this.notifications = [];
+        this.volsService = volsService;
+        this.loadingCtrl = loadingCtrl;
+        this.disabledCandidates = false;
+        this.disabledConfirmeds = false;
+        var loading = this.loadingCtrl.create({
+            content: 'Loading...'
+        });
+        loading.present();
+        this.tabs = this.navParams.get('participants');
+        this.volId = this.navParams.get('volId');
+        this.getConfirmed(this.volId, 10);
+        if (this.tabs == "candidates") {
+            this.getCandidates(this.volId, 10);
+            this.getConfirmed(this.volId, 10);
+            loading.dismiss();
+        }
+        else if (this.tabs == "confirmed") {
+            this.getConfirmed(this.volId, 10);
+            this.getCandidates(this.volId, 10);
+            loading.dismiss();
+        }
     }
-    Notifications.prototype.ionViewDidLoad = function () {
+    // GET CONFIRMED 
+    Participants.prototype.getConfirmed = function (volId, amount) {
         var _this = this;
-        console.log('ionViewDidLoad Notifications');
-        this.notificationService.getNotifications().then(function (res) {
-            console.log("res1", res);
-            //   this.notifications = res.notifications;
-            console.log(_this.notifications);
-        });
-        this.notificationService.getRequests().then(function (res) {
-            console.log("res2", res);
-            _this.notifications = res.notifications;
-        });
+        this.volsService.getConfirmed(volId, amount)
+            .then(function (res) {
+            if (res.users.length == 0) {
+                _this.disabledConfirmeds = true;
+            }
+            else {
+                _this.confirmeds = res.users;
+            }
+        })
+            .catch(function (err) { return console.log(err); });
     };
-    Notifications.prototype.visit = function (id) {
-        this.navCtrl.push("Profile", { id_user: id });
+    // GET CANDIDATES
+    Participants.prototype.getCandidates = function (volId, amount) {
+        var _this = this;
+        this.volsService.getCandidates(volId, amount)
+            .then(function (res) {
+            console.log();
+            if (res.users.length == 0) {
+                _this.disabledCandidates = true;
+            }
+            else {
+                _this.candidates = res.users;
+            }
+        })
+            .catch(function (err) { return console.log(err); });
     };
-    //POPOVER HEADER
-    Notifications.prototype.openMenusHeader = function (ev) {
-        var popover = this.popoverCtrl.create("Popover", { typePopOver: '0', userId: '1' });
-        popover.present({
-            ev: ev
-        });
+    //GO PROFILE
+    Participants.prototype.goProfile = function (id_user) {
+        this.navCtrl.push("Profile", { id_user: id_user });
     };
-    return Notifications;
+    return Participants;
 }());
-Notifications = __decorate([
+Participants = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-        selector: 'page-notifications',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\notifications\notifications.html"*/'<ion-header no-border>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n            Notificações\n\n        </ion-title>\n\n        <ion-buttons end>\n\n            <button ion-button icon-only color="light" (click)="openMenusHeader($event)">\n\n            <ion-icon name="more"></ion-icon>\n\n        </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="content-background" padding-top>\n\n    <ion-list no-lines no-border>\n\n\n\n        <!-- SEGUIDORES -->\n\n        <button ion-item class="fixAvatar" *ngFor="let notification of notifications" (tap)="visit(notification.id_user)">\n\n                <ion-avatar item-left>\n\n                    <img [src]="notification.photo_url">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4" *ngIf="notification.type == 2"><span class="bold font-grey4">{{notification.user_name}}</span> começou a seguir-te</p>\n\n                <p class="font-sm"><ion-icon name="logo-rss" color="four" class="iconList"></ion-icon><span class="font-grey3">{{notification.date | date}}</span></p>\n\n        </button>\n\n        <!-- SEGUIDORES -->\n\n\n\n        <!-- CONVITES -->\n\n        <!--\n\n        <button ion-item class="fixAvatar">\n\n                <ion-avatar item-left>\n\n                    <img src="./assets/imgs/caritas.png">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4"><span class="bold font-grey4">Cáritas Aveiro</span> convidou-te para a sua ação</p>\n\n                <p class="font-sm"><ion-icon name="calendar" color="primary" class="iconList"></ion-icon><span class="font-grey3">Há 30 minutos</span></p>\n\n        </button>\n\n\n\n        <!-- CONVITES -->\n\n        <!--\n\n        <button ion-item class="fixAvatar">\n\n                <ion-avatar item-left>\n\n                    <img src="./assets/imgs/pedro.png">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4"><span class="bold font-grey4">Pedro Araújo</span> candidatou-se à tua ação <span class="bold font-third">Mundo verde</span></p>\n\n                <p class="font-sm"><ion-icon name="calendar" color="secondary" class="iconList"></ion-icon><span class="font-grey3">Há 2 dias</span></p>\n\n       </button>\n\n\n\n        <button ion-item class="fixAvatar">\n\n                <ion-avatar item-left> \n\n                    <img src="./assets/imgs/vasco.png">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4"><span class="bold font-grey4">Vasco Silva</span> comentou a tua ação <span class="bold font-third">Mundo verde</span></p>\n\n                <p class="font-sm"><ion-icon name="chatbubbles" color="secondary" class="iconList"></ion-icon><span class="font-grey3">Há 2 dias</span></p>\n\n        </button>\n\n\n\n        <button ion-item class="fixAvatar">\n\n                <ion-avatar item-left>\n\n                    <img src="./assets/imgs/avatar.png">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4"><span class="bold font-grey4">João Tavares</span> publicou na tua ação <span class="bold font-third">Mundo verde</span></p>\n\n                <p class="font-sm"><ion-icon name="calendar" color="secondary" class="iconList"></ion-icon><span class="font-grey3">Há 2 dias</span></p>\n\n       </button>\n\n\n\n        <button ion-item class="fixAvatar">\n\n                <ion-avatar item-left>\n\n                    <img src="./assets/imgs/andre.png">\n\n                </ion-avatar>\n\n                <p text-wrap class="font-grey4"><span class="bold font-grey4">André Martins</span> gosta da tua ação <span class="bold font-third">Mundo verde</span></p>\n\n                <p class="font-sm"><ion-icon name="heart" color="danger" class="iconList"></ion-icon><span class="font-grey3">Há 5 dias</span></p>\n\n        </button>\n\n        -->\n\n    </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\notifications\notifications.html"*/,
-        providers: [__WEBPACK_IMPORTED_MODULE_0__services_notifications_service__["a" /* NotificationsService */]]
+        selector: 'page-participants',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\shared\card\card-details\participants\participants.html"*/'<ion-header no-border>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n           Voluntários\n\n        </ion-title>\n\n        <ion-buttons end>\n\n            <button ion-button icon-only color="light" (click)="openMenus($event)">\n\n                <ion-icon name="more"></ion-icon>\n\n            </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n\n\n    <ion-segment [(ngModel)]="tabs" class="segmentDetails" color="light" mode="md">\n\n        <ion-segment-button value="confirmed" [disabled]="disabledConfirmed">\n\n            Confirmados\n\n        </ion-segment-button>\n\n        <ion-segment-button value="candidates" [disabled]="disabledCandidates">\n\n            Candidatos\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-header>\n\n\n\n\n\n<ion-content  class="content-background" [ngSwitch]="tabs" padding-top>\n\n     <!-- CONFIRMADOS -->\n\n    <div *ngSwitchCase="\'confirmed\'">\n\n        <ion-list no-border no-lines mode="md">\n\n            <button ion-item *ngFor="let confirmed of confirmeds" (tap)="goProfile(confirmed.id_user)">\n\n                <ion-avatar item-left>\n\n                    <img [src]="confirmed?.photo_url">\n\n                </ion-avatar>\n\n                <h2 class="font-grey4 font-md bold">{{confirmed?.name}}</h2>\n\n                <div class="marginTopNeg">\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                </div>\n\n                <!--\n\n                <button ion-button color="danger" item-right icon-left mode="ios">\n\n                    Remover\n\n                </button>\n\n                -->\n\n            </button>\n\n        </ion-list>\n\n    </div>\n\n\n\n    <div *ngSwitchCase="\'candidates\'">\n\n       <ion-list no-border no-lines mode="md">\n\n            <button ion-item *ngFor="let candidate of candidates" (tap)="goProfile(candidate.id_user)">\n\n                <ion-avatar item-left>\n\n                    <img [src]="candidate?.photo_url">\n\n                </ion-avatar>\n\n                <h2 class="font-grey4 font-md bold">{{candidate?.name}}</h2>\n\n                <div class="marginTopNeg">\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                    <ion-icon name="star" class="font-md2" color="secondary"></ion-icon>\n\n                </div>\n\n                <!--\n\n                <button ion-button color="yellow" item-right icon-left class="btnRemove" mode="ios">\n\n                    Aceitar\n\n                </button>\n\n                -->\n\n            </button>\n\n        </ion-list>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\shared\card\card-details\participants\participants.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* VolsService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__services_notifications_service__["a" /* NotificationsService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* PopoverController */]])
-], Notifications);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* VolsService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* LoadingController */]])
+], Participants);
 
-//# sourceMappingURL=notifications.js.map
-
-/***/ }),
-
-/***/ 639:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_global_constants__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_http_client__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotificationsService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var NotificationsService = (function () {
-    function NotificationsService(http) {
-        this.http = http;
-    }
-    NotificationsService.prototype.newNotificationCount = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/not-read/count").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    ;
-    NotificationsService.prototype.newRequestCount = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests/not-read/count").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    ;
-    NotificationsService.prototype.getNotifications = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    ;
-    NotificationsService.prototype.getRequests = function () {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    ;
-    NotificationsService.prototype.cleanRequests = function () {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/requests/read-all", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    NotificationsService.prototype.cleanNotifications = function () {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_0__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/notifications/read-all", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    return NotificationsService;
-}());
-NotificationsService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__shared_http_client__["a" /* HttpClient */]])
-], NotificationsService);
-
-//# sourceMappingURL=notifications.service.js.map
+//# sourceMappingURL=participants.js.map
 
 /***/ })
 

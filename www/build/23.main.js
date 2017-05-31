@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 286:
+/***/ 428:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_cartegory__ = __webpack_require__(630);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalCartegoryModule", function() { return ModalCartegoryModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register1__ = __webpack_require__(648);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register1Module", function() { return Register1Module; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ModalCartegoryModule = (function () {
-    function ModalCartegoryModule() {
+var Register1Module = (function () {
+    function Register1Module() {
     }
-    return ModalCartegoryModule;
+    return Register1Module;
 }());
-ModalCartegoryModule = __decorate([
+Register1Module = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_cartegory__["a" /* ModalCartegory */],
+            __WEBPACK_IMPORTED_MODULE_2__register1__["a" /* Register1 */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__modal_cartegory__["a" /* ModalCartegory */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register1__["a" /* Register1 */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__modal_cartegory__["a" /* ModalCartegory */]
+            __WEBPACK_IMPORTED_MODULE_2__register1__["a" /* Register1 */]
         ]
     })
-], ModalCartegoryModule);
+], Register1Module);
 
-//# sourceMappingURL=modal-cartegory.module.js.map
+//# sourceMappingURL=register1.module.js.map
 
 /***/ }),
 
-/***/ 630:
+/***/ 648:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalCartegory; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(15);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register1; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,28 +60,145 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var ModalCartegory = (function () {
-    function ModalCartegory(navParams, viewCtrl) {
+
+var Register1 = (function () {
+    function Register1(navCtrl, navParams, _fb, toastCtrl) {
+        this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
+        this._fb = _fb;
+        this.toastCtrl = toastCtrl;
+        // GET DATA
+        this.type = this.navParams.get('type');
+        if (this.type == 0) {
+            this.registo1 = this._fb.group({
+                name: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(3), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].pattern(/^[A-z\u00E0-\u00FC]+$/i)]],
+                surname: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(3), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].pattern(/^[A-z\u00E0-\u00FC]+$/i)]],
+            });
+        }
+        else {
+            this.registo1 = this._fb.group({
+                name: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(3), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].pattern(/^[A-z\u00E0-\u00FC]+$/i)]],
+            });
+        }
     }
-    ModalCartegory.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ModalCartegory');
+    Register1.prototype.validate = function (type) {
+        var value = type;
+        if (this.type == 0) {
+            if (value == 0 && this.registo1.controls.name.errors) {
+                if (this.registo1.controls.name.value != "") {
+                    if (this.registo1.controls.name.errors.pattern) {
+                        var toast = this.toastCtrl.create({
+                            message: 'Nome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else if (this.registo1.controls.name.errors.minlength) {
+                        var toast = this.toastCtrl.create({
+                            message: 'O nome inserido é muito pequeno!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else {
+                        var toast = this.toastCtrl.create({
+                            message: 'Campo nome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                }
+            }
+            else if (value == 1 && this.registo1.controls.surname.errors) {
+                if (this.registo1.controls.surname.value != "") {
+                    if (this.registo1.controls.surname.errors.pattern) {
+                        var toast = this.toastCtrl.create({
+                            message: 'Sobrenome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else if (this.registo1.controls.surname.errors.minlength) {
+                        var toast = this.toastCtrl.create({
+                            message: 'O sobrenome é muito pequeno!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else {
+                        var toast = this.toastCtrl.create({
+                            message: 'Campo sobrenome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                }
+            }
+        }
+        else {
+            if (value == 0 && this.registo1.controls.name.errors) {
+                if (this.registo1.controls.name.value != "") {
+                    if (this.registo1.controls.name.errors.pattern) {
+                        var toast = this.toastCtrl.create({
+                            message: 'Nome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else if (this.registo1.controls.name.errors.minlength) {
+                        var toast = this.toastCtrl.create({
+                            message: 'O nome inserido é muito pequeno!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                    else {
+                        var toast = this.toastCtrl.create({
+                            message: 'Campo nome inválido!',
+                            duration: 3000,
+                            cssClass: "toast-error"
+                        });
+                        toast.present();
+                    }
+                }
+            }
+        }
     };
-    ModalCartegory.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
+    Register1.prototype.onSubmit = function (value, valid) {
+        if (this.type == 0) {
+            this.registo1.controls.name.markAsTouched();
+            this.registo1.controls.surname.markAsTouched();
+            var completeName = value.name + " " + value.surname;
+            if (valid == true) {
+                this.navCtrl.push("Register2", { type: this.type, name: completeName });
+            }
+        }
+        else {
+            this.registo1.controls.name.markAsTouched();
+            if (valid == true) {
+                this.navCtrl.push("Register2", { type: this.type, name: value.name });
+            }
+        }
     };
-    return ModalCartegory;
+    return Register1;
 }());
-ModalCartegory = __decorate([
+Register1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-modal-cartegory',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\new-action\modal-cartegory\modal-cartegory.html"*/'<ion-header no-border>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n        Categoria\n\n    </ion-title>\n\n    <ion-buttons start showWhen="ios">\n\n      <button ion-button (click)="dismiss()">\n\n        <span ion-text color="light" showWhen="ios">Cancel</span>\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons start showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n         <ion-icon name="checkmark" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="android,windows">\n\n      <button ion-button (click)="dismiss()">\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n    <ion-buttons end showWhen="ios">\n\n      <button ion-button (click)="dismiss()" disabled>\n\n        <span ion-text color="light" showWhen="ios">Guardar</span>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="content-background">\n\n    <ion-searchbar no-shadow></ion-searchbar>\n\n    <ion-list radio-group no-lines>\n\n        <ion-item>\n\n            <ion-label color="grey4">Saúde</ion-label>\n\n            <ion-radio checked="true" value="go"></ion-radio>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <ion-label color="grey4">Educação</ion-label>\n\n            <ion-radio value="rust"></ion-radio>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <ion-label color="grey4">Desporto</ion-label>\n\n            <ion-radio value="rust"></ion-radio>\n\n        </ion-item>\n\n    </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\new-action\modal-cartegory\modal-cartegory.html"*/,
+        selector: 'page-register1',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register1\register1.html"*/'<ion-header no-border>\n\n    <ion-navbar transparent color="primary">\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding-top class="backgroundBlue">\n\n    <ion-list class="listRegister" no-lines>\n\n        <ion-item *ngIf="type == 0">\n\n            <h1 text-wrap>Qual é o seu nome?</h1>\n\n        </ion-item>\n\n        <ion-item *ngIf="type == 1">\n\n            <h1 text-wrap>Qual é o nome da instituição?</h1>\n\n        </ion-item>\n\n        <form [formGroup]="registo1" (ngSubmit)="onSubmit(registo1.value, registo1.valid)">\n\n            <ion-item padding-top>\n\n                <ion-label stacked mode="ios"><span *ngIf="type == 1">NOME DA INSTITUIÇÃO</span><span *ngIf="type == 0">NOME</span></ion-label>\n\n                <ion-input maxlength="50" type="text" formControlName="name" (blur)="validate(0)"></ion-input>\n\n            </ion-item>\n\n            <ion-item padding-top padding-bottom *ngIf="type == 0">\n\n                <ion-label stacked mode="ios">SOBRENOME</ion-label>\n\n                <ion-input maxlength="50" type="text" formControlName="surname" (blur)="validate(1)"></ion-input>\n\n            </ion-item>\n\n            <ion-item padding-top>\n\n                <button ion-fab color="light" item-right no-margin [disabled]="!registo1.valid" mode="ios" type="submit"><ion-icon name="arrow-forward"></ion-icon></button>\n\n            </ion-item>\n\n        </form>\n\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register1\register1.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
-], ModalCartegory);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ToastController */]])
+], Register1);
 
-//# sourceMappingURL=modal-cartegory.js.map
+//# sourceMappingURL=register1.js.map
 
 /***/ })
 

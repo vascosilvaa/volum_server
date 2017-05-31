@@ -1,14 +1,14 @@
 webpackJsonp([25],{
 
-/***/ 282:
+/***/ 425:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register5__ = __webpack_require__(625);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Register5Module", function() { return Register5Module; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entry__ = __webpack_require__(645);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntryModule", function() { return EntryModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var Register5Module = (function () {
-    function Register5Module() {
+var EntryModule = (function () {
+    function EntryModule() {
     }
-    return Register5Module;
+    return EntryModule;
 }());
-Register5Module = __decorate([
+EntryModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */],
+            __WEBPACK_IMPORTED_MODULE_2__entry__["a" /* Entry */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__entry__["a" /* Entry */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__register5__["a" /* Register5 */]
+            __WEBPACK_IMPORTED_MODULE_2__entry__["a" /* Entry */]
         ]
     })
-], Register5Module);
+], EntryModule);
 
-//# sourceMappingURL=register5.module.js.map
+//# sourceMappingURL=entry.module.js.map
 
 /***/ }),
 
-/***/ 625:
+/***/ 645:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(99);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Register5; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Entry; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,32 +59,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var Register5 = (function () {
-    function Register5(navCtrl, navParams) {
+var Entry = (function () {
+    function Entry(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        // GET DATA
-        this.type = this.navParams.get('type');
-        this.name = this.navParams.get('name');
-        this.email = this.navParams.get('email');
-        this.password = this.navParams.get('password');
-        this.birthday = this.navParams.get('birthday');
-        this.gender = 0;
     }
-    Register5.prototype.onSubmit = function () {
-        this.navCtrl.push("Register6", { type: this.type, name: this.name, email: this.email, password: this.password, birthday: this.birthday, gender: this.gender });
+    Entry.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Entry');
     };
-    return Register5;
+    Entry.prototype.goLogin = function () {
+        this.navCtrl.push("Login");
+    };
+    Entry.prototype.goRegister = function () {
+        this.navCtrl.push("Register0");
+    };
+    return Entry;
 }());
-Register5 = __decorate([
+Entry = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-register5',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register5\register5.html"*/'<ion-header no-border>\n\n    <ion-navbar transparent color="primary">\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding-top class="backgroundBlue">\n\n    <ion-list class="listRegister" no-lines radio-group [(ngModel)]="gender">\n\n        <ion-item>\n\n            <h1 class="textWhite" text-wrap>Qual é o seu género?</h1>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label>Feminino</ion-label>\n\n            <ion-radio value="0" color="secondary"></ion-radio>\n\n        </ion-item>\n\n        <ion-item padding-bottom>\n\n            <ion-label>Masculino</ion-label>\n\n            <ion-radio value="1" color="secondary"></ion-radio>\n\n        </ion-item>\n\n        <ion-item padding-top>\n\n            <button ion-fab color="light" item-right no-margin mode="ios" (tap)="onSubmit()"><ion-icon name="arrow-forward"></ion-icon></button>\n\n        </ion-item>\n\n    </ion-list>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\register5\register5.html"*/,
+        selector: 'page-entry',template:/*ion-inline-start:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\entry.html"*/'<ion-content class="backgroundBlue" padding-left padding-right>\n\n    <ion-grid class="contentEntry">\n\n        <ion-row>\n\n            <ion-col col-12 text-right no-padding margin-bottom>\n\n                <button ion-button clear color="light" class="btnEntryTop" (tap)="goLogin()">\n\n                    Entrar\n\n                </button>\n\n            </ion-col>\n\n\n\n            <ion-col col-12 class="textEntry logoVolum">\n\n                <img src="./assets/imgs/logoVolum.png"/>\n\n            </ion-col>\n\n\n\n            <ion-col col-12 class="font-light textEntry" padding-bottom>\n\n                <h1 class="textWhite">Bem-vindo(a) ao <br>Volum.</h1>\n\n            </ion-col>\n\n\n\n            <ion-col col-12>\n\n                <button ion-button color="light" round class="btnEntry btnEntryColor" icon-left mode="ios">\n\n                    <ion-icon name="logo-facebook" class="iconFacebookEntry"></ion-icon>\n\n                    Continuar com Facebook\n\n                </button>\n\n            </ion-col>\n\n\n\n            <ion-col col-12>\n\n                <button ion-button color="light" round class="btnEntry btnEntryColor" icon-left mode="ios">\n\n                    <ion-icon name="logo-google" class="iconFacebookEntry"></ion-icon>\n\n                    Continuar com Google\n\n                </button>\n\n            </ion-col>\n\n\n\n            <ion-col col-12 padding-bottom>\n\n                <button ion-button color="light" round outline class="btnEntry" (tap)="goRegister()" mode="ios">Criar uma conta</button>\n\n            </ion-col>\n\n\n\n            <ion-col col-12 color="white" padding-top>\n\n                <span color="white" class="font-sm font-light textEntryInfo">Ao tocar em Continuar, Criar Conta, eu concordo com os Termos de Serviço, a Política de Privacidade e a Política de Não Discriminação do Volum.</span>\n\n            </ion-col>\n\n\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content> \n\n'/*ion-inline-end:"C:\Users\Pedro\desktop\volum_mobile\src\pages\entry\entry.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], Register5);
+], Entry);
 
-//# sourceMappingURL=register5.js.map
+//# sourceMappingURL=entry.js.map
 
 /***/ })
 

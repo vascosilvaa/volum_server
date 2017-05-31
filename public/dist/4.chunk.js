@@ -692,6 +692,7 @@ var ChatComponent = (function () {
             _this.conversations = res.conversations;
             console.log("CONVERSATIONS", _this.conversations);
             _this.getUsersAndLastMessage();
+            _this.navigate(_this.conversations[0].id_conversation, _this.conversations[0].id_user);
         });
     };
     ChatComponent.prototype.navigate = function (id, name) {
