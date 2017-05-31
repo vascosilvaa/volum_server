@@ -45,14 +45,14 @@ export class FeedComponent implements OnInit {
 
 
     } else if (!this.login) {
-      this.volsService.getPrivates()
+      this.volsService.getPrivates(0, 10)
         .then(res => {
           this.privateVols = res.vols;
           this.ready = true;
         })
         .catch(err => console.log(err));
 
-      this.volsService.getInstVol()
+      this.volsService.getInstVol(0, 10)
         .then(res => {
           this.instVols = res.vols;
           console.log(res);

@@ -104,7 +104,6 @@ export class AppComponent implements OnInit {
 
   getUsersAndLastMessage() {
     for (let i = 0; i < this.conversations.length; i++) {
-
       this.profileService.getProfile(this.conversations[i].id_user).then(res => {
         this.conversations[i].photo_url = res.user.photo;
         this.conversations[i].name = res.user.username;
@@ -176,6 +175,10 @@ export class AppComponent implements OnInit {
     console.log("name", name)
     this.chatService.conversation = name;
     this.router.navigate(['./chat/msg', id], { relativeTo: this.route });
+  }
+
+  goToMessagesAll() {
+    this.router.navigate(['./chat/msg', this.conversations[0].id_conversation], { relativeTo: this.route });
   }
 
 

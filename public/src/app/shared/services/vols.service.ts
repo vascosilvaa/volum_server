@@ -23,6 +23,7 @@ export class volsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
     getVol(idVol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + idVol).toPromise()
             .then(res => {
@@ -101,8 +102,8 @@ export class volsService {
     }
 
 
-    getPrivates() {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/?type=private`).toPromise()
+    getPrivates(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type:'private', startAt: startAt, amount: amount}).toPromise()
             .then(res => {
                 return res.json();
             })
@@ -111,8 +112,8 @@ export class volsService {
             });
     }
 
-    getInstVol() {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/?type=inst`).toPromise()
+    getInstVol(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type: 'inst', startAt: startAt, amount: amount}).toPromise()
             .then(res => {
                 return res.json();
             })
@@ -156,6 +157,12 @@ export class volsService {
     }
     bounds(swlat, swlng, nwlat, nwlng) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/bounds/`, { swlat: swlat, swlng: swlng, nwlat: nwlat, nwlng: nwlng }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    editAction(id_vol, body) {
+        return this.http.put(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol, body).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

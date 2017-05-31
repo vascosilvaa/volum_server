@@ -1,3 +1,4 @@
+import { SharedService } from './../services/shared.service';
 import { Router } from '@angular/router';
 import { ProfileService } from './../services/profile.service';
 import { AuthenticationService } from './../Auth/authentication.service';
@@ -10,10 +11,10 @@ import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
-
 export class ModalContext extends BSModalContext {
   providers: [volsService]
- 
+  public id_vol: any;
+
 }
 
 @Component({
@@ -23,9 +24,6 @@ export class ModalContext extends BSModalContext {
 })
 export class EditModalComponent implements OnInit {
   context: ModalContext;
-
-lat: number = 41.100856;
-  lng: number = -8.544893;
   public category: any;
   public schedule = 0;
   public img = 0;
@@ -45,10 +43,30 @@ lat: number = 41.100856;
   public coord: any;
   public coordAdvice: any;
   public idProfile: any;
-  public errorFiles:any;
+  public errorFiles: any;
+  public vol: any;
+  public first: any;
 
-  
-  constructor(public router: Router ,private dialog: DialogRef<ModalContext>, public parser: NgbDateParserFormatter, private _fb: FormBuilder, public volsService: volsService, public ProfileService: ProfileService) {
+  public hora_inicio: any;
+  public hora_fim: any;
+  public minutos_inicio: any;
+  public minutos_fim: any;
+  public modelData: any;
+  public model: any;
+  public model_title: any;
+  public model_desc: any;
+  public model_category: any;
+  public model_insurance: any;
+  public model_date_begin: any;
+  public model_date_end: any;
+  public model_duration: any;
+  public model_lat: any;
+  public model_lng: any;
+  public dateChanged: any;
+
+  public formChanged: any;
+
+  constructor(public SharedService: SharedService, public router: Router, private dialog: DialogRef<ModalContext>, public parser: NgbDateParserFormatter, private _fb: FormBuilder, public volsService: volsService, public ProfileService: ProfileService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     this.context.size = "lg";
@@ -58,14 +76,52 @@ lat: number = 41.100856;
     this.ProfileService.getCategories().then(res => {
       this.categories = res.categories;
       console.log(res);
+      console.log("ID MODEL ->>" + this.context.id_vol);
     });
-      this.form = this._fb.group({
+    this.volsService.getVol(this.context.id_vol).then(res => {
+
+      this.vol = res.vol;
+
+
+
+      this.model_title = this.vol.name;
+      this.model_desc = this.vol.description;
+      this.model_category = this.vol.category;
+      this.model_insurance = this.vol.insurance;
+      this.model_date_begin = this.vol.date_begin;
+      this.model_date_end = this.vol.date_end;
+      this.model_lat = parseFloat(this.vol.lat);
+      this.model_lng = parseFloat(this.vol.lng);
+      this.SharedService.getAddress(this.vol.lat, this.vol.lng).then(res => {
+        this.modelData = res.results;
+        this.model = this.modelData[0].formatted_address;
+      });
+      if (this.vol.start_time != "00:00:00.000000" && this.vol.start_time) {
+        this.hora_inicio = this.vol.start_time.slice(0, 2);
+        this.minutos_inicio = this.vol.start_time.slice(3, 5);
+
+        this.start_time = this.hora_inicio + ":" + this.minutos_inicio;
+      } else {
+        this.start_time = "";
+      }
+      if (this.vol.end_time != "00:00:00.000000" && this.vol.end_time) {
+        this.hora_fim = this.vol.end_time.slice(0, 2);
+        this.minutos_fim = this.vol.end_time.slice(3, 5);
+        this.end_time = this.hora_fim + ":" + this.minutos_fim;
+
+      } else {
+        this.end_time = "";
+      }
+
+      this.model_duration = this.vol.duration;
+    });
+    this.form = this._fb.group({
       name: ['', []],
       description: ['', []],
       category: ['', []],
       insurance: ['', []],
       date_begin: ['', []],
-      date_end: ['', ],
+      date_end: ['',],
       start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
       duration: ['',],
@@ -73,6 +129,8 @@ lat: number = 41.100856;
   }
 
   onSubmit(form: any) {
+    if(this.formChanged==1) {
+    console.log(form.valid);
     this.form.controls.name.markAsTouched();
     this.form.controls.description.markAsTouched();
     this.form.controls.category.markAsTouched();
@@ -82,39 +140,40 @@ lat: number = 41.100856;
     this.form.controls.start_time.markAsTouched();
     this.form.controls.end_time.markAsTouched();
     this.form.controls.duration.markAsTouched();
-    if (form.valid && this.coord) {
-
-
-      console.log('you submitted value:', form.value);
-      if (form.value.date_begin instanceof Date) {
-
-      } else {
-        form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
-        form.value.date_end = new Date(this.parser.format(form.value.date_end));
+    if (form.valid) {
+      if(form.value.date_begin == "") {
+         form.value.date_begin ="";
+        form.value.date_begin = this.model_date_begin;
+      }
+      if(form.value.date_end == "") {
+         form.value.date_end ="";
+        form.value.date_end = this.model_date_end;
       }
 
 
-      form.value.lat = this.lat;
-      form.value.lng = this.lng;
+
+
+      form.value.lat = this.model_lat;
+      form.value.lng = this.model_lng;
       console.log("VALUE", form.value);
-      this.ProfileService.newAction(form.value).then(res => {
+      this.volsService.editAction(this.context.id_vol, form.value).then(res => {
         console.log(res);
         if (res.error) {
           console.log('erro')
         } else {
-          this.router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
+          console.log('updated');
         }
       });
 
     } else {
       this.coordAdvice = true;
     }
+    }
   }
 
-navigate(lat, lng) {
-    this.lat = lat;
-    this.lng = lng;
-    this.coord = true;
+  navigate(lat, lng) {
+    this.model_lat = lat;
+    this.model_lng = lng;
   }
 
   formatter = (x: {
@@ -139,93 +198,54 @@ navigate(lat, lng) {
 
   readUrl(event) {
     console.log(event.target.files.length);
-    if(event.target.files.length > 3){
-      this.errorFiles=1;
+    if (event.target.files.length > 3) {
+      this.errorFiles = 1;
     } else {
-       this.errorFiles=0;
-       if (event.target.files && event.target.files[0] && event.target.files[1]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url1 = event.target['result'];
-          }
-      reader.readAsDataURL(event.target.files[0]);
-    }
+      this.errorFiles = 0;
+      if (event.target.files && event.target.files[0] && event.target.files[1]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url1 = event.target['result'];
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
       if (event.target.files && event.target.files[0] && !event.target.files[1]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url1 = event.target['result'];
-           this.url2 = undefined;
-           this.url3 = undefined;
-          }
-      reader.readAsDataURL(event.target.files[0]);
-    }
-    if (event.target.files && event.target.files[1] && event.target.files[2] ) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url2 = event.target['result'];
-           }
-      reader.readAsDataURL(event.target.files[1]);
-    }
-     if (event.target.files && event.target.files[1] && !event.target.files[2] ) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url2 = event.target['result'];
-           this.url3 = undefined;
-           }
-      reader.readAsDataURL(event.target.files[1]);
-    }
-    
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url1 = event.target['result'];
+          this.url2 = undefined;
+          this.url3 = undefined;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
+      if (event.target.files && event.target.files[1] && event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url2 = event.target['result'];
+        }
+        reader.readAsDataURL(event.target.files[1]);
+      }
+      if (event.target.files && event.target.files[1] && !event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url2 = event.target['result'];
+          this.url3 = undefined;
+        }
+        reader.readAsDataURL(event.target.files[1]);
+      }
 
-     if (event.target.files && event.target.files[2]) {
-          var reader = new FileReader()
-          reader.onload = (event) => {
-           this.url3 = event.target['result'];
-          }
-      reader.readAsDataURL(event.target.files[2]);
-    }
-    
-  }
-}
 
-  /*change(id) {
-    if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name
-      this.name="";
-    } else if (id==2 && this.desc=="Descrição das funções do voluntário") {// descrição 
-       this.desc="";
-    }
-    else if (id==3 &&  this.localization == "Insira a localização do voluntariado") {// localização 
-       this.localization="";
-    }
-    else if (id==4 && this.start_time== "Hora inicial da ação de voluntariado") {// start time 
-       this.start_time="";
-    }
-    else if (id==5 && this.end_time=="Hora final da ação de voluntariado") {// end time 
-       this.end_time="";
-    }
-    else if (id==6 && this.duration == "Duração diária da ação de voluntariado") {// duração 
-       this.duration="";
+      if (event.target.files && event.target.files[2]) {
+        var reader = new FileReader()
+        reader.onload = (event) => {
+          this.url3 = event.target['result'];
+        }
+        reader.readAsDataURL(event.target.files[2]);
+      }
+
     }
   }
-   changeOut(id) {
-    if (id==1 && this.name == "") { // name
-      this.name="Insira aqui o título da ação de voluntariado";
-    } else if (id==2 && this.desc =="") {// descrição 
-      this.desc="Descrição das funções do voluntário";
-    }
-    else if (id==3 && this.localization == "") {// localização 
-      this.localization = "Insira a localização do voluntariado";
-    }
-    else if (id==4 && this.start_time == "") {// start time 
-      this.start_time="Hora inicial da ação de voluntariado ";
-    }
-    else if (id==5 && this.end_time == "") {// end time 
-      this.end_time="Hora final da ação de voluntariado";
-    }
-    else if (id==6 && this.duration == "") {// duração 
-      this.duration = "Duração diária da ação de voluntariado";
-    }
-  }
-*/
+
   showSchedule() {
     this.schedule = 1;
   }
@@ -239,5 +259,9 @@ navigate(lat, lng) {
   }
   hideImgs() {
     this.img = 0;
+  }
+
+  changed() {
+    this.formChanged=1;
   }
 }

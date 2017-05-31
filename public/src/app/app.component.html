@@ -95,7 +95,8 @@
                                 </div>
                             </div>
                         </ng-container>
-                        <div class="dropdown-footer" [routerLink]="['/chat/msg/', conversations[0]?.id_conversation] ">Ver todas as mensagens</div>
+
+                        <div class="dropdown-footer" (click)="goToMessagesAll()">Ver todas as mensagens</div>
                     </div>
                 </li>
 

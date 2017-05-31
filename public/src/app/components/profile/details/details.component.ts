@@ -64,8 +64,8 @@ export class DetailsComponent implements OnInit {
   }
 
   
-  openEditModal(id_vol) {
-    return this.modal.open(EditModalComponent, overlayConfigFactory({id_vol: id_vol }, BSModalContext));
+  openEditModal() {
+    return this.modal.open(EditModalComponent, overlayConfigFactory({id_vol: this.idVol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -207,16 +207,6 @@ export class DetailsComponent implements OnInit {
         this.numberCandidates--;
         console.log(res);
       })
-  }
-
-  edit(field) {
-    if(field==1) { //titulo
-      if(this.editTitle==1){
-        this.editTitle=0;
-      } else {
-        this.editTitle=1;
-      }
-    }
   }
 
 }

@@ -10,6 +10,7 @@ import { RouterModule, Router } from '@angular/router';
 export class ModalContext extends BSModalContext {
   public idVol: any;
   public idProfile: any;
+  public inProfile: any;
 }
 
 @Component({
@@ -53,7 +54,14 @@ export class ModalProfileComponent implements OnInit {
   }
 
   onSelect(profile) {
-    this.dialog.close("done");  
+    if(this.context.inProfile==1) {
+      this.dialog.dismiss();
+      setTimeout(() => {
+        this.router.navigate(['/profile/' + this.context.idProfile + '/activity']);
+      }, 250);
+    } else {
+      this.dialog.close("done");
+    }
   }
 
   close() {

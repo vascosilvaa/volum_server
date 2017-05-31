@@ -44,6 +44,6 @@ export class InstitutionsComponent implements OnInit {
 
 
   openProfileModal(idProfile) {
-    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext));
+    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1 }, BSModalContext));
   }
 }

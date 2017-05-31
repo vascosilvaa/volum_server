@@ -1,10 +1,10 @@
 <div class="card-volum">
     <!-- HEADER CARD -->
-    <div class="row no-margin">
+    <div class="row no-margin" style="display:flex">
         <div (click)="onSelect(userCreator)" class="col card-user-image col-md-auto">
             <img src="{{avatar}}" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
         </div>
-        <div class="col-6 col-lg-8 card-user-nd">
+        <div class="card-user-nd">
             <div *ngIf="verified==1" class="card-user-name ts16">
                 <a *ngIf="login" class="clickable clickableName" (click)="onSelect(userCreator)">{{username}}</a>
                 <a *ngIf="!login">{{username}}</a>

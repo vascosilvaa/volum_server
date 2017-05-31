@@ -103,6 +103,7 @@ export class VolDetailsModalComponent implements OnInit {
   }
   ngOnInit() {
     this.feed = this.injector.get(FeedComponent);
+    console.log(this.feed);
   }
 
   onSelect(id_profile) {
