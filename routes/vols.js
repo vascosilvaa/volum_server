@@ -4,9 +4,15 @@ var express = require('express'),
     db = require('../config/db');
 var passport = require('passport');
 var fs = require('fs');
+var cloudinary = require('cloudinary');
 
 var app = module.exports = express.Router();
 
+cloudinary.config({
+    cloud_name: 'dbbmwchww',
+    api_key: '266298598993945',
+    api_secret: 'UjQ9gFhIgaBJvt5X5uXl5xh9zYc'
+});
 
 var jwtCheck = jwt({
     secret: config.secretKey
@@ -134,8 +140,8 @@ var returnRouter = function (io) {
 
 
 
-    app.post('/', function (req, res) {
-
+    app.post('/', passport.authenticate('jwt'), function (req, res) {
+        let result_id;
         console.log("body", req.body)
         let photos = []
 
@@ -156,18 +162,8 @@ var returnRouter = function (io) {
 
             } else {
 
-                for (let i = 0; i < req.body.photos.length; i++) {
-                    fs.writeFile('./public/storage/vol_photos/' + Math.random() * 10 + '.jpg', decodeBase64Image(req.photos[i]), function (err) {
-
-                    });
 
 
-
-
-                }
-                /*
-         
-         
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
                     'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ? )', [req.body.category, req.user.id_user, req.body.name, req.body.description, req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                     function (error, results, fields) {
@@ -177,36 +173,59 @@ var returnRouter = function (io) {
                                 error
                             });
                         } else {
-                            if (!req.photo_1) {
-         
+                            if (!req.body.photos) {
+
                                 db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
                                     if (error) {
                                         res.json({
                                             error
                                         });
                                     } else {
-         
+
                                         res.json({
                                             message: 'Success',
                                             id_vol: results.insertId
                                         });
-         
-         
+
+
                                     }
                                 });
                             } else {
-                                res.json({
-                                    message: 'Success',
-                                    id_vol: results.insertId
-                                });
+
+                                for (let i = 0; i < req.body.photos.length; i++) {
+                                    cloudinary.uploader.upload(req.body.photos[i], function (result) {
+
+                                        db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function (error, result, field) {
+                                            if (error) {
+                                                res.json({
+                                                    error
+                                                });
+                                            } else {
+                                                if (i == (req.body.photos.length - 1)) {
+
+                                                    res.json({
+                                                        message: 'Success',
+                                                        id_vol: results.insertId
+                                                    });
+
+                                                }
+
+                                            }
+                                        });
+
+                                    });
+                                }
                             }
                         }
                     });
-                       */
+
+
             }
 
         }
+
     });
+
 
 
     app.get('/bounds', function (req, res, next) {

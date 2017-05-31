@@ -38,7 +38,7 @@ export class NewActionComponent implements OnInit {
   public idProfile: any;
   public errorFiles: any;
   public model: any;
-
+  public submitted: boolean = false;
   public photos = [];
   @ViewChild("input") input;
 
@@ -230,17 +230,29 @@ export class NewActionComponent implements OnInit {
     this.form.controls.start_time.markAsTouched();
     this.form.controls.end_time.markAsTouched();
     this.form.controls.duration.markAsTouched();
-    form.value.lat = this.lat;
-    form.value.lng = this.lng;
-    let array = []
-    form.value.category = 1;
-    array.push(this.url1);
-    form.value.photos = array;
-    console.log('you submitted value:', form.value);
-
-    if (this.coord) {
 
 
+    if (this.coord && this.form.valid && this.submitted == false) {
+      this.submitted = true;
+
+      form.value.lat = this.lat;
+      form.value.lng = this.lng;
+      let array = []
+      form.value.category = 1;
+      if (this.url1) {
+        array.push(this.url1);
+
+      }
+      if (this.url2) {
+        array.push(this.url2);
+
+      }
+      if (this.url3) {
+        array.push(this.url3);
+
+      }
+      form.value.photos = array;
+      console.log('you submitted value:', form.value);
 
       if (form.value.date_begin instanceof Date) {
 
@@ -248,10 +260,7 @@ export class NewActionComponent implements OnInit {
         form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
         form.value.date_end = new Date(this.parser.format(form.value.date_end));
       }
-
-
-      form.value.lat = this.lat;
-      form.value.lng = this.lng;
+      
       console.log("VALUE", form.value);
       this.profileService.newAction(form.value).then(res => {
         console.log(res);

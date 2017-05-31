@@ -55,7 +55,9 @@ var returnRouter = function (io) {
                             birth_date: user.birth_date,
                             verified: user.verified,
                             type: user.type_user,
-                            about: user.about
+                            about: user.about,
+                            lat: user.lat,
+                            lng: user.lng
                         }
                     });
                 }

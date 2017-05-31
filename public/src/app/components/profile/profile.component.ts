@@ -1,3 +1,4 @@
+import { SharedService } from './../../shared/services/shared.service';
 import { ProfileService } from './../../shared/services/profile.service';
 import { AppComponent } from './../../app.component';
 import { Overlay } from 'angular2-modal';
@@ -43,7 +44,7 @@ export class ProfileComponent implements OnInit {
   public idLogin: any;
   public state: Number;
 
-  constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
+  constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private sharedService: SharedService, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
   }
@@ -71,6 +72,11 @@ export class ProfileComponent implements OnInit {
       this.idProfile = this.route.snapshot.params['id'];
       this.profileService.getProfile(this.idProfile).then(res => {
         this.user = res.user;
+        this.sharedService.getAddress(this.user.lat, this.user.lng).then(res => {
+          console.log("res", res.results)
+          this.user['location'] = res.results[0].formatted_address;
+
+        })
         this.profileService.saveActiveUser(this.user);
         this.profileService.checkOnline(this.user.id_user).then(res => {
           this.online = res.state;

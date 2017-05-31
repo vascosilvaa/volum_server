@@ -19,8 +19,8 @@
                     <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
                     <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()" *ngIf="idProfile != idLogin">message</md-icon>
                 </div>
-                <div class="user-location">
-                    Aveiro, Sever do Vouga
+                <div class="user-location" *ngIf="user.lat && user.lng">
+                    {{user?.location}}
                 </div>
             </div>
         </div>

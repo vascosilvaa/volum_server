@@ -37,10 +37,9 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());
 require('./config/passport')(passport);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 app.use(express.static(path.join(__dirname, 'public/dist')));
 app.use('/api', express.static(path.join(__dirname, 'docs')))

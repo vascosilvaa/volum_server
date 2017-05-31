@@ -19,6 +19,7 @@ import { ModalEndComponent } from './modal-end/modal-end.component';
 import { ModalProfileComponent } from './modal-profile/modal-profile.component';
 import { ModalInviteComponent } from './modal-invite/modal-invite.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { JsonpModule } from '@angular/http';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
     EditModalComponent
   ],
   imports: [
+    JsonpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
