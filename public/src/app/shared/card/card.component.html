@@ -11,7 +11,7 @@
                 <button type="button" class="btn btn-secondary verified" placement="right" ngbTooltip="Instituição verificada">
                 <i class="material-icons md-18">verified_user</i></button></div>
             <div *ngIf="verified==0" class="card-user-name ts16"><a (click)="onSelect(userCreator)">{{username}}</a> </div>
-            <div class="card-date ts14">{{dateCreation | timeAgo}}</div>
+            <div class="card-date ts14">{{dateCreation | amTimeAgo: 'true'}}</div>
         </div>
         <div *ngIf="login==1" class="col card-option text-right">
             <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
@@ -34,8 +34,8 @@
     <!-- / HEADER CARD -->
 
     <!-- CONTENT CARD -->
-    
-        <img class="imgSliderInd " [src]="photos[0]">
+
+    <img class="imgSliderInd " [src]="photos[0]">
 
     <div class="row no-margin card-volum-content" (click)="openVolDetails(idVol)">
         <div class="col ts18 card-volum-title">

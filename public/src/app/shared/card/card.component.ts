@@ -61,9 +61,7 @@ export class CardComponent implements OnInit {
     }
 
     console.log("LIKES", this.likes)
-    moment.tz("Europe/Lisbon")
 
-    moment.tz("Europe/Lisbon").locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
         future: "Daqui a %s",
@@ -82,6 +80,8 @@ export class CardComponent implements OnInit {
       }
     });
 
+    console.log("ZONE", moment.parseZone(this.dateCreation));
+
     /*  this.sharedService.getComments(this.idVol)
         .then(res => {
           this.commentsResult = res.vols;
@@ -95,31 +95,31 @@ export class CardComponent implements OnInit {
 
 
 
-openRegister() {
-  return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
-}
+  openRegister() {
+    return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+  }
 
-openVolDetails(idVol) {
-  return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: this.index }, BSModalContext));
-}
+  openVolDetails(idVol) {
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: this.index }, BSModalContext));
+  }
 
-onSelect(profile) {
-  this.router.navigate(['/profile/' + profile + '/activity']);
-}
+  onSelect(profile) {
+    this.router.navigate(['/profile/' + profile + '/activity']);
+  }
 
-like(id_vol) {
-  this.likeState = 1;
-  this.likes++;
-  this.sharedService.like(id_vol).then(res => {
-    console.log(res);
-  });
-}
-dislike(id_vol) {
-  this.likeState = 0;
-  this.likes--;
-  this.sharedService.dislike(id_vol).then(res => {
+  like(id_vol) {
+    this.likeState = 1;
+    this.likes++;
+    this.sharedService.like(id_vol).then(res => {
+      console.log(res);
+    });
+  }
+  dislike(id_vol) {
+    this.likeState = 0;
+    this.likes--;
+    this.sharedService.dislike(id_vol).then(res => {
 
-    console.log(res);
-  });
-}
+      console.log(res);
+    });
+  }
 }

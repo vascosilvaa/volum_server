@@ -18,7 +18,7 @@ var returnRouter = function (io) {
     app.get('/', passport.authenticate('jwt'), function (req, res) {
 
 
-        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? AND notifications.type = 1 LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
+        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? AND notifications.type = 1 ORDER BY date DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
             console.log(error);
             console.log("USER", req.user.id_user);
             let notifications = [];

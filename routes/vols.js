@@ -92,10 +92,11 @@ var returnRouter = function (io) {
                         })
                         throw new Error(error);
                     } else {
-                        console.log(results);
                         if (results.length == 0) { } else {
 
                             for (let i = 0; i < results.length; i++) {
+                                console.log("RESULTS", results[i].vols.date_creation);
+
                                 vols.push({
                                     vol: {
                                         id_vol: results[i].vols.id_vol,
@@ -164,8 +165,8 @@ var returnRouter = function (io) {
 
 
 
-                db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
-                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ? )', [req.body.category, req.user.id_user, req.body.name, req.body.description, req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
+                db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
+                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [req.body.category, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                     function (error, results, fields) {
                         if (error) {
                             console.log(error);
@@ -173,7 +174,31 @@ var returnRouter = function (io) {
                                 error
                             });
                         } else {
-                            if (!req.body.photos) {
+
+                            for (let i = 0; i < req.body.photos.length; i++) {
+                                cloudinary.uploader.upload(req.body.photos[i], function (result) {
+
+                                    db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function (error, result, field) {
+                                        if (error) {
+                                            res.json({
+                                                error
+                                            });
+                                        } else {
+                                            if (i == (req.body.photos.length - 1)) {
+
+                                                res.json({
+                                                    message: 'Success',
+                                                    id_vol: results.insertId
+                                                });
+
+                                            }
+
+                                        }
+                                    });
+
+                                });
+                            }
+                            if (req.body.photos.length == 0) {
 
                                 db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
                                     if (error) {
@@ -190,32 +215,9 @@ var returnRouter = function (io) {
 
                                     }
                                 });
-                            } else {
 
-                                for (let i = 0; i < req.body.photos.length; i++) {
-                                    cloudinary.uploader.upload(req.body.photos[i], function (result) {
-
-                                        db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function (error, result, field) {
-                                            if (error) {
-                                                res.json({
-                                                    error
-                                                });
-                                            } else {
-                                                if (i == (req.body.photos.length - 1)) {
-
-                                                    res.json({
-                                                        message: 'Success',
-                                                        id_vol: results.insertId
-                                                    });
-
-                                                }
-
-                                            }
-                                        });
-
-                                    });
-                                }
                             }
+
                         }
                     });
 
@@ -810,7 +812,7 @@ var returnRouter = function (io) {
 
                                         let id_creator = results[0].id_user_creator;
 
-                                        db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, type) VALUES (?, ?, ?, 1)', [id_creator, req.user.id_user, req.params.id],
+                                        db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, 1)', [id_creator, req.user.id_user, req.params.id, new Date()],
                                             function (error, results, fields) {
                                                 console.log(results);
                                                 console.log(error);

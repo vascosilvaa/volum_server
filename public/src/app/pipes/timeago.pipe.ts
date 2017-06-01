@@ -20,7 +20,7 @@ export class timeAgoPipe implements PipeTransform {
             [60, 'segundos', 1], // 60
             [120, 'há 1 m', ''], // 60*2
             [3600, 'm', 60], // 60*60, 60
-            [7200, 'há 1h', '1 hour from now'], // 60*60*2
+            [7200, 'Agora mesmo', 'Agora mesmo'], // 60*60*2
             [86400, 'horas', 3600], // 60*60*24, 60*60
             [172800, 'Ontem', 'Tomorrow'], // 60*60*24*2
             [604800, 'days', 86400], // 60*60*24*7, 60*60*24
