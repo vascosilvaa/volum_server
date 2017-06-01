@@ -14,77 +14,53 @@
             </div>
           </div>
         </div>
-        <div class="card-block not-item">
-          <div class="container">
-            <div class="row ">
-              <div class="col-12 not-content">
-                <div class="image">
-                    <img src="assets/imgs/andre.jpg">
+
+      <div *ngIf="notificationsTrue">
+        <div (click)="openVolDetails(notification?.id_vol)" *ngFor="let notification of notifications" class="card-block not-item">
+            <div class="container">
+              <div class="row ">
+                <div class="col-12 not-content">
+                  <div class="image">
+                    <img src="{{notification.photo_url}}">
+                  </div>
+                  <div class="notDesc">
+                    <span *ngIf="notification.type==1" class="not-name">{{notification?.user_name}}</span> candidatou-se à
+                    ação de voluntariado <span class="notEvent">"{{notification?.vol_name}}"</span>.
+                    <div class="notTime">
+                      {{notification?.date | amTimeAgo:true}}
+                    </div>
+                  </div>
+
+
                 </div>
-                <div class="notDesc">
-                  <span class="not-name">André Martins</span> gostou do teu evento <span class="notEvent">Solidariedade com os pobres</span>.
-                <div class="notTime">
-                  há 4 horas
-                </div>
-                </div>
-              
-           
               </div>
-            </div>
-             <div class="col text-right not-icon no-padding">
+              <div class="col text-right not-icon no-padding pointer">
                 <i class="material-icons edit">event_note</i>
               </div>
+            </div>
           </div>
 
 
         </div>
-        <div class="card-block not-item">
-          <div class="container">
+        <div *ngIf="!notificationsTrue">
+           <div class="container">
             <div class="row ">
-              <div class="col-12 not-content">
-                <div class="image">
-                    <img src="assets/imgs/andre.jpg">
-                </div>
-                <div class="notDesc">
-                  <span class="not-name">André Martins</span> aderiu ao teu evento <span class="notEvent">Solidariedade com os pobres</span>.
-                <div class="notTime">
-                  há 4 horas
-                </div>
-                </div>
+              <div class="col-12 text-center">
+                <div class="icon-undefined">
+                 <i class="material-icons">access_time</i>
+                  </div>
+                <div class="text-undefined">Não possui qualquer notificação.</div>
               </div>
             </div>
-              <div class="col text-right not-icon no-padding">
-                <i class="material-icons edit">event_note</i>
-              </div>
           </div>
-
-
         </div>
-        <div class="card-block not-item">
-          <div class="container">
-            <div class="row ">
-              <div class="col-12 not-content">
-                <div class="image">
-                    <img src="assets/imgs/andre.jpg">
-                </div>
-                <div class="notDesc">
-                  <span class="not-name">André Martins</span> aderiu ao teu evento <span class="notEvent">Solidariedade com os pobres</span>.
-                <div class="notTime">
-                  há 4 horas
-                </div>
-                </div>
-              </div>
-            </div>
-              <div class="col text-right not-icon no-padding">
-                <i class="material-icons edit">event_note</i>
-              </div>
-          </div>
 
 
-        </div>
+
       </div>
     </div>
   </div>
 </div>
+
 
 <app-footer></app-footer>

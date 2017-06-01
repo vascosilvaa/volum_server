@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <button type="submit" (click)="search()">Search</button>
+                <button type="submit" class="btn btnSearchMap pointer" (click)="search()">REFAZER A PESQUISA AQUI</button>
                 <div class="cardsSection col-12">
                     <div class="col-12" *ngFor="let vol of vols">
                         <vol-card [map]="true" [likes]="33" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"

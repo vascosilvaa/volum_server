@@ -149,7 +149,7 @@
                 <li (click)="openRegister()" *ngIf="!user"> Registar</li>
                 <li (click)="openLogin()" *ngIf="!user"> Entrar</li>
 
-                <li *ngIf="user" class="nameDropdown" ngbDropdown ngbDropdownToggle>
+                <li *ngIf="user" class="nameDropdown add_padding" ngbDropdown ngbDropdownToggle>
 
                     <span>
                     <img class="navbar-user-picture" [src]="user?.photo" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'"> 
