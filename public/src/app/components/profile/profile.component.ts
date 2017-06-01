@@ -78,12 +78,15 @@ export class ProfileComponent implements OnInit {
         console.log("INICIAL USER", this.user)
         this.user = res.user;
 
+        if (this.user.lat && this.user.lng) {
 
-        this.sharedService.getAddress(this.user.lat, this.user.lng).then(res => {
-          console.log("res", res.results)
-          this.user['location'] = res.results[0].formatted_address;
+          this.sharedService.getAddress(this.user.lat, this.user.lng).then(res => {
+            console.log("res", res.results)
+            this.user['location'] = res.results[0].formatted_address;
 
-        })
+          })
+        }
+
         this.profileService.checkOnline(this.user.id_user).then(res => {
           this.online = res.state;
         })
