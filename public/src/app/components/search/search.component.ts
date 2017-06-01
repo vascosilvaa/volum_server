@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   public searchResult: any;
   public model: any;
   public elements: any;
-  constructor(overlay: Overlay, vcRef: ViewContainerRef, public volsService: volsService , public modal: Modal, private route: ActivatedRoute, private router: Router) { }
+  constructor(public volsService: volsService , public modal: Modal, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
       this.model = "";
@@ -27,7 +27,9 @@ export class SearchComponent implements OnInit {
       this.search_query = this.route.snapshot.params['q'];
       console.log(this.search_query)
     });
-    this.search(this.search_query);
+    
+      this.search(this.search_query);
+
   }
 
   search(query) {
@@ -44,7 +46,9 @@ export class SearchComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-   openVolDetails(idVol) {
+  
+
+  openVolDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
   }
 

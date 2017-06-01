@@ -13,6 +13,7 @@ import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
+
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
 import { FollowingComponent } from './following/following.component';

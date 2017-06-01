@@ -49,7 +49,7 @@
                 <a routerLink="/profile/{{idProfile}}/new" class="btn-new-action" md-raised-button><span class="btn-new-action-text" >NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
             </div>
             <div *ngIf="idProfile!=idLogin" class="col-sm-2 col-6 col-new-action text-right">
-                <a class="btn-follow" md-raised-button (click)="follow(idProfile)" *ngIf="state == 0"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
+                <a class="btn-new-action" md-raised-button (click)="follow(idProfile)" *ngIf="state == 0"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
                 <a class="btn-follow" md-raised-button (click)="unfollow(idProfile)" *ngIf="state == 1"><span class="btn-new-action-text" >NÃO SEGUIR</span><span><md-icon class="btn-new-action-icon">minus</md-icon></span></a>
 
             </div>

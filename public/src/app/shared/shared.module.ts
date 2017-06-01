@@ -1,3 +1,5 @@
+import { ProfileService } from './services/profile.service';
+import { FeedComponent } from './../components/feed/feed.component';
 import { SharedService } from './services/shared.service';
 import { timeAgoPipe } from './../pipes/timeago.pipe';
 import { SwiperModule } from 'angular2-useful-swiper';
@@ -52,7 +54,7 @@ import { JsonpModule } from '@angular/http';
   ],
   exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService
+    { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService, FeedComponent, ProfileService
   ],
   entryComponents: [
     ModalViewAllComponent,
