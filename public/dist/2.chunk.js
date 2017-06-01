@@ -16,8 +16,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_bootstrap_ng_bootstrap__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ng2_bootstrap_carousel__ = __webpack_require__(947);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_material__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feed_component__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_material__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feed_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_forms__ = __webpack_require__(2);
@@ -482,7 +482,7 @@ var SlideComponent = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feed_component__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feed_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(17);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedRoutingModule; });
@@ -586,7 +586,13 @@ var SearchComponent = (function () {
         if (this.model == undefined) {
             this.model = "";
         }
-        this.router.navigate(['/search', { q: this.model }]);
+        else {
+            if (this.model.length < 1) {
+            }
+            else {
+                this.router.navigate(['/search', { q: this.model }]);
+            }
+        }
     };
     return SearchComponent;
 }());
@@ -1590,7 +1596,7 @@ InfiniteScrollModule.ctorParameters = function () { return []; };
 /***/ 957:
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #rt let-r=\"result\" let-t=\"term\">\r\n\r\n    <div class=\"\">\r\n        <div class=\"row hover-style pointer\" (click)=\"navigate(r.id, r.type)\" style=\"padding:5px 0px;\">\r\n            <div class=\"img-search\">\r\n                <img *ngIf=\"r.type==0\" src=\"http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg\">\r\n                <img *ngIf=\"r.type==1 || r.type==2\" [src]=\"r.photo_url\">\r\n            </div>\r\n            <div class=\"desc-search\">\r\n                <div class=\"namePerson\">\r\n                    {{ r.name}}\r\n                </div>\r\n                <div class=\"descPerson\">\r\n                    <span *ngIf=\"r.type==0\"> Ação de Voluntariado</span>\r\n                    <span *ngIf=\"r.type==1\"> Voluntário</span>\r\n                    <span *ngIf=\"r.type==2\"> Instituição</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ng-template>\r\n\r\n\r\n<div class=\"container no-padding\">\r\n    <div class=\"col-12 header-home-search menuFull\">\r\n        <div class=\"col-search\">\r\n\r\n            <md-input-container class=\"col-12\">\r\n                <input mdInput [(ngModel)]=\"model\" [ngbTypeahead]=\"search\" [resultTemplate]=\"rt\" [inputFormatter]=\"formatter\" (keyup.enter)=\"navigate(model.id, model.type)\"\r\n                    placeholder=\"Pesquisa pessoas, instituições e ações de voluntariado\">\r\n            </md-input-container>\r\n        </div>\r\n\r\n        <div class=\"col-search-btn btnSearch\">\r\n            <button md-raised-button class=\"btnConfirm btn-search\" (click)=\"goToSearch()\">PROCURAR</button>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<ng-template #rt let-r=\"result\" let-t=\"term\">\r\n\r\n    <div class=\"\">\r\n        <div class=\"row hover-style pointer\" (click)=\"navigate(r.id, r.type)\" style=\"padding:5px 0px;\">\r\n            <div class=\"img-search\">\r\n                <img *ngIf=\"r.type==0\" src=\"http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg\">\r\n                <img *ngIf=\"r.type==1 || r.type==2\" [src]=\"r.photo_url\">\r\n            </div>\r\n            <div class=\"desc-search\">\r\n                <div class=\"namePerson\">\r\n                    {{ r.name}}\r\n                </div>\r\n                <div class=\"descPerson\">\r\n                    <span *ngIf=\"r.type==0\"> Ação de Voluntariado</span>\r\n                    <span *ngIf=\"r.type==1\"> Voluntário</span>\r\n                    <span *ngIf=\"r.type==2\"> Instituição</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</ng-template>\r\n\r\n\r\n<div class=\"container no-padding\">\r\n    <div class=\"col-12 header-home-search menuFull\">\r\n        <div class=\"col-search\">\r\n\r\n            <md-input-container class=\"col-12\">\r\n                <input mdInput [(ngModel)]=\"model\" [ngbTypeahead]=\"search\" [resultTemplate]=\"rt\" [inputFormatter]=\"formatter\" (keyup.enter)=\"navigate(model.id, model.type)\"\r\n                    placeholder=\"Pesquisa pessoas, instituições e ações de voluntariado\">\r\n            </md-input-container>\r\n        </div>\r\n\r\n        <div class=\"col-search-btn btnSearch\">\r\n            <button  md-raised-button class=\"btnConfirm btn-search\" (click)=\"goToSearch()\">PROCURAR</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
