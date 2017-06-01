@@ -38,16 +38,19 @@ export class ActivityComponent implements OnInit, OnDestroy {
     this.activeUser = this.profileService.getUser();
     console.log("USER", this.activeUser)
 
-    if (this.activeUser) {
-     
-     this.checkType(this.activeUser)
-   
-    }
+    if (this.activeUser && this.vols.length > 0) {
 
-    this.observable = this.profileService.activeProfileSource.subscribe(
-      data => {
-        this.checkType(data);
-      })
+      this.checkType(this.activeUser)
+
+    }
+    if (this.vols.length > 0) {
+
+      this.observable = this.profileService.activeProfileSource.subscribe(
+        data => {
+          this.checkType(data);
+        })
+
+    }
 
   }
 
@@ -77,10 +80,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
-    this.observable.unsubscribe();
     console.log("destroy")
-
   }
 
 

@@ -127,7 +127,6 @@ var returnRouter = function (io) {
         }
     });
 
-
     /**
      * @api {post} /vols/ Novo Voluntariado
      * @apiName newVol
@@ -138,8 +137,6 @@ var returnRouter = function (io) {
      * @apiParam lng lngitude
      * @apiGroup Voluntariados 
      */
-
-
 
     app.post('/', passport.authenticate('jwt'), function (req, res) {
         let result_id;
@@ -228,8 +225,6 @@ var returnRouter = function (io) {
 
     });
 
-
-
     app.get('/bounds', function (req, res, next) {
         console.log("query", req.query);
 
@@ -302,9 +297,6 @@ var returnRouter = function (io) {
 
     });
 
-
-
-
     app.get('/nearby', function (req, res, next) {
         console.log("query", req.query);
 
@@ -369,8 +361,6 @@ var returnRouter = function (io) {
 
     });
 
-
-
     /**
      * @api {get} /vols/:id Listar Especifico
      * @apiParam id ID do vol
@@ -424,7 +414,7 @@ var returnRouter = function (io) {
 
 
         let options = {
-            sql: 'SELECT * FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? LIMIT 1',
+            sql: 'SELECT  vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time FROM vols  INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? GROUP BY vols.id_vol LIMIT 1',
             nestTables: true
         };
 
@@ -462,7 +452,9 @@ var returnRouter = function (io) {
                             insurance: results[i].vols.insurance,
                             lng: results[i].vols.lng,
                             lat: results[i].vols.lat,
-                            user: results[i].users
+                            user: results[i].users,
+                            photos: (results[i][''].photos).split('->')
+
                         }
                     }
                     res.json({

@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="row" *ngIf="vols">
+  <div class="row" *ngIf="vols.length > 0">
     <div class="col-6" *ngFor="let vol of vols">
-      <vol-card *ngIf="activeUser.type == 1" [verified]="false" type='private' [idVol]="vol.id_vol" [avatar]="activeUser.photo" [username]="activeUser.username"
-        [userCreator]="activeUser.id_user" [dateCreation]="vol.date_creation" [title]="vol.name" [photos]="vol.photos" [description]="vol.description">
+      <vol-card *ngIf="activeUser.type == 1" [verified]="false" type='private' [idVol]="vol.id_vol" [avatar]="activeUser.photo"
+        [username]="activeUser.username" [userCreator]="activeUser.id_user" [dateCreation]="vol.date_creation" [title]="vol.name"
+        [photos]="vol.photos" [description]="vol.description">
       </vol-card>
       <vol-card *ngIf="activeUser.type == 2" [verified]="true" type='private' [idVol]="vol.vol.id_vol" [avatar]="vol.user.photo_url"
         [username]="vol.user.name" [userCreator]="vol.user.id_user_creator" [dateCreation]="vol.date_creation" [title]="vol.vol.name"
@@ -10,7 +11,7 @@
       </vol-card>
     </div>
   </div>
-  <div class="col-12 mt-5 text-center" *ngIf="!vols">
+  <div class="col-12 mt-5 text-center" *ngIf="vols.length == 0">
     <h3><b>Sem Atividade</b></h3>
   </div>
 </div>

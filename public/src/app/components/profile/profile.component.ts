@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
     });
   }
   engageConversation() {
-    this.profileService.engageConversation(this.user['id_user']).then(res => {
+    this.profileService.engageConversation(this.idProfile).then(res => {
       console.log(res);
       this.router.navigate(['./chat/msg/', res.id_conversation])
     }).catch(err => {
