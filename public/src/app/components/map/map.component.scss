@@ -69,3 +69,15 @@ textarea:focus, input:focus{
   background-color: $grey2;
 
 }
+
+.btnSearchMap {
+    border-radius: 3px !important;
+    font-size: 12px;
+    border: 1px solid $blue;
+    background-color: $blue;
+    color: $white !important;
+    position:absolute;
+    top:2vh;
+    left: -220px;
+    font-weight: $bold;
+}

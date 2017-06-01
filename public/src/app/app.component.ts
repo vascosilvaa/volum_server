@@ -45,18 +45,18 @@ export class AppComponent implements OnInit {
     moment.updateLocale('pt', {
       relativeTime: {
         future: "in %s",
-        past: "%s",
+        past: "há %s",
         s: "Agora mesmo",
-        m: "1 min",
-        mm: "%d m",
+        m: " há 1 min",
+        mm: "há %d m",
         h: "1h",
-        hh: "%d hrs",
-        d: "1 dia",
-        dd: "%d dias",
-        M: "1 mês",
-        MM: "%d meses",
-        y: "1 ano",
-        yy: "%d anos"
+        hh: "há %d horas",
+        d: "há 1 dia",
+        dd: "há %d dias",
+        M: "há 1 mês",
+        MM: "há %d meses",
+        y: "há 1 ano",
+        yy: "há %d anos"
       }
     });
 
@@ -195,6 +195,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.user = null;
+    location.reload();
   }
 
   onSelect(profile) {

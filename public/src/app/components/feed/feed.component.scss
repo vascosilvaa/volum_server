@@ -170,6 +170,7 @@
         background-color: $blue;
         margin-top: 20px;
         padding: 10px;
+        opacity: 0.2;
     }
     
     .askedQuestions {
@@ -195,7 +196,9 @@
     .cityAveiro {
      //   background: url('../../../assets/imgs/aveiro2.jpg');
         background-size: cover;
-        height: 200px;
+    height: 200px;
+    z-index: 100;
+    margin-top: -200px;
     }
     
     .cityPorto {
@@ -236,7 +239,18 @@
         color: #fff;
         font-weight: 600;
         font-size: 1.4em;
-        padding-top: 70px;
+        margin-top: -120px;
+        z-index:20;
+        
+    }
+
+    .blueFilter {
+        background: $blue;
+        height: 200px;
+        width: 160px;
+        opacity: 0.3;
+        margin-top:-200px;
+        z-index:10;
     }
     
     .slider-prev1 {
@@ -270,3 +284,10 @@
         display: none;
     }
 
+    .img-feed {
+        object-fit: cover;
+        height: 200px;
+        width: 160px;
+        margin-top:20px;
+
+    }

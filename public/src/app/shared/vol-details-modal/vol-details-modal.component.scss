@@ -231,6 +231,9 @@
     text-align: justify; 
 }
 
+.marginAhed {
+    padding-bottom: 15px!important;
+}
 .sectionDatePlace{
     width: 100%;
     border-top:1px solid $grey1;
@@ -292,6 +295,7 @@
     height: 30px;
     margin-left: -10px;
     border-radius: 30px;
+    object-fit: cover;
 }
 
 .numberYellow{
