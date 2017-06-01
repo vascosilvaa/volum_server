@@ -117,3 +117,23 @@
 .text-vol {
     margin-left: 25px;
 }
+
+.no-results {
+    padding: 10px 15px;
+}
+.no-results-row {
+    display:flex;
+    padding: 10px 0px;
+    font-size: 14px;
+    color: $grey2;
+}
+
+.no-results-row i {
+    font-size: 25px;
+    color: $grey2;
+    margin-right: 5px;
+}
+
+.search_query {
+    color: $blue;
+}

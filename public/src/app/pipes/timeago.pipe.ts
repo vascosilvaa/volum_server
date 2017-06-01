@@ -23,7 +23,7 @@ export class timeAgoPipe implements PipeTransform {
             [7200, 'Agora mesmo', 'Agora mesmo'], // 60*60*2
             [86400, 'horas', 3600], // 60*60*24, 60*60
             [172800, 'Ontem', 'Tomorrow'], // 60*60*24*2
-            [604800, 'days', 86400], // 60*60*24*7, 60*60*24
+            [604800, 'dias', 86400], // 60*60*24*7, 60*60*24
             [1209600, 'A semana passada', 'Next week'], // 60*60*24*7*4*2
             [2419200, 'semanas', 604800], // 60*60*24*7*4, 60*60*24*7
             [4838400, '1 mês', 'Next month'], // 60*60*24*7*4*2

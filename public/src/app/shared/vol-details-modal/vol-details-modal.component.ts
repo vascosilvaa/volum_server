@@ -20,7 +20,6 @@ export class ModalContext extends BSModalContext {
   selector: 'vol-details-modal',
   templateUrl: './vol-details-modal.component.html',
   styleUrls: ['./vol-details-modal.component.scss'],
-  providers: [ProfileService, FeedComponent, SharedService]
 })
 
 

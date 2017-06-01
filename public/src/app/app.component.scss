@@ -1,7 +1,9 @@
 @import '../styles';
 
 /* HEADER */
-
+/deep/ .mat-input-element {
+    color: $grey2;
+}
 .brandBackground {
     padding-top: 6px;
 }
