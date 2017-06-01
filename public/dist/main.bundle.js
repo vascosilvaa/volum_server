@@ -1761,12 +1761,14 @@ var GlobalConstants = (function () {
     function GlobalConstants() {
     }
     Object.defineProperty(GlobalConstants, "API_ENDPOINT", {
-        get: function () { return 'http://localhost:8080/api'; },
+        //    public static get API_ENDPOINT(): string { return 'http://localhost:8080/api'; }
+        //   public static get SOCKET_ENDPOINT(): string { return 'http://localhost:8080/'; }
+        get: function () { return 'http://146.185.137.215/api'; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(GlobalConstants, "SOCKET_ENDPOINT", {
-        get: function () { return 'http://localhost:8080/'; },
+        get: function () { return 'http://146.185.137.215/'; },
         enumerable: true,
         configurable: true
     });
