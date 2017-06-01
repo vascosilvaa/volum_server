@@ -43,14 +43,13 @@ export class ActivityComponent implements OnInit, OnDestroy {
       this.checkType(this.activeUser)
 
     }
-    if (this.vols.length > 0) {
 
-      this.observable = this.profileService.activeProfileSource.subscribe(
-        data => {
-          this.checkType(data);
-        })
+    this.observable = this.profileService.activeProfileSource.subscribe(
+      data => {
+        this.checkType(data);
+      })
 
-    }
+
 
   }
 
@@ -67,8 +66,8 @@ export class ActivityComponent implements OnInit, OnDestroy {
       }).catch(err => console.log(err));
 
     } else {
-
-      this.profileService.getVolHistory(this.activeUser.user.id_user_creator)
+      
+      this.profileService.getVolHistory(this.activeUser.id_user)
         .then(res => {
           this.vols = res.vols;
           console.log("history", this.vols)
