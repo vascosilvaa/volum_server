@@ -11,7 +11,8 @@
       </vol-card>
     </div>
   </div>
-  <div class="col-12 mt-5 text-center" *ngIf="vols.length == 0">
-    <h3><b>Sem Atividade</b></h3>
+  <div class="col-12 mt-5 text-center text-no-activity" *ngIf="vols.length == 0" >
+    <div style="padding: 5px;" class="clock"><i class="material-icons">alarm</i></div>
+    <span>Sem Atividade</span>
   </div>
 </div>

@@ -11,7 +11,7 @@ import { Http } from '@angular/http';
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.css'],
+  styleUrls: ['./activity.component.scss'],
   providers: [volsService]
 })
 export class ActivityComponent implements OnInit, OnDestroy {
