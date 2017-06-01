@@ -576,11 +576,9 @@ var ActivityComponent = (function () {
         if (this.activeUser && this.vols.length > 0) {
             this.checkType(this.activeUser);
         }
-        if (this.vols.length > 0) {
-            this.observable = this.profileService.activeProfileSource.subscribe(function (data) {
-                _this.checkType(data);
-            });
-        }
+        this.observable = this.profileService.activeProfileSource.subscribe(function (data) {
+            _this.checkType(data);
+        });
     };
     ActivityComponent.prototype.checkType = function (data) {
         var _this = this;
@@ -594,7 +592,7 @@ var ActivityComponent = (function () {
             }).catch(function (err) { return console.log(err); });
         }
         else {
-            this.profileService.getVolHistory(this.activeUser.user.id_user_creator)
+            this.profileService.getVolHistory(this.activeUser.id_user)
                 .then(function (res) {
                 _this.vols = res.vols;
                 console.log("history", _this.vols);
