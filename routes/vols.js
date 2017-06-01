@@ -590,7 +590,7 @@ var returnRouter = function (io) {
      */
 
     app.get('/list/categories', function (req, res) {
-        db.get().query('SELECT id_category, name FROM vol_categories WHERE active = 1', function (error, categories, fields) {
+        db.get().query('SELECT id_category, name FROM vol_categories', function (error, categories, fields) {
             if (error) {
                 res.json({
                     success: false,

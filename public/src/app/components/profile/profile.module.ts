@@ -48,7 +48,7 @@ import { NewActionComponent } from './new-action/new-action.component';
   ],
   declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: "pt-PT" }, ProfileService, volsService
+    { provide: LOCALE_ID, useValue: "pt-PT" }
   ],
   entryComponents: [ModalViewAllComponent, EditModalComponent]
 })

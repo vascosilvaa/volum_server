@@ -57,13 +57,15 @@ export class MapComponent implements OnInit {
 
   getVols(event) {
 
-  console.log(event)  
+    console.log(event)
 
     this.lats = {
+
       swlat: event.getSouthWest().lat(),
       swlng: event.getSouthWest().lng(),
       nwlat: event.getNorthEast().lat(),
       nwlng: event.getNorthEast().lng()
+
     }
 
 

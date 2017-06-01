@@ -1,3 +1,4 @@
+import { ProfileService } from './shared/services/profile.service';
 import { volsService } from './shared/services/vols.service';
 import { ModalEndComponent } from './shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './shared/modal-view-all/modal-view-all.component';
@@ -69,7 +70,7 @@ import { ActionComponent } from './components/action/action.component';
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
-  providers: [AuthenticationService, HttpClient, volsService],
+  providers: [AuthenticationService, HttpClient, volsService, ProfileService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

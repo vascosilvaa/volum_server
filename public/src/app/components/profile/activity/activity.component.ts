@@ -25,53 +25,61 @@ export class ActivityComponent implements OnInit, OnDestroy {
   public user: any;
   observable: any;
 
+  public teste: any;
+
   public activeUser: any;
   constructor(public http: Http, private volsService: volsService, private route: ActivatedRoute, private profileService: ProfileService,
-    private auth: AuthenticationService) { }
+    private auth: AuthenticationService) {
+
+  }
 
   ngOnInit() {
-    this.route.parent.params.subscribe(params => {
-      console.log("PARAMS", params['id']);
-      this.auth.userPromise.then(res => {
-        this.user = res.user;
-        console.log("user2", this.user)
-      this.observable =  this.profileService.dataString$.subscribe(
-          data => {
-            console.log("data", data);
-            this.activeUser = data;
-            console.log("USER TYPE", this.activeUser.type)
 
-            if (this.activeUser.type == 1) {
-              this.profileService.getMyVols(params['id']).then(res => {
-                this.vols = res.vols;
-                console.log(this.vols)
+    this.activeUser = this.profileService.getUser();
+    console.log("USER", this.activeUser)
 
-              }).catch(err => console.log(err));
-            } else {
-              this.profileService.getVolHistory(params['id'])
-                .then(res => {
-                  this.vols = res.vols;
-                  console.log("history", this.vols)
-                })
-                .catch(err => console.log(err));
+    if (this.activeUser) {
+     
+     this.checkType(this.activeUser)
+   
+    }
 
-            }
+    this.observable = this.profileService.activeProfileSource.subscribe(
+      data => {
+        this.checkType(data);
+      })
 
-          });
+  }
+
+  checkType(data) {
+    console.log("data", data);
+    this.activeUser = data;
+    console.log("USER TYPE", this.activeUser.type)
+
+    if (this.activeUser.type == 1) {
+      this.profileService.getMyVols(this.activeUser.id_user).then(res => {
+        this.vols = res.vols;
+        console.log(this.vols)
+
+      }).catch(err => console.log(err));
+
+    } else {
+
+      this.profileService.getVolHistory(this.activeUser.user.id_user_creator)
+        .then(res => {
+          this.vols = res.vols;
+          console.log("history", this.vols)
+        })
+        .catch(err => console.log(err));
 
 
-      });
-
-
-
-
-
-    });
+    }
   }
 
   ngOnDestroy() {
 
-    this.observable.unsubscribe()
+    this.observable.unsubscribe();
+    console.log("destroy")
 
   }
 

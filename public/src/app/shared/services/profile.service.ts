@@ -25,21 +25,27 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class ProfileService {
 
-    private dataStringSource = new Subject<Object>();
-
+    public activeProfileSource = new Subject<Object>();
+    public activeUser;
+    public userPromise;
     // Observable string stream
-    dataString$ = this.dataStringSource.asObservable();
-
-    // Service message commands
-    saveActiveUser(data: {}) {
-        this.dataStringSource.next(data)
-    }
+    activeProfile = this.activeProfileSource.asObservable();
 
     constructor(private http: HttpClient, private HTTP: Http, private jsonp: Jsonp) {
 
     }
 
 
+    saveActiveUser(data: {}) {
+        this.activeProfileSource.next(data)
+        this.activeUser = data;
+    }
+
+
+
+    getUser() {
+        return this.activeUser;
+    }
 
     search(term) {
         if (term === '') {

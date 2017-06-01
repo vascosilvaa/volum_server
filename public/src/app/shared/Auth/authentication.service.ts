@@ -72,7 +72,7 @@ export class AuthenticationService {
         return this.authenticated;
     }
 
-    private loadUserCredentials() {
+    public loadUserCredentials() {
         let token = localStorage.getItem(this.LOCAL_TOKEN_KEY);
         let id = localStorage.getItem("USER_ID");
         if (token) {

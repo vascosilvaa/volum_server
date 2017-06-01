@@ -40,6 +40,7 @@ export class NewActionComponent implements OnInit {
   public model: any;
   public submitted: boolean = false;
   public photos = [];
+
   @ViewChild("input") input;
 
   constructor(public Router: Router, public sharedService: SharedService, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
@@ -260,7 +261,7 @@ export class NewActionComponent implements OnInit {
         form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
         form.value.date_end = new Date(this.parser.format(form.value.date_end));
       }
-        
+
       console.log("VALUE", form.value);
       this.profileService.newAction(form.value).then(res => {
         console.log(res);

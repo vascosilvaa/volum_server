@@ -5,28 +5,26 @@ webpackJsonp([1,10],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_edit_modal_edit_modal_component__ = __webpack_require__(548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_profile_service__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_shared_module__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__details_details_component__ = __webpack_require__(904);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_google_maps_core__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__activity_activity_component__ = __webpack_require__(903);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__about_about_component__ = __webpack_require__(898);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__profile_routing__ = __webpack_require__(923);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_router__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ng_bootstrap_ng_bootstrap__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_common__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__angular_forms__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__profile_component__ = __webpack_require__(909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_ng2_bootstrap_accordion__ = __webpack_require__(890);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__new_action_new_action_component__ = __webpack_require__(908);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_edit_modal_edit_modal_component__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_moment__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_shared_module__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__details_details_component__ = __webpack_require__(904);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_google_maps_core__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_google_maps_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__activity_activity_component__ = __webpack_require__(903);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__about_about_component__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__profile_routing__ = __webpack_require__(923);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_router__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ng_bootstrap_ng_bootstrap__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_common__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__profile_component__ = __webpack_require__(909);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng2_bootstrap_accordion__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__new_action_new_action_component__ = __webpack_require__(908);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileModule", function() { return ProfileModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52,35 +50,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
 var ProfileModule = (function () {
     function ProfileModule() {
     }
     return ProfileModule;
 }());
 ProfileModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_14__angular_core__["NgModule"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_core__["NgModule"])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_15__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_16__angular_forms__["FormsModule"],
-            __WEBPACK_IMPORTED_MODULE_11__angular_router__["a" /* RouterModule */],
-            __WEBPACK_IMPORTED_MODULE_16__angular_forms__["ReactiveFormsModule"],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["a" /* MaterialModule */],
-            __WEBPACK_IMPORTED_MODULE_13__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_10__profile_routing__["a" /* ProfileRoutingModule */],
-            __WEBPACK_IMPORTED_MODULE_18_ng2_bootstrap_accordion__["a" /* AccordionModule */].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_5__shared_shared_module__["a" /* SharedModule */],
-            __WEBPACK_IMPORTED_MODULE_3_angular2_moment__["MomentModule"],
-            __WEBPACK_IMPORTED_MODULE_7_angular2_google_maps_core__["AgmCoreModule"].forRoot({
+            __WEBPACK_IMPORTED_MODULE_13__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_14__angular_forms__["FormsModule"],
+            __WEBPACK_IMPORTED_MODULE_9__angular_router__["a" /* RouterModule */],
+            __WEBPACK_IMPORTED_MODULE_14__angular_forms__["ReactiveFormsModule"],
+            __WEBPACK_IMPORTED_MODULE_10__angular_material__["a" /* MaterialModule */],
+            __WEBPACK_IMPORTED_MODULE_11__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_8__profile_routing__["a" /* ProfileRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_16_ng2_bootstrap_accordion__["a" /* AccordionModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_3__shared_shared_module__["a" /* SharedModule */],
+            __WEBPACK_IMPORTED_MODULE_1_angular2_moment__["MomentModule"],
+            __WEBPACK_IMPORTED_MODULE_5_angular2_google_maps_core__["AgmCoreModule"].forRoot({
                 apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
             }),
         ],
-        declarations: [__WEBPACK_IMPORTED_MODULE_19__new_action_new_action_component__["a" /* NewActionComponent */], __WEBPACK_IMPORTED_MODULE_17__profile_component__["a" /* ProfileComponent */], __WEBPACK_IMPORTED_MODULE_9__about_about_component__["a" /* AboutComponent */], __WEBPACK_IMPORTED_MODULE_8__activity_activity_component__["a" /* ActivityComponent */], __WEBPACK_IMPORTED_MODULE_6__details_details_component__["a" /* DetailsComponent */], __WEBPACK_IMPORTED_MODULE_19__new_action_new_action_component__["a" /* NewActionComponent */]],
+        declarations: [__WEBPACK_IMPORTED_MODULE_17__new_action_new_action_component__["a" /* NewActionComponent */], __WEBPACK_IMPORTED_MODULE_15__profile_component__["a" /* ProfileComponent */], __WEBPACK_IMPORTED_MODULE_7__about_about_component__["a" /* AboutComponent */], __WEBPACK_IMPORTED_MODULE_6__activity_activity_component__["a" /* ActivityComponent */], __WEBPACK_IMPORTED_MODULE_4__details_details_component__["a" /* DetailsComponent */], __WEBPACK_IMPORTED_MODULE_17__new_action_new_action_component__["a" /* NewActionComponent */]],
         providers: [
-            { provide: __WEBPACK_IMPORTED_MODULE_14__angular_core__["LOCALE_ID"], useValue: "pt-PT" }, __WEBPACK_IMPORTED_MODULE_2__shared_services_profile_service__["a" /* ProfileService */], __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__["a" /* volsService */]
+            { provide: __WEBPACK_IMPORTED_MODULE_12__angular_core__["LOCALE_ID"], useValue: "pt-PT" }
         ],
-        entryComponents: [__WEBPACK_IMPORTED_MODULE_4__shared_modal_view_all_modal_view_all_component__["a" /* ModalViewAllComponent */], __WEBPACK_IMPORTED_MODULE_1__shared_edit_modal_edit_modal_component__["a" /* EditModalComponent */]]
+        entryComponents: [__WEBPACK_IMPORTED_MODULE_2__shared_modal_view_all_modal_view_all_component__["a" /* ModalViewAllComponent */], __WEBPACK_IMPORTED_MODULE_0__shared_edit_modal_edit_modal_component__["a" /* EditModalComponent */]]
     })
 ], ProfileModule);
 
@@ -543,11 +539,11 @@ AboutComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -575,35 +571,38 @@ var ActivityComponent = (function () {
     }
     ActivityComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.parent.params.subscribe(function (params) {
-            console.log("PARAMS", params['id']);
-            _this.auth.userPromise.then(function (res) {
-                _this.user = res.user;
-                console.log("user2", _this.user);
-                _this.observable = _this.profileService.dataString$.subscribe(function (data) {
-                    console.log("data", data);
-                    _this.activeUser = data;
-                    console.log("USER TYPE", _this.activeUser.type);
-                    if (_this.activeUser.type == 1) {
-                        _this.profileService.getMyVols(params['id']).then(function (res) {
-                            _this.vols = res.vols;
-                            console.log(_this.vols);
-                        }).catch(function (err) { return console.log(err); });
-                    }
-                    else {
-                        _this.profileService.getVolHistory(params['id'])
-                            .then(function (res) {
-                            _this.vols = res.vols;
-                            console.log("history", _this.vols);
-                        })
-                            .catch(function (err) { return console.log(err); });
-                    }
-                });
-            });
+        this.activeUser = this.profileService.getUser();
+        console.log("USER", this.activeUser);
+        if (this.activeUser) {
+            this.checkType(this.activeUser);
+        }
+        this.observable = this.profileService.activeProfileSource.subscribe(function (data) {
+            _this.checkType(data);
         });
+    };
+    ActivityComponent.prototype.checkType = function (data) {
+        var _this = this;
+        console.log("data", data);
+        this.activeUser = data;
+        console.log("USER TYPE", this.activeUser.type);
+        if (this.activeUser.type == 1) {
+            this.profileService.getMyVols(this.activeUser.id_user).then(function (res) {
+                _this.vols = res.vols;
+                console.log(_this.vols);
+            }).catch(function (err) { return console.log(err); });
+        }
+        else {
+            this.profileService.getVolHistory(this.activeUser.user.id_user_creator)
+                .then(function (res) {
+                _this.vols = res.vols;
+                console.log("history", _this.vols);
+            })
+                .catch(function (err) { return console.log(err); });
+        }
     };
     ActivityComponent.prototype.ngOnDestroy = function () {
         this.observable.unsubscribe();
+        console.log("destroy");
     };
     return ActivityComponent;
 }());
@@ -626,16 +625,16 @@ var _a, _b, _c, _d, _e;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_edit_modal_edit_modal_component__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_edit_modal_edit_modal_component__ = __webpack_require__(549);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_services_shared_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_profile_service__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_modal_end_modal_end_component__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_modal_plugins_bootstrap__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_modal__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_Auth_authentication_service__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_services_profile_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_modal_end_modal_end_component__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsComponent; });
@@ -847,14 +846,14 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_shared_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_bootstrap_ng_bootstrap__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_bootstrap_ng_bootstrap__ = __webpack_require__(72);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewActionComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1124,13 +1123,13 @@ var _a, _b, _c, _d, _e, _f, _g;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_shared_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(551);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1171,7 +1170,7 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
-            console.log(params);
+            //FACEBOOK TOKEN
             _this.route.queryParams.subscribe((function (query) {
                 console.log(query);
                 if (query.id_token) {
@@ -1184,12 +1183,13 @@ var ProfileComponent = (function () {
             }));
             _this.idProfile = _this.route.snapshot.params['id'];
             _this.profileService.getProfile(_this.idProfile).then(function (res) {
+                _this.profileService.saveActiveUser(res.user);
+                console.log("INICIAL USER", _this.user);
                 _this.user = res.user;
                 _this.sharedService.getAddress(_this.user.lat, _this.user.lng).then(function (res) {
                     console.log("res", res.results);
                     _this.user['location'] = res.results[0].formatted_address;
                 });
-                _this.profileService.saveActiveUser(_this.user);
                 _this.profileService.checkOnline(_this.user.id_user).then(function (res) {
                     _this.online = res.state;
                 });
@@ -1251,7 +1251,6 @@ ProfileComponent = __decorate([
         selector: 'app-profile',
         template: __webpack_require__(969),
         styles: [__webpack_require__(939)],
-        providers: [__WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__["a" /* ProfileService */]],
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["g" /* Overlay */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["g" /* Overlay */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_core__["ViewContainerRef"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__shared_services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_services_shared_service__["a" /* SharedService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__angular_core__["Injector"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__angular_core__["Injector"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__["a" /* ProfileService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _j || Object])
 ], ProfileComponent);
@@ -1431,7 +1430,7 @@ module.exports = module.exports.toString();
 /***/ 958:
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n\r\n    <div class=\"col-12 col-lg-4\">\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Dados Pessoais\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row \">\r\n              <div class=\"titleProfile col-4\">\r\n                Nome:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                 Associação de Melhoramentos de Eixo\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Idade:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                 <span class=\"linkInsert\">Inserir idade</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                E-mail:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                melhoramentosdoeixo@gmail.com\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Género:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                <span class=\"linkInsert\">Inserir género</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Vive em:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                Aveiro, Portugal\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Telemóvel:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                912 384 499\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Instituições\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\" col-12\">\r\n                  <span class=\"table-user-image\"><img src=\"../assets/imgs/abrigoseguro.jpg\"></span>\r\n                  <span class=\"candidateName\">Abrigo Seguro</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\" col-12 marginAbout\">\r\n                  <span class=\"table-user-image\"><img src=\"../assets/imgs/ondaverde.jpg\"></span>\r\n                  <span class=\"candidateName \">Onda Verde</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\" col-12 marginAbout\">\r\n                  <span class=\"table-user-image\"><img src=\"../assets/imgs/caritas_logo.gif\"></span>\r\n                  <span class=\"candidateName \">Caritas</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      \r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Redes Sociais\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonFacebook\">Facebook</button>\r\n              </div>\r\n              </div>\r\n              <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonTwitter\">Twitter</button>\r\n              </div>\r\n              </div>\r\n              <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonInstagram\">Instagram</button>\r\n              </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n</div>\r\n<div class=\"col-lg-8 col-12\">\r\n  <div class=\"card primaryCard\">\r\n    <div class=\"card-header cardTitle\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col titleCard\">\r\n            Acerca de mim\r\n          </div>\r\n          <div class=\"col text-right iconCard\">\r\n            <i class=\"material-icons edit\">more_horiz</i>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"card-block\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Descrição:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n                Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Hobbies e interesses:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Gosto de praticar desporto nos meus tempos livres, bem como jogar jogos de consola.\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"row marginAbout\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Tipos de voluntariado favoritos:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Solidariedade Social, Desporto e Apoio aos jovens.\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Historial de voluntariado:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Sem historial de voluntariado. <span class=\"linkInsert\">Inserir já</span>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"row marginAbout\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Idiomas:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Português, Inglês, Francês\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Outros interesses:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Natureza e ambiente.\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"card primaryCard\">\r\n    <div class=\"card-header cardTitle\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col titleCard\">\r\n            Educação e Formação\r\n          </div>\r\n          <div class=\"col text-right iconCard\">\r\n            <i class=\"material-icons edit\">more_horiz</i>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"card-block\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Licenciatura em Psicologia\r\n              <div class=\"dateFormation\">2014-2017</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Universidade de Aveiro\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Mestrado em Apoio Auxiliar\r\n              <div class=\"dateFormation\">2017-2019</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Faculdade de Letras da Universidade do Porto\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6 marginAbout\">\r\n            <div class=\"titleProfile\">\r\n              Formação em Voluntariado\r\n              <div class=\"dateFormation\">2017-2019</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Banco Alimentar\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6 marginAbout\">\r\n            <div class=\"titleProfile\">\r\n              Curso Secundário de Jardinagem\r\n              <div class=\"dateFormation\">2013-2018</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Escola Secundária de Oliveira de Azemeis\r\n            </div>\r\n          </div>\r\n\r\n\r\n\r\n        </div>\r\n\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n\r\n    <div class=\"col-12 col-lg-4\">\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Dados Pessoais\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row \">\r\n              <div class=\"titleProfile col-4\">\r\n                Nome:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                 Associação de Melhoramentos de Eixo\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Idade:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                 <span class=\"linkInsert\">Inserir idade</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                E-mail:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                melhoramentosdoeixo@gmail.com\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Género:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                <span class=\"linkInsert\">Inserir género</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Vive em:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                Aveiro, Portugal\r\n              </div>\r\n            </div>\r\n            <div class=\"row marginAbout\">\r\n              <div class=\"titleProfile col-4\">\r\n                Telemóvel:\r\n              </div>\r\n              <div class=\"col-7 textProfile\">\r\n                912 384 499\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          \r\n        </div>\r\n      </div>\r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Instituições\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\" col-12\">\r\n                  <span class=\"table-user-image\"><img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12508846_1081344105243012_2713893583106288598_n.jpg?oh=45119ecdbc178f43648ccf21dc86e43a&oe=59E74A53\"></span>\r\n                  <span class=\"candidateName\">Abrigo Seguro</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\" col-12 marginAbout\">\r\n                  <span class=\"table-user-image\"><img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/25405_111558882205948_5087155_n.jpg?oh=f90f3ddbbb6ade8a29e649774e938d64&oe=59E4F811\"></span>\r\n                  <span class=\"candidateName \">Onda Verde</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\" col-12 marginAbout\">\r\n                  <span class=\"table-user-image\"><img src=\"https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11021193_415874838574015_3732893204110208877_n.jpg?oh=9e3860bea48029237fb7a804d6db08bb&oe=59E9FD95\"></span>\r\n                  <span class=\"candidateName \">Caritas</span>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      \r\n      <div class=\"card primaryCard\">\r\n        <div class=\"card-header cardTitle\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\"col titleCard\">\r\n                Redes Sociais\r\n              </div>\r\n              <div class=\"col text-right iconCard\">\r\n                <i class=\"material-icons edit\">more_horiz</i>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"card-block\">\r\n          <div class=\"container\">\r\n            <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonFacebook\">Facebook</button>\r\n              </div>\r\n              </div>\r\n              <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonTwitter\">Twitter</button>\r\n              </div>\r\n              </div>\r\n              <div class=\"row\">\r\n              <div class=\" col-12 text-center\">\r\n                  <button class=\"socialButtonInstagram\">Instagram</button>\r\n              </div>\r\n              </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n</div>\r\n<div class=\"col-lg-8 col-12\">\r\n  <div class=\"card primaryCard\">\r\n    <div class=\"card-header cardTitle\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col titleCard\">\r\n            Acerca de mim\r\n          </div>\r\n          <div class=\"col text-right iconCard\">\r\n            <i class=\"material-icons edit\">more_horiz</i>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"card-block\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Descrição:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n                Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Hobbies e interesses:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Gosto de praticar desporto nos meus tempos livres, bem como jogar jogos de consola.\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"row marginAbout\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Tipos de voluntariado favoritos:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Solidariedade Social, Desporto e Apoio aos jovens.\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Historial de voluntariado:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Sem historial de voluntariado. <span class=\"linkInsert\">Inserir já</span>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"row marginAbout\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Idiomas:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Português, Inglês, Francês\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Outros interesses:\r\n            </div>\r\n            <div class=\"textProfile\">\r\n              Natureza e ambiente.\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"card primaryCard\">\r\n    <div class=\"card-header cardTitle\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col titleCard\">\r\n            Educação e Formação\r\n          </div>\r\n          <div class=\"col text-right iconCard\">\r\n            <i class=\"material-icons edit\">more_horiz</i>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"card-block\">\r\n      <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Licenciatura em Psicologia\r\n              <div class=\"dateFormation\">2014-2017</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Universidade de Aveiro\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6\">\r\n            <div class=\"titleProfile\">\r\n              Mestrado em Apoio Auxiliar\r\n              <div class=\"dateFormation\">2017-2019</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Faculdade de Letras da Universidade do Porto\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6 marginAbout\">\r\n            <div class=\"titleProfile\">\r\n              Formação em Voluntariado\r\n              <div class=\"dateFormation\">2017-2019</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Banco Alimentar\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-6 marginAbout\">\r\n            <div class=\"titleProfile\">\r\n              Curso Secundário de Jardinagem\r\n              <div class=\"dateFormation\">2013-2018</div>\r\n            </div>\r\n            <div class=\"textProfile formationText\">\r\n              Escola Secundária de Oliveira de Azemeis\r\n            </div>\r\n          </div>\r\n\r\n\r\n\r\n        </div>\r\n\r\n        </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n\r\n\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 

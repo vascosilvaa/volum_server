@@ -12,7 +12,6 @@ import { Http } from '@angular/http';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers: [ProfileService],
 })
 export class ProfileComponent implements OnInit {
   lat: number = 41.100856;
@@ -39,7 +38,7 @@ export class ProfileComponent implements OnInit {
   userId: any;
   public online: number = 0;
   idProfile: any;
-  private user: any = {}
+  public user: any = {}
   private userLogin: any;
   public idLogin: any;
   public state: Number;
@@ -52,16 +51,17 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
-      console.log(params);
 
+
+      //FACEBOOK TOKEN
       this.route.queryParams.subscribe((query => {
         console.log(query);
+
         if (query.id_token) {
 
           this.auth.storeUserCredentials(query.id_token);
           this.auth.reloadUser(params.id, true).then(res => {
             this.injector.get(AppComponent).getUser();
-
           })
           localStorage.setItem("USER_ID", params.id);
 
@@ -70,14 +70,20 @@ export class ProfileComponent implements OnInit {
       }))
 
       this.idProfile = this.route.snapshot.params['id'];
+
       this.profileService.getProfile(this.idProfile).then(res => {
+
+        this.profileService.saveActiveUser(res.user);
+
+        console.log("INICIAL USER", this.user)
         this.user = res.user;
+
+
         this.sharedService.getAddress(this.user.lat, this.user.lng).then(res => {
           console.log("res", res.results)
           this.user['location'] = res.results[0].formatted_address;
 
         })
-        this.profileService.saveActiveUser(this.user);
         this.profileService.checkOnline(this.user.id_user).then(res => {
           this.online = res.state;
         })
