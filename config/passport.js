@@ -6,7 +6,7 @@ var db = require('./db'); // get db config file
 var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
     FacebookStrategy = require('passport-facebook').Strategy;
-
+var request = require('request');
 
 function getUserById(id, done) {
     db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function (err, rows, fields) {
@@ -43,42 +43,50 @@ module.exports = function (passport) {
     opts.secretOrKey = "teste"
 
     passport.use(new FacebookStrategy({
-            clientID: '1657614757878644',
-            clientSecret: '36b1c065c723b228239c4504dc7a6396',
-            callbackURL: 'http://volum.ddns.net/api/auth/facebook/callback',
-            profileFields: ['id', 'displayName', 'photos', 'email', 'birthday']
-        },
+        clientID: '1657614757878644',
+        clientSecret: '36b1c065c723b228239c4504dc7a6396',
+        callbackURL: 'http://bevolun.com/api/auth/facebook/callback',
+        profileFields: ['id', 'displayName', 'photos', 'email', 'birthday']
+    },
         function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
 
+
+                console.log("pic", profile._json.picture.data)
 
                 getUserByEmail(profile._json.email, function (user) {
                     if (user && user != undefined) {
                         console.log("user ja existe")
                         done(null, user);
                     } else {
+                        request('https://graph.facebook.com/me/picture?access_token=' + accessToken + '&type=large&redirect=false', function (error, response, body) {
 
-                        let newUser = {
+                            console.log("USER", profile)
+                            let data = JSON.parse(body);
 
-                            email: profile._json.email,
-                            type_user: 1,
-                            name: profile._json.name,
-                            gender: 0,
-                            photo_url: profile._json.picture.data.url,
-                            birth_date: new Date(profile._json.birthday).getTime()
-                        };
+                            console.log("DATA", data.data.url)
+                            console.log(body['data'])
+                            console.log
+                            let newUser = {
 
-                        db.get().query('INSERT INTO users SET ?', [newUser], function (err, result) {
-                            if (err) {
-                                throw new Error(err);
-                            } else {
-                                done(null, newUser);
-                            }
+                                email: profile._json.email,
+                                type_user: 1,
+                                name: profile._json.name,
+                                gender: 0,
+                                photo_url: data.data.url,
+                                birth_date: profile._json.birthday
+                            };
+                            db.get().query('INSERT INTO users SET ?', [newUser], function (err, result) {
+                                if (err) {
+                                    throw new Error(err);
+                                } else {
+                                    done(null, newUser);
+                                }
+                            });
+
+
                         });
-
-
                     }
-
                 });
             });
         }));
