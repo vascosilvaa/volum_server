@@ -4,6 +4,7 @@ var express = require('express'),
     jwt = require('jsonwebtoken'),
     db = require('../config/db');
 var passport = require('passport');
+const url = require('url');
 
 var app = module.exports = express.Router();
 var secretKey = config.secretKey;
@@ -253,5 +254,14 @@ app.get('/facebook/callback',
             id: req.user.id_user
         }, secretKey);
 
-        res.redirect("http://bevolun.com/profile/" + req.user.id_user + "?id_token=JWT " + token);
+        // res.redirect("http://bevolun.com/profile/" + req.user.id_user + "?id_token=JWT " + token);
+
+        res.redirect(url.format({
+            pathname: "http://bevolun.com/profile/" + req.user.id_user,
+            query: {
+                "id_token": "JWT " + token,
+
+            }
+        }));
+
     });
