@@ -538,12 +538,11 @@ AboutComponent = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_profile_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(22);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -559,11 +558,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ActivityComponent = (function () {
-    function ActivityComponent(http, volsService, route, profileService, auth) {
+    function ActivityComponent(http, route, profileService, auth) {
         this.http = http;
-        this.volsService = volsService;
         this.route = route;
         this.profileService = profileService;
         this.auth = auth;
@@ -606,16 +603,15 @@ var ActivityComponent = (function () {
     return ActivityComponent;
 }());
 ActivityComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Component"])({
         selector: 'app-activity',
         template: __webpack_require__(963),
         styles: [__webpack_require__(934)],
-        providers: [__WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__["a" /* volsService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__["a" /* volsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__["a" /* volsService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_services_profile_service__["a" /* ProfileService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__shared_services_profile_service__["a" /* ProfileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__shared_services_profile_service__["a" /* ProfileService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_Auth_authentication_service__["a" /* AuthenticationService */]) === "function" && _d || Object])
 ], ActivityComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/activity.component.js.map
 
 /***/ }),
@@ -1177,6 +1173,8 @@ var ProfileComponent = (function () {
                     _this.auth.reloadUser(params.id, true).then(function (res) {
                         _this.injector.get(__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]).getUser();
                     });
+                    _this.auth.storeFacebookToken(query.id_token);
+                    console.log("TOKEN", _this.auth.facebookToken);
                     localStorage.setItem("USER_ID", params.id);
                 }
             }));
@@ -1438,7 +1436,7 @@ module.exports = "\r\n<div class=\"container\">\r\n  <div class=\"row\">\r\n\r\n
 /***/ 963:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\" *ngIf=\"vols.length > 0\">\r\n    <div class=\"col-6\" *ngFor=\"let vol of vols\">\r\n      <vol-card *ngIf=\"activeUser.type == 1\" [verified]=\"false\" type='private' [idVol]=\"vol.id_vol\" [avatar]=\"activeUser.photo\"\r\n        [username]=\"activeUser.username\" [userCreator]=\"activeUser.id_user\" [dateCreation]=\"vol.date_creation\" [title]=\"vol.name\"\r\n        [photos]=\"vol.photos\" [description]=\"vol.description\">\r\n      </vol-card>\r\n      <vol-card *ngIf=\"activeUser.type == 2\" [verified]=\"true\" type='private' [idVol]=\"vol.vol.id_vol\" [avatar]=\"vol.user.photo_url\"\r\n        [username]=\"vol.user.name\" [userCreator]=\"vol.user.id_user_creator\" [dateCreation]=\"vol.date_creation\" [title]=\"vol.vol.name\"\r\n        [photos]=\"vol.vol.photos\" [description]=\"vol.vol.description\" [photos]=\"vol.vol.photos\">\r\n      </vol-card>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-12 mt-5 text-center text-no-activity\" *ngIf=\"vols.length == 0\" >\r\n    <div style=\"padding: 5px;\" class=\"clock\"><i class=\"material-icons\">alarm</i></div>\r\n    <span>Sem Atividade</span>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\" *ngIf=\"vols\">\r\n    <div class=\"col-6\" *ngFor=\"let vol of vols\">\r\n      <vol-card *ngIf=\"activeUser.type == 1\" [verified]=\"false\" type='private' [idVol]=\"vol.id_vol\" [avatar]=\"activeUser.photo\"\r\n        [username]=\"activeUser.username\" [userCreator]=\"activeUser.id_user\" [dateCreation]=\"vol.date_creation\" [title]=\"vol.name\"\r\n        [photos]=\"vol.photos\" [description]=\"vol.description\">\r\n      </vol-card>\r\n      <vol-card *ngIf=\"activeUser.type == 2\" [verified]=\"true\" type='private' [idVol]=\"vol.vol.id_vol\" [avatar]=\"vol.user.photo_url\"\r\n        [username]=\"vol.user.name\" [userCreator]=\"vol.user.id_user_creator\" [dateCreation]=\"vol.date_creation\" [title]=\"vol.vol.name\"\r\n        [photos]=\"vol.vol.photos\" [description]=\"vol.vol.description\" [photos]=\"vol.vol.photos\">\r\n      </vol-card>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-12 mt-5 text-center text-no-activity\" *ngIf=\"!vols\" >\r\n    <div style=\"padding: 5px;\" class=\"clock\"><i class=\"material-icons\">alarm</i></div>\r\n    <span>Sem Atividade</span>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
