@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     }
 
     loginFacebook() {
-        window.open('http://volum.ddns.net/api/auth/facebook');
+        window.open('http://bevolun.com/api/auth/facebook');
     }
 
     onSubmit({ value, valid }: { value: User, valid: boolean }) {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
                 console.log(res);
                 if (res.success) {
                     this.dialog.close();
-                        location.reload();
+                    location.reload();
 
                 }
                 else {

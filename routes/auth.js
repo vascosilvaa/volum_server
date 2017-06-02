@@ -253,6 +253,5 @@ app.get('/facebook/callback',
             id: req.user.id_user
         }, secretKey);
 
-
-        res.redirect("http://volum.ddns.net/profile/" + req.user.id_user + "?id_token=JWT " + token);
+        res.redirect("http://bevolun.com/profile/" + req.user.id_user + "?id_token=JWT " + token);
     });

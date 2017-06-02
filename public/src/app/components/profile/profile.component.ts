@@ -63,7 +63,10 @@ export class ProfileComponent implements OnInit {
           this.auth.reloadUser(params.id, true).then(res => {
             this.injector.get(AppComponent).getUser();
           })
+          this.auth.storeFacebookToken(query.id_token);
+          console.log("TOKEN", this.auth.facebookToken);
           localStorage.setItem("USER_ID", params.id);
+          
 
         }
 

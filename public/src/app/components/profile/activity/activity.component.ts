@@ -12,7 +12,6 @@ import { Http } from '@angular/http';
   selector: 'app-activity',
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.scss'],
-  providers: [volsService]
 })
 export class ActivityComponent implements OnInit, OnDestroy {
   public privateVols: any;
@@ -28,7 +27,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   public teste: any;
 
   public activeUser: any;
-  constructor(public http: Http, private volsService: volsService, private route: ActivatedRoute, private profileService: ProfileService,
+  constructor(public http: Http, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService) {
 
   }
@@ -66,7 +65,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
       }).catch(err => console.log(err));
 
     } else {
-      
+
       this.profileService.getVolHistory(this.activeUser.id_user)
         .then(res => {
           this.vols = res.vols;

@@ -12,6 +12,8 @@ export class AuthenticationService {
 
 
     userPromise: any;
+    public facebookToken: string;
+    
     constructor(private http: HttpClient, private router: Router) {
         this.loadUserCredentials();
     }
@@ -79,6 +81,11 @@ export class AuthenticationService {
             this.useCredentials(token);
             this.reloadUser(id, true);
         }
+    }
+
+    public storeFacebookToken(token) {
+
+        this.facebookToken = token;
     }
 
     public storeUserCredentials(token: string) {
