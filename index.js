@@ -41,7 +41,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
-app.use(express.static(path.join(__dirname, 'public/dist'), { redirect: false}));
+app.use(express.static(path.join(__dirname, 'public/dist'), { redirect: false }));
 app.use('/api', express.static(path.join(__dirname, 'docs')))
 app.use('/mobile', express.static(path.join(__dirname, 'www')))
 
@@ -89,7 +89,7 @@ app.get('/api/search', function (req, res) {
 
 
 
-app.use('/*', express.static(path.join(__dirname, 'public/dist')));
+app.use('/*', express.static(path.join(__dirname, 'public/dist'), { redirect: false }));
 
 /**
  * @api {get} /search Pesquisar 
