@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
 
@@ -23,7 +22,7 @@
                 Nome:
               </div>
               <div class="col-7 textProfile">
-                 Associação de Melhoramentos de Eixo
+                {{user.name}}
               </div>
             </div>
             <div class="row marginAbout">
@@ -31,7 +30,7 @@
                 Idade:
               </div>
               <div class="col-7 textProfile">
-                 <span class="linkInsert">Inserir idade</span>
+                <span>{{getAge(user.birth_date)}}</span>
               </div>
             </div>
             <div class="row marginAbout">
@@ -39,7 +38,7 @@
                 E-mail:
               </div>
               <div class="col-7 textProfile">
-                melhoramentosdoeixo@gmail.com
+                {{user.email}}
               </div>
             </div>
             <div class="row marginAbout">
@@ -47,7 +46,9 @@
                 Género:
               </div>
               <div class="col-7 textProfile">
-                <span class="linkInsert">Inserir género</span>
+                <span *ngIf="user.gender == 0">Masculino</span>
+                <span *ngIf="user.gender == 1">Feminino</span>
+
               </div>
             </div>
             <div class="row marginAbout">
@@ -63,12 +64,12 @@
                 Telemóvel:
               </div>
               <div class="col-7 textProfile">
-                912 384 499
+                {{user.phone}}
               </div>
             </div>
 
           </div>
-          
+
         </div>
       </div>
       <div class="card primaryCard">
@@ -88,26 +89,26 @@
           <div class="container">
             <div class="row">
               <div class=" col-12">
-                  <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12508846_1081344105243012_2713893583106288598_n.jpg?oh=45119ecdbc178f43648ccf21dc86e43a&oe=59E74A53"></span>
-                  <span class="candidateName">Abrigo Seguro</span>
+                <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/12508846_1081344105243012_2713893583106288598_n.jpg?oh=45119ecdbc178f43648ccf21dc86e43a&oe=59E74A53"></span>
+                <span class="candidateName">Abrigo Seguro</span>
               </div>
             </div>
             <div class="row">
               <div class=" col-12 marginAbout">
-                  <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/25405_111558882205948_5087155_n.jpg?oh=f90f3ddbbb6ade8a29e649774e938d64&oe=59E4F811"></span>
-                  <span class="candidateName ">Onda Verde</span>
+                <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/25405_111558882205948_5087155_n.jpg?oh=f90f3ddbbb6ade8a29e649774e938d64&oe=59E4F811"></span>
+                <span class="candidateName ">Onda Verde</span>
               </div>
             </div>
             <div class="row">
               <div class=" col-12 marginAbout">
-                  <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11021193_415874838574015_3732893204110208877_n.jpg?oh=9e3860bea48029237fb7a804d6db08bb&oe=59E9FD95"></span>
-                  <span class="candidateName ">Caritas</span>
+                <span class="table-user-image"><img src="https://scontent.fopo2-1.fna.fbcdn.net/v/t1.0-9/11021193_415874838574015_3732893204110208877_n.jpg?oh=9e3860bea48029237fb7a804d6db08bb&oe=59E9FD95"></span>
+                <span class="candidateName ">Caritas</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="card primaryCard">
         <div class="card-header cardTitle">
           <div class="container">
@@ -125,174 +126,176 @@
           <div class="container">
             <div class="row">
               <div class=" col-12 text-center">
-                  <button class="socialButtonFacebook">Facebook</button>
+                <button class="brn socialButtonFacebook" (click)="goTo('facebook', user.facebook_id)" [class.disabled]="!user.facebook_id">  Facebook </button>
               </div>
-              </div>
-              <div class="row">
+            </div>
+            <div class="row">
               <div class=" col-12 text-center">
-                  <button class="socialButtonTwitter">Twitter</button>
+                <button class="btn socialButtonTwitter" [class.disabled]="!user.twitter_id" [attr.disabled]="!user.twitter_id">Twitter</button>
               </div>
-              </div>
-              <div class="row">
+            </div>
+            <div class="row">
               <div class=" col-12 text-center">
-                  <button class="socialButtonInstagram">Instagram</button>
+                <button class="btn socialButtonInstagram" [class.disabled]="!user.google_id" [attr.disabled]="!user.google_id">Google</button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-8 col-12">
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+          <div class="container">
+            <div class="row">
+              <div class="col titleCard">
+                Acerca de mim
               </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">more_horiz</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Descrição:
+                </div>
+                <div class="textProfile">
+                  {{user.about}}
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Hobbies e interesses:
+                </div>
+                <div class="textProfile">
+                  {{user.hobbies}}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row marginAbout">
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Tipos de voluntariado favoritos:
+                </div>
+                <div class="textProfile">
+                  Solidariedade Social, Desporto e Apoio aos jovens.
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Historial de voluntariado:
+                </div>
+                <div class="textProfile">
+                  <span *ngIf="!user.history">Sem historial de voluntariado. <span class="linkInsert">Inserir já</span></span>
+                  <span *ngIf="user.history">{{user.history}}</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row marginAbout">
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Idiomas:
+                </div>
+                <div class="textProfile">
+                  {{user.languages}}
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Outros interesses:
+                </div>
+                <div class="textProfile">
+                  {{user.other}}
+
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
 
-</div>
-<div class="col-lg-8 col-12">
-  <div class="card primaryCard">
-    <div class="card-header cardTitle">
-      <div class="container">
-        <div class="row">
-          <div class="col titleCard">
-            Acerca de mim
+      <div class="card primaryCard">
+        <div class="card-header cardTitle">
+          <div class="container">
+            <div class="row">
+              <div class="col titleCard">
+                Educação e Formação
+              </div>
+              <div class="col text-right iconCard">
+                <i class="material-icons edit">more_horiz</i>
+              </div>
+            </div>
           </div>
-          <div class="col text-right iconCard">
-            <i class="material-icons edit">more_horiz</i>
+        </div>
+        <div class="card-block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Licenciatura em Psicologia
+                  <div class="dateFormation">2014-2017</div>
+                </div>
+                <div class="textProfile formationText">
+                  Universidade de Aveiro
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="titleProfile">
+                  Mestrado em Apoio Auxiliar
+                  <div class="dateFormation">2017-2019</div>
+                </div>
+                <div class="textProfile formationText">
+                  Faculdade de Letras da Universidade do Porto
+                </div>
+              </div>
+
+              <div class="col-lg-6 marginAbout">
+                <div class="titleProfile">
+                  Formação em Voluntariado
+                  <div class="dateFormation">2017-2019</div>
+                </div>
+                <div class="textProfile formationText">
+                  Banco Alimentar
+                </div>
+              </div>
+
+              <div class="col-lg-6 marginAbout">
+                <div class="titleProfile">
+                  Curso Secundário de Jardinagem
+                  <div class="dateFormation">2013-2018</div>
+                </div>
+                <div class="textProfile formationText">
+                  Escola Secundária de Oliveira de Azemeis
+                </div>
+              </div>
+
+
+
+            </div>
+
           </div>
         </div>
       </div>
+
+
+
     </div>
-    <div class="card-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Descrição:
-            </div>
-            <div class="textProfile">
-                Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Hobbies e interesses:
-            </div>
-            <div class="textProfile">
-              Gosto de praticar desporto nos meus tempos livres, bem como jogar jogos de consola.
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row marginAbout">
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Tipos de voluntariado favoritos:
-            </div>
-            <div class="textProfile">
-              Solidariedade Social, Desporto e Apoio aos jovens.
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Historial de voluntariado:
-            </div>
-            <div class="textProfile">
-              Sem historial de voluntariado. <span class="linkInsert">Inserir já</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row marginAbout">
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Idiomas:
-            </div>
-            <div class="textProfile">
-              Português, Inglês, Francês
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Outros interesses:
-            </div>
-            <div class="textProfile">
-              Natureza e ambiente.
-            </div>
-          </div>
-
-        </div>
-
-        </div>
-    </div>
-  </div>
-
-  <div class="card primaryCard">
-    <div class="card-header cardTitle">
-      <div class="container">
-        <div class="row">
-          <div class="col titleCard">
-            Educação e Formação
-          </div>
-          <div class="col text-right iconCard">
-            <i class="material-icons edit">more_horiz</i>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Licenciatura em Psicologia
-              <div class="dateFormation">2014-2017</div>
-            </div>
-            <div class="textProfile formationText">
-              Universidade de Aveiro
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="titleProfile">
-              Mestrado em Apoio Auxiliar
-              <div class="dateFormation">2017-2019</div>
-            </div>
-            <div class="textProfile formationText">
-              Faculdade de Letras da Universidade do Porto
-            </div>
-          </div>
-
-          <div class="col-lg-6 marginAbout">
-            <div class="titleProfile">
-              Formação em Voluntariado
-              <div class="dateFormation">2017-2019</div>
-            </div>
-            <div class="textProfile formationText">
-              Banco Alimentar
-            </div>
-          </div>
-
-          <div class="col-lg-6 marginAbout">
-            <div class="titleProfile">
-              Curso Secundário de Jardinagem
-              <div class="dateFormation">2013-2018</div>
-            </div>
-            <div class="textProfile formationText">
-              Escola Secundária de Oliveira de Azemeis
-            </div>
-          </div>
-
-
-
-        </div>
-
-        </div>
-    </div>
-  </div>
-
-
-
-</div>
 
 
   </div>

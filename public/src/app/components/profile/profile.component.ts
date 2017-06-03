@@ -33,16 +33,16 @@ export class ProfileComponent implements OnInit {
   volsPriv: any;
   volsTodos: any;
   login: boolean;
+  public ready: boolean = false;
   i: any;
   usernames: any;
   userId: any;
   public online: number = 0;
-  idProfile: any;
+  public id_user: any;
   public user: any = {}
-  private userLogin: any;
-  public idLogin: any;
-  public state: Number;
-
+  public id_logged_user: number;
+  public state: number;
+  public scoreReady: boolean = false;
   constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private sharedService: SharedService, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
@@ -51,6 +51,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
+
+      this.id_user = params.id;
 
 
       //FACEBOOK TOKEN
@@ -66,83 +68,121 @@ export class ProfileComponent implements OnInit {
           this.auth.storeFacebookToken(query.id_token);
           console.log("TOKEN", this.auth.facebookToken);
           localStorage.setItem("USER_ID", params.id);
-          
+
 
         }
-
       }))
 
-      this.idProfile = this.route.snapshot.params['id'];
 
-      this.profileService.getProfile(this.idProfile).then(res => {
-
-        this.profileService.saveActiveUser(res.user);
-
-        console.log("INICIAL USER", this.user)
-        this.user = res.user;
-
-        if (this.user.lat && this.user.lng) {
-
-          this.sharedService.getAddress(this.user.lat, this.user.lng).then(res => {
-            console.log("res", res.results)
-            this.user['location'] = res.results[0].formatted_address;
-
-          })
-        }
-
-        this.profileService.checkOnline(this.user.id_user).then(res => {
-          this.online = res.state;
-        })
-
-      });
+      this.getUser();
 
     });
     this.checkFollow();
-    this.getUser();
+
   }
   getUser() {
+    //SE ESTIVER AUTENTICADO
+
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
         if (!res.user) {
           this.auth.logout();
         } else {
-          console.log(this.userLogin);
-          this.userLogin = res.user;
-          let id = localStorage.getItem('USER_ID');
-          this.idLogin = id;
+
+          this.id_logged_user = res.user.id_user;
+
+
+          //SE O ID DO PERFIL FOR IGUAL AO LOGADO VAI BUSCAR DADOS AO USER PROMISE
+          if (this.id_logged_user == this.id_user) {
+            this.user = res.user;
+
+            this.online = 1;
+            this.ready = true;
+            this.profileService.saveActiveUser(res.user);
+            this.getScore();
+
+            //SE NAO FAZ O PEDIDO
+          } else {
+
+            this.profileService.getProfile(this.id_user).then(result => {
+
+              this.profileService.saveActiveUser(result.user);
+
+              console.log("USER URL PROFILE", this.user)
+
+              this.user = result.user;
+              this.ready = true;
+              this.checkOnline();
+              this.getScore();
+
+
+
+            });
+
+
+          }
 
         }
 
       }
       );
+    } else {
+      this.auth.logout();
     }
   }
+
   follow(id_user) {
     console.log("ID", id_user);
-    this.profileService.follow(this.idProfile).then(res => {
+    this.profileService.follow(this.id_user).then(res => {
       this.state = 1;
       console.log(res);
     });
   }
   unfollow(id_user) {
-    this.profileService.unfollow(this.idProfile).then(res => {
+    this.profileService.unfollow(this.id_user).then(res => {
       this.state = 0;
       console.log(res);
 
     });
   }
   checkFollow() {
-    this.profileService.checkState(this.idProfile).then(res => {
+    this.profileService.checkState(this.id_user).then(res => {
       this.state = res.state;
     });
   }
   engageConversation() {
-    this.profileService.engageConversation(this.idProfile).then(res => {
+    this.profileService.engageConversation(this.id_user).then(res => {
       console.log(res);
       this.router.navigate(['./chat/msg/', res.id_conversation])
     }).catch(err => {
       this.router.navigate(['./chat/msg/'])
 
     })
+  }
+  checkOnline() {
+    this.profileService.checkOnline(this.user.id_user).then(res => {
+      this.online = res.state;
+
+    });
+  }
+  getScore() {
+    this.profileService.getScore(this.user.id_user).then(res => {
+      this.user['score'] = res.score;
+      console.log("SCORE", this.user.score)
+      this.scoreReady = true;
+
+    });
+  }
+  getNumber = function (num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+  
+    return new Array(number);
+  }
+
+  ngOnDestroy() {
+    this.profileService.clearActiveUser()
   }
 }

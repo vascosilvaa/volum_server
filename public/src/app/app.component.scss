@@ -111,10 +111,13 @@
     color: $grey3!important;
     background: $white!important;
 }
-
+.no-content{
+        justify-content: center;
+}
 .message-item {
     display: flex;
     padding: 15px;
+
     border-bottom: 1px solid $grey1;
 }
 .profile-item {
@@ -185,9 +188,9 @@ hr {
 }
 
 .notification-info {
-        width: 250px;
     margin-left: 12px;
-    height: 50px;
+    height: 40px;
+    width: 100%;
     font-size: 14px;
     overflow: hidden;
 display: -webkit-box;

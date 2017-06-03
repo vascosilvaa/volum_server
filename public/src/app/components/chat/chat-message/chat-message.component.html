@@ -13,6 +13,13 @@
                 <div><img class="img-user" *ngIf="message.from_id != id_user" src="{{prof.photo_url}}"></div><button [class.msg-mine]="message.from_id == id_user"
                   [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
               </div>
+              <div *ngIf="messages.length == 0" class="text-center no-content mt-5">
+
+                <div style="padding: 5px;"><i class="material-icons">messages</i></div>
+                <span style="font-weight: 400">Ainda não trocou mensagens com {{prof.name}}. Envie-lhe um olá!</span>
+
+
+              </div>
             </div>
           </div>
 
@@ -37,9 +44,9 @@
 
           </div>
           <div class="area-profile text-center">
-             
+
             <div class="desc-profile">
-               <img class="img-profile" src="{{prof.photo_url}}">
+              <img class="img-profile" src="{{prof.photo_url}}">
               <div class="name-profile pointer underline" (click)="navigate_profile(prof.id_user)">
                 {{prof.name}}
               </div>
@@ -52,7 +59,7 @@
                 Instituição de voluntariado
               </div>
 
-            <div class="desc-name-profile" *ngIf="prof.type_user==3">
+              <div class="desc-name-profile" *ngIf="prof.type_user==3">
                 Voluntário/ Instituição de voluntariado
               </div>
 
@@ -81,7 +88,7 @@
                     {{prof.birth_date | date}}
                   </div>
                 </div>
-                
+
                 <div class="justify-content-center table-flex">
                   <div class="bold">
                     Profissão:
@@ -92,7 +99,7 @@
                 </div>
                 <div class="justify-content-center table-flex">
                   <div class="bold">
-                   Já participou em:
+                    Já participou em:
                   </div>
                   <div class="">
                     7 ações de voluntariado

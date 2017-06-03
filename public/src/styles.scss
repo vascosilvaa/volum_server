@@ -1,24 +1,15 @@
 //FONTS
 @import url('https://fonts.googleapis.com/css?family=Lato');
 //GLOBAL COLORS
-$red: #F51111;
-$blue: #0F76F7;
-$white: #FFFFFF;
-$grey0: #F7F8FA;
-$grey1:#E6E5E5;
-$grey2: #919191;
-$grey3:#4A4A4A;
-$grey-border: #ECECEC;
-$yellow: #FFCB2B;
-$inputTitle: #A28F9F;
-$orange: #FF8A65;
-$bold: 600;
-
+@import 'variables';
 //AJUSTES GLOBAIS
 search .dropdown-menu {
     width: 100% !important;
 }
 
+.modal-dialog {
+ top: 10%;
+}
 //////////////////
 .carousel-control-next-icon {
     background-image: url('https://www.lithosdesign.com/images/arrow_b_right.png');
@@ -83,6 +74,16 @@ search .dropdown-menu {
 //GLOBAL INPUT
 .width100 {
     width: 100%
+}
+
+.no-content i{
+    color: $grey2!important;
+    font-weight: normal;
+}
+.no-content span{
+   color: $grey2;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 //BOOTSTRAP EDIT

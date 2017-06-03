@@ -41,11 +41,11 @@ export class ProfileService {
         this.activeUser = data;
     }
 
-
-
-    getUser() {
-        return this.activeUser;
+    clearActiveUser() {
+        this.activeProfile = null;
+        this.activeUser = null;
     }
+
 
     search(term) {
         if (term === '') {
@@ -89,7 +89,19 @@ export class ProfileService {
     }
 
     getProfile(id) {
+        console.log("FOI FEITO PEDIDO À BD DO PROFILE")
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    getUserSimple(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/simple`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getScore(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/score`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

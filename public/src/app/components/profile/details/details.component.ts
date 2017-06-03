@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
   public idLogin: any;
   public userLogin: any;
   public idVol: any;
-  public vols: any;
+  public vol: any;
   public hora_inicio: any;
   public hora_fim: any;
   public minutos_inicio: any;
@@ -40,7 +40,7 @@ export class DetailsComponent implements OnInit {
   public comentario: any;
   public numberCandidates: any;
   public numberConfirms: any;
-  public editTitle : any;
+  public editTitle: any;
 
 
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
@@ -63,9 +63,9 @@ export class DetailsComponent implements OnInit {
     this.countConfirmed(this.idVol);
   }
 
-  
+
   openEditModal() {
-    return this.modal.open(EditModalComponent, overlayConfigFactory({id_vol: this.idVol }, BSModalContext));
+    return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.idVol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -91,10 +91,10 @@ export class DetailsComponent implements OnInit {
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
-          id_user: this.vols.user.id_user,
+          id_user: this.vol.user.id_user,
           message: comment,
-          photo_url: this.vols.user.photo_url,
-          name: this.vols.user.name,
+          photo_url: this.vol.user.photo_url,
+          name: this.vol.user.name,
         })
       });
 
@@ -123,14 +123,15 @@ export class DetailsComponent implements OnInit {
   getVol(idVol) {
     this.volsService.getVol(idVol)
       .then(res => {
-        this.vols = res.vol;
+        this.vol = res.vol;
+        console.log("VOL", this.vol)
         this.getAddress();
-        this.lat = parseFloat(this.vols.lat);
-        this.lng = parseFloat(this.vols.lng);
-        this.hora_inicio = this.vols.start_time.slice(0, 2);
-        this.minutos_inicio = this.vols.start_time.slice(3, 5);
-        this.hora_fim = this.vols.end_time.slice(0, 2);
-        this.minutos_fim = this.vols.end_time.slice(3, 5);
+        this.lat = parseFloat(this.vol.lat);
+        this.lng = parseFloat(this.vol.lng);
+        this.hora_inicio = this.vol.start_time.slice(0, 2);
+        this.minutos_inicio = this.vol.start_time.slice(3, 5);
+        this.hora_fim = this.vol.end_time.slice(0, 2);
+        this.minutos_fim = this.vol.end_time.slice(3, 5);
       })
       .catch(err => console.log(err));
   }
@@ -152,11 +153,11 @@ export class DetailsComponent implements OnInit {
   }
 
   getAddress() {
-    this.sharedService.getAddress(this.vols.lat, this.vols.lng)
+    this.sharedService.getAddress(this.vol.lat, this.vol.lng)
       .then(res => {
         this.addressData = res.results;
-        this.address[this.vols.id_vol] = this.addressData[0].formatted_address;
-        this.addressName[this.vols.id_vol] = this.addressData[0].address_components[0].short_name;
+        this.address[this.vol.id_vol] = this.addressData[0].formatted_address;
+        this.addressName[this.vol.id_vol] = this.addressData[0].address_components[0].short_name;
       })
 
   }
@@ -172,13 +173,13 @@ export class DetailsComponent implements OnInit {
         console.log(r);
         let index = this.candidates.findIndex(x => x.id_user == idUser);
         this.confirmeds.splice(index, 1);
-         this.numberConfirms--;
+        this.numberConfirms--;
       },
       (error) => { console.log(error); });
   }
 
-   openDelete(type, id_vol, date, name) {
-    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name}, BSModalContext));
+  openDelete(type, id_vol, date, name) {
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name }, BSModalContext));
   }
 
   openRemoveConfirmCandidate(type, idVol, idUser, name, i) {
@@ -198,7 +199,7 @@ export class DetailsComponent implements OnInit {
   }
 
   confirmCandidate(id_user) {
-    this.volsService.confirmCandidate(this.vols.id_vol, id_user)
+    this.volsService.confirmCandidate(this.vol.id_vol, id_user)
       .then(res => {
         let index = this.candidates.findIndex(x => x.id_user == id_user);
         this.confirmeds.unshift(this.candidates[index])

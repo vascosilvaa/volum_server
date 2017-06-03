@@ -28,22 +28,45 @@ let amount = 0;
 
 
 
-function decodeBase64Image(dataString) {
-    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-        response = {};
-
-    if (matches.length !== 3) {
-        return new Error('Invalid input string');
-    }
-
-    response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
-
-    return response;
-}
-
 
 var returnRouter = function (io) {
+
+
+    function emitNotificationToVolCreator(id_vol, id_user, type) {
+        // EMITE NOTIFICAÇAO A CRIADOR DO VOL EM QUESTAO
+        db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [id_vol],
+            function (error, results, fields) {
+
+                let id_creator = results[0].id_user_creator;
+
+                db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
+                    function (error, results, fields) {
+
+
+                        let index = loggedUsers.findIndex(x => x.user == id_creator);
+                        if (index !== -1) {
+                            io.to(loggedUsers[index].socket).emit('notification');
+                        }
+
+
+                    });
+            });
+    }
+
+    function emitNotificationToUser(id_vol, id_user, type) {
+        // EMITE NOTIFICAÇAO A UTILIZADOR
+
+        return db.get().query('INSERT INTO notifications (id_user, id_vol, date, type) VALUES (?, ?, ?, ?)', [id_user, id_vol, new Date(), type],
+            function (error, results, fields) {
+
+                let index = loggedUsers.findIndex(x => x.user == id_user);
+                if (index !== -1) {
+                    io.to(loggedUsers[index].socket).emit('notification');
+                }
+
+
+            });
+    }
 
     /**
      * @api {get} /vols Listar todos os voluntariados
@@ -616,6 +639,9 @@ var returnRouter = function (io) {
                         message: error
                     });
                 } else {
+
+                    emitNotificationToVolCreator(req.params.id, req.user.id_user, 3);
+
                     res.json({
                         success: true,
                         message: results
@@ -668,6 +694,10 @@ var returnRouter = function (io) {
                 function (error, results, fields) {
                     console.log(error);
                     if (!error) {
+
+                        emitNotificationToVolCreator(req.params.id, req.user.id_user, 4);
+
+
                         res.json({
                             success: true,
                         })
@@ -799,30 +829,12 @@ var returnRouter = function (io) {
                                 });
                             } else {
 
-                                db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id],
-                                    function (error, results, fields) {
+                                emitNotificationToVolCreator(req.params.id, req.user.id_user, 1);
 
-                                        let id_creator = results[0].id_user_creator;
-
-                                        db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, 1)', [id_creator, req.user.id_user, req.params.id, new Date()],
-                                            function (error, results, fields) {
-                                                console.log(results);
-                                                console.log(error);
-                                                console.log("USERS", loggedUsers);
-
-                                                let index = loggedUsers.findIndex(x => x.user == id_creator);
-                                                if (index !== -1) {
-                                                    io.to(loggedUsers[index].socket).emit('notification');
-                                                }
-                                                console.log(index);
-
-                                                res.json({
-                                                    success: true,
-                                                    message: "Sucesso"
-                                                });
-                                            });
-                                    });
-
+                                res.json({
+                                    success: true,
+                                    message: "Sucesso"
+                                });
 
                             }
                         });
@@ -1109,6 +1121,9 @@ var returnRouter = function (io) {
                         message: 'Este User ou voluntariado não existe ou não é um candidato'
                     });
                 } else {
+
+                    emitNotificationToUser(req.params.id, req.body.id_user, 5)
+
                     res.json({
                         success: true,
                         message: "Sucesso"

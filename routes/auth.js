@@ -254,14 +254,24 @@ app.get('/facebook/callback',
             id: req.user.id_user
         }, secretKey);
 
-        // res.redirect("http://bevolun.com/profile/" + req.user.id_user + "?id_token=JWT " + token);
+        // res.redirect("http://localhost:8080/profile/" + req.user.id_user + "?id_token=JWT " + token);
 
         res.redirect(url.format({
-            pathname: "http://bevolun.com/profile/" + req.user.id_user,
+            pathname: "http://localhost:4200/profile/" + req.user.id_user + '/about',
             query: {
                 "id_token": "JWT " + token,
 
             }
         }));
+
+        /*
+                res.redirect(url.format({
+                    pathname: "http://localhost:8080/profile/" + req.user.id_user,
+                    query: {
+                        "id_token": "JWT " + token,
+        
+                    }
+                }));
+                */
 
     });

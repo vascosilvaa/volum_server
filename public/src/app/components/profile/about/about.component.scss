@@ -20,6 +20,7 @@
   margin-bottom: 10px;
   text-decoration: none;
   border: none;
+  cursor: pointer;
 }
 
 .socialButtonTwitter {
@@ -33,6 +34,8 @@
   margin-bottom: 10px;
   text-decoration: none;
   border: none;
+    cursor: pointer;
+
 }
 
 .socialButtonLinkedin {
@@ -46,6 +49,11 @@
   margin-bottom: 10px;
   text-decoration: none;
   border: none;
+    cursor: pointer;
+
+}
+.disabled{
+  cursor: default;
 }
 
 .socialButtonInstagram {
@@ -59,6 +67,8 @@
   margin-bottom: 10px;
   text-decoration: none;
   border: none;
+    cursor: pointer;
+
 }
 
 

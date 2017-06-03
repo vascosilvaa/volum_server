@@ -45,14 +45,14 @@ module.exports = function (passport) {
     passport.use(new FacebookStrategy({
         clientID: '1657614757878644',
         clientSecret: '36b1c065c723b228239c4504dc7a6396',
-        callbackURL: 'http://bevolun.com/api/auth/facebook/callback',
+        callbackURL: 'http://localhost:8080/api/auth/facebook/callback',
         profileFields: ['id', 'displayName', 'photos', 'email', 'birthday']
     },
         function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
 
 
-                console.log("pic", profile._json.picture.data)
+                console.log("profile facebook", profile)
 
                 getUserByEmail(profile._json.email, function (user) {
                     if (user && user != undefined) {
@@ -68,13 +68,13 @@ module.exports = function (passport) {
                             console.log(body['data'])
                             console.log
                             let newUser = {
-
+                                facebook_link: profile._json.id,
                                 email: profile._json.email,
                                 type_user: 1,
                                 name: profile._json.name,
                                 gender: 0,
                                 photo_url: data.data.url,
-                                birth_date: profile._json.birthday
+                                birth_date: profile._json.birthday,
                             };
                             db.get().query('INSERT INTO users SET ?', [newUser], function (err, result) {
                                 if (err) {

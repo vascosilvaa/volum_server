@@ -19,14 +19,12 @@ export class ActivityComponent implements OnInit, OnDestroy {
   public instVols: any;
   public idProfile: any;
   public vols = [];
-  public userLogin: any;
-  public idLogin: any;
-  public user: any;
+  public ready: boolean = false;
   observable: any;
 
   public teste: any;
 
-  public activeUser: any;
+  public user: any;
   constructor(public http: Http, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService) {
 
@@ -34,41 +32,44 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.activeUser = this.profileService.getUser();
-    console.log("USER", this.activeUser)
 
-    if (this.activeUser && this.vols.length > 0) {
-
-      this.checkType(this.activeUser)
-
+    if (!this.profileService.activeUser) {
+      this.profileService.activeProfileSource.subscribe((result) => {
+        this.user = result;
+        console.log("ASYNC User", this.user)
+        this.checkType(this.user);
+      });
+    } else {
+      this.user = this.profileService.activeUser;
+      this.checkType(this.user);
     }
 
-    this.observable = this.profileService.activeProfileSource.subscribe(
-      data => {
-        this.checkType(data);
-      })
+
 
 
 
   }
 
   checkType(data) {
-    console.log("data", data);
-    this.activeUser = data;
-    console.log("USER TYPE", this.activeUser.type)
 
-    if (this.activeUser.type == 1) {
-      this.profileService.getMyVols(this.activeUser.id_user).then(res => {
+    this.user = data;
+    console.log("USER TYPE", this.user.type)
+
+    if (this.user.type == 1) {
+      this.profileService.getMyVols(this.user.id_user).then(res => {
         this.vols = res.vols;
+        this.ready = true;
         console.log(this.vols)
 
       }).catch(err => console.log(err));
 
     } else {
 
-      this.profileService.getVolHistory(this.activeUser.id_user)
+      this.profileService.getVolHistory(this.user.id_user)
         .then(res => {
           this.vols = res.vols;
+          this.ready = true;
+
           console.log("history", this.vols)
         })
         .catch(err => console.log(err));

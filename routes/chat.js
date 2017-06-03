@@ -51,6 +51,8 @@ var returnRouter = function (io) {
     })
 
 
+
+
     app.get('/', passport.authenticate('jwt'), function (req, res) {
 
         db.get().query('SELECT * FROM user_relations INNER JOIN users ON user_relations.id_user = users.id_user WHERE user_relations.id_user = ? OR user_relations.id_user2 = ? ORDER BY user_relations.date DESC', [req.user.id_user, req.user.id_user], function (error, results, fields) {
@@ -162,7 +164,6 @@ var returnRouter = function (io) {
                 if (error) throw error;
             } else {
 
-                console.log("aa", results[0].id_user)
                 if (results[0].id_user == req.user.id_user) {
                     id_user = results[0].id_user2;
                 } else {

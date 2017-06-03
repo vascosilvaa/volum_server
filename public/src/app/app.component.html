@@ -10,6 +10,9 @@
                 <li *ngIf="user" routerLink="map">
                     <md-icon>place</md-icon>
                 </li>
+
+                <!------------------- REQUESTS ------------------>
+
                 <li *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
                     <md-icon ngbDropdownToggle>people</md-icon>
 
@@ -17,7 +20,7 @@
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">PEDIDOS</div>
-                        <div class="message-item" *ngIf="!requests">
+                        <div class="message-item" *ngIf="!requestsReady">
 
                             <div class="sk-fading-circle">
                                 <div class="sk-circle1 sk-circle"></div>
@@ -35,20 +38,26 @@
                             </div>
 
                         </div>
-                        <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
+                        <ng-container *ngIf="requestsReady">
+                            <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
 
-                            <div class="image">
-                                <img [src]="request.photo_url">
-                            </div>
-                            <div class="notification-info">
-                                <b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>
-                            </div>
-                            <div class="text-right">
-                                <div class="btn-notification">
-                                    <button class="btn btnConfirm" routerLink='./profile/{{request.id_user}}/activity'>VER</button>
+                                <div class="image">
+                                    <img [src]="request.photo_url">
                                 </div>
+                                <div class="notification-info">
+                                    <b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="btn-notification">
+                                        <button class="btn btnConfirm" routerLink='./profile/{{request.id_user}}/activity'>VER</button>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
+                            <div class="message-item text-center no-content" *ngIf="requests.length == 0">
+                                Sem Novidades
+                            </div>
+                        </ng-container>
 
 
                         <div routerLink="/requests" class="dropdown-footer">Ver todos os pedidos</div>
@@ -56,6 +65,7 @@
                     </div>
                 </li>
 
+                <!------------------- CONVERSAS ------------------>
                 <li *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
 
                     <md-icon ngbDropdownToggle>chat_bubble</md-icon>
@@ -88,17 +98,23 @@
                                 <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
                                     <div>
                                         <span class="nameMsg">{{conversation.name}}</span>
-                                        <span class="time">{{conversation.date | amTimeAgo:true}}</span>
+                                        <span class="time" *ngIf="conversation.date">{{conversation.date | amTimeAgo:true}}</span>
+
                                     </div>
 
                                     <span class="textMsg"> {{conversation.message }}</span>
+                                    <span class="textMsg" *ngIf="!conversation.message"> Envie uma mensagem a {{conversation.name}}</span>
                                 </div>
                             </div>
+
                         </ng-container>
+
 
                         <div class="dropdown-footer" (click)="goToMessagesAll()">Ver todas as mensagens</div>
                     </div>
                 </li>
+
+                <!------------------- NOTIFICAÇOES ------------------>
 
                 <li *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
                     <md-icon ngbDropdownToggle>notifications</md-icon>
@@ -126,7 +142,7 @@
 
                         </div>
 
-                        <div class="message-item" *ngFor="let notification of notifications">
+                        <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.id_vol)">
                             <div class="image">
                                 <img [src]="notification.photo_url">
                             </div>
@@ -134,7 +150,14 @@
                                 <div>
                                     <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
+                                    <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    <p *ngIf="notification.type == 5">Parabéns! Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                 </div>
                                 <div>
                                 </div>
@@ -153,7 +176,7 @@
 
                     <span>
                     <img class="navbar-user-picture" [src]="user?.photo" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'"> 
-                    <span>{{user?.username}}</span>
+                    <span>{{user?.name}}</span>
                     <i class="material-icons arrow_dropdown">arrow_drop_down</i>
 
 

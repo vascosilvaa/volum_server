@@ -57,9 +57,9 @@ export class ChatComponent implements OnInit {
   getUsersAndLastMessage() {
     for (let i = 0; i < this.conversations.length; i++) {
 
-      this.profileService.getProfile(this.conversations[i].id_user).then(res => {
+      this.profileService.getUserSimple(this.conversations[i].id_user).then(res => {
         this.conversations[i].photo_url = res.user.photo;
-        this.conversations[i].name = res.user.username;
+        this.conversations[i].name = res.user.name;
         console.log(res);
       });
 

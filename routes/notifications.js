@@ -18,9 +18,9 @@ var returnRouter = function (io) {
     app.get('/', passport.authenticate('jwt'), function (req, res) {
 
 
-        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? AND notifications.type = 1 ORDER BY date DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
+        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? AND notifications.type <> 2 ORDER BY date DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
             console.log(error);
-            console.log("USER", req.user.id_user);
+
             let notifications = [];
             if (results) {
 
@@ -34,7 +34,8 @@ var returnRouter = function (io) {
                         user_name: results[i].users.name,
                         photo_url: results[i].users.photo_url,
                         id_user: results[i].users.id_user2,
-                        date: results[i].notifications.date
+                        date: results[i].notifications.date,
+                        id_vol: results[i].vols.id_vol
                     })
 
                 }
@@ -162,7 +163,7 @@ var returnRouter = function (io) {
 
 
     app.post('/read-all', passport.authenticate('jwt'), function (req, res) {
-        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 1', [req.user.id_user], function (error, results, fields) {
+        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type <> 2', [req.user.id_user], function (error, results, fields) {
 
             res.json({
                 success: true

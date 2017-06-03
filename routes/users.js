@@ -12,6 +12,20 @@ function getUserById(id, done) {
         done(rows[0]);
     });
 }
+function getSimplifiedUserById(id, done) {
+    db.get().query('SELECT name, photo_url, id_user FROM users WHERE id_user = ? LIMIT 1', [id], function (err, rows, fields) {
+        if (err) throw err;
+        done(rows[0]);
+    });
+}
+function refreshUserScore(id, done) {
+    db.get().query('SELECT AVG(classification) as score FROM classification WHERE id_user2 = ?', [id], function (err, rows, fields) {
+        if (err) throw err;
+        console.log("ROWS", rows);
+
+        done(rows[0].score);
+    });
+}
 
 var app = module.exports = express.Router();
 
@@ -23,6 +37,8 @@ var app = module.exports = express.Router();
  */
 
 var returnRouter = function (io) {
+
+
 
 
     app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
@@ -48,16 +64,64 @@ var returnRouter = function (io) {
                         success: true,
                         user: {
                             id_user: user.id_user,
-                            login: user.login,
-                            username: user.name,
+                            name: user.name,
                             email: user.email,
+                            phone: user.phone,
+                            gender: user.gender,
                             photo: user.photo_url,
                             birth_date: user.birth_date,
                             verified: user.verified,
                             type: user.type_user,
                             about: user.about,
-                            lat: user.lat,
-                            lng: user.lng
+                            hobbies: user.hobbies,
+                            other: user.other,
+                            history: user.history,
+                            score: user.score,
+                            languages: user.languages,
+                            facebook_id: user.facebook_link,
+                        }
+                    });
+                }
+            });
+
+        }
+    });
+
+
+    app.get('/:id/score', function (req, res) {
+
+        refreshUserScore(req.params.id, function (score) {
+            res.json({
+                success: true,
+                score
+            });
+        });
+    });
+
+
+    app.get('/:id/simple', passport.authenticate(['jwt']), function (req, res) {
+        if (!req.params.id) {
+            res.send({
+                success: false,
+                error: "Falta Enviar o ID"
+            });
+        } else {
+            getSimplifiedUserById(req.params.id, function (user) {
+                if (!user) {
+                    res.status(400);
+                    res.send({
+                        success: false,
+                        message: "Utilizador Não Encontrado"
+                    })
+
+                } else {
+                    res.status(200);
+                    res.send({
+                        success: true,
+                        user: {
+                            id_user: user.id_user,
+                            name: user.name,
+                            photo: user.photo_url,
                         }
                     });
                 }
@@ -615,6 +679,39 @@ var returnRouter = function (io) {
                 });
         }
     });
+
+
+
+    app.post('/score', passport.authenticate('jwt'), function (req, res) {
+        if (!Number(req.body.id_user2 || !Number(req.body.classification))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+
+            db.get().query({
+                sql: 'INSERT INTO classification (id_user, id_user2, classification) VALUES ( ?, ? ,?)',
+            }, [req.user.id_user, req.body.id_user2, req.body.classification],
+                function (error, results, fields) {
+                    console.log(error)
+
+                    refreshUserScore(req.body.id_user2, function (classification) {
+
+                        console.log("CLASSIFICATION", classification)
+                        res.json({
+                            success: true,
+                            classification
+                        });
+
+
+                    });
+                });
+        }
+    });
+
+
+
 
 
 
