@@ -86,16 +86,16 @@ app.get('/api/search', function (req, res) {
             });
     }
 });
-/*
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/dist/index.html'));
 });
 
-*/
+/*
 
 app.use('/*', express.static(path.join(__dirname, 'public/dist'), { redirect: false }));
 
-
+*/
 
 /**
  * @api {get} /search Pesquisar 
