@@ -22,16 +22,11 @@ import * as moment from 'moment';
 export class DetailsComponent implements OnInit {
   lat: number;
   lng: number;
+
   public idLogin: any;
   public userLogin: any;
   public id_vol: any;
   public vol: any;
-  public hora_inicio: any;
-  public hora_fim: any;
-  public minutos_inicio: any;
-  public minutos_fim: any;
-  public addressData: any;
-  public address = [];
   public candidates = [];
   public confirmeds = [];
   public numberComments: any;
@@ -40,7 +35,7 @@ export class DetailsComponent implements OnInit {
   public numberCandidates: any;
   public numberConfirms: any;
   public editTitle: any;
-  public confirmedsReady : boolean = false;
+  public confirmedsReady: boolean = false;
 
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
@@ -129,10 +124,7 @@ export class DetailsComponent implements OnInit {
         this.getAddress();
         this.lat = parseFloat(this.vol.lat);
         this.lng = parseFloat(this.vol.lng);
-        this.hora_inicio = this.vol.start_time.slice(0, 2);
-        this.minutos_inicio = this.vol.start_time.slice(3, 5);
-        this.hora_fim = this.vol.end_time.slice(0, 2);
-        this.minutos_fim = this.vol.end_time.slice(3, 5);
+
 
 
         if (this.vol.active == 0) {
@@ -141,7 +133,8 @@ export class DetailsComponent implements OnInit {
             for (let i = 0; i < this.confirmeds.length; i++) {
               for (let x = 0; x < res.results.length; x++) {
                 if (this.confirmeds[i].id_user == res.results[x].id_user2) {
-                  this.confirmeds[i].classification = res.results[x].classification;
+                  this.confirmeds[i].classification = this.getNumber(res.results[x].classification);
+                  this.confirmeds[i].classification_negative = this.getNumber(res.results[x].classification - 5)
                 }
               }
             }
@@ -181,8 +174,6 @@ export class DetailsComponent implements OnInit {
   getAddress() {
     this.sharedService.getAddress(this.vol.lat, this.vol.lng)
       .then(res => {
-        this.addressData = res.results;
-        this.address[this.vol.id_vol] = this.addressData[0].formatted_address;
       })
 
   }
