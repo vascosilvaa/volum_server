@@ -176,18 +176,19 @@ export class ProfileComponent implements OnInit {
   }
   getScore() {
     this.profileService.getScore(this.user.id_user).then(res => {
-      this.user['score'] = res.score;
-      console.log("SCORE", this.user.score)
+      console.log("SCORE", res.score)
+      this.user['score_number'] = res.score;
+      this.user['score'] = this.getNumber(res.score);
+      this.user['negative_score'] = this.getNumber(res.score - 5);
       this.scoreReady = true;
 
     });
   }
-  getNumber = function (num) {
+  getNumber(num) {
     let number = Math.round(num);
     if (num < 0) {
       number = Math.abs(number);
     }
-    console.log("NUM", num)
     return new Array(number);
   }
 

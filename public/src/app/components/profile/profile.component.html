@@ -6,10 +6,9 @@
             <div class="col-md-3 col-sm-12 col-12 profile-user-picture">
                 <img src={{user?.photo}} alt="{{user?.name}}" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
                 <div class="col user-rate" *ngIf="scoreReady">
-                    <md-icon *ngFor="let star of getNumber(user?.score)">star_rate</md-icon>
-                    <md-icon *ngFor="let star of getNumber(user?.score - 5)">star_border</md-icon>
-
-                    {{user?.score}}
+                    <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
+                    <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
+                    {{user.score_number}}
                 </div>
 
             </div>
