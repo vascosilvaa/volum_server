@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-12" style="display:flex">
                             <div class="addressTitle" style="display:flex; align-items: center">
-                                {{address[vol?.id_vol]}}
+                                {{vol?.address}}
                             </div>
                         </div>
                     </div>
@@ -124,10 +124,12 @@
                             <div class="addressTitle">
                                 {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}
                             </div>
+                            <!--
                             <div class="Address">
                                 {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end
                                 | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às {{hora_fim}}:{{minutos_fim}}
-                            </div>
+                            </div> 
+                            -->
                         </div>
                     </div>
                 </div>
@@ -150,7 +152,7 @@
 
                         <div class="col-12">
 
-                            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14" [styles]="Terrain">
+                            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14">
                                 <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
                             </sebm-google-map>
 
@@ -269,8 +271,8 @@
                                     <span class="candidateName link" [routerLink]="['../../../'+confirmed.id_user+'/about']">{{confirmed?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding user-rate" *ngIf="confirmedsReady">
-                                    <md-icon *ngFor="let star of getNumber(confirmed?.classification)">star_rate</md-icon>
-                                    <md-icon *ngFor="let star of getNumber(confirmed?.classification - 5)">star_border</md-icon>
+                                    <md-icon *ngFor="let star of confirmed?.classification">star_rate</md-icon>
+                                    <md-icon *ngFor="let star of confirmed?.classification_negative">star_border</md-icon>
                                 </div>
                             </div>
                         </li>
