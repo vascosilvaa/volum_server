@@ -33,51 +33,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
 
-    if (!this.profileService.activeUser) {
-      this.profileService.activeProfileSource.subscribe((result) => {
-        this.user = result;
-        console.log("ASYNC User", this.user)
-        this.checkType(this.user);
-      });
-    } else {
-      this.user = this.profileService.activeUser;
-      this.checkType(this.user);
-    }
-
-
-
-
-
   }
-
-  checkType(data) {
-
-    this.user = data;
-    console.log("USER TYPE", this.user.type)
-
-    if (this.user.type == 1) {
-      this.profileService.getMyVols(this.user.id_user).then(res => {
-        this.vols = res.vols;
-        this.ready = true;
-        console.log(this.vols)
-
-      }).catch(err => console.log(err));
-
-    } else {
-
-      this.profileService.getVolHistory(this.user.id_user)
-        .then(res => {
-          this.vols = res.vols;
-          this.ready = true;
-
-          console.log("history", this.vols)
-        })
-        .catch(err => console.log(err));
-
-
-    }
-  }
-
   ngOnDestroy() {
     console.log("destroy")
   }

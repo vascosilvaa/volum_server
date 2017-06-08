@@ -147,8 +147,8 @@ export class NewActionComponent implements OnInit {
   }
 
 
-  markerDragEnd(m, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+  markerDragEnd($event: MouseEvent) {
+    console.log('dragEnd', $event);
     this.lat = $event['coords']['lat'];
     this.lng = $event['coords']['lng'];
     console.log(this.lat);

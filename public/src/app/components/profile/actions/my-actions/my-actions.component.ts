@@ -22,7 +22,6 @@ export class MyActionsComponent implements OnInit {
   public idProfile: any;
   public myVols: any;
   public address: any;
-  // public addressName: any;
   public addressData: any;
   public hora_inicio: any;
   public hora_fim: any;

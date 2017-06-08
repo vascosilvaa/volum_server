@@ -32,7 +32,6 @@ export class DetailsComponent implements OnInit {
   public minutos_fim: any;
   public addressData: any;
   public address = [];
-  public addressName = [];
   public candidates = [];
   public confirmeds = [];
   public numberComments: any;
@@ -184,7 +183,6 @@ export class DetailsComponent implements OnInit {
       .then(res => {
         this.addressData = res.results;
         this.address[this.vol.id_vol] = this.addressData[0].formatted_address;
-        this.addressName[this.vol.id_vol] = this.addressData[0].address_components[0].short_name;
       })
 
   }
