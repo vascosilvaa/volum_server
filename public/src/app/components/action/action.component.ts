@@ -243,7 +243,6 @@ lat: number;
         .then(res => {
           this.addressData = res.results;
           this.address = this.addressData[0].formatted_address;
-          //this.addressName = this.addressData[0].address_components[0].short_name;
         })
     }
 
