@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile.component';
 import { SettingsComponent } from './settings.component';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { EducationComponent } from './education/education.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
@@ -22,7 +21,6 @@ import { ChangePassComponent } from './change-pass/change-pass.component';
     MaterialModule,
     NgbModule.forRoot(),
     SettingsRoutingModule,
-    AccordionModule.forRoot(),
   ],
   declarations: [SettingsComponent, PersonalSettingsComponent, AboutMeComponent, EducationComponent, ChangePassComponent],
   providers: [
