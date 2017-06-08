@@ -5,7 +5,7 @@ import { FeedComponent } from './../../components/feed/feed.component';
 import { Router } from '@angular/router';
 import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
-import { AuthenticationService } from './../Auth/authentication.service';import { AppModule } from './../../app.module';
+import { AuthenticationService } from './../Auth/authentication.service'; import { AppModule } from './../../app.module';
 import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
@@ -54,6 +54,9 @@ export class VolDetailsModalComponent implements OnInit {
   public confirmeds: any;
   public ready: boolean = false;
   public feed: any;
+
+  public error: boolean = false;
+
   constructor(private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, private dialog: DialogRef<ModalContext>, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
@@ -97,7 +100,10 @@ export class VolDetailsModalComponent implements OnInit {
           console.log(this.lat, this.lng)
           this.ready = true;
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          this.ready = true;
+          this.error = true;
+        });
     }, 250)
   }
   ngOnInit() {
@@ -115,8 +121,8 @@ export class VolDetailsModalComponent implements OnInit {
       .then((r) => {
         this.dialog.dismiss();
         setTimeout(() => {
-      this.router.navigate(['/profile/' + idProfile + '/activity']);
-    }, 500);  
+          this.router.navigate(['/profile/' + idProfile + '/activity']);
+        }, 500);
       },
       (error) => { console.log(error); });;
   }

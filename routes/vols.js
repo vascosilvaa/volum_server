@@ -110,7 +110,7 @@ var returnRouter = function (io) {
             let vols = [];
             let options = {
                 sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC LIMIT ?, ?',
+                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND vols.active = 1 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC LIMIT ?, ?',
                 nestTables: true
             };
             if (req.query['type'] == 'inst') {
@@ -243,7 +243,7 @@ var returnRouter = function (io) {
                             }
                             if (req.body.photos.length == 0) {
 
-                                db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyB9S3UNffz8CYVqeg4RXjdI51M9xBPo12w'], function (error, result, field) {
+                                db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'], function (error, result, field) {
                                     if (error) {
                                         res.json({
                                             error
@@ -476,10 +476,8 @@ var returnRouter = function (io) {
             } else {
                 if (results.length == 0) {
                     res.status(404);
-                    res.send({
-                        success: true,
-                        message: "No records found"
-                    })
+                   res.end();
+                   
                 } else {
                     for (let i = 0; i < results.length; i++) {
 

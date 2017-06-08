@@ -41,27 +41,24 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
 
-
-
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
       relativeTime: {
-        future: "in %s",
-        past: "há %s",
+        future: "Daqui a %s",
+        past: "%s",
         s: "Agora mesmo",
-        m: " há 1 min",
-        mm: "há %d m",
+        m: "1 min",
+        mm: "%d m",
         h: "1h",
-        hh: "há %d horas",
-        d: "há 1 dia",
-        dd: "há %d dias",
-        M: "há 1 mês",
-        MM: "há %d meses",
-        y: "há 1 ano",
-        yy: "há %d anos"
+        hh: "%d hrs",
+        d: "1 dia",
+        dd: "%d dias",
+        M: "1 mês",
+        MM: "%d meses",
+        y: "1 ano",
+        yy: "%d anos"
       }
     });
-
     this.getUser();
 
   }
@@ -81,7 +78,6 @@ export class AppComponent implements OnInit {
           this.newRequestsCount++;
           console.log("NEW REQUEST", res);
 
-          this.notification.play();
 
         });
 
@@ -200,8 +196,8 @@ export class AppComponent implements OnInit {
   }
   logout() {
     this.auth.logout();
+    this.router.navigateByUrl('/feed');
     this.user = null;
-    location.reload();
   }
 
   onSelect(profile) {

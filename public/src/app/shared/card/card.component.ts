@@ -62,25 +62,6 @@ export class CardComponent implements OnInit {
 
     console.log("LIKES", this.likes)
 
-    moment.updateLocale('pt', {
-      relativeTime: {
-        future: "Daqui a %s",
-        past: "%s",
-        s: "Agora mesmo",
-        m: "1 min",
-        mm: "%d m",
-        h: "1h",
-        hh: "%d hrs",
-        d: "1 dia",
-        dd: "%d dias",
-        M: "1 mês",
-        MM: "%d meses",
-        y: "1 ano",
-        yy: "%d anos"
-      }
-    });
-
-    console.log("ZONE", moment.parseZone(this.dateCreation));
 
     /*  this.sharedService.getComments(this.idVol)
         .then(res => {

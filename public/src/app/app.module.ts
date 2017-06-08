@@ -1,3 +1,4 @@
+import { FeedModule } from './components/feed/feed.module';
 import { ProfileService } from './shared/services/profile.service';
 import { volsService } from './shared/services/vols.service';
 import { ModalEndComponent } from './shared/modal-end/modal-end.component';
@@ -38,6 +39,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { ChatComponent } from './components/chat/chat.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionComponent } from './components/action/action.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -49,11 +51,13 @@ import { ActionComponent } from './components/action/action.component';
     NotificationsComponent,
     SocialRequestsComponent,
     ActionComponent,
+    ErrorComponent,
   ],
   imports: [
     SharedModule,
     BrowserModule,
     MaterialModule,
+    FeedModule,
     FormsModule,
     HttpModule,
     MapModule,

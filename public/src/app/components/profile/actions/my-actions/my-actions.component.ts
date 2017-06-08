@@ -133,6 +133,6 @@ export class MyActionsComponent implements OnInit {
   }
 
   openDelete(type, id_vol, date, name) {
-    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name}, BSModalContext));
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name }, BSModalContext));
   }
 }

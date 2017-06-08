@@ -1,6 +1,6 @@
 <div class="no-padding">
-    <div class="modalHeader row">
-        <div class="day-w-border" *ngIf="ready">
+    <div class="modalHeader row" *ngIf="ready && !error">
+        <div class="day-w-border">
             <div>
                 {{volDetails?.date_begin | date:"MMM" | uppercase}}
             </div>
@@ -39,7 +39,13 @@
             <div class="sk-circle12 sk-circle"></div>
         </div>
     </div>
-    <ng-container *ngIf="ready">
+    <div class="col-12" *ngIf="error">
+
+        <p>Esta página não está disponível</p>
+        <p> A ligação que seguiste pode estar a funcionar incorretamente ou a página pode ter sido eliminada.</p>
+
+    </div>
+    <ng-container *ngIf="ready && !error">
 
 
         <div class="card-user-image col-md-auto">
@@ -62,7 +68,7 @@
                 <button disabled class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
                 <button disabled class="btn btnCancel" *ngIf="volDetails.active==1 && state == 4">CANDIDATURA REJEITADA</button>
             </div>
-              <div *ngIf="volDetails.user.id_user==id_user">
+            <div *ngIf="volDetails.user.id_user==id_user">
                 <button class="btn pointer btnCandidate" (click)="goDetails(volDetails.id_vol)" *ngIf="volDetails.active==1">ÁREA DE GESTÃO</button>
                 <button disabled class="btn btnCancel" *ngIf="volDetails.active==0">AÇÃO FINALIZADA</button>
             </div>

@@ -1,8 +1,9 @@
+import { DetailsComponent } from './../../components/profile/details/details.component';
 import { volsService } from './../services/vols.service';
 import { SharedService } from './../services/shared.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from './../../app.module';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
@@ -27,8 +28,7 @@ export class ModalEndComponent implements OnInit {
 
   context: ModalContext;
 
-
-  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, public volsService: volsService) {
+  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, private injector: Injector, public volsService: volsService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
 
@@ -91,6 +91,7 @@ export class ModalEndComponent implements OnInit {
     this.volsService.endVol(this.context.id_vol, body).then(res => {
       if (res.success) {
         this.dialog.close();
+        location.reload();
 
       }
     });

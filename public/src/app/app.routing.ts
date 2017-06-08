@@ -1,3 +1,4 @@
+import { ErrorComponent } from './components/error/error.component';
 import { ActionComponent } from './components/action/action.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionsComponent } from './components/profile/actions/actions.component';
@@ -18,10 +19,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FeedComponent } from './components/feed/feed.component';
 
 const appRoutes: Routes = [
+
+  { path: 'feed', redirectTo: 'feed', pathMatch: 'full' },
+
   { path: '*', redirectTo: 'feed', pathMatch: 'full' },
   { path: '', redirectTo: 'feed', pathMatch: 'full' },
-  { path: '',
-   // canActivateChild: [AuthenticationGuard],
+
+  {
+    path: '',
+    // canActivateChild: [AuthenticationGuard],
     children: [
       {
         path: 'chat',
@@ -37,11 +43,11 @@ const appRoutes: Routes = [
       },
       {
         path: 'feed',
-        loadChildren: '../app/components/feed/feed.module#FeedModule'
+        component: FeedComponent,
       },
       {
         path: 'map',
-        component: MapComponent
+        loadChildren: '../app/components/map/map.module#MapModule'
       },
       {
         path: 'search',
@@ -55,8 +61,10 @@ const appRoutes: Routes = [
         path: 'requests',
         component: SocialRequestsComponent
       },
-]
-  }
+    ]
+  },
+  { path: '**', component: ErrorComponent },
+  { path: '404', component: ErrorComponent },
 ];
 
 

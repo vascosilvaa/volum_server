@@ -1,3 +1,4 @@
+import { Router, Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './map.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
@@ -9,6 +10,13 @@ import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+const routes: Routes = [
+
+    {
+        path: '',
+        component: MapComponent
+    }
+];
 
 @NgModule({
     imports: [
@@ -17,10 +25,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         CommonModule,
         SharedModule,
+        RouterModule.forChild(routes),
         AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
-    })],
+            apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+        })],
+
     declarations: [MapComponent],
 })
 
 export class MapModule { }
+

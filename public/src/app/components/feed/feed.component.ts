@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { volsService } from './../../shared/services/vols.service';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
 import { GlobalConstants } from './../../shared/global-constants';
@@ -19,7 +20,7 @@ export class FeedComponent implements OnInit {
   public vols: any;
   public instVols: any;
   ready: boolean = false;
-  public loading : boolean = false;
+  public loading: boolean = false;
   public sum: number = 0;
   config: Object = {
     pagination: 'null',
@@ -29,7 +30,7 @@ export class FeedComponent implements OnInit {
     zoom: true
   };
 
-  constructor(public http: Http, private volsService: volsService, private auth: AuthenticationService) { }
+  constructor(public http: Http, private volsService: volsService, private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
 
@@ -50,7 +51,10 @@ export class FeedComponent implements OnInit {
           this.privateVols = res.vols;
           this.ready = true;
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          this.router.navigateByUrl('/error');
+        }
+        );
 
       this.volsService.getInstVol(0, 10)
         .then(res => {
