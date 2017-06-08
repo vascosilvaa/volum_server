@@ -3,7 +3,7 @@ import { ProfileService } from './../../shared/services/profile.service';
 import { AppComponent } from './../../app.component';
 import { Overlay } from 'angular2-modal';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Component, Injector, OnInit, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';
 
@@ -50,8 +50,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
     this.route.params.subscribe((params) => {
 
+      this.scoreReady = false;
+
+      console.log("TROCOU PARAMS", params)
       this.id_user = params.id;
 
 
@@ -178,7 +187,7 @@ export class ProfileComponent implements OnInit {
     if (num < 0) {
       number = Math.abs(number);
     }
-  
+    console.log("NUM", num)
     return new Array(number);
   }
 

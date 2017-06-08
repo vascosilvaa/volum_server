@@ -1,5 +1,4 @@
-@import '../../../../styles';
-@import '../settings/settings.component';
+@import '../../../../variables';
 
 
 .no-padding {
@@ -22,6 +21,9 @@
 .arrow {
   margin-top: 2px;
 }
+.user-rate md-icon{
+    color: $yellow;
+ }
 
 .titleCard {
   display: flex;

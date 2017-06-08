@@ -68,6 +68,29 @@ var returnRouter = function (io) {
             });
     }
 
+    function emitNotificationToUsers(user_array) {
+        // EMITE NOTIFICAÇAO A UTILIZADOR
+        console.log("USER ARRAY", user_array)
+        let array = [];
+
+
+        db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ?', [user_array],
+            function (error, results, fields) {
+                console.log("INSERIU NOTIFICAT", results);
+                console.log("EROOR", error)
+                console.log("FIELDS", fields)
+                /*
+                for (let i = 0; i < user_array.length; i++) {
+                    let index = loggedUsers.findIndex(x => x.user == user_array[0]);
+                    if (index !== -1) {
+                        io.to(loggedUsers[index].socket).emit('notification');
+                    }
+
+                }
+                */
+            });
+    }
+
     /**
      * @api {get} /vols Listar todos os voluntariados
      * @apiName listVols
@@ -247,6 +270,7 @@ var returnRouter = function (io) {
         }
 
     });
+
 
     app.get('/bounds', function (req, res, next) {
         console.log("query", req.query);
@@ -1213,8 +1237,102 @@ var returnRouter = function (io) {
      * @apiParam {String}  id ID do Vol  
      * @apiGroup Voluntariados 
      */
+    app.post('/:id/finish', passport.authenticate('jwt'), function (req, res) {
+        console.log("derp", req.body);
+        if (!req.params.id || !req.body.users) {
+            res.status(400).json({
+                success: false,
+                message: "Falta Enviar o Id do Vol"
+            })
+
+        } else {
+
+            let array = [];
+            let users = [];
+            let notification_array = []
+            users = req.body.users;
+
+            for (let i = 0; i < req.body.users.length; i++) {
+                array.push([req.user.id_user, users[i].id_user, req.params.id, users[i].classification])
+            }
+
+            let errors = false;
+            let options = {
+                sql: 'UPDATE vols SET active = 0 WHERE id_vol = ?'
+            };
 
 
+            db.get().query(options, [req.params.id], function (error, results, fields) {
+
+                if (error) {
+                    res.send({
+                        success: false,
+                        message: error
+                    })
+                    throw new Error(error);
+                } else {
+
+                    db.get().query({
+                        sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification) VALUES ?',
+                    }, [array], function (error, results, fields) {
+                        if (error) {
+                            console.log(error);
+                            throw error;
+                        } else {
+                            for (let i = 0; i < req.body.users.length; i++) {
+
+                                notification_array.push([req.body.users[i].id_user, req.user.id_user, req.params.id, new Date(), 6])
+
+                            }
+                            emitNotificationToUsers(notification_array);
+
+                            res.send({
+                                success: true,
+                                message: "Sucesso"
+                            })
+
+
+                        }
+
+                    });
+
+
+
+
+                }
+
+
+
+            });
+
+        }
+
+    });
+    app.get('/:id/score', passport.authenticate('jwt'), function (req, res) {
+
+        let options = {
+            sql: 'SELECT DISTINCT classification.classification, classification.id_user2 FROM classification INNER JOIN user_vol ON classification.id_vol = user_vol.id_vol WHERE classification.id_vol = ?',
+        };
+
+        db.get().query(options, [req.params['id']], function (error, results, fields) {
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+
+                res.status(200);
+                res.send({
+                    success: true,
+                    results
+                })
+
+            };
+
+        });
+    });
     app.post('/delete', passport.authenticate('jwt'), function (req, res) {
         if (!Number(req.body.id_vol)) {
             res.json({

@@ -15,7 +15,7 @@
                 {{this.context.name}}
             </div>
             <div class="modalSubtitle">
-               {{this.context.date | date:"fullDate"}}
+                {{this.context.date | date:"fullDate"}}
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             Se desejar, pode inserir um sumário desta ação de voluntariado. Todos os participantes serão notificados.
         </div>
         <div class="col-12">
-            <textarea rows="4" class="modal-textarea" placeholder="Escrever sumário descritivo da ação..."></textarea>
+            <textarea rows="4" class="modal-textarea" placeholder="Escrever sumário descritivo da ação..." [(ngModel)]="comment"></textarea>
         </div>
         <div class="col-12 modal-content-title evaluation">
             Avaliar participantes
@@ -78,34 +78,26 @@
                 <div class="evaluation-option">
                     Atribuir a mesma classificação a todos os participantes:
                     <div class="user-rate-all">
-                        <md-icon (click)="evAll(1)" class="yellow" *ngIf="evalAll!=0">star_rate</md-icon>
-                        <md-icon (click)="evAll(1)" class="grey" *ngIf="evalAll<1">star_rate</md-icon>
-
-                        <md-icon (click)="evAll(2)" class="yellow" *ngIf="evalAll>=2">star_rate</md-icon>
-                        <md-icon (click)="evAll(2)" class="grey" *ngIf="evalAll<2">star_rate</md-icon>
-
-                        <md-icon (click)="evAll(3)" class="yellow" *ngIf="evalAll>=3">star_rate</md-icon>
-                        <md-icon (click)="evAll(3)" class="grey" *ngIf="evalAll<3">star_rate</md-icon>
-
-                        <md-icon (click)="evAll(4)" class="yellow" *ngIf="evalAll>=4">star_rate</md-icon>
-                        <md-icon (click)="evAll(4)" class="grey" *ngIf="evalAll<4">star_rate</md-icon>
-
-                        <md-icon (click)="evAll(5)" class="yellow" *ngIf="evalAll>=5">star_rate</md-icon>
-                        <md-icon (click)="evAll(5)" class="grey" *ngIf="evalAll<5">star_rate</md-icon>
+                        <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= all_classification" [class.grey]="!all_classification || star >= all_classification"
+                            (click)="evAll(star)">star_rate</md-icon>
                     </div>
                 </div>
 
             </form>
             <div class="individual">
                 <ul class="list-group">
-                    <li *ngFor="let person of people; let i=index" class="listPerson no-border no-margin">
+                    <li *ngFor="let user of users; let i=index" class="listPerson no-border no-margin">
                         <div class="row no-margin">
                             <div class="card-user-image">
-                                <img src="https://z-m-scontent-amt.xx.fbcdn.net/v/t1.0-9/12376361_1143538358997732_5594194120614655724_n.jpg?_nc_ad=z-m&oh=1156db3870c58403b1d4bceac2b42f8a&oe=59AA3735">
-                                <span class="candidateName">Pedro Araújo</span>
+                                <img [src]="user.photo_url">
+                                <span class="candidateName">{{user.name}}</span>
                             </div>
                             <div class="col text-right no-padding">
                                 <div class="user-rate">
+                                    <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= user.classification" [class.grey]="!user.classification || star >= user.classification"
+                                        (click)="ev(i, star)">star_rate</md-icon>
+
+                                    <!--
                                     <md-icon (click)="ev(i,1)" class="yellow" *ngIf="person?.eval!='NULL'">star_rate</md-icon>
                                     <md-icon (click)="ev(i,1)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<1">star_rate</md-icon>
 
@@ -119,7 +111,7 @@
                                     <md-icon (click)="ev(i,4)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<4">star_rate</md-icon>
 
                                     <md-icon (click)="ev(i,5)" class="yellow" *ngIf="person?.eval>=5">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,5)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<5">star_rate</md-icon>
+                                    <md-icon (click)="ev(i,5)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<5">star_rate</md-icon> -->
                                 </div>
                             </div>
                         </div>
@@ -130,7 +122,7 @@
         </div>
         <div class="col-12 modal-end-footer text-right">
             <button class="btn btnCancel">CANCELAR</button>
-            <button class="btn btnConfirm">FINALIZAR</button>
+            <button class="btn btnConfirm" (click)="submit()">FINALIZAR</button>
         </div>
     </div>
 </div>

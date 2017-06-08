@@ -1,3 +1,4 @@
+import { volsService } from './../services/vols.service';
 import { SharedService } from './../services/shared.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from './../../app.module';
@@ -6,138 +7,95 @@ import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
 export class ModalContext extends BSModalContext {
-    public idVol: any;
-    public type: any;
-    public date: any;
-    public name: any;
-    public idUser: any;
+  public id_vol: any;
+  public type: number;
 }
 
 @Component({
   selector: 'modal-end',
   templateUrl: './modal-end.component.html',
   styleUrls: ['./modal-end.component.scss'],
-  providers: [SharedService]
 })
 
 
 export class ModalEndComponent implements OnInit {
   lat: number = 41.100856;
-  lng: number =  -8.544893;
-  public volDetails: any;
-  public evaluation: any;
-  public evalAll: any;
-  public eval1 = Array;
-  public eval2 = Array;
-  public eval3 = Array;
-  public eval4 = Array;
-  public eval5 = Array;
-
-  public people = [
-    {
-    'id': 0,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },{
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  },
-  {
-    'id': 1,
-    'eval': 'NULL'
-  }
-  
-  ]
-
-
+  lng: number = -8.544893;
+  public all_classification: number;
+  public users = []
+  public comment: string;
 
   context: ModalContext;
 
 
-  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService) {
+  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, public volsService: volsService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
-    if(this.context.type==1) {
 
-    } else if (this.context.type==2) {
+    if (this.context.type == 1) {
+
+    } else if (this.context.type == 2) {
       this.context.size = "lg";
     }
-    
+
+  }
+
+  getUsers() {
+    this.volsService.getConfirmed(this.context.id_vol, 10).then(res => {
+      this.users = res.users;
+
+    })
+  }
+  getNumber = function (num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+
+    return new Array(number);
   }
 
   ngOnInit() {
-    if(this.context.type==2){
-    this.evaluation=1;
-    this.evalAll=0;
+    if (this.context.type == 2) {
+      this.getUsers()
     }
- }
+
+  }
 
   deleteAction(id_vol) {
-      this.SharedService.deleteAction(id_vol).then(
-        res => {
+    this.SharedService.deleteAction(id_vol).then(
+      res => {
         console.log(res);
       }
-      )
+    )
   }
 
-  ev(id, estrela) {
-    this.people[id].eval=estrela;
+  ev(i, classification) {
+    console.log(i, classification)
+    this.users[i].classification = classification + 1;
   }
 
-  evAll(estrela) {
-    this.evalAll = estrela;
-    for(let i = 0; i <= this.people.length; i++) {
-      this.people[i].eval = this.evalAll;
+  evAll(classification) {
+    this.all_classification = (classification + 1);
+
+    for (let i = 0; i < this.users.length; i++) {
+      this.users[i].classification = (classification + 1);
     }
   }
-  
+
+  submit() {
+    let body = {
+      users: this.users,
+      comment: this.comment
+    }
+    this.volsService.endVol(this.context.id_vol, body).then(res => {
+      if (res.success) {
+        this.dialog.close();
+
+      }
+    });
+  }
+
   close() {
     this.dialog.dismiss();
   }

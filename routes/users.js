@@ -683,7 +683,7 @@ var returnRouter = function (io) {
 
 
     app.post('/score', passport.authenticate('jwt'), function (req, res) {
-        if (!Number(req.body.id_user2 || !Number(req.body.classification))) {
+        if (!Number(req.body.id_user2 || !Number(req.body.classification || !Number(req.body.id_vol)))) {
             res.status(400).send({
                 success: false,
                 message: "Parâmetros Invalidos"
@@ -691,21 +691,21 @@ var returnRouter = function (io) {
         } else {
 
             db.get().query({
-                sql: 'INSERT INTO classification (id_user, id_user2, classification) VALUES ( ?, ? ,?)',
+                sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification) VALUES ( ?, ? , ? , ?)',
             }, [req.user.id_user, req.body.id_user2, req.body.classification],
                 function (error, results, fields) {
                     console.log(error)
-
-                    refreshUserScore(req.body.id_user2, function (classification) {
-
-                        console.log("CLASSIFICATION", classification)
-                        res.json({
-                            success: true,
-                            classification
-                        });
-
-
+                    res.json({
+                        success: true,
+                        classification
                     });
+
+                    //refreshUserScore(req.body.id_user2, function (classification) {
+
+                    console.log("CLASSIFICATION", classification)
+
+
+                    //     });
                 });
         }
     });

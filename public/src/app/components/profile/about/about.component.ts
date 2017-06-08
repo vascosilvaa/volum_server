@@ -14,7 +14,11 @@ export class AboutComponent implements OnInit {
   constructor(public profileService: ProfileService) { }
 
   ngOnInit() {
-
+    
+    this.profileService.activeProfileSource.subscribe((result) => {
+      this.user = result;
+      console.log("ASYNC User", this.user)
+    });
 
     if (!this.profileService.activeUser) {
       this.profileService.activeProfileSource.subscribe((result) => {

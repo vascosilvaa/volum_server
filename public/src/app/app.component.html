@@ -156,7 +156,9 @@
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                     <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 5">Parabéns! Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
+                                    <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica aqui para deixares o teu testemunho.
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                 </div>
                                 <div>

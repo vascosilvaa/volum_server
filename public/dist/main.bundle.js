@@ -195,7 +195,7 @@ var _a, _b, _c, _d;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_profile_service__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_feed_feed_component__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_timeago_pipe__ = __webpack_require__(605);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_useful_swiper__ = __webpack_require__(553);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_useful_swiper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_useful_swiper__);
@@ -305,10 +305,11 @@ SharedModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shared_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
 /* unused harmony export ModalContext */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalEndComponent; });
 var __extends = (this && this.__extends) || (function () {
@@ -334,86 +335,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ModalContext = (function (_super) {
     __extends(ModalContext, _super);
     function ModalContext() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return ModalContext;
-}(__WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
+}(__WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__["b" /* BSModalContext */]));
 
 var ModalEndComponent = (function () {
-    function ModalEndComponent(dialog, SharedService) {
+    function ModalEndComponent(dialog, SharedService, volsService) {
         this.dialog = dialog;
         this.SharedService = SharedService;
+        this.volsService = volsService;
         this.lat = 41.100856;
         this.lng = -8.544893;
-        this.eval1 = Array;
-        this.eval2 = Array;
-        this.eval3 = Array;
-        this.eval4 = Array;
-        this.eval5 = Array;
-        this.people = [
-            {
-                'id': 0,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            }, {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
-            },
-            {
-                'id': 1,
-                'eval': 'NULL'
+        this.users = [];
+        this.getNumber = function (num) {
+            var number = Math.round(num);
+            if (num < 0) {
+                number = Math.abs(number);
             }
-        ];
+            return new Array(number);
+        };
         this.context = dialog.context;
         this.context.isBlocking = false;
         if (this.context.type == 1) {
@@ -422,10 +367,15 @@ var ModalEndComponent = (function () {
             this.context.size = "lg";
         }
     }
+    ModalEndComponent.prototype.getUsers = function () {
+        var _this = this;
+        this.volsService.getConfirmed(this.context.id_vol, 10).then(function (res) {
+            _this.users = res.users;
+        });
+    };
     ModalEndComponent.prototype.ngOnInit = function () {
         if (this.context.type == 2) {
-            this.evaluation = 1;
-            this.evalAll = 0;
+            this.getUsers();
         }
     };
     ModalEndComponent.prototype.deleteAction = function (id_vol) {
@@ -433,14 +383,27 @@ var ModalEndComponent = (function () {
             console.log(res);
         });
     };
-    ModalEndComponent.prototype.ev = function (id, estrela) {
-        this.people[id].eval = estrela;
+    ModalEndComponent.prototype.ev = function (i, classification) {
+        console.log(i, classification);
+        this.users[i].classification = classification + 1;
     };
-    ModalEndComponent.prototype.evAll = function (estrela) {
-        this.evalAll = estrela;
-        for (var i = 0; i <= this.people.length; i++) {
-            this.people[i].eval = this.evalAll;
+    ModalEndComponent.prototype.evAll = function (classification) {
+        this.all_classification = (classification + 1);
+        for (var i = 0; i < this.users.length; i++) {
+            this.users[i].classification = (classification + 1);
         }
+    };
+    ModalEndComponent.prototype.submit = function () {
+        var _this = this;
+        var body = {
+            users: this.users,
+            comment: this.comment
+        };
+        this.volsService.endVol(this.context.id_vol, body).then(function (res) {
+            if (res.success) {
+                _this.dialog.close();
+            }
+        });
     };
     ModalEndComponent.prototype.close = function () {
         this.dialog.dismiss();
@@ -448,16 +411,15 @@ var ModalEndComponent = (function () {
     return ModalEndComponent;
 }());
 ModalEndComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'modal-end',
         template: __webpack_require__(820),
         styles: [__webpack_require__(743)],
-        providers: [__WEBPACK_IMPORTED_MODULE_0__services_shared_service__["a" /* SharedService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_modal__["b" /* DialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_shared_service__["a" /* SharedService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["b" /* DialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_shared_service__["a" /* SharedService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* volsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* volsService */]) === "function" && _c || Object])
 ], ModalEndComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/modal-end.component.js.map
 
 /***/ }),
@@ -670,113 +632,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 28:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global_constants__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var SharedService = (function () {
-    function SharedService(http, Http) {
-        this.http = http;
-        this.Http = Http;
-    }
-    SharedService.prototype.getAddress = function (lat, lng) {
-        return this.Http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getProfile = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getCandidates = function (id_vol, amount) {
-        if (amount == null) {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates").toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates", { amount: amount }).toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-    };
-    SharedService.prototype.getConfirmed = function (id_vol, amount) {
-        if (amount == null) {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed").toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-        else {
-            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed", { amount: amount }).toPromise()
-                .then(function (res) { return res.json(); })
-                .catch(function (error) { return console.log(error); });
-        }
-    };
-    SharedService.prototype.checkLike = function (id_vol) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/checkLike").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.like = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/like", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.dislike = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/dislike", null).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.getLikes = function (id_vol) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/likes").toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.deleteAction = function (id_vol) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/delete", { id_vol: id_vol }).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    SharedService.prototype.denyCandidate = function (id_vol, id_user) {
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/deny", { id_user: id_user }).toPromise()
-            .then(function (res) { return res.json(); })
-            .catch(function (error) { return console.log(error); });
-    };
-    return SharedService;
-}());
-SharedService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === "function" && _b || Object])
-], SharedService);
-
-var _a, _b;
-//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
-
-/***/ }),
-
-/***/ 29:
+/***/ 24:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -935,6 +791,16 @@ var volsService = (function () {
             .then(function (res) { return res.json(); })
             .catch(function (error) { return console.log(error); });
     };
+    volsService.prototype.getScores = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/score").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    volsService.prototype.endVol = function (id_vol, body) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_1__shared_global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/finish", body).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
     return volsService;
 }());
 volsService = __decorate([
@@ -947,6 +813,112 @@ var _a;
 
 /***/ }),
 
+/***/ 29:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__http_client__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__global_constants__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var SharedService = (function () {
+    function SharedService(http, Http) {
+        this.http = http;
+        this.Http = Http;
+    }
+    SharedService.prototype.getAddress = function (lat, lng) {
+        return this.Http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getProfile = function (id) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/users/" + id).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getCandidates = function (id_vol, amount) {
+        if (amount == null) {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates").toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/candidates", { amount: amount }).toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+    };
+    SharedService.prototype.getConfirmed = function (id_vol, amount) {
+        if (amount == null) {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed").toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+        else {
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/confirmed", { amount: amount }).toPromise()
+                .then(function (res) { return res.json(); })
+                .catch(function (error) { return console.log(error); });
+        }
+    };
+    SharedService.prototype.checkLike = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/checkLike").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.like = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/like", null).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.dislike = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/dislike", null).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.getLikes = function (id_vol) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/likes").toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.deleteAction = function (id_vol) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/delete", { id_vol: id_vol }).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    SharedService.prototype.denyCandidate = function (id_vol, id_user) {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_2__global_constants__["a" /* GlobalConstants */].API_ENDPOINT + "/vols/" + id_vol + "/applies/deny", { id_user: id_user }).toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(function (error) { return console.log(error); });
+    };
+    return SharedService;
+}());
+SharedService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__http_client__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === "function" && _b || Object])
+], SharedService);
+
+var _a, _b;
+//# sourceMappingURL=C:/Users/Pedro/desktop/volum/public/src/shared.service.js.map
+
+/***/ }),
+
 /***/ 319:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -956,8 +928,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_modal_profile_modal_profile_component__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_services_profile_service__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_vols_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_services_vols_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_feed_feed_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_core__ = __webpack_require__(0);
@@ -1321,7 +1293,7 @@ var _a, _b, _c, _d;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular2_google_maps_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapComponent; });
@@ -1492,7 +1464,7 @@ var _a, _b, _c, _d, _e;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_modal_profile_modal_profile_component__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feed_feed_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_vol_details_modal_vol_details_modal_component__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
@@ -1646,7 +1618,7 @@ var GlobalConstants = (function () {
     }
     Object.defineProperty(GlobalConstants, "API_ENDPOINT", {
         // public static get API_ENDPOINT(): string { return 'http://localhost:8080/api'; }
-        // public static get SOCKET_ENDPOINT(): string { return 'http://localhost:8080/'; }
+        //public static get SOCKET_ENDPOINT(): string { return 'http://localhost:8080/'; }
         get: function () { return 'http://146.185.137.215/api'; },
         enumerable: true,
         configurable: true
@@ -1754,8 +1726,8 @@ var _a, _b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_feed_feed_component__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_profile_modal_profile_component__ = __webpack_require__(73);
@@ -2119,12 +2091,12 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_profile_service__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
@@ -2866,7 +2838,7 @@ var _a, _b, _c;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_profile_service__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_modal_end_modal_end_component__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_modal_view_all_modal_view_all_component__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_shared_module__ = __webpack_require__(202);
@@ -2963,7 +2935,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_15__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_12__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_16_angular2_google_maps_core__["AgmCoreModule"].forRoot({
-                apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+                apiKey: 'AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'
             }),
         ],
         entryComponents: [__WEBPACK_IMPORTED_MODULE_9__components_login_login_component__["a" /* LoginComponent */], __WEBPACK_IMPORTED_MODULE_8__components_register_register_component__["a" /* RegisterComponent */], __WEBPACK_IMPORTED_MODULE_3__shared_modal_view_all_modal_view_all_component__["a" /* ModalViewAllComponent */], __WEBPACK_IMPORTED_MODULE_2__shared_modal_end_modal_end_component__["a" /* ModalEndComponent */], __WEBPACK_IMPORTED_MODULE_23__shared_vol_details_modal_vol_details_modal_component__["a" /* VolDetailsModalComponent */], __WEBPACK_IMPORTED_MODULE_3__shared_modal_view_all_modal_view_all_component__["a" /* ModalViewAllComponent */]],
@@ -3191,7 +3163,7 @@ timeAgoPipe = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_register_register_component__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vol_details_modal_vol_details_modal_component__ = __webpack_require__(46);
@@ -3463,7 +3435,7 @@ var environment = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_modal__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
@@ -3724,8 +3696,8 @@ module.exports = module.exports.toString();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shared_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_vols_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_shared_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_modal__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_modal_plugins_bootstrap__ = __webpack_require__(14);
@@ -3776,39 +3748,39 @@ var ModalViewAllComponent = (function () {
     ModalViewAllComponent.prototype.ngOnInit = function () {
         //  this.main_modal = this.injector.get(VolDetailsModalComponent);
         if (this.context.type == 1) {
-            this.getCandidates(this.context.idVol);
+            this.getCandidates(this.context.id_vol);
         }
         else if (this.context.type == 2) {
-            this.getConfirmed(this.context.idVol);
+            this.getConfirmed(this.context.id_vol);
         }
         else if (this.context.type == 6) {
-            console.log(this.context.type, this.context.nameVol, this.context.id_user, this.context.idVol);
+            console.log(this.context.type, this.context.nameVol, this.context.id_user, this.context.id_vol);
         }
         else if (this.context.type == 7) {
         }
         else if (this.context.type == 8) {
-            this.getLikes(this.context.idVol);
+            this.getLikes(this.context.id_vol);
         }
     };
-    ModalViewAllComponent.prototype.getLikes = function (idVol) {
+    ModalViewAllComponent.prototype.getLikes = function (id_vol) {
         var _this = this;
-        this.SharedService.getLikes(idVol)
+        this.SharedService.getLikes(id_vol)
             .then(function (res) {
             _this.likes = res.body;
         })
             .catch(function (err) { return console.log(err); });
     };
-    ModalViewAllComponent.prototype.getCandidates = function (idVol) {
+    ModalViewAllComponent.prototype.getCandidates = function (id_vol) {
         var _this = this;
-        this.SharedService.getCandidates(idVol, 50)
+        this.SharedService.getCandidates(id_vol, 50)
             .then(function (res) {
             _this.candidates = res.users;
         })
             .catch(function (err) { return console.log(err); });
     };
-    ModalViewAllComponent.prototype.getConfirmed = function (idVol) {
+    ModalViewAllComponent.prototype.getConfirmed = function (id_vol) {
         var _this = this;
-        this.SharedService.getConfirmed(idVol, 50)
+        this.SharedService.getConfirmed(id_vol, 50)
             .then(function (res) {
             _this.confirmeds = res.users;
             console.log(_this.confirmeds);
@@ -3834,7 +3806,7 @@ var ModalViewAllComponent = (function () {
     };
     ModalViewAllComponent.prototype.denyCandidate = function (id_user) {
         var _this = this;
-        this.SharedService.denyCandidate(this.context.idVol, id_user)
+        this.SharedService.denyCandidate(this.context.id_vol, id_user)
             .then(function (res) {
             _this.dialog.close(1);
         });
@@ -3846,7 +3818,6 @@ ModalViewAllComponent = __decorate([
         selector: 'view-all-modal',
         template: __webpack_require__(823),
         styles: [__webpack_require__(746)],
-        providers: [__WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* volsService */]]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["b" /* DialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_modal__["b" /* DialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_core__["Injector"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_core__["Injector"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* volsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_vols_service__["a" /* volsService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_shared_service__["a" /* SharedService */]) === "function" && _d || Object])
 ], ModalViewAllComponent);
@@ -4004,7 +3975,7 @@ module.exports = module.exports.toString();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shared_services_vols_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Auth_authentication_service__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(22);
@@ -4380,7 +4351,7 @@ webpackContext.id = 754;
 /***/ 808:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">BEVOLUN</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n\r\n                <!------------------- REQUESTS ------------------>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getRequests(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!requestsReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"requestsReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let request of requests\" routerLink='./profile/{{request.id_user}}/activity'>\r\n\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"request.photo_url\">\r\n                                </div>\r\n                                <div class=\"notification-info\">\r\n                                    <b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>\r\n                                </div>\r\n                                <div class=\"text-right\">\r\n                                    <div class=\"btn-notification\">\r\n                                        <button class=\"btn btnConfirm\" routerLink='./profile/{{request.id_user}}/activity'>VER</button>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                            <div class=\"message-item text-center no-content\" *ngIf=\"requests.length == 0\">\r\n                                Sem Novidades\r\n                            </div>\r\n                        </ng-container>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <!------------------- CONVERSAS ------------------>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getConversations(user.id_user)\">\r\n\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!messagesReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"messagesReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"conversation.photo_url\" onerror=\"http://santetotal.com/wp-content/uploads/2014/05/default-user.png\">\r\n                                </div>\r\n                                <div class=\"message-info\" (click)=\"goToMessages(conversation.id_conversation, conversation.user_name)\">\r\n                                    <div>\r\n                                        <span class=\"nameMsg\">{{conversation.name}}</span>\r\n                                        <span class=\"time\" *ngIf=\"conversation.date\">{{conversation.date | amTimeAgo:true}}</span>\r\n\r\n                                    </div>\r\n\r\n                                    <span class=\"textMsg\"> {{conversation.message }}</span>\r\n                                    <span class=\"textMsg\" *ngIf=\"!conversation.message\"> Envie uma mensagem a {{conversation.name}}</span>\r\n                                </div>\r\n                            </div>\r\n\r\n                        </ng-container>\r\n\r\n\r\n                        <div class=\"dropdown-footer\" (click)=\"goToMessagesAll()\">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <!------------------- NOTIFICAÇOES ------------------>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getNotifications(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n                        <div class=\"message-item\" *ngIf=\"!notifications\">\r\n\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\" (click)=\"openVolDetails(notification.id_vol)\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 3\"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 4\"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 4\"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 5\">Parabéns! Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\"> Registar</li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\"> Entrar</li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown add_padding\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\" (error)=\"this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\"> \r\n                    <span>{{user?.name}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O BEVOLUN</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
+module.exports = "<div class=\"container-fluid header-background\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 col-12 brandBackground\">\r\n            <div class=\"titleBrand\">\r\n                <a routerLink=\"/feed\">BEVOLUN</a>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-sm-10 col-12 menuHeader\">\r\n            <ul>\r\n                <li *ngIf=\"user\" routerLink=\"map\">\r\n                    <md-icon>place</md-icon>\r\n                </li>\r\n\r\n                <!------------------- REQUESTS ------------------>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getRequests(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>people</md-icon>\r\n\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newRequestsCount > 0\">{{newRequestsCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">PEDIDOS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!requestsReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"requestsReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let request of requests\" routerLink='./profile/{{request.id_user}}/activity'>\r\n\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"request.photo_url\">\r\n                                </div>\r\n                                <div class=\"notification-info\">\r\n                                    <b>{{request.user_name}}</b> começou a seguir-te <span class=\"time\">{{request.date | amTimeAgo:true}}</span>\r\n                                </div>\r\n                                <div class=\"text-right\">\r\n                                    <div class=\"btn-notification\">\r\n                                        <button class=\"btn btnConfirm\" routerLink='./profile/{{request.id_user}}/activity'>VER</button>\r\n                                    </div>\r\n                                </div>\r\n\r\n                            </div>\r\n                            <div class=\"message-item text-center no-content\" *ngIf=\"requests.length == 0\">\r\n                                Sem Novidades\r\n                            </div>\r\n                        </ng-container>\r\n\r\n\r\n                        <div routerLink=\"/requests\" class=\"dropdown-footer\">Ver todos os pedidos</div>\r\n\r\n                    </div>\r\n                </li>\r\n\r\n                <!------------------- CONVERSAS ------------------>\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getConversations(user.id_user)\">\r\n\r\n                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">MENSAGENS</div>\r\n                        <div class=\"message-item\" *ngIf=\"!messagesReady\">\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n                        <ng-container *ngIf=\"messagesReady\">\r\n                            <div class=\"message-item\" *ngFor=\"let conversation of conversations\">\r\n                                <div class=\"image\">\r\n                                    <img [src]=\"conversation.photo_url\" onerror=\"http://santetotal.com/wp-content/uploads/2014/05/default-user.png\">\r\n                                </div>\r\n                                <div class=\"message-info\" (click)=\"goToMessages(conversation.id_conversation, conversation.user_name)\">\r\n                                    <div>\r\n                                        <span class=\"nameMsg\">{{conversation.name}}</span>\r\n                                        <span class=\"time\" *ngIf=\"conversation.date\">{{conversation.date | amTimeAgo:true}}</span>\r\n\r\n                                    </div>\r\n\r\n                                    <span class=\"textMsg\"> {{conversation.message }}</span>\r\n                                    <span class=\"textMsg\" *ngIf=\"!conversation.message\"> Envie uma mensagem a {{conversation.name}}</span>\r\n                                </div>\r\n                            </div>\r\n\r\n                        </ng-container>\r\n\r\n\r\n                        <div class=\"dropdown-footer\" (click)=\"goToMessagesAll()\">Ver todas as mensagens</div>\r\n                    </div>\r\n                </li>\r\n\r\n                <!------------------- NOTIFICAÇOES ------------------>\r\n\r\n                <li *ngIf=\"user\" ngbDropdown (click)=\"getNotifications(user.id_user)\">\r\n                    <md-icon ngbDropdownToggle>notifications</md-icon>\r\n                    <span class=\"badge badge-notify\" *ngIf=\"newNotificationCount > 0\">{{newNotificationCount}}</span>\r\n\r\n                    <div id=\"dropdown-messages\" class=\"dropdown-menu\">\r\n                        <div class=\"dropdown-header\">NOTIFICAÇÕES</div>\r\n                        <div class=\"message-item\" *ngIf=\"!notifications\">\r\n\r\n\r\n                            <div class=\"sk-fading-circle\">\r\n                                <div class=\"sk-circle1 sk-circle\"></div>\r\n                                <div class=\"sk-circle2 sk-circle\"></div>\r\n                                <div class=\"sk-circle3 sk-circle\"></div>\r\n                                <div class=\"sk-circle4 sk-circle\"></div>\r\n                                <div class=\"sk-circle5 sk-circle\"></div>\r\n                                <div class=\"sk-circle6 sk-circle\"></div>\r\n                                <div class=\"sk-circle7 sk-circle\"></div>\r\n                                <div class=\"sk-circle8 sk-circle\"></div>\r\n                                <div class=\"sk-circle9 sk-circle\"></div>\r\n                                <div class=\"sk-circle10 sk-circle\"></div>\r\n                                <div class=\"sk-circle11 sk-circle\"></div>\r\n                                <div class=\"sk-circle12 sk-circle\"></div>\r\n                            </div>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"message-item\" *ngFor=\"let notification of notifications\" (click)=\"openVolDetails(notification.id_vol)\">\r\n                            <div class=\"image\">\r\n                                <img [src]=\"notification.photo_url\">\r\n                            </div>\r\n                            <div class=\"notification-info\">\r\n                                <div>\r\n                                    <p *ngIf=\"notification.type == 1\"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 3\"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 4\"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 4\"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 5\"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                    <p *ngIf=\"notification.type == 6\"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica aqui para deixares o teu testemunho.\r\n                                        <span class=\"time\">{{notification?.date | amTimeAgo:true }}</span> </p>\r\n                                </div>\r\n                                <div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div routerLink=\"/notifications\" class=\"dropdown-footer\">Ver todas as notificações</div>\r\n\r\n                    </div>\r\n\r\n                </li>\r\n                <li (click)=\"openRegister()\" *ngIf=\"!user\"> Registar</li>\r\n                <li (click)=\"openLogin()\" *ngIf=\"!user\"> Entrar</li>\r\n\r\n                <li *ngIf=\"user\" class=\"nameDropdown add_padding\" ngbDropdown ngbDropdownToggle>\r\n\r\n                    <span>\r\n                    <img class=\"navbar-user-picture\" [src]=\"user?.photo\" (error)=\"this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'\"> \r\n                    <span>{{user?.name}}</span>\r\n                    <i class=\"material-icons arrow_dropdown\">arrow_drop_down</i>\r\n\r\n\r\n                    </span>\r\n\r\n\r\n                    <div id=\"dropdown-user\" class=\"dropdown-menu dropdown-menu-profile\">\r\n                        <div class=\"dropdown-header\">A MINHA CONTA</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\" (click)=\"onSelect(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">portrait</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"onSelectSettings(idLogin)\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">settings</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Definições de perfil\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" (click)=\"logout()\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">power_settings_new</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Log out\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOCIAL</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">chat_bubble</i>\r\n                                </div>\r\n                                <div class=\"desc\" routerLink=\"/chat/msg\">\r\n                                    Mensagens\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/notifications\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">notifications</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Notificações\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\" routerLink=\"/requests\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">people</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Pedidos\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"dropdown-header\">SOBRE O BEVOLUN</div>\r\n                        <div class=\"actions-profile\">\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">toc</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Termos e condições\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">forum</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    Contactos\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"profile-item\">\r\n                                <div class=\"icon\">\r\n                                    <i class=\"material-icons\">help_outline</i>\r\n                                </div>\r\n                                <div class=\"desc\">\r\n                                    FAQS\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <!--\r\n                    <div class=\"dropdown-menu\" id=\"dropdown-user\">\r\n                        <button class=\"dropdown-item\" (click)=\"onSelect(idLogin)\" *ngIf=\"user\" styles=\"font-size:10px!important\">Perfil</button>\r\n                        <button class=\"dropdown-item\" *ngIf=\"user\">Definições</button>\r\n                        <button class=\"dropdown-item\" (click)=\"logout()\" *ngIf=\"user\">Sair</button>\r\n                    </div>\r\n-->\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -4464,7 +4435,7 @@ module.exports = "<div class=\"container\">\r\n    <div class=\"footerText\">\r\
 /***/ 820:
 /***/ (function(module, exports) {
 
-module.exports = "<!-- APAGAR AÇÃO -->\r\n<div *ngIf=\"context.type==1\">\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                {{this.context.date | date:\"MMM\" | uppercase}}\r\n            </div>\r\n            <div>\r\n                {{this.context.date | date:\"d\"}}\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                {{this.context.name}}\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n               {{this.context.date | date:\"fullDate\"}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"modal-end-content row\">\r\n        <div class=\"modal-content-title col-12\">\r\n            Cancelar ação de voluntariado\r\n        </div>\r\n        <div class=\"modal-content-desc col-12\" style=\"margin-top:2px; margin-bottom:2px;\">\r\n            Tem a certeza que quer cancelar esta ação de voluntariado? Se sim, indique o motivo para informar os seus participantes.\r\n        </div>\r\n        <div class=\"col-12\">\r\n            <textarea rows=\"4\" class=\"modal-textarea\" placeholder=\"Escrever motivo de cancelamento da ação...\"></textarea>\r\n        </div>\r\n        <div class=\"col-12 modal-end-footer text-right\">\r\n            <button class=\"btn btnCancel\" (click)=\"close()\">NÃO</button>\r\n            <button class=\"btn btnConfirm\" (click)=\"deleteAction(this.context.idVol)\">SIM</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<!-- FINALIZAR -->\r\n<div *ngIf=\"context.type==2\">\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                MAR\r\n                <!--{{volDetails?.date_begin | date:\"MMM\" | uppercase}}-->\r\n            </div>\r\n            <div>\r\n                23\r\n                <!--{{volDetails?.date_begin | date:\"d\"}}-->\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                Ajudar os pobres\r\n                <!--{{volDetails?.name}}-->\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n                sabado, 29 de Abril de 2019\r\n                <!--{{volDetails?.date_begin | date:\"fullDate\"}}-->\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"modal-end-content row\">\r\n        <div class=\"modal-content-title col-12\">\r\n            Finalizar Ação de Voluntariado\r\n        </div>\r\n        <div class=\"modal-content-desc col-12\">\r\n            Se desejar, pode inserir um sumário desta ação de voluntariado. Todos os participantes serão notificados.\r\n        </div>\r\n        <div class=\"col-12\">\r\n            <textarea rows=\"4\" class=\"modal-textarea\" placeholder=\"Escrever sumário descritivo da ação...\"></textarea>\r\n        </div>\r\n        <div class=\"col-12 modal-content-title evaluation\">\r\n            Avaliar participantes\r\n            <form>\r\n                <div class=\"evaluation-option\">\r\n                    Atribuir a mesma classificação a todos os participantes:\r\n                    <div class=\"user-rate-all\">\r\n                        <md-icon (click)=\"evAll(1)\" class=\"yellow\" *ngIf=\"evalAll!=0\">star_rate</md-icon>\r\n                        <md-icon (click)=\"evAll(1)\" class=\"grey\" *ngIf=\"evalAll<1\">star_rate</md-icon>\r\n\r\n                        <md-icon (click)=\"evAll(2)\" class=\"yellow\" *ngIf=\"evalAll>=2\">star_rate</md-icon>\r\n                        <md-icon (click)=\"evAll(2)\" class=\"grey\" *ngIf=\"evalAll<2\">star_rate</md-icon>\r\n\r\n                        <md-icon (click)=\"evAll(3)\" class=\"yellow\" *ngIf=\"evalAll>=3\">star_rate</md-icon>\r\n                        <md-icon (click)=\"evAll(3)\" class=\"grey\" *ngIf=\"evalAll<3\">star_rate</md-icon>\r\n\r\n                        <md-icon (click)=\"evAll(4)\" class=\"yellow\" *ngIf=\"evalAll>=4\">star_rate</md-icon>\r\n                        <md-icon (click)=\"evAll(4)\" class=\"grey\" *ngIf=\"evalAll<4\">star_rate</md-icon>\r\n\r\n                        <md-icon (click)=\"evAll(5)\" class=\"yellow\" *ngIf=\"evalAll>=5\">star_rate</md-icon>\r\n                        <md-icon (click)=\"evAll(5)\" class=\"grey\" *ngIf=\"evalAll<5\">star_rate</md-icon>\r\n                    </div>\r\n                </div>\r\n\r\n            </form>\r\n            <div class=\"individual\">\r\n                <ul class=\"list-group\">\r\n                    <li *ngFor=\"let person of people; let i=index\" class=\"listPerson no-border no-margin\">\r\n                        <div class=\"row no-margin\">\r\n                            <div class=\"card-user-image\">\r\n                                <img src=\"https://z-m-scontent-amt.xx.fbcdn.net/v/t1.0-9/12376361_1143538358997732_5594194120614655724_n.jpg?_nc_ad=z-m&oh=1156db3870c58403b1d4bceac2b42f8a&oe=59AA3735\">\r\n                                <span class=\"candidateName\">Pedro Araújo</span>\r\n                            </div>\r\n                            <div class=\"col text-right no-padding\">\r\n                                <div class=\"user-rate\">\r\n                                    <md-icon (click)=\"ev(i,1)\" class=\"yellow\" *ngIf=\"person?.eval!='NULL'\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,1)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<1\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,2)\" class=\"yellow\" *ngIf=\"person?.eval>=2\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,2)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<2\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,3)\" class=\"yellow\" *ngIf=\"person?.eval>=3\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,3)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<3\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,4)\" class=\"yellow\" *ngIf=\"person?.eval>=4\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,4)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<4\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,5)\" class=\"yellow\" *ngIf=\"person?.eval>=5\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,5)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<5\">star_rate</md-icon>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"col-12 modal-end-footer text-right\">\r\n            <button class=\"btn btnCancel\">CANCELAR</button>\r\n            <button class=\"btn btnConfirm\">FINALIZAR</button>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<!-- APAGAR AÇÃO -->\r\n<div *ngIf=\"context.type==1\">\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                {{this.context.date | date:\"MMM\" | uppercase}}\r\n            </div>\r\n            <div>\r\n                {{this.context.date | date:\"d\"}}\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                {{this.context.name}}\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n                {{this.context.date | date:\"fullDate\"}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"modal-end-content row\">\r\n        <div class=\"modal-content-title col-12\">\r\n            Cancelar ação de voluntariado\r\n        </div>\r\n        <div class=\"modal-content-desc col-12\" style=\"margin-top:2px; margin-bottom:2px;\">\r\n            Tem a certeza que quer cancelar esta ação de voluntariado? Se sim, indique o motivo para informar os seus participantes.\r\n        </div>\r\n        <div class=\"col-12\">\r\n            <textarea rows=\"4\" class=\"modal-textarea\" placeholder=\"Escrever motivo de cancelamento da ação...\"></textarea>\r\n        </div>\r\n        <div class=\"col-12 modal-end-footer text-right\">\r\n            <button class=\"btn btnCancel\" (click)=\"close()\">NÃO</button>\r\n            <button class=\"btn btnConfirm\" (click)=\"deleteAction(this.context.idVol)\">SIM</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<!-- FINALIZAR -->\r\n<div *ngIf=\"context.type==2\">\r\n    <div class=\"modalHeader row\">\r\n        <div class=\"day-w-border\">\r\n            <div>\r\n                MAR\r\n                <!--{{volDetails?.date_begin | date:\"MMM\" | uppercase}}-->\r\n            </div>\r\n            <div>\r\n                23\r\n                <!--{{volDetails?.date_begin | date:\"d\"}}-->\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"modalTitle\">\r\n            <div class=\"modalTitleDesc\">\r\n                Ajudar os pobres\r\n                <!--{{volDetails?.name}}-->\r\n            </div>\r\n            <div class=\"modalSubtitle\">\r\n                sabado, 29 de Abril de 2019\r\n                <!--{{volDetails?.date_begin | date:\"fullDate\"}}-->\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"modal-end-content row\">\r\n        <div class=\"modal-content-title col-12\">\r\n            Finalizar Ação de Voluntariado\r\n        </div>\r\n        <div class=\"modal-content-desc col-12\">\r\n            Se desejar, pode inserir um sumário desta ação de voluntariado. Todos os participantes serão notificados.\r\n        </div>\r\n        <div class=\"col-12\">\r\n            <textarea rows=\"4\" class=\"modal-textarea\" placeholder=\"Escrever sumário descritivo da ação...\" [(ngModel)]=\"comment\"></textarea>\r\n        </div>\r\n        <div class=\"col-12 modal-content-title evaluation\">\r\n            Avaliar participantes\r\n            <form>\r\n                <div class=\"evaluation-option\">\r\n                    Atribuir a mesma classificação a todos os participantes:\r\n                    <div class=\"user-rate-all\">\r\n                        <md-icon *ngFor=\"let num of getNumber(5); let star = index \" [class.yellow]=\"star <= all_classification\" [class.grey]=\"!all_classification || star >= all_classification\"\r\n                            (click)=\"evAll(star)\">star_rate</md-icon>\r\n                    </div>\r\n                </div>\r\n\r\n            </form>\r\n            <div class=\"individual\">\r\n                <ul class=\"list-group\">\r\n                    <li *ngFor=\"let user of users; let i=index\" class=\"listPerson no-border no-margin\">\r\n                        <div class=\"row no-margin\">\r\n                            <div class=\"card-user-image\">\r\n                                <img [src]=\"user.photo_url\">\r\n                                <span class=\"candidateName\">{{user.name}}</span>\r\n                            </div>\r\n                            <div class=\"col text-right no-padding\">\r\n                                <div class=\"user-rate\">\r\n                                    <md-icon *ngFor=\"let num of getNumber(5); let star = index \" [class.yellow]=\"star <= user.classification\" [class.grey]=\"!user.classification || star >= user.classification\"\r\n                                        (click)=\"ev(i, star)\">star_rate</md-icon>\r\n\r\n                                    <!--\r\n                                    <md-icon (click)=\"ev(i,1)\" class=\"yellow\" *ngIf=\"person?.eval!='NULL'\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,1)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<1\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,2)\" class=\"yellow\" *ngIf=\"person?.eval>=2\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,2)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<2\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,3)\" class=\"yellow\" *ngIf=\"person?.eval>=3\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,3)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<3\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,4)\" class=\"yellow\" *ngIf=\"person?.eval>=4\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,4)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<4\">star_rate</md-icon>\r\n\r\n                                    <md-icon (click)=\"ev(i,5)\" class=\"yellow\" *ngIf=\"person?.eval>=5\">star_rate</md-icon>\r\n                                    <md-icon (click)=\"ev(i,5)\" class=\"grey\" *ngIf=\"person?.eval=='NULL' || person?.eval<5\">star_rate</md-icon> -->\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"col-12 modal-end-footer text-right\">\r\n            <button class=\"btn btnCancel\">CANCELAR</button>\r\n            <button class=\"btn btnConfirm\" (click)=\"submit()\">FINALIZAR</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 

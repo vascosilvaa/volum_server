@@ -66,7 +66,7 @@ import { ActionComponent } from './components/action/action.component';
     BrowserAnimationsModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
+      apiKey: 'AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],

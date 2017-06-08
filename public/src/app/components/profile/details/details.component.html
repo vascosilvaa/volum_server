@@ -122,8 +122,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="addressTitle">
-                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end
-                                | date:"MMMM"}}
+                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}
                             </div>
                             <div class="Address">
                                 {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end
@@ -162,7 +161,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="vol?.active == 1">
         <div class="col-12">
             <div class="card primaryCard">
                 <div class="card-header cardTitle">
@@ -182,7 +181,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="vol?.active == 1">
         <div class="col-6">
             <div class="card primaryCard">
                 <div class="card-header cardTitle">
@@ -244,6 +243,37 @@
                                 <span class="text-see" *ngIf="candidates!=undefined" (click)="openViewAll(1,idVol)"> Ver candidatos</span>
                             </div>
                         </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="vol?.active == 0">
+        <div class="col-12">
+            <div class="card primaryCard">
+                <div class="card-header cardTitle">
+                    <div class="row">
+                        <div class="col titleCard no-padding">
+                            <div>Voluntários</div>
+                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="numberCandidates!=0">Ver todos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content candidates-zone">
+                    <ul class="list-group">
+                        <li *ngFor="let confirmed of confirmeds; let i= index" class="listPerson no-border no-margin">
+                            <div class="row no-margin">
+                                <div class="card-user-image">
+                                    <img src="{{confirmed?.photo_url}}">
+                                    <span class="candidateName link" [routerLink]="['../../../'+confirmed.id_user+'/about']">{{confirmed?.name}}</span>
+                                </div>
+                                <div class="col text-right no-padding user-rate" *ngIf="confirmedsReady">
+                                    <md-icon *ngFor="let star of getNumber(confirmed?.classification)">star_rate</md-icon>
+                                    <md-icon *ngFor="let star of getNumber(confirmed?.classification - 5)">star_border</md-icon>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -327,7 +357,7 @@
 
 
 
-    <div class="row btnsBack">
+    <div class="row btnsBack" *ngIf="vol?.active == 1">
         <div class="col-6">
             <button class="btn btnCancel1" (click)="openDelete(1, vol.id_vol, vol.date_begin, vol.name)">APAGAR AÇÃO</button>
         </div>

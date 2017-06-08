@@ -103,7 +103,7 @@ export class volsService {
 
 
     getPrivates(startAt, amount) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type:'private', startAt: startAt, amount: amount}).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type: 'private', startAt: startAt, amount: amount }).toPromise()
             .then(res => {
                 return res.json();
             })
@@ -113,7 +113,7 @@ export class volsService {
     }
 
     getInstVol(startAt, amount) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type: 'inst', startAt: startAt, amount: amount}).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, { type: 'inst', startAt: startAt, amount: amount }).toPromise()
             .then(res => {
                 return res.json();
             })
@@ -149,7 +149,7 @@ export class volsService {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=` + query).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
-    } 
+    }
     nearby(lat, lng) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/nearby/`, { lat: lat, lng: lng }).toPromise()
             .then(res => { return res.json() })
@@ -163,6 +163,16 @@ export class volsService {
 
     editAction(id_vol, body) {
         return this.http.put(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol, body).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    getScores(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/score`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    endVol(id_vol, body) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/finish`, body).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
   lng: number;
   public idLogin: any;
   public userLogin: any;
-  public idVol: any;
+  public id_vol: any;
   public vol: any;
   public hora_inicio: any;
   public hora_fim: any;
@@ -41,7 +41,7 @@ export class DetailsComponent implements OnInit {
   public numberCandidates: any;
   public numberConfirms: any;
   public editTitle: any;
-
+  public confirmedsReady : boolean = false;
 
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
@@ -52,20 +52,22 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.idVol = this.route.snapshot.params['id'];
+      this.id_vol = this.route.snapshot.params['id'];
       this.idLogin = this.route.parent.parent.snapshot.params['id'];
     });
-    this.getVol(this.idVol);
-    this.getCandidates(this.idVol);
-    this.getConfirmed(this.idVol);
-    this.countComments(this.idVol);
-    this.countCandidates(this.idVol);
-    this.countConfirmed(this.idVol);
+    this.getVol(this.id_vol);
+    this.getCandidates(this.id_vol);
+    this.getConfirmed(this.id_vol);
+    this.countComments(this.id_vol);
+    this.countCandidates(this.id_vol);
+    this.countConfirmed(this.id_vol);
+
+
   }
 
 
   openEditModal() {
-    return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.idVol }, BSModalContext));
+    return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -87,7 +89,7 @@ export class DetailsComponent implements OnInit {
   sendComment(comment) {
     if (typeof comment == 'string' && comment.length > 0 && comment && comment.replace(/^\s+/g, '').length) {
 
-      this.volsService.sendComment(comment, this.idVol).then(res => {
+      this.volsService.sendComment(comment, this.id_vol).then(res => {
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
@@ -101,27 +103,27 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  countComments(idVol) {
-    this.volsService.countComments(idVol)
+  countComments(id_vol) {
+    this.volsService.countComments(id_vol)
       .then(res => {
         this.numberComments = res.count;
         if (this.numberComments > 0) {
-          this.getComments(idVol);
+          this.getComments(id_vol);
         }
       })
       .catch(err => console.log(err));
   }
 
-  getComments(idVol) {
-    this.volsService.getComments(idVol)
+  getComments(id_vol) {
+    this.volsService.getComments(id_vol)
       .then(res => {
         this.comments = res.comments;
       })
       .catch(err => console.log(err));
   }
 
-  getVol(idVol) {
-    this.volsService.getVol(idVol)
+  getVol(id_vol) {
+    this.volsService.getVol(id_vol)
       .then(res => {
         this.vol = res.vol;
         console.log("VOL", this.vol)
@@ -132,20 +134,45 @@ export class DetailsComponent implements OnInit {
         this.minutos_inicio = this.vol.start_time.slice(3, 5);
         this.hora_fim = this.vol.end_time.slice(0, 2);
         this.minutos_fim = this.vol.end_time.slice(3, 5);
+
+
+        if (this.vol.active == 0) {
+          this.volsService.getScores(this.id_vol).then(res => {
+            console.log("RES", res)
+            for (let i = 0; i < this.confirmeds.length; i++) {
+              for (let x = 0; x < res.results.length; x++) {
+                if (this.confirmeds[i].id_user == res.results[x].id_user2) {
+                  this.confirmeds[i].classification = res.results[x].classification;
+                }
+              }
+            }
+            this.confirmedsReady = true;
+            console.log("CONFIRMEDS", this.confirmeds)
+          })
+        }
       })
       .catch(err => console.log(err));
   }
 
-  getCandidates(idVol) {
-    this.volsService.getCandidates(idVol, 3)
+  getNumber = function (num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+
+    return new Array(number);
+  }
+
+  getCandidates(id_vol) {
+    this.volsService.getCandidates(id_vol, 3)
       .then(res => {
         this.candidates = res.users;
       })
       .catch(err => console.log(err));
   }
 
-  getConfirmed(idVol) {
-    this.volsService.getConfirmed(idVol, 3)
+  getConfirmed(id_vol) {
+    this.volsService.getConfirmed(id_vol, 3)
       .then(res => {
         this.confirmeds = res.users;
       })
@@ -162,16 +189,16 @@ export class DetailsComponent implements OnInit {
 
   }
 
-  openViewAll(type, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol }, BSModalContext));
+  openViewAll(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
 
   }
 
-  openRemoveConfirm(type, idVol, idUser, name, i) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol: idVol, idUser: idUser, index: i }, BSModalContext)).then((d) => d.result)
+  openRemoveConfirm(type, id_vol, id_user, name, i) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, id_vol: id_vol, id_user: id_user, index: i }, BSModalContext)).then((d) => d.result)
       .then((r) => {
         console.log(r);
-        let index = this.candidates.findIndex(x => x.id_user == idUser);
+        let index = this.candidates.findIndex(x => x.id_user == id_user);
         this.confirmeds.splice(index, 1);
         this.numberConfirms--;
       },
@@ -179,22 +206,22 @@ export class DetailsComponent implements OnInit {
   }
 
   openDelete(type, id_vol, date, name) {
-    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, idVol: id_vol, date: date, name: name }, BSModalContext));
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ type: type, id_vol: id_vol, date: date, name: name }, BSModalContext));
   }
 
-  openRemoveConfirmCandidate(type, idVol, idUser, name, i) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, idVol: idVol, idUser: idUser, index: i }, BSModalContext)).then((d) => d.result)
+  openRemoveConfirmCandidate(type, id_vol, id_user, name, i) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, name: name, id_vol: id_vol, id_user: id_user, index: i }, BSModalContext)).then((d) => d.result)
       .then((r) => {
         console.log(r);
-        let index = this.candidates.findIndex(x => x.id_user == idUser);
+        let index = this.candidates.findIndex(x => x.id_user == id_user);
         this.candidates.splice(index, 1);
         this.numberCandidates--;
       },
       (error) => { console.log(error); });
   }
 
-  openEnd(type, idVol) {
-    return this.modal.open(ModalEndComponent, overlayConfigFactory({ idVol: idVol, type: type }, BSModalContext));
+  openEnd(type, id_vol) {
+    return this.modal.open(ModalEndComponent, overlayConfigFactory({ id_vol: this.id_vol, type: type }, BSModalContext));
 
   }
 
