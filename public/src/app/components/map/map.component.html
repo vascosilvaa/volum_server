@@ -1,7 +1,7 @@
 <div class="container-fluid no-padding mapFull">
     <div class="row no-padding">
         <div class="col-7 map">
-            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15" [styles]="Terrain" (boundsChange)="getVols($event)">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15" (boundsChange)="getVols($event)">
 
                 <sebm-google-map-marker *ngFor="let vol of vols; let i = index" [latitude]="convertStringToNumber(vol.vol.lat)" [longitude]="convertStringToNumber(vol.vol.lng)">
 

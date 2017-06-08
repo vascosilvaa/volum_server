@@ -115,8 +115,8 @@
               </div>
 
               <div class="col-12 inputProfile">
-                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
-                  <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd(m, $event)">
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13">
+                  <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
                   </sebm-google-map-marker>
                 </sebm-google-map>
 

@@ -32,7 +32,6 @@ export class VolDetailsModalComponent implements OnInit {
   public id_user: Number;
   public addressData: any;
   public address: any;
-  //public addressName: any;
   public candidatesNumber: any;
   public confirmedNumber: any;
   public numberLikes: any;
@@ -260,7 +259,6 @@ export class VolDetailsModalComponent implements OnInit {
         .then(res => {
           this.addressData = res.results;
           this.address = this.addressData[0].formatted_address;
-          //this.addressName = this.addressData[0].address_components[0].short_name;
         })
     }
 

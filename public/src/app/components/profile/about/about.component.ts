@@ -9,7 +9,7 @@ import * as moment from 'moment'
 })
 export class AboutComponent implements OnInit {
 
-  public user = {};
+  public user : any;
 
   constructor(public profileService: ProfileService) { }
 

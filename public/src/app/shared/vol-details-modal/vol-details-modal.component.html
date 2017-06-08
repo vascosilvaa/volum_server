@@ -112,7 +112,7 @@
                             <div *ngIf="address" class="daysEvent ts13" style="padding-top:10px">
                                 {{address}}
                             </div>
-                            <div *ngIf="!addressName && !address" class="daysEvent ts13" style="padding-top:9px">Sem localização definida</div>
+                            <div *ngIf="!address" class="daysEvent ts13" style="padding-top:9px">Sem localização definida</div>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
         </div>
         <div class="col-12 no-padding mapContent" *ngIf="login">
 
-            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" [styles]="Terrain">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13">
                 <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
             </sebm-google-map>
 
