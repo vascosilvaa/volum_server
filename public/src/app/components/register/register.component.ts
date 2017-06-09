@@ -56,7 +56,9 @@ export class RegisterComponent implements OnInit {
         this.form.controls.password2.markAsTouched();
         this.form.controls.name.markAsTouched();
         this.form.controls.lastname.markAsTouched();
-        this.form.patchValue({ type: 2, birth_date: '17-07-1996', gender: [''] })
+        value['type'] = 2;
+        value['birth_date'] = '17-07-1996';
+        value['gender'] = 1;
         console.log("FORMS", this.form);
 
         if (valid) {
@@ -65,12 +67,8 @@ export class RegisterComponent implements OnInit {
                 .then(res => {
                     console.log("result", res);
 
-                    if (res.success) {
-                        this.router.navigate(['/profile/', res.id_user], )
-                        location.reload();
-                    } else {
-
-                    }
+                    this.router.navigate(['/profile/', res.id_user], )
+    
 
                 })
 

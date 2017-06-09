@@ -181,6 +181,7 @@ export class ProfileComponent implements OnInit {
       this.user['score'] = this.getNumber(res.score);
       this.user['negative_score'] = this.getNumber(res.score - 5);
       this.scoreReady = true;
+      console.log(this.user.score)
 
     });
   }

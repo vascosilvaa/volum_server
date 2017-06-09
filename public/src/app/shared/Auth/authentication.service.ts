@@ -13,7 +13,7 @@ export class AuthenticationService {
 
     userPromise: any;
     public facebookToken: string;
-    
+
     constructor(private http: HttpClient, private router: Router) {
         this.loadUserCredentials();
     }
@@ -62,7 +62,10 @@ export class AuthenticationService {
     register(value) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/auth/register`, value).toPromise()
             .then(res => {
+                this.storeUserCredentials(res.json().id_token);
+                localStorage.setItem("USER_ID", res.json().id_user);
                 return res.json();
+
             })
             .catch(err => {
                 this.errorHandler(err);

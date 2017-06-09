@@ -122,13 +122,17 @@ app.post('/register', function (req, res) {
                                                                 console.log('Message %s sent: %s', info.messageId, info.response);
                                                             });
                                 */
+
+                                var token = jwt.sign({
+                                    id: user.id_user
+                                }, secretKey);
+
                                 res.status(201).send({
 
                                     message: "User criado com sucesso",
                                     id_user: userId,
-
-                                    id_token: createToken(newUser)
-
+                                    id_token: "JWT " + token,
+                                    success: true,
 
                                 });
 
@@ -257,7 +261,7 @@ app.get('/facebook/callback',
         // res.redirect("http://localhost:8080/profile/" + req.user.id_user + "?id_token=JWT " + token);
 
         res.redirect(url.format({
-            pathname: "http://localhost:4200/profile/" + req.user.id_user + '/about',
+            pathname: "http://bevolun.com/profile/" + req.user.id_user + '/about',
             query: {
                 "id_token": "JWT " + token,
 

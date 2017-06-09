@@ -1,6 +1,94 @@
-<div class="container">
-  <div class="col-12 mt-5 text-center no-content">
-    <div style="padding: 5px;"><i class="material-icons">alarm</i></div>
-    <span>Sem Atividade</span>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-3">
+      <div class="presentation-card">
+        <div class="card primaryCard">
+          <div class="card-header cardTitle">
+            <div class="container">
+              <div class="row">
+                <div class="col titleCard">
+                  Dados Pessoais
+                </div>
+                <div class="col text-right iconCard">
+                  <i class="material-icons edit">more_horiz</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-block">
+            <div class="container">
+              <div class="row ">
+                <div class="titleProfile col-4">
+                  Nome:
+                </div>
+                <div class="col-7 textProfile">
+                  Pedro
+                </div>
+              </div>
+              <div class="row marginAbout">
+                <div class="titleProfile col-4">
+                  Idade:
+                </div>
+                <div class="col-7 textProfile">
+                  <span>2121</span>
+                </div>
+              </div>
+              <div class="row marginAbout">
+                <div class="titleProfile col-4">
+                  E-mail:
+                </div>
+                <div class="col-7 textProfile">
+                  email
+                </div>
+              </div>
+              <div class="row marginAbout">
+                <div class="titleProfile col-4">
+                  Género:
+                </div>
+                <div class="col-7 textProfile">
+                  <span >Masculino</span>
+                
+
+                </div>
+              </div>
+              <div class="row marginAbout">
+                <div class="titleProfile col-4">
+                  Vive em:
+                </div>
+                <div class="col-7 textProfile">
+                  Aveiro, Portugal
+                </div>
+              </div>
+              <div class="row marginAbout">
+                <div class="titleProfile col-4">
+                  Telemóvel:
+                </div>
+                <div class="col-7 textProfile">
+                  0981153
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 mt-5 text-center no-content" *ngIf="vols.length == 0">
+      <!--
+      <div style="padding: 5px;"><i class="material-icons">alarm</i></div>
+      <span>Sem Atividade</span>
+         -->
+      <vol-card [userCreator]="1" [title]="teste" [likes]="2" [idVol]="1" [verified]="true" type="private" class="swiper-slide"
+        [avatar]="1" [photos]="1" [username]="Pedro" [likeState]="0" [dateCreation]="1" [description]="ola" [index]="i">
+      </vol-card>
+    </div>
+
+
+    <div class="col-3">
+      <div class="presentation-card"></div>
+    </div>
   </div>
+
 </div>

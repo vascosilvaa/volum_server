@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
     }
 
     loginFacebook() {
-        window.open('http://localhost:8080/api/auth/facebook');
+        //  window.location.href = 'http://localhost:8080/api/auth/facebook';
+        window.location.href = 'http://bevolun.com/api/auth/facebook';
     }
 
     onSubmit({ value, valid }: { value: User, valid: boolean }) {

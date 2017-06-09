@@ -40,6 +40,11 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
+    
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.router.navigateByUrl('/mobile');
+    } else {
+    }
 
     moment.locale('pt-pt');
     moment.updateLocale('pt', {

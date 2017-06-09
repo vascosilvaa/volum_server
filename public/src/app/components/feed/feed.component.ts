@@ -42,7 +42,7 @@ export class FeedComponent implements OnInit {
     //VERIFICAR LOGIN
 
     if (this.login) {
-      this.getVols(0, 5, true);
+      this.getVols(0, 6, true);
 
 
     } else if (!this.login) {
@@ -96,8 +96,8 @@ export class FeedComponent implements OnInit {
   onScroll() {
     this.loading = true;
     console.log("scroll");
-    this.sum = this.sum + 5;
-    this.getVols(this.sum, 5, false);
+    this.sum = this.sum + 6;
+    this.getVols(this.sum, 6, false);
   }
 
 }

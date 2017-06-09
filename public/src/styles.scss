@@ -28,7 +28,11 @@ search .dropdown-menu {
     width: 5%;
     margin-left: -40px;
 }
-
+  .header {
+        background: $blue;
+        min-height: 350px;
+        padding-top: 100px;
+    }
 .carousel-control-next {
     width: 5%;
     margin-right: -50px;
@@ -102,7 +106,16 @@ body {
     padding: 0;
     font-family: 'Lato', sans-serif!important;
     background-color: #F7F8FA;
-    color: $grey3!important;
+    color: $background!important;
+}
+
+.row{
+    color: $text-color;
+
+}
+
+.table{
+    color: $text-color;
 }
 
 //BOTÕES

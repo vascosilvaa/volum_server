@@ -35,14 +35,14 @@
 
     <!-- CONTENT CARD -->
 
-    <img class="imgSliderInd " [src]="photos[0]">
+    <img class="imgSliderInd clickable " [src]="photos[0]" (click)="openVolDetails(idVol)">
 
     <div class="row no-margin card-volum-content" (click)="openVolDetails(idVol)">
         <div class="col ts18 card-volum-title">
             {{title}}
         </div>
         <div class="col-12 ts14 card-volum-description">
-            {{description}}
+            <span>{{description}}</span>
         </div>
     </div>
 
@@ -94,9 +94,11 @@
             <div (click)="openComments()" class="textComments"><span class="commentsNumber">16</span> comentários</div>
         </div>
         -->
+        <!--
         <div class="btnView">
             <button md-raised-button (click)="openVolDetails(idVol)">VER</button>
         </div>
+        -->
     </div>
 
     <!-- /FOOTER CARD -->
