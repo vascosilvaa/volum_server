@@ -223,7 +223,7 @@ var returnRouter = function (io) {
                     } else {
                         res.send({
                             success: true,
-                            body: "Sem Registos"
+                            vols: []
                         });
                     }
 
