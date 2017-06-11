@@ -384,7 +384,7 @@ var returnRouter = function (io) {
         } else {
             let options = {
                 sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
-                " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE (user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1)  AND vols.deleted = 0",
+                " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1  AND vols.deleted = 0",
                 nestTables: true
             }
             db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
@@ -396,7 +396,7 @@ var returnRouter = function (io) {
                     });
                     console.error(err);
                 } else {
-                    console.log(results);
+                    console.log(results.length);
                     if (results.length > 0) {
 
                         let vols = [];

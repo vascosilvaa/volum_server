@@ -1,10 +1,10 @@
-import { volsService } from './../../../shared/services/vols.service';
+import { User } from './../../../interfaces/user.interface';
 import { ProfileService } from './../../../shared/services/profile.service';
-import { Observable } from 'rxjs/Observable';
-import { ActivatedRoute } from '@angular/router';
+import { volsService } from './../../../shared/services/vols.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { GlobalConstants } from '../../../shared/global-constants';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 
@@ -13,32 +13,49 @@ import { Http } from '@angular/http';
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.scss'],
 })
-export class ActivityComponent implements OnInit, OnDestroy {
-  public privateVols: any;
+export class ActivityComponent implements OnInit {
 
-  public instVols: any;
-  public idProfile: any;
   public vols = [];
   public ready: boolean = false;
-  observable: any;
-
-  public teste: any;
-
-  public user: any;
-  constructor(public http: Http, private route: ActivatedRoute, private profileService: ProfileService,
-    private auth: AuthenticationService) {
+  public user: User = {
+    id_user: null,
+    name: null,
+    email: "",
+    phone: null,
+    photo: null
 
   }
+
+  constructor(public http: Http, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
 
+    this.route.parent.params.subscribe(params => {
+      this.user.id_user = params.id;
+      this.profileService.getProfile(params.id).then(profile => {
+        this.user = profile.user;
+
+        this.profileService.getMyVols(params.id).then(res => {
+          this.vols = res.vols;
+          console.log("VOLS", res.vols)
+          this.ready = true;
+
+          for (let i = 0; i < this.vols.length; i++) {
+            this.volsService.countLikes(this.vols[i].id_vol)
+              .then(res => {
+                this.vols[i].likes = res.likes;
+              })
+            this.volsService.checkLike(this.vols[i].id_vol)
+              .then(res => {
+                this.vols[i].likeState = parseInt(res.state);
+              })
+          }
+
+        });
+      })
+
+    });
 
   }
-  ngOnDestroy() {
-    console.log("destroy")
-  }
-
-
-
 }
-
