@@ -3,9 +3,7 @@
 //GLOBAL COLORS
 @import 'variables';
 //AJUSTES GLOBAIS
-search .dropdown-menu {
-    width: 100% !important;
-}
+
 img{
     object-fit: cover;
 }
@@ -463,7 +461,10 @@ box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
 
 
 
-
+h4{
+    font-size: 1.2rem;
+    color: #FFFFFF;
+}
 
 h5{
     font-size: 1rem;
@@ -473,6 +474,7 @@ h5{
 p{
     margin: 0;
     font-size: 0.9rem;
+    color: $grey5;
 }
 
 
@@ -492,7 +494,7 @@ p{
     margin-top: -5px;
     opacity: 0;
     transition: opacity 0.5s;
-    }
+}
 
 .bevolun-tooltip .bevolun-tooltiptext::after {
     content: "";
@@ -510,8 +512,56 @@ p{
     opacity: 1;
 }
 
+
 .truncate{
     white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+search .dropdown-menu {
+    width: 1110px;
+}
+
+
+search .dropdown-menu {
+    position: absolute;
+    top: 112px!important;
+    left: 15px!important;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    margin: 0!important;
+    font-size: 1rem;
+    color: $grey5;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid $grey1;
+    border-radius: 4px;
+    padding-top: 8px!important;
+    padding-bottom: 8px!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+search .dropdown-item {
+    display: block;
+    width: 100%;
+    /* padding: 3px 1.5rem; */
+    clear: both;
+    font-weight: 400;
+    color: #292b2c;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+    padding: 0;
+}
+
+search button {
+    line-height: normal;
+
 }

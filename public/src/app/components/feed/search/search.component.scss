@@ -89,22 +89,65 @@
 
 
 
+.search-result{
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search-result:hover{
+     background-color: $grey1;
+}
+
+.search-img{
+    margin-right: 8px;
+}
+
+.search-img img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 45px;
+    border: 1px solid $grey1;
+}
+
+.search-text h6{
+    color: $primary;
+    font-weight: 600;
+    font-size: 0.9rem;
+    max-width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+.search-text p{
+    color: $grey3;
+    font-size: 0.8rem;
+}
+
+
 
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    $grey5;
+    color:    $primary;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:     $grey5;
+   color:     $primary;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    $grey5;
+   color:    $primary;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:     $grey5;
+   color:     $primary;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:     $grey5;
+   color:     $primary;
 }
