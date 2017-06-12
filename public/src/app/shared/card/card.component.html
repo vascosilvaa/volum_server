@@ -1,4 +1,4 @@
-<div class="card-volum">
+<div class="card-bevolun">
 
     <div class="card-bevolun-header">
         <div class="card-bevolun-user-image">
@@ -20,8 +20,9 @@
         </div>
     </div>
 
+
     <div class="card-bevolun-image" (click)="openVolDetails(idVol)">
-        <img class="clickable" [src]="photos[0]" (click)="openVolDetails(idVol)">
+        <img class="clickable" [src]="photos[0]">
     </div>
 
     <div class="card-bevolum-content clickable" (click)="openVolDetails(idVol)">
@@ -39,9 +40,9 @@
                 <div>
                 <md-icon (click)="dislike(idVol)" *ngIf="login && (likeState==1)" class="btn-like">favorite</md-icon>
                 <md-icon (click)="like(idVol)" *ngIf="login && (!likes || likeState==0)" class="btn-like btn-dislike">favorite_border</md-icon>
-                <md-icon *ngIf="!login" class="btnLike">favorite</md-icon>
+                <md-icon *ngIf="!login" class="btn-like">favorite</md-icon>
                 </div>
-                <div *ngIf="login &&  type=='private'" class="likesText">
+                <div *ngIf="login  &&  type=='private'" class="likesText">
                     <span *ngIf="likeState==1" class="likesTestMe">Tu</span>
                     <span *ngIf="likeState==1 && likes<2">gostas disto.</span>
                     <span *ngIf="likeState==1 && likes>=2" class="pointer" (click)="openLikesModal(8, idVol)">e mais</span>
