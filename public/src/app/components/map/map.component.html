@@ -9,11 +9,8 @@
 
                         <div>
                             <b style='display: block'>{{vols[i].vol.name}}   </b>
-                            <img [src]='vols[i].vol.photos[0]' class='img-responsive' style='    width: 200px;
-    height: 100px;
-    margin: 10px;'>
+                            <img [src]='vols[i].vol.photos[0]' class='img-responsive' style='    width: 200px; height: 100px; margin: 10px;'>
                         </div>
-
 
                     </sebm-google-map-info-window>
 
@@ -39,11 +36,11 @@
                   <div style="padding: 5px;"><i class="material-icons">sentiment_dissatisfied</i></div>
                     <span>Não existem ações de voluntariado nesta zona.</span>
                 </div>
-                    <div class="col-12" *ngFor="let vol of vols">
-                        <vol-card [map]="true" [likes]="33" [verified]="true" class="swiper-slide" type='private' [avatar]="vol.user.photo_url" [username]="vol.user.name"
-                            [userCreator]="vol.user.id_user" [dateCreation]="vol.vol.date_begin" [title]="vol.vol.name" [description]="vol.vol.description"
-                            [photos]="vol.vol.photos">
-                        </vol-card>
+                    <div class="col-12" *ngFor="let vol of vols; let i=index">
+                         <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
+                            type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name"
+                            [likeState]="vol.vol.likeState" [dateCreation]="vol.vol.date_creation" [description]="vol.vol.description" [index]="i">
+                        </vol-card>                    
                     </div>
                 </div>
                 

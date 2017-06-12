@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-12" style="display:flex">
                             <div class="addressTitle" style="display:flex; align-items: center">
-                                {{vol?.address}}
+                                {{address}}
                             </div>
                         </div>
                     </div>
@@ -124,12 +124,12 @@
                             <div class="addressTitle">
                                 {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}
                             </div>
-                            <!--
-                            <div class="Address">
-                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end
-                                | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às {{hora_fim}}:{{minutos_fim}}
+                            
+                            <div class="Address" *ngIf="vol?.start_time">
+                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{vol?.start_time | timePipe}} até {{vol?.date_end
+                                | date:"d"}} de {{vol?.date_end | date:"MMMM"}}<span *ngIf="vol?.end_time"> às {{vol?.end_time | timePipe}}</span>
                             </div> 
-                            -->
+                            
                         </div>
                     </div>
                 </div>
@@ -203,8 +203,8 @@
                                     <span class="candidateName">{{candidate?.name}}</span>
                                 </div>
                                 <div class="col text-right no-padding">
-                                    <button type="button" class="btn btn-outline-primary btnCancel" (click)="openRemoveConfirmCandidate(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
-                                    <button type="button" class="btn btn-outline-primary btnConfirm" (click)="confirmCandidate(candidate?.id_user)">ACEITAR</button>
+                                    <button type="button" class="btn  btnCancel" (click)="openRemoveConfirmCandidate(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
+                                    <button type="button" class="btn  btnConfirm" (click)="confirmCandidate(candidate?.id_user)">ACEITAR</button>
                                 </div>
                             </div>
                         </li>

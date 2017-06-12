@@ -84,12 +84,12 @@ img{
 }
 
 .no-content i{
-    color: $grey2!important;
+    color: $grey3!important;
     font-weight: normal;
 }
 .no-content span{
-   color: $grey2;
-    font-size: 16px;
+   color: $grey3;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -508,4 +508,10 @@ p{
 .bevolun-tooltip:hover .bevolun-tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.truncate{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
