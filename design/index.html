@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+  <meta charset="utf-8">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/styles.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/fontello.css" media="screen,projection" />
+   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="imgs/favicon.png" type="image/x-icon">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEVOLUN DESIGN</title>
+</head>
+
+<body onload="loading()">
+  <header>
+    <nav class="top-nav">
+      <div class="nav-wrapper">
+        <a id="page-title" class="page-title">
+            Sobre
+        </a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only" style="color:#FFF">
+            <i class="material-icons">menu</i>
+        </a>
+      </div>
+    </nav>
+
+    <div class="banner">
+      <div class="container">
+        <div id="banner-title" class="banner-title">
+            Sobre
+        </div>
+      </div>
+    </div>
+
+
+    <!-- SIDEMENU -->
+    <ul id="nav-mobile" class="side-nav fixed">
+      <li class="logo">
+        <a id="logo-container" href="#" class="brand-logo">
+                    <img src="imgs/logo.png">
+                </a>
+      </li>
+      <li class="bold"><a onclick="loadContent(event,0)" class="waves-effect waves-amber">Sobre</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li class="bold"><a class="collapsible-header  waves-effect waves-amber">Estilos</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,1)">Cor</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,2)">Ícones</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,3)">Tipografia</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,4)">Espaçamentos</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="bold"><a class="collapsible-header  waves-effect waves-light">Componentes</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,5)">Badges</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,6)">Botões</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,8)">Card</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,13)">Input</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,17)">Listas</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,14)">Navegação</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,15)">Popover</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,18)">Segment</a></li>
+                <li><a class="waves-effect waves-amber" onclick="loadContent(event,19)">Toggle</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- SIDEMENU -->
+  </header>
+
+  <!-- CONTENT -->
+
+
+  <main>
+    <div id="loadContent" class="container contentPadding">
+      
+
+    </div>
+    </div>
+    </div>
+  </main>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+
+</html>
