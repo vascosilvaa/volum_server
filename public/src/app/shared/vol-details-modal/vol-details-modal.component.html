@@ -163,7 +163,7 @@
         <div class="card-volum-footer no-padding-side" *ngIf="login">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 no-padding" style="display:flex; align-items:center">
+                    <div class="col-12 no-padding" style="display:flex; align-items:center;">
                         <div class="cardLikes">
                             <md-icon (click)="dislike(this.context.idVol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
                             <md-icon (click)="like(this.context.idVol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
@@ -187,8 +187,11 @@
                             <span *ngIf="!numberLikes || numberLikes==0 ">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
 
                         </div>
-                        <div (click)="getComments()" class="text-right" style="margin-left:auto">
-                            <div class="cardComments ts12">
+
+
+
+                        <div (click)="getComments()" class="clickable text-right" style="margin-left:auto">
+                            <div class="cardComments ts12" style="display:flex; align-items:center;">
                                 <div>
                                     <md-icon class="btnComments">textsms</md-icon>
                                 </div>

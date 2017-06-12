@@ -1,6 +1,8 @@
 @import '../../../styles';
-@import './../card/card.component';
 
+/deep/ .modal-content {
+    padding:0px 15px!important;
+}
 // COMMENTS
 .card-Comments {
     border-top: 1px solid $grey1;
@@ -30,7 +32,7 @@
 }
 
 .card-user-name-comments {
-    color: $grey3;
+    color: $grey5;
     font-weight: 600;
 }
 
@@ -95,6 +97,12 @@
 
 .btnLike {
     padding-top:6px!important;
+    color: $red;
+}
+
+.btnComments {
+    color: $grey4;
+    padding-top:6px!important;
 }
 
 .btnSendIcon {
@@ -103,6 +111,7 @@
 
 .btnSendIcon:hover {
     cursor: pointer;
+    color: $blue;
 }
 
 .btnSendColorBlue {
@@ -122,12 +131,39 @@
 }
 
 .text-confirm {
-    color: $grey3;
+    color: $grey5;
 }
 .action-confirm {
     font-weight: $bold;
     color:$blue;
 }
+
+.likesText {
+    margin-left: 5px;
+    color: $grey5;
+    font-size: 0.8rem;
+}
+
+.likesTestMe {
+    color: $blue;
+    font-weight: 600;
+}
+
+.clickable {
+    cursor:pointer;
+}
+
+.likesTestSecond {
+    color: $grey2;
+    font-weight: 600;
+}
+
+.textComments {
+    margin-left: 5px;
+    color: $grey5;
+    font-size: 0.8rem;
+}
+
 
 // COMMENTS
 
@@ -208,7 +244,7 @@
 }
 
 .card-user-desc {
-    color: $grey3;
+    color: $grey5;
 }
 
 .card-user-event {
@@ -242,14 +278,14 @@
 
 .iconDate {
     font-size: 18px;
-    color: $grey3;
+    color: $grey5;
     margin-top: 15px;
 }
 
 .daysEvent {
     font-weight: $bold;
      margin-top: 5px;
-     color: $grey3;
+     color: $grey5;
 }
 
 .descDatePlace {
@@ -259,7 +295,7 @@
 
 .daysEventFull {
     font-weight: 300;
-    color: $grey3;
+    color: $grey5;
 }
 
 .no-padding {
@@ -313,7 +349,7 @@
 
 .normalText {
     font-size: 13px;
-    color: $grey3;
+    color: $grey5;
 }
 
 .comments-back {

@@ -35,7 +35,7 @@
     background: #ccc;
 }
 .user-rate{
-     padding-left: 8px;
+     padding-left: 0px;
      padding-top: 5px;
  }
 
@@ -63,24 +63,24 @@
 }
 .menuSubHeader ul li{
     display: inline-block;
-    color: $grey2;
+    color: $grey3;
     padding-right: 15px;
 }
 
 .menuSubHeader ul li a{
     display: inline-block;
-    color: $grey2;
+    color: $grey3;
     text-decoration: none;
 }
 
 .menuSubHeader ul li a:hover{
     display: inline-block;
-    color: $grey3;
+    color: $grey5;
     text-decoration: none;
 }
 
 .menuSubHeaderActive{
-  color: $grey3!important;
+  color: $grey5!important;
   padding: 0;
 }
 
@@ -164,10 +164,10 @@
         margin-top: 0;
     }
     .user-name{
-        color: $grey3;
+        color: $grey5;
     }
     .user-location{
-        color: $grey3;
+        color: $grey5;
     }
     .col-new-action{
         margin-top:-54px;

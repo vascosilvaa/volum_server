@@ -2,7 +2,7 @@
 
 /* HEADER */
 /deep/ .mat-input-element {
-    color: $grey2;
+    color: $grey4;
 }
 .brandBackground {
     padding-top: 6px;
@@ -109,7 +109,7 @@
 /deep/ .mat-menu-item:hover {
     font-size: 14px!important;
     font-family: Lato!important;
-    color: $grey3!important;
+    color: $grey5!important;
     background: $white!important;
 }
 .no-content{
@@ -136,7 +136,7 @@
 }
 
 .profile-item .desc {
-   color: $grey3;
+   color: $grey5;
    font-size:13px;
    margin-left: 15px;
    padding-top: 2px;
@@ -218,7 +218,7 @@ display: -webkit-box;
 
 .nameMsg{
     font-weight: bold;
-    color: $grey3;
+    color: $grey5;
     font-size:14px;
 }
 
