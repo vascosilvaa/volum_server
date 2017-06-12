@@ -43,7 +43,16 @@ export class MapComponent implements OnInit {
         this.vols = res.vols;
         console.log("res", res)
         this.ready = true;
-
+         for (let i = 0; i < this.vols.length; i++) {
+          this.volsService.countLikes(this.vols[i].vol.id_vol)
+            .then(res => {
+              this.vols[i].vol.likes = res.likes;
+            })
+          this.volsService.checkLike(this.vols[i].vol.id_vol)
+            .then(res => {
+              this.vols[i].vol.likeState = parseInt(res.state);
+            })
+        }
 
       })
       .catch(err => console.log(err));

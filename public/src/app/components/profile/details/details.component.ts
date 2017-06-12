@@ -36,6 +36,7 @@ export class DetailsComponent implements OnInit {
   public numberConfirms: any;
   public editTitle: any;
   public confirmedsReady: boolean = false;
+  public address: any;
 
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
@@ -120,10 +121,11 @@ export class DetailsComponent implements OnInit {
     this.volsService.getVol(id_vol)
       .then(res => {
         this.vol = res.vol;
-        console.log("VOL", this.vol)
-        this.getAddress();
+        console.log("VOL", this.vol);
         this.lat = parseFloat(this.vol.lat);
         this.lng = parseFloat(this.vol.lng);
+        this.getAddress();
+       
 
 
 
@@ -174,6 +176,7 @@ export class DetailsComponent implements OnInit {
   getAddress() {
     this.sharedService.getAddress(this.vol.lat, this.vol.lng)
       .then(res => {
+        this.address = res.formatted_address;
       })
 
   }

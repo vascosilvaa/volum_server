@@ -1,7 +1,7 @@
 <!-- CANDIDATOS -->
 <div *ngIf="context.type==1" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Candidatos
       </div>
@@ -9,16 +9,20 @@
         <ul class="list-group">
           <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
             <div class="row no-margin user-desc">
-              <div class="card-user-image">
+              <div class="card-user-image pointer" (click)="onSelect(candidate?.id_user)" style="max-width:250px">
                 <img src="{{candidate?.photo_url}}">
-                <span class="candidateName">{{candidate?.name}}</span>
+                <span class="truncate candidateName">{{candidate?.name}}</span>
               </div>
               <div class="col text-right no-padding">
-                <button type="button" class="btn btn-outline-primary btnCancel">RECUSAR</button>
-                <button type="button" class="btn btn-outline-primary btnConfirm">ACEITAR</button>
+                <button type="button" class="btn btnCancel">RECUSAR</button>
+                <button type="button" class="btn btnConfirm">ACEITAR</button>
               </div>
             </div>
           </li>
+          <div *ngIf="!candidates || candidates.length== 0" class="no-content text-center" style="padding:10px">
+            <div style="padding: 3px;"><i class="material-icons">alarm</i></div>
+            <span>Não existem candidatos.</span>
+          </div>
         </ul>
       </div>
     </div>
@@ -29,7 +33,7 @@
 
 <div *ngIf="context.type==2" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Confirmados
       </div>
@@ -37,15 +41,19 @@
         <ul class="list-group">
           <li *ngFor="let confirmed of confirmeds" class="listPerson no-border no-margin">
             <div class="row no-margin user-desc">
-              <div class="card-user-image">
+              <div class="card-user-image pointer" (click)="onSelect(confirmed?.id_user)" style="max-width:340px">
                 <img src="{{confirmed?.photo_url}}">
-                <span class="candidateName">{{confirmed?.name}}</span>
+                <span class="truncate candidateName">{{confirmed?.name}}</span>
               </div>
               <div class="col text-right no-padding">
                 <button type="button" class="btn btnRemove">REMOVER</button>
               </div>
             </div>
           </li>
+          <div *ngIf="!confirmeds || confirmeds.length == 0" class="no-content text-center" style="padding:10px">
+            <div style="padding: 3px;"><i class="material-icons">alarm</i></div>
+            <span>Não existem confirmados.</span>
+          </div>
         </ul>
       </div>
     </div>
@@ -56,7 +64,7 @@
 
 <div *ngIf="context.type==3" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Convites
       </div>
@@ -104,7 +112,7 @@
 <!-- REMOVER  CONFIRMADOS-->
 <div *ngIf="context.type==4" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Remover {{context.name}}
       </div>
@@ -123,7 +131,7 @@
 <!-- REMOVER  CANDIDATOS-->
 <div *ngIf="context.type==5" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Recusar {{context.name}}
       </div>
@@ -141,7 +149,7 @@
 <!-- CONFIRMAR CANCELAR CANDIDATURA -->
 <div *ngIf="context.type==6" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Cancelar candidatura
       </div>
@@ -160,7 +168,7 @@
 <!-- CONFIRMAR CANDIDATURA -->
 <div *ngIf="context.type==7" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Candidatar a Ação de voluntariado
       </div>
@@ -178,7 +186,7 @@
 <!-- Likes -->
 <div *ngIf="context.type==8" class="container-fluid no-padding">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 no-padding">
       <div class="modal-card">
         Gostos
       </div>
@@ -186,12 +194,16 @@
         <ul class="list-group">
           <li *ngFor="let like of likes" class="listPerson no-border no-margin">
             <div class="row no-margin user-desc">
-              <div class="card-user-image full-width">
+              <div class="card-user-image full-width pointer" (click)="onSelect(like?.id_user)">
                 <img src="{{like?.photo_url}}">
                 <span class="candidateName">{{like?.name}}</span>
               </div>
             </div>
           </li>
+          <div *ngIf="!likes || likes.length == 0" class="no-content text-center" style="padding:10px">
+            <div style="padding: 3px;"><i class="material-icons">alarm</i></div>
+            <span>Não existem gostos.</span>
+          </div>
         </ul>
       </div>
     </div>

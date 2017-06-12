@@ -7,7 +7,7 @@ import { AppModule } from './../../app.module';
 import { Component, OnInit, Injector } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 export class ModalContext extends BSModalContext {
   public id_vol: any;
@@ -36,7 +36,7 @@ export class ModalViewAllComponent implements OnInit {
   context: ModalContext;
 
 
-  constructor(private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
+  constructor(public route: ActivatedRoute, private router: Router, private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
 
     this.context = dialog.context;
     this.context.isBlocking = false;
@@ -61,6 +61,13 @@ export class ModalViewAllComponent implements OnInit {
     }
 
 
+  }
+
+  onSelect(profile) {
+    this.dialog.dismiss();
+    setTimeout(() => {
+        this.router.navigate(['/profile/' + profile + '/activity']);
+      }, 250);
   }
 
   getLikes(id_vol) {

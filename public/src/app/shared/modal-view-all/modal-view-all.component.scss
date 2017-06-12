@@ -1,11 +1,14 @@
 @import '../../../styles';
 
+/deep/ .modal-content {
+    padding:0px 15px!important;
+}
 .modal-card {
-    padding:10px 20px 10px 20px;
+    padding:15px 20px;
     font-weight: $bold;
     font-size:16px;
-    color: $grey5;
-    border-bottom:1px solid $grey1;
+    color: $white;
+    background: $blue;
 }
 
 .modal-list-content {
@@ -30,16 +33,22 @@
 }
 
 .card-user-image img{
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border-radius: 45px;
     margin: 0;
+    border: 1px solid $grey1;
 }
 
 .card-user-image {
     max-width:250px;
     display:flex;
     align-items: center;
+    color: $grey5;
+}
+
+.card-user-image:hover {
+    text-decoration: underline;
 }
 
 .full-width {
@@ -58,7 +67,7 @@
 
 
 .candidateName{
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 
