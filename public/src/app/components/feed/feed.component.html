@@ -1,18 +1,28 @@
 <div class="header">
-  <div class="container">
-    <div class="container headerFeed no-padding">
-      <div class="v-header-title">Da compaixão à ação.</div>
-      <div class="v-header-subtitle">A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.
-      </div>
-    </div>
 
-    <div class="container" style="padding: 0; margin-top: 25px">
-      <!-- TODO: LIMPAR ESTE CSS -->
-      <search></search>
-    </div>
+    <div class="container">
 
-  </div>
+        <div class="row">
+            <div class="col-12 headerText">
+                <h1>Da compaixão à ação.</h1>
+                <h5>A solidariedade é o sentimento que melhor expressa o respeito pela dignidade humana.</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="bodySearch">
+                     <search></search>
+                </div>  
+            </div>
+              <!--
+            
+             -->
+        </div>
+
+    </div>
 </div>
+
 
 <div *ngIf="!login" class="container">
   <!-- PUBLICO -->
@@ -76,11 +86,11 @@
       <img src="https://www.travel-in-portugal.com/sites/default/files/photos/espinho-beach-boats.jpg" class="img-feed">
       <div class="cityText">Espinho</div>
     </div>
-     <div class="col-6 col-lg-2 col-md-2 city city5">
+    <div class="col-6 col-lg-2 col-md-2 city city5">
       <img src="http://www.ruralea.com/wp-content/uploads/2015/07/9405636238_ee8269a6be_k.jpg" class="img-feed">
       <div class="cityText">Agueda</div>
     </div>
-     
+
     <div class="col-6 col-lg-2 col-sm-4 col-md-3 city city2">
       <img src="http://cacia.pt/wp-content/uploads/2015/08/111_1.jpg" class="img-feed">
       <div class="cityText">Cacia</div>
@@ -94,7 +104,7 @@
       <div class="cityText">Aveiro</div>
     </div>
     <div class="col-6 col-lg-2 col-md-2 city city6">
-     <img src="https://ucmedia.er2.co/pt/des/8/b/1600/20626.jpg" class="img-feed">
+      <img src="https://ucmedia.er2.co/pt/des/8/b/1600/20626.jpg" class="img-feed">
       <div class="cityText">Ílhavo</div>
     </div>
   </div>
@@ -157,12 +167,12 @@
 <div *ngIf="login" class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
 
   <div class="row">
-    <div class="col-6" *ngFor="let vol of vols; let i = index;">
+
+    <div class="col-lg-6" *ngFor="let vol of vols; let i = index;">
       <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
         type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name"
         [likeState]="vol.vol.likeState" [dateCreation]="vol.vol.date_creation" [description]="vol.vol.description" [index]="i">
       </vol-card>
-
     </div>
     <div class="sk-fading-circle" *ngIf="loading">
       <div class="sk-circle1 sk-circle"></div>

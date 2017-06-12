@@ -1,13 +1,15 @@
 @import '../../../../styles';
 @import '../../../../styles';
+
+
+
 .header-home-search {
-    background-color: $white;
     min-height: 80px;
     border-radius: 4px
 }
 
 .mat-input-wrapper {
-    color: $grey2!important;
+    color: $grey3!important;
 }
 
 .col-search {
@@ -60,4 +62,49 @@
     margin-left: 10px;
      margin-top: 1px;
     
+}
+
+
+/* NEW */
+.search-content{
+    display: flex;
+}
+
+.search-input{
+    flex: 2;
+}
+
+.search-input > input{
+    width: 100%;
+    line-height: normal;
+    border: none;
+    font-size: 1.1rem;
+    color:$grey5;
+}
+
+.search-button{
+    margin-top: -2px;
+    margin-left: 24px;
+}
+
+
+
+
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $grey3;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:     $grey3;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    $grey3;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:     $grey3;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:     $grey3;
 }

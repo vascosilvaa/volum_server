@@ -400,3 +400,102 @@ body {
 .underline:hover {
     text-decoration: underline;
 }
+
+
+
+// NEW StyLES
+
+// BUTTONS
+.btn-primary {
+    color: $white;
+    background-image: none;
+    background-color: $primary;
+}
+
+.btn-primary:hover {
+    cursor: pointer;
+    background-color: #0263DF;
+    border-color: #0263DF;
+}
+
+.btn-outline-primary {
+    color: $primary;
+    background-image: none;
+    background-color: transparent;
+    border-color: $primary;
+}
+
+.btn-outline-primary:hover {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+    cursor: pointer;
+}
+
+.btn-outline-secondary {
+    color: $secondary;
+    background-image: none;
+    background-color: transparent;
+    border-color: $secondary;
+}
+
+.btn-outline-secondary:hover {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+h5{
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+p{
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+
+.bevolun-tooltip .bevolun-tooltiptext {
+    visibility: hidden;
+    width: 170px;
+    background-color: $primary;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: -78px;
+    margin-top: -5px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    }
+
+.bevolun-tooltip .bevolun-tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent $primary transparent;
+}
+
+.bevolun-tooltip:hover .bevolun-tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

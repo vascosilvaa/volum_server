@@ -1,6 +1,7 @@
+<!--
 <ng-template #rt let-r="result" let-t="term">
 
-    <div class="">
+    <div class="row">
         <div class="row hover-style pointer" (click)="navigate(r.id, r.type)" style="padding:5px 0px;">
             <div class="img-search">
                 <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
@@ -18,21 +19,14 @@
             </div>
         </div>
     </div>
+
 </ng-template>
-
-
-<div class="container no-padding">
-    <div class="col-12 header-home-search menuFull">
-        <div class="col-search">
-
-            <md-input-container class="col-12">
-                <input mdInput [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)"
-                    placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
-            </md-input-container>
-        </div>
-
-        <div class="col-search-btn btnSearch">
-            <button  md-raised-button class="btnConfirm btn-search" (click)="goToSearch()">PROCURAR</button>
-        </div>
+-->
+<div class="search-content">
+    <div class="search-input">
+        <input [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">  
+    </div>
+    <div class="search-button">
+        <button type="button" class="btn btn-outline-primary" (click)="goToSearch()">Procurar</button>
     </div>
 </div>

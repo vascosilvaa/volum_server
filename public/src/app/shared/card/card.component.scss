@@ -1,146 +1,91 @@
 @import '../../../variables';
 
-@media (min-width:320px) {
-    .likeImgs {
-        display: none
-    }
-    ;
-    .likesText {
-        display: none
-    }
-}
-
-@media (min-width:480px) {
-    .likeImgs {
-        display: block
-    }
-    ;
-    .likesText {
-        display: block
-    }
-}
-
-@media (min-width:600px) {}
-
-@media (min-width:801px) {}
-
-@media (min-width:1025px) {
-    /* big landscape tablets, laptops, and desktops */
-}
-
-@media (min-width:1281px) {
-    /* hi-res laptops and desktops */
-}
-span{
-    color: $text-color;
-}
-
-.card-volum {   
-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
--moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
--webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+.card-volum {
+    width: 100%;   
     background-color: $white;
-    padding-top: 15px;
     border-radius: 4px;
     margin-top: 30px;
-    min-width: 50%!important;
-    
+    box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);   
 }
 
-// HEADER
-.card-user-image img {
+.card-bevolun-header{
+    width: 100%;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    display: flex;
+}
+
+.card-bevolun-user-image{
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.card-bevolun-user-image img{
     width: 45px;
     height: 45px;
     border-radius: 45px;
     object-fit: cover;
     cursor: pointer;
+    border: 1px solid $grey1
 }
 
-.card-user-nd {
-    padding-left: 0;
-}
-
-.card-user-name {
-    color: $blue;
+.card-bevolun-user-name{
+    line-height: 45px;
+    margin-right: 5px;
+    color: $primary;
     font-weight: 600;
+    font-size: 0.9rem;
+    max-width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-
-
-.clickableName:hover {
-    text-decoration: underline;
+.card-bevolun-user-verified i{
+    line-height: 47px;
+    color: $primary;
+    vertical-align: middle;
+    font-size: 1rem;
 }
 
-.card-date {
-    color: $grey2;
-    margin-top: -4px;
-}
-.swiper-button-next{
-    background: none;
-    height: 100%;
-    top:0;
-    margin-top: initial;
-    margin-right: -10px;
-    
-
-}
-.swiper-button-prev{
-    top: 0;
-    background: none;
-    height: 100%;
-    margin-left: -10px;
-    margin-top: initial;
-}
-.swiper-button-prev:hover{
-   background: #fff;
-   opacity: 0.3;
-}
-.swiper-button-next:hover{
-   background: #fff;
-   opacity: 0.3;
-}
-
-.verified {
-    background-color: #fff;
-    color: #3C765A;
-    padding: 0;
-    margin-left: 5px;
-    font-size: 5px;
-}
-
-.btn-secondary {
-    border: 0!important;
-}
-
-.card-option {
-    padding-top: 10px;
-}
-
-.card-btn-option {
-    color: $grey1;
-    transition: all 0.3s ease;
-}
-
-.card-btn-option:hover {
-    color: $grey2;
-    cursor: pointer;
-}
-
-// HEADER
-// CONTENT
-.card-volum-content {
-    margin-top: 20px;
-    cursor:pointer;
-}
-
-.card-volum-title {
-    font-weight: 600;
+.card-bevolun-date{
+    flex: 2;
+    text-align: right;
+    line-height: 45px;
+    font-size: 0.8rem;
     color: $grey3;
-    width:100%;
 }
 
-.card-volum-description {
-    color: $text-color;
+.card-bevolun-image:hover{
+    background-color: $primary
+}
+
+.card-bevolun-image img{
+    height:240px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-bevolum-content{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+}
+
+.card-bevolum-title h5{
+    max-width: 538px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $grey5;
+}
+
+.card-bevolum-description p{
     margin-top: 5px;
     display: block;
     display: -webkit-box;
@@ -154,47 +99,37 @@ box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
     height: 45px;
 }
 
-// CONTENT
-// FOOTER
-.card-volum-footer {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+.card-bevolun-footer{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 12px;
     display: flex;
-    -webkit-flex-flow: row wrap;
-    padding: 15px;
+    align-items: center;
 }
 
-.btnLike {
+.card-bevolun-footer-likes{
+    flex: 2;
+}
+
+.cardLikes{
+    display: flex;
+    align-items: center;
+}
+
+.btn-like {
     color: $red;
     padding-top: 7px;
     cursor: pointer;
 }
 
-.likesNumber {
-    font-weight: 600;
-    padding-left: 5px;
-    margin-right: 15px;
-}
-
-.likeImgs {
-    margin-top: 2.5px;
-}
-
-.likeImgs img {
-    border: 1px solid #FFF;
-    width: 30px;
-    height: 30px;
-    margin-left: -10px;
-    border-radius: 30px;
+.btn-dislike {
+    color: $grey3!important;
 }
 
 .likesText {
-    padding-top: 1px;
-    max-width: 250px;
     margin-left: 5px;
-    color: $grey2;
+    color: $grey3;
+    font-size: 0.8rem;
 }
 
 .likesTestMe {
@@ -206,134 +141,10 @@ box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
     cursor:pointer;
 }
 
-.clickable:hover {
-    text-decoration: underline;
-}
+
 
 .likesTestSecond {
     color: $grey2;
     font-weight: 600;
 }
 
-.cardComments {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    flex: 2;
-    margin-left: 10px;
-}
-
-.cardComments md-icon {
-    padding-top: 7.5px;
-    padding-right: 10px;
-    font-size: 20px;
-}
-
-.textComments {
-    padding-top: 7.5px;
-    cursor: pointer;
-}
-
-.textComments:hover {
-    text-decoration: underline
-}
-
-.commentsNumber {
-    font-weight: 600;
-}
-
-.btnView button {
-    background-color: $blue;
-    color: #FFF;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0), 0 2px 2px 0 rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, .0);
-    min-width: 68px;
-}
-
-// FOOTER
-
-.imgSlider {
-    margin-top: 10px;
-}
-
-.imgSliderInd {
-    height:240px;
-    width: 100%;
-    object-fit: cover;
-    margin-top: 10px;
-}
-
-.ball1, .ball2, .ball3 {
-    margin-top: 4px;
-    margin-right: 3px;
-    width: 7px;
-	height: 7px;
-	background: $blue;
-    border: 1px solid $blue;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
-}
-
-
-.ball1Empty, .ball2Empty, .ball3Empty {
-    margin-top: 4px;
-    margin-right: 3px;
-    width: 7px;
-	height: 7px;
-	background: $grey1;
-    border: 1px solid $grey1;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
-}
-
-.balls{
-    margin-left: 270px;
-}
-
-.rightArrow{
-    height: 250px;
-    opacity:0;
-    z-index: 12;
-    background-color: $grey1;
-    width: 70px;
-    margin-top: -260px;
-    margin-left: 470px;
-    cursor: pointer;
-}
-.rightArrow:hover{
-    opacity:0.1;
-}
-
-.leftArrow{
-    height: 250px;
-    opacity:0;
-    z-index: 10;
-    width: 70px;
-    margin-top: -254px;
-    background-color: $grey1;
-    margin-left: 0;
-    cursor: pointer;
-}
-.leftArrow:hover{
-    opacity:0.1;
-}
-
-.iconRight {
-    margin-top: 120px;
-    margin-left: 30px;
-    color: #fff;
-}
-
-.cardLikesContent {
-    display: flex;
-    width: 600px;
-    align-items: center;
-}
-
-.btnBlack {
-    color: $grey3!important;
-}
