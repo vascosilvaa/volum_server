@@ -24,7 +24,7 @@
                     <img src="{{notification.photo_url}}">
                   </div>
                   <div class="notDesc">
-                    <span *ngIf="notification.type==1" class="not-name">{{notification?.user_name}}</span> candidatou-se à
+                    <span class="not-name">{{notification?.user_name}}</span> candidatou-se à
                     ação de voluntariado <span class="notEvent">"{{notification?.vol_name}}"</span>.
                     <div class="notTime">
                       {{notification?.date | amTimeAgo:true}}

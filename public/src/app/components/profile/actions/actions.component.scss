@@ -123,13 +123,30 @@
     width: 30px;
     height: 30px;
     border-radius: 45px;
-
+    object-fit: cover;
 }
+
+.user-rate{
+     padding-left: 0;
+     padding-top: 5px;
+     margin-left: -7px;
+ }
+
+ .user-rate md-icon{
+    color: $yellow;
+    font-size: 20px;
+ }
 
 .margin {
   margin-left: -9px;
 }
 
+
+.ellipsis {
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 .table td, .table th {
@@ -166,6 +183,9 @@ max-width: 200px;
 .table th {
   padding-left: 20px;
 }
+.table td {
+  padding-left: 20px;
+}
 
 .tableBtns {
   padding-right: 20px;
@@ -177,13 +197,27 @@ max-width: 200px;
 
 .titleNavLink {
   margin-top: 5px;
+  padding-right: 50px;
 }
 
-.noPadding {
+.rowMenu {
   padding-top: 15px;
-  padding-bottom: 15px;
+  display: flex;
 }
 
 .margin-left{
   margin-left: 6px;
+}
+
+.numberIn{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.blue {
+    color: $blue;
 }

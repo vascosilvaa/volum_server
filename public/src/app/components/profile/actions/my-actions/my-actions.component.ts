@@ -1,3 +1,4 @@
+import { timePipe } from './../../../../pipes/time.pipe';
 import { ProfileService } from './../../../../shared/services/profile.service';
 import { ModalEndComponent } from './../../../../shared/modal-end/modal-end.component';
 import { ModalProfileComponent } from './../../../../shared/modal-profile/modal-profile.component';
@@ -6,14 +7,14 @@ import { ModalViewAllComponent } from './../../../../shared/modal-view-all/modal
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MyActionsService } from './my-actions.service';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Pipe } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
 @Component({
   selector: 'app-my-actions',
   templateUrl: './my-actions.component.html',
   styleUrls: ['./my-actions.component.scss'],
-  providers: [MyActionsService]
+  providers: [MyActionsService],
 })
 export class MyActionsComponent implements OnInit {
   constructor(public modal: Modal, overlay: Overlay, public profileService: ProfileService, vcRef: ViewContainerRef, private route: ActivatedRoute, private myactionsservice: MyActionsService, private router: Router) {
@@ -120,12 +121,6 @@ export class MyActionsComponent implements OnInit {
     }
   }
 
-  getTime(start, end) {
-    this.hora_inicio = start.slice(0, 2);
-    this.minutos_inicio = start.slice(3, 5);
-    this.hora_fim = end.slice(0, 2);
-    this.minutos_fim = end.slice(3, 5);
-  }
 
   seeDetails(id_vol) {
     this.router.navigate(['/profile/' + this.idProfile + '/details/' + id_vol]);

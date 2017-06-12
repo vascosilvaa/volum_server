@@ -45,8 +45,7 @@
   </div>
 
 </div>
-<div class="row mt-5" *ngIf="institutions.length == 0">
-  <div class="col-12 text-center">
-    <b><h3>Não segue nenhuma instituição</h3></b>
-  </div>
+<div class="col-12 mt-5 text-center no-content" *ngIf="institutions.length == 0">
+    <div style="padding: 5px;"><i class="material-icons">alarm</i></div>
+    <span>Não segue nenhuma instituição.</span>
 </div>

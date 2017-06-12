@@ -64,6 +64,8 @@
   background: #fff;
   border: 0;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -85,6 +87,10 @@
   text-align: center;
   font-weight: $bold;
   margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
 }
 
 .friendsPlace {
@@ -116,18 +122,19 @@
 
 
 .btnConfirm {
-  margin-left: -30px;
+  margin-left: -10px;
   margin-top: 0;
 }
 
 .btnCancel {
-  margin-left: 20px;
+  margin-left: 5px;
   margin-top: 0;
 }
 
 
 .friendsBackground {
   height: 100px;
+  width: 100%;
   background-size:cover;
 }
 
@@ -146,8 +153,9 @@
 }
 
 .searchInput {
-  width:339px;
-  margin-top: -54px;
-  margin-left: 746px;
-  float:left;
+    position: absolute;
+    width: 339px;
+    float: left;
+    top: -55px;
+    left: 767px;
 }

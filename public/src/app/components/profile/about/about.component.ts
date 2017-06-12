@@ -1,5 +1,7 @@
+import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { ProfileService } from './../../../shared/services/profile.service';
 import { Component, OnInit } from '@angular/core';
+
 import * as moment from 'moment'
 
 @Component({
@@ -10,10 +12,18 @@ import * as moment from 'moment'
 export class AboutComponent implements OnInit {
 
   public user : any;
+  public id_user: any;
+  public userIn: any;
 
-  constructor(public profileService: ProfileService) { }
+  constructor(public profileService: ProfileService, public authService: AuthenticationService) { }
 
   ngOnInit() {
+
+   this.authService.userPromise.then(res => {
+          this.id_user = res.user.id_user;
+          console.log( this.id_user);
+    });
+
     
     this.profileService.activeProfileSource.subscribe((result) => {
       this.user = result;
@@ -28,9 +38,7 @@ export class AboutComponent implements OnInit {
     } else {
       this.user = this.profileService.activeUser;
     }
-
-    console.log("THIS.user", this.user)
-
+     
   }
 
   getAge(date) {

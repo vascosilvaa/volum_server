@@ -14,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
@@ -40,6 +40,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionComponent } from './components/action/action.component';
 import { ErrorComponent } from './components/error/error.component';
+
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import { ErrorComponent } from './components/error/error.component';
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
-  providers: [AuthenticationService, HttpClient, volsService, ProfileService],
+  providers: [AuthenticationService, HttpClient, volsService, ProfileService,  { provide: LOCALE_ID, useValue: "pt-PT" } ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
