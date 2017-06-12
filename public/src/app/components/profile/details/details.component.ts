@@ -176,7 +176,7 @@ export class DetailsComponent implements OnInit {
   getAddress() {
     this.sharedService.getAddress(this.vol.lat, this.vol.lng)
       .then(res => {
-        this.address = res.formatted_address;
+        this.address = res.results[0].formatted_address;
       })
 
   }
