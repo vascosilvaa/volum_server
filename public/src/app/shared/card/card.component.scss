@@ -1,4 +1,5 @@
-@import '../../../styles';
+@import '../../../variables';
+
 @media (min-width:320px) {
     .likeImgs {
         display: none
@@ -30,13 +31,20 @@
 @media (min-width:1281px) {
     /* hi-res laptops and desktops */
 }
+span{
+    color: $text-color;
+}
 
-.card-volum {
+.card-volum {   
+box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+-moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+-webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
     background-color: $white;
     padding-top: 15px;
     border-radius: 4px;
     margin-top: 30px;
     min-width: 50%!important;
+    
 }
 
 // HEADER
@@ -132,6 +140,7 @@
 }
 
 .card-volum-description {
+    color: $text-color;
     margin-top: 5px;
     display: block;
     display: -webkit-box;

@@ -34,10 +34,11 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild {
                 });
         */
         if (!this.authService.isAuthenticated()) {
-            this.router.navigate(['/']);
+            this.router.navigateByUrl('/feed');
+            console.log("a")
             return false;
         } else {
-            console.log("not authenticated")
+            console.log("authenticated")
         };
         return true;
     }

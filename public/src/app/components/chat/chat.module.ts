@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
 import { ChatNewComponent } from './chat-new/chat-new.component';
 
 
@@ -23,7 +22,6 @@ import { ChatNewComponent } from './chat-new/chat-new.component';
     ReactiveFormsModule,
     MaterialModule,
     NgbModule.forRoot(),
-    AccordionModule.forRoot(),
     MomentModule
   ],
   declarations: [ChatMessageComponent, ChatComponent, ChatNewComponent],

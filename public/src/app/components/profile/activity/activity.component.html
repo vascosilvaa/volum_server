@@ -1,6 +1,230 @@
-<div class="container">
-  <div class="col-12 mt-5 text-center no-content">
-    <div style="padding: 5px;"><i class="material-icons">alarm</i></div>
-    <span>Sem Atividade</span>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col">
+      <div class="card-volum-small">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              <b> Dados Pessoais </b>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="card-block small">
+          <div class="row">
+            <div class="titleProfile col-4">
+              <b>Nome:</b>
+            </div>
+            <div class="col-8 truncate">
+              {{user.name}}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="titleProfile col-4">
+              <b>Idade:</b>
+            </div>
+            <div class="col-8 truncate">
+              <span>20</span>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="titleProfile col-4">
+              <b> E-mail:</b>
+            </div>
+            <div class="col-8 truncate">
+              {{user.email}}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="titleProfile col-4">
+              <b> Género:</b>
+            </div>
+            <div class="col-8 truncate">
+              <span>Masculino</span>
+
+
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="titleProfile col-4">
+              <b> Morada: </b>
+            </div>
+            <div class="col-8 truncate">
+              Aveiro, Portugal
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="titleProfile col-4">
+              <b>  Telemóvel: </b>
+            </div>
+            <div class="col-8 truncate">
+              {{user.phone}}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="card-volum-small">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              <b> Patrocinado </b>
+            </div>
+          </div>
+        </div>
+        <div class="card-block">
+          <span><b>Porto Editora</b></span>
+
+          <img style="width: 100%; border: 1px solid #ccc" height="100px" class="mb-2 mt-2" src="http://www.empregoestagios.com/wp-content/uploads/2015/06/porto-editora.jpg">
+          <small><b>Código: H15 | 15% Desconto</b></small>
+          <small><a href="#">portoeditora.pt</a></small>
+          <span class="blockquote-footer"> Muito bom. Recomendo </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="text-center no-content" *ngIf="vols.length == 0 && ready">
+      Sem atividade
+    </div>
+    <div class="text-center no-content col-6" *ngIf="!ready">
+      <div class="sk-fading-circle">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-12 card-content" style="margin-top: -30px" *ngIf="ready">
+
+      <ng-container *ngFor="let vol of vols; let i = index;">
+        <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
+          [avatar]="user.photo" [photos]="vol.photos" [username]="user.name" [likeState]="vol.likeState" [dateCreation]="vol.date_creation"
+          [description]="vol.description" [index]="i">
+        </vol-card>
+
+      </ng-container>
+    </div>
+
+
+    <div class="col-xl-3 col-lg-3 col">
+      <div class="card-volum-small">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              <b>  Top Voluntários  </b>
+            </div>
+          </div>
+        </div>
+        <div class="card-block small">
+          <div class="row align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+            </div>
+            <div class="col-8 truncate">
+              <b>     André Martins </b>
+              <div class="user-rate" style="color: gold">
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+            </div>
+            <div class="col-8 truncate">
+              <b>  Pedro Araújo </b>
+              <div class="user-rate" style="color: gold">
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+            </div>
+            <div class="col-8 truncate">
+              <b>Vasco Silva</b>
+              <div class="user-rate" style="color: gold">
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+                <md-icon class="small-star">star_rate</md-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-volum-small">
+        <div class="card-header cardTitle">
+          <div class="row">
+            <div class="col titleCard">
+              <b>  Testemunhos  </b>
+            </div>
+          </div>
+        </div>
+        <div class="card-block small">
+          <div class="row align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+            </div>
+            <div class="col-8 truncate">
+              <b>     André Martins </b>
+              <span class="blockquote-footer  truncate"> Decerto vou repetir. 5 estrelas</span>
+            </div>
+          </div>
+          <div class="row mt-4 align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+            </div>
+            <div class="col-8 truncate">
+              <b>  Pedro Araújo </b>
+              <span class="blockquote-footer truncate "> Recomendo, muito bom ambiente</span>
+            </div>
+          </div>
+          <div class="row mt-4 align-items-center">
+            <div class="titleProfile col-3">
+              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+            </div>
+            <div class="col-8 truncate">
+              <b>Vasco Silva</b>
+              <span class="blockquote-footer truncate"> Espetacular. Melhor instituição da zona </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+
+
   </div>
+
 </div>

@@ -11,7 +11,6 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile.component';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { AccordionModule } from 'ng2-bootstrap/accordion';
     MaterialModule,
     NgbModule.forRoot(),
     FollowingRoutingModule,
-    AccordionModule.forRoot(),
   ],
   declarations: [PeopleComponent, InstitutionsComponent, FollowingComponent],
   entryComponents: [ModalProfileComponent],

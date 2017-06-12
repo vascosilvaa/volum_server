@@ -1,0 +1,40 @@
+@import '../../../../variables';
+
+//** CLASSES A SEREM TROCADAS PARA GLOBAIS
+
+.card-header{
+    background: #fff;
+        padding: .75rem 1.25rem;
+        border-bottom: 1px solid $grey1;
+}
+
+
+.small{
+    font-size: 90%;
+}
+.no-wrap{
+
+}
+.truncate{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.small-star{
+    font-size:16px; width: 12px; height: 12px;
+}
+
+.card-content {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 900px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+ ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}

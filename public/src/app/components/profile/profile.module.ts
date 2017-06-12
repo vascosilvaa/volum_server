@@ -26,7 +26,6 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
 import { InstitutionsComponent } from './following/institutions/institutions.component';
 import { PeopleComponent } from './following/people/people.component';
 import { NewActionComponent } from './new-action/new-action.component';
@@ -40,7 +39,6 @@ import { NewActionComponent } from './new-action/new-action.component';
     MaterialModule,
     NgbModule.forRoot(),
     ProfileRoutingModule,
-    AccordionModule.forRoot(),
     SharedModule,
     MomentModule,
     AgmCoreModule.forRoot({
