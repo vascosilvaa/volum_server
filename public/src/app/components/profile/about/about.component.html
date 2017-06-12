@@ -24,15 +24,17 @@
               <div class="col-7 textProfile">
                 {{user.name}}
               </div>
-            </div>
+            </div><!-- 
             <div class="row marginAbout">
-              <div class="titleProfile col-4">
-                Idade:
+             <div class="titleProfile col-4">
+                Data de Nascimento:
               </div>
               <div class="col-7 textProfile">
-                <span>{{getAge(user.birth_date)}}</span>
+                <span>{{user.birth_date | date}}</span>
               </div>
+              
             </div>
+            -->
             <div class="row marginAbout">
               <div class="titleProfile col-4">
                 E-mail:
@@ -50,6 +52,7 @@
                 <span *ngIf="user.gender == 1">Feminino</span>
 
               </div>
+              
             </div>
             <div class="row marginAbout">
               <div class="titleProfile col-4">
@@ -57,6 +60,7 @@
               </div>
               <div class="col-7 textProfile">
                 Aveiro, Portugal
+                <!--<span *ngIf="!user.gender || user.gender!=0 || user.gender!=0 || user.id_user!=id_user" class="linkInsert">Não definido</span>-->
               </div>
             </div>
             <div class="row marginAbout">
@@ -65,6 +69,8 @@
               </div>
               <div class="col-7 textProfile">
                 {{user.phone}}
+                <span *ngIf="!user.phone && user.id_user!=id_user" class="linkInsert">Não definido</span>
+                <span *ngIf="!user.phone && user.id_user==id_user" class="linkInsert">Inserir já</span>
               </div>
             </div>
 
@@ -126,17 +132,21 @@
           <div class="container">
             <div class="row">
               <div class=" col-12 text-center">
-                <button class="brn socialButtonFacebook" (click)="goTo('facebook', user.facebook_id)" [class.disabled]="!user.facebook_id">  Facebook </button>
+                <button *ngIf="user.facebook_id && user.facebook_id!=null" class="brn socialButtonFacebook" (click)="goTo('facebook', user.facebook_id)" >  Facebook </button>
+                <button disabled *ngIf="!user.facebook_id || user.facebook_id==null"  class="brn socialButtonFacebook" >Facebook </button>
+              
               </div>
             </div>
             <div class="row">
               <div class=" col-12 text-center">
-                <button class="btn socialButtonTwitter" [class.disabled]="!user.twitter_id" [attr.disabled]="!user.twitter_id">Twitter</button>
+                <button *ngIf="user.twitter_id && user.twitter_id!=null" class="brn socialButtonTwitter" >  Twitter </button>
+                <button disabled *ngIf="!user.twitter_id || user.twitter_id==null"  class="brn socialButtonTwitter" >Twitter </button> 
               </div>
             </div>
             <div class="row">
               <div class=" col-12 text-center">
-                <button class="btn socialButtonInstagram" [class.disabled]="!user.google_id" [attr.disabled]="!user.google_id">Google</button>
+                <button *ngIf="user.google_id && user.google_id!=null" class="brn socialButtonInstagram" >  Google </button>
+                <button disabled *ngIf="!user.google_id || user.google_id==null"  class="brn socialButtonInstagram" >Google </button> 
               </div>
             </div>
           </div>
@@ -166,7 +176,9 @@
                   Descrição:
                 </div>
                 <div class="textProfile">
-                  {{user.about}}
+                  <span *ngIf="user.about">{{user.about}}</span>
+                  <span *ngIf="!user.about">Sem descrição. <span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span><span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span></span>
+                  
                 </div>
               </div>
 
@@ -175,7 +187,9 @@
                   Hobbies e interesses:
                 </div>
                 <div class="textProfile">
-                  {{user.hobbies}}
+                  <span *ngIf="user.hobbies"> {{user.hobbies}}</span>
+                  <span *ngIf="!user.hobbies">Sem hobbies e interesses definidos. <span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span><span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span></span>
+                  
                 </div>
               </div>
 
@@ -196,7 +210,7 @@
                   Historial de voluntariado:
                 </div>
                 <div class="textProfile">
-                  <span *ngIf="!user.history">Sem historial de voluntariado. <span class="linkInsert">Inserir já</span></span>
+                  <span *ngIf="!user.history">Sem historial de voluntariado. <span class="linkInsert" *ngIf="user.id_user==id_user">Inserir já</span><span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span></span>
                   <span *ngIf="user.history">{{user.history}}</span>
                 </div>
               </div>
@@ -209,7 +223,9 @@
                   Idiomas:
                 </div>
                 <div class="textProfile">
-                  {{user.languages}}
+                  <span *ngIf="user.languages">{{user.languages}}</span>
+                  
+                  <span *ngIf="!user.languages">Sem idiomas definidos. <span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span><span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span></span>
                 </div>
               </div>
 
@@ -218,8 +234,8 @@
                   Outros interesses:
                 </div>
                 <div class="textProfile">
-                  {{user.other}}
-
+                  <span *ngIf="user.other">{{user.other}}</span>
+                  <span *ngIf="!user.other ">Sem outros interesses definidos.<span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span><span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span></span>
                 </div>
               </div>
 

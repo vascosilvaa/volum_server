@@ -1,3 +1,4 @@
+import { timePipe } from './../pipes/time.pipe';
 import { ProfileService } from './services/profile.service';
 import { FeedComponent } from './../components/feed/feed.component';
 import { SharedService } from './services/shared.service';
@@ -33,6 +34,7 @@ import { JsonpModule } from '@angular/http';
     ModalEndComponent,
     ModalProfileComponent,
     timeAgoPipe,
+    timePipe,
     ModalInviteComponent,
     EditModalComponent
   ],
@@ -52,7 +54,7 @@ import { JsonpModule } from '@angular/http';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  exports: [CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
+  exports: [timePipe, CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService, FeedComponent, ProfileService
   ],

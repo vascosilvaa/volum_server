@@ -31,17 +31,11 @@ export class MapComponent implements OnInit {
       lat: this.lat,
       lng: this.lng
     }
-
-
-
-
-
   }
   ngOnInit() {
     this.getLocation();
 
   }
-
 
   search() {
     this.volsService.bounds(this.lats.swlat, this.lats.swlng, this.lats.nwlat, this.lats.nwlng)

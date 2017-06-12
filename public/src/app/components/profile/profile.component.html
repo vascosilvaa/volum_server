@@ -8,7 +8,6 @@
                 <div class="col user-rate" *ngIf="scoreReady">
                     <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
                     <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
-                    {{user.score_number}}
                 </div>
 
             </div>
@@ -16,10 +15,15 @@
                 <div class="user-name">
                     {{user?.name}}
                     <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
-                    <md-icon style="margin-left: 20px" class="clickable" (click)="engageConversation()" *ngIf="id_user != id_logged_user">message</md-icon>
+                <!--    <md-icon style="margin-left: 20px" class="clickable"  *ngIf="id_user != id_logged_user">message</md-icon> -->
                 </div>
+                <!--
                 <div class="user-location" *ngIf="user.lat && user.lng">
                     {{user?.location}}
+                </div>
+                -->
+                <div class="user-location">
+                    Aveiro, Portugal
                 </div>
             </div>
         </div>
@@ -31,6 +35,7 @@
                     <li><a routerLink="/profile/{{id_user}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
                     <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
                     <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
+                    <li *ngIf="id_user!=id_logged_user" class="pointer"><a (click)="engageConversation()">Mensagem</a></li>
                 </ul>
                 <a class="btn-menu" md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader">
                     <md-icon class="btn-new-action-icon">menu</md-icon>
