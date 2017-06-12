@@ -4,16 +4,17 @@
     <div class="col-12 col-lg-4">
       <div class="card primaryCard">
         <div class="card-header cardTitle">
-
+        <div class="container">
           <div class="row">
             <div class="col titleCard">
+
               Dados Pessoais
             </div>
             <div class="col text-right iconCard">
               <i class="material-icons edit">more_horiz</i>
             </div>
           </div>
-
+          </div>
         </div>
         <div class="card-block">
 
@@ -73,8 +74,8 @@
                 <span *ngIf="!user.phone && user.id_user!=id_user" class="linkInsert">Não definido</span>
                 <span *ngIf="!user.phone && user.id_user==id_user" class="linkInsert">Inserir já</span>
               </div>
-
-
+            </div>
+          </div>
         </div>
       </div>
       <div class="card primaryCard">

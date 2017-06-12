@@ -108,7 +108,7 @@
       </div>
     </div>
 
-    <div class="col-xl-6 col-lg-6 col-12 card-content" style="margin-top: -30px" *ngIf="ready">
+    <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready">
 
       <ng-container *ngFor="let vol of vols; let i = index;">
         <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
