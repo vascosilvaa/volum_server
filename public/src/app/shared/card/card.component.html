@@ -2,7 +2,7 @@
 
     <div class="card-bevolun-header">
         <div class="card-bevolun-user-image">
-            <img src="{{avatar}}" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
+            <img (click)="onSelect(userCreator)" class="clickable" src="{{avatar}}" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
         </div>
         <div class="card-bevolun-user-name">
             <a *ngIf="login" class="clickable" (click)="onSelect(userCreator)">{{username}}</a>
@@ -44,9 +44,9 @@
                 <div *ngIf="login &&  type=='private'" class="likesText">
                     <span *ngIf="likeState==1" class="likesTestMe">Tu</span>
                     <span *ngIf="likeState==1 && likes<2">gostas disto.</span>
-                    <span *ngIf="likeState==1 && likes>=2">e mais</span>
-                    <span *ngIf="likeState==1 && likes>=2">{{likes-1}} pessoa<span *ngIf="likes>2">s</span> gostam disto.</span>
-                    <span *ngIf="likeState==0 && likes>=1">{{likes}} pessoa<span *ngIf="likes>=2">s</span> gosta
+                    <span *ngIf="likeState==1 && likes>=2" class="pointer" (click)="openLikesModal(8, idVol)">e mais</span>
+                    <span *ngIf="likeState==1 && likes>=2" class="pointer" (click)="openLikesModal(8, idVol)">{{likes-1}} pessoa<span *ngIf="likes>2">s</span> gostam disto.</span>
+                    <span *ngIf="likeState==0 && likes>=1" class="pointer" (click)="openLikesModal(8, idVol)">{{likes}} pessoa<span *ngIf="likes>=2">s</span> gosta
                     <span *ngIf="likes>=2">m
                             </span> disto.
                     </span>
