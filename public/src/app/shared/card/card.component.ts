@@ -8,6 +8,7 @@ import { Component, ViewContainerRef, OnInit, Input, ViewChild } from '@angular/
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { RouterModule, Router } from '@angular/router';
+import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
 
 import * as moment from 'moment-timezone';
 import 'moment-timezone'
@@ -74,7 +75,10 @@ export class CardComponent implements OnInit {
   }
 
 
-
+ openLikesModal(type, id_vol) {
+    console.log(id_vol);
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
+  }
 
   openRegister() {
     return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));

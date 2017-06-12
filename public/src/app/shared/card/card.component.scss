@@ -4,7 +4,7 @@
     width: 100%;   
     background-color: $white;
     border-radius: 4px;
-    margin-top: 30px;
+    margin-bottom: 30px;
     box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
     -moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
     -webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);   
@@ -58,7 +58,7 @@
     text-align: right;
     line-height: 45px;
     font-size: 0.8rem;
-    color: $grey3;
+    color: $grey5;
 }
 
 .card-bevolun-image:hover{
@@ -124,12 +124,12 @@
 }
 
 .btn-dislike {
-    color: $grey3!important;
+    color: $grey5!important;
 }
 
 .likesText {
     margin-left: 5px;
-    color: $grey3;
+    color: $grey5;
     font-size: 0.8rem;
 }
 

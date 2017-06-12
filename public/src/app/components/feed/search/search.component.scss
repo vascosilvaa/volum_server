@@ -9,7 +9,7 @@
 }
 
 .mat-input-wrapper {
-    color: $grey3!important;
+    color: $grey5!important;
 }
 
 .col-search {
@@ -92,19 +92,19 @@
 
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    $grey3;
+    color:    $grey5;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:     $grey3;
+   color:     $grey5;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    $grey3;
+   color:    $grey5;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:     $grey3;
+   color:     $grey5;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:     $grey3;
+   color:     $grey5;
 }
