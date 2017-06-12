@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <tr class="tableText" *ngFor="let vol of myVols; let i=index">
-            <th class="tableBold tableTitle">{{vol.name}}</th>
+            <td class="tableBold tableTitle">{{vol.name}}</td>
 
             <td class="tablePlace">
               <div class="">{{vol?.address}}</div>
@@ -22,7 +22,7 @@
 
             <td class="tableDate">
               <div class="tableBold"> {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</div>
-              <div class="">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{hora_inicio}}:{{minutos_inicio}} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} às  {{hora_fim}}:{{minutos_fim}}</div>
+              <div class="" *ngIf="vol.start_time">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{vol?.start_time | timePipe }} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.end_time | timePipe}}</span></div>
            </td>
 
 

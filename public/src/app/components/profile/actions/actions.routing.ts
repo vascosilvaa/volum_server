@@ -1,3 +1,4 @@
+import { FinishedComponent } from './finished/finished.component';
 import { WaitingComponent } from './waiting/waiting.component';
 import { InvitesComponent } from './invites/invites.component';
 import { MyActionsComponent } from './my-actions/my-actions.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
           {
             path: 'waiting',
             component: WaitingComponent
+          },
+          {
+            path: 'finished',
+            component: FinishedComponent
           },
         ]
     },

@@ -6,6 +6,9 @@
 search .dropdown-menu {
     width: 100% !important;
 }
+img{
+    object-fit: cover;
+}
 
 .modal-dialog {
  top: 10%;
@@ -219,7 +222,15 @@ body {
     -o-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+.card-volum-small {   
+box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+-moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+-webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    background-color: $white;
 
+    border-radius: 4px;
+    margin-bottom: 30px;    
+}
 .modal-backdrop.in {
     opacity: 0.5;
 }

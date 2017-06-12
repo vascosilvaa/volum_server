@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { AppComponent } from './../../app.component';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { User } from './user.interface';
 import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
@@ -45,7 +44,7 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    onSubmit({ value, valid }: { value: User, valid: boolean }) {
+    onSubmit({ value, valid }: { value: any, valid: boolean }) {
 
 
         console.log("value", value);
@@ -68,7 +67,7 @@ export class RegisterComponent implements OnInit {
                     console.log("result", res);
 
                     this.router.navigate(['/profile/', res.id_user], )
-    
+
 
                 })
 

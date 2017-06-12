@@ -1,7 +1,6 @@
 import { SocketService } from './../../shared/socket.service';
 import { AppComponent } from './../../app.component';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { User } from './user.interface';
 import { Component, OnInit } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
         window.location.href = 'http://bevolun.com/api/auth/facebook';
     }
 
-    onSubmit({ value, valid }: { value: User, valid: boolean }) {
+    onSubmit({ value, valid }: { value: any, valid: boolean }) {
         console.log(value, valid);
 
         this.auth.login(value)

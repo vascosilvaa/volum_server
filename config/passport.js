@@ -45,7 +45,7 @@ module.exports = function (passport) {
     passport.use(new FacebookStrategy({
         clientID: '1657614757878644',
         clientSecret: '36b1c065c723b228239c4504dc7a6396',
-        callbackURL: 'http://localhost:8080/api/auth/facebook/callback',
+        callbackURL: 'http://bevolun.com/api/auth/facebook/callback',
         profileFields: ['id', 'displayName', 'photos', 'email', 'birthday']
     },
         function (accessToken, refreshToken, profile, done) {
@@ -70,7 +70,7 @@ module.exports = function (passport) {
                             let newUser = {
                                 facebook_link: profile._json.id,
                                 email: profile._json.email,
-                                type_user: 1,
+                                type_user: 2,
                                 name: profile._json.name,
                                 gender: 0,
                                 photo_url: data.data.url,

@@ -95,7 +95,6 @@
 .textProfile {
   font-size: 14px;
   color: $grey2;
-  padding-top: 3px;
 }
 
 .socialProfile {
@@ -121,6 +120,5 @@
 
 
 .linkInsert:hover{
-  cursor:pointer;
-  font-weight: $bold;
+ color: $blue;
 }

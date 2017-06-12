@@ -102,11 +102,11 @@
                                 {{volDetails?.date_begin | date:"d"}} de {{volDetails?.date_begin | date:"MMMM"}} - {{volDetails?.date_end | date:"d"}} de
                                 {{volDetails?.date_end | date:"MMMM"}}
                             </div>
-                            <div class="daysEventFull ts13" *ngIf="volDetails?.duration > 1">
-                                {{volDetails?.duration}} horas diárias
+                            <div class="daysEventFull ts13" *ngIf="volDetails?.duration">
+                                {{volDetails?.duration}} hora<span *ngIf="volDetails?.duration>1">s</span> diárias
                             </div>
-                            <div class="daysEventFull ts13" *ngIf="volDetails?.duration < 2">
-                                {{volDetails?.duration}} hora diária
+                            <div class="daysEventFull ts13" *ngIf="!volDetails?.duration">
+                                Sem duração definida
                             </div>
                         </div>
                     </div>
