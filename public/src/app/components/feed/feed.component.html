@@ -31,7 +31,7 @@
       <div class="titleFeed">Instituições</div>
     </div>
   </div>
-  <div class="slider">
+  <div class="slider" style="margin-top:30px;">
     <swiper [config]="config" #swiper1>
       <div class="swiper-wrapper">
         <vol-card *ngFor="let vol of instVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [idVol]="vol.vol.id_vol" [likes]="vol.vol.likes"
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div class="slider">
+  <div class="slider" style="margin-top:30px;">
     <swiper [config]="config" #swiper2>
       <div class="swiper-wrapper">
         <vol-card *ngFor="let vol of privateVols" [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes"
@@ -164,7 +164,7 @@
 
 <!-- LOGADO -->
 
-<div *ngIf="login" class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+<div style="margin-top:30px;" *ngIf="login" class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
 
   <div class="row">
 
