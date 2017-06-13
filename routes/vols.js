@@ -123,35 +123,52 @@ var returnRouter = function (io) {
                 succes: false,
                 message:
                 "Falta Enviar o Amount e startAt"
-            }
-            )
+            })
         } else {
 
             let vols = [];
             let options = {
-                sql: 'SELECT vols.id_vol, vols_has_categories.id_category AS id_category,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND vols.active = 1 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC LIMIT ?, ?',
+                sql: `SELECT vols.id_vol, vols_has_categories.id_category AS id_category, GROUP_CONCAT(photos.url SEPARATOR "->") As photos, 
+                      vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.insurance, vols.description, vols.date_creation, vols.deleted,
+                      vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url 
+                      FROM vols 
+                      INNER JOIN users ON vols.id_user_creator = users.id_user 
+                      INNER JOIN photos ON vols.id_vol = photos.id_vol
+                      INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
+                      WHERE photos.id_vol = vols.id_vol
+                      AND vols.deleted = 0 AND vols.active = 1
+                      `,
                 nestTables: true
             };
-            if (req.query['type'] == 'inst') {
-                options = {
-                    sql: 'SELECT vols.id_vol, vols_has_categories.id_category AS id_category, GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
-                    nestTables: true
-                };
-            } else if (req.query['type'] == 'private') {
 
-                options = {
-                    sql: 'SELECT vols.id_vol, vols_has_categories.id_category AS id_category, GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
-                    nestTables: true
-                };
+            if (req.query['type'] == 'inst') {
+                options.sql += `AND vols.id_vol_type = 2`
             }
+            if (req.query['type'] == 'private') {
+                options.sql += `AND vols.id_vol_type = 1`
+            }
+            if (req.query.category) {
+                options.sql += ` AND vols_has_categories.id_category = ${req.query.category}`
+            }
+            if (req.query.insurance) {
+                options.sql += ' AND vols.insurance = ' + req.query.insurance;
+            }
+            if (req.query.startDate) {
+                options.sql += ' AND vols.date_begin > ' + req.query.startDate;
+            }
+            if (req.query.startDate && req.query.endDate) {
+                options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}`;
+            }
+
+            options.sql += ` GROUP BY vols.id_vol 
+                            ORDER BY vols.date_creation DESC
+                            LIMIT ? , ? `;
+
+            console.log(options.sql);
 
             db.get().query(options, [parseInt(req.query.startAt), parseInt(req.query.amount)],
                 function (error, results, fields) {
                     if (error) {
-                        console.log(results);
                         res.send({
                             success: false,
                             message: error
@@ -161,7 +178,6 @@ var returnRouter = function (io) {
                         if (results.length == 0) { } else {
 
                             for (let i = 0; i < results.length; i++) {
-                                console.log("RESULTS", results);
 
                                 vols.push({
                                     vol: {
@@ -171,6 +187,7 @@ var returnRouter = function (io) {
                                         date_begin: results[i].vols.date_begin,
                                         date_creation: results[i].vols.date_creation,
                                         duration: results[i].vols.duration,
+                                        insurance: results[i].vols.insurance,      //--> Para tirar fora  
                                         lat: results[i].vols.lat,
                                         lng: results[i].vols.lng,
                                         id_category: results[i].vols_has_categories.id_category,
