@@ -93,9 +93,6 @@
     padding-left: 0;
 }
 
-.btnLike {
-    padding-top:6px!important;
-}
 
 .btnSendIcon {
     padding-top: 10px;
@@ -414,4 +411,21 @@
 }
 .btnCancel {
     cursor: pointer;
+}
+
+.title-vol {
+    color: $grey5;
+    font-weight: $bold;
+}
+
+.desc-vol {
+    color: $grey4;
+}
+
+.btnBlack {
+    color: $grey4!important;
+}
+
+.btnLike {
+    color: $red;
 }

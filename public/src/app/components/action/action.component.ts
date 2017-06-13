@@ -132,17 +132,17 @@ lat: number;
   }
 
   openLikesModal(type, id_vol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
   }
 
   openCandidates(type, id_vol) {
     if ((type == 1 && this.numberCandidates > 0) || (type == 2 && this.numberConfirmeds > 0)) {
-      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
     }
   }
 
-  openRemoveConfirm(type, name, id_user, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol, nameVol: name, id_user: id_user }, BSModalContext))
+  openRemoveConfirm(type, name, id_user, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol, nameVol: name, id_user: id_user }, BSModalContext))
       .then((d) => d.result)
       .then((r) => {
         console.log(r.result);
