@@ -88,8 +88,11 @@
 
     </div>
 
-    <div class="text-center no-content" *ngIf="vols.length == 0 && ready">
-      Sem atividade
+    <div class="text-center no-content mt-4 col-6" *ngIf="vols.length == 0 && ready">
+
+      <div style="padding: 5px;"><i class="material-icons">access_time</i></div>
+      <span>Sem Atividade</span>
+
     </div>
     <div class="text-center no-content col-6" *ngIf="!ready">
       <div class="sk-fading-circle">
@@ -108,7 +111,7 @@
       </div>
     </div>
 
-    <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready">
+    <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready  && vols.length > 0">
 
       <ng-container *ngFor="let vol of vols; let i = index;">
         <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
