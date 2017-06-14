@@ -295,7 +295,7 @@
                     </div>
                 </div>
                 <div class="comments-section">
-                    <div class="card-Comments" *ngIf="numberComments>0">
+                    <div class="card-Comments" #scrollMe *ngIf="numberComments>0">
                         <div class="col-12" *ngFor="let comment of comments">
                             <div class="row comments-header">
                                 <div class="col card-user--comments-image col-md-auto">
@@ -349,7 +349,7 @@
                         </md-input-container>
                     </div>
                     <div class="text-center" style="padding-left:15px;">
-                        <md-icon class="btnSendIcon btnSendColorGrey" click="sendComment(comentario)">send</md-icon>
+                        <md-icon class="btnSendIcon btnSendColorGrey" (click)="sendComment(comentario)">send</md-icon>
                     </div>
                 </div>
             </div>

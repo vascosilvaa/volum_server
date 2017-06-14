@@ -162,3 +162,63 @@
 .modal-end-footer {
     margin-top:30px;
 }
+
+.card-bevolun-user-image{
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.card-bevolun-user-image img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid $grey1
+}
+
+.card-bevolun-user-name{
+    line-height: 45px;
+    margin-right: 5px;
+    color: $primary;
+    font-weight: 600;
+    font-size: 0.9rem;
+    max-width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-bevolun-user-verified i{
+    line-height: 47px;
+    color: $primary;
+    vertical-align: middle;
+    font-size: 1rem;
+}
+
+.card-bevolun {
+    margin-top:20px;
+    width: 100%;   
+    background-color: $white;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);   
+}
+
+.card-bevolun-header{
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    display: flex;
+}
+
+.text-inst {
+    font-size: 14px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    color: $grey4;
+}

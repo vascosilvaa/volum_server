@@ -1,4 +1,5 @@
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
+import { ModalEndComponent } from './shared/modal-end/modal-end.component';
 import { ProfileService } from './shared/services/profile.service';
 import { ChatService } from './shared/services/chat.service';
 import { AppService } from './app.service';
@@ -193,11 +194,15 @@ export class AppComponent implements OnInit {
   }
 
   openRegister() {
-
     return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
-  openVolDetails(idVol) {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: null }, BSModalContext));
+
+  openVolDetails(type, id_vol) {
+    if(type==6) {
+      return this.modal.open(ModalEndComponent, overlayConfigFactory({ id_vol: id_vol, type: 3 }, BSModalContext));
+    } else {
+      return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: id_vol, indexVol: null }, BSModalContext));
+    }
   }
   logout() {
     this.auth.logout();
