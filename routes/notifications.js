@@ -13,39 +13,55 @@ var app = module.exports = express.Router();
  * @apiGroup Notifications
  */
 var returnRouter = function (io) {
-
-
     app.get('/', passport.authenticate('jwt'), function (req, res) {
+        if (!req.query.amount && !req.query.startAt) {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            })
+        } else {
 
+            db.get().query({
+                sql: `
+            SELECT * FROM notifications 
+            INNER JOIN users ON notifications.id_user2 = users.id_user 
+            INNER JOIN vols ON notifications.id_vol = vols.id_vol
+            WHERE notifications.id_user = ? 
+            AND notifications.type <> 2 
+            ORDER BY date DESC
+            LIMIT ?, ?`
+                , nestTables: true
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+                console.log(error);
 
-        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user INNER JOIN vols ON notifications.id_vol = vols.id_vol WHERE notifications.id_user = ? AND notifications.type <> 2 ORDER BY date DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
-            console.log(error);
+                let notifications = [];
+                if (results) {
 
-            let notifications = [];
-            if (results) {
+                    for (let i = 0; i < results.length; i++) {
 
+                        notifications.push({
+                            id_vol: results[i].vols.id_vol,
+                            type: results[i].notifications.type,
+                            vol_name: results[i].vols.name,
+                            user_name: results[i].users.name,
+                            photo_url: results[i].users.photo_url,
+                            id_user: results[i].users.id_user2,
+                            date: results[i].notifications.date,
+                            id_vol: results[i].vols.id_vol
+                        })
 
-                for (let i = 0; i < results.length; i++) {
+                    }
 
-                    notifications.push({
-                        id_vol: results[i].vols.id_vol,
-                        type: results[i].notifications.type,
-                        vol_name: results[i].vols.name,
-                        user_name: results[i].users.name,
-                        photo_url: results[i].users.photo_url,
-                        id_user: results[i].users.id_user2,
-                        date: results[i].notifications.date,
-                        id_vol: results[i].vols.id_vol
+                    res.json({
+                        success: true,
+                        notifications
                     })
-
                 }
+            });
 
-                res.json({
-                    success: true,
-                    notifications
-                })
-            }
-        });
+        }
+
     });
 
     /**
@@ -57,28 +73,50 @@ var returnRouter = function (io) {
 
 
     app.get('/requests', passport.authenticate('jwt'), function (req, res) {
-        db.get().query({ sql: 'SELECT * FROM notifications INNER JOIN users ON notifications.id_user2 = users.id_user WHERE notifications.id_user = ? AND notifications.type = 2  ORDER BY notifications.id_notification DESC LIMIT 6', nestTables: true }, [req.user.id_user], function (error, results, fields) {
-            if (results) {
-                let notifications = [];
-                for (let i = 0; i < results.length; i++) {
+        if (req.query.amount && req.query.startAt) {
+            db.get().query({
+                sql: `
+        SELECT * FROM notifications
+        INNER JOIN users ON notifications.id_user2 = users.id_user
+        WHERE notifications.id_user = ? 
+        AND notifications.type = 2  
+        ORDER BY notifications.id_notification DESC 
+        LIMIT ?,?`,
+                nestTables: true
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+                if (results) {
+                    let notifications = [];
+                    for (let i = 0; i < results.length; i++) {
 
-                    notifications.push({
-                        type: results[i].notifications.type,
-                        user_name: results[i].users.name,
-                        photo_url: results[i].users.photo_url,
-                        id_user: results[i].users.id_user,
-                        date: results[i].notifications.date
+                        notifications.push({
+                            type: results[i].notifications.type,
+                            user_name: results[i].users.name,
+                            photo_url: results[i].users.photo_url,
+                            id_user: results[i].users.id_user,
+                            date: results[i].notifications.date
+                        })
+
+                    }
+
+                    res.json({
+                        success: true,
+                        notifications
                     })
 
                 }
+            });
 
-                res.json({
-                    success: true,
-                    notifications
-                })
+        } else {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            })
+        }
 
-            }
-        });
+
+
+
     });
 
     /**

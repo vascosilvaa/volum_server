@@ -25,6 +25,7 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class ProfileService {
 
+    public COUNTRY_API_KEY = '1727cb239d0a8f0d3d8ea64518801e45';
     public activeProfileSource = new Subject<Object>();
     public activeUser;
     public userPromise;
@@ -71,7 +72,7 @@ export class ProfileService {
     }
 
     getCountries() {
-        return this.jsonp.get('http://battuta.medunes.net/api/country/all/?key=1727cb239d0a8f0d3d8ea64518801e45&callback=?"').toPromise()
+        return this.jsonp.get(`http://battuta.medunes.net/api/city/jp/search/?city=paris&callback=getCategories()&key=${this.COUNTRY_API_KEY}`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

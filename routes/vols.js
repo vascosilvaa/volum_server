@@ -136,7 +136,7 @@ var returnRouter = function (io) {
                       INNER JOIN photos ON vols.id_vol = photos.id_vol
                       INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
                       WHERE photos.id_vol = vols.id_vol
-                      AND vols.deleted = 0 AND vols.active = 1
+                      AND vols.deleted = 0 AND vols.active = 1 
                       `,
                 nestTables: true
             };
@@ -799,19 +799,24 @@ var returnRouter = function (io) {
 
     app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
 
-        db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function (error, comments, fields) {
-            if (error) {
-                res.json({
-                    success: false
-                });
-                throw error;
-            } else {
-                res.json({
-                    success: true,
-                    comments
-                });
-            }
-        });
+        db.get().query(`
+                        SELECT comments.id_comment, comments.message, comments.date, users.photo_url, users.name, users.id_user FROM comments 
+                        INNER JOIN users ON comments.id_user = users.id_user 
+                        WHERE id_vol = ?`,
+
+            [req.params.id], function (error, comments, fields) {
+                if (error) {
+                    res.json({
+                        success: false
+                    });
+                    throw error;
+                } else {
+                    res.json({
+                        success: true,
+                        comments
+                    });
+                }
+            });
     });
 
     app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {

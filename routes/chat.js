@@ -129,6 +129,7 @@ var returnRouter = function (io) {
      * @apiGroup Chat
      */
 
+
     app.post('/:id/message', passport.authenticate('jwt'), function (req, res) {
         console.log("wgwag", req)
         console.log(req.params.id);
@@ -178,10 +179,29 @@ var returnRouter = function (io) {
                 });
 
             }
-            
+
 
         });
 
+    });
+
+
+    app.get('/:id/messages/last', function (req, res) {
+
+
+        db.get().query('SELECT * FROM chat WHERE id_conversation = ?  ORDER BY id_message DESC LIMIT 1', [req.params.id], function (error, messages, fields) {
+            if (error) {
+                console.log(error);
+                if (error) throw error;
+
+            } else {
+                res.json({
+                    success: true,
+                    messages
+                });
+
+            }
+        });
 
     });
 

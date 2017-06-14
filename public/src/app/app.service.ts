@@ -17,13 +17,13 @@ export class AppService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
-    getNotifications(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/`).toPromise()
+    getNotifications(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications`, { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
     getRequests(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`, { startAt: 1, amount: 5 }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
@@ -37,5 +37,5 @@ export class AppService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
- 
+
 }
