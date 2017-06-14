@@ -206,7 +206,7 @@
     </ng-container>
 </div>
 <div class="row card-Comments" *ngIf="showComments && login">
-    <div class="scrollArea col-12 no-padding">
+    <div class="scrollArea col-12 no-padding" #scrollMe>
         <div class="col-12 comments-back" *ngFor="let comment of comments">
             <div class="row comments-header">
                 <div class="col card-user--comments-image col-md-auto">

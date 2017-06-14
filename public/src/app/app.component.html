@@ -142,33 +142,34 @@
 
                         </div>
 
-                        <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.id_vol)">
-                            <div class="image">
-                                <img [src]="notification.photo_url">
-                            </div>
-                            <div class="notification-info">
-                                <div>
-                                    <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica aqui para deixares o teu testemunho.
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                        <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.type, notification.id_vol)">
+                            
+                                <div class="image">
+                                    <img [src]="notification.photo_url">
                                 </div>
-                                <div>
-                                </div>
-                            </div>
+                                <div class="notification-info">
+                                    <div>
+                                        <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                        <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                        <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                        <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                        <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                        <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica aqui para deixares o teu testemunho.
+                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    </div>
+                       
+                            
                         </div>
+                    </div>
 
                         <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
-                    </div>
+                </div>
 
                 </li>
                 <li (click)="openRegister()" *ngIf="!user"> Registar</li>

@@ -42,23 +42,20 @@
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
-                MAR
-                <!--{{volDetails?.date_begin | date:"MMM" | uppercase}}-->
+                {{volDetails?.date_begin | date:"MMM" | uppercase}}
             </div>
             <div>
-                23
-                <!--{{volDetails?.date_begin | date:"d"}}-->
+                
+                {{volDetails?.date_begin | date:"d"}}
             </div>
         </div>
 
         <div class="modalTitle">
             <div class="modalTitleDesc">
-                Ajudar os pobres
-                <!--{{volDetails?.name}}-->
+                {{volDetails?.name}}
             </div>
             <div class="modalSubtitle">
-                sabado, 29 de Abril de 2019
-                <!--{{volDetails?.date_begin | date:"fullDate"}}-->
+                {{volDetails?.date_begin | date:"fullDate"}}
             </div>
         </div>
     </div>
@@ -96,22 +93,6 @@
                                 <div class="user-rate">
                                     <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= user.classification" [class.grey]="!user.classification || star >= user.classification"
                                         (click)="ev(i, star)">star_rate</md-icon>
-
-                                    <!--
-                                    <md-icon (click)="ev(i,1)" class="yellow" *ngIf="person?.eval!='NULL'">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,1)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<1">star_rate</md-icon>
-
-                                    <md-icon (click)="ev(i,2)" class="yellow" *ngIf="person?.eval>=2">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,2)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<2">star_rate</md-icon>
-
-                                    <md-icon (click)="ev(i,3)" class="yellow" *ngIf="person?.eval>=3">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,3)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<3">star_rate</md-icon>
-
-                                    <md-icon (click)="ev(i,4)" class="yellow" *ngIf="person?.eval>=4">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,4)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<4">star_rate</md-icon>
-
-                                    <md-icon (click)="ev(i,5)" class="yellow" *ngIf="person?.eval>=5">star_rate</md-icon>
-                                    <md-icon (click)="ev(i,5)" class="grey" *ngIf="person?.eval=='NULL' || person?.eval<5">star_rate</md-icon> -->
                                 </div>
                             </div>
                         </div>
@@ -120,6 +101,81 @@
             </div>
 
         </div>
+        <div class="col-12 modal-end-footer text-right">
+            <button class="btn btnCancel">CANCELAR</button>
+            <button class="btn btnConfirm" (click)="submit()">FINALIZAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- CLASSIFICAR AÇÃO -->
+<div *ngIf="context.type==3">
+    <div class="modalHeader row">
+        <div class="day-w-border">
+            <div>
+                {{vol?.date_begin | date:"MMM" | uppercase}}
+            </div>
+            <div>
+                {{vol?.date_begin | date:"d"}}
+            </div>
+        </div>
+
+        <div class="modalTitle">
+            <div class="modalTitleDesc">
+                {{vol?.name}}
+            </div>
+            <div class="modalSubtitle">
+                {{vol?.date_begin | date:"fullDate"}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-end-content row">
+        <div class="modal-content-title col-12">
+            Parabéns! Terminaste a ação de voluntariado "{{vol?.name}}".
+        </div>
+        <div class="modal-content-desc col-12">
+           {{vol?.user.name}} deu como terminada a ação de voluntariado "{{vol?.name}}" e deixou como sumário da ação a seguinte descrição:
+        </div>
+        <div class="col-12">
+            <div class="card-bevolun">
+                <div class="card-bevolun-header">
+                    <div class="card-bevolun-user-image">
+                        <img class="clickable" [src]="vol?.user.photo_url" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
+                    </div>
+                    <div class="card-bevolun-user-name">
+                        <a class="clickable">{{vol?.user.name}}</a>
+                    </div>
+                    <div class="card-bevolun-user-verified">
+                        <i class="material-icons">check_circle</i>
+                    </div>
+                </div>
+                <div class="text-inst">
+                    Tudo correu da melhor maneira, quero agradecer a todos a presença e a força de vontade para nos ajudar!
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-content-title col-12">
+            Avaliar a ação e deixar um testemunho
+        </div>
+        <div class="modal-content-desc col-12">
+            Avalia {{vol?.user.name}} como instituição de voluntariado e deixa um testemunho no seu perfil!
+        </div>
+        <div class="user-rate-all" style="padding-top: 15px;padding-left: 10px!important;">
+            <md-icon class="grey">star_rate</md-icon>
+            <md-icon class="grey">star_rate</md-icon>
+            <md-icon class="grey">star_rate</md-icon>
+            <md-icon class="grey">star_rate</md-icon>
+            <md-icon class="grey">star_rate</md-icon>
+        </div>
+         
+        
+        <div class="col-12">
+            <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="comment"></textarea>
+        </div>
+
+        
+        
         <div class="col-12 modal-end-footer text-right">
             <button class="btn btnCancel">CANCELAR</button>
             <button class="btn btnConfirm" (click)="submit()">FINALIZAR</button>

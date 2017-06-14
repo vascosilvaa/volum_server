@@ -9,7 +9,7 @@ import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Http } from '@angular/http';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
 
@@ -20,6 +20,7 @@ import * as moment from 'moment';
   providers: [ProfileService, volsService]
 })
 export class DetailsComponent implements OnInit {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   lat: number;
   lng: number;
 
@@ -44,6 +45,15 @@ export class DetailsComponent implements OnInit {
     overlay.defaultViewContainer = vcRef;
   }
 
+  ngAfterViewChecked() {
+      this.scrollToBottom();
+    }
+
+    scrollToBottom(): void {
+      try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      } catch (err) { }
+    }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
