@@ -32,7 +32,7 @@ export class SocialRequestsComponent implements OnInit {
   }
 
    getRequests(id) {
-    this.appService.getRequests(id,0,100000).then(res => {
+    this.appService.getRequests(id).then(res => {
       this.requests = res.notifications;
       if(this.requests.length > 0) {
         this.requestsTrue=1;
