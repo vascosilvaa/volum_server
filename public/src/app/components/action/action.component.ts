@@ -8,7 +8,7 @@ import { SharedService } from './../../shared/services/shared.service';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { AppModule } from './../../app.module';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Injector, ViewChild, ElementRef } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
 @Component({
@@ -18,6 +18,7 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   providers: [ProfileService, FeedComponent, SharedService]
 })
 export class ActionComponent implements OnInit {
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 lat: number;
   lng: number;
   public volDetails: any;
@@ -49,6 +50,17 @@ lat: number;
   public vol: any;
   constructor(public modal: Modal, public route: Router, private router: ActivatedRoute, overlay: Overlay, public injector: Injector, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
   }
+
+    ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
 
   ngOnInit() {
   this.router.params.subscribe((params) => {

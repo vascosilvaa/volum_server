@@ -1,25 +1,35 @@
 import { AgmCoreModule, GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
 import { MapsAPILoader } from 'angular2-google-maps/core';
-
+import { ProfileService } from './../../shared/services/profile.service';
 import { volsService } from './../../shared/services/vols.service';
+import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
-  providers: [volsService, GoogleMapsAPIWrapper],
+  providers: [volsService, GoogleMapsAPIWrapper, ProfileService],
 })
 export class MapComponent implements OnInit {
+   @ViewChild("input") input;
   lat: number;
   lng: number;
-  public vols = []
+   public searching: any;
+  public searchFailed: any;
+  public vols = [];
   public teste;
   public ready: boolean = false;
-  public lats: any = {}
+  public lats: any = {};
+    public model: any;
+    public coord: any;
+  public coordAdvice: any;
 
-  constructor(public http: Http, private volsService: volsService, private map: GoogleMapsAPIWrapper, private _loader: MapsAPILoader) { }
+  constructor( private _fb: FormBuilder, public http: Http, private volsService: volsService, public profileService: ProfileService, private map: GoogleMapsAPIWrapper, private _loader: MapsAPILoader) { }
   location = {};
   setPosition(position) {
     this.location = position.coords;
@@ -37,7 +47,33 @@ export class MapComponent implements OnInit {
 
   }
 
-  search() {
+  navigate(lat, lng) {
+    this.lat = lat;
+    this.lng = lng;
+    this.coord = true;
+  }
+
+  formatter = (x: {
+    formatted_address: string
+  }) => x.formatted_address;
+
+
+  search = (text$: Observable<string>) =>
+    text$
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .do(() => this.searching = true)
+      .switchMap(term =>
+        this.profileService.search(term)
+          .do(() => { this.searchFailed = false })
+          .catch(() => {
+            this.searchFailed = true;
+            return Observable.of([]);
+          }))
+      .do(() => this.searching = false);
+
+
+  searchMap() {
     this.volsService.bounds(this.lats.swlat, this.lats.swlng, this.lats.nwlat, this.lats.nwlng)
       .then(res => {
         this.vols = res.vols;

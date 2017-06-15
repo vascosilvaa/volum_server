@@ -142,6 +142,7 @@ export class AppComponent implements OnInit {
     })
   }
 
+
   getNotifications(startAt, amount, replace) {
     this.cleanNotifications();  
     this.notificationsReady = false;
@@ -162,7 +163,7 @@ export class AppComponent implements OnInit {
     })
   }
   getRequests(id) {
-    this.appService.getRequests(id).then(res => {
+    this.appService.getRequests(id, 0, 3).then(res => {
       this.requests = res.notifications;
       this.requestsReady = true;
       this.cleanRequests();
