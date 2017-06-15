@@ -55,7 +55,7 @@
               <div class="col-6 inputProfile">
                 <select name="categorie" class="form-control select-input inputText form-control-lg disabled" formControlName="category">
                 <option *ngFor="let category of categories" [value]='category.id_category'>{{category.name}}</option>
-              </select>
+              </select> 
                 <label [class.error-label]="!form.controls.category.valid && form.controls.category.touched" for="categorie" class="label-for-select">
                  Categoria
                  <span *ngIf="form.controls.category.errors?.required && form.controls.category.touched" class="text-error">- Por favor insira a categoria da ação.</span>

@@ -116,34 +116,20 @@
 
                 <!------------------- NOTIFICAÇOES ------------------>
 
-                <li *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
+                <li *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true); ">
                     <md-icon ngbDropdownToggle>notifications</md-icon>
                     <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">NOTIFICAÇÕES</div>
-                        <div class="message-item" *ngIf="!notifications">
 
 
-                            <div class="sk-fading-circle">
-                                <div class="sk-circle1 sk-circle"></div>
-                                <div class="sk-circle2 sk-circle"></div>
-                                <div class="sk-circle3 sk-circle"></div>
-                                <div class="sk-circle4 sk-circle"></div>
-                                <div class="sk-circle5 sk-circle"></div>
-                                <div class="sk-circle6 sk-circle"></div>
-                                <div class="sk-circle7 sk-circle"></div>
-                                <div class="sk-circle8 sk-circle"></div>
-                                <div class="sk-circle9 sk-circle"></div>
-                                <div class="sk-circle10 sk-circle"></div>
-                                <div class="sk-circle11 sk-circle"></div>
-                                <div class="sk-circle12 sk-circle"></div>
-                            </div>
+                        <div class="message-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" (scrolled)="onNotificationsScroll()"
+                            [scrollWindow]="false">
 
-                        </div>
+                            <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.type, notification.id_vol)"
+                                onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
 
-                        <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.type, notification.id_vol)">
-                            
                                 <div class="image">
                                     <img [src]="notification.photo_url">
                                 </div>
@@ -159,17 +145,37 @@
                                             <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                         <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
                                             <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica aqui para deixares o teu testemunho.
+                                        <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br>                                            Clica aqui para deixares o teu testemunho.
                                             <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                     </div>
-                       
-                            
+
+
+                                </div>
+                            </div>
+                            <div class="message-item" *ngIf="!notificationsReady">
+
+
+                                <div class="sk-fading-circle">
+                                    <div class="sk-circle1 sk-circle"></div>
+                                    <div class="sk-circle2 sk-circle"></div>
+                                    <div class="sk-circle3 sk-circle"></div>
+                                    <div class="sk-circle4 sk-circle"></div>
+                                    <div class="sk-circle5 sk-circle"></div>
+                                    <div class="sk-circle6 sk-circle"></div>
+                                    <div class="sk-circle7 sk-circle"></div>
+                                    <div class="sk-circle8 sk-circle"></div>
+                                    <div class="sk-circle9 sk-circle"></div>
+                                    <div class="sk-circle10 sk-circle"></div>
+                                    <div class="sk-circle11 sk-circle"></div>
+                                    <div class="sk-circle12 sk-circle"></div>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
 
                         <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
-                </div>
+                    </div>
 
                 </li>
                 <li (click)="openRegister()" *ngIf="!user"> Registar</li>

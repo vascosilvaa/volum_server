@@ -1,3 +1,4 @@
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeedModule } from './components/feed/feed.module';
 import { ProfileService } from './shared/services/profile.service';
 import { volsService } from './shared/services/vols.service';
@@ -63,6 +64,7 @@ import { ErrorComponent } from './components/error/error.component';
     HttpModule,
     MapModule,
     MomentModule,
+    InfiniteScrollModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     NgbModule.forRoot(),
@@ -75,7 +77,7 @@ import { ErrorComponent } from './components/error/error.component';
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
-  providers: [AuthenticationService, HttpClient, volsService, ProfileService,  { provide: LOCALE_ID, useValue: "pt-PT" } ],
+  providers: [AuthenticationService, HttpClient, volsService, ProfileService, { provide: LOCALE_ID, useValue: "pt-PT" }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

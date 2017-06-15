@@ -214,6 +214,11 @@ display: -webkit-box;
     background: #f5f5f5;
 }
 
+.message-container{
+    height: 300px;
+    overflow-y: scroll;
+}
+
 .message-item .time {
     color: $grey2;
     font-weight: normal;
