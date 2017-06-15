@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
 
@@ -24,6 +25,7 @@ const routes: Routes = [
         NgbModule.forRoot(),
         ReactiveFormsModule,
         CommonModule,
+        FormsModule,
         SharedModule,
         RouterModule.forChild(routes),
         AgmCoreModule.forRoot({

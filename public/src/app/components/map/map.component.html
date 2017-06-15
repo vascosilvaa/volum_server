@@ -1,3 +1,9 @@
+<ng-template #rt let-r="result" let-t="term" id="template-search" class="test">
+  <div (click)="navigate(r.geometry.location.lat, r.geometry.location.lng)" class="row no-padding content-search">
+    <span class="searched"> {{r.formatted_address}}</span>
+  </div>
+</ng-template>
+
 <div class="container-fluid no-padding mapFull">
     <div class="row no-padding">
         <div class="col-7 map">
@@ -25,12 +31,15 @@
                     <div class="searchSection">
                         <div class="searchTitle">Pesquisar voluntariados por local específico:</div>
                         <div class="areaInput">
-                            <input type="text" class="inputSearch" placeholder="Inserir localização...">
+                            <input  type="text" class="inputSearch" [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)"
+                    [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira uma localização..."
+                    required />
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btnSearchMap pointer" (click)="search()">REFAZER A PESQUISA AQUI</button>
+
+                <button type="submit" class="btn btnSearchMap pointer" (click)="searchMap()">REFAZER A PESQUISA AQUI</button>
                 <div class="cardsSection col-12">
                 <div class="no-content text-center" style="margin-top:30px" *ngIf="!vols || vols.length==0">
                   <div style="padding: 5px;"><i class="material-icons">sentiment_dissatisfied</i></div>

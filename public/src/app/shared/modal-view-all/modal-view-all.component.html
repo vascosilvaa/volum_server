@@ -209,3 +209,75 @@
     </div>
   </div>
 </div>
+
+<!-- Testemunhos -->
+<div *ngIf="context.type==9" class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-12 no-padding">
+      <div class="modal-card">
+        Testemunhos
+      </div>
+      <div class="modal-list-content">
+        <ul class="list-group">
+         
+        
+        <li class="listPerson no-border no-margin">
+            <div class="card-testemunhos full-width " style="display:flex">
+               <div (click)="onSelect(13)"class="pointer">
+                  <img  src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+                </div>
+                <div>
+                  <div (click)="onSelect(13)" class="pointer" style="margin-left:12px"><b>André Martins</b></div>
+                  <div class="class-testemunho "style="">Classificou a sua experiência com <span>5 estrelas</span></div>
+                </div>
+                
+            </div>
+            <div class="text-testemunho">
+                  Decerto vou repetir. Foi uma experiência maravilhosa e a Associação de Melhoramentos do Eixo proporcionou-me excelentes momentos. Aconselho!
+                </div>
+          </li>
+
+          <li class="listPerson no-border no-margin">
+            <div class="card-testemunhos full-width" style="display:flex">
+               <div (click)="onSelect(13)"class="pointer">
+                  <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+                </div>
+                <div>
+                  <div (click)="onSelect(13)"class="pointer" style="margin-left:12px"><b>Pedro Araújo</b></div>
+                  <div class="class-testemunho "style="">Classificou a sua experiência com <span>5 estrelas</span></div>
+                </div>
+                
+            </div>
+            <div class="text-testemunho">
+                  Venham experimentar!
+                </div>
+          </li>
+
+          <li class="listPerson no-border no-margin">
+            <div class="card-testemunhos full-width" style="display:flex">
+               <div (click)="onSelect(13)"class="pointer">
+                  <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+                </div>
+                <div>
+                  <div (click)="onSelect(13)"class="pointer" style="margin-left:12px"><b>Vasco Silva</b></div>
+                  <div class="class-testemunho "style="">Classificou a sua experiência com <span>5 estrelas</span></div>
+                </div>
+                
+            </div>
+            <div class="text-testemunho">
+                  Foi uma experiência maravilhosa e a Associação de Melhoramentos do Eixo proporcionou-me excelentes momentos. 
+                </div>
+          </li>
+        
+
+          <!--
+          <div *ngIf="!likes || likes.length == 0" class="no-content text-center" style="padding:10px">
+            <div style="padding: 3px;"><i class="material-icons">alarm</i></div>
+            <span>Não existem gostos.</span>
+          </div>
+          -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

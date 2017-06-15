@@ -17,13 +17,13 @@ export class AppService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
-    getNotifications(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/`).toPromise()
+    getNotifications(id_user, startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/`, { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };
-    getRequests(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`).toPromise()
+    getRequests(id_user, startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`, { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };

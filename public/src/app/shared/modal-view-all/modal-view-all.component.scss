@@ -13,7 +13,7 @@
 
 .modal-list-content {
     padding:10px 20px 10px 20px;
-    max-height:400px;
+    max-height:500px;
     overflow-y: auto;
     overflow-x: hidden;
  }
@@ -51,6 +51,22 @@
     text-decoration: underline;
 }
 
+.card-testemunhos img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    margin: 0;
+    border: 1px solid $grey1;
+}
+
+.card-testemunhos {
+    max-width:250px;
+    display:flex;
+    align-items: center;
+    color: $grey5;
+}
+
+
 .full-width {
     max-width: 100%!important;
 }
@@ -79,5 +95,18 @@
     padding:10px 20px;
 }
 
+.text-testemunho {
+    margin-top: 10px;
+    font-size: 14px;
+        color: $grey4;
+}
+.class-testemunho {
+    margin-left:12px;
+    font-size: 13px;
+    color: $grey3;
+}
 
-
+.class-testemunho span {
+    color: $blue;
+    font-weight: $bold;
+}

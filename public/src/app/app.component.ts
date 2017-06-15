@@ -140,7 +140,7 @@ export class AppComponent implements OnInit {
   }
 
   getNotifications(id) {
-    this.appService.getNotifications(id).then(res => {
+    this.appService.getNotifications(id, 0, 3).then(res => {
       this.notifications = res.notifications;
       console.log("NOTIFICATIONS", res);
       this.cleanNotifications();
@@ -148,7 +148,7 @@ export class AppComponent implements OnInit {
     })
   }
   getRequests(id) {
-    this.appService.getRequests(id).then(res => {
+    this.appService.getRequests(id, 0, 3).then(res => {
       this.requests = res.notifications;
       this.requestsReady = true;
       this.cleanRequests();

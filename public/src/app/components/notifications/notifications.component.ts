@@ -40,7 +40,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   getNotifications(id) {
-    this.appService.getNotifications(id).then(res => {
+    this.appService.getNotifications(id,0,100000).then(res => {
       this.notifications = res.notifications;
       console.log(this.notifications.length)
       if(this.notifications.length > 0) {
