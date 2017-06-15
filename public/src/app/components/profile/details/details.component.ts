@@ -42,7 +42,6 @@ export class DetailsComponent implements OnInit {
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
     private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService) {
-    overlay.defaultViewContainer = vcRef;
   }
 
   ngAfterViewChecked() {
