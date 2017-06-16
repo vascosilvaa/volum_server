@@ -16,7 +16,7 @@
         <div class="navbar-bevolun-people ml-4" *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>people</md-icon>
-                <span class="badge badge-notify" >2</span>
+                <span class="badge badge-notify">2</span>
             </a>
 
             <div id="dropdown-messages" class="dropdown-menu">
@@ -53,7 +53,7 @@
                             <p><b>{{request.user_name}}<i class="material-icons">check_circle</i></b> começou a seguir-te.</p>
                             <p class="time">{{request.date | amTimeAgo:true}}</p>
                         </div>
-                        
+
                         <!--
                         <div class="text-right">
                             <div class="btn-notification">
@@ -77,12 +77,91 @@
         <div class="navbar-bevolun-chat ml-4" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>chat_bubble</md-icon>
-                 <span class="badge badge-notify" >2</span>
+                <span class="badge badge-notify">2</span>
             </a>
 
             <div id="dropdown-messages" class="dropdown-menu">
-                        <div class="dropdown-header">MENSAGENS</div>
-                        <div class="message-item" *ngIf="!messagesReady">
+                <div class="dropdown-header">MENSAGENS</div>
+                <div class="message-item" *ngIf="!messagesReady">
+
+                    <div class="sk-fading-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+
+                </div>
+                <ng-container *ngIf="messagesReady">
+                    <div class="message-item" *ngFor="let conversation of conversations">
+                        <div class="image">
+                            <img [src]="conversation.photo_url" onerror="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+                        </div>
+                        <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
+                            <div>
+                                <span class="nameMsg">{{conversation.name}}<i class="material-icons">check_circle</i></span>
+                                <span class="time" *ngIf="conversation.date">{{conversation.date | amTimeAgo:true}}</span>
+                            </div>
+
+                            <span class="textMsg"> {{conversation.message }} </span>
+
+                        </div>
+                    </div>
+
+                </ng-container>
+
+
+                <div class="dropdown-footer" (click)="goToMessagesAll()">Ver todas as mensagens</div>
+            </div>
+        </div>
+
+
+        <!-- NOTIFICATIONS -->
+        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
+            <a>
+                <md-icon ngbDropdownToggle>notifications</md-icon>
+                <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
+            </a>
+
+            <div id="dropdown-messages" class="dropdown-menu">
+                <div class="dropdown-header">NOTIFICAÇÕES</div>
+                <div class="message-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" (scrolled)="onNotificationsScroll()"
+                    [scrollWindow]="false">
+                    <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.type, notification.id_vol)">
+                        <div class="image">
+                            <img [src]="notification.photo_url">
+                        </div>
+                        <div class="notification-info">
+                            <div>
+                                <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> candidatou-se
+                                    a <span>{{notification?.vol_name}}</span>
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i>gostou de <span>{{notification?.vol_name}}</span>
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+
+                                <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> comentou <span>{{notification?.vol_name}}</span>
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+
+                                <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <span>{{notification?.vol_name}}</span>
+
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <span>{{notification?.vol_name}}!</span><br> Clica
+                                    aqui para deixares o teu testemunho.
+
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+
+                            </div>
+                        </div>
+                        <div class="message-item" *ngIf="!notificationsReady">
+
 
                             <div class="sk-fading-circle">
                                 <div class="sk-circle1 sk-circle"></div>
@@ -100,89 +179,12 @@
                             </div>
 
                         </div>
-                        <ng-container *ngIf="messagesReady">
-                            <div class="message-item" *ngFor="let conversation of conversations">
-                                <div class="image">
-                                    <img [src]="conversation.photo_url" onerror="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
-                                </div>
-                                <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
-                                    <div>
-                                        <span class="nameMsg">{{conversation.name}}<i class="material-icons">check_circle</i></span>
-                                        <span class="time" *ngIf="conversation.date">{{conversation.date | amTimeAgo:true}}</span>
-                                    </div>
-
-                                    <span class="textMsg"> {{conversation.message }} </span>
-                            
-                                </div>
-                            </div>
-
-                        </ng-container>
-
-
-                        <div class="dropdown-footer" (click)="goToMessagesAll()">Ver todas as mensagens</div>
                     </div>
-        </div>
 
+                    <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
-        <!-- NOTIFICATIONS -->
-        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
-            <a>
-                <md-icon ngbDropdownToggle>notifications</md-icon>
-                <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
-            </a>
-            
-            <div id="dropdown-messages" class="dropdown-menu">
-                <div class="dropdown-header">NOTIFICAÇÕES</div>
-                    <div class="message-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" (scrolled)="onNotificationsScroll()" [scrollWindow]="false">
-                        <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.id_vol)">
-                            <div class="image">
-                                <img [src]="notification.photo_url">
-                            </div>
-                            <div class="notification-info">
-                                <div>
-                                    <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> candidatou-se a <span>{{notification?.vol_name}}</span>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i>gostou de <span>{{notification?.vol_name}}</span>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
-                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> comentou <span>{{notification?.vol_name}}</span>
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
-                                    <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <span>{{notification?.vol_name}}</span>
-                                        
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <span>{{notification?.vol_name}}!</span><br> Clica
-                                        aqui para deixares o teu testemunho.
-                                       
-                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
-                                </div>
-                            </div>
-                            <div class="message-item" *ngIf="!notificationsReady">
-
-
-                                <div class="sk-fading-circle">
-                                    <div class="sk-circle1 sk-circle"></div>
-                                    <div class="sk-circle2 sk-circle"></div>
-                                    <div class="sk-circle3 sk-circle"></div>
-                                    <div class="sk-circle4 sk-circle"></div>
-                                    <div class="sk-circle5 sk-circle"></div>
-                                    <div class="sk-circle6 sk-circle"></div>
-                                    <div class="sk-circle7 sk-circle"></div>
-                                    <div class="sk-circle8 sk-circle"></div>
-                                    <div class="sk-circle9 sk-circle"></div>
-                                    <div class="sk-circle10 sk-circle"></div>
-                                    <div class="sk-circle11 sk-circle"></div>
-                                    <div class="sk-circle12 sk-circle"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
-
-                    </div>
-                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- REGISTER -->
@@ -203,88 +205,88 @@
                 <i class="material-icons arrow_dropdown">arrow_drop_down</i>
             </span>
             <div id="dropdown-user" class="dropdown-menu dropdown-menu-profile">
-                        <div class="dropdown-header">A MINHA CONTA</div>
-                        <div class="actions-profile">
-                            <div class="profile-item" (click)="onSelect(idLogin)">
-                                <div class="icon">
-                                    <i class="material-icons">portrait</i>
-                                </div>
-                                <div class="desc">
-                                    Perfil
-                                </div>
-                            </div>
-                            <div class="profile-item" (click)="onSelectSettings(idLogin)">
-                                <div class="icon">
-                                    <i class="material-icons">settings</i>
-                                </div>
-                                <div class="desc">
-                                    Definições de perfil
-                                </div>
-                            </div>
-                            <div class="profile-item" (click)="logout()">
-                                <div class="icon">
-                                    <i class="material-icons">power_settings_new</i>
-                                </div>
-                                <div class="desc">
-                                    Log out
-                                </div>
-                            </div>
+                <div class="dropdown-header">A MINHA CONTA</div>
+                <div class="actions-profile">
+                    <div class="profile-item" (click)="onSelect(idLogin)">
+                        <div class="icon">
+                            <i class="material-icons">portrait</i>
                         </div>
-                        <div class="dropdown-header">SOCIAL</div>
-                        <div class="actions-profile">
-                            <div class="profile-item">
-                                <div class="icon">
-                                    <i class="material-icons">chat_bubble</i>
-                                </div>
-                                <div class="desc" routerLink="/chat/msg">
-                                    Mensagens
-                                </div>
-                            </div>
-                            <div class="profile-item" routerLink="/notifications">
-                                <div class="icon">
-                                    <i class="material-icons">notifications</i>
-                                </div>
-                                <div class="desc">
-                                    Notificações
-                                </div>
-                            </div>
-                            <div class="profile-item" routerLink="/requests">
-                                <div class="icon">
-                                    <i class="material-icons">people</i>
-                                </div>
-                                <div class="desc">
-                                    Pedidos
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown-header">SOBRE O BEVOLUN</div>
-                        <div class="actions-profile">
-                            <div class="profile-item">
-                                <div class="icon">
-                                    <i class="material-icons">toc</i>
-                                </div>
-                                <div class="desc">
-                                    Termos e condições
-                                </div>
-                            </div>
-                            <div class="profile-item">
-                                <div class="icon">
-                                    <i class="material-icons">forum</i>
-                                </div>
-                                <div class="desc">
-                                    Contactos
-                                </div>
-                            </div>
-                            <div class="profile-item">
-                                <div class="icon">
-                                    <i class="material-icons">help_outline</i>
-                                </div>
-                                <div class="desc">
-                                    FAQS
-                                </div>
-                            </div>
+                        <div class="desc">
+                            Perfil
                         </div>
                     </div>
+                    <div class="profile-item" (click)="onSelectSettings(idLogin)">
+                        <div class="icon">
+                            <i class="material-icons">settings</i>
+                        </div>
+                        <div class="desc">
+                            Definições de perfil
+                        </div>
+                    </div>
+                    <div class="profile-item" (click)="logout()">
+                        <div class="icon">
+                            <i class="material-icons">power_settings_new</i>
+                        </div>
+                        <div class="desc">
+                            Log out
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-header">SOCIAL</div>
+                <div class="actions-profile">
+                    <div class="profile-item">
+                        <div class="icon">
+                            <i class="material-icons">chat_bubble</i>
+                        </div>
+                        <div class="desc" routerLink="/chat/msg">
+                            Mensagens
+                        </div>
+                    </div>
+                    <div class="profile-item" routerLink="/notifications">
+                        <div class="icon">
+                            <i class="material-icons">notifications</i>
+                        </div>
+                        <div class="desc">
+                            Notificações
+                        </div>
+                    </div>
+                    <div class="profile-item" routerLink="/requests">
+                        <div class="icon">
+                            <i class="material-icons">people</i>
+                        </div>
+                        <div class="desc">
+                            Pedidos
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-header">SOBRE O BEVOLUN</div>
+                <div class="actions-profile">
+                    <div class="profile-item">
+                        <div class="icon">
+                            <i class="material-icons">toc</i>
+                        </div>
+                        <div class="desc">
+                            Termos e condições
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="icon">
+                            <i class="material-icons">forum</i>
+                        </div>
+                        <div class="desc">
+                            Contactos
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="icon">
+                            <i class="material-icons">help_outline</i>
+                        </div>
+                        <div class="desc">
+                            FAQS
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
