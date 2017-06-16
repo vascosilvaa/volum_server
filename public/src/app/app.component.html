@@ -123,51 +123,17 @@
                     </div>
         </div>
 
-<<<<<<< HEAD
+
         <!-- NOTIFICATIONS -->
-        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
+        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
             <a>
                 <md-icon ngbDropdownToggle>notifications</md-icon>
-                <span class="badge badge-notify" >2</span>
+                <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
             </a>
             
-=======
-                <li *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true); ">
-                    <md-icon ngbDropdownToggle>notifications</md-icon>
-                    <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
->>>>>>> c566c3fa42fbed7b04659dfa726354a428baceb9
-
-                    <div id="dropdown-messages" class="dropdown-menu">
-                        <div class="dropdown-header">NOTIFICAÇÕES</div>
-
-
-                        <div class="message-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" (scrolled)="onNotificationsScroll()"
-                            [scrollWindow]="false">
-
-                            <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.type, notification.id_vol)"
-                                onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';">
-
-                                <div class="image">
-                                    <img [src]="notification.photo_url">
-                                </div>
-                                <div class="notification-info">
-                                    <div>
-                                        <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                        <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br>                                            Clica aqui para deixares o teu testemunho.
-                                            <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    </div>
-
-
-<<<<<<< HEAD
+            <div id="dropdown-messages" class="dropdown-menu">
+                <div class="dropdown-header">NOTIFICAÇÕES</div>
+                    <div class="message-container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" (scrolled)="onNotificationsScroll()" [scrollWindow]="false">
                         <div class="message-item" *ngFor="let notification of notifications" (click)="openVolDetails(notification.id_vol)">
                             <div class="image">
                                 <img [src]="notification.photo_url">
@@ -189,8 +155,7 @@
                                         aqui para deixares o teu testemunho.
                                        
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-=======
->>>>>>> c566c3fa42fbed7b04659dfa726354a428baceb9
+
                                 </div>
                             </div>
                             <div class="message-item" *ngIf="!notificationsReady">
@@ -216,6 +181,7 @@
 
                         <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
+                    </div>
                     </div>
         </div>
 
@@ -320,7 +286,6 @@
                         </div>
                     </div>
         </div>
-
     </div>
 </div>
 
