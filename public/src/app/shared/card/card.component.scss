@@ -74,7 +74,7 @@
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 16px;
-    padding-bottom: 5px;
+    padding-bottom: 0;
 }
 
 .card-bevolum-title h5{
@@ -103,7 +103,7 @@
 .card-bevolun-footer{
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 12px;
+    padding-bottom: 9px;
     display: flex;
     align-items: center;
 }
@@ -125,6 +125,11 @@
 
 .btn-dislike {
     color: $grey5!important;
+}
+
+.btn-favorite{
+    color: $secondary;
+    padding-top: 7px;
 }
 
 .likesText {

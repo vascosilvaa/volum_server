@@ -135,19 +135,19 @@
 
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    $primary;
+    color:    $grey2;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:     $primary;
+   color:     $grey2;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    $primary;
+   color:    $grey2;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:     $primary;
+   color:     $grey2;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:     $primary;
+   color:     $grey2;
 }

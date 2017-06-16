@@ -116,9 +116,9 @@
     }
     
     .header {
-        background: $blue;
-        min-height: 300px;
-        padding-top: 40px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background: $primary;
     }
     
     .titleFeed {
@@ -300,7 +300,7 @@
 
 // HEADER 
 .headerText > h1{
-    font-size: 3.7rem;
+    font-size: 3rem;
     color: #FFFFFF;
     font-weight: 600;
 }
@@ -319,4 +319,118 @@
     -webkit-box-shadow: 0px 0px 10px 1px rgba(3,69,155,0.20);
     -moz-box-shadow: 0px 0px 10px 1px rgba(3,69,155,0.20);
     box-shadow: 0px 0px 10px 1px rgba(3,69,155,0.20);
+}
+
+
+
+
+// FILTER
+.btnFilter{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+}
+
+.btnFilter i{
+    vertical-align: middle;
+}
+
+
+.bevolum-filter{
+    width: 100%;
+    height: 0px;
+    background-color: $white;
+    position: fixed;
+    z-index: 2;
+    bottom: -430px;
+    transition: all 0.5s;
+    border-top: 1px solid $grey1;
+}
+
+.bevolum-filter-show{
+    height: 430px!important;
+    bottom:  0px!important
+}
+
+.filter-title p{
+    color: $primary;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.line{
+    width: 100%;
+    border: 1px solid $grey1;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.filter-label{
+    font-size: 0.9rem;
+    color: $grey5;
+    font-weight: 600;
+}
+
+
+.bevolun-filter-footer{
+    width: 100%;
+    height: 50px;
+    background-color: $secondary;
+    position: absolute;
+    bottom: 0;
+}
+
+.filter-date-picker{
+    width: 100%;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border:1px solid $grey2;
+    padding-left: 10px;
+    color: $grey5;
+    height: calc(2.55rem + 2px);
+}
+
+.filter-input-button{
+    color: #FFFFFF;
+    background-color: $grey2;
+    border: none;
+    height: calc(2.55rem + 2px);
+}
+
+.filter-date-picker::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $grey3;
+}
+.filter-date-picker::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:     $grey3;
+   opacity:  1;
+}
+.filter-date-picker::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    $grey3;
+   opacity:  1;
+}
+.filter-date-picker::-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:     $grey3;
+}
+.filter-date-picker::-ms-input-placeholder { /* Microsoft Edge */
+   color:     $grey3;
+}
+
+
+
+
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 992px) {
+    .headerText > h1{
+        font-size: 3rem;
+    }
+    .headerText > h4{
+       font-size: 1.1rem;
+    }
 }

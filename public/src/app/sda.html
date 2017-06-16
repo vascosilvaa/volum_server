@@ -1,86 +1,72 @@
-<div class="navbar-bevolun">
-    <div class="navbar-bevolun-brand">
-        <a routerLink="/feed">BEVOLUN</a>
-    </div>
-    <div class="navbar-bevolun-search"></div>
-    <div class="navbar-bevolun-right">
+<div class="container-fluid header-background">
+    <div class="row">
 
-        <!-- MAP -->
-        <div class="navbar-bevolun-map" *ngIf="user" routerLink="map">
-            <a>
-                <md-icon>place</md-icon>
-            </a>
-        </div>
+        <div class="col-sm-10 col-12 menuHeader">
+            <ul>
+                <li *ngIf="user" routerLink="map">
+                    <md-icon>place</md-icon>
+                </li>
 
-        <!-- FRIENDS -->
-        <div class="navbar-bevolun-people ml-4" *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
-            <a>
-                <md-icon ngbDropdownToggle>people</md-icon>
-                <span class="badge badge-notify" >2</span>
-            </a>
+                <!------------------- REQUESTS ------------------>
 
-            <div id="dropdown-messages" class="dropdown-menu">
+                <li *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
+                    <md-icon ngbDropdownToggle>people</md-icon>
 
-                <div class="dropdown-header">PEDIDOS</div>
+                    <span class="badge badge-notify" *ngIf="newRequestsCount > 0">{{newRequestsCount}}</span>
 
-                <div class="message-item" *ngIf="!requestsReady">
+                    <div id="dropdown-messages" class="dropdown-menu">
+                        <div class="dropdown-header">PEDIDOS</div>
+                        <div class="message-item" *ngIf="!requestsReady">
 
-                    <div class="sk-fading-circle">
-                        <div class="sk-circle1 sk-circle"></div>
-                        <div class="sk-circle2 sk-circle"></div>
-                        <div class="sk-circle3 sk-circle"></div>
-                        <div class="sk-circle4 sk-circle"></div>
-                        <div class="sk-circle5 sk-circle"></div>
-                        <div class="sk-circle6 sk-circle"></div>
-                        <div class="sk-circle7 sk-circle"></div>
-                        <div class="sk-circle8 sk-circle"></div>
-                        <div class="sk-circle9 sk-circle"></div>
-                        <div class="sk-circle10 sk-circle"></div>
-                        <div class="sk-circle11 sk-circle"></div>
-                        <div class="sk-circle12 sk-circle"></div>
-                    </div>
-
-                </div>
-
-                <ng-container *ngIf="requestsReady">
-                    <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
-
-                        <div class="image">
-                            <img [src]="request.photo_url">
-                        </div>
-
-                        <div class="notification-info">
-                            <p><b>{{request.user_name}}<i class="material-icons">check_circle</i></b> começou a seguir-te.</p>
-                            <p class="time">{{request.date | amTimeAgo:true}}</p>
-                        </div>
-                        
-                        <!--
-                        <div class="text-right">
-                            <div class="btn-notification">
-                                <button class="btn btn-primary btn-sm btn-dropdown" routerLink='./profile/{{request.id_user}}/activity'>Ver</button>
+                            <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
                             </div>
+
                         </div>
-                        -->
+                        <ng-container *ngIf="requestsReady">
+                            <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
+
+                                <div class="image">
+                                    <img [src]="request.photo_url">
+                                </div>
+                                <div class="notification-info">
+                                    <b>{{request.user_name}}</b> começou a seguir-te <span class="time">{{request.date | amTimeAgo:true}}</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="btn-notification">
+                                        <button class="btn btnConfirm" routerLink='./profile/{{request.id_user}}/activity'>VER</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="message-item text-center no-content" *ngIf="requests.length == 0">
+                                Sem Novidades
+                            </div>
+                        </ng-container>
+
+
+                        <div routerLink="/requests" class="dropdown-footer">Ver todos os pedidos</div>
+
                     </div>
-                    <div class="message-item text-center no-content" *ngIf="requests.length == 0">
-                        Sem Novidades
-                    </div>
-                </ng-container>
+                </li>
 
+                <!------------------- CONVERSAS ------------------>
+                <li *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
 
-                <div routerLink="/requests" class="dropdown-footer">Ver todos os pedidos</div>
+                    <md-icon ngbDropdownToggle>chat_bubble</md-icon>
 
-            </div>
-        </div>
-
-        <!-- CHAT -->
-        <div class="navbar-bevolun-chat ml-4" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
-            <a>
-                <md-icon ngbDropdownToggle>chat_bubble</md-icon>
-                 <span class="badge badge-notify" >2</span>
-            </a>
-
-            <div id="dropdown-messages" class="dropdown-menu">
+                    <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">MENSAGENS</div>
                         <div class="message-item" *ngIf="!messagesReady">
 
@@ -107,12 +93,13 @@
                                 </div>
                                 <div class="message-info" (click)="goToMessages(conversation.id_conversation, conversation.user_name)">
                                     <div>
-                                        <span class="nameMsg">{{conversation.name}}<i class="material-icons">check_circle</i></span>
+                                        <span class="nameMsg">{{conversation.name}}</span>
                                         <span class="time" *ngIf="conversation.date">{{conversation.date | amTimeAgo:true}}</span>
+
                                     </div>
 
-                                    <span class="textMsg"> {{conversation.message }} </span>
-                            
+                                    <span class="textMsg"> {{conversation.message }}</span>
+                                    <span class="textMsg" *ngIf="!conversation.message"> Envie uma mensagem a {{conversation.name}}</span>
                                 </div>
                             </div>
 
@@ -121,15 +108,12 @@
 
                         <div class="dropdown-footer" (click)="goToMessagesAll()">Ver todas as mensagens</div>
                     </div>
-        </div>
+                </li>
 
-        <!-- NOTIFICATIONS -->
-        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
-            <a>
-                <md-icon ngbDropdownToggle>notifications</md-icon>
-                <span class="badge badge-notify" >2</span>
-            </a>
-            
+                <!------------------- NOTIFICAÇOES ------------------>
+                <li *ngIf="user" ngbDropdown (click)="getNotifications(user.id_user)">
+                    <md-icon ngbDropdownToggle>notifications</md-icon>
+                    <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
 
                     <div id="dropdown-messages" class="dropdown-menu">
                         <div class="dropdown-header">NOTIFICAÇÕES</div>
@@ -159,20 +143,18 @@
                             </div>
                             <div class="notification-info">
                                 <div>
-                                    <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> candidatou-se a <span>{{notification?.vol_name}}</span>
+                                    <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b> candidatou-se a <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i>gostou de <span>{{notification?.vol_name}}</span>
+                                    <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b> gostou de <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
-                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> comentou <span>{{notification?.vol_name}}</span>
+                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-
-                                    <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <span>{{notification?.vol_name}}</span>
-                                        
+                                    <p *ngIf="notification.type == 4"><b>{{notification?.user_name}}</b> comentou <b>{{notification?.vol_name}}</b>
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
-                                    <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <span>{{notification?.vol_name}}!</span><br> Clica
+                                    <p *ngIf="notification.type == 5"><b>Parabéns!</b> Foste confirmado no voluntariado: <b>{{notification?.vol_name}}</b>
+                                        <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+                                    <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <b>{{notification?.vol_name}}!</b><br> Clica
                                         aqui para deixares o teu testemunho.
-                                       
                                         <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                 </div>
                                 <div>
@@ -183,26 +165,25 @@
                         <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
                     </div>
-        </div>
 
-        <!-- REGISTER -->
-        <div class="navbar-bevolun-register ml-4" (click)="openRegister()" *ngIf="!user">
-            <a>Registar</a>
-        </div>
+                </li>
 
-        <!-- LOGIN -->
-        <div class="navbar-bevolun-login ml-4" (click)="openLogin()" *ngIf="!user">
 
-            <a>Entrar</a>
-        </div>
+                <li (click)="openRegister()" *ngIf="!user"> Registar</li>
+                <li (click)="openLogin()" *ngIf="!user"> Entrar</li>
 
-        <!-- USER -->
-        <div class="navbar-bevolun-user ml-4" *ngIf="user" ngbDropdown ngbDropdownToggle>
-            <span>
-                <img class="navbar-user-picture" [src]="user?.photo" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'"> 
-                <i class="material-icons arrow_dropdown">arrow_drop_down</i>
-            </span>
-            <div id="dropdown-user" class="dropdown-menu dropdown-menu-profile">
+                <li *ngIf="user" class="nameDropdown add_padding" ngbDropdown ngbDropdownToggle>
+
+                    <span>
+                    <img class="navbar-user-picture" [src]="user?.photo" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'"> 
+                    <span>{{user?.name}}</span>
+                    <i class="material-icons arrow_dropdown">arrow_drop_down</i>
+
+
+                    </span>
+
+
+                    <div id="dropdown-user" class="dropdown-menu dropdown-menu-profile">
                         <div class="dropdown-header">A MINHA CONTA</div>
                         <div class="actions-profile">
                             <div class="profile-item" (click)="onSelect(idLogin)">
@@ -285,15 +266,17 @@
                             </div>
                         </div>
                     </div>
+                    <!--
+                    <div class="dropdown-menu" id="dropdown-user">
+                        <button class="dropdown-item" (click)="onSelect(idLogin)" *ngIf="user" styles="font-size:10px!important">Perfil</button>
+                        <button class="dropdown-item" *ngIf="user">Definições</button>
+                        <button class="dropdown-item" (click)="logout()" *ngIf="user">Sair</button>
+                    </div>
+                    -->
+                </li>
+            </ul>
         </div>
 
     </div>
 </div>
-
-
-
-
-
-
-
-<router-outlet></router-outlet>
+-->

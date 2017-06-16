@@ -22,6 +22,10 @@ export class FeedComponent implements OnInit {
   ready: boolean = false;
   public loading: boolean = false;
   public sum: number = 0;
+
+
+  public showFilter:boolean = false;
+
   config: Object = {
     pagination: 'null',
     spaceBetween: 30,
@@ -98,6 +102,14 @@ export class FeedComponent implements OnInit {
     console.log("scroll");
     this.sum = this.sum + 6;
     this.getVols(this.sum, 6, false);
+  }
+
+  openFilter(){
+      this.showFilter = !this.showFilter;
+  }
+
+  closeFilter(){
+      this.showFilter = !this.showFilter;
   }
 
 }
