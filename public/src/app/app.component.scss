@@ -362,3 +362,14 @@ display: -webkit-box;
 
 
 
+.message-container::-webkit-scrollbar {
+    width: 5px;
+    background: $grey1;
+    border:0;
+}
+ 
+.message-container::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+      border:0;
+
+}

@@ -50,7 +50,7 @@
                 <div class="card-content m-b">
                     <div class="row">
                         <div class="col-12 content-details">
-                            <span class="desc-title">Tipo de Voluntariado:</span> Solidariedade Social
+                            <span class="desc-title">Tipo de Voluntariado:</span> {{vol?.category_name}}
                         </div>
                         <div class="col-12 content-details">
                             <span class="desc-title m-b">Seguro:</span> <span *ngIf="vol?.insurance">Sim</span><span *ngIf="!vol?.insurance">Não</span>
@@ -101,7 +101,7 @@
                 <div class="card-content" style="display: flex; height:67px">
                     <div class="row">
                         <div class="col-12" style="display:flex">
-                            <div class="addressTitle" style="display:flex; align-items: center">
+                            <div class="address" style="display:flex; align-items: center">
                                 {{address}}
                             </div>
                         </div>
@@ -303,7 +303,7 @@
                                 </div>
                                 <div class="col-8 card-user-nd">
                                     <div class="card-user-name-comments ts13">{{comment.name}}</div>
-                                    <div class="card-date-comments ts12">10 horas</div>
+                                    <div class="card-date-comments ts12">{{comment.date | amTimeAgo: true}}</div>
                                 </div>
                                 <div class="col card-option-comments text-right">
                                     <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>
