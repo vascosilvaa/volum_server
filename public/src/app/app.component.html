@@ -144,6 +144,8 @@
                                 <p *ngIf="notification.type == 1"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i> candidatou-se
                                     a <span>{{notification?.vol_name}}</span>
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+
+
                                 <p *ngIf="notification.type == 3"><b>{{notification?.user_name}}</b><i class="material-icons">check_circle</i>gostou de <span>{{notification?.vol_name}}</span>
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
@@ -155,6 +157,10 @@
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
                                 <p *ngIf="notification.type == 6"><b>Parabéns!</b> Terminaste o voluntariado <span>{{notification?.vol_name}}!</span><br> Clica
                                     aqui para deixares o teu testemunho.
+
+                                    <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
+
+                                    <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica aqui para deixares o teu testemunho.
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
