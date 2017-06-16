@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit {
   public scoreReady: boolean = false;
   constructor(public http: Http, overlay: Overlay, vcRef: ViewContainerRef, private sharedService: SharedService, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
-    overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {

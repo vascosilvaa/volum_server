@@ -18,7 +18,6 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
 })
 export class MyActionsComponent implements OnInit {
   constructor(public modal: Modal, overlay: Overlay, public profileService: ProfileService, vcRef: ViewContainerRef, private route: ActivatedRoute, private myactionsservice: MyActionsService, private router: Router) {
-    overlay.defaultViewContainer = vcRef;
   }
   public idProfile: any;
   public myVols: any;

@@ -6,6 +6,10 @@ import { AuthenticationService } from './../../../shared/Auth/authentication.ser
 import { GlobalConstants } from '../../../shared/global-constants';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { ModalViewAllComponent } from '../../../shared/modal-view-all/modal-view-all.component';
+import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
+import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
+
 
 
 @Component({
@@ -26,8 +30,8 @@ export class ActivityComponent implements OnInit {
 
   }
 
-  constructor(public http: Http, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
-    private auth: AuthenticationService) { }
+  constructor(public http: Http, public overlay: Overlay, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
+    private auth: AuthenticationService, public modal: Modal) { }
 
   ngOnInit() {
 
@@ -57,5 +61,9 @@ export class ActivityComponent implements OnInit {
 
     });
 
+  }
+
+  openTests(type) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type }, BSModalContext));
   }
 }

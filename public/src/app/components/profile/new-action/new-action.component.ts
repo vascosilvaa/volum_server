@@ -239,7 +239,7 @@ export class NewActionComponent implements OnInit {
       form.value.lat = this.lat;
       form.value.lng = this.lng;
       let array = []
-      form.value.category = 1;
+      form.value.category = parseInt(form.value.category);
       if (this.url1) {
         array.push(this.url1);
 

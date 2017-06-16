@@ -44,7 +44,7 @@ export class ModalViewAllComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log(this.context.id_vol);
     //  this.main_modal = this.injector.get(VolDetailsModalComponent);
 
 

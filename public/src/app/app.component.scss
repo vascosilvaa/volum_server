@@ -322,12 +322,36 @@ hr {
     margin-top:-1px;
 }
 
+<<<<<<< HEAD
+=======
+.notification-info {
+    margin-left: 12px;
+    height: 40px;
+    width: 100%;
+    font-size: 14px!important;
+    overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+
+}
+
+.notification-info p{
+    font-size:14px;
+}
+
+>>>>>>> c566c3fa42fbed7b04659dfa726354a428baceb9
 .dropdown-menu .new {
     background: rgba(15, 118, 247, 0.1)
 }
 
 .message-item:hover {
     background: $grey1;
+}
+
+.message-container{
+    height: 300px;
+    overflow-y: scroll;
 }
 
 .message-item .time {

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../modal-view-all/modal-view-all.component';
 import { AuthenticationService } from './../Auth/authentication.service'; import { AppModule } from './../../app.module';
-import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Injector, ViewChild, ElementRef } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
@@ -24,6 +24,7 @@ export class ModalContext extends BSModalContext {
 
 
 export class VolDetailsModalComponent implements OnInit {
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   lat: number;
   lng: number;
   public volDetails: any;
@@ -63,6 +64,17 @@ export class VolDetailsModalComponent implements OnInit {
       this.context.size = "lg";
     }
   }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.getCandidates();
@@ -78,7 +90,7 @@ export class VolDetailsModalComponent implements OnInit {
         this.authService.userPromise.then(res => {
           this.id_user = res.user.id_user;
           this.photo = res.user.photo;
-          this.name = res.user.username;
+          this.name = res.user.name;
         });
       }
       else {

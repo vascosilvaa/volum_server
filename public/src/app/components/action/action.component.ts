@@ -8,7 +8,7 @@ import { SharedService } from './../../shared/services/shared.service';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { AppModule } from './../../app.module';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewContainerRef, Injector } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Injector, ViewChild, ElementRef } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
 @Component({
@@ -18,6 +18,7 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   providers: [ProfileService, FeedComponent, SharedService]
 })
 export class ActionComponent implements OnInit {
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 lat: number;
   lng: number;
   public volDetails: any;
@@ -49,6 +50,17 @@ lat: number;
   public vol: any;
   constructor(public modal: Modal, public route: Router, private router: ActivatedRoute, overlay: Overlay, public injector: Injector, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
   }
+
+    ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
 
   ngOnInit() {
   this.router.params.subscribe((params) => {
@@ -132,17 +144,17 @@ lat: number;
   }
 
   openLikesModal(type, id_vol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
   }
 
   openCandidates(type, id_vol) {
     if ((type == 1 && this.numberCandidates > 0) || (type == 2 && this.numberConfirmeds > 0)) {
-      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+      return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
     }
   }
 
-  openRemoveConfirm(type, name, id_user, idVol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: idVol, nameVol: name, id_user: id_user }, BSModalContext))
+  openRemoveConfirm(type, name, id_user, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol, nameVol: name, id_user: id_user }, BSModalContext))
       .then((d) => d.result)
       .then((r) => {
         console.log(r.result);

@@ -88,15 +88,8 @@ var returnRouter = function (io) {
     });
 
 
-    app.get('/:id/score', function (req, res) {
 
-        refreshUserScore(req.params.id, function (score) {
-            res.json({
-                success: true,
-                score
-            });
-        });
-    });
+
 
 
     app.get('/:id/simple', passport.authenticate(['jwt']), function (req, res) {
@@ -187,6 +180,63 @@ var returnRouter = function (io) {
             db.get().query({
                 sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
                 'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+                nestTables: true
+            }, [req.params.id], function (err, results, fields) {
+                if (err) {
+                    console.log(err)
+                    res.send({
+                        success: false,
+                        err
+                    });
+                } else {
+                    console.log(results)
+                    if (results.length > 0) {
+                        let vols = [];
+                        for (let i = 0; i < results.length; i++) {
+                            vols.push({
+                                id_vol: results[i].vols.id_vol,
+                                name: results[i].vols.name,
+                                date_begin: results[i].vols.date_begin,
+                                description: results[i].vols.description,
+                                date_creation: results[i].vols.date_creation,
+                                date_end: results[i].vols.date_end,
+                                lat: results[i].vols.lat,
+                                lng: results[i].vols.lng,
+                                start_time: results[i].vols.start_time,
+                                end_time: results[i].vols.end_time,
+                                photos: (results[i][''].photos).split('->')
+                            });
+                        }
+
+                        res.send({
+                            success: true,
+                            vols
+                        });
+
+                    } else {
+                        res.send({
+                            success: true,
+                            vols: []
+                        });
+                    }
+
+                }
+
+
+            });
+        }
+    });
+
+    app.get('/:id/my-vols/history', passport.authenticate('jwt'), function (req, res) {
+        if (!Number(req.params.id)) {
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
+        } else {
+            db.get().query({
+                sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
+                'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 AND vols.active = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
                 nestTables: true
             }, [req.params.id], function (err, results, fields) {
                 if (err) {
@@ -440,6 +490,72 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get('/:id/vols/history', passport.authenticate('jwt'), function (req, res) {
+        console.log(typeof req.params.id)
+        console.log(req.params.id);
+        if (!Number(req.params.id)) {
+            res.status(400).send({
+                success: false,
+                message: "Parametros Invalidos"
+            });
+        } else {
+            let options = {
+                sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
+                " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE user_vol.id_user = ? AND user_vol.confirm = 0 OR user_vol.confirm = 1  AND vols.deleted = 0 AND vols.active = 0",
+                nestTables: true
+            }
+            db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
+                if (err) {
+                    res.status(400);
+                    res.send({
+                        success: false,
+                        message: 'Erro'
+                    });
+                    console.error(err);
+                } else {
+                    console.log(results.length);
+                    if (results.length > 0) {
+
+                        let vols = [];
+                        for (let i = 0; i < results.length; i++) {
+                            vols.push({
+                                vol: {
+                                    id_vol: results[i].vols.id_vol,
+                                    name: results[i].vols.name,
+                                    description: results[i].vols.description,
+                                    date_begin: results[i].vols.date_begin,
+                                    date_creation: results[i].vols.date_creation,
+                                    duration: results[i].vols.duration,
+                                    lat: results[i].vols.lat,
+                                    lng: results[i].vols.lng,
+                                    photos: (results[i][''].photos).split('->')
+
+                                },
+                                user: {
+                                    id_user: results[i].users.id_user,
+                                    name: results[i].users.name,
+                                    photo_url: results[i].users.photo_url
+                                }
+                            });
+                        }
+
+                        res.send({
+                            success: true,
+                            vols
+                        });;
+
+                    } else {
+                        res.send({
+                            success: true,
+                            vols: []
+                        });
+                    }
+
+                }
+
+            });
+        }
+    });
 
     /**
      * @api {get} /profile/:id/follow Seguir 
@@ -680,6 +796,31 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get('/:id/follows/count', function (req, res) {
+        if (isNaN(parseInt(req.params.id))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+            console.log("user", req.body)
+
+            let count;
+
+            db.get().query({
+                sql: 'SELECT COUNT(*) AS count FROM follows WHERE follows.id_user2 = ?'
+            }, [req.params.id],
+                function (error, results, fields) {
+                    count = results[0].count
+
+                    res.json({
+                        success: true,
+                        count
+                    });
+
+                });
+        }
+    });
 
 
     app.post('/score', passport.authenticate('jwt'), function (req, res) {
@@ -691,8 +832,8 @@ var returnRouter = function (io) {
         } else {
 
             db.get().query({
-                sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification) VALUES ( ?, ? , ? , ?)',
-            }, [req.user.id_user, req.body.id_user2, req.body.classification],
+                sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification, message) VALUES ( ?, ? , ? , ?, ?)',
+            }, [req.user.id_user, req.body.id_user2, req.body.classification, req.body.message],
                 function (error, results, fields) {
                     console.log(error)
                     res.json({
@@ -708,6 +849,77 @@ var returnRouter = function (io) {
                     //     });
                 });
         }
+    });
+
+    app.get('/:id/vols/finished/count', function (req, res) {
+
+        if (Number(req.params.id)) {
+            db.get().query(`SELECT COUNT (*) as count FROM user_vol INNER JOIN vols ON vols.id_vol = user_vol.id_vol WHERE user_vol.id_user = ? AND vols.active = 0 AND user_vol.confirm = 2`, [req.params.id], function (error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                } else {
+                    res.json({
+                        success: true,
+                        rows
+                    });
+
+                }
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'Invalid ID'
+            });
+        }
+
+    });
+
+    app.get('/:id/score', function (req, res) {
+
+        refreshUserScore(req.params.id, function (score) {
+            res.json({
+                success: true,
+                score
+            });
+        });
+    });
+
+    app.get('/:id/score/list', function (req, res) {
+
+        let results = [];
+
+        db.get().query(`SELECT classification.id_vol, classification.id_user, vols.name, classification.message, users.name, users.id_user, users.photo_url
+         FROM classification 
+         INNER JOIN users ON classification.id_user = users.id_user INNER JOIN vols ON classification.id_vol = vols.id_vol 
+         WHERE classification.id_user2 = ?`, [req.params.id], function (error, rows, fields) {
+
+                if (error) {
+                    res.send({
+                        success: false,
+                        message: error
+                    })
+                    throw new Error(error);
+                } else {
+                    for (let i = 0; i < rows.length; i++) {
+
+                        results.push({
+                            user: {
+                                name: rows[i].name,
+                                photo_url: rows[i].photo_url
+                            },
+                            message: rows[i].message,
+                            id_vol: rows[i].id_vol
+                        })
+
+                    }
+                    res.send({
+                        success: true,
+                        results
+                    })
+
+                }
+            });
+
     });
 
 

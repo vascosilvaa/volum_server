@@ -22,7 +22,6 @@ export class InstitutionsComponent implements OnInit {
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
     private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
-    overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {

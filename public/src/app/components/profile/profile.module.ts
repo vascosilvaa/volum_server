@@ -49,7 +49,7 @@ import { NewActionComponent } from './new-action/new-action.component';
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }
   ],
-  entryComponents: [ModalViewAllComponent, EditModalComponent]
+  entryComponents: [ModalViewAllComponent, EditModalComponent, ModalEndComponent, VolDetailsModalComponent]
 })
 
 export class ProfileModule { }

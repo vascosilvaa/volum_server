@@ -261,6 +261,20 @@
 }
 
 .card-Comments {
+    max-height: 295px;
+    overflow-y: auto;
+}
+
+.card-Comments::-webkit-scrollbar {
+    width: 5px;
+    background: $grey1;
+    border:0;
+}
+ 
+.card-Comments::-webkit-scrollbar-thumb {
+  background-color: $grey2;
+      border:0;
+
 }
 
 .comments-header {
@@ -357,12 +371,14 @@
     padding-left: 0;
 }
 
+
 .btnSendIcon {
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .btnSendIcon:hover {
-    cursor: pointer;
+    color: $blue;
 }
 
 .btnSendColorBlue {

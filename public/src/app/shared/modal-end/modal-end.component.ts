@@ -25,7 +25,7 @@ export class ModalEndComponent implements OnInit {
   public all_classification: number;
   public users = []
   public comment: string;
-
+  public vol: any;
   context: ModalContext;
 
   constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, private injector: Injector, public volsService: volsService) {
@@ -34,7 +34,7 @@ export class ModalEndComponent implements OnInit {
 
     if (this.context.type == 1) {
 
-    } else if (this.context.type == 2) {
+    } else if (this.context.type == 2 || this.context.type==3) {
       this.context.size = "lg";
     }
 
@@ -60,6 +60,19 @@ export class ModalEndComponent implements OnInit {
       this.getUsers()
     }
 
+    if (this.context.type==3) {
+      this.getVol(this.context.id_vol);
+ 
+    }
+
+  }
+
+  getVol(id_vol) {
+    this.volsService.getVol(id_vol).then(
+      res => {
+        this.vol = res.vol;
+      }
+    )
   }
 
   deleteAction(id_vol) {

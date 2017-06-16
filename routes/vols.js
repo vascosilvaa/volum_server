@@ -53,6 +53,26 @@ var returnRouter = function (io) {
             });
     }
 
+    function removeNotificationFromVolCreator(id_vol, id_user, type) {
+        db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [id_vol],
+            function (error, results, fields) {
+
+                let id_creator = results[0].id_user_creator;
+
+                db.get().query('DELETE FROM notifications WHERE id_user = ? AND id_user2 = ? AND id_vol = ? AND type = ?', [id_creator, id_user, id_vol, type],
+                    function (error, results, fields) {
+
+
+                        let index = loggedUsers.findIndex(x => x.user == id_creator);
+                        if (index !== -1) {
+                            io.to(loggedUsers[index].socket).emit('notification');
+                        }
+
+
+                    });
+            });
+    }
+
     function emitNotificationToUser(id_vol, id_user, type) {
         // EMITE NOTIFICAÇAO A UTILIZADOR
 
@@ -103,35 +123,52 @@ var returnRouter = function (io) {
                 succes: false,
                 message:
                 "Falta Enviar o Amount e startAt"
-            }
-            )
+            })
         } else {
 
             let vols = [];
             let options = {
-                sql: 'SELECT vols.id_vol,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND vols.active = 1 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC LIMIT ?, ?',
+                sql: `SELECT vols.id_vol, vols_has_categories.id_category AS id_category, GROUP_CONCAT(photos.url SEPARATOR "->") As photos, 
+                      vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.insurance, vols.description, vols.date_creation, vols.deleted,
+                      vols.date_begin, vols.date_end, vols.start_time, vols.end_time, users.id_user, users.name, users.photo_url 
+                      FROM vols 
+                      INNER JOIN users ON vols.id_user_creator = users.id_user 
+                      INNER JOIN photos ON vols.id_vol = photos.id_vol
+                      INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
+                      WHERE photos.id_vol = vols.id_vol
+                      AND vols.deleted = 0 AND vols.active = 1 
+                      `,
                 nestTables: true
             };
-            if (req.query['type'] == 'inst') {
-                options = {
-                    sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 1 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
-                    nestTables: true
-                };
-            } else if (req.query['type'] == 'private') {
 
-                options = {
-                    sql: 'SELECT vols.id_vol,GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.id_user_creator, vols.id_vol_type, vols.lat, vols.lng, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, ' +
-                    'users.id_user, users.name, users.photo_url FROM vols INNER JOIN users ON vols.id_user_creator = users.id_user  INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE vols.deleted = 0 AND vols.id_vol_type = 2 AND  photos.id_vol = vols.id_vol GROUP BY vols.id_vol ORDER BY vols.date_creation',
-                    nestTables: true
-                };
+            if (req.query['type'] == 'inst') {
+                options.sql += `AND vols.id_vol_type = 2`
             }
+            if (req.query['type'] == 'private') {
+                options.sql += `AND vols.id_vol_type = 1`
+            }
+            if (req.query.category) {
+                options.sql += ` AND vols_has_categories.id_category = ${req.query.category}`
+            }
+            if (req.query.insurance) {
+                options.sql += ' AND vols.insurance = ' + req.query.insurance;
+            }
+            if (req.query.startDate) {
+                options.sql += ' AND vols.date_begin > ' + req.query.startDate;
+            }
+            if (req.query.startDate && req.query.endDate) {
+                options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}`;
+            }
+
+            options.sql += ` GROUP BY vols.id_vol 
+                            ORDER BY vols.date_creation DESC
+                            LIMIT ? , ? `;
+
+            console.log(options.sql);
 
             db.get().query(options, [parseInt(req.query.startAt), parseInt(req.query.amount)],
                 function (error, results, fields) {
                     if (error) {
-                        console.log(error);
                         res.send({
                             success: false,
                             message: error
@@ -141,7 +178,6 @@ var returnRouter = function (io) {
                         if (results.length == 0) { } else {
 
                             for (let i = 0; i < results.length; i++) {
-                                console.log("RESULTS", results[i].vols.date_creation);
 
                                 vols.push({
                                     vol: {
@@ -151,8 +187,10 @@ var returnRouter = function (io) {
                                         date_begin: results[i].vols.date_begin,
                                         date_creation: results[i].vols.date_creation,
                                         duration: results[i].vols.duration,
+                                        insurance: results[i].vols.insurance,      //--> Para tirar fora  
                                         lat: results[i].vols.lat,
                                         lng: results[i].vols.lng,
+                                        id_category: results[i].vols_has_categories.id_category,
                                         photos: (results[i][''].photos).split('->')
                                     },
                                     user: {
@@ -202,14 +240,12 @@ var returnRouter = function (io) {
                     success: false,
                     message: 'Datas Invalidas'
                 })
-
-
             } else {
 
 
 
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
-                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [req.body.category, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
+                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [1, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                     function (error, results, fields) {
                         if (error) {
                             console.log(error);
@@ -217,7 +253,7 @@ var returnRouter = function (io) {
                                 error
                             });
                         } else {
-
+                            //SE TIVER MAIS QUE UMA FOTO
                             for (let i = 0; i < req.body.photos.length; i++) {
                                 cloudinary.uploader.upload(req.body.photos[i], function (result) {
 
@@ -241,6 +277,7 @@ var returnRouter = function (io) {
 
                                 });
                             }
+                            //SE NAO TIVER FOTOS
                             if (req.body.photos.length == 0) {
 
                                 db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'], function (error, result, field) {
@@ -250,16 +287,24 @@ var returnRouter = function (io) {
                                         });
                                     } else {
 
-                                        res.json({
-                                            message: 'Success',
-                                            id_vol: results.insertId
-                                        });
+
 
 
                                     }
                                 });
 
                             }
+
+                            //CATEGORIAS
+                            db.get().query('INSERT INTO vols_has_categories (id_vol, id_category) VALUES (?, ?)', [results.insertId, req.body.category], function (error, category_results, fields) {
+
+                                res.json({
+                                    message: 'Success',
+                                    id_vol: results.insertId
+                                });
+
+                            });
+
 
                         }
                     });
@@ -461,7 +506,7 @@ var returnRouter = function (io) {
 
 
         let options = {
-            sql: 'SELECT users.id_user, users.name, users.email, users.photo_url, vols.id_vol, vols.active,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time FROM vols  INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE vols.deleted = 0 AND vols.id_vol = ? GROUP BY vols.id_vol LIMIT 1',
+            sql: 'SELECT users.id_user, users.name, users.email, users.photo_url, vols.id_vol, vols.active,  vols_has_categories.id_category AS id_category,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time, vols.insurance FROM vols  INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol WHERE vols.deleted = 0 AND vols.id_vol = ? GROUP BY vols.id_vol LIMIT 1',
             nestTables: true
         };
 
@@ -476,8 +521,8 @@ var returnRouter = function (io) {
             } else {
                 if (results.length == 0) {
                     res.status(404);
-                   res.end();
-                   
+                    res.end();
+
                 } else {
                     for (let i = 0; i < results.length; i++) {
 
@@ -493,6 +538,7 @@ var returnRouter = function (io) {
                             start_time: results[i].vols.start_time,
                             end_time: results[i].vols.end_time,
                             duration: results[i].vols.duration,
+                            id_category: results[i].vols_has_categories.id_category,
                             active: results[i].vols.active,
                             insurance: results[i].vols.insurance,
                             lng: results[i].vols.lng,
@@ -517,6 +563,47 @@ var returnRouter = function (io) {
      * @apiName listLikeCount
      * @apiGroup Voluntariados 
      */
+
+    app.post('/:id/invite', passport.authenticate('jwt'), function (req, res) {
+        console.log(req.body)
+        let user_array = []
+        if (req.body.users) {
+
+            for (let i = 0; i < req.body.users.length; i++) {
+
+                user_array.push([req.body.users[i], req.user.id_user, req.params.id, new Date(), 7])
+            }
+
+            db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ?', [user_array],
+                function (error, results, fields) {
+                    res.send({
+                        success: true,
+                    })
+
+                });
+
+        }
+    })
+
+    app.get('/:id/invites', function (req, res) {
+
+        if (Number(req.params.id)) {
+
+            db.get().query(`SELECT notifications.type, vols.id_vol, vols.name, users.name, users.photo_url, users.id_user 
+            FROM notifications
+            INNER JOIN users ON notifications.id_user2 = users.id_user 
+            INNER JOIN vols ON notifications.id_vol = vols.id_vol 
+            WHERE notifications.type = 7 AND notifications.id_vol = ?`, [req.params.id],
+                function (error, results, fields) {
+                    res.send({
+                        success: true,
+                        results
+                    })
+
+                });
+
+        }
+    })
 
     app.get('/:id/likes/count', function (req, res) {
 
@@ -686,6 +773,8 @@ var returnRouter = function (io) {
                         success: false
                     });
                 } else {
+
+                    removeNotificationFromVolCreator(req.params.id, req.user.id_user, 3);
                     res.json({
                         success: true,
                         message: results
@@ -751,19 +840,24 @@ var returnRouter = function (io) {
 
     app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
 
-        db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function (error, comments, fields) {
-            if (error) {
-                res.json({
-                    success: false
-                });
-                throw error;
-            } else {
-                res.json({
-                    success: true,
-                    comments
-                });
-            }
-        });
+        db.get().query(`
+                        SELECT comments.id_comment, comments.message, comments.date, users.photo_url, users.name, users.id_user FROM comments 
+                        INNER JOIN users ON comments.id_user = users.id_user 
+                        WHERE id_vol = ?`,
+
+            [req.params.id], function (error, comments, fields) {
+                if (error) {
+                    res.json({
+                        success: false
+                    });
+                    throw error;
+                } else {
+                    res.json({
+                        success: true,
+                        comments
+                    });
+                }
+            });
     });
 
     app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
@@ -1017,7 +1111,8 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    // CONFIRM = 1 -> ACEITE CONFIRM = 2 -> NEGADO
+    // CONFIRM = 1 -> ACEITE 
+    // CONFIRM = 2 -> NEGADO
 
 
     app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
@@ -1228,6 +1323,7 @@ var returnRouter = function (io) {
             });
         }
     });
+
 
     /**
      * @api {post} /vols/:id/comments Apagar Voluntariado

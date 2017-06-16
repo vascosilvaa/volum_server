@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../../shared/services/profile.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutMeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public profileService: ProfileService) { }
 
   ngOnInit() {
+
+    this.profileService.getCountries().then(res => {
+
+      console.log("COUNTR", res);
+    })
+
+
   }
 
 }

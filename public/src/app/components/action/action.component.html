@@ -56,10 +56,10 @@
       </div>
 
       <div class="modalTextArea col-12 no-padding">
-        <div class="ts14 col-12 no-padding" style="font-weight: bold">
+        <div class="ts14 col-12 no-padding title-vol" style="font-weight: bold">
           {{volDetails?.name}}
         </div>
-        <div class="ts13 col-12 no-padding">
+        <div class="ts13 col-12 no-padding desc-vol">
           {{volDetails?.description}}
         </div>
         <div class="details-vol">
@@ -87,6 +87,9 @@
                 </div>
                 <div class="daysEventFull ts13" *ngIf="volDetails?.duration < 2">
                   {{volDetails?.duration}} hora diária
+                </div>
+                <div class="daysEventFull ts13" *ngIf="!volDetails?.duration">
+                  Sem duração definida
                 </div>
               </div>
             </div>
@@ -116,23 +119,23 @@
         <div class="row">
           <div class="col-12 no-padding" style="display:flex; margin-top:5px">
             <div>
-              <div class="daysEventFull ts13" (click)="openCandidates(1, volDetails.id_vol)" [class.pointer]="numberCandidates > 0">
+              <div class="daysEventFull ts13" (click)="openCandidates(1, vol)" [class.pointer]="numberCandidates > 0">
                 <span class="numberYellow">{{numberCandidates}}</span><span class="normalText"> candidatos</span>
               </div>
               <div *ngIf="login" class="likeImgs">
                 <img *ngFor="let candidate of candidates" src="{{candidate?.photo_url}}" (click)="openProfileModal(candidate?.id_user)" class="pointer">
-                <div *ngIf="numberCandidates>10" class="see-all-participants" (click)="openCandidates(1, volDetails.id_vol)">{{numberCandidates-10}}</div>
+                <div *ngIf="numberCandidates>10" class="see-all-participants" (click)="openCandidates(1, vol)">{{numberCandidates-10}}</div>
                 <div *ngIf="!numberCandidates" class="ts13" style="margin-left: -10px; margin-top:5px">Não existem candidatos.</div>
               </div>
 
             </div>
             <div class="" style="text-align:right; margin-left:auto">
-              <div class="ts13" (click)="openCandidates(2, volDetails.id_vol)" [class.pointer]="numberConfirmeds > 0">
+              <div class="ts13" (click)="openCandidates(2, vol)" [class.pointer]="numberConfirmeds > 0">
                 <span class="numberBlue">{{numberConfirmeds}}</span><span class="normalText"> confirmados</span>
               </div>
               <div *ngIf="login" class="likeImgs Rgt">
                 <img *ngFor="let confirmed of confirmeds" src="{{confirmed?.photo_url}}" (click)="openProfileModal(confirmed?.id_user)" class="pointer">
-                <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, volDetails.id_vol)">{{numberConfirmeds-10}}</div>
+                <div *ngIf="numberConfirmeds>10" class="see-all-participants" (click)="openCandidates(2, vol)">{{numberConfirmeds-10}}</div>
                 <div *ngIf="!numberConfirmeds" class="ts13" style="margin-top:5px">Não existem confirmados.</div>
               </div>
             </div>
@@ -141,47 +144,49 @@
       </div>
 
       <div class="card-volum-footer no-padding-side" *ngIf="login">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 no-padding" style="display:flex; align-items:center">
-              <div class="cardLikes">
-                <md-icon (click)="dislike(this.vol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
-                <md-icon (click)="like(this.vol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
-              </div>
-              <div *ngIf="login" class="likesText ts12">
-                <!-- <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto -->
-                <span *ngIf="likeState==1" class="likesTestMe">Tu</span>
-                <span *ngIf="likeState==1 && numberLikes<2">gostas disto.</span>
-                <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">e mais</span>
-                <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">{{numberLikes-1}} pessoa<span *ngIf="numberLikes>2">s</span>                gostam disto.</span>
-                <span *ngIf="likeState==0 && numberLikes>=1" style="cursor:pointer" (click)="openLikesModal(8, volDetails.id_vol)">{{numberLikes}} pessoa<span *ngIf="numberLikes>=2">s</span>                gosta
-                <span *ngIf="numberLikes>=2">m
-                                      </span> disto.
-                </span>
-                <span *ngIf="likeState==0 && !numberLikes">Sê o primeiro a gostar disto!</span>
-              </div>
-              <div *ngIf="!login" class="likesText ts12">
-                <span *ngIf="numberLikes>=1">{{numberLikes}} pessoa<span *ngIf="numberLikes>=1">s</span> gostam disto.
-                </span>
-                <span *ngIf="!numberLikes || numberLikes==0 ">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 no-padding" style="display:flex; align-items:center;">
+                        <div class="cardLikes">
+                            <md-icon (click)="dislike(vol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
+                            <md-icon (click)="like(vol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
+                        </div>
+                        <div *ngIf="login" class="likesText ts12">
+                            <!-- <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto -->
+                            <span *ngIf="likeState==1" class="likesTestMe">Tu</span>
+                            <span *ngIf="likeState==1 && numberLikes<2">gostas disto.</span>
+                            <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails?.id_vol)">e mais</span>
+                            <span *ngIf="likeState==1 && numberLikes>=2" style="cursor:pointer" (click)="openLikesModal(8, volDetails?.id_vol)">{{numberLikes-1}} pessoa<span *ngIf="numberLikes>2">s</span> gostam disto.</span>
+                            <span *ngIf="likeState==0 && numberLikes>=1" style="cursor:pointer" (click)="openLikesModal(8, volDetails?.id_vol)">{{numberLikes}} pessoa<span *ngIf="numberLikes>=2">s</span> gosta<span *ngIf="numberLikes>=2">m </span> disto.
+                            </span>
+                            <span *ngIf="likeState==0 && !numberLikes">Sê o primeiro a gostar disto!</span>
+                        </div>
+                        <div *ngIf="!login" class="likesText ts12">
+                            <span *ngIf="numberLikes>=1">{{numberLikes}} pessoa<span *ngIf="numberLikes>=1">s</span> gostam
+                            disto.
+                            </span>
+                            <span *ngIf="!numberLikes || numberLikes==0 ">Sê o primeiro a gostar disto. <span (click)="openRegister()" class="likesTestMe clickable" style="cursor:pointer">Regista-te já</span></span>
 
-              </div>
-              <div (click)="getComments()" class="text-right" style="margin-left:auto">
-                <div class="cardComments ts12">
-                  <div>
-                    <md-icon class="btnComments">textsms</md-icon>
-                  </div>
-                  <div *ngIf="numberComments>0" class="textComments"><span class="commentsNumber">{{numberComments}}</span> comentário<span *ngIf="numberComments>1">s</span></div>
-                  <div *ngIf="numberComments==0" class="textComments">Sê o primeiro a comentar!</div>
+                        </div>
+
+
+
+                        <div (click)="getComments()" class="clickable text-right" style="margin-left:auto">
+                            <div class="cardComments ts12" style="display:flex; align-items:center;">
+                                <div>
+                                    <md-icon class="btnComments" style="margin-right: 5px;">textsms</md-icon>
+                                </div>
+                                <div *ngIf="numberComments>0" class="textComments"><span class="commentsNumber">{{numberComments}}</span> comentário<span *ngIf="numberComments>1">s</span></div>
+                                <div *ngIf="numberComments==0" class="textComments">Sê o primeiro a comentar!</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </ng-container>
   <div class="row card-Comments" *ngIf="showComments && login">
-    <div class="scrollArea col-12 no-padding">
+    <div class="scrollArea col-12 no-padding" #scrollMe>
       <div class="col-12 comments-back" *ngFor="let comment of comments">
         <div class="row comments-header">
           <div class="col card-user--comments-image col-md-auto">

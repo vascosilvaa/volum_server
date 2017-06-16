@@ -51,7 +51,6 @@ export class CardComponent implements OnInit {
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
     private router: Router, public auth: AuthenticationService) {
 
-    overlay.defaultViewContainer = vcRef;
   }
 
   ngOnInit() {

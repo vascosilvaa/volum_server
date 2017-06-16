@@ -18,7 +18,7 @@ export class NotificationsComponent implements OnInit {
   public notifications: any;
   public notificationsTrue;
 
-  constructor(public appService: AppService,public auth: AuthenticationService, public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef,) { }
+  constructor(public appService: AppService, public auth: AuthenticationService, public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef, ) { }
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
@@ -40,16 +40,17 @@ export class NotificationsComponent implements OnInit {
   }
 
   getNotifications(id) {
-    this.appService.getNotifications(id).then(res => {
+
+    this.appService.getNotifications(1, 20).then(res => {
       this.notifications = res.notifications;
       console.log(this.notifications.length)
-      if(this.notifications.length > 0) {
-        this.notificationsTrue=1;
+      if (this.notifications.length > 0) {
+        this.notificationsTrue = 1;
       }
     })
   }
 
   openVolDetails(idVol) {
-  return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
-}
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
+  }
 }

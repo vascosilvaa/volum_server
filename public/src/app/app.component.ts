@@ -1,4 +1,5 @@
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
+import { ModalEndComponent } from './shared/modal-end/modal-end.component';
 import { ProfileService } from './shared/services/profile.service';
 import { ChatService } from './shared/services/chat.service';
 import { AppService } from './app.service';
@@ -31,6 +32,9 @@ export class AppComponent implements OnInit {
   public requests = [];
   public messagesReady: boolean = false;
   public requestsReady: boolean = false;
+  public notificationsReady: boolean = false;
+  public sum: number = 5;
+
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
     private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService,
@@ -40,7 +44,7 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-    
+
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.router.navigateByUrl('/mobile');
     } else {
@@ -138,11 +142,23 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getNotifications(id) {
-    this.appService.getNotifications(id).then(res => {
-      this.notifications = res.notifications;
-      console.log("NOTIFICATIONS", res);
-      this.cleanNotifications();
+
+  getNotifications(startAt, amount, replace) {
+    this.cleanNotifications();  
+    this.notificationsReady = false;
+
+    this.appService.getNotifications(startAt, amount).then(res => {
+      if (replace) {
+
+        this.notifications = res.notifications;
+        this.notificationsReady = true;
+      } else {
+        this.notifications = this.notifications.concat(res.notifications);
+        this.notificationsReady = true;
+
+        console.log("NOTIFICATIONS", res);
+
+      }
 
     })
   }
@@ -193,11 +209,15 @@ export class AppComponent implements OnInit {
   }
 
   openRegister() {
-
     return this.modal.open(RegisterComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
-  openVolDetails(idVol) {
-    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol, indexVol: null }, BSModalContext));
+
+  openVolDetails(type, id_vol) {
+    if (type == 6) {
+      return this.modal.open(ModalEndComponent, overlayConfigFactory({ id_vol: id_vol, type: 3 }, BSModalContext));
+    } else {
+      return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: id_vol, indexVol: null }, BSModalContext));
+    }
   }
   logout() {
     this.auth.logout();
@@ -212,4 +232,9 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/profile/' + profile + '/settings']);
   }
 
+  onNotificationsScroll() {
+    console.log("scroll");
+    this.sum = this.sum + 6;
+    this.getNotifications(this.sum, 5, false);
+  }
 }
