@@ -564,6 +564,47 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
+    app.post('/:id/invite', passport.authenticate('jwt'), function (req, res) {
+        console.log(req.body)
+        let user_array = []
+        if (req.body.users) {
+
+            for (let i = 0; i < req.body.users.length; i++) {
+
+                user_array.push([req.body.users[i], req.user.id_user, req.params.id, new Date(), 7])
+            }
+
+            db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ?', [user_array],
+                function (error, results, fields) {
+                    res.send({
+                        success: true,
+                    })
+
+                });
+
+        }
+    })
+
+    app.get('/:id/invites', function (req, res) {
+
+        if (Number(req.params.id)) {
+
+            db.get().query(`SELECT notifications.type, vols.id_vol, vols.name, users.name, users.photo_url, users.id_user 
+            FROM notifications
+            INNER JOIN users ON notifications.id_user2 = users.id_user 
+            INNER JOIN vols ON notifications.id_vol = vols.id_vol 
+            WHERE notifications.type = 7 AND notifications.id_vol = ?`, [req.params.id],
+                function (error, results, fields) {
+                    res.send({
+                        success: true,
+                        results
+                    })
+
+                });
+
+        }
+    })
+
     app.get('/:id/likes/count', function (req, res) {
 
         let options = {
@@ -1070,7 +1111,8 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    // CONFIRM = 1 -> ACEITE CONFIRM = 2 -> NEGADO
+    // CONFIRM = 1 -> ACEITE 
+    // CONFIRM = 2 -> NEGADO
 
 
     app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
@@ -1281,6 +1323,7 @@ var returnRouter = function (io) {
             });
         }
     });
+
 
     /**
      * @api {post} /vols/:id/comments Apagar Voluntariado
