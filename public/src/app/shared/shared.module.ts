@@ -23,6 +23,7 @@ import { ModalProfileComponent } from './modal-profile/modal-profile.component';
 import { ModalInviteComponent } from './modal-invite/modal-invite.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { JsonpModule } from '@angular/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { JsonpModule } from '@angular/http';
     MomentModule,
     BootstrapModalModule,
     SwiperModule,
+    InfiniteScrollModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
