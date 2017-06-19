@@ -191,36 +191,23 @@
             </div>
           </div>
         </div>
-        <div class="card-block small">
-          <div class="row align-items-center">
+        <div class="card-block small" style="padding-bottom:0!important">
+          <div class="row align-items-center"  *ngFor="let testimony of testimonials" style="padding-bottom: 1.5rem">
             <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+              <img style="border-radius: 50%" width="40px" height="40px" src="{{testimony.user.photo_url}}">
             </div>
             <div class="col-8 truncate">
-              <b>     André Martins </b>
-              <span class="descProfile blockquote-footer  truncate"> Decerto vou repetir. 5 estrelas</span>
+              <b>{{testimony.user.name}} </b>
+              <span class="descProfile blockquote-footer  truncate"> {{testimony.message}}</span>
             </div>
           </div>
-          <div class="row mt-4 align-items-center">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
-            </div>
-            <div class="col-8 truncate">
-              <b>  Pedro Araújo </b>
-              <span class="descProfile blockquote-footer truncate "> Recomendo, muito bom ambiente</span>
-            </div>
-          </div>
-          <div class="row mt-4 align-items-center">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
-            </div>
-            <div class="col-8 truncate">
-              <b>Vasco Silva</b>
-              <span class="descProfile blockquote-footer truncate"> Espetacular. Melhor instituição da zona </span>
-            </div>
+          <div class="no-content text-center" *ngIf="!testimonials || testimonials.length==0" style="padding-bottom: 1.5rem">
+            <div><i class="material-icons">sentiment_dissatisfied</i></div>
+            <span>{{user.name}} não tem testemunhos.</span>
           </div>
         </div>
       </div>
+      
 
 
 

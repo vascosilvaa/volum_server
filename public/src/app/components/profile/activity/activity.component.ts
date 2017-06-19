@@ -26,8 +26,8 @@ export class ActivityComponent implements OnInit {
     email: "",
     phone: null,
     photo: null
-
   }
+  public testimonials: any;
 
   constructor(public http: Http, public overlay: Overlay, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService, public modal: Modal) { }
@@ -38,6 +38,10 @@ export class ActivityComponent implements OnInit {
       this.user.id_user = params.id;
       this.profileService.getProfile(params.id).then(profile => {
         this.user = profile.user;
+
+        this.profileService.getTestimonials(params.id).then(res => {
+          this.testimonials = res.results;
+        });
 
         this.profileService.getMyVols(params.id).then(res => {
           this.vols = res.vols;
