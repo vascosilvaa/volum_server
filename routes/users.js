@@ -874,6 +874,47 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/:id/my-vols/count', function (req, res) {
+
+        let query;
+        if (Number(req.params.id)) {
+
+            if (req.query.state == 'active') {
+
+                query = `SELECT COUNT (*) AS count FROM vols WHERE vols.id_user_creator = ? AND vols.active = 1`;
+
+            } else if (req.query.state == 'finished') {
+                query = `SELECT COUNT (*) AS count FROM vols WHERE vols.id_user_creator = ? AND vols.active = 0`;
+
+            } else {
+
+                query = `SELECT COUNT (*) AS count FROM vols WHERE vols.id_user_creator = ?`;
+
+            }
+
+
+            db.get().query(query, [req.params.id], function (error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                } else {
+                    res.json({
+                        success: true,
+                        count: rows[0].count
+                    });
+
+                }
+            });
+
+
+        } else {
+            res.json({
+                success: false,
+                message: 'Invalid ID'
+            });
+        }
+
+    });
+
     app.get('/:id/score', function (req, res) {
 
         refreshUserScore(req.params.id, function (score) {
@@ -917,7 +958,7 @@ var returnRouter = function (io) {
                                 name: rows[i].users.name,
                                 photo_url: rows[i].users.photo_url,
                                 id_user: rows[i].users.id_user
-                        },
+                            },
                             message: rows[i].classification.message,
                             classification: rows[i].classification.classification,
                             vol: {
