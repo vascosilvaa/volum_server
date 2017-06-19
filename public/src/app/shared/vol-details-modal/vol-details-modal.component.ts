@@ -54,6 +54,7 @@ export class VolDetailsModalComponent implements OnInit {
   public confirmeds: any;
   public ready: boolean = false;
   public feed: any;
+  public categories: any;
 
   public error: boolean = false;
 
@@ -77,6 +78,7 @@ export class VolDetailsModalComponent implements OnInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
+      this.getCategories();
       this.getCandidates();
       this.getConfirmed();
       console.log(this.context.idVol);
@@ -110,6 +112,11 @@ export class VolDetailsModalComponent implements OnInit {
           this.lng = parseFloat(this.volDetails.lng);
           console.log(this.lat, this.lng)
           this.ready = true;
+          for(let i=0;  i< this.categories.length; i++) {
+            if(this.categories[i].id_category==parseInt(this.volDetails.id_category)) {
+              this.volDetails.category_name = this.categories[i].name;
+            }
+          }
         })
         .catch(err => {
           this.ready = true;
@@ -125,6 +132,14 @@ export class VolDetailsModalComponent implements OnInit {
   onSelect(id_profile) {
     this.dialog.dismiss();
     this.router.navigate(['/profile/' + id_profile + '/activity']);
+  }
+
+  getCategories() {
+    this.volsService.getCategories()
+      .then(res => {
+        this.categories = res.categories;
+      })
+      .catch(err => console.log(err));
   }
 
   openProfileModal(idProfile) {
@@ -196,6 +211,7 @@ export class VolDetailsModalComponent implements OnInit {
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
+          date: Date.now(),
           id_user: this.id_user,
           message: comment,
           photo_url: this.photo,

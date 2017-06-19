@@ -176,4 +176,11 @@ export class volsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+    
+    getCategories() {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/list/categories`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
 }
