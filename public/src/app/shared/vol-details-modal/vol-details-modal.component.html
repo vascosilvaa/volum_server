@@ -83,7 +83,7 @@
                 <span> {{volDetails?.description}}</span>
             </div>
             <div class="details-vol">
-                <span class="typeVol">Solidariedade Social</span> <span class="insuBool">Seguro</span>
+                <span class="typeVol">{{volDetails?.category_name}}</span> <span class="insuBool">Seguro</span>
             </div>
         </div>
 
@@ -214,7 +214,7 @@
                 </div>
                 <div class="col-8 card-user-nd">
                     <div class="card-user-name-comments ts13">{{comment.name}}</div>
-                    <div class="card-date-comments ts12">10 horas</div>
+                    <div class="card-date-comments ts12">{{comment.date | amTimeAgo: true}}</div>
                 </div>
                 <div class="col no-padding card-option-comments text-right">
                     <md-icon class="card-btn-option" [mdMenuTriggerFor]="menu">more_vert</md-icon>

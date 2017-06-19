@@ -38,6 +38,7 @@ export class DetailsComponent implements OnInit {
   public editTitle: any;
   public confirmedsReady: boolean = false;
   public address: any;
+  public categories: any;
 
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
@@ -59,6 +60,7 @@ export class DetailsComponent implements OnInit {
       this.id_vol = this.route.snapshot.params['id'];
       this.idLogin = this.route.parent.parent.snapshot.params['id'];
     });
+    this.getCategories();
     this.getVol(this.id_vol);
     this.getCandidates(this.id_vol);
     this.getConfirmed(this.id_vol);
@@ -67,8 +69,16 @@ export class DetailsComponent implements OnInit {
     this.countConfirmed(this.id_vol);
 
 
+
   }
 
+  getCategories() {
+      this.volsService.getCategories()
+        .then(res => {
+          this.categories = res.categories;
+        })
+        .catch(err => console.log(err));
+    }
 
   openEditModal() {
     return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
@@ -97,6 +107,7 @@ export class DetailsComponent implements OnInit {
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
+          date: Date.now(),
           id_user: this.vol.user.id_user,
           message: comment,
           photo_url: this.vol.user.photo_url,
@@ -134,6 +145,12 @@ export class DetailsComponent implements OnInit {
         this.lat = parseFloat(this.vol.lat);
         this.lng = parseFloat(this.vol.lng);
         this.getAddress();
+
+        for(let i=0;  i< this.categories.length; i++) {
+            if(this.categories[i].id_category==parseInt(this.vol.id_category)) {
+              this.vol.category_name = this.categories[i].name;
+            }
+          }
        
 
 

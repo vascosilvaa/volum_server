@@ -175,6 +175,7 @@ lat: number;
         this.comentario = '';
         this.numberComments++;
         this.comments.push({
+          date: Date.now(),
           id_user: this.id_user,
           message: comment,
           photo_url: this.photo,

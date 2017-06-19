@@ -54,18 +54,18 @@ export class AppComponent implements OnInit {
     moment.updateLocale('pt', {
       relativeTime: {
         future: "Daqui a %s",
-        past: "%s",
+        past: "há % segundos",
         s: "Agora mesmo",
-        m: "1 min",
-        mm: "%d m",
-        h: "1h",
-        hh: "%d hrs",
-        d: "1 dia",
-        dd: "%d dias",
-        M: "1 mês",
-        MM: "%d meses",
-        y: "1 ano",
-        yy: "%d anos"
+        m: "há 1 minuto",
+        mm: "há %d minutos",
+        h: "há 1 hora",
+        hh: "há %d horas",
+        d: "há 1 dia",
+        dd: "há %d dias",
+        M: "há 1 mês",
+        MM: "há %d meses",
+        y: "há 1 ano",
+        yy: "há %d anos"
       }
     });
     this.getUser();
