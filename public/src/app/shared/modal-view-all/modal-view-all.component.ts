@@ -1,4 +1,5 @@
 import { volsService } from './../services/vols.service';
+import { ProfileService } from './../services/profile.service';
 import { SharedService } from './../services/shared.service';
 import { DetailsComponent } from './../../components/profile/details/details.component';
 import { FeedComponent } from './../../components/feed/feed.component';
@@ -34,9 +35,11 @@ export class ModalViewAllComponent implements OnInit {
   public detailsPage;
   public confirmedArray = []
   context: ModalContext;
+  public testimonials: any;
+  public sum: number = 5;
 
 
-  constructor(public route: ActivatedRoute, private router: Router, private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
+  constructor(public route: ActivatedRoute, public profileService: ProfileService, private router: Router, private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
 
     this.context = dialog.context;
     this.context.isBlocking = false;
@@ -59,10 +62,18 @@ export class ModalViewAllComponent implements OnInit {
     } else if (this.context.type == 8) { // Ver likes
       this.getLikes(this.context.id_vol);
     }
+    else if (this.context.type == 9) { // Ver likes
+      this.getTestimonials(this.context.id_user, 0, 5, true);
+    }
 
 
   }
-
+  onScroll() {
+    console.log('scroll');
+    this.sum = this.sum + 6;
+    this.getTestimonials(this.context.id_user, this.sum, 5, false);
+    
+  }
   onSelect(profile) {
     this.dialog.dismiss();
     setTimeout(() => {
@@ -94,6 +105,21 @@ export class ModalViewAllComponent implements OnInit {
       })
       .catch(err => console.log(err));
   }
+
+  getTestimonials(id_user, startAt, amount, replace){
+    this.profileService.getTestimonials(id_user, startAt, amount).then(res => {
+      if (replace) {
+
+       this.testimonials = res.results;
+      } else {
+        this.testimonials = this.testimonials.concat(res.results);
+       
+
+
+      }
+          
+        });
+  } 
 
 
 

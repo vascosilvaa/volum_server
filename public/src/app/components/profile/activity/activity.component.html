@@ -197,7 +197,7 @@
               <img style="border-radius: 50%" width="40px" height="40px" src="{{testimony.user.photo_url}}">
             </div>
             <div class="col-8 truncate">
-              <b>{{testimony.user.name}} </b>
+              <b class="pointer underline" (click)="onSelect(testimony.user.id_user)" >{{testimony.user.name}} </b><span class="score"> - {{testimony.classification}}  <md-icon>star_rate</md-icon></span>
               <span class="descProfile blockquote-footer  truncate"> {{testimony.message}}</span>
             </div>
           </div>

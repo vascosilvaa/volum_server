@@ -39,7 +39,7 @@ export class ActivityComponent implements OnInit {
       this.profileService.getProfile(params.id).then(profile => {
         this.user = profile.user;
 
-        this.profileService.getTestimonials(params.id).then(res => {
+        this.profileService.getTestimonials(params.id, 0,3).then(res => {
           this.testimonials = res.results;
         });
 
@@ -67,6 +67,6 @@ export class ActivityComponent implements OnInit {
   }
 
   openTests(type) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type }, BSModalContext));
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_user: this.user.id_user }, BSModalContext));
   }
 }

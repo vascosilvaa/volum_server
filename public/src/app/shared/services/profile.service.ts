@@ -175,8 +175,8 @@ export class ProfileService {
             .catch(error => console.log(error));
     }
 
-    getTestimonials(id_user) {
-         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/score/list').toPromise()
+    getTestimonials(id_user, startAt, amount) {
+         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/score/list', { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
