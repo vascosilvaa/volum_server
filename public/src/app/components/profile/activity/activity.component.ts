@@ -21,11 +21,11 @@ export class ActivityComponent implements OnInit {
   public vols = [];
   public ready: boolean = false;
   public user: User = {
-    id_user: null,
-    name: null,
+    id_user: 0,
+    name: 'null',
     email: "",
-    phone: null,
-    photo: null
+    phone: '',
+    photo: ''
   }
   public testimonials: any;
 
@@ -35,15 +35,20 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
 
     this.route.parent.params.subscribe(params => {
-      this.user.id_user = params.id;
-      this.profileService.getProfile(params.id).then(profile => {
-        this.user = profile.user;
 
-        this.profileService.getTestimonials(params.id, 0,3).then(res => {
+
+    });
+
+    this.profileService.activeProfileSource.subscribe(profile => {
+      if (profile) {
+        this.user = profile;
+
+        console.log("subject profile", profile)
+        this.profileService.getTestimonials(profile.id_user, 0, 3).then(res => {
           this.testimonials = res.results;
         });
 
-        this.profileService.getMyVols(params.id).then(res => {
+        this.profileService.getMyVols(profile.id_user).then(res => {
           this.vols = res.vols;
           console.log("VOLS", res.vols)
           this.ready = true;
@@ -60,9 +65,9 @@ export class ActivityComponent implements OnInit {
           }
 
         });
-      })
+      }
 
-    });
+    })
 
   }
 

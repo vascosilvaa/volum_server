@@ -1,3 +1,4 @@
+import { User } from './../../interfaces/user.interface';
 import { Subject } from 'rxjs/Subject';
 import { Http, Jsonp } from '@angular/http';
 import { GlobalConstants } from './../../shared/global-constants';
@@ -18,6 +19,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 
@@ -26,18 +28,18 @@ import 'rxjs/add/operator/switchMap';
 export class ProfileService {
 
     public COUNTRY_API_KEY = '1727cb239d0a8f0d3d8ea64518801e45';
-    public activeProfileSource = new Subject<Object>();
+    public activeProfileSource: Subject<User> = new BehaviorSubject<User>(null);
     public activeUser;
     public userPromise;
     // Observable string stream
     activeProfile = this.activeProfileSource.asObservable();
 
-    constructor(private http: HttpClient, private HTTP: Http, private jsonp: Jsonp) {
+    constructor(private http: HttpClient, private HTTP: Http) {
 
     }
 
 
-    saveActiveUser(data: {}) {
+    saveActiveUser(data: User) {
         this.activeProfileSource.next(data)
         this.activeUser = data;
     }
@@ -72,7 +74,7 @@ export class ProfileService {
     }
 
     getCountries() {
-        return this.jsonp.get(`http://battuta.medunes.net/api/city/jp/search/?city=paris&callback=getCategories()&key=${this.COUNTRY_API_KEY}`).toPromise()
+        return this.HTTP.get(`https://restcountries.eu/rest/v2/all?fields=name`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -95,6 +97,16 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    reloadProfile(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
+            .then(res => {
+                this.saveActiveUser(res.json().user);
+                return res.json()
+            })
+            .catch(error => console.log(error));
+    }
+
     getUserSimple(id) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/simple`).toPromise()
             .then(res => { return res.json() })
@@ -176,7 +188,13 @@ export class ProfileService {
     }
 
     getTestimonials(id_user, startAt, amount) {
-         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/score/list', { startAt: startAt, amount: amount }).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/score/list', { startAt: startAt, amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    editUser(value) {
+        return this.http.put(`${GlobalConstants.API_ENDPOINT}/users/`, value).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

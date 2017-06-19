@@ -207,7 +207,15 @@
   border-radius: 5px;
   padding-left: 15px;
   padding-bottom: 10px;
-  padding-top: 22px;
+  padding-top: 20px;
+}
+
+select{
+    font-size: 14px;
+}
+
+.float-label .select .titlePlaceholder{
+  left: 35px;
 }
 
 .titlePlaceholder {

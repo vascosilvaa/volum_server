@@ -1,3 +1,5 @@
+<span defaultOverlayTarget></span>
+
 <div class="navbar-bevolun">
     <div class="navbar-bevolun-brand">
         <a routerLink="/feed">BEVOLUN</a>
@@ -160,7 +162,8 @@
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
-                                    <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica aqui para deixares o teu testemunho.
+                                <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica
+                                    aqui para deixares o teu testemunho.
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 

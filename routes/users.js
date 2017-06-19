@@ -78,6 +78,8 @@ var returnRouter = function (io) {
                             history: user.history,
                             score: user.score,
                             languages: user.languages,
+                            region: user.region,
+                            country: user.country,
                             facebook_id: user.facebook_link,
                         }
                     });
@@ -132,15 +134,16 @@ var returnRouter = function (io) {
             ' gender = IFNULL(?, gender),' +
             ' email = IFNULL(?, email),' +
             ' about = IFNULL(?, about),' +
-            ' lat = IFNULL(?, lat),' +
-            ' lng = IFNULL(?, lng)' +
+            ' birth_date = IFNULL(?, birth_date),' +
+            ' country = IFNULL(?, country),' +
+            ' region = IFNULL(?, region)' +
             '  WHERE id_user = ?;'
         };
         console.log(options.sql)
 
         console.log(req.body);
 
-        db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, req.body.lat, req.body.lng, req.user.id_user], function (error, results, fields) {
+        db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
             console.log(error);
             console.log(fields);
             if (error) {

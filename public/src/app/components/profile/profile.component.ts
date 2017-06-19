@@ -46,18 +46,21 @@ export class ProfileComponent implements OnInit {
   constructor(public http: Http, public overlay: Overlay, vcRef: ViewContainerRef, private sharedService: SharedService, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
-
-
   }
 
   ngOnInit() {
 
+    //NAVEGAR SEMPRE PARA O TOPO DA PAGINA
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
       window.scrollTo(0, 0)
     });
+
+
+
+
     this.route.params.subscribe((params) => {
 
       this.scoreReady = false;
@@ -92,6 +95,7 @@ export class ProfileComponent implements OnInit {
 
   }
   getUser() {
+
     //SE ESTIVER AUTENTICADO
 
     if (this.auth.isAuthenticated()) {
@@ -115,9 +119,8 @@ export class ProfileComponent implements OnInit {
             //SE NAO FAZ O PEDIDO
           } else {
 
-            this.profileService.getProfile(this.id_user).then(result => {
+            this.profileService.reloadProfile(this.id_user).then(result => {
 
-              this.profileService.saveActiveUser(result.user);
 
               console.log("USER URL PROFILE", this.user)
 
@@ -141,6 +144,8 @@ export class ProfileComponent implements OnInit {
       this.auth.logout();
     }
   }
+
+
 
   follow(id_user) {
     console.log("ID", id_user);

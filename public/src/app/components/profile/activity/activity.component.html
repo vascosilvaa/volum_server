@@ -19,7 +19,7 @@
               <b>Nome:</b>
             </div>
             <div class="col-8 descProfile truncate">
-              {{user.name}}
+              {{user?.name}}
             </div>
           </div>
           <div class="row mt-2">
@@ -203,7 +203,7 @@
           </div>
           <div class="no-content text-center" *ngIf="!testimonials || testimonials.length==0" style="padding-bottom: 1.5rem">
             <div><i class="material-icons">sentiment_dissatisfied</i></div>
-            <span>{{user.name}} não tem testemunhos.</span>
+            <span>{{user?.name}} não tem testemunhos.</span>
           </div>
         </div>
       </div>

@@ -9,42 +9,43 @@
 
   <div class="card-block">
 
-    <form class="float-label" spellcheck="false">
+    <form class="float-label" (ngSubmit)="onSubmit(form.value, form.valid)" [formGroup]="form">
       <div class="row">
         <div class="col-6 inputProfile no-margin">
           <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="Primeiro nome" value="Vasco" required />
+            <input type="text" placeholder="Primeiro nome" formControlName="first_name" />
             <label for="title" class="titlePlaceholder">Primeiro nome</label>
           </div>
         </div>
         <div class="col-6 inputProfile no-margin">
           <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="Apelido" value="Silva" required />
+            <input type="text" class="" name="title" placeholder="Apelido" formControlName="last_name" />
             <label for="title" class="titlePlaceholder">Apelido</label>
           </div>
         </div>
 
         <div class="col-6 inputProfile">
           <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="E-mail" value="vascosilvaa@gmail.com" required/>
+            <input type="text" class="" name="title" placeholder="E-mail" formControlName="email" />
             <label for="title" class="titlePlaceholder">E-mail</label>
           </div>
         </div>
 
-        <div class="col-6 inputProfile">
-          <select name="categoria" class="form-control inputText form-control-lg disabled" style="padding-top:22px;">
-                <option>Masculino</option>
+        <div class="col-6 inputProfile select">
+          <select name="categoria" class="control inputText" formControlName="gender">
+                <option value='-1' disabled selected></option>
+                <option >Masculino</option>
                 <option>Feminino</option>
               </select>
-          <label for="categorie" class="label-for-select">
+          <label for="categorie" class="titlePlaceholder">
                  Género
-                 </label>
+          </label>
         </div>
 
         <div class="col-6 inputProfile">
           <div class="form-group">
             <div class="input-group">
-              <input class="form-control date_picker" name="dp" ngbDatepicker #d="ngbDatepicker" placeholder="aaaa-mm-dd">
+              <input class="form-control date_picker" name="dp" ngbDatepicker #d="ngbDatepicker" placeholder="aaaa-mm-dd" formControlName="birth_date">
               <div class="input-group-addon" (click)="d.toggle()">
                 <i class="data_range_icon material-icons">date_range</i>
               </div>
@@ -54,71 +55,76 @@
         </div>
 
         <div class="col-6 inputProfile">
-          <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="E-mail" value="vascosilvaa@gmail.com" required />
-            <label for="title" class="titlePlaceholder">E-mail</label>
-          </div>
+
         </div>
 
-        <div class="col-4 inputProfile">
-          <div class="control inputText">
-           <input type="text" class="" name="title" placeholder="País" value="Portugal" required />
-            <label for="title" class="titlePlaceholder">País</label>
-          </div>
+        <div class="col-4 inputProfile select">
+
+          <select name="categoria" class="control inputText" formControlName='country'>
+                <option value='-1' disabled></option>
+                <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+              </select>
+          <label for="title " class="titlePlaceholder ">País</label>
         </div>
         <div class="col-4 inputProfile">
-          <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="Distrito" value="Porto" required />
-            <label for="title" class="titlePlaceholder">Distrito</label>
+          <div class="control inputText ">
+            <input type="text " placeholder="Região " formControlName='region' />
+            <label for="title " class="titlePlaceholder ">Região</label>
           </div>
         </div>
         <div class="col-4 inputProfile">
-          <div class="control inputText">
-            <input type="text" class="" name="title" placeholder="Telemóvel" value="913 315 609" required />
-            <label for="title" class="titlePlaceholder">Telemóvel</label>
+          <div class="control inputText ">
+            <input type="text " placeholder="Telemóvel " formControlName='phone' />
+            <label for="title " class="titlePlaceholder ">Telemóvel</label>
           </div>
         </div>
-        <div class="col-lg-6 inputProfile">
-          <div class="control">
-            <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-            <label for="textarea" class="titlePlaceholder">Sobre mim</label>
+        <div class="col-lg-6 inputProfile ">
+          <div class="control ">
+            <textarea class="textAreaProfile " name="textarea " required rows="4 " formControlName='about'>
+              Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
+            <label for="textarea " class="titlePlaceholder ">Sobre mim</label>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="form-group">
-            <input type="file" class="form-control-file inputPhotoProfile" id="exampleInputFile" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">Insira uma nova imagem de forma a alterar a sua foto de perfil. </small>
+        <div class="col-lg-6 ">
+          <div class="form-group ">
+            <input type="file " class="form-control-file inputPhotoProfile " id="exampleInputFile " aria-describedby="fileHelp ">
+            <small id="fileHelp " class="form-text text-muted ">Insira uma nova imagem de forma a alterar a sua foto de perfil. </small>
           </div>
         </div>
-        <div class="col-lg-12 inputProfile">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1" style="background-color:white;"><img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
-            <input type="text" class="form-control inputSocial" placeholder="vasco/facebook.com" aria-describedby="sizing-addon1">
+        <div class="col-lg-12 inputProfile ">
+          <div class="input-group input-group-lg ">
+            <span class="input-group-addon " id="sizing-addon1 " style="background-color:white; "><img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png
+            " style="max-height: 20px; max-width: 20px; height:auto; width: auto; " /></span>
+            <input type="text " class="form-control inputSocial " placeholder="vasco/facebook.com " aria-describedby="sizing-addon1 ">
           </div>
         </div>
-        <div class="col-lg-12 inputProfile">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="https://cdn.worldvectorlogo.com/logos/instagram-2016.svg" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
-            <input type="text" class="form-control inputSocial" placeholder="vasco/instagram.com" aria-describedby="sizing-addon1">
+        <div class="col-lg-12 inputProfile ">
+          <div class="input-group input-group-lg ">
+            <span class="input-group-addon " id="sizing-addon1 " style="background-color:white "><img src="https://cdn.worldvectorlogo.com/logos/instagram-2016.svg
+            " style="max-height: 20px; max-width: 20px; height:auto; width: auto; " /></span>
+            <input type="text " class="form-control inputSocial " placeholder="vasco/instagram.com " aria-describedby="sizing-addon1 ">
           </div>
         </div>
-        <div class="col-lg-12 inputProfile">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/2000px-Linkedin.svg.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
-            <input type="text" class="form-control  inputSocial" placeholder="vasco/linkedin.com" aria-describedby="sizing-addon1">
+        <div class="col-lg-12 inputProfile ">
+          <div class="input-group input-group-lg ">
+            <span class="input-group-addon " id="sizing-addon1 " style="background-color:white "><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/2000px-Linkedin.svg.png
+            " style="max-height: 20px; max-width: 20px; height:auto; width: auto; " /></span>
+            <input type="text " class="form-control inputSocial " placeholder="vasco/linkedin.com " aria-describedby="sizing-addon1 ">
           </div>
         </div>
-        <div class="col-lg-12 inputProfile">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1" style="background-color:white"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1259px-Twitter_bird_logo_2012.svg.png" style="max-height: 20px; max-width: 20px; height:auto; width: auto;" /></span>
-            <input type="text" class="form-control  inputSocial" placeholder="twitter/snapchat.com" aria-describedby="sizing-addon1">
+        <div class="col-lg-12 inputProfile ">
+          <div class="input-group input-group-lg ">
+            <span class="input-group-addon " id="sizing-addon1 " style="background-color:white "><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1259px-Twitter_bird_logo_2012.svg.png
+            " style="max-height: 20px; max-width: 20px; height:auto; width: auto; " /></span>
+            <input type="text " class="form-control inputSocial " placeholder="twitter/snapchat.com
+            " aria-describedby="sizing-addon1 ">
           </div>
-        </div>
-        <div class="col-6">
-          <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
         </div>
         <div class="col-6 ">
-          <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+          <a class="btn btn-outline-primary btnDescart " routerLink="/profile/details ">CANCELAR</a>
+        </div>
+        <div class="col-6 ">
+          <button type="submit"><a class="btn btn-outline-primary btnSave" >GUARDAR</a></button>
         </div>
       </div>
     </form>
