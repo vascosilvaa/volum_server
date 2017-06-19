@@ -1,6 +1,6 @@
 <div class="container-fluid headerBlue">
 </div>
-<div class="container-fluid sub-header-background">
+<div class="container-fluid sub-header-background" >
     <div class="container sub-header-profile">
         <div class="row">
             <div class="col-md-3 col-sm-12 col-12 profile-user-picture">
@@ -9,7 +9,7 @@
                     <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
                     <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
                 </div>
-               
+
 
 
             </div>
@@ -17,7 +17,7 @@
                 <div class="user-name">
                     {{user?.name}}
                     <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
-                <!--    <md-icon style="margin-left: 20px" class="clickable"  *ngIf="id_user != id_logged_user">message</md-icon> -->
+                    <!--    <md-icon style="margin-left: 20px" class="clickable"  *ngIf="id_user != id_logged_user">message</md-icon> -->
                 </div>
                 <!--
                 <div class="user-location" *ngIf="user.lat && user.lng">
