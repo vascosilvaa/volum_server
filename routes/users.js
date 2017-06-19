@@ -885,48 +885,56 @@ var returnRouter = function (io) {
     });
 
     app.get('/:id/score/list', function (req, res) {
+        if (!req.query.amount && !req.query.startAt) {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            })
+        } else {
+            let results = [];
 
-        let results = [];
-
-        db.get().query({
-            sql: `SELECT classification.id_vol, classification.id_user, classification.classification, vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
+            db.get().query({
+                sql: `SELECT classification.id_vol, classification.id_user, classification.classification,   vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
          FROM classification 
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol 
-         WHERE classification.id_user2 = ?`, nestTables: true
-        }, [req.params.id], function (error, rows, fields) {
-            console.log(rows)
-            if (error) {
-                res.send({
-                    success: false,
-                    message: error
-                })
-                throw new Error(error);
-            } else {
-                for (let i = 0; i < rows.length; i++) {
+         WHERE classification.id_user2 = ?
+         LIMIT ?, ?`, nestTables: true
+            }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
+                console.log(rows)
+                if (error) {
+                    res.send({
+                        success: false,
+                        message: error
+                    })
+                    throw new Error(error);
+                } else {
+                    for (let i = 0; i < rows.length; i++) {
 
-                    results.push({
-                        user: {
-                            name: rows[i].users.name,
-                            photo_url: rows[i].users.photo_url
+                        results.push({
+                            user: {
+                                name: rows[i].users.name,
+                                photo_url: rows[i].users.photo_url,
+                                id_user: rows[i].users.id_user
                         },
-                        message: rows[i].classification.message,
-                        classification: rows[i].classification.classification,
-                        vol: {
-                            id_vol: rows[i].vols.id_vol,
-                            name: rows[i].vols.name
-                        }
+                            message: rows[i].classification.message,
+                            classification: rows[i].classification.classification,
+                            vol: {
+                                id_vol: rows[i].vols.id_vol,
+                                name: rows[i].vols.name
+                            }
+                        })
+
+                    }
+                    res.send({
+                        success: true,
+                        results
                     })
 
                 }
-                res.send({
-                    success: true,
-                    results
-                })
-
-            }
-        });
-
+            });
+        }
     });
 
 
