@@ -238,10 +238,20 @@ var returnRouter = function (io) {
             });
         } else {
             db.get().query({
-                sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-                'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ? AND vols.deleted = 0 AND vols.active = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC ',
+                sql: `SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
+                 vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation,
+                vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
+                classification.id_user2, classification.id_vol
+                FROM vols
+                INNER JOIN photos ON vols.id_vol = photos.id_vol
+                LEFT JOIN classification ON vols.id_vol = classification.id_vol
+                WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ?
+                AND classification.id_user2 = ?
+                AND vols.deleted = 0 AND vols.active = 0
+                GROUP BY vols.id_vol
+                ORDER BY vols.date_creation DESC`,
                 nestTables: true
-            }, [req.params.id], function (err, results, fields) {
+            }, [req.params.id, req.params.id], function (err, results, fields) {
                 if (err) {
                     console.log(err)
                     res.send({
@@ -291,8 +301,8 @@ var returnRouter = function (io) {
 
     app.get('/vols/my-applies', passport.authenticate('jwt'), function (req, res) {
         db.get().query({
-            sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-            'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND user_vol.id_user = ? AND user_vol.confirm = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC  ',
+            sql: 'SELECT vols.id_vol, users.id_user, users.photo_url, users.name, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
+            'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND user_vol.id_user = ? AND user_vol.confirm = 0 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC  ',
             nestTables: true
         }, [req.user.id_user], function (err, results, fields) {
             if (err) {
@@ -317,7 +327,12 @@ var returnRouter = function (io) {
                             lng: results[i].vols.lng,
                             start_time: results[i].vols.start_time,
                             end_time: results[i].vols.end_time,
-                            photos: (results[i][''].photos).split('->')
+                            photos: (results[i][''].photos).split('->'),
+                            user_creator: {
+                                id_user: results[i].users.id_user,
+                                photo_url: results[i].users.photo_url,
+                                name: results[i].users.name
+                            }
                         });
                     }
 
@@ -583,9 +598,10 @@ var returnRouter = function (io) {
             });
         } else {
 
-            db.get().query('INSERT INTO follows VALUES (NULL, ?, ?)', [req.user.id_user, req.body.id_user],
+            db.get().query('INSERT IGNORE INTO follows VALUES (NULL, ?, ?)', [req.user.id_user, req.body.id_user],
                 function (error, results, fields) {
                     if (error) {
+                        console.log(error)
                         res.status(400).send({
                             success: false,
                             message: "Já segues esta pessoa"
@@ -617,6 +633,33 @@ var returnRouter = function (io) {
 
                             });
                     }
+                });
+        }
+    });
+
+
+    app.get('/followers/search', passport.authenticate('jwt'), function (req, res) {
+        console.log("a");
+        if (req.query['q'] == undefined || req.query['q'] == null || req.query['q'] == '') {
+            res.send({ success: false, message: 'Please provide a search query' })
+        } else if (typeof req.query['q'] !== 'string') {
+            res.send({ success: false, message: 'Please provide a valid search query' })
+        } else {
+
+            let query = (req.query.q).replace(/['"]+/g, '');
+
+            db.get().query('SELECT users.id_user, users.photo_url, users.name FROM users INNER JOIN follows ON users.id_user = follows.id_user2  WHERE users.name LIKE ? AND follows.id_user = ? AND users.type_user = ?; ', ['%' + query + '%', req.user.id_user, req.query.type],
+                function (error, results, fields) {
+                    console.log(results);
+                    if (error) {
+                        res.send({ success: false, message: error })
+                        console.log(error);
+                    } else {
+
+
+                        res.send({ success: false, results })
+                    }
+
                 });
         }
     });
@@ -996,6 +1039,8 @@ var returnRouter = function (io) {
 
         });
     });
+
+
 
     app.get('/:id/score', passport.authenticate('jwt'), function (req, res) {
 

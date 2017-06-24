@@ -119,6 +119,54 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/:type', passport.authenticate('jwt'), function (req, res) {
+
+        req.checkParams('type', 'Type tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let notifications = [];
+
+
+                db.get().query({
+                    sql: `SELECT * FROM notifications
+        INNER JOIN users ON notifications.id_user2 = users.id_user
+        WHERE notifications.id_user = ? 
+        AND notifications.type = ?  
+        ORDER BY notifications.id_notification DESC`,
+                    nestTables: true
+                }, [req.user.id_user, req.params.type],
+                    function (error, results, fields) {
+                        for (let i = 0; i < results.length; i++) {
+
+                            notifications.push({
+                                type: results[i].notifications.type,
+                                user_name: results[i].users.name,
+                                photo_url: results[i].users.photo_url,
+                                id_user: results[i].users.id_user,
+                                date: results[i].notifications.date
+                            })
+
+                        }
+
+                        res.json({
+                            success: true,
+                            notifications
+                        });
+
+                    });
+            }
+
+
+
+        });
+    });
+
     /**
      * @api {get} /notifications/:id/not-read/count Contagem das notificações não lidas
      * @apiName listNotificationCount
