@@ -124,7 +124,7 @@ app.post('/register', function (req, res) {
                                 */
 
                                 var token = jwt.sign({
-                                    id: user.id_user
+                                    id: userId
                                 }, secretKey);
 
                                 res.status(201).send({
@@ -189,7 +189,6 @@ app.post('/login', function (req, res) {
             });
         }
 
-
         bcrypt.compare(req.body.password, user.password, function (err, result) {
             if (!result) {
                 return res.status(401).json({
@@ -207,8 +206,7 @@ app.post('/login', function (req, res) {
                     id_token: "JWT " + token
                 });
 
-                console.log(res);
-
+         
             }
 
         });
