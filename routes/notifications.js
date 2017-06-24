@@ -134,30 +134,74 @@ var returnRouter = function (io) {
 
 
                 db.get().query({
-                    sql: `SELECT * FROM notifications
-        INNER JOIN users ON notifications.id_user2 = users.id_user
-        WHERE notifications.id_user = ? 
-        AND notifications.type = ?  
-        ORDER BY notifications.id_notification DESC`,
+                    sql: `SELECT notifications.id_notification, notifications.date, notifications.type, notifications.id_vol, notifications.id_user, notifications.id_user2,
+                     GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
+                     vols.id_vol, vols.name, vols.lat, vols.lng, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
+                     users.id_user, users.photo_url, users.name
+                     FROM notifications
+                     INNER JOIN users ON notifications.id_user = users.id_user
+                     INNER JOIN vols ON notifications.id_vol = vols.id_vol
+                     INNER JOIN photos ON photos.id_vol = notifications.id_vol
+                     WHERE notifications.id_user2 = ? 
+                     AND notifications.type = ? 
+                     GROUP BY notifications.id_notification
+                     ORDER BY notifications.id_notification DESC`,
                     nestTables: true
                 }, [req.user.id_user, req.params.type],
                     function (error, results, fields) {
-                        for (let i = 0; i < results.length; i++) {
+                        if (error) {
+                            console.log(error);
+                            res.json({
+                                success: false,
+                                message: error
+                            });
+                        } {
 
-                            notifications.push({
-                                type: results[i].notifications.type,
-                                user_name: results[i].users.name,
-                                photo_url: results[i].users.photo_url,
-                                id_user: results[i].users.id_user,
-                                date: results[i].notifications.date
-                            })
+                            console.log(results);
+
+                            if (results.length == 0) {
+                                res.json({
+                                    success: true,
+                                    notifications
+                                });
+                            } else {
+
+                                for (let i = 0; i < results.length; i++) {
+
+                                    notifications.push({
+                                        type: results[i].notifications.type,
+
+                                        user: {
+                                            id_user: results[i].users.id_user,
+                                            name: results[i].users.name,
+                                            photo_url: results[i].users.photo_url,
+                                        },
+                                        vol: {
+                                            id_vol: results[i].vols.id_vol,
+                                            name: results[i].vols.name,
+                                            date_begin: results[i].vols.date_begin,
+                                            date_end: results[i].vols.date_end,
+                                            start_time: results[i].vols.start_time,
+                                            end_time: results[i].vols.end_time,
+                                            lat: results[i].vols.lat,
+                                            lng: results[i].vols.lng,
+                                            photo: (results[i][''].photos).split('->')
+
+                                        },
+                                        date: results[i].notifications.date
+                                    })
+
+                                }
+                                res.json({
+                                    success: true,
+                                    notifications
+                                });
+                            }
+
 
                         }
 
-                        res.json({
-                            success: true,
-                            notifications
-                        });
+
 
                     });
             }
