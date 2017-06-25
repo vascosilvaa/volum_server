@@ -66,8 +66,8 @@ export class RegisterComponent implements OnInit {
                 .then(res => {
                     console.log("result", res);
 
-                    this.router.navigate(['/profile/', res.id_user], )
-
+                    this.router.navigate([`/profile/${res.id_user}/activity`])
+                    location.reload();
 
                 })
 
