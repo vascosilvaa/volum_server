@@ -1,54 +1,56 @@
-  <div class="row">
-    <div *ngIf="pending  && pending.length>0" class="col-12 table">
-      <table class="table">
-        <thead class="thead-inverse" class="cabecalho">
+<div class="row">
+  <div *ngIf="pending  && pending.length>0" class="col-12 table">
+    <table class="table">
+      <thead class="thead-inverse" class="cabecalho">
+        <tr>
+          <th>TITULO</th>
+          <th>LOCALIZAÇÃO</th>
+          <th>DATA</th>
+          <th>CRIADO POR</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vol of pending" class="tableText">
+          <td class="tableBold tableTitle">{{vol?.name}}</td>
+
+          <td class="tablePlace">
+            <div *ngIf="vol.address" class="">{{vol?.address}}</div>
+            <div *ngIf="!vol.address" class="">Sem localização definida</div>
+
+          </td>
+
+          <td class="tableDate">
+            <div class="tableBold"> {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end
+              | date:"MMMM"}}</div>
+            <div class="" *ngIf="vol.start_time">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{vol?.start_time | timePipe }} até {{vol?.date_end
+              | date:"d"}} de {{vol?.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.end_time | timePipe}}</span></div>
+          </td>
+
+          <td class="ellipsis pointer" (click)="openProfileModal(vol?.user_creator.id_user)">
+            <span class="table-user-image"><img src="{{vol?.user_creator.photo_url}}"></span>
+            <span class="tableBold margin-left underline">{{vol?.user_creator.name}} </span>
+          </td>
+
+          <td class="tableBtns">
+            <div class="text-right">
+              <button class="btn btnConfirm" (click)="seeDetails(vol.id_vol)">VER</button>
+            </div>
+            <div class="text-right">
+              <button class="btn btnCancel">CANCELAR</button>
+            </div>
+          </td>
           <tr>
-            <th>TITULO</th>
-            <th>LOCALIZAÇÃO</th>
-            <th>DATA</th>
-            <th>CRIADO POR</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let vol of pending" class="tableText">
-            <td class="tableBold tableTitle">{{vol?.name}}</td>
 
-            <td class="tablePlace">
-              <div *ngIf="vol.address" class="tableBold">{{vol?.address}}</div>
-              <div *ngIf="!vol.address"class="tableBold">Sem localização definida</div>
-              
-            </td>
 
-            <td class="tableDate">
-               <div class="tableBold"> {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</div>
-              <div class="" *ngIf="vol.start_time">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às  {{vol?.start_time | timePipe }} até {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.end_time | timePipe}}</span></div>
-            </td>
 
-            <td class="ellipsis pointer" (click)="openProfileModal(vol?.user_creator.id_user)">
-              <span class="table-user-image"><img src="{{vol?.user_creator.photo_url}}"></span>
-              <span class="tableBold margin-left underline">{{vol?.user_creator.name}} </span>
-            </td>
 
-  <td class="tableBtns">
-              <div class="text-right">
-                <button class="btn btnConfirm" (click)="seeDetails(vol.id_vol)">VER</button>
-              </div>
-              <div class="text-right">
-                <button class="btn btnCancel" >CANCELAR</button>
-              </div>
-            </td>
-            <tr>
-     
-        
-        
-
-        </tbody>
-      </table>
-    </div>
-    <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!pending || pending.length==0">
-       <div ><i class="material-icons">alarm</i></div>
-      <span style="font-weight: 400">Não possui ações em espera.</span>
-      </div>
-
+      </tbody>
+    </table>
   </div>
+  <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!pending || pending.length==0">
+    <div><i class="material-icons">alarm</i></div>
+    <span style="font-weight: 400">Não possui ações em espera.</span>
+  </div>
+
+</div>

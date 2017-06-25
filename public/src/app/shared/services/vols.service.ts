@@ -199,17 +199,12 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    listFinished(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/`+id_user+`/my-vols/history`).toPromise()
+    listFinished(id_user, type) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/`+id_user+`/my-vols/history`, { user_type: type }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
-    listParticipated(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/`+id_user+`/vols/history`).toPromise()
-            .then(res => { return res.json() })
-            .catch(error => console.log(error));
-    }
 
     listInvites() {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/7`).toPromise()

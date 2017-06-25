@@ -18,87 +18,81 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   styleUrls: ['./finished.component.scss']
 })
 export class FinishedComponent implements OnInit {
-public id_profile: any;
-public vols: any;
-public user: any;
+  public id_profile: any;
+  public vols: any;
+  public user: any;
   constructor(public sharedService: SharedService, public volsService: volsService, vcRef: ViewContainerRef, public modal: Modal, overlay: Overlay, public profileService: ProfileService, private route: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit() {
-  this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.id_profile = this.route.parent.parent.parent.snapshot.params['id'];
       this.getUser(this.id_profile);
     });
-}
+  }
 
   getUser(id_user) {
     this.profileService.getProfile(id_user).then(res => {
-        this.user = res.user;
-        if(this.user.type == 2) { // INSTITUIÇÃO
-          this.listParticipated(this.id_profile)
-        } else if(this.user.type == 1) { // VOLUNTARIO
-          this.listFinished(this.id_profile);
-        }
-      })
+      this.user = res.user;
+      if (this.user.type == 2) { // INSTITUIÇÃO
+        this.listFinished(this.id_profile, 2)
+      } else if (this.user.type == 1) { // VOLUNTARIO
+        this.listFinished(this.id_profile, 1);
+      }
+    })
   }
 
-  listFinished(id_user) {
-      this.volsService.listFinished(id_user).then(res => {
-        this.vols = res.vols;
-        this.getAddress();
-        this.getScore();
-      })
-    }
+  listFinished(id_user, type) {
+    this.volsService.listFinished(id_user, type).then(res => {
+      this.vols = res.vols;
+      this.getAddress();
+      //this.getScore();
+      this.countParticipants();
+    })
+  }
 
-    listParticipated(id_user) {
-      this.volsService.listParticipated(id_user).then(res => {
-        this.vols = res.vols;
-        this.getAddress();
-        this.getScore();
-      })
-    }
-
-    getScore() {
-      for (let i = 0; i < this.vols.length; i++) {
-        this.volsService.getVolScore(this.vols[i].vol.id_vol)
-        .then(res => {
-            this.vols[i].score = res.score;
-            console.log(this.vols[i].score);
+  countParticipants() {
+    for (let i = 0; i < this.vols.length; i++) {
+      this.volsService.countConfirmeds(this.vols[i].vol.id_vol)
+        .then(confirmeds => {
+          this.vols[i].participants = confirmeds.count;
         });
-      }
     }
+  }
 
-    getAddress() {
-      for (let i = 0; i < this.vols.length; i++) {
-        if(this.user.type==2) {
-          if (this.vols[i].vol.lat && this.vols[i].vol.lng) {
-            this.sharedService.getAddress(this.vols[i].vol.lat, this.vols[i].vol.lng)
-              .then(res => {
-                if (res.results[0] != undefined) {
-                this.vols[i].address = res.results[0].formatted_address;
-                }
-              });
-          }
-        } else if(this.user.type==1) {
-           if (this.vols[i].lat && this.vols[i].lng) {
-            this.sharedService.getAddress(this.vols[i].lat, this.vols[i].lng)
-              .then(res => {
-                if (res.results[0] != undefined) {
-                this.vols[i].address = res.results[0].formatted_address;
-                }
-              });
-          }
-        }
+  getScore() {
+    for (let i = 0; i < this.vols.length; i++) {
+      this.volsService.getVolScore(this.vols[i].vol.id_vol)
+        .then(res => {
+          this.vols[i].score = res.score;
+        });
+    }
+  }
+
+  getAddress() {
+    for (let i = 0; i < this.vols.length; i++) {
+      if (this.vols[i].vol.lat && this.vols[i].vol.lng) {
+        this.sharedService.getAddress(this.vols[i].vol.lat, this.vols[i].vol.lng)
+          .then(res => {
+            if (res.results[0] != undefined) {
+              this.vols[i].address = res.results[0].formatted_address;
+            }
+          });
       }
     }
+  }
+
+  openModal(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
+  }
 
 
   seeDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
   }
 
-   openProfileModal(idProfile) {
-    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1}, BSModalContext));
+  openProfileModal(idProfile) {
+    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1 }, BSModalContext));
   }
 
 }
