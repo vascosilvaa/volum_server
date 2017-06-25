@@ -92,7 +92,6 @@ export class ProfileService {
     }
 
     getProfile(id) {
-        console.log("FOI FEITO PEDIDO À BD DO PROFILE")
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
@@ -195,6 +194,12 @@ export class ProfileService {
 
     editUser(value) {
         return this.http.put(`${GlobalConstants.API_ENDPOINT}/users/`, value).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    countVolsParticipation(id_user) {
+         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/finished/count').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

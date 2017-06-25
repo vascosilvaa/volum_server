@@ -28,7 +28,7 @@
     </div>
     <div class="col-12 row-details">
       <div class="friendsCardNumber">Data de Nascimento</div>
-      <div class="friendsCardNumberDesc">18 de Janeiro de 1996</div>
+      <div class="friendsCardNumberDesc">{{user?.birth_date | date:"d" }} de {{user?.birth_date | date:"MMMM" }} de {{user?.birth_date | date:"y" }}</div>
     </div>
     <div class="col-md-8 offset-md-2 row-details">
       <div class="friendsCardNumber">Descrição</div>

@@ -17,7 +17,8 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   providers: [MyActionsService],
 })
 export class MyActionsComponent implements OnInit {
-  constructor(public modal: Modal, overlay: Overlay, public profileService: ProfileService, vcRef: ViewContainerRef, private route: ActivatedRoute, private myactionsservice: MyActionsService, private router: Router) {
+  constructor(public modal: Modal, overlay: Overlay, public profileService: ProfileService, 
+  private route: ActivatedRoute, private myactionsservice: MyActionsService, private router: Router) {
   }
   public idProfile: any;
   public myVols: any;
@@ -60,7 +61,7 @@ export class MyActionsComponent implements OnInit {
 
   getAddress() {
     for (let i = 0; i < this.myVols.length; i++) {
-      if (this.myVols[i].lat && this.myVols[i].lng) {
+      if (this.myVols[i].lat && this.myVols[i].lng && this.myVols[i].lat != null && this.myVols[i].lng != null) {
         this.myactionsservice.getAddress(this.myVols[i].lat, this.myVols[i].lng)
           .then(res => {
             this.addressData = res.results;

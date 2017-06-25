@@ -162,23 +162,20 @@
             Avalia {{vol?.user.name}} como instituição de voluntariado e deixa um testemunho no seu perfil!
         </div>
         <div class="user-rate-all" style="padding-top: 15px;padding-left: 10px!important;">
-            <md-icon class="grey">star_rate</md-icon>
-            <md-icon class="grey">star_rate</md-icon>
-            <md-icon class="grey">star_rate</md-icon>
-            <md-icon class="grey">star_rate</md-icon>
-            <md-icon class="grey">star_rate</md-icon>
+            <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= all_classification" [class.grey]="!all_classification || star >= all_classification"
+                (click)="setScore(star)">star_rate</md-icon>
         </div>
          
         
         <div class="col-12">
-            <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="comment"></textarea>
+            <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="message"></textarea>
         </div>
 
         
         
         <div class="col-12 modal-end-footer text-right">
             <button class="btn btnCancel">CANCELAR</button>
-            <button class="btn btnConfirm" (click)="submit()">FINALIZAR</button>
+            <button class="btn btnConfirm" (click)="submitTestimony()">FINALIZAR</button>
         </div>
     </div>
 </div>

@@ -223,12 +223,12 @@
         
         <li class="listPerson no-border no-margin" *ngFor="let testimony of testimonials">
             <div class="card-testemunhos full-width " style="display:flex">
-               <div (click)="onSelect(testimony.user.id_user)"class="pointer">
+               <div (click)="openProfileModal(testimony.user.id_user)"class="pointer">
                   <img  src="{{testimony.user.photo_url}}">
                 </div>
                 <div>
-                  <div (click)="onSelect(testimony.user.id_user)" class="pointer underline" style="margin-left:12px"><b>{{testimony.user.name}}</b></div>
-                  <div class="class-testemunho " *ngIf="testimony.vol.id_vol && testimony.vol.id_vol!=null" style="">Classificou a ação <span class="underline pointer">"{{testimony.vol.name}}"</span> com <span class="score">{{testimony.classification}} estrelas</span></div>
+                  <div (click)="openProfileModal(testimony.user.id_user)" class="pointer underline" style="margin-left:12px"><b>{{testimony.user.name}}</b></div>
+                  <div class="class-testemunho " *ngIf="testimony.vol.id_vol && testimony.vol.id_vol!=null" style="">Classificou a ação <span class="underline pointer" (click)="openVolDetails(testimony.vol.id_vol)">"{{testimony.vol.name}}"</span> com <span class="score">{{testimony.classification}} estrelas</span></div>
                   <div class="class-testemunho " *ngIf="!testimony.vol.id_vol || testimony.vol.id_vol==null" style="">Classificou a sua experiência com <span>5 estrelas</span></div>
                 </div>
                 

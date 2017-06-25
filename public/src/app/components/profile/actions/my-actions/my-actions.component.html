@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="col-12 table">
+    <div *ngIf="myVols  && myVols.length>0" class="col-12 table">
       <table class="table">
         <thead class="thead-inverse" class="cabecalho">
           <tr>
@@ -72,5 +72,9 @@
         </tbody>
       </table>
     </div>
+    <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!myVols || myVols.length==0">
+       <div ><i class="material-icons">alarm</i></div>
+      <span style="font-weight: 400">Ainda não participou ou coordenou ações de voluntariado.</span>
+      </div>
 
   </div>
