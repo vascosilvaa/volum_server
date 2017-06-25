@@ -26,6 +26,8 @@ export class ModalEndComponent implements OnInit {
   public users = []
   public comment: string;
   public vol: any;
+  public message: any;
+  public score: any;
   context: ModalContext;
 
   constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, private injector: Injector, public volsService: volsService) {
@@ -57,7 +59,7 @@ export class ModalEndComponent implements OnInit {
 
   ngOnInit() {
     if (this.context.type == 2) {
-      this.getUsers()
+      this.getUsers();
     }
 
     if (this.context.type==3) {
@@ -96,6 +98,11 @@ export class ModalEndComponent implements OnInit {
     }
   }
 
+  setScore(classification){
+    this.all_classification = (classification + 1);
+    this.score = classification + 1;
+  }
+
   submit() {
     let body = {
       users: this.users,
@@ -107,6 +114,27 @@ export class ModalEndComponent implements OnInit {
         location.reload();
 
       }
+    });
+  }
+
+  submitTestimony() {
+    console.log("message:" + this.message);
+    console.log("classification:" + this.score);
+    console.log("user2:" + this.vol.user.id_user);
+    console.log("id_vol:" + this.vol.id_vol);
+    
+    let body = {
+          message: this.message,
+          classification: this.score,
+          id_user2: this.vol.user.id_user,
+          id_vol: this.vol.id_vol
+        }
+        console.log(body)
+        this.volsService.insertTestimony(body).then(res => {
+          if (res.success) {
+            this.dialog.close();
+            location.reload();
+          }
     });
   }
 
