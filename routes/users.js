@@ -231,70 +231,98 @@ var returnRouter = function (io) {
     });
 
     app.get('/:id/my-vols/history', passport.authenticate('jwt'), function (req, res) {
-        if (!Number(req.params.id)) {
-            res.status(400).send({
-                success: false,
-                message: "Parametros Invalidos"
-            });
-        } else {
-            db.get().query({
-                sql: `SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
+        req.checkQuery('user_type', 'Type tem que ser um numero').notEmpty().isInt();
+        req.checkParams('id', 'Type tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let options;
+                //SE FOR INSTITUIÇAO
+                // OS QUE CRIOU E JA ACABARAM
+                if (req.query['user_type'] == 1) {
+
+
+                    options = {
+                        sql: `SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
                  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation,
-                vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
-                classification.id_user2, classification.id_vol
+                vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time
                 FROM vols
                 INNER JOIN photos ON vols.id_vol = photos.id_vol
-                LEFT JOIN classification ON vols.id_vol = classification.id_vol
                 WHERE photos.id_vol = vols.id_vol AND vols.id_user_creator = ?
-                AND classification.id_user2 = ?
                 AND vols.deleted = 0 AND vols.active = 0
                 GROUP BY vols.id_vol
                 ORDER BY vols.date_creation DESC`,
-                nestTables: true
-            }, [req.params.id, req.params.id], function (err, results, fields) {
-                if (err) {
-                    console.log(err)
-                    res.send({
-                        success: false,
-                        err
-                    });
-                } else {
-                    console.log(results)
-                    if (results.length > 0) {
-                        let vols = [];
-                        for (let i = 0; i < results.length; i++) {
-                            vols.push({
-                                id_vol: results[i].vols.id_vol,
-                                name: results[i].vols.name,
-                                date_begin: results[i].vols.date_begin,
-                                description: results[i].vols.description,
-                                date_creation: results[i].vols.date_creation,
-                                date_end: results[i].vols.date_end,
-                                lat: results[i].vols.lat,
-                                lng: results[i].vols.lng,
-                                start_time: results[i].vols.start_time,
-                                end_time: results[i].vols.end_time,
-                                photos: (results[i][''].photos).split('->')
-                            });
-                        }
-
-                        res.send({
-                            success: true,
-                            vols
-                        });
-
-                    } else {
-                        res.send({
-                            success: true,
-                            vols: []
-                        });
+                        nestTables: true
                     }
 
+                    // SE FOR USER
+                    //OS QUE PARTICIPOU E JA ACABARAM
+                } else if (req.query['user_type'] == 2) {
+                    options = {
+                        sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
+                        FROM vols 
+                        inner JOIN user_vol ON vols.id_vol = user_vol.id_vol
+                       INNER JOIN photos ON vols.id_vol = photos.id_vol 
+                        WHERE user_vol.id_user = ? 
+                 AND user_vol.confirm = 1
+                 AND vols.deleted = 0 AND vols.active = 0
+                 GROUP BY vols.id_vol
+                ORDER BY vols.date_creation DESC`,
+                        nestTables: true
+                    }
                 }
 
 
-            });
-        }
+                db.get().query(
+                    options, [req.params.id], function (err, results, fields) {
+                        if (err) {
+                            console.log(err)
+                            res.send({
+                                success: false,
+                                err
+                            });
+                        } else {
+                            console.log(results)
+                            if (results.length > 0) {
+                                let vols = [];
+                                for (let i = 0; i < results.length; i++) {
+                                    vols.push({
+                                        id_vol: results[i].vols.id_vol,
+                                        name: results[i].vols.name,
+                                        date_begin: results[i].vols.date_begin,
+                                        description: results[i].vols.description,
+                                        date_creation: results[i].vols.date_creation,
+                                        date_end: results[i].vols.date_end,
+                                        lat: results[i].vols.lat,
+                                        lng: results[i].vols.lng,
+                                        start_time: results[i].vols.start_time,
+                                        end_time: results[i].vols.end_time,
+                                        photos: (results[i][''].photos).split('->')
+                                    });
+                                }
+
+                                res.send({
+                                    success: true,
+                                    vols
+                                });
+
+                            } else {
+                                res.send({
+                                    success: true,
+                                    vols: []
+                                });
+                            }
+
+                        }
+
+                    });
+            }
+        });
     });
 
     //VOLS A QUE ESTA CANDIDATO
