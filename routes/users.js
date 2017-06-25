@@ -268,6 +268,7 @@ var returnRouter = function (io) {
                         FROM vols 
                         inner JOIN user_vol ON vols.id_vol = user_vol.id_vol
                        INNER JOIN photos ON vols.id_vol = photos.id_vol 
+                       INNER JOIN users ON vols.id_user_creator = users.id_user
                         WHERE user_vol.id_user = ? 
                  AND user_vol.confirm = 1
                  AND vols.deleted = 0 AND vols.active = 0
@@ -291,19 +292,49 @@ var returnRouter = function (io) {
                             if (results.length > 0) {
                                 let vols = [];
                                 for (let i = 0; i < results.length; i++) {
-                                    vols.push({
-                                        id_vol: results[i].vols.id_vol,
-                                        name: results[i].vols.name,
-                                        date_begin: results[i].vols.date_begin,
-                                        description: results[i].vols.description,
-                                        date_creation: results[i].vols.date_creation,
-                                        date_end: results[i].vols.date_end,
-                                        lat: results[i].vols.lat,
-                                        lng: results[i].vols.lng,
-                                        start_time: results[i].vols.start_time,
-                                        end_time: results[i].vols.end_time,
-                                        photos: (results[i][''].photos).split('->')
-                                    });
+                                    console.log(req.query.user_type)
+                                    if (req.query.user_type == 2) {
+                                        // SE FOR TIPO 2 INSERE O USER
+                                        vols.push({
+                                            vol: {
+                                                id_vol: results[i].vols.id_vol,
+                                                name: results[i].vols.name,
+                                                date_begin: results[i].vols.date_begin,
+                                                description: results[i].vols.description,
+                                                date_creation: results[i].vols.date_creation,
+                                                date_end: results[i].vols.date_end,
+                                                lat: results[i].vols.lat,
+                                                lng: results[i].vols.lng,
+                                                start_time: results[i].vols.start_time,
+                                                end_time: results[i].vols.end_time,
+                                                photos: (results[i][''].photos).split('->')
+                                            },
+                                            user: {
+                                                id_user: results[i].users.id_user,
+                                                name: results[i].users.name,
+                                                photo_url: results[i].users.photo_url,
+                                            }
+                                        });
+
+                                    } else {
+                                        vols.push({
+                                            vol: {
+                                                id_vol: results[i].vols.id_vol,
+                                                name: results[i].vols.name,
+                                                date_begin: results[i].vols.date_begin,
+                                                description: results[i].vols.description,
+                                                date_creation: results[i].vols.date_creation,
+                                                date_end: results[i].vols.date_end,
+                                                lat: results[i].vols.lat,
+                                                lng: results[i].vols.lng,
+                                                start_time: results[i].vols.start_time,
+                                                end_time: results[i].vols.end_time,
+                                                photos: (results[i][''].photos).split('->')
+                                            }
+                                        });
+
+                                    }
+
                                 }
 
                                 res.send({

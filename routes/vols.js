@@ -112,7 +112,7 @@ var returnRouter = function (io) {
     }
 
     function getVolScore(id, done) {
-        db.get().query('SELECT AVG(classification) as score FROM classification WHERE id_vol     = ? AND type = 1', [id], function (err, rows, fields) {
+        db.get().query('SELECT AVG(classification) as score FROM classification WHERE id_vol = ? AND type = 1', [id], function (err, rows, fields) {
             if (err) throw err;
             console.log("ROWS", rows);
 
