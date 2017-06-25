@@ -4,9 +4,10 @@ import { SharedService } from './../services/shared.service';
 import { DetailsComponent } from './../../components/profile/details/details.component';
 import { FeedComponent } from './../../components/feed/feed.component';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
+import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { AppModule } from './../../app.module';
 import { Component, OnInit, Injector } from '@angular/core';
-import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
+import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -39,7 +40,7 @@ export class ModalViewAllComponent implements OnInit {
   public sum: number = 5;
 
 
-  constructor(public route: ActivatedRoute, public profileService: ProfileService, private router: Router, private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
+  constructor(overlay: Overlay, public modal: Modal, public route: ActivatedRoute, public profileService: ProfileService, private router: Router, private dialog: DialogRef<ModalContext>, private injector: Injector, private volsService: volsService, public SharedService: SharedService) {
 
     this.context = dialog.context;
     this.context.isBlocking = false;
@@ -120,6 +121,25 @@ export class ModalViewAllComponent implements OnInit {
           
         });
   } 
+
+  openProfileModal(idProfile) {
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile }, BSModalContext)).then((d) => d.result)
+      .then((r) => {
+        this.dialog.dismiss();
+        setTimeout(() => {
+          this.router.navigate(['/profile/' + idProfile + '/activity']);
+        }, 500);
+      },
+      (error) => { console.log(error); });;
+  }
+
+  openVolDetails(id_vol) {
+    this.dialog.dismiss();
+    this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: id_vol }, BSModalContext)).then((d) => d.result)
+      .then((r) => {
+      },
+      (error) => { console.log(error); });;
+  }
 
 
 

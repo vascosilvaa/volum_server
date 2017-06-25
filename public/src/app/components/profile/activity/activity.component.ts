@@ -11,6 +11,7 @@ import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
 
+
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',

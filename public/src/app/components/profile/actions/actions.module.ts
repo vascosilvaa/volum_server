@@ -3,6 +3,7 @@ import { ModalEndComponent } from './../../../shared/modal-end/modal-end.compone
 import { SharedModule } from './../../../shared/shared.module';
 import { ModalProfileComponent } from './../../../shared/modal-profile/modal-profile.component';
 import { ModalViewAllComponent } from './../../../shared/modal-view-all/modal-view-all.component';
+import { VolDetailsModalComponent } from './../../../shared/vol-details-modal/vol-details-modal.component';
 import { ActionsComponent } from './actions.component';
 import { ActionsRoutingModule } from './actions.routing';
 import { WaitingComponent } from './waiting/waiting.component';
@@ -38,7 +39,8 @@ import { FinishedComponent } from './finished/finished.component';
   entryComponents: [
     ModalViewAllComponent,
     ModalProfileComponent,
-    ModalEndComponent
+    ModalEndComponent, 
+    VolDetailsModalComponent
   ]
 })
 

@@ -157,8 +157,10 @@ export class ProfileComponent implements OnInit {
     });
   }
   checkFollow() {
+    
     this.profileService.checkState(this.id_user).then(res => {
       this.state = res.state;
+      console.log(this.state);
     });
   }
   engageConversation() {
