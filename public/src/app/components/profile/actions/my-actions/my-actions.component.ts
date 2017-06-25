@@ -42,7 +42,7 @@ export class MyActionsComponent implements OnInit {
   }
 
   openModal(type, id_vol) {
-    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, idVol: id_vol }, BSModalContext));
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
   }
 
   openProfileModal(idProfile) {
