@@ -183,4 +183,38 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
+    insertTestimony(body) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/users/score`, body).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getInvites(id_user) {
+
+    }
+
+    listPending(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/vols/my-applies`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    listFinished(id_user, type) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/`+id_user+`/my-vols/history`, { user_type: type }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+
+    listInvites() {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/7`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getVolScore(id) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+id+`/score`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

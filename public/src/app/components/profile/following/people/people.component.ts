@@ -15,6 +15,8 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class PeopleComponent implements OnInit {
   public users = [];
+  public numberVolsParticipated : any;
+  public numberFollowers: any;
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
     private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
@@ -34,6 +36,22 @@ export class PeopleComponent implements OnInit {
     this.profileService.listFollows(id, 1).then(res => {
       this.users = res.users;
       console.log(res);
+
+      for(let i=0; i<this.users.length; i++) {
+        this.profileService.countVolsParticipation(this.users[i].id_user).then(res => {
+          this.users[i].numberVolsParticipated = res.rows[0].count;
+        });
+        this.profileService.countFollows(this.users[i].id_user, 1).then(res => {
+         let userCount = parseInt(res.count);
+
+          this.profileService.countFollows(this.users[i].id_user, 2).then(res => {
+            let instCount = parseInt(res.count);
+            this.users[i].numberFollowers = userCount + instCount;
+          });
+        });
+        
+        
+      }
     });
 
   }

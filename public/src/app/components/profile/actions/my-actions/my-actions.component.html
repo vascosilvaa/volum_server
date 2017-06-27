@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="col-12 table">
+    <div *ngIf="myVols  && myVols.length>0" class="col-12 table">
       <table class="table">
         <thead class="thead-inverse" class="cabecalho">
           <tr>
@@ -37,7 +37,7 @@
                <span class="numberIn blue">{{vol?.numberCandidates}}</span><span>  candidatos</span>
             </td>
             <td  class="pointer" *ngIf="vol.numberCandidates<5 && vol.numberCandidates > 0" (click)="openModal(1, vol.id_vol)">
-               <span class="numberIn yellow">{{vol?.numberCandidates}}</span><span>  candidato<span *ngIf="vol.numberCandidates!=1">s</span></span>
+               <span class="numberIn yellow">{{vol?.numberCandidates}}</span><span class="underline">  candidato<span *ngIf="vol.numberCandidates!=1">s</span></span>
             </td>
 
 
@@ -52,7 +52,7 @@
                <span class="numberIn blue">{{vol?.numberConfirmeds}}</span><span>  confirmados</span>
             </td>
              <td class="pointer"  (click)="openModal(2, vol.id_vol)" *ngIf="vol.numberConfirmeds<5 && vol.numberConfirmeds > 0 ">
-               <span class="numberIn blue">{{vol?.numberConfirmeds}}</span><span>  confirmado<span *ngIf="vol.numberConfirmeds!=1">s</span></span>
+               <span class="numberIn blue">{{vol?.numberConfirmeds}}</span><span class="underline">  confirmado<span *ngIf="vol.numberConfirmeds!=1">s</span></span>
             </td>
 
 
@@ -72,5 +72,9 @@
         </tbody>
       </table>
     </div>
+    <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!myVols || myVols.length==0">
+       <div ><i class="material-icons">alarm</i></div>
+      <span style="font-weight: 400">Ainda não participou ou coordenou ações de voluntariado.</span>
+      </div>
 
   </div>

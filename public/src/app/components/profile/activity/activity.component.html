@@ -183,7 +183,7 @@
         </div>
       </div>
 
-      <div class="card-volum-small pointer" (click)="openTests(9)">
+      <div class="card-volum-small">
         <div class="card-header cardTitle">
           <div class="row">
             <div class="col titleCard">
@@ -192,7 +192,7 @@
           </div>
         </div>
         <div class="card-block small" style="padding-bottom:0!important">
-          <div class="row align-items-center"  *ngFor="let testimony of testimonials" style="padding-bottom: 1.5rem">
+          <div (click)="openTests(9)" class="row align-items-center pointer"  *ngFor="let testimony of testimonials" style="padding-bottom: 1.5rem">
             <div class="titleProfile col-3">
               <img style="border-radius: 50%" width="40px" height="40px" src="{{testimony.user.photo_url}}">
             </div>

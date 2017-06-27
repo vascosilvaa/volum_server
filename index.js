@@ -18,6 +18,7 @@ var path = require('path');
 var app = express();
 var fileUpload = require('express-fileupload');
 var server = http.createServer(app);
+var expressValidator = require('express-validator');
 
 var io = require('socket.io').listen(server);
 
@@ -39,7 +40,7 @@ app.use(fileUpload());
 require('./config/passport')(passport);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
-
+app.use(expressValidator());
 
 app.use(express.static(path.join(__dirname, 'public/dist')));
 app.use('/api', express.static(path.join(__dirname, 'docs')))
@@ -130,10 +131,24 @@ io.on('connection', function (socket) {
         console.log("SOCKET", socket.id);
 
         let index = loggedUsers.findIndex(x => x.socket == socket.id)
-        console.log("index", index);
-        console.log("USERS", loggedUsers)
-        loggedUsers.splice(index, 1);
-        app.set('users', loggedUsers);
+        if (index != -1) {
+
+            console.log("users", loggedUsers[index].user)
+            db.get().query('UPDATE users SET last_online = ? WHERE id_user = ?', [new Date(), loggedUsers[index].user], function (error, results, fields) {
+                console.log(error);
+                console.log(results)
+            });
+
+            console.log("index", index);
+            console.log("USERS", loggedUsers)
+
+            loggedUsers.splice(index, 1);
+            app.set('users', loggedUsers);
+
+        }
+
+
+
 
     });
 

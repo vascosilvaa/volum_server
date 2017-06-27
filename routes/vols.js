@@ -111,6 +111,16 @@ var returnRouter = function (io) {
             });
     }
 
+    function getVolScore(id, done) {
+        db.get().query('SELECT AVG(classification) as score FROM classification WHERE id_vol = ? AND type = 1', [id], function (err, rows, fields) {
+            if (err) throw err;
+            console.log("ROWS", rows);
+
+            done(rows[0].score);
+        });
+    }
+
+
     /**
      * @api {get} /vols Listar todos os voluntariados
      * @apiName listVols
@@ -1402,7 +1412,8 @@ var returnRouter = function (io) {
         }
 
     });
-    app.get('/:id/score', passport.authenticate('jwt'), function (req, res) {
+
+    app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
 
         let options = {
             sql: 'SELECT DISTINCT classification.classification, classification.id_user2 FROM classification INNER JOIN user_vol ON classification.id_vol = user_vol.id_vol WHERE classification.id_vol = ?',
@@ -1427,6 +1438,44 @@ var returnRouter = function (io) {
 
         });
     });
+
+    app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
+
+        let options = {
+            sql: 'SELECT DISTINCT classification.classification, classification.id_user2 FROM classification INNER JOIN user_vol ON classification.id_vol = user_vol.id_vol WHERE classification.id_vol = ?',
+        };
+
+        db.get().query(options, [req.params['id']], function (error, results, fields) {
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+
+                res.status(200);
+                res.send({
+                    success: true,
+                    results
+                })
+
+            };
+
+        });
+    });
+
+    app.get('/:id/score', function (req, res) {
+
+        getVolScore(req.params.id, function (score) {
+            res.json({
+                success: true,
+                score
+            });
+        });
+    });
+
+
     app.post('/delete', passport.authenticate('jwt'), function (req, res) {
         if (!Number(req.body.id_vol)) {
             res.json({

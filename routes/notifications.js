@@ -119,6 +119,98 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/:type', passport.authenticate('jwt'), function (req, res) {
+
+        req.checkParams('type', 'Type tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let notifications = [];
+
+
+                db.get().query({
+                    sql: `SELECT notifications.id_notification, notifications.date, notifications.type, notifications.id_vol, notifications.id_user, notifications.id_user2,
+                     GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
+                     vols.id_vol, vols.name, vols.lat, vols.lng, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
+                     users.id_user, users.photo_url, users.name
+                     FROM notifications
+                     INNER JOIN users ON notifications.id_user = users.id_user
+                     INNER JOIN vols ON notifications.id_vol = vols.id_vol
+                     INNER JOIN photos ON photos.id_vol = notifications.id_vol
+                     WHERE notifications.id_user2 = ? 
+                     AND notifications.type = ? 
+                     GROUP BY notifications.id_notification
+                     ORDER BY notifications.id_notification DESC`,
+                    nestTables: true
+                }, [req.user.id_user, req.params.type],
+                    function (error, results, fields) {
+                        if (error) {
+                            console.log(error);
+                            res.json({
+                                success: false,
+                                message: error
+                            });
+                        } {
+
+                            console.log(results);
+
+                            if (results.length == 0) {
+                                res.json({
+                                    success: true,
+                                    notifications
+                                });
+                            } else {
+
+                                for (let i = 0; i < results.length; i++) {
+
+                                    notifications.push({
+                                        type: results[i].notifications.type,
+
+                                        user: {
+                                            id_user: results[i].users.id_user,
+                                            name: results[i].users.name,
+                                            photo_url: results[i].users.photo_url,
+                                        },
+                                        vol: {
+                                            id_vol: results[i].vols.id_vol,
+                                            name: results[i].vols.name,
+                                            date_begin: results[i].vols.date_begin,
+                                            date_end: results[i].vols.date_end,
+                                            start_time: results[i].vols.start_time,
+                                            end_time: results[i].vols.end_time,
+                                            lat: results[i].vols.lat,
+                                            lng: results[i].vols.lng,
+                                            photo: (results[i][''].photos).split('->')
+
+                                        },
+                                        date: results[i].notifications.date
+                                    })
+
+                                }
+                                res.json({
+                                    success: true,
+                                    notifications
+                                });
+                            }
+
+
+                        }
+
+
+
+                    });
+            }
+
+
+
+        });
+    });
+
     /**
      * @api {get} /notifications/:id/not-read/count Contagem das notificações não lidas
      * @apiName listNotificationCount

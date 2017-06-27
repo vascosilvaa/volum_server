@@ -13,10 +13,11 @@ import { DetailsComponent } from './details/details.component';
 import { FooterComponent } from './../../shared/footer/footer.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
-
+import { Overlay } from 'angular2-modal';
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
-import { FollowingComponent } from './following/following.component';
+import { ActionsModule } from './actions/actions.module';
+import { FollowingModule } from './following/following.module';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileRoutingModule } from './profile.routing';
 import { RouterModule } from '@angular/router';
@@ -41,6 +42,8 @@ import { NewActionComponent } from './new-action/new-action.component';
     ProfileRoutingModule,
     SharedModule,
     MomentModule,
+    ActionsModule,
+    FollowingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),

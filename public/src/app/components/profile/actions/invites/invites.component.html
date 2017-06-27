@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="col-12 table">
+    <div *ngIf="vols && vols.length>0" class="col-12 table">
       <table class="table">
         <thead class="thead-inverse" class="cabecalho">
           <tr>
@@ -11,130 +11,44 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="tableText">
-            <td class="tableBold tableTitle">Técnico de juventude</td>
+          <tr class="tableText" *ngFor="let vol of vols">
+            <td class="tableBold tableTitle">{{vol?.vol.name}}</td>
 
-            <td class="tablePlace">
-              <div class="tableBold">Centro ocupacional AME</div>
-              <div class="">Rua dos pardais, 4430-826</div>
-              <div>Aveiro, Portugal</div>
+           <td class="tablePlace">
+              <div class="">{{vol?.address}}</div>
+               <div class="" *ngIf="!vol.address">Sem localização definida</div>
+
             </td>
 
             <td class="tableDate">
-              <div class="tableBold">8 de março - 12 de março</div>
-              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
-            </td>
+              <div class="tableBold"> {{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} - {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}}</div>
+              <div class="" *ngIf="vol.start_time">{{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} às  {{vol?.vol.start_time | timePipe }} até {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.vol.end_time | timePipe}}</span></div>
+           </td>
 
 
-            <td class="ellipsis">
-              <span class="table-user-image"><img src="http://alzheimerportugal.org/public/uploads/news/news_text_508.png"></span>
-              <span class="tableBold margin-left">Santa Casa da Misericordia</span>
+            <td class="ellipsis pointer" (click)="openProfileModel(vol?.user.id_user)">
+              <span class="table-user-image"><img src="{{vol?.user.photo_url}}"></span>
+              <span class="tableBold margin-left underline">{{vol?.user.name}}</span>
             </td>
 
            
 
             <td class="tableBtns">
               <div class="text-right">
-                <button class="btn btnConfirm" >VER</button>
+                <button class="btn btnConfirm" (click)="seeDetails(vol?.vol.id_vol)">VER</button>
               </div>
               <div class="text-right">
                 <button class="btn btnCancel" >REJEITAR</button>
               </div>
             </td>
-            <tr class="tableText">
-            <td class="tableBold tableTitle">Enfermeiros voluntários</td>
-
-            <td class="tablePlace">
-              <div class="tableBold">Centro de Saúde de Aveiro</div>
-              <div class="">Rua das Corujas Pretas, 3810-164</div>
-              <div>Aveiro, Portugal</div>
-            </td>
-
-            <td class="tableDate">
-              <div class="tableBold">8 de março - 12 de março</div>
-              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
-            </td>
-
-           
-            <td class="ellipsis">
-              <span class="table-user-image"><img src="http://fajdp.pt/wp-content/uploads/2014/06/12508846_1081344105243012_2713893583106288598_n.jpg"></span>
-              <span class="tableBold margin-left">Abrigo Seguro</span>
-            </td>
-
-          
-
-            <td class="tableBtns">
-              <div class="text-right">
-                <button class="btn btnConfirm" >VER</button>
-              </div>
-              <div class="text-right">
-                <button class="btn btnCancel" >REJEITAR</button>
-              </div>
-            </td>
-            <tr class="tableText">
-            <td class="tableBold tableTitle">Dinamização de matrículas</td>
-
-            <td class="tablePlace">
-              <div class="tableBold">Universidade de Aveiro</div>
-              <div class="">Universidade de Aveiro, 3810-164</div>
-              <div>Aveiro, Portugal</div>
-            </td>
-
-            <td class="tableDate">
-              <div class="tableBold">8 de março - 12 de março</div>
-              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
-            </td>
-
-         
-
-            <td class="ellipsis">
-              <span class="table-user-image"><img src="http://microsites.juventude.gov.pt/fotosroteiro/a931919a-1f0f-4916-b441-2d0d8f588df6.jpg"></span>
-              <span class="tableBold margin-left">Onda Verde</span>
-            </td>
-
-            
-
-            <td  class="tableBtns">
-              <div class="text-right">
-                <button class="btn btnConfirm" >VER</button>
-              </div>
-              <div class="text-right">
-                <button class="btn btnCancel" >REJEITAR</button>
-              </div>
-            </td>
-            <tr class="tableText">
-            <td class="tableBold tableTitle">Limpeza de Rio Febros</td>
-
-            <td class="tablePlace">
-              <div class="tableBold">Rio Febros</div>
-              <div class="">Rua do Febros, 3810-164</div>
-              <div>Porto, Portugal</div>
-            </td>
-
-            <td class="tableDate">
-              <div class="tableBold">8 de março - 12 de março</div>
-              <div class="">8 de março às 18:00 até 12 de março às 12:00</div>
-            </td>
-
-            <td class="ellipsis">
-              <span class="table-user-image"><img src="http://www.institutocriap.com/file/2017/01/caritas-diocesana-de-aveiro.png"></span>
-              <span class="tableBold margin-left">Caritas Diocesana de Aveiro</span>
-            </td>
-
-
-            <td class="tableBtns">
-              <div class="text-right">
-                <button class="btn btnConfirm"  >VER</button>
-              </div>
-              <div class="text-right">
-                <button class="btn btnCancel" >REJEITAR</button>
-              </div>
-            </td>
-
           </tr>
 
         </tbody>
       </table>
     </div>
+     <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!vols || vols.length==0">
+       <div ><i class="material-icons">alarm</i></div>
+      <span style="font-weight: 400">Não possui convites para ações de voluntariado.</span>
+      </div>
 
   </div>
