@@ -1,3 +1,7 @@
+import { DOCUMENT } from '@angular/platform-browser';
+import { HostListener} from "@angular/core";
+import { SearchNavService } from './search-nav.service';
+
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
 import { ModalEndComponent } from './shared/modal-end/modal-end.component';
 import { ProfileService } from './shared/services/profile.service';
@@ -8,16 +12,19 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthenticationService } from './shared/Auth/authentication.service';
 import { LoginComponent } from './components/login/login.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, ViewContainerRef, OnInit } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, Inject } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [SocketService, AppService, ChatService, ProfileService]
+  providers: [SocketService, AppService, ChatService, ProfileService, SearchNavService]
 })
 export class AppComponent implements OnInit {
 
@@ -35,15 +42,22 @@ export class AppComponent implements OnInit {
   public notificationsReady: boolean = false;
   public sum: number = 5;
 
+  //SEARCH
+  model: any;
+  searching = false;
+  searchFailed = false;
+  public showSearch: boolean;
+
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
     private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService,
-    private profileService: ProfileService) {
+    private profileService: ProfileService, public searchNavService: SearchNavService, @Inject(DOCUMENT) private document:Document) {
     overlay.defaultViewContainer = vcRef;
     this.notification.src = "http://www.wavsource.com/snds_2017-05-21_1278357624936861/sfx/boing_x.wav";
 
   }
   ngOnInit() {
+    this.showSearch = false;
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.router.navigateByUrl('/mobile');
@@ -236,5 +250,38 @@ export class AppComponent implements OnInit {
     console.log("scroll");
     this.sum = this.sum + 6;
     this.getNotifications(this.sum, 5, false);
+  }
+
+  // SEARCH
+  search = (text$: Observable<string>) =>
+    text$
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .do(() => this.searching = true)
+      .switchMap(term =>
+        this.searchNavService.search(term)
+          .do(() => { this.searchFailed = false })
+          .catch(() => {
+            this.searchFailed = true;
+            return Observable.of([]);
+          }))
+      .do(() => this.searching = false);
+
+      navigate(id, type) {
+    if (type == 1 || type == 2) {
+      this.router.navigate(['profile/' + id + '/about'])
+    } else if (type == 0) {
+      this.router.navigate(['action/' + id])
+    }
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    let number = this.document.body.scrollTop;
+    if (number > 300) {
+      this.showSearch = true;
+    } else if (this.showSearch && number < 250) {
+      this.showSearch = false;
+    }
   }
 }

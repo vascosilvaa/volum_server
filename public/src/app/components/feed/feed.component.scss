@@ -418,14 +418,23 @@
    color:     $grey3;
 }
 
+.disableContainer{
+    overflow: hidden!important;
+}
 
-
-
-
-
+// FILTER MEDIA QUERIES 
+@media screen and (max-width: 992px) {
+    .bevolum-filter{
+        bottom: -100%;
+    }
+    .bevolum-filter-show{
+        height: 100%!important;
+        padding-bottom: 50px;
+        overflow: auto;
+    }
+}
 
 /* MEDIA QUERIES */
-
 @media screen and (max-width: 992px) {
     .headerText > h1{
         font-size: 3rem;

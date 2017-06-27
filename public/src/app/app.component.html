@@ -4,7 +4,25 @@
     <div class="navbar-bevolun-brand">
         <a routerLink="/feed">BEVOLUN</a>
     </div>
-    <div class="navbar-bevolun-search"></div>
+    <div class="navbar-bevolun-search">
+        <div class="header-search" [class.showSearch]="showSearch">
+            <input type="text" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+            <ng-template #rt let-r="result" let-t="term">
+                <div class="search-result pointer" (click)="navigate(r.id, r.type)">
+                    <div class="search-img">
+                        <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
+                        <img *ngIf="r.type==1 || r.type==2" [src]="r.photo_url">
+                    </div>
+                    <div class="search-text">
+                        <h6 class="search-name">{{ r.name}}</h6>
+                        <p *ngIf="r.type==0"> Ação de Voluntariado</p>
+                        <p *ngIf="r.type==1"> Voluntário</p>
+                        <p *ngIf="r.type==2"> Instituição</p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
     <div class="navbar-bevolun-right">
 
         <!-- MAP -->

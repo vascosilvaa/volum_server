@@ -25,6 +25,7 @@ export class FeedComponent implements OnInit {
 
 
   public showFilter:boolean = false;
+  public disableContainer:boolean = false;
 
   config: Object = {
     pagination: 'null',
@@ -106,10 +107,12 @@ export class FeedComponent implements OnInit {
 
   openFilter(){
       this.showFilter = !this.showFilter;
+      this.disableContainer = !this.disableContainer
   }
 
   closeFilter(){
       this.showFilter = !this.showFilter;
+      this.disableContainer = !this.disableContainer
   }
 
 }

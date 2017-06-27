@@ -3,17 +3,17 @@
 /* NAVBAR */
 .navbar-bevolun{
     width: 100%;
-    height: 60px;
+    height: 72px;
     display: flex;
     align-items: center;
     background-color: $primary;
     padding: 16px;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
 }
 
 .navbar-bevolun-brand{
-    flex: 2;
+    width: 260px
 }
 
 .navbar-bevolun-brand a{
@@ -24,13 +24,114 @@
     text-decoration: none;
 }
 
+.navbar-bevolun-search{
+    flex: 2
+}
+
+.navbar-bevolun-search{
+    ::-webkit-input-placeholder {
+        color:    $white;
+    }
+    :-moz-placeholder {
+        color:     $white;
+        opacity:  1;
+    }
+    ::-moz-placeholder { 
+        color:    $white;
+        opacity:  1;
+    }
+    :-ms-input-placeholder { 
+        color:     $white;
+    }
+    ::-ms-input-placeholder { 
+        color:     $white;
+    }
+}
+
+.header-search{
+    width: 598px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 300ms;
+    opacity: 0;
+}
+
+.header-search input{
+    width: 600px;
+    height: 46px;
+    border: none;
+    background-color: #3087F6;
+    border-radius: 3px;
+    padding-left: 15px;
+    font-size: 0.9rem;
+    color: $white;
+    transition: all 500ms;
+}
+
+.header-search input:focus{
+    background-color: #03469B;
+}
+
+
+
+
+.search-result{
+    width: 600px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 3px;
+}
+
+.search-result:hover{
+     background-color: $grey1;
+}
+
+.search-img{
+    margin-right: 8px;
+}
+
+.search-img img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 45px;
+    border: 1px solid $grey1;
+}
+
+.search-text h6{
+    color: $primary;
+    font-weight: 600;
+    font-size: 0.9rem;
+    max-width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+.search-text p{
+    color: $grey3;
+    font-size: 0.8rem;
+}
+
+
+
+
+
+
 .navbar-bevolun-right{
+    width: 260px;
     display: flex;
     align-items: center;
 }
 
 .navbar-bevolun-right div a{
-    transition: all 0.2s;
+    text-align: right;
 }
 
 .navbar-bevolun-right div:hover{
@@ -470,3 +571,8 @@ display: -webkit-box;
       border:0;
 
 }
+
+.showSearch{
+   opacity: 1;
+}
+//SEARCH

@@ -157,11 +157,8 @@
 </div>
 
 
-
-
 <!-- LOGADO -->
-
-<div style="margin-top:30px;" *ngIf="login" class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+<div style="margin-top:30px;" *ngIf="login" class="container" [class.disableContainer]="disableContainer" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()" >
 
   <div class="row">
 
@@ -194,14 +191,14 @@
 <div class="bevolum-filter" [class.bevolum-filter-show]="showFilter">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 mb-4 mt-4 filter-title">
+            <div class="col-6 mb-4 mt-4 filter-title">
                 <p>Filtar</p>
             </div>
-            <div class="col-lg-6 mb-4 mt-4 text-right">
+            <div class="col-6 mb-4 mt-4 text-right">
                  <div class="btn-icon" (click)="openFilter()"><i class="material-icons">close</i></div>
             </div>
 
-             <div class="col-lg-6  mb-5">
+             <div class="col-lg-6 mb-5">
                 <label class="filter-label" for="exampleSelect1">Data de início</label>
                 <div class="input-group filter-dropdown">
                     <input class="date_picker filter-date-picker" ngbDatepicker #ds="ngbDatepicker" placeholder="Inicio">

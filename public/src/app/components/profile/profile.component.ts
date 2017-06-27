@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
       console.log("TROCOU PARAMS", params)
       this.id_user = params.id;
 
-
+      
       //FACEBOOK TOKEN
       this.route.queryParams.subscribe((query => {
         console.log(query);
@@ -129,7 +129,7 @@ export class ProfileComponent implements OnInit {
               this.checkOnline();
               this.getScore();
 
-
+              console.log("USER:",this.user);
 
             });
 

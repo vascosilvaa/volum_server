@@ -1,64 +1,65 @@
-<div class="container-fluid headerBlue">
-</div>
-<div class="container-fluid sub-header-background">
-    <div class="container sub-header-profile">
-        <div class="row">
-            <div class="col-md-3 col-sm-12 col-12 profile-user-picture">
-                <img src={{user?.photo}} alt="{{user?.name}}" (error)="this.user.photo = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
-                <div class="col user-rate" *ngIf="scoreReady">
-                    <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
-                    <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
+<div class="container nav-padding">
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block">
+                <div class="top-header">
+                    <div class="top-header-cover">
+                        <img src="src/assets/img/cover.jpg">
+                    </div>
                 </div>
+                <div class="profile-section">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5">
+                            <ul class="profile-menu">
+                                <li><a routerLink="/profile/{{id_user}}/activity" [routerLinkActive]="['menuSubHeaderActive']">Atividade</a></li>
+                                <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
+                                <li><a routerLink="/profile/{{id_user}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
+                                <!-- FALTA O ROUTING AQUI -->
+                                 <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Testemunhos</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5 offset-lg-2 col-md-5 offset-md-2">
+                            <ul class="profile-menu" *ngIf="id_user==id_logged_user">
+                                <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Mensagens</a></li>
+                                <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
+                                <li><a routerLink="/profile/{{id_user}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
+                            </ul>
 
+                            <ul class="profile-menu" *ngIf="id_user!=id_logged_user">
+                                 <!-- FALTA O ROUTING AQUI -->
+                                <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Mensagem</a></li>
 
-
-            </div>
-            <div class="col-md-9 col-sm-12 col-12 profile-user-name-location">
-                <div class="user-name">
-                    {{user?.name}}
-                    <div class="circle" [class.online]="online == 1" [class.offline]="online == 0"></div>
-                    <!--    <md-icon style="margin-left: 20px" class="clickable"  *ngIf="id_user != id_logged_user">message</md-icon> -->
+                                <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
+                                <li>
+                                    <div class="more">
+                                        <i class="material-icons fix-icon">more_horiz</i>
+                                        <ul class="more-dropdown more-with-triangle">
+                                            <li><a>Denuncionar perfil</a></li>
+                                            <li><a>Bloquear utilizador</a></li>
+                                            <li *ngIf="state == 1"><a (click)="unfollow(id_user)">Não seguir</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="control-block-button">
+                        <a class="btn btn-control btn-add" *ngIf="id_user==id_logged_user" routerLink="/profile/{{id_user}}/new"><i class="material-icons">add</i></a>
+                        <span *ngIf="id_user!=id_logged_user">
+                            <a class="btn btn-control-follow btn-follow" (click)="follow(id_user)" *ngIf="state == 0"><img src="src/assets/img/follow-add.png"></a>
+                        </span>
+                    </div>
                 </div>
-                <!--
-                <div class="user-location" *ngIf="user.lat && user.lng">
-                    {{user?.location}}
+                <div class="top-header-user">
+                    <img *ngIf="user?.photo" class="user-thumb" src={{user?.photo}} alt="{{user?.name}}">
+                    <div class="user-content">
+                        <h4>{{user?.name}}</h4>
+                        <div class="stars" *ngIf="scoreReady">
+                            <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
+                            <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
+                        </div>
+                    </div>
                 </div>
-                -->
-                <div class="user-location">
-                    {{user?.country}} <span *ngIf="user.country">, </span> {{user?.region}}
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-10 col-6 menuSubHeader">
-                <ul class="menuSubHeaderUl">
-                    <li><a routerLink="/profile/{{id_user}}/activity" [routerLinkActive]="['menuSubHeaderActive']">Atividade</a></li>
-                    <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
-                    <li><a routerLink="/profile/{{id_user}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
-                    <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
-                    <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
-                    <li *ngIf="id_user!=id_logged_user" class="pointer"><a (click)="engageConversation()">Mensagem</a></li>
-                </ul>
-                <a class="btn-menu" md-raised-button routerLink="." [mdMenuTriggerFor]="menuSubHeader">
-                    <md-icon class="btn-new-action-icon">menu</md-icon>
-                </a>
-                <md-menu #menuSubHeader="mdMenu">
-                    <button md-menu-item>Actividade</button>
-                    <button md-menu-item>Minhas ações</button>
-                    <button md-menu-item>Sobre</button>
-                    <button md-menu-item>A seguir</button>
-                    <button md-menu-item>Definições</button>
-                </md-menu>
-
-            </div>
-            <div *ngIf="id_user==id_logged_user" class="col-sm-2 col-6 col-new-action text-right">
-                <a routerLink="/profile/{{id_user}}/new" class="btn-new-action" md-raised-button><span class="btn-new-action-text" >NOVA AÇÃO</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
-            </div>
-            <div *ngIf="id_user!=id_logged_user" class="col-sm-2 col-6 col-new-action text-right">
-                <a class="btn-new-action" md-raised-button (click)="follow(id_user)" *ngIf="state == 0"><span class="btn-new-action-text" >SEGUIR</span><span><md-icon class="btn-new-action-icon">add</md-icon></span></a>
-                <a class="btn-follow" md-raised-button (click)="unfollow(id_user)" *ngIf="state == 1"><span class="btn-new-action-text" >NÃO SEGUIR</span><span><md-icon class="btn-new-action-icon">minus</md-icon></span></a>
-
             </div>
         </div>
     </div>

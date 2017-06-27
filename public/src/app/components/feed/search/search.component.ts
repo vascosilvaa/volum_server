@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   formatter = (x: {
     name: string
     registration: {
-      name: string
+    name: string
     }
   }) => x.name || x.registration.name;
 
