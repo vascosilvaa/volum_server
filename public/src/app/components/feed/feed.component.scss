@@ -124,7 +124,7 @@
     .titleFeed {
         font-weight: $bold;
         font-size: 18px;
-        margin-top: 50px;
+        margin-top: 70px;
     }
     
     .search-areas {
@@ -442,4 +442,37 @@
     .headerText > h4{
        font-size: 1.1rem;
     }
+}
+
+//CITIES
+
+.feed-cities{
+    padding: 0;
+    display: flex;
+    margin-top: 30px;
+}
+
+.feed-cities li{
+    width: 200px;
+    height: 250px;
+    background-color: $primary;
+    list-style: none; 
+    margin-right: 14px;
+}
+
+.feed-cities li div{
+    position: absolute;
+    z-index: 2;
+    line-height: 250px;
+    color: $white;
+    text-align: center;
+    width: 200px;
+    font-size: 1.4rem;
+}
+
+.feed-cities li img{
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    opacity: 0.4;
 }

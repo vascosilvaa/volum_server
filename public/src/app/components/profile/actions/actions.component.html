@@ -1,8 +1,14 @@
 
 
-<div class="container">
+
+
+<!--
+
   <div class="row">
-    <div class="col-12 ">
+    <div class="col-12">
+      <div class="ui-block">
+        3
+      </div>
       <div class="card primaryCard">
         <div class=" card-block rowMenu">
 
@@ -10,7 +16,7 @@
                 <a routerLink="my-actions" [routerLinkActive]="['navLinkAtive']" class="navLink">Ações ativas</a>
               </div>
               <div class="navCard vcenter titleNavLink">
-                <a routerLink="invites" [routerLinkActive]="['navLinkAtive']"  class="navLink">Convites<!--<span class="badge badge-pill badge-primary">2</span>--></a>
+                <a routerLink="invites" [routerLinkActive]="['navLinkAtive']"  class="navLink">Convites--><!--<span class="badge badge-pill badge-primary">2</span>--><!--</a>
               </div>
                <div class="navCard vcenter titleNavLink">
                 <a routerLink="waiting"  [routerLinkActive]="['navLinkAtive']"  class="navLink">Em espera</a>
@@ -18,13 +24,30 @@
                <div class="navCard vcenter titleNavLink">
                 <a routerLink="finished"  [routerLinkActive]="['navLinkAtive']"  class="navLink">Finalizadas</a>
               </div>
-             <!-- <div class="col text-right titleNavLink iconCard ">
+             <div class="col text-right titleNavLink iconCard ">
                 <i class="material-icons edit">more_horiz</i>
-              </div>-->
+              </div>
         </div>
       </div>
     </div>
   </div>
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block">
+                <div class="action-menu">
+                    <ul>
+                        <li><a routerLink="my-actions" [routerLinkActive]="['active-action-menu']">Ações ativas</a></li>
+                        <li><a routerLink="invites" [routerLinkActive]="['active-action-menu']">Convites</a><!--<span class="badge badge-pill badge-primary">2</span>--></li>
+                        <li><a routerLink="waiting" [routerLinkActive]="['active-action-menu']">Em espera</a></li>
+                        <li><a routerLink="finished" [routerLinkActive]="['active-action-menu']">Finalizadas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <router-outlet></router-outlet>
 

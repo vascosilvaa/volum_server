@@ -23,7 +23,7 @@
             </ng-template>
         </div>
     </div>
-    <div class="navbar-bevolun-right">
+    <div class="navbar-bevolun-right" *ngIf="user">
 
         <!-- MAP -->
         <div class="navbar-bevolun-map" *ngIf="user" routerLink="map">
@@ -214,16 +214,7 @@
             </div>
         </div>
 
-        <!-- REGISTER -->
-        <div class="navbar-bevolun-register ml-4" (click)="openRegister()" *ngIf="!user">
-            <a>Registar</a>
-        </div>
-
-        <!-- LOGIN -->
-        <div class="navbar-bevolun-login ml-4" (click)="openLogin()" *ngIf="!user">
-
-            <a>Entrar</a>
-        </div>
+        
 
         <!-- USER -->
         <div class="navbar-bevolun-user ml-4" *ngIf="user" ngbDropdown ngbDropdownToggle>
@@ -314,6 +305,19 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="navbar-bevolun-right-no-login" *ngIf="!user">
+        <!-- REGISTER -->
+        <div class="navbar-bevolun-register ml-4" (click)="openRegister()" *ngIf="!user">
+            <a>Registar</a>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="navbar-bevolun-login ml-4" (click)="openLogin()" *ngIf="!user">
+
+            <a>Entrar</a>
         </div>
     </div>
 </div>
