@@ -701,3 +701,199 @@ select.form-control:not([size]):not([multiple]) {
     max-width: 100%;
 }
 }
+
+
+
+// CARD INFOS
+.ui-block {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(230, 236, 245, 0.4);   
+}
+
+.ui-block-title {
+    padding: 22px 25px 22px;
+    line-height: 1;
+    border-bottom: 1px solid #e6ecf5;
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.ui-block-title > * {
+    margin-bottom: 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.ui-block-title > h6{
+    color: $grey5;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.ui-block-content{
+    padding: 24px 23px 23px;
+}
+.ui-block-content ul{
+    list-style: none;
+    padding: 0;
+}
+.ui-block-content li{
+    padding: 15px 0;
+}
+
+.ui-block-content li .title{
+    float: none;
+    margin-right: 0;
+    width: auto;
+    font-weight: 600;
+    color: $grey5;
+    font-size: 0.9rem;
+}
+
+.ui-block-content li .text{
+    color: $grey5;
+    font-size: 0.9rem;
+    display: block;
+    overflow: hidden;
+}
+
+.user-interests{
+    margin-top: 35px;
+}
+
+.user-interests h6{
+    color: $grey5;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.ui-block-interests{
+
+}
+
+.ui-block-interests div{
+    padding: 4px 10px 5px;
+    font-size: 0.9rem;
+    border-radius: 15px;
+    background-color: $grey2;
+    color: $white;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    transition: all 400ms ease;
+}
+
+.ui-block-interests div:hover{
+    cursor: pointer;
+    background-color: $primary;
+}
+
+.social-network{
+    margin-top: 50px;
+}
+
+.social-network h6{
+    color: $grey5;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.btn-social{
+    font-size: 0.9rem;
+    color: #fff;
+    padding: 8px 15px;
+    display: block;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    text-align: center;
+    transition: all 400ms ease;
+    opacity: 1;
+}
+
+.btn-social:hover{
+    color: $white;
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.bg-facebook {
+    background-color: #2f5b9d;
+}
+
+.bg-google {
+    background-color: #F44336;
+}
+
+.bg-twitter {
+    background-color: #38bff1;
+}
+
+// TOP VOLUN
+
+.top-volun-list{
+    margin-bottom: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.top-volun-list li{
+    padding: 20px 25px 20px 25px;
+    border-bottom: 1px solid #e6ecf5;
+    transition: all .3s ease;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center!important;
+}
+
+.top-volun-list li:hover{
+    cursor: pointer;
+    background-color: $grey0;
+}
+
+.top-volun-list li:last-child{
+    border-bottom: none;
+}
+
+.top-user-picture{
+    height: 40px;
+    width: 40px;
+}
+
+.top-user-picture img {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.top-user-text{
+    padding-left: 8px;
+    padding-top: 5px;
+}
+
+.classfication-name{
+    font-weight: 600;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-user-text span{
+   color: $secondary;
+}
+
+.classification-text{
+    margin-top: -5px;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

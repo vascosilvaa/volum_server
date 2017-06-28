@@ -1,94 +1,51 @@
-
-
 <div class="container">
-  <div class="row">
-    <div class="col-xl-3 col-lg-3 col">
-      <div class="card-volum-small">
-        <div class="card-header cardTitle">
-          <div class="row">
-            <div class="col titleCard">
-              <b> Dados Pessoais </b>
+    <div class="row">
+
+    <!--DADOS PESSOAIS-->
+
+    <div class="col-lg-3">
+        <div class="ui-block">
+            <div class="ui-block-title">
+                <h6>Introdução</h6>
             </div>
-
-          </div>
-
+            <div class="ui-block-content">
+                <ul>
+                  <li>
+                    <span class="title">Nome</span>
+                    <span class="text">{{user?.name}}</span>
+                  </li>
+                  <li>
+                    <span class="title">Idade</span>
+                    <span class="text">22 anos</span>
+                  </li>
+                  <li>
+                    <span class="title">Morada</span>
+                    <span class="text">Aveiro, Portugal</span>
+                  </li>
+                  <li>
+                    <span class="title">Email</span>
+                    <span class="text">{{user.email}}</span>
+                  </li>
+                  <li *ngIf="user.phone">
+                    <span class="title">Telémovel</span>
+                    <span class="text">{{user.phone}}</span>
+                  </li>
+                </ul>
+                <div class="user-interests">
+                    <h6>Áreas de interesse</h6>
+                    <div class="ui-block-interests">
+                        <div>Desporto</div><div>Ação social</div><div>Sáude</div><div>Apoio ao Domicilio</div>
+                    </div>
+                </div>
+                <div class="social-network">
+                    <h6>Redes sociais</h6>
+                    <a href="#" class="btn-social bg-facebook">Facebook</a>
+                    <a href="#" class="btn-social bg-google">Google</a>
+                    <a href="#" class="btn-social bg-twitter">Twitter</a>
+                </div>
+            </div>
         </div>
-        <div class="card-block small">
-          <div class="row">
-            <div class="titleProfile col-4">
-              <b>Nome:</b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              {{user?.name}}
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="titleProfile col-4">
-              <b>Idade:</b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              <span>20</span>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="titleProfile col-4">
-              <b> E-mail:</b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              {{user.email}}
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="titleProfile col-4">
-              <b> Género:</b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              <span>Masculino</span>
-
-
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="titleProfile col-4">
-              <b> Morada: </b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              Aveiro, Portugal
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="titleProfile col-4">
-              <b>  Telemóvel: </b>
-            </div>
-            <div class="col-8 descProfile truncate">
-              {{user.phone}}
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-
-      <div class="card-volum-small">
-        <div class="card-header cardTitle">
-          <div class="row">
-            <div class="col titleCard">
-              <b> Patrocinado </b>
-            </div>
-          </div>
-        </div>
-        <div class="card-block">
-          <span><b>Porto Editora</b></span>
-
-          <img style="width: 100%; border: 1px solid #ccc" height="100px" class="mb-2 mt-2" src="http://www.empregoestagios.com/wp-content/uploads/2015/06/porto-editora.jpg">
-          <small><b>Código: H15 | 15% Desconto</b></small>
-          <small><a href="#">portoeditora.pt</a></small>
-          <span class="blockquote-footer descProfile"> Muito bom. Recomendo </span>
-        </div>
-
-      </div>
-
-    </div>
+    </div> 
 
     <div class="text-center no-content mt-4 col-6" *ngIf="vols.length == 0 && ready">
 
@@ -124,99 +81,116 @@
       </ng-container>
     </div>
 
-
-    <div class="col-xl-3 col-lg-3 col">
-      <div class="card-volum-small">
-        <div class="card-header cardTitle">
-          <div class="row">
-            <div class="col titleCard">
-              <b>  Top Voluntários  </b>
+    <div class="col-lg-3">
+        <div class="ui-block">
+            <div class="ui-block-title">
+                <h6>Top voluntários</h6>
             </div>
-          </div>
+            <ul class="top-volun-list">
+                <li>
+                  <div class="top-user-picture">
+                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">André Martins</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="top-user-picture">
+                       <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">Pedro Araújo</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                  </div>
+                </li>
+                <li>
+                  <div class="top-user-picture">
+                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">Vasco Silva</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                      </span>
+                  </div>
+                </li>
+            </ul>
         </div>
-        <div class="card-block small">
-          <div class="row align-items-center">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+
+        <div class="ui-block">
+            <div class="ui-block-title">
+                <h6>Últimas classificações</h6>
             </div>
-            <div class="col-8 truncate">
-              <b>     André Martins </b>
-              <div class="user-rate" style="color: gold">
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-4 align-items-center">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
-            </div>
-            <div class="col-8 truncate">
-              <b>  Pedro Araújo </b>
-              <div class="user-rate" style="color: gold">
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-4 align-items-center">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
-            </div>
-            <div class="col-8 truncate">
-              <b>Vasco Silva</b>
-              <div class="user-rate" style="color: gold">
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-                <md-icon class="small-star">star_rate</md-icon>
-              </div>
-            </div>
-          </div>
+            <ul class="top-volun-list">
+                <li>
+                  <div class="top-user-picture">
+                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">André Martins</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                      <p class="classification-text">Muito bom rapaz</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="top-user-picture">
+                       <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">Pedro Araújo</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                      <p class="classification-text">Muito bom rapaz</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="top-user-picture">
+                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+                  </div>
+                  <div class="top-user-text">
+                      <p class="classfication-name">Vasco Silva</p>
+                      <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                      </span>
+                      <p class="classification-text">Muito bom rapaz</p>
+                  </div>
+                </li>
+            </ul>
         </div>
-      </div>
-
-      <div class="card-volum-small">
-        <div class="card-header cardTitle">
-          <div class="row">
-            <div class="col titleCard">
-              <b>  Testemunhos  </b>
-            </div>
-          </div>
-        </div>
-        <div class="card-block small" style="padding-bottom:0!important">
-          <div (click)="openTests(9)" class="row align-items-center pointer"  *ngFor="let testimony of testimonials" style="padding-bottom: 1.5rem">
-            <div class="titleProfile col-3">
-              <img style="border-radius: 50%" width="40px" height="40px" src="{{testimony.user.photo_url}}">
-            </div>
-            <div class="col-8 truncate">
-              <b class="pointer underline" (click)="onSelect(testimony.user.id_user)" >{{testimony.user.name}} </b><span class="score"> - {{testimony.classification}}  <md-icon>star_rate</md-icon></span>
-              <span class="descProfile blockquote-footer  truncate"> {{testimony.message}}</span>
-            </div>
-          </div>
-          <div class="no-content text-center" *ngIf="!testimonials || testimonials.length==0" style="padding-bottom: 1.5rem">
-            <div><i class="material-icons">sentiment_dissatisfied</i></div>
-            <span>{{user?.name}} não tem testemunhos.</span>
-          </div>
-        </div>
-      </div>
-      
-
-
-
-
-
-
-    </div>
-
-
+    </div> 
   </div>
 
 </div>
