@@ -446,3 +446,12 @@ max-width: 200px;
 .action-description-title{
   font-weight: 600;
 }
+
+.action-creator-name{
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+.action-creator-name:hover{
+  cursor: pointer;
+  opacity: 0.9;
+}
