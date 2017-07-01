@@ -174,8 +174,12 @@
 
 .modalHeader {
     background: $blue;
-    padding:15px 20px;
+    padding:20px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
+
+
 
 .day-w-border {
     width: 60px;
@@ -214,6 +218,7 @@
     width: 45px;
     height: 45px;
     border-radius: 45px;
+    border: 0.5px solid $grey1;
 }
 
 .card-user-nd {
@@ -243,8 +248,10 @@
 
 .modalContainer {
     background: $white;
-    padding: 15px;
+    padding: 25px;
     padding-bottom: 0px!important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .card-user-desc {
@@ -267,7 +274,7 @@
 }
 
 .modalTextArea{
-    margin-top: 15px;
+    margin-top: 30px;
     text-align: justify; 
 }
 
@@ -459,3 +466,78 @@
 .btnCancel {
     cursor: pointer;
 }
+
+.ui-block-modal-header{
+    padding: 25px;
+    background-color: $primary;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.action-day{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    border: 2px solid $white;
+    text-align: center;
+    color: $white;
+    margin-right: 20px;
+}
+
+.action-day-day{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top:3px;
+}
+
+.action-day-mounth{
+     font-size: 1rem;
+     margin-top: -5px;
+}
+
+.action-title{
+    flex: 2;
+    margin-right: 20px;
+}
+
+.action-title h4{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    max-width: 600px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.action-title p{
+    color: $white;
+}
+
+.action-more{
+   color: $white;
+}
+
+.action-more a{
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.action-more a:hover{
+    opacity: 0.9;
+    cursor: pointer
+}
+
+.ui-block-modal-container{
+    padding: 25px;
+}
+
+
+.img img{
+    width: 800px;
+    height: 350px;
+    object-fit: cover;
+}
+
