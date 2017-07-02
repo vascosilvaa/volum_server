@@ -113,12 +113,35 @@
 }
 
 .linkInsert{
-  color: $orange;
+  color: $orange!important;
   cursor:pointer;
   font-weight: $bold;
+  transition: all 0.3s ease;
+  opacity: 1;
 }
 
 
 .linkInsert:hover{
- color: $blue;
+  opacity: 0.8;
+}
+
+.text-small{
+  font-size: 0.8rem!important;
+}
+
+.ui-block-title > * {
+    margin-bottom: 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.ui-block-title .more{
+    padding-left: 25px;
+    text-align: right;
+    width: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all .3s ease;
+    color: #888da8;
+    fill: #c0c4d8;
 }
