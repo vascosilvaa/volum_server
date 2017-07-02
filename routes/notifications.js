@@ -64,6 +64,56 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/list/all', passport.authenticate('jwt'), function (req, res) {
+        if (!req.query.amount && !req.query.startAt) {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            })
+        } else {
+
+            db.get().query({
+                sql: `
+            SELECT * FROM notifications 
+            INNER JOIN users ON notifications.id_user2 = users.id_user 
+            INNER JOIN vols ON notifications.id_vol = vols.id_vol
+            WHERE notifications.id_user = ? 
+            ORDER BY date DESC
+            LIMIT ?, ?`
+                , nestTables: true
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+                console.log(error);
+
+                let notifications = [];
+                if (results) {
+
+                    for (let i = 0; i < results.length; i++) {
+
+                        notifications.push({
+                            id_vol: results[i].vols.id_vol,
+                            type: results[i].notifications.type,
+                            vol_name: results[i].vols.name,
+                            user_name: results[i].users.name,
+                            photo_url: results[i].users.photo_url,
+                            id_user: results[i].users.id_user2,
+                            date: results[i].notifications.date,
+                            id_vol: results[i].vols.id_vol
+                        })
+
+                    }
+
+                    res.json({
+                        success: true,
+                        notifications
+                    })
+                }
+            });
+
+        }
+
+    });
+
     /**
      * @api {get} /notifications/:id/requests Listar todos os Pedidos
      * @apiName listRequests
