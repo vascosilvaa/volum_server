@@ -134,7 +134,7 @@ var returnRouter = function (io) {
         console.log("wgwag", req)
         console.log(req.params.id);
         console.log(req.body.id_user);
-        db.get().query('INSERT INTO chat VALUES (NULL, ?, ?, ?, ?)', [req.body.message, new Date(), req.params.id, req.user.id_user], function (error, results, fields) {
+        db.get().query('INSERT INTO chat VALUES (NULL, ?, ?, ?, ?, NULL)', [req.body.message, new Date(), req.params.id, req.user.id_user], function (error, results, fields) {
             if (error) throw error;
 
             let data = {
@@ -246,7 +246,7 @@ var returnRouter = function (io) {
 
                     } else {
 
-                        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?)', [req.user.id_user, req.body.id_user],
+                        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?, ?)', [req.user.id_user, req.body.id_user, new Date()],
                             function (error, results, fields) {
                                 if (error) {
                                     res.json({

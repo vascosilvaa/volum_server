@@ -5,6 +5,7 @@ var express = require('express'),
 var passport = require('passport');
 var fs = require('fs');
 var cloudinary = require('cloudinary');
+var schedule = require('node-schedule');
 
 var app = module.exports = express.Router();
 
@@ -1333,6 +1334,11 @@ var returnRouter = function (io) {
             });
         }
     });
+
+    schedule.scheduleJob('0 0 * * *', () => {
+
+
+    })
 
 
     /**

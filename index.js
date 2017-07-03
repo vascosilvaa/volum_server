@@ -57,36 +57,57 @@ app.use('/api/chat', chat);
 app.use('/api/notifications', notifications);
 
 app.get('/api/search', function (req, res) {
-    console.log("a");
-    if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
-        res.send({ success: false, message: 'Please provide a search query' })
-    } else if (typeof req.query['search'] !== 'string') {
-        res.send({ success: false, message: 'Please provide a valid search query' })
+    if (!req.query.amount && !req.query.startAt) {
+        res.json({
+            succes: false,
+            message:
+            "Falta Enviar o Amount e startAt"
+        })
     } else {
+        console.log("a");
+        if (req.query['search'] == undefined || req.query['search'] == null || req.query['search'] == '') {
+            res.send({ success: false, message: 'Please provide a search query' })
+        } else if (typeof req.query['search'] !== 'string') {
+            res.send({ success: false, message: 'Please provide a valid search query' })
+        } else {
 
-        let query = (req.query.search).replace(/['"]+/g, '');
+            let query = (req.query.search).replace(/['"]+/g, '');
 
-        db.get().query('SELECT vols.id_vol AS id, vols.name from vols where vols.name LIKE ? AND vols.deleted = 0; SELECT users.id_user AS id, users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ? LIMIT 10', ['%' + query + '%', '%' + query + '%'],
-            function (error, results, fields) {
-                console.log(results);
-                if (error) {
-                    res.send({ success: false, message: error })
-                    console.log(error);
-                } else {
-
-                    for (let i = 0; i < results[0].length; i++) {
-                        results[0][i].type = 0;
-                    }
-
-
-                    if (results[0].length == 0 && results[1].length == 0) {
-                        res.send({ success: false, message: [] })
+            db.get().query(`
+            
+            SELECT vols.id_vol AS id,  GROUP_CONCAT(photos.url SEPARATOR "->") As photos, vols.name from vols 
+            INNER JOIN photos ON vols.id_vol = photos.id_vol
+            WHERE vols.name LIKE ? AND vols.deleted = 0; 
+            
+            SELECT users.id_user AS id, users.name, users.photo_url, users.type_user AS type FROM users where users.name LIKE ? LIMIT ?, ?`,
+                ['%' + query + '%', '%' + query + '%', parseInt(req.query.startAt), parseInt(req.query.amount)],
+                function (error, results, fields) {
+                    if (error) {
+                        res.send({ success: false, message: error })
+                        console.log(error);
                     } else {
-                        searchData = results[0].concat(results[1]);
-                        res.send({ success: true, message: searchData })
+
+                        for (let i = 0; i < results[0].length; i++) {
+                            results[0][i].type = 0;
+                            console.log("RESULTS", results[0][i].photos)
+                            if (results[0][i].photos) {
+
+                                let temp = (results[0][i].photos.split('->'))
+                                results[0][i].photo_url = temp[0];
+
+                            }
+                        }
+
+
+                        if (results[0].length == 0 && results[1].length == 0) {
+                            res.send({ success: false, message: [] })
+                        } else {
+                            searchData = results[0].concat(results[1]);
+                            res.send({ success: true, message: searchData })
+                        }
                     }
-                }
-            });
+                });
+        }
     }
 });
 
