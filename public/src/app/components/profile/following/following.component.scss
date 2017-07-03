@@ -159,3 +159,139 @@
     top: -55px;
     left: 767px;
 }
+
+
+
+
+
+// NEW 
+.follow-item {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.follow-item-cover {
+    height: 120px;
+    overflow: hidden;
+    background-color: $primary;
+}
+
+.follow-item-cover img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.follow-item-content{
+    padding: 0 25px 25px 25px;
+    text-align: center;
+    position: relative;
+}
+
+.follow-avatar {
+    margin-top: -49px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.follow-avatar .follow-picture {
+    margin: 0 auto;
+    height: 98px;
+    width: 98px;
+    margin-bottom: 10px;
+}
+
+.follow-avatar .follow-picture img {
+    border: 4px solid #fff;
+    height: 98px;
+    width: 98px;
+    background-color: $white;
+}
+
+.follow-picture img {
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.follow-name{
+  font-size: 1rem;
+  color: $grey5;
+  font-weight: 600;
+    max-width: 330px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.small-star{
+  color: $secondary;
+}
+
+
+.follow-count{
+  margin-top: 35px;
+  margin-bottom: 42px;
+  text-align: center;
+  width: 100%;
+}
+
+.follow-count-item {
+    display: inline-block;
+    width: 46%;
+}
+
+.follow-count-item:first-child{
+   border-right: 1px solid $grey1
+}
+
+.follow-count-item-number{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.c-s{
+  color: $secondary;
+}
+
+.c-p{
+  color: $primary;
+}
+
+.follow-count-item-title{
+    color: $grey5;
+    font-size: 0.8rem;
+}
+
+
+.follow-footer{
+    position: relative;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn-bevolun-small{
+    min-width: 100px;
+    padding: 0.5rem 1.7rem;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+    transition: all 0.3s ease;
+    opacity: 1;
+    color: $white!important;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.btn-bevolun-small:hover{
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.btn-bevolun-grey{
+    background-color: $grey2;
+}
+
+.btn-bevolun-primary{
+    background-color: $primary;
+}
