@@ -809,7 +809,8 @@ var returnRouter = function (io) {
             let body = {
                 id_user: req.user.id_user,
                 message: req.body.message,
-                id_vol: req.params.id
+                id_vol: req.params.id,
+                date: new Date()
             }
 
             db.get().query('INSERT INTO comments SET ?', [body],
@@ -944,7 +945,6 @@ var returnRouter = function (io) {
                     });
 
                 } else {
-
 
                     db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
                         function (error, results, fields) {

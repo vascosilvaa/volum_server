@@ -147,6 +147,104 @@ app.post('/register', function (req, res) {
     }
 });
 
+
+app.post('/social-register', function (req, res) {
+    console.log(req.body)
+    if (!req.body.email || !req.body.name || !req.body.type) {
+        return res.status(400).json({
+            success: false,
+            message: "Falta enviar dados"
+        });
+    } else {
+        getUserDB(req.body.email, function (user) {
+            if (!user) {
+                console.log("body register", req.body)
+
+                user = {
+                    email: req.body.email,
+                    type_user: req.body.type,
+                    birth_date: req.body.birth_date,
+                    name: req.body.name,
+                    gender: req.body.gender,
+                };
+
+
+                db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
+                    if (err) {
+                        res.json({
+                            success: false,
+                            error: err
+                        })
+                        throw new Error(err);
+
+                    } else {
+
+                        //USER CRIADO
+                        //GERAR TOKEN
+                        let userId = result.insertId;
+
+                        newUser = {
+                            id: userId,
+                            password: hash,
+                            email: req.body.email,
+                            type_user: 1
+                        };
+
+                        /*
+                                                    // setup email data with unicode symbols
+                                                    let mailOptions = {
+                                                        from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
+                                                        to: user.email, // list of receivers
+                                                        subject: 'Lindo', // Subject line
+                                                        html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
+                                                    };
+                        
+                                                    // send mail with defined transport object
+                                                    transporter.sendMail(mailOptions, (error, info) => {
+                                                        if (error) {
+                                                            return console.log(error);
+                                                        }
+                                                        console.log('Message %s sent: %s', info.messageId, info.response);
+                                                    });
+                        */
+
+                        var token = jwt.sign({
+                            id: userId
+                        }, secretKey);
+
+                        res.status(201).send({
+
+                            message: "User criado com sucesso",
+                            id_user: userId,
+                            id_token: "JWT " + token,
+                            success: true,
+
+                        });
+
+                    }
+
+                });
+
+            } else {
+
+
+                var token = jwt.sign({
+                    id: user.id_user
+                }, secretKey);
+
+                res.status(201).send({
+
+                    message: "Sucesso",
+                    id_user: user.id_user,
+                    id_token: "JWT " + token,
+                    success: true,
+
+                });
+            }
+        });
+    }
+});
+
 //PHOTO
 /*
 
@@ -206,7 +304,7 @@ app.post('/login', function (req, res) {
                     id_token: "JWT " + token
                 });
 
-         
+
             }
 
         });
