@@ -1,26 +1,17 @@
+
 <div class="container">
-  <div class="row">
-    <div class="col-12 ">
-      <div class="card primaryCard">
-        <div class="">
-          <div class="container">
-            <div class="row header-bar">
-              <div class="col-lg-2 col-6 navCard no-padding">
-                <a routerLink="/profile/{{idProfile}}/following/institutional" [routerLinkActive]="['navLinkAtive']" class="navLink">Instituições ({{instCount}})</a>
-              </div>
-              <div class="col-lg-2 col-6 navCard no-padding">
-                <a routerLink="/profile/{{idProfile}}/following/people" [routerLinkActive]="['navLinkAtive']" class="navLink">Pessoas ({{userCount}})</a>
-              </div>
-
-
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block">
+                <div class="action-menu">
+                    <ul>
+                        <li><a routerLink="/profile/{{idProfile}}/following/institutional" [routerLinkActive]="['active-action-menu']">Instituições ({{instCount}})</a></li>
+                        <li><a routerLink="/profile/{{idProfile}}/following/people" [routerLinkActive]="['active-action-menu']">Pessoas ({{userCount}})</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </div> 
     </div>
-  </div>
+    <router-outlet></router-outlet>
 </div>
 
-<div class="container friends">
-  <router-outlet></router-outlet>
-</div>

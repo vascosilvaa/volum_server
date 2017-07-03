@@ -970,3 +970,34 @@ select.form-control:not([size]):not([multiple]) {
     right: 30px;
 }
 
+.action-menu ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+.action-menu ul li{
+   padding: 20px 30px 20px 25px;
+}
+
+.action-menu ul li a{
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $grey3;
+  transition: all 0.3s ease
+}
+.action-menu ul li a:hover{
+  color: $grey5;
+  text-decoration: none;
+  cursor: pointer
+}
+.action-menu ul li a:focus{
+  text-decoration: none;
+}
+.action-menu ul li a:visited{
+  text-decoration: none;
+}
+.active-action-menu{
+  color: $grey5!important
+}

@@ -1,3 +1,5 @@
+
+<!--
 <div class="col searchInput text-right no-padding">
   <form class="navbar-form" role="search">
     <div class="input-group">
@@ -8,43 +10,60 @@
     </div>
   </form>
 </div>
+
+-->
+
 <div class="row">
-  <div class="col-lg-3 col-12" *ngFor="let user of users">
-    <div class="card cardFriends text-center">
-      <div class="friendsBackground">
-        <img class="coverImg" src='{{user.photo_url}}'>
-      </div>
-      <div class="profile-user-picture text-center">
-        <img [src]="user.photo_url" alt="profile user picture" />
-      </div>
-      <div class="friendsName">
-        {{user.name}}
-      </div>
-      <div class="friendsPlace">
-        Sever do Vouga, Aveiro
-      </div>
-      <div class="row friendsEvents">
-        <div class="" style="padding-right: 10px">
-          <div class="friendsCardNumber">{{user.numberFollowers}}</div>
-          <div class="friendsCardNumberDesc">Seguidores</div>
+    <div class="col-lg-3 col-md-6" *ngFor="let user of users">
+        <div class="ui-block">
+            <div class="follow-item">
+                <div class="follow-item-cover">
+                    <img src='{{user.photo_url}}'>
+                </div>
+                <div class="follow-item-content">
+                    <div class="follow-avatar">
+                        <div class="follow-picture">
+                            <img [src]="user.photo_url" alt="profile user picture" />
+                        </div>
+                        <div class="follow-content">
+                            <p class="follow-name">{{user.name}}</p>
+                            <div>
+                              <span>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_border</md-icon>
+                                  <md-icon class="small-star">star_border</md-icon>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="follow-count">
+                        <div class="follow-count-item">
+                            <div class="follow-count-item-number">
+                                {{user.numberFollowers}}
+                            </div>
+                            <div class="follow-count-item-title">
+                                Seguidores
+                            </div>
+                        </div>
+                        <div class="follow-count-item">
+                            <div class="follow-count-item-number">
+                                {{user.numberVolsParticipated}}
+                            </div>
+                            <div class="follow-count-item-title">
+                                Presenças
+                            </div>
+                        </div>
+                    </div>
+                    <div class="follow-footer">
+                        <a class="btn btn-bevolun-small btn-bevolun-grey mr-2" routerLink="/profile/details">Remover</a>
+                        <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="openProfileModal(user.id_user)">Ver</a>
+                    </div>  
+                </div>
+            </div>
         </div>
-        <div class=""style="padding-left: 10px">
-          <div class="friendsCardNumber">{{user.numberVolsParticipated}}</div>
-          <div class="friendsCardNumberDesc">Presenças</div>
-        </div>
-      </div>
-      <div class="row text-center friendsBtns">
-        <div class="col-6">
-          <a class="btn btnCancel marginBtnL" routerLink="/profile/details">ELIMINAR</a>
-        </div>
-        <div class="col-6 ">
-          <a class="btn btnConfirm marginBtnR" (click)="openProfileModal(user.id_user)">VER</a>
-        </div>
-      </div>
     </div>
-  </div>
-
-
 </div>
 
 <div class="col-12 mt-5 text-center no-content" *ngIf="users.length == 0">

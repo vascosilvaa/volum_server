@@ -1,3 +1,5 @@
+
+<!--
 <div class="col searchInput text-right no-padding">
   <form class="navbar-form" role="search">
     <div class="input-group">
@@ -8,6 +10,65 @@
     </div>
   </form>
 </div>
+-->
+
+<div class="row">
+    <div class="col-lg-3 col-md-4" *ngFor="let inst of institutions">
+        <div class="ui-block">
+            <div class="follow-item">
+                <div class="follow-item-cover">
+                    <img src='{{inst.photo_url}}' alt="user cover">
+                </div>
+                <div class="follow-item-content">
+                    <div class="follow-avatar">
+                        <div class="follow-picture">
+                            <img src='{{inst.photo_url}}' alt="profile institution picture" />
+                        </div>
+                        <div class="follow-content">
+                            <p class="follow-name">{{inst.name}}</p>
+                            <div>
+                              <span>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_rate</md-icon>
+                                  <md-icon class="small-star">star_border</md-icon>
+                                  <md-icon class="small-star">star_border</md-icon>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="follow-count">
+                        <div class="follow-count-item">
+                            <div class="follow-count-item-number">
+                                24
+                            </div>
+                            <div class="follow-count-item-title">
+                                Ações
+                            </div>
+                        </div>
+                        <div class="follow-count-item">
+                            <div class="follow-count-item-number">
+                                3
+                            </div>
+                            <div class="follow-count-item-title">
+                                Ativas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="follow-footer">
+                        <a class="btn btn-bevolun-small btn-bevolun-grey mr-2">Remover</a>
+                        <a class="btn btn-bevolun-small btn-bevolun-primary">Ver</a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--
 <div class="row">
   <div class="col-lg-3 col-12" *ngFor="let inst of institutions">
     <div class="card cardFriends text-center">
@@ -45,6 +106,7 @@
   </div>
 
 </div>
+-->
 <div class="col-12 mt-5 text-center no-content" *ngIf="institutions.length == 0">
     <div style="padding: 5px;"><i class="material-icons">alarm</i></div>
     <span>Não segue nenhuma instituição.</span>
