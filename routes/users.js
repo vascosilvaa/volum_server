@@ -69,6 +69,7 @@ var returnRouter = function (io) {
                             phone: user.phone,
                             gender: user.gender,
                             photo: user.photo_url,
+                            cover_photo: user.cover_photo,
                             birth_date: user.birth_date,
                             verified: user.verified,
                             type: user.type_user,
@@ -418,8 +419,20 @@ var returnRouter = function (io) {
 
     app.get('/vols/confirmed', passport.authenticate('jwt'), function (req, res) {
         db.get().query({
-            sql: 'SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,  vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, vols.name, vols.description, vols.date_creation, vols.deleted, vols.date_begin, vols.date_end, vols.start_time, vols.end_time ' +
-            'FROM vols INNER JOIN photos ON vols.id_vol = photos.id_vol INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 AND user_vol.id_user = ? AND user_vol.confirm = 1 GROUP BY vols.id_vol ORDER BY vols.date_creation DESC  ',
+            sql: `SELECT vols.id_vol, GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
+              vols.id_user_creator, vols.lat, vols.lng, vols.id_vol_type, 
+              vols.name, vols.description, vols.date_creation, vols.deleted,
+              vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
+              users.id_user, users.photo_url, users.name
+              FROM vols 
+              INNER JOIN photos
+              ON vols.id_vol = photos.id_vol
+              INNER JOIN user_vol ON user_vol.id_vol = vols.id_vol
+              INNER JOIN users ON vols.id_user_creator = users.id_user
+              WHERE photos.id_vol = vols.id_vol AND vols.deleted = 0 
+               AND user_vol.id_user = ? AND user_vol.confirm = 1 
+               GROUP BY vols.id_vol 
+               ORDER BY vols.date_creation DESC `,
             nestTables: true
         }, [req.user.id_user], function (err, results, fields) {
             if (err) {
@@ -444,7 +457,12 @@ var returnRouter = function (io) {
                             lng: results[i].vols.lng,
                             start_time: results[i].vols.start_time,
                             end_time: results[i].vols.end_time,
-                            photos: (results[i][''].photos).split('->')
+                            photos: (results[i][''].photos).split('->'),
+                            user_creator: {
+                                id_user: results[i].users.id_user,
+                                photo_url: results[i].users.photo_url,
+                                name: results[i].users.name
+                            }
                         });
                     }
 

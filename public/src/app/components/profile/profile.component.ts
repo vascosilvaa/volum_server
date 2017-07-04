@@ -89,9 +89,9 @@ export class ProfileComponent implements OnInit {
 
 
       this.getUser();
-
+      this.checkFollow();
     });
-    this.checkFollow();
+    
 
   }
   getUser() {
