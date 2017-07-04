@@ -147,7 +147,7 @@ var returnRouter = function (io) {
                       INNER JOIN photos ON vols.id_vol = photos.id_vol
                       INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
                       WHERE photos.id_vol = vols.id_vol
-                      AND vols.deleted = 0 
+                      AND vols.deleted = 0 AND vols.active = 1
                       `,
                 nestTables: true
             };

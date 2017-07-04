@@ -491,7 +491,7 @@ var returnRouter = function (io) {
      * @apiParam id ID do user
      * @apiGroup Perfil
      */
-
+     
     app.get('/:id/checkOnline', passport.authenticate('jwt'), function (req, res) {
 
         if (!Number(req.params.id)) {
