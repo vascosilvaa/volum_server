@@ -20,7 +20,14 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
 export class ActivityComponent implements OnInit {
   public vols = [];
   public ready: boolean = false;
-  public user: any;
+  public user: User = {
+    id_user: 0,
+    name: 'null',
+    email: "",
+    phone: '',
+    photo: '',
+    birth_date: '',
+  }
   
   public age: any;
   public dateFormatted: any;
