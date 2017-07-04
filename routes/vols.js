@@ -39,18 +39,24 @@ var returnRouter = function (io) {
             function (error, results, fields) {
 
                 let id_creator = results[0].id_user_creator;
+                if (id_creator != id_user) {
 
-                db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
-                    function (error, results, fields) {
+                    db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
+                        function (error, results, fields) {
+
+                            let index = loggedUsers.findIndex(x => x.user == id_creator);
+                            if (index !== -1) {
+                                io.to(loggedUsers[index].socket).emit('notification');
+                                console.log("EMITIU")
+                            }
 
 
-                        let index = loggedUsers.findIndex(x => x.user == id_creator);
-                        if (index !== -1) {
-                            io.to(loggedUsers[index].socket).emit('notification');
-                        }
 
+                        });
 
-                    });
+                } else {
+
+                }
             });
     }
 
@@ -64,10 +70,7 @@ var returnRouter = function (io) {
                     function (error, results, fields) {
 
 
-                        let index = loggedUsers.findIndex(x => x.user == id_creator);
-                        if (index !== -1) {
-                            io.to(loggedUsers[index].socket).emit('notification');
-                        }
+
 
 
                     });
@@ -77,12 +80,14 @@ var returnRouter = function (io) {
     function emitNotificationToUser(id_vol, id_user, type) {
         // EMITE NOTIFICAÇAO A UTILIZADOR
 
-        return db.get().query('INSERT INTO notifications (id_user, id_vol, date, type) VALUES (?, ?, ?, ?)', [id_user, id_vol, new Date(), type],
+        return db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_user, id_user, id_vol, new Date(), type],
             function (error, results, fields) {
 
                 let index = loggedUsers.findIndex(x => x.user == id_user);
                 if (index !== -1) {
                     io.to(loggedUsers[index].socket).emit('notification');
+                    console.log("EMITIU PARA: ", id_user)
+
                 }
 
 
@@ -101,14 +106,15 @@ var returnRouter = function (io) {
                 console.log("EROOR", error)
                 console.log("FIELDS", fields)
                 /*
-                for (let i = 0; i < user_array.length; i++) {
-                    let index = loggedUsers.findIndex(x => x.user == user_array[0]);
-                    if (index !== -1) {
-                        io.to(loggedUsers[index].socket).emit('notification');
-                    }
+                                for (let i = 0; i < user_array.length; i++) {
+                                    let index = loggedUsers.findIndex(x => x.user == user_array[0]);
+                                    if (index !== -1) {
+                                        io.to(loggedUsers[index].socket).emit('notification');
+                                    }
+                
+                                }
+                                */
 
-                }
-                */
             });
     }
 
@@ -147,7 +153,7 @@ var returnRouter = function (io) {
                       INNER JOIN photos ON vols.id_vol = photos.id_vol
                       INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
                       WHERE photos.id_vol = vols.id_vol
-                      AND vols.deleted = 0 AND vols.active = 1
+                      AND vols.deleted = 0 AND vols.active = 1 
                       `,
                 nestTables: true
             };

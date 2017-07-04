@@ -186,7 +186,7 @@ var returnRouter = function (io) {
                 db.get().query({
                     sql: `SELECT notifications.id_notification, notifications.date, notifications.type, notifications.id_vol, notifications.id_user, notifications.id_user2,
                      GROUP_CONCAT(photos.url SEPARATOR "->") As photos,
-                     vols.id_vol, vols.name, vols.lat, vols.lng, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
+                     vols.id_vol, vols.name, vols.lat, vols.lng, vols.description, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
                      users.id_user, users.photo_url, users.name
                      FROM notifications
                      INNER JOIN users ON notifications.id_user = users.id_user
@@ -229,6 +229,7 @@ var returnRouter = function (io) {
                                         vol: {
                                             id_vol: results[i].vols.id_vol,
                                             name: results[i].vols.name,
+                                            description: results[i].description,
                                             date_begin: results[i].vols.date_begin,
                                             date_end: results[i].vols.date_end,
                                             start_time: results[i].vols.start_time,
