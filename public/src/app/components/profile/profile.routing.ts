@@ -1,5 +1,5 @@
 import { NewActionComponent } from './new-action/new-action.component';
-
+import { ClassificationsComponent } from './classifications/classifications.component';
 import { DetailsComponent } from './details/details.component';
 import { ActionsComponent } from './actions/actions.component';
 import { ActivityComponent } from './activity/activity.component';
@@ -33,6 +33,10 @@ const routes: Routes = [
           {
            path: 'actions',
             loadChildren: 'app/components/profile/actions/actions.module#ActionsModule'
+          },
+          {
+           path: 'classifications',
+             component: ClassificationsComponent,
           },
           {
             path: 'activity',
