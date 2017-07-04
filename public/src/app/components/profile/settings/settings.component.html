@@ -1,89 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div clasS="col-12 col-lg-3 border">
-      <div class="card primaryCard">
-        <div class="card-header cardTitleMini">
-          <div class="row">
-            <div class="col titleCardMini">
-            MEU PERFIL
+    <div class="row">
+        <div class="col-3">
+            <div class="ui-block">
+                <div class="accordian-settings">
+                    <div class="accordian-card">
+                        <div class="accordian-card-header">
+                            <h6><a (click)="openPersonal()">Definições de perfil</a></h6>
+                        </div>
+                        <div id="accordion1" class="accordion-collapse" [class.show-personal]="showPersonal">
+                            <ul class="accordion-menu">
+                                <li><a routerLink="/profile/{{idProfile}}/settings/personal" [routerLinkActive]="['settingsActive']">Informação Pessoal</a></li>
+                                <li><a routerLink="/profile/{{idProfile}}/settings/about-me" [routerLinkActive]="['settingsActive']">Acerca de Mim</a></li>
+                                <li><a routerLink="/profile/{{idProfile}}/settings/education" [routerLinkActive]="['settingsActive']">Educação e Formação</a></li>
+                                <li><a routerLink="/profile/{{idProfile}}/settings/change-pass" [routerLinkActive]="['settingsActive']">Alterar a palavra passe</a></li>
+                            </ul>
+                        </div>
+                        <div class="accordian-card-header">
+                            <h6><a (click)="openMessages()">Mensagens</a></h6>
+                        </div>
+                        <div id="accordion2" class="accordion-collapse" [class.show-personal]="showMessages">
+                            <ul class="accordion-menu">
+                                <li><a [routerLinkActive]="['settingsActive']">Definições gerais</a></li>
+                                <li><a [routerLinkActive]="['settingsActive']">Preferências</a></li>
+                            </ul>
+                        </div>
+                        <div class="accordian-card-header">
+                            <h6><a (click)="openPrivacy()">Privacidade</a></h6>
+                        </div>
+                        <div id="accordion3" class="accordion-collapse" [class.show-personal]="showPrivacity">
+                            <ul class="accordion-menu">
+                                <li><a [routerLinkActive]="['settingsActive']">Notificações</a></li>
+                                <li><a [routerLinkActive]="['settingsActive']">E-mail</a></li>
+                                <li><a [routerLinkActive]="['settingsActive']">Privacidade</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="card-header cardTitleAcc" (click)="openPersonal()">
-          <div class="row">
-            <div class="col titleCardAcc">
-            Definições de Perfil
-            </div>
-          </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
         </div>
-
-      <div *ngIf="personalSettings==1" class="card-block-acc card-block">
-        <ul class="listSettings">
-          <li>
-            <a routerLink="/profile/{{idProfile}}/settings/personal" [routerLinkActive]="['settingsActive']">Informação Pessoal</a>
-          </li>
-          <li>
-            <a routerLink="/profile/{{idProfile}}/settings/about-me" [routerLinkActive]="['settingsActive']">Acerca de Mim</a>
-          </li>
-          <li>
-            <a routerLink="/profile/{{idProfile}}/settings/education" [routerLinkActive]="['settingsActive']">Educação e Formação</a>
-          </li>
-          <li>
-            <a routerLink="/profile/{{idProfile}}/settings/change-pass" [routerLinkActive]="['settingsActive']">Alterar a palavra passe</a>
-          </li>
-      </ul>
-      </div>
-
-      <div class="card-header cardTitleAcc" (click)="openMessages()">
-        <div class="row">
-          <div class="col titleCardAcc">
-          Mensagens
-          </div>
-        </div>
-      </div>
-        <div *ngIf="messagesSettings==1" class="card-block-acc card-block">
-                <ul class="listSettings">
-                  <li>
-                    <a [routerLinkActive]="['settingsActive']">Definições gerais</a>
-                  </li>
-                  <li>
-                    <a  [routerLinkActive]="['settingsActive']">Preferências</a>
-                  </li>
-              </ul>
-              </div>
-
-                 <div class="card-header cardTitleAcc" (click)="openPrivacy()">
-        <div class="row">
-          <div class="col titleCardAcc">
-          Privacidade
-          </div>
-        </div>
-      </div>
-        <div *ngIf="privateSettings==1" class="card-block-acc card-block">
-                <ul class="listSettings">
-                  <li>
-                    <a  [routerLinkActive]="['settingsActive']">Notificações</a>
-                  </li>
-                  <li>
-                    <a [routerLinkActive]="['settingsActive']">E-mail</a>
-                  </li>
-                  <li>
-                    <a [routerLinkActive]="['settingsActive']">Privacidade</a>
-                  </li>
-                  <li>
-                  </li>
-              </ul>
-              </div>
-
-
-    </div>
-    
-  </div>
-
-    <div class="col-12 col-lg-9">
-      <router-outlet></router-outlet>
     </div>
 </div>
-</div>
+
+
+
+
 

@@ -18,7 +18,6 @@ import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } 
   styleUrls: ['./activity.component.scss'],
 })
 export class ActivityComponent implements OnInit {
-
   public vols = [];
   public ready: boolean = false;
   public user: User = {
@@ -26,8 +25,13 @@ export class ActivityComponent implements OnInit {
     name: 'null',
     email: "",
     phone: '',
-    photo: ''
+    photo: '',
+    birth_date: '',
   }
+  
+  public age: any;
+  public dateFormatted: any;
+  public timeDiff: any;
   public testimonials: any;
 
   constructor(public http: Http, public overlay: Overlay, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
@@ -44,9 +48,20 @@ export class ActivityComponent implements OnInit {
       if (profile) {
         this.user = profile;
 
-        console.log("subject profile", profile)
+        if(this.user.birth_date){
+          this.dateFormatted = new Date(this.user.birth_date);
+          this.timeDiff = Math.abs(Date.now() - this.dateFormatted );
+          this.age = Math.floor((this.timeDiff / (1000 * 3600 * 24))/365);
+        }
+
         this.profileService.getTestimonials(profile.id_user, 0, 3).then(res => {
           this.testimonials = res.results;
+
+          for (let i = 0; i < this.testimonials.length; i++) {
+            this.testimonials[i].score_number = this.testimonials[i].classification;
+            this.testimonials[i].score = this.getNumber(this.testimonials[i].classification);
+            this.testimonials[i].negative_score = this.getNumber(this.testimonials[i].classification - 5);
+          }
         });
 
         this.profileService.getMyVols(profile.id_user).then(res => {
@@ -67,10 +82,17 @@ export class ActivityComponent implements OnInit {
 
         });
       }
-
     })
 
   }
+  getNumber(num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+    return new Array(number);
+  }
+
 
   openTests(type) {
     return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_user: this.user.id_user }, BSModalContext));

@@ -1,79 +1,52 @@
-<div class="card primaryCard">
-  <div class="card-header cardTitle">
-    <div class="row">
-      <div class="col titleCard">
-      Educação e formação
-      </div>
-    </div>
-  </div>
-
-<div class="card-block">
-  <form class="float-label" spellcheck="false">
-  <div class="row">
-    <div class="col-12 titleEducation noMarginTitleEducation">
-      Formação 1
-    </div>
-      <div class="col-6 inputProfile no-margin">
-          <div class="control inputText">
-          <input type="text" class="" name="title" placeholder="Instituição" value="Universidade de Aveiro" required />
-          <label for="title" class="titlePlaceholder">Instituição</label>
-        </div>
-      </div>
-
-      <div class="col-6 inputProfile no-margin">
-          <div class="control inputText">
-          <input type="text" class="" name="title" placeholder="Período de tempo" value="2014-2017" required />
-          <label for="title" class="titlePlaceholder">Período de tempo</label>
-        </div>
-      </div>
-      <div class="col-12 inputProfile marginBottom">
-        <div class="control">
-         <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Descrição">Licenciatura em Psicologia</textarea>
-          <label for="textarea" class="titlePlaceholder">Descrição</label>
-         </div>
-       </div>
-
-
-       <div class="col-12 titleEducation">
-          Formação 2
-       </div>
-
-
-       <div class="col-6 inputProfile no-margin">
-           <div class="control inputText">
-           <input type="text" class="" name="title" placeholder="Instituição" value="Universidade de Aveiro" required />
-           <label for="title" class="titlePlaceholder">Instituição</label>
-         </div>
-       </div>
-
-       <div class="col-6 inputProfile no-margin ">
-           <div class="control inputText">
-           <input type="text" class="" name="title" placeholder="Período de tempo" value="2014-2017" required />
-           <label for="title" class="titlePlaceholder">Período de tempo</label>
-         </div>
-       </div>
-       <div class="col-12 inputProfile marginBottom">
-         <div class="control">
-          <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Descrição">Licenciatura em Psicologia</textarea>
-           <label for="textarea" class="titlePlaceholder">Descrição</label>
-          </div>
-        </div>
-
-        <div class="col-12 addEducation">
-          <span class="iconAdd">+ </span><span class="titleAdd">Adicionar campo de educação</span>
-        </div>
-
-       <div class="col-6">
-           <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
-       </div>
-       <div class="col-6 ">
-         <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
-       </div>
-
+<div class="ui-block">
+    <div class="ui-block-title">
+        <h6>Educação e Formação</h6>
     </div>
 
-
-
-  </form>
-  </div>
+    <div class="ui-block-content">
+        <div class="row">
+            <div class="col-6 education-number mb-2">
+                <h6>Formação 1</h6>
+            </div>
+            <div class="col-6 text-right education-number-button mb-2">
+                 <i class="material-icons">close</i>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="label-input" for="exampleInputEmail1">Instituição</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="Universidade de Aveiro" placeholder="Instituição">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label class="label-input">Data de início</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="2012-09-01" placeholder="Data de início">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label class="label-input">Data de fim</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="2012-06-26" placeholder="Data de fim">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="label-input" for="exampleSelect1">Descrição</label>
+                    <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" placeholder="Descrição">Licenciatura em Psicologia</textarea>
+                </div>
+            </div>
+            <div class="col-12 mb-3 mt-2 newFormation">
+                <h6>+ Adicionar uma nova formação</h6>
+            </div>
+            <div class="col-6 mb-2">
+                <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
+            </div>
+            <div class="col-6 mb-2">
+                <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
