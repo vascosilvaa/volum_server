@@ -26,7 +26,11 @@ export class ActivityComponent implements OnInit {
     email: "",
     phone: '',
     photo: '',
-    birth_date: ''
+    birth_date: '',
+    type: '',
+    facebook_id: '',
+    twitter_id: '',
+    google_id: ''
   }
   public age: any;
   public dateFormatted: any;
