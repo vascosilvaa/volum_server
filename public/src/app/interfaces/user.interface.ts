@@ -3,5 +3,7 @@ export interface User {
     name: string,
     email: string,
     phone: string,
-    photo: string
+    photo: string,
+    birth_date: any,
+    type: number;
 }

@@ -26,7 +26,7 @@
     <div class="navbar-bevolun-right" *ngIf="user">
 
         <!-- MAP -->
-        <div class="navbar-bevolun-map" *ngIf="user" routerLink="map">
+        <div class="navbar-bevolun-map pointer" *ngIf="user" routerLink="map">
             <a>
                 <md-icon>place</md-icon>
             </a>
@@ -65,7 +65,7 @@
                 <ng-container *ngIf="requestsReady">
                     <div class="message-item" *ngFor="let request of requests" routerLink='./profile/{{request.id_user}}/activity'>
 
-                        <div class="image">
+                        <div class="image pointer">
                             <img [src]="request.photo_url">
                         </div>
 
@@ -94,7 +94,7 @@
         </div>
 
         <!-- CHAT -->
-        <div class="navbar-bevolun-chat ml-4" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
+        <div class="navbar-bevolun-chat ml-4 pointer" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>chat_bubble</md-icon>
                 <span class="badge badge-notify">2</span>
@@ -145,7 +145,7 @@
 
 
         <!-- NOTIFICATIONS -->
-        <div class="navbar-bevolun-notification ml-4" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
+        <div class="navbar-bevolun-notification ml-4 pointer" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
             <a>
                 <md-icon ngbDropdownToggle>notifications</md-icon>
                 <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
