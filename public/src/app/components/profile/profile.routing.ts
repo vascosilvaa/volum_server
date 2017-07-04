@@ -36,7 +36,7 @@ const routes: Routes = [
           },
           {
            path: 'classifications',
-             component: ClassificationsComponent,
+            loadChildren: 'app/components/profile/classifications/classifications.module#ClassificationsModule'
           },
           {
             path: 'activity',
