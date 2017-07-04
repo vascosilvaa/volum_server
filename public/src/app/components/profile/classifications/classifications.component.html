@@ -1,3 +1,29 @@
+<<<<<<< HEAD
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block">
+                <div class="action-menu">
+                    <ul>
+                        <li><a routerLink="my-actions" [routerLinkActive]="['active-action-menu']">Ações ativas</a></li>
+                        <li *ngIf="user?.type==2"><a routerLink="invites" [routerLinkActive]="['active-action-menu']">Convites</a><!--<span class="badge badge-pill badge-primary">2</span>--></li>
+                        <li *ngIf="user?.type==2"><a routerLink="waiting" [routerLinkActive]="['active-action-menu']">Em espera</a></li>
+                        <li><a routerLink="finished" [routerLinkActive]="['active-action-menu']">Finalizadas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+=======
 <p>
   classifications works!
 </p>
+
+
+<a routerLink="obtained">Obtained</a>
+<a routerLink="attributed">Atribuido</a>
+
+<router-outlet></router-outlet>
+>>>>>>> 48cfd42b8c27c7ff473dcb5e23783a2a490e07b8
