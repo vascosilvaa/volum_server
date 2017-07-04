@@ -63,7 +63,7 @@ export class ModalViewAllComponent implements OnInit {
     } else if (this.context.type == 8) { // Ver likes
       this.getLikes(this.context.id_vol);
     }
-    else if (this.context.type == 9) { // Ver likes
+    else if (this.context.type == 9) { // Ver testumunhos
       this.getTestimonials(this.context.id_user, 0, 5, true);
     }
 
