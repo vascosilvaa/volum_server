@@ -53,3 +53,8 @@
     font-size: 9px;
     color: $yellow;
 }
+
+.disabled {
+    background: $grey1;
+    cursor: not-allowed;
+}

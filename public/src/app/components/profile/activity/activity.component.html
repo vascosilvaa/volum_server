@@ -39,9 +39,9 @@
                 </div>
                 <div class="social-network">
                     <h6>Redes sociais</h6>
-                    <a href="#" class="btn-social bg-facebook">Facebook</a>
-                    <a href="#" class="btn-social bg-google">Google</a>
-                    <a href="#" class="btn-social bg-twitter">Twitter</a>
+                    <a href="#" class="btn-social bg-facebook" [class.disabled]="!user.facebook_id">Facebook</a>
+                    <a href="#" class="btn-social bg-google" [class.disabled]="!user.google_id">Google</a>
+                    <a href="#" class="btn-social bg-twitter" [class.disabled]="!user.twitter_id">Twitter</a>
                 </div>
             </div>
         </div>

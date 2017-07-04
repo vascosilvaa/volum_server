@@ -5,5 +5,8 @@ export interface User {
     phone: string,
     photo: string,
     birth_date: any,
-    type: number;
+    type: any;
+    facebook_id: any;
+    twitter_id: any;
+    google_id: any;
 }

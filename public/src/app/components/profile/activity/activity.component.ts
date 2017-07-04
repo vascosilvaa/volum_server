@@ -27,6 +27,9 @@ export class ActivityComponent implements OnInit {
     phone: '',
     photo: '',
     birth_date: '',
+    facebook_id: '',
+    twitter_id: '',
+    google_id: '',
     type: 0
   }
 
