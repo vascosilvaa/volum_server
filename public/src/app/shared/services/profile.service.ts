@@ -125,7 +125,7 @@ export class ProfileService {
     }
 
     getVolHistory(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/vols').toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + '/vols').toPromise() // VOLS QUE AINDA ESTAO ATIVOS E CRIADOS PELO USER
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

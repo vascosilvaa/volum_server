@@ -1,61 +1,58 @@
-<div class="card primaryCard">
-  <div class="card-header cardTitle">
-    <div class="row">
-      <div class="col titleCard">
-      Acerca de mim
-      </div>
-    </div>
+<div class="ui-block">
+  <div class="ui-block-title">
+    <h6>Acerca de mim</h6>
   </div>
-
-<div class="card-block">
-  <form class="float-label" spellcheck="false">
+  <div class="ui-block-content">
     <div class="row">
-        <div class="col-6 inputProfile no-margin">
-          <div class="control">
-           <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-            <label for="textarea" class="titlePlaceholder">Sobre mim</label>
-           </div>
-         </div>
-         <div class="col-6 inputProfile no-margin">
-           <div class="control">
-            <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Hobbies e interesses">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-             <label for="textarea" class="titlePlaceholder">Hobbies e interesses</label>
-            </div>
-          </div>
-
-          <div class="col-6 inputProfile">
-            <div class="control">
-             <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Tipos de voluntariado favoritos">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-              <label for="textarea" class="titlePlaceholder">Tipos de voluntariado favoritos</label>
-             </div>
-           </div>
-           <div class="col-6 inputProfile">
-             <div class="control">
-              <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Idiomas">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-               <label for="textarea" class="titlePlaceholder">Idiomas</label>
-              </div>
-            </div>
-
-            <div class="col-6 inputProfile">
-              <div class="control">
-               <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Outros interesses">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-                <label for="textarea" class="titlePlaceholder">Outros interesses</label>
-               </div>
-             </div>
-             <div class="col-6 inputProfile">
-               <div class="control">
-                <textarea class="textAreaProfile" name="textarea" value="913 315 609" required rows="4" placeholder="Sobre mim">Sou uma pessoa muito engraçada e gosto de voluntariado</textarea>
-                 <label for="textarea" class="titlePlaceholder">Sobre mim</label>
-                </div>
-              </div>
-
-        <div class="col-6">
-            <a class="btn btn-outline-primary btnDescart" routerLink="/profile/details">CANCELAR</a>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Sobre mim</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Fale um pouco de si..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
         </div>
-        <div class="col-6 ">
-          <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Hobbies e interesses</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Os seu hobbies e interesses..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
         </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Tipos de voluntarido favoritos</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Tipos de voluntariado favoritos..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Idiomas</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Idiomas..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Historial de voluntariado</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="O seu historico de voluntariado..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="form-group">
+          <label class="label-input" for="exampleSelect1">Outros interesses</label>
+          <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Outros interesses..."></textarea>
+          <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+        </div>
+      </div>
+      <div class="col-6 mb-2 mt-3">
+        <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
+      </div>
+      <div class="col-6 mb-2 mt-3">
+        <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
+      </div>
+
     </div>
-  </form>
   </div>
 </div>

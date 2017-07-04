@@ -30,6 +30,7 @@ import { ProfileComponent } from './profile.component';
 import { InstitutionsComponent } from './following/institutions/institutions.component';
 import { PeopleComponent } from './following/people/people.component';
 import { NewActionComponent } from './new-action/new-action.component';
+import { ClassificationsComponent } from './classifications/classifications.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,7 @@ import { NewActionComponent } from './new-action/new-action.component';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
+  declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent, ClassificationsComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }
   ],

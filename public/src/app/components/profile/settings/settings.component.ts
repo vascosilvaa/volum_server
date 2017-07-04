@@ -10,6 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 })
 export class SettingsComponent implements OnInit {
+
+    public showPersonal:boolean = false;
+    public showMessages:boolean = false;
+    public showPrivacity:boolean = false;
+
+
+
   public personalSettings = 1;
   public messagesSettings = 0;
   public privateSettings = 0;
@@ -20,6 +27,9 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.showPersonal = true;
+
     this.route.params.subscribe((params) => {
       this.idProfile = this.route.parent.parent.snapshot.params['id'];
 
@@ -27,6 +37,20 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  openPersonal(){
+      this.showPersonal = !this.showPersonal;
+  }
+
+  openMessages() {
+      this.showMessages = !this.showMessages;
+  }
+
+  openPrivacy(){
+      this.showPrivacity = !this.showPrivacity;
+  }
+
+
+/*
   openPersonal() {
     if (this.personalSettings == 1) {
       this.personalSettings = 0;
@@ -55,5 +79,5 @@ export class SettingsComponent implements OnInit {
       this.privateSettings = 1;
     }
   }
-
+*/
 }

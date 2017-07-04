@@ -4,7 +4,8 @@
             <div class="ui-block">
                 <div class="top-header">
                     <div class="top-header-cover">
-                        <img src="{{user.cover_photo}}">
+                        <img *ngIf="user?.cover_photo" class="user-thumb" src={{user.cover_photo}} alt="Foto de capa">
+
                     </div>
                 </div>
                 <div class="profile-section">
@@ -15,12 +16,12 @@
                                 <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
                                 <li><a routerLink="/profile/{{id_user}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
                                 <!-- FALTA O ROUTING AQUI -->
-                                 <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Testemunhos</a></li>
+                                 <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Classificações</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-5 offset-lg-2 col-md-5 offset-md-2">
                             <ul class="profile-menu" *ngIf="id_user==id_logged_user">
-                                <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Mensagens</a></li>
+                                <li><a routerLink="/profile/{{id_user}}/classifications" [routerLinkActive]="['menuSubHeaderActive']">Classificações</a></li>
                                 <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
                                 <li><a routerLink="/profile/{{id_user}}/settings" [routerLinkActive]="['menuSubHeaderActive']">Definições</a></li>
                             </ul>

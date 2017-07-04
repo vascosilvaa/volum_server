@@ -1,3 +1,140 @@
+<div class="ui-block">
+    <div class="ui-block-title">
+        <h6>Informação Pessoal</h6>
+    </div>
+
+    <div class="ui-block-content">
+        <form (ngSubmit)="onSubmit(form.value, form.valid)" [formGroup]="form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleInputEmail1">Primeiro nome</label>
+                        <input type="email" class="form-control input-form" aria-describedby="first-name" placeholder="Primeiro nome" formControlName="first_name">
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleInputEmail1">Apelido</label>
+                        <input type="email" class="form-control input-form" aria-describedby="last-name" placeholder="Apelido" formControlName="last_name">
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleInputEmail1">E-mail</label>
+                        <input type="email" class="form-control input-form" aria-describedby="emailHelp" placeholder="E-mail" formControlName="email">
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input">Género</label>
+                        <select class="select-input form-control" formControlName="gender">
+                            <option value='-1' disabled selected></option>
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                        </select>
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input">Data de nascimento</label>
+                        <input class="form-control input-form-date" ngbDatepicker type="date" placeholder="aaaa-mm-dd" formControlName="birth_date">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleSelect1">País</label>
+                        <select class="select-input form-control" id="exampleSelect1" formControlName='country'>
+                            <option value='-1' disabled></option>
+                            <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                        </select>
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleInputEmail1">Região</label>
+                        <input type="email" class="form-control input-form" aria-describedby="regiao" placeholder="Região" formControlName='region'>
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleInputEmail1">Telemóvel</label>
+                        <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="Telemóvel" formControlName='phone'>
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleSelect1">Sobre mim</label>
+                        <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='about' placeholder="Fale um pouco de si..."></textarea>
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleSelect1">Redes sociais</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon"><img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png"></div>
+                            <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="vasco/facebook.com">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon"><img src="http://www.freelogovectors.net/wp-content/uploads/2016/12/google_plus_logo-icon.png"></div>
+                            <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="vasco/googleplus.com">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon"><img src="https://cdn.worldvectorlogo.com/logos/instagram-2016.svg"></div>
+                            <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="vasco/instagram.com">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/2000px-Linkedin.svg.png"></div>
+                            <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="vasco/linkedin.com">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/1259px-Twitter_bird_logo_2012.svg.png"></div>
+                            <input type="email" class="form-control input-form" aria-describedby="phone" placeholder="vasco/twitter.com">
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-6 mb-2">
+                    <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
+                </div>
+                <div class="col-6 mb-2">
+                    <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
+                </div>
+           
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!--
+
 <div class="card primaryCard">
   <div class="card-header cardTitle">
     <div class="row">
@@ -130,3 +267,5 @@
     </form>
   </div>
 </div>
+
+-->
