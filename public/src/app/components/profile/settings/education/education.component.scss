@@ -1,1 +1,21 @@
 @import '../settings.component';
+
+
+
+
+.education-number h6{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.education-number-button i{
+    font-size: 1.1rem;
+    color: $grey3;
+}
+
+.newFormation h6{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $primary;
+    cursor: pointer;
+}

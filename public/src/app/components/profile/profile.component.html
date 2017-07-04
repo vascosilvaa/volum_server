@@ -4,7 +4,7 @@
             <div class="ui-block">
                 <div class="top-header">
                     <div class="top-header-cover">
-                        <img src="src/assets/img/cover.jpg">
+                        <img *ngIf="user?.cover_photo" class="user-thumb" src={{user.cover_photo}} alt="Foto de capa">
                     </div>
                 </div>
                 <div class="profile-section">
