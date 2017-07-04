@@ -17,6 +17,7 @@ import { Overlay } from 'angular2-modal';
 import { ActivityComponent } from './activity/activity.component';
 import { AboutComponent } from './about/about.component';
 import { ActionsModule } from './actions/actions.module';
+import { ClassificationsModule } from './classifications/classifications.module';
 import { FollowingModule } from './following/following.module';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileRoutingModule } from './profile.routing';
@@ -44,12 +45,13 @@ import { ClassificationsComponent } from './classifications/classifications.comp
     SharedModule,
     MomentModule,
     ActionsModule,
+    ClassificationsModule,
     FollowingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent, ClassificationsComponent],
+  declarations: [NewActionComponent, ProfileComponent, AboutComponent, ActivityComponent, DetailsComponent, NewActionComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }
   ],
