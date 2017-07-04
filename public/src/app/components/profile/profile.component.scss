@@ -143,16 +143,27 @@
 .btn-add{
     background-color: $secondary;
     transition: all 400ms;
+    opacity: 1;
 }
 
 .btn-add:hover{
-    background-color: #FFDC47;
+    opacity: 0.9;
     cursor: pointer;
 }
 
 .btn-follow{
     background-color: $green;
     transition: all 400ms;
+}
+
+.btn-chat{
+    background-color: $purple;
+    transition: all 400ms;
+    opacity: 1;
+}
+
+.btn-chat:hover{
+    opacity: 0.9;
 }
 
 .btn-follow:hover{
