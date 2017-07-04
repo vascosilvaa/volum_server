@@ -147,7 +147,7 @@ var returnRouter = function (io) {
                       INNER JOIN photos ON vols.id_vol = photos.id_vol
                       INNER JOIN vols_has_categories ON vols.id_vol = vols_has_categories.id_vol 
                       WHERE photos.id_vol = vols.id_vol
-                      AND vols.deleted = 0 AND vols.active = 1 
+                      AND vols.deleted = 0 
                       `,
                 nestTables: true
             };
@@ -171,7 +171,7 @@ var returnRouter = function (io) {
                 options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}`;
             }
 
-            options.sql += ` GROUP BY vols.id_vol 
+            options.sql += `GROUP BY vols.id_vol 
                             ORDER BY vols.date_creation DESC
                             LIMIT ? , ? `;
 
@@ -523,14 +523,17 @@ var returnRouter = function (io) {
 
 
         db.get().query(options, [req.params['id']], function (error, results, fields) {
+            console.log("RESULTS", results)
+
             if (error) {
                 res.send({
                     success: false,
                     message: error
                 })
+                console.log(error);
                 throw new Error(error);
             } else {
-                if (results.length == 0) {
+                if (results.length <= 0) {
                     res.status(404);
                     res.end();
 

@@ -533,8 +533,16 @@ var returnRouter = function (io) {
             });
         } else {
             let options = {
-                sql: "SELECT DISTINCT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos " +
-                " FROM vols LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol INNER JOIN users ON vols.id_user_creator = users.id_user INNER JOIN photos ON vols.id_vol = photos.id_vol WHERE user_vol.id_user = ? AND user_vol.confirm = 1 OR user_vol.confirm = 2  AND vols.deleted = 0 AND vols.active = 1",
+                sql: `SELECT vols.id_vol, vols.name, vols.description, vols.date_begin, vols.date_creation, vols.duration, vols.lat, vols.lng,
+                users.id_user, users.name, users.photo_url,
+                GROUP_CONCAT(photos.url SEPARATOR '->') As photos
+
+                FROM vols 
+                LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol 
+                INNER JOIN users ON vols.id_user_creator = users.id_user 
+                INNER JOIN photos ON vols.id_vol = photos.id_vol
+                WHERE user_vol.id_user = ? 
+                AND user_vol.confirm = 1 OR user_vol.confirm = 2  AND vols.deleted = 0 AND vols.active = 1`,
                 nestTables: true
             }
             db.get().query(options, [req.params.id, req.params.id], function (err, results, fields) {
@@ -546,8 +554,8 @@ var returnRouter = function (io) {
                     });
                     console.error(err);
                 } else {
-                    console.log(results.length);
-                    if (results.length > 0) {
+                    console.log("RESULTS", results);
+                    if (results.length > 0 && results[0].vols.id_vol != null) {
 
                         let vols = [];
                         for (let i = 0; i < results.length; i++) {

@@ -62,89 +62,99 @@ function hashUrl(id) {
  */
 
 app.post('/register', function (req, res) {
-    console.log(req.body)
-    if (!req.body.password || !req.body.email || !req.body.name || !req.body.type) {
-        return res.status(400).json({
-            success: false,
-            message: "Falta enviar dados"
-        });
-    } else {
-        getUserDB(req.body.email, function (user) {
-            if (!user) {
-                console.log("body register", req.body)
-                bcrypt.genSalt(saltRounds, function (err, salt) {
-                    bcrypt.hash(req.body.password, salt, function (err, hash) {
+    console.log("BODY RECEBIDO", req.body);
 
-                        user = {
-                            password: hash,
-                            email: req.body.email,
-                            type_user: req.body.type,
-                            birth_date: req.body.birth_date,
-                            name: req.body.name,
-                            gender: req.body.gender,
-                        };
-                        console.log("user register", user)
+    req.checkBody('name', 'Nome Inválido').notEmpty();
+    req.checkBody('password', 'password Invalida').notEmpty();
+    req.checkBody('email', 'Email invalido').isEmail().notEmpty();
+    req.checkBody('type', 'Falta type').notEmpty().isAlphanumeric();
+    req.checkBody('gender', 'Falta gender').notEmpty();
 
-                        db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
-                            if (err) {
-                                res.json({
-                                    success: false,
-                                    error: err
-                                })
-                                throw new Error(err);
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
 
-                            } else {
+            console.log(result.array())
+            res.status(400).send(result.mapped());
+            return;
 
-                                //USER CRIADO
-                                //GERAR TOKEN
-                                let userId = result.insertId;
-                                newUser = {
-                                    id: userId,
-                                    password: hash,
-                                    email: req.body.email,
-                                    type_user: 1
-                                };
+        } else {
+            getUserDB(req.body.email, function (user) {
+                if (!user) {
+                    console.log("body register", req.body)
+                    bcrypt.genSalt(saltRounds, function (err, salt) {
+                        bcrypt.hash(req.body.password, salt, function (err, hash) {
 
-                                /*
-                                                            // setup email data with unicode symbols
-                                                            let mailOptions = {
-                                                                from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
-                                                                to: user.email, // list of receivers
-                                                                subject: 'Lindo', // Subject line
-                                                                html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
-                                                            };
-                                
-                                                            // send mail with defined transport object
-                                                            transporter.sendMail(mailOptions, (error, info) => {
-                                                                if (error) {
-                                                                    return console.log(error);
-                                                                }
-                                                                console.log('Message %s sent: %s', info.messageId, info.response);
-                                                            });
-                                */
+                            user = {
+                                password: hash,
+                                email: req.body.email,
+                                type_user: req.body.type,
+                                birth_date: req.body.birth_date,
+                                name: req.body.name,
+                                gender: req.body.gender,
+                            };
+                            console.log("user register", user)
 
-                                var token = jwt.sign({
-                                    id: userId
-                                }, secretKey);
+                            db.get().query('INSERT INTO users SET ?', [user], function (err, result) {
+                                if (err) {
+                                    res.json({
+                                        success: false,
+                                        error: err
+                                    })
+                                    throw new Error(err);
 
-                                res.status(201).send({
+                                } else {
 
-                                    message: "User criado com sucesso",
-                                    id_user: userId,
-                                    id_token: "JWT " + token,
-                                    success: true,
+                                    //USER CRIADO
+                                    //GERAR TOKEN
+                                    let userId = result.insertId;
+                                    newUser = {
+                                        id: userId,
+                                        password: hash,
+                                        email: req.body.email,
+                                        type_user: 1
+                                    };
 
-                                });
+                                    /*
+                                                                // setup email data with unicode symbols
+                                                                let mailOptions = {
+                                                                    from: 'Volum Lda. <pedroaraujo@ua.pt>', // sender address
+                                                                    to: user.email, // list of receivers
+                                                                    subject: 'Lindo', // Subject line
+                                                                    html: '<a href="http://localhost:8080/api/auth/confirm-email?hash=' + hash + '&email=' + user.email // html body
+                                                                };
+                                    
+                                                                // send mail with defined transport object
+                                                                transporter.sendMail(mailOptions, (error, info) => {
+                                                                    if (error) {
+                                                                        return console.log(error);
+                                                                    }
+                                                                    console.log('Message %s sent: %s', info.messageId, info.response);
+                                                                });
+                                    */
 
-                            }
+                                    var token = jwt.sign({
+                                        id: userId
+                                    }, secretKey);
+
+                                    res.status(201).send({
+
+                                        message: "User criado com sucesso",
+                                        id_user: userId,
+                                        id_token: "JWT " + token,
+                                        success: true,
+
+                                    });
+
+                                }
+                            });
+
                         });
-
                     });
-                });
 
-            } else res.status(400).send("Já existe um user com esse username");
-        });
-    }
+                } else res.status(400).send("Já existe um user com esse username");
+            });
+        }
+    });
 });
 
 
@@ -247,20 +257,20 @@ app.post('/social-register', function (req, res) {
 
 //PHOTO
 /*
-
+ 
                                 let sampleFile = req.files.photo;
                                 sampleFile.mv('./public/storage/profile_photos/' + url + '.jpg', function (err) {
-
+ 
                                     if (err) {
                                         return res.status(500).send(err);
                                     } else {
                                         console.log(url);
                                         console.log(userId);
-
+ 
                                         db.get().query('UPDATE users SET photo_url = ? WHERE id_user = ?', [url, userId], function (err, result) {
                                             if (err) {
                                                 throw new Error(err);
-
+ 
                                                 */
 
 
