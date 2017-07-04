@@ -1001,3 +1001,107 @@ select.form-control:not([size]):not([multiple]) {
 .active-action-menu{
   color: $grey5!important
 }
+
+
+
+
+
+
+
+.label-input{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $grey5;
+}
+
+.input-form{
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+    color: $grey5!important;
+}
+
+.input-form-date{
+    padding-top: 13.5px;
+    padding-bottom: 13.5px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 0.9rem;
+    color: $grey5!important;
+}
+
+.text-muted{
+    color: $grey3!important;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.select-input{
+    height: calc(3rem + 3px)!important;
+    border: 1px solid rgba(0,0,0,.15)!important;
+    font-size: 0.9rem;
+}
+
+.input-textarea{
+    font-size: 0.9rem;
+    color: $grey5!important;
+}
+
+.ui-block-content{
+    ::-webkit-input-placeholder {
+        color:$grey3!important;
+    }
+
+    button{
+        border: none!important;
+    }
+}
+
+.input-group-addon{
+    background-color: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.input-group-addon img{
+    height: 20px;
+    width: 20px;
+}
+
+.btn-settings{
+    width: 100%;
+    padding: 1rem 6rem;
+    font-size: 0.875rem;
+    border-radius: 0.3rem;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+    color: $white!important;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.input-group .form-control {
+    z-index: 1!important;
+}
+
+ .btn-settings-cancel{
+     background-color: $grey3;
+ }
+
+ .btn-settings-save{
+     background-color: $primary;
+ }
+
+ .btn-settings:hover{
+     opacity: 0.8;
+     text-decoration: none;
+ }
+
+ .settingsActive{
+  font-weight: 600!important;
+}

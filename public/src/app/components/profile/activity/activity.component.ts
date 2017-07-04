@@ -27,11 +27,12 @@ export class ActivityComponent implements OnInit {
     phone: '',
     photo: '',
     birth_date: '',
-    type: '',
     facebook_id: '',
     twitter_id: '',
-    google_id: ''
+    google_id: '',
+    type: 0
   }
+
   public age: any;
   public dateFormatted: any;
   public timeDiff: any;
@@ -51,10 +52,10 @@ export class ActivityComponent implements OnInit {
       if (profile) {
         this.user = profile;
 
-        if(this.user.birth_date){
+        if (this.user.birth_date) {
           this.dateFormatted = new Date(this.user.birth_date);
-          this.timeDiff = Math.abs(Date.now() - this.dateFormatted );
-          this.age = Math.floor((this.timeDiff / (1000 * 3600 * 24))/365);
+          this.timeDiff = Math.abs(Date.now() - this.dateFormatted);
+          this.age = Math.floor((this.timeDiff / (1000 * 3600 * 24)) / 365);
         }
 
         this.profileService.getTestimonials(profile.id_user, 0, 3).then(res => {

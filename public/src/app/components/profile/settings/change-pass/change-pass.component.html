@@ -1,38 +1,35 @@
-<div class="card primaryCard">
-  <div class="card-header cardTitle">
-    <div class="row">
-      <div class="col titleCard">
-      Alterar a palavra passe
-      </div>
-    </div>
-  </div>
-
-<div class="card-block">
-  <form class="float-label" spellcheck="false">
-  <div class="row">
-      <div class="col-12 inputProfile no-margin">
-          <div class="control inputText">
-          <input type="password" class="" name="title" placeholder="Palavra passe atual" value="qualquer" required />
-          <label for="title" class="titlePlaceholder">Palavra passe atual</label>
-        </div>
-      </div>
-      <div class="col-6 inputProfile">
-        <div class="control inputText">
-          <input type="password" class="" name="title" placeholder="Nova palavra passe" value="qualquer" required />
-          <label for="title" class="titlePlaceholder">Nova palavra passe</label>
-        </div>
-      </div>
-      <div class="col-6 inputProfile">
-        <div class="control inputText">
-          <input type="password" class="" name="title" placeholder="Confirmar nova palavra passe" value="qualquer" required />
-          <label for="title" class="titlePlaceholder">Confirmar nova palavra passe</label>
-        </div>
-      </div>
-      <div class="col-12 ">
-        <a class="btn btn-outline-primary btnSave" routerLink="/profile/details">GUARDAR</a>
-      </div>
+<div class="ui-block">
+    <div class="ui-block-title">
+        <h6>Alterar palavra passe</h6>
     </div>
 
-  </form>
-  </div>
+    <div class="ui-block-content">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="label-input" for="exampleInputEmail1">Palavra passe atual</label>
+                    <input type="password" class="form-control input-form" aria-describedby="first-name" placeholder="Instituição">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="label-input" for="exampleInputEmail1">Nova palavra passe</label>
+                    <input type="password" class="form-control input-form" aria-describedby="first-name" placeholder="Instituição">
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="form-group">
+                    <label class="label-input" for="exampleInputEmail1">Confirmar palavra passe</label>
+                    <input type="password" class="form-control input-form" aria-describedby="first-name" placeholder="Instituição">
+                </div>
+            </div>
+            <div class="col-6 mb-2">
+                <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
+            </div>
+            <div class="col-6 mb-2">
+                <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
+            </div>
+        </div>
+    </div>
 </div>
+
