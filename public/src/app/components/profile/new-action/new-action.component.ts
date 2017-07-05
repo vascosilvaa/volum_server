@@ -46,19 +46,20 @@ export class NewActionComponent implements OnInit {
   constructor(public Router: Router, public sharedService: SharedService, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
 
   ngOnInit() {
+    
     this.router.params.subscribe((params) => {
       this.idProfile = this.router.parent.parent.snapshot.params['id'];
 
     });
     this.profileService.getCategories().then(res => {
       this.categories = res.categories;
-      console.log(res);
+      console.log(this.categories);
     });
     this.form = this._fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      insurance: ['', [Validators.required]],
+      category: ['-1', [Validators.required]],
+      insurance: ['-1', [Validators.required]],
       date_begin: ['', [Validators.required]],
       date_end: ['',],
       start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
