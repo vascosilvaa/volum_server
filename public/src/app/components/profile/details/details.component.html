@@ -151,7 +151,8 @@
                             <ul>
                                 <li>
                                     <span class="title">Data de fim</span>
-                                    <span class="text">{{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span>
+                                    <span class="text" *ngIf="vol?.date_end">{{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span>
+                                    <span class="text" *ngIf="!vol?.date_end || vol?.date_end == null">-</span>
                                 </li>
                             </ul>
                         </div>
@@ -168,7 +169,8 @@
                             <ul>
                                 <li>
                                     <span class="title">Hora de inicio</span>
-                                    <span class="text">{{vol?.start_time}}</span>
+                                    <span class="text" *ngIf="vol?.start_time!='00:00:00.000000'">{{vol?.start_time}}</span>
+                                     <span class="text" *ngIf="vol?.start_time=='00:00:00.000000' || !vol?.start_time">-</span>
                                 </li>
                             </ul>
                         </div>
@@ -185,7 +187,8 @@
                             <ul>
                                 <li>
                                     <span class="title">Hora de fim</span>
-                                    <span class="text">{{vol?.end_time}}</span>
+                                    <span class="text" *ngIf="vol?.end_time!='00:00:00.000000'">{{vol?.end_time}}</span>
+                                     <span class="text" *ngIf="vol?.end_time=='00:00:00.000000' || !vol?.end_time">-</span>
                                 </li>
                             </ul>
                         </div>
@@ -203,7 +206,8 @@
                             <ul>
                                 <li>
                                     <span class="title">Duração diária</span>
-                                    <span class="text">4 horas</span>
+                                    <span class="text" *ngIf="vol?.duration">{{vol?.duration}}</span>
+                                    <span class="text" *ngIf="!vol?.duration ">-</span>
                                 </li>
                             </ul>
                         </div>

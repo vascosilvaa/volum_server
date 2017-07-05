@@ -60,6 +60,7 @@ export class ModalEndComponent implements OnInit {
   ngOnInit() {
     if (this.context.type == 2) {
       this.getUsers();
+      this.getVol(this.context.id_vol);
     }
 
     if (this.context.type==3) {
