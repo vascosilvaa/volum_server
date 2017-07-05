@@ -9,4 +9,6 @@ export interface User {
     facebook_id: any;
     twitter_id: any;
     google_id: any;
+    region: any;
+    country: any,
 }

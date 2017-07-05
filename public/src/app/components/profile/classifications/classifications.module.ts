@@ -32,6 +32,10 @@ import { MaterialModule } from '@angular/material';
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ],
   entryComponents: [
+    ModalViewAllComponent,
+    ModalProfileComponent,
+    ModalEndComponent, 
+    VolDetailsModalComponent
   ]
 })
 

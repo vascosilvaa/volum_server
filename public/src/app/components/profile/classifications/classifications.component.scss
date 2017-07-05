@@ -1,5 +1,8 @@
 @import '../../../../variables';
 
+.underline:hover {
+    text-decoration: underline!important;
+}
 
 .page-classification-list{
     margin: 0;
