@@ -6,7 +6,7 @@
     </div>
     <div class="navbar-bevolun-search">
         <div class="header-search" [class.showSearch]="showSearch">
-            <input type="text" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+            <input type="text" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
             <ng-template #rt let-r="result" let-t="term">
                 <div class="search-result pointer" (click)="navigate(r.id, r.type)">
                     <div class="search-img">

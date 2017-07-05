@@ -15,7 +15,7 @@
                                 <li *ngIf="id_user==id_logged_user"><a routerLink="/profile/{{id_user}}/actions" [routerLinkActive]="['menuSubHeaderActive']">Ações</a></li>
                                 <li><a routerLink="/profile/{{id_user}}/about" [routerLinkActive]="['menuSubHeaderActive']">Sobre</a></li>
                                 <!-- FALTA O ROUTING AQUI -->
-                                 <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Classificações</a></li>
+                                 <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/classifications" [routerLinkActive]="['menuSubHeaderActive']">Classificações</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-5 offset-lg-2 col-md-5 offset-md-2">
@@ -27,7 +27,7 @@
 
                             <ul class="profile-menu" *ngIf="id_user!=id_logged_user">
                                  <!-- FALTA O ROUTING AQUI -->
-                                <li *ngIf="id_user!=id_logged_user"><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">Mensagem</a></li>
+                                <li *ngIf="id_user!=id_logged_user"><a routerLink="/chat" [routerLinkActive]="['menuSubHeaderActive']">Mensagem</a></li>
 
                                 <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
                                 <li>

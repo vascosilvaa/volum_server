@@ -30,7 +30,9 @@ export class ActivityComponent implements OnInit {
     facebook_id: '',
     twitter_id: '',
     google_id: '',
-    type: 0
+    type: 0,
+    region: '',
+    country: '',
   }
 
   public age: any;
