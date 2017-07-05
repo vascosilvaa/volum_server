@@ -518,6 +518,17 @@ var returnRouter = function (io) {
 
     });
 
+    app.get('/test', function (req, res, next) {
+        let url = 'https://maps.googleapis.com/maps/api/staticmap?center=40.6405055,-8.6537539&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A';
+
+        if (url.substring(0, 27) == "https://maps.googleapis.com") {
+
+            res.send("E MAPA")
+        } else {
+            res.send("NAO E MAPA")
+        }
+    });
+
     app.get('/:id', function (req, res, next) {
         console.log("query", req.query);
 
@@ -545,6 +556,9 @@ var returnRouter = function (io) {
 
                 } else {
                     for (let i = 0; i < results.length; i++) {
+                        let photos = (results[i][''].photos).split('->');
+
+
 
                         vol = {
 
@@ -564,8 +578,15 @@ var returnRouter = function (io) {
                             lng: results[i].vols.lng,
                             lat: results[i].vols.lat,
                             user: results[i].users,
-                            photos: (results[i][''].photos).split('->')
+                            photos: photos
 
+                        }
+
+                        if (photos[0].substring(0, 27) == "https://maps.googleapis.com") {
+
+                            vol.isMap = true;
+                        } else {
+                            vol.isMap = false;
                         }
                     }
                     res.json({

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/platform-browser';
-import { HostListener} from "@angular/core";
+import { HostListener } from "@angular/core";
 import { SearchNavService } from './search-nav.service';
 
 import { VolDetailsModalComponent } from './shared/vol-details-modal/vol-details-modal.component';
@@ -47,18 +47,51 @@ export class AppComponent implements OnInit {
   searching = false;
   searchFailed = false;
   public showSearch: boolean;
+  public feedActive: boolean;
 
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
     private router: Router, private auth: AuthenticationService,
     private socketService: SocketService, private appService: AppService, private chatService: ChatService,
-    private profileService: ProfileService, public searchNavService: SearchNavService, @Inject(DOCUMENT) private document:any) {
+    private profileService: ProfileService, public searchNavService: SearchNavService, @Inject(DOCUMENT) private document: any) {
     overlay.defaultViewContainer = vcRef;
     this.notification.src = "http://www.wavsource.com/snds_2017-05-21_1278357624936861/sfx/boing_x.wav";
 
   }
+
+
+  @HostListener("window:scroll", [])
+
+
+  onWindowScroll() {
+    if (this.feedActive) {
+
+      let number = this.document.body.scrollTop;
+      if (number > 300) {
+        this.showSearch = true;
+      } else if (this.showSearch && number < 250) {
+        this.showSearch = false;
+      }
+
+    }
+  }
+
+
   ngOnInit() {
     this.showSearch = false;
 
+    this.router.events.subscribe((res) => {
+
+      console.log("res", res)
+
+      if (res['url'] == '/feed') {
+
+        this.feedActive = true;
+      } else {
+        this.feedActive = false;
+        this.showSearch = true;
+      }
+
+    });
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.router.navigateByUrl('/mobile');
     } else {
@@ -158,7 +191,7 @@ export class AppComponent implements OnInit {
 
 
   getNotifications(startAt, amount, replace) {
-    this.cleanNotifications();  
+    this.cleanNotifications();
     this.notificationsReady = false;
 
     this.appService.getNotifications(startAt, amount).then(res => {
@@ -267,7 +300,7 @@ export class AppComponent implements OnInit {
           }))
       .do(() => this.searching = false);
 
-      navigate(id, type) {
+  navigate(id, type) {
     if (type == 1 || type == 2) {
       this.router.navigate(['profile/' + id + '/about'])
     } else if (type == 0) {
@@ -275,13 +308,4 @@ export class AppComponent implements OnInit {
     }
   }
 
-  @HostListener("window:scroll", [])
-  onWindowScroll() {
-    let number = this.document.body.scrollTop;
-    if (number > 300) {
-      this.showSearch = true;
-    } else if (this.showSearch && number < 250) {
-      this.showSearch = false;
-    }
-  }
 }
