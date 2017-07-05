@@ -44,7 +44,7 @@ var returnRouter = function (io) {
                     db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
                         function (error, results, fields) {
 
-                            db.get().query('SELECT photo_url, name from users WHERE id_user = ?', [id_creator],
+                            db.get().query('SELECT photo_url, name from users WHERE id_user = ?', [id_user],
                                 function (error, user, fields) {
 
 
