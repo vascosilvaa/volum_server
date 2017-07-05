@@ -289,7 +289,6 @@ var returnRouter = function (io) {
                                 err
                             });
                         } else {
-                            console.log(results)
                             if (results.length > 0) {
                                 let vols = [];
                                 for (let i = 0; i < results.length; i++) {
@@ -356,6 +355,193 @@ var returnRouter = function (io) {
             }
         });
     });
+
+
+
+    app.get('/:id/vols/all', passport.authenticate('jwt'), function (req, res) {
+        req.checkParams('id', 'Type tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let options;
+
+                options = {
+                      sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
+                        FROM vols 
+                       INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol
+                       INNER JOIN photos ON vols.id_vol = photos.id_vol 
+                       INNER JOIN users ON vols.id_user_creator = users.id_user
+                       WHERE (user_vol.id_user = ? 
+                       AND vols.deleted = 0)
+                       AND (user_vol.confirm = 1 OR user_vol.confirm IS NULL)
+                       AND vols.active = 1
+                       GROUP BY vols.id_vol
+                       ORDER BY vols.date_creation DESC`,
+                    nestTables: true
+                }
+
+
+
+                db.get().query(
+                    options, [req.params.id], function (err, results, fields) {
+                        if (err) {
+                            console.log(err)
+                            res.send({
+                                success: false,
+                                err
+                            });
+                        } else {
+                            if (results.length > 0) {
+                                let vols = [];
+                                for (let i = 0; i < results.length; i++) {
+
+                                    vols.push({
+                                        vol: {
+                                            id_vol: results[i].vols.id_vol,
+                                            name: results[i].vols.name,
+                                            date_begin: results[i].vols.date_begin,
+                                            description: results[i].vols.description,
+                                            date_creation: results[i].vols.date_creation,
+                                            date_end: results[i].vols.date_end,
+                                            lat: results[i].vols.lat,
+                                            lng: results[i].vols.lng,
+                                            start_time: results[i].vols.start_time,
+                                            end_time: results[i].vols.end_time,
+                                           active: results[i].vols.active,
+
+                                            photos: (results[i][''].photos).split('->')
+                                        },
+                                        user: {
+                                            id_user: results[i].users.id_user,
+                                            name: results[i].users.name,
+                                            photo_url: results[i].users.photo_url,
+                                        }
+                                    });
+
+
+                                  
+
+                                }
+
+                                  res.send({
+                                        success: true,
+                                        vols
+                                    });
+                            } else {
+                                res.send({
+                                    success: true,
+                                    vols: []
+                                });
+                            }
+                        }
+
+
+
+                    });
+            }
+        });
+    });
+
+
+
+
+
+ app.get('/:id/vols/all/history', passport.authenticate('jwt'), function (req, res) {
+        req.checkParams('id', 'ID tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let options;
+
+                   options = {
+                    sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
+                        FROM vols 
+                       INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol
+                       INNER JOIN photos ON vols.id_vol = photos.id_vol 
+                       INNER JOIN users ON vols.id_user_creator = users.id_user
+                       WHERE (user_vol.id_user = ? 
+                       AND vols.deleted = 0)
+                       AND (user_vol.confirm = 1 OR user_vol.confirm IS NULL)
+                       AND vols.active = 0
+                       GROUP BY vols.id_vol
+                       ORDER BY vols.date_creation DESC`,
+                    nestTables: true
+                }
+
+
+
+                db.get().query(
+                    options, [req.params.id], function (err, results, fields) {
+                        if (err) {
+                            console.log(err)
+                            res.send({
+                                success: false,
+                                err
+                            });
+                        } else {
+                            console.log(results)
+                            if (results.length > 0) {
+                                let vols = [];
+                                for (let i = 0; i < results.length; i++) {
+                                    console.log(req.query.user_type)
+
+                                    vols.push({
+                                        vol: {
+                                            id_vol: results[i].vols.id_vol,
+                                            name: results[i].vols.name,
+                                            date_begin: results[i].vols.date_begin,
+                                            description: results[i].vols.description,
+                                            date_creation: results[i].vols.date_creation,
+                                            date_end: results[i].vols.date_end,
+                                            lat: results[i].vols.lat,
+                                            active: results[i].vols.active,
+                                            lng: results[i].vols.lng,
+                                            start_time: results[i].vols.start_time,
+                                            end_time: results[i].vols.end_time,
+                                            photos: (results[i][''].photos).split('->')
+                                        },
+                                        user: {
+                                            id_user: results[i].users.id_user,
+                                            name: results[i].users.name,
+                                            photo_url: results[i].users.photo_url,
+                                        }
+                                    });
+
+
+                                  
+
+                                }
+
+                                  res.send({
+                                        success: true,
+                                        vols
+                                    });
+                            } else {
+                                res.send({
+                                    success: true,
+                                    vols: []
+                                });
+                            }
+                        }
+
+
+
+                    });
+            }
+        });
+    });
+
+
 
     //VOLS A QUE ESTA CANDIDATO
 
@@ -491,7 +677,7 @@ var returnRouter = function (io) {
      * @apiParam id ID do user
      * @apiGroup Perfil
      */
-     
+
     app.get('/:id/checkOnline', passport.authenticate('jwt'), function (req, res) {
 
         if (!Number(req.params.id)) {
