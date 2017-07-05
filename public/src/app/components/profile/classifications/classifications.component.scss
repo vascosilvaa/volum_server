@@ -1,0 +1,106 @@
+@import '../../../../variables';
+
+
+.page-classification-list{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+
+}
+
+.page-classification-list li{
+    padding: 25px;
+    border-bottom: 1px solid #e6ecf5;
+    transition: all .3s ease;
+    margin-bottom: 0;
+}
+
+.page-classification-list li:last-child{
+    border-bottom: 0px solid #e6ecf5;
+}
+
+.page-classification-header{
+    display: flex;
+    align-items: center;
+}
+
+.page-classification-picture{
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.page-classification-picture img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+.page-classification-action{
+    padding-left: 15px;
+    font-size: 0.9rem;
+    flex: 2
+}
+
+.page-classification-name-user{
+    color: $grey5;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.page-classification-name-user:hover{
+    opacity: 0.9;
+}
+
+.page-classification-action .page-classification-name-action{
+    color: $primary;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.page-classification-action .page-classification-name-action:hover{
+    opacity: 0.9;
+}
+
+.page-classification-action h6{
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.page-classification-action p{
+    font-size: 0.8rem;
+    color: $grey3;
+}
+
+.classification-number{
+    font-weight: 600;
+    color: $yellow;
+}
+
+.page-classification-more i{
+    color: $grey3;
+    cursor: pointer;
+    vertical-align: middle; 
+}
+
+.page-classification-content{
+    padding-top: 20px;
+}
+
+.page-classification-content p{
+    color: $grey5;
+}
+
+.page-classification-action md-icon{
+    padding-top: 4px;
+    color: $yellow;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}

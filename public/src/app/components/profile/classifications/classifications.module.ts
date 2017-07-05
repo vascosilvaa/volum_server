@@ -13,7 +13,7 @@ import { VolDetailsModalComponent } from './../../../shared/vol-details-modal/vo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { MaterialModule } from '@angular/material';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     ReactiveFormsModule,
     ClassificationsRoutingModule,
+    MaterialModule
   ],
   declarations: [ClassificationsComponent, AttributedComponent, ObtainedComponent],
   providers: [
