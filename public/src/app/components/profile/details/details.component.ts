@@ -67,9 +67,6 @@ export class DetailsComponent implements OnInit {
     this.countComments(this.id_vol);
     this.countCandidates(this.id_vol);
     this.countConfirmed(this.id_vol);
-
-
-
   }
 
   getCategories() {
@@ -203,6 +200,7 @@ export class DetailsComponent implements OnInit {
     this.sharedService.getAddress(this.vol.lat, this.vol.lng)
       .then(res => {
         this.address = res.results[0].formatted_address;
+        console.log(this.address);
       })
 
   }

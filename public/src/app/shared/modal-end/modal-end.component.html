@@ -42,20 +42,20 @@
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
-                {{volDetails?.date_begin | date:"MMM" | uppercase}}
+                {{vol?.date_begin | date:"MMM" | uppercase}}
             </div>
             <div>
                 
-                {{volDetails?.date_begin | date:"d"}}
+                {{vol?.date_begin | date:"d"}}
             </div>
         </div>
 
         <div class="modalTitle">
             <div class="modalTitleDesc">
-                {{volDetails?.name}}
+                {{vol?.name}}
             </div>
             <div class="modalSubtitle">
-                {{volDetails?.date_begin | date:"fullDate"}}
+                {{vol?.date_begin | date:"fullDate"}}
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
 
         </div>
         <div class="col-12 modal-end-footer text-right">
-            <button class="btn btnCancel">CANCELAR</button>
+            <button class="btn btnCancel" (click)="close()">CANCELAR</button>
             <button class="btn btnConfirm" (click)="submit()">FINALIZAR</button>
         </div>
     </div>
@@ -174,7 +174,7 @@
         
         
         <div class="col-12 modal-end-footer text-right">
-            <button class="btn btnCancel">CANCELAR</button>
+            <button class="btn btnCancel" (click)="close()">CANCELAR</button>
             <button class="btn btnConfirm" (click)="submitTestimony()">FINALIZAR</button>
         </div>
     </div>
