@@ -9,6 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MyActionsService } from './my-actions.service';
 import { Component, OnInit, ViewContainerRef, Pipe } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
+import { VolDetailsModalComponent } from './../../../../shared/vol-details-modal/vol-details-modal.component';
+
 
 @Component({
   selector: 'app-my-actions',
@@ -29,8 +31,6 @@ export class MyActionsComponent implements OnInit {
   public hora_fim: any;
   public minutos_inicio: any;
   public minutos_fim: any;
-  public numberConfirmeds: any;
-  public numberCandidates: any;
   public candidates: any;
   public confirmeds: any;
 
@@ -54,7 +54,7 @@ export class MyActionsComponent implements OnInit {
   }
 
   getMyActions(id) {
-    this.profileService.getMyVols(id)
+    this.profileService.getActiveVols(id)
       .then(res => {
         this.myVols = res.vols;
         this.countCandidates();
@@ -64,10 +64,10 @@ export class MyActionsComponent implements OnInit {
 
   countConfirmeds() {
     for (let i = 0; i < this.myVols.length; i++) {
-      this.myactionsservice.countConfirmeds(this.myVols[i].id_vol)
+      this.myactionsservice.countConfirmeds(this.myVols[i].vol.id_vol)
         .then(res => {
-          this.numberConfirmeds = res.count;
-          this.myVols[i].numberConfirmeds = this.numberConfirmeds;
+          let numberConfirmeds = res.count;
+          this.myVols[i].numberConfirmeds = numberConfirmeds;
         })
         .catch(err => console.log(err));
     }
@@ -77,18 +77,18 @@ export class MyActionsComponent implements OnInit {
 
   countCandidates() {
     for (let i = 0; i < this.myVols.length; i++) {
-      this.myactionsservice.countCandidates(this.myVols[i].id_vol)
+      this.myactionsservice.countCandidates(this.myVols[i].vol.id_vol)
         .then(res => {
-          this.numberCandidates = res.count;
-          this.myVols[i].numberCandidates = this.numberCandidates;
+          let numberCandidates = res.count;
+          this.myVols[i].numberCandidates = numberCandidates;
         })
         .catch(err => console.log(err));
     }
   }
 
 
-  seeDetails(id_vol) {
-    this.router.navigate(['/profile/' + this.id_user + '/details/' + id_vol]);
+  seeDetails(idVol) {
+    return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
   }
 
   openDelete(type, id_vol, date, name) {

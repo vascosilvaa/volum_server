@@ -37,11 +37,11 @@
                         <div>Desporto</div><div>Ação social</div><div>Saúde</div><div>Apoio ao Domicilio</div>
                     </div>
                 </div>
-                <div class="social-network">
+                <div class="social-network" *ngIf="user.facebook_id || user.google_id || user.twitter_id">
                     <h6>Redes sociais</h6>
-                    <a href="#" class="btn-social bg-facebook" [class.disabled]="!user.facebook_id">Facebook</a>
-                    <a href="#" class="btn-social bg-google" [class.disabled]="!user.google_id">Google</a>
-                    <a href="#" class="btn-social bg-twitter" [class.disabled]="!user.twitter_id">Twitter</a>
+                    <a href="#" class="btn-social bg-facebook" *ngIf="user.facebook_id">Facebook</a>
+                    <a href="#" class="btn-social bg-google" *ngIf="user.google_id">Google</a>
+                    <a href="#" class="btn-social bg-twitter" *ngIf="user.twitter_id">Twitter</a>
                 </div>
             </div>
         </div>

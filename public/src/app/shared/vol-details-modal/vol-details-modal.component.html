@@ -82,10 +82,10 @@
             <div class="sk-circle12 sk-circle"></div>
         </div>
     </div>
-    <div class="col-12" *ngIf="error">
+    <div class="col-12" class="error-modal" *ngIf="error">
 
-        <p>Esta página não está disponível</p>
-        <p> A ligação que seguiste pode estar a funcionar incorretamente ou a página pode ter sido eliminada.</p>
+        <p>Esta página não está disponível.</p>
+        <p>A ligação que seguiste pode estar a funcionar incorretamente ou a página pode ter sido eliminada.</p>
 
     </div>
     <ng-container *ngIf="ready && !error">
