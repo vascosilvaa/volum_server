@@ -33,6 +33,7 @@ export class ActivityComponent implements OnInit {
     type: 0,
     region: '',
     country: '',
+    
   }
 
   public age: any;

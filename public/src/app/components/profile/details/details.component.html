@@ -3,302 +3,375 @@
         <div class="col-12">
             <div class="ui-block">
                 <div class="details-header">
-                    <div class="">
-                        
+                    <div class="details-header-back">
+                        <a routerLink="/profile/{{idLogin}}/actions"><i class="material-icons">arrow_back</i></a>
+                    </div>
+                    <div class="details-header-titile">
+                        {{vol?.name}}
+                    </div>
+                    <div class="details-header-edit" (click)="openEditModal()">
+                        <i class="material-icons">mode_edit</i>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 ">
-            <div class="card primaryCard">
-                <div class="card-content">
-                    <div class="row iconBack">
-                        <a routerLink="/profile/{{idLogin}}/actions"><i class="material-icons arrow">arrow_back</i></a>
-                        <div class="col titleCard titleVol vcenter">
-                            {{vol?.name}}
-                        </div>
-                        <div class="col text-right iconCard pointer underline" (click)="openEditModal()">
-                            <i class="material-icons">mode_edit</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            Descrição
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
+        <div class="col-lg-12">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
                         <div class="col-12">
-                            {{vol?.description}}
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            Detalhes da Ação
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content m-b">
-                    <div class="row">
-                        <div class="col-12 content-details">
-                            <span class="desc-title">Tipo de Voluntariado:</span> {{vol?.category_name}}
-                        </div>
-                        <div class="col-12 content-details">
-                            <span class="desc-title m-b">Seguro:</span> <span *ngIf="vol?.insurance">Sim</span><span *ngIf="!vol?.insurance">Não</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            Fotografias da Ação
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col-4" *ngFor="let photo of vol?.photos">
-                            <div class="image-event">
-                                <img [src]="photo">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            Localização
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content" style="display: flex; height:67px">
-                    <div class="row">
-                        <div class="col-12" style="display:flex">
-                            <div class="address" style="display:flex; align-items: center">
-                                {{address}}
-                            </div>
+                            <ul>
+                                <li>
+                                    <span class="title">Descrição</span>
+                                    <p>{{vol?.description}}</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            Data
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
+
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
                         <div class="col-12">
-                            <div class="addressTitle">
-                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}
-                            </div>
-                            
-                            <div class="Address" *ngIf="vol?.start_time">
-                                {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{vol?.start_time | timePipe}} até {{vol?.date_end
-                                | date:"d"}} de {{vol?.date_end | date:"MMMM"}}<span *ngIf="vol?.end_time"> às {{vol?.end_time | timePipe}}</span>
-                            </div> 
-                            
+                            <ul>
+                                <li>
+                                    <span class="title">Categoria</span>
+                                    <span class="text">{{vol?.category_name}}</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card primaryCard">
-                <div class="card-header cardTitleMap">
 
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
-                        <div class="col titleCard no-padding">
-                            Mapa
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="row">
-
                         <div class="col-12">
-
-                            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14">
-                                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-                            </sebm-google-map>
-
+                            <ul>
+                                <li>
+                                    <span class="title">Seguro</span>
+                                    <span class="text" *ngIf="vol?.insurance">Sim</span>
+                                    <span class="text" *ngIf="!vol?.insurance">Não</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row" *ngIf="vol?.active == 1">
-        <div class="col-12">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
+        <!-- TO DO -->
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
-                        <div class="col titleCard no-padding">
-                            <div>Convidar Pessoas</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(3,1)">Ver convites</div>
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Ação pública</span>
+                                    <span class="text" *ngIf="vol?.insurance">Sim</span>
+                                    <span class="text" *ngIf="!vol?.insurance">Não</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="card-content">
-                    <input type="text" class="inputInvite" placeholder="Procurar pessoas ou instituições...">
-
-                </div>
             </div>
         </div>
+        <!-- TO DO -->
 
-    </div>
-
-    <div class="row" *ngIf="vol?.active == 1">
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
-                        <div class="col titleCard no-padding">
-                            <div>Candidatos <span *ngIf="numberCandidates!=0">({{numberCandidates}})</span></div>
-                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="numberCandidates!=0">Ver todos</div>
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Qualquer pessoa pode ver/comentar</span>
+                                    <span class="text" *ngIf="vol?.insurance">Sim</span>
+                                    <span class="text" *ngIf="!vol?.insurance">Não</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="card-content candidates-zone">
-                    <ul class="list-group">
-                        <li *ngFor="let candidate of candidates" class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="{{candidate?.photo_url}}">
-                                    <span class="candidateName">{{candidate?.name}}</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn  btnCancel" (click)="openRemoveConfirmCandidate(5, idVol, candidate?.id_user, candidate?.name)">RECUSAR</button>
-                                    <button type="button" class="btn  btnConfirm" (click)="confirmCandidate(candidate?.id_user)">ACEITAR</button>
-                                </div>
-                            </div>
-                        </li>
-                        <div *ngIf="candidates==undefined || candidates==null || candidates==''" class="no-candidates">
-                            <div class="text-center icon-no-candidates"><i class="material-icons">event_busy</i></div>
-                            <div class="text-center text-no-candidates">Neste momento, ainda não possui candidatos para esta ação de voluntariado.<span class="text-see"> Convidar voluntários</span></div>
-                        </div>
-                    </ul>
-                </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
-                    <div class="row">
-                        <div class="col titleCard no-padding">
-                            <div>Confirmados <span *ngIf="numberConfirms!=0">({{numberConfirms}})</span></div>
-                            <div class="see-all ml-auto" (click)="openViewAll(2,idVol)" *ngIf="numberConfirms!=0">Ver todos</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-content candidates-zone">
-                    <ul class="list-group">
-                        <li *ngFor="let confirmed of confirmeds; let i= index" class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="{{confirmed?.photo_url}}">
-                                    <span class="candidateName">{{confirmed?.name}}</span>
-                                </div>
-                                <div class="col text-right no-padding">
-                                    <button type="button" class="btn btnRemove" (click)="openRemoveConfirm(4, idVol, confirmed?.id_user, confirmed?.name, i)">REMOVER</button>
-                                </div>
-                            </div>
-                        </li>
-                        <div *ngIf="confirmeds==undefined || confirmeds==null || confirmeds==''" class="no-candidates">
-                            <div class="text-center icon-no-candidates"><i class="material-icons">event_busy</i></div>
-                            <div class="text-center text-no-candidates">Neste momento, ainda não possui voluntários confirmados para esta ação de voluntariado.
-                                <span class="text-see" *ngIf="candidates!=undefined" (click)="openViewAll(1,idVol)"> Ver candidatos</span>
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row" *ngIf="vol?.active == 0">
-        <div class="col-12">
-            <div class="card primaryCard">
-                <div class="card-header cardTitle">
+        <!-- TO DO -->
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
                     <div class="row">
-                        <div class="col titleCard no-padding">
-                            <div>Voluntários</div>
-                            <div class="see-all ml-auto" (click)="openViewAll(1,idVol)" *ngIf="numberCandidates!=0">Ver todos</div>
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Candidados aceites diretamente</span>
+                                    <span class="text" *ngIf="vol?.insurance">Sim</span>
+                                    <span class="text" *ngIf="!vol?.insurance">Não</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="card-content candidates-zone">
-                    <ul class="list-group">
-                        <li *ngFor="let confirmed of confirmeds; let i= index" class="listPerson no-border no-margin">
-                            <div class="row no-margin">
-                                <div class="card-user-image">
-                                    <img src="{{confirmed?.photo_url}}">
-                                    <span class="candidateName link" [routerLink]="['../../../'+confirmed.id_user+'/about']">{{confirmed?.name}}</span>
-                                </div>
-                                <div class="col text-right no-padding user-rate" *ngIf="confirmedsReady">
-                                    <md-icon *ngFor="let star of confirmed?.classification">star_rate</md-icon>
-                                    <md-icon *ngFor="let star of confirmed?.classification_negative">star_border</md-icon>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            </div>
+        </div>
+        <!-- TO DO -->
+
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Data de inicio</span>
+                                    <span class="text">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Data de fim</span>
+                                    <span class="text">{{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Hora de inicio</span>
+                                    <span class="text">{{vol?.start_time}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Hora de fim</span>
+                                    <span class="text">{{vol?.end_time}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TO DO -->
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Duração diária</span>
+                                    <span class="text">4 horas</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TO DO -->
+
+        <div class="col-lg-12">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Localização</span>
+                                    <span class="text">{{address}}</span>
+                                </li>
+                                <li class="map-details-margin">
+                                    <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="14">
+                                        <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+                                    </sebm-google-map>  
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Fotografia(s)</span>
+                                </li>
+                                <li>
+                                   <div class="row">
+                                        <div class="col-md-4 col-12 img-action-details" *ngFor="let photo of vol?.photos">
+                                            <img [src]="photo">  
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Convidar pessoas</span>
+                                    <span class="text"><input type="text" class="inputInvite" placeholder="Convidar voluntários"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6" *ngIf="vol?.active == 1">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Candidatos <span *ngIf="numberCandidates!=0">({{numberCandidates}})</span></span>
+                                </li>
+                                <li *ngFor="let candidate of candidates">
+                                    <div class="list-details-users">
+                                        <div class="list-details-users-picture">
+                                            <img src="{{candidate?.photo_url}}">
+                                        </div>
+                                        <div class="list-details-users-name">
+                                            <p>{{candidate?.name}}</p>
+                                        </div>
+                                        <div class="list-details-users-btn">
+                                            <a class="btn-details-list btn-details-list-re mr-1" (click)="openRemoveConfirmCandidate(5, idVol, candidate?.id_user, candidate?.name)">Recusar</a>
+                                            <a class="btn-details-list btn-details-list-ac" (click)="confirmCandidate(candidate?.id_user)">Aceitar</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-details-users-no" *ngIf="candidates==undefined || candidates==null || candidates==''">
+                                    <i class="material-icons">event_busy</i>
+                                    <p>Neste momento, ainda não possui candidatos para esta ação de voluntariado.<p>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6" *ngIf="vol?.active == 1">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Confirmados <span *ngIf="numberCandidates!=0">({{numberConfirms}})</span></span>
+                                </li>
+                                <li *ngFor="let confirmed of confirmeds; let i= index">
+                                    <div class="list-details-users">
+                                        <div class="list-details-users-picture">
+                                            <img src="{{confirmed?.photo_url}}">
+                                        </div>
+                                        <div class="list-details-users-name">
+                                            <p>{{confirmed?.name}}</p>
+                                        </div>
+                                        <div class="list-details-users-btn">
+                                            <a class="btn-details-list btn-details-list-re" (click)="openRemoveConfirm(4, idVol, confirmed?.id_user, confirmed?.name, i)">Remover</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-details-users-no" *ngIf="confirmeds==undefined || confirmeds==null || confirmeds==''">
+                                    <i class="material-icons">event_busy</i>
+                                    <p>Neste momento, ainda não possui candidatos para esta ação de voluntariado.<p>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12" *ngIf="vol?.active == 0">
+            <div class="ui-block">
+                <div class="ui-block-content-details">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                                <li>
+                                    <span class="title">Voluntários</span>
+                                </li>
+                                <li *ngFor="let confirmed of confirmeds; let i= index">
+                                    <div class="list-details-users">
+                                        <div class="list-details-users-picture">
+                                            <img src="{{confirmed?.photo_url}}">
+                                        </div>
+                                        <div class="list-details-users-name">
+                                            <a [routerLink]="['../../../'+confirmed.id_user+'/about']"><p>{{confirmed?.name}}</p></a>
+                                        </div>
+                                        <div class="list-details-users-btn">
+                                            <md-icon *ngFor="let star of confirmed?.classification">star_rate</md-icon>
+                                            <md-icon *ngFor="let star of confirmed?.classification_negative">star_border</md-icon>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-12">
             <div class="card primaryCard">
@@ -349,11 +422,6 @@
                     </div>
                 </div>
             </div>
-            <!--
-        <div class="ts14 more-Comments">
-                <span class="textMoreComments">Carregar mais comentários</span><span class="moreIcon"> +</span>
-        </div>
-        -->
             <div class="col-12 insert-comment">
                 <div style="display:flex">
                     <div class="card-user--comments-image card-user-comments-image-comments">
@@ -369,18 +437,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>   
 
-    </div>
-
-
-
-    <div class="row btnsBack" *ngIf="vol?.active == 1">
-        <div class="col-6">
-            <button class="btn btnCancel1" (click)="openDelete(1, vol.id_vol, vol.date_begin, vol.name)">APAGAR AÇÃO</button>
-        </div>
-        <div class="col-6">
-            <button class="btn btnEnd" (click)="openEnd(2,1)">FINALIZAR AÇÃO</button>
+            <div class="col-6 mb-2 mt-3" *ngIf="vol?.active == 1">
+                <a class="btn-settings btn-settings-cancel" (click)="openDelete(1, vol.id_vol, vol.date_begin, vol.name)">Apagar ação</a>
+            </div>
+            <div class="col-6 mb-2 mt-3" *ngIf="vol?.active == 1">
+                <button type="submit" class="btn-settings btn-settings-save" style="border:none" (click)="openEnd(2,1)">Finalizar ação</button>
+            </div>
         </div>
     </div>
-</div>
+
