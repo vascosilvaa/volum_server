@@ -27,27 +27,16 @@ export class FinishedComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id_profile = this.route.parent.parent.parent.snapshot.params['id'];
-      this.getUser(this.id_profile);
     });
+    this.listFinished(this.id_profile);
   }
 
-  getUser(id_user) {
-    this.profileService.getProfile(id_user).then(res => {
-      this.user = res.user;
-      if (this.user.type == 2) { // INSTITUIÇÃO
-        this.listFinished(this.id_profile, 2)
-      } else if (this.user.type == 1) { // VOLUNTARIO
-        this.listFinished(this.id_profile, 1);
-      }
-    })
-  }
 
-  listFinished(id_user, type) {
-    this.volsService.listFinished(id_user, type).then(res => {
+  listFinished(id_user) {
+    this.profileService.getHistoryVols(id_user).then(res => {
       this.vols = res.vols;
-      this.getAddress();
-      //this.getScore();
       this.countParticipants();
+      this.getScore();
     })
   }
 
@@ -66,19 +55,6 @@ export class FinishedComponent implements OnInit {
         .then(res => {
           this.vols[i].score = res.score;
         });
-    }
-  }
-
-  getAddress() {
-    for (let i = 0; i < this.vols.length; i++) {
-      if (this.vols[i].vol.lat && this.vols[i].vol.lng) {
-        this.sharedService.getAddress(this.vols[i].vol.lat, this.vols[i].vol.lng)
-          .then(res => {
-            if (res.results[0] != undefined) {
-              this.vols[i].address = res.results[0].formatted_address;
-            }
-          });
-      }
     }
   }
 

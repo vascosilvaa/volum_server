@@ -32,21 +32,35 @@ export class WaitingComponent implements OnInit {
   listPending(id_user) {
     this.volsService.listPending(id_user).then(res => {
       this.pending = res.vols;
-      this.getAddress()
+      this.countConfirmeds();
+      this.countCandidates();
     })
   }
 
-   getAddress() {
+  countConfirmeds() {
     for (let i = 0; i < this.pending.length; i++) {
-      if (this.pending[i].lat && this.pending[i].lng && this.pending[i].lat != null && this.pending[i].lng != null) {
-        this.sharedService.getAddress(this.pending[i].lat, this.pending[i].lng)
-          .then(res => {
-            if (res.results[0] != undefined) {
-            this.pending[i].address = res.results[0].formatted_address;
-            }
-          });
-      }
+      this.volsService.countConfirmeds(this.pending[i].id_vol)
+        .then(res => {
+          let numberConfirmeds = res.count;
+          this.pending[i].numberConfirmeds = numberConfirmeds;
+        })
+        .catch(err => console.log(err));
     }
+  }
+
+  countCandidates() {
+    for (let i = 0; i < this.pending.length; i++) {
+      this.volsService.countCandidates(this.pending[i].id_vol)
+        .then(res => {
+          let numberCandidates = res.count;
+          this.pending[i].numberCandidates = numberCandidates;
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+   openModal(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
   }
 
 

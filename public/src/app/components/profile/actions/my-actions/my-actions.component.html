@@ -5,34 +5,34 @@
                 
                 <div class="ui-block-header">
                     <div class="action-header">
-                        <div class="action-day">{{vol?.date_begin | date:"d"}}</div>
-                        <div class="action-month">{{vol?.date_begin | date:"MMM"}}</div>
+                        <div class="action-day">{{vol?.vol.date_begin | date:"d"}}</div>
+                        <div class="action-month">{{vol?.vol.date_begin | date:"MMM"}}</div>
                     </div>
                     <div>
-                    <h5>{{vol?.name}}</h5>
-                    <p>{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} <span *ngIf="vol?.date_end">a {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span></p>
+                    <h5>{{vol?.vol.name}}</h5>
+                    <p>{{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} <span *ngIf="vol?.date_end">a {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}}</span></p>
                     </div>
                 </div>
 
-                <img src="{{vol?.photos[0]}}">  
+                <img src="{{vol?.vol.photos[0]}}">  
             </div>
 
             <div class="action-item-content">
                 <div class="action-creator">
                     <div class="action-creator-avatar">
-                        <img src="{{user?.photo}}">  
+                        <img src="{{vol?.user.photo_url}}">  
                     </div>
                     <div class="action-creator-text">
-                        <p><span class="action-creator-name">{{user?.name}}</span> criou a <span class="action-creator-color">ação</span></p>
-                        <p class="action-creater-date-creation">Criada em: {{vol?.date_creation | date:"d/M"}} às {{vol?.date_creation | date:"shortTime"}}</p>
+                        <p><span class="action-creator-name underline" (click)="openProfileModal(vol?.user.id_user)">{{vol?.user.name}}</span> criou a <span class="action-creator-color">ação</span></p>
+                        <p class="action-creater-date-creation">Criada em: {{vol?.vol.date_creation | date:"d/M"}} às {{vol?.vol.date_creation | date:"shortTime"}}</p>
                     </div>
                 </div>
                 <div class="action-description">
                   
-                    <p>{{vol?.desc}}</p>
+                    <p>{{vol?.vol.desc}}</p>
                 </div>
                 <div class="action-count">
-                    <div class="action-count-item pointer" (click)="openModal(1, vol.id_vol)">
+                    <div class="action-count-item pointer" (click)="openModal(1, vol.vol.id_vol)">
                         <div class="action-count-item-number c-s">
                             {{vol?.numberCandidates}}
                         </div>
@@ -40,7 +40,7 @@
                             Candidatos
                         </div>
                     </div>
-                    <div class="action-count-item pointer" (click)="openModal(2, vol.id_vol)">
+                    <div class="action-count-item pointer" (click)="openModal(2, vol.vol.id_vol)">
                         <div class="action-count-item-number c-p">
                             {{vol?.numberConfirmeds}}
                         </div>
@@ -51,7 +51,7 @@
                 </div>
                  <div class="action-footer">
                     <a class="btn btn-bevolun-small btn-bevolun-grey mr-2">Cancelar</a>
-                    <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="seeDetails(vol?.id_vol)">Detalhes</a>
+                    <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="seeDetails(vol?.vol.id_vol)">Ver</a>
                 </div>   
             </div>
            

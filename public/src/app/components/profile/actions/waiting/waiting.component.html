@@ -1,48 +1,48 @@
-<div class="row">
-  <div class="col-md-4">
+<div class="row" *ngIf="pending  && pending.length>0">
+  <div *ngFor="let vol of pending; let i=index" class="col-md-4">
         <div class="ui-block">
            <div class="action-header-picture">
                 
                 <div class="ui-block-header">
                     <div class="action-header">
-                        <div class="action-day">19</div>
-                        <div class="action-month">mar</div>
+                        <div class="action-day">{{vol?.date_begin | date:"d"}}</div>
+                        <div class="action-month">{{vol?.date_begin | date:"MMM"}}</div>
                     </div>
                     <div>
-                    <h5>Servisço de Jardinagem</h5>
-                    <p>23 de junho a 24 de junho</p>
+                    <h5>{{vol?.name}}</h5>
+                    <p>{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} <span *ngIf="vol?.date_end">a {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span></p>
                     </div>
                 </div>
 
-                <img src="src/assets/img/cover.jpg">  
+                <img src="{{vol?.photos[0]}}">  
             </div>
 
             <div class="action-item-content">
                 <div class="action-creator">
                     <div class="action-creator-avatar">
-                        <img src="src/assets/img/cover.jpg">  
+                        <img src="{{vol.user_creator.photo_url}}">  
                     </div>
                     <div class="action-creator-text">
-                        <p><span class="action-creator-name">Pedro Araújo</span> criou a <span class="action-creator-color">ação</span></p>
-                        <p class="action-creater-date-creation">Criada em: 25/6 às 14:19</p>
+                        <p><span class="action-creator-name underline" (click)="openProfileModal(vol.user_creator.id_user)">{{vol?.user_creator.name}}</span> criou a <span class="action-creator-color">ação</span></p>
+                        <p class="action-creater-date-creation">Criada em: {{vol?.date_creation | date:"d/M"}} às {{vol?.date_creation | date:"shortTime"}}</p>
                     </div>
                 </div>
                 <div class="action-description">
                   
-                    <p>O defesa-central Pepe, devido a castigo, e o lateral-esquerdo Raphael Guerreiro, por lesão, vão falhar o jogo em Kazan, enquanto Bernardo Silva treinou com limitações na terça-feira e também deverá ficar ausente das opções do selecionador Fernando Santos.</p>
+                    <p>{{vol?.desc}}</p>
                 </div>
                 <div class="action-count">
-                    <div class="action-count-item">
+                    <div class="action-count-item pointer" (click)="openModal(1, vol.id_vol)">
                         <div class="action-count-item-number c-s">
-                            12
+                            {{vol?.numberCandidates}}
                         </div>
                         <div class="action-count-item-title">
                             Candidatos
                         </div>
                     </div>
-                    <div class="action-count-item">
+                    <div class="action-count-item pointer" (click)="openModal(2, vol.id_vol)">
                         <div class="action-count-item-number c-p">
-                            12
+                            {{vol?.numberConfirmeds}}
                         </div>
                         <div class="action-count-item-title">
                             Confirmados
@@ -51,65 +51,14 @@
                 </div>
                  <div class="action-footer">
                     <a class="btn btn-bevolun-small btn-bevolun-grey mr-2">Cancelar</a>
-                    <a class="btn btn-bevolun-small btn-bevolun-primary">Ver</a>
+                    <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="seeDetails(vol.id_vol)">Ver</a>
                 </div>   
             </div>
            
         </div>
     </div>
-  <!--
-  <div *ngIf="pending  && pending.length>0" class="col-12 table">
-    <table class="table">
-      <thead class="thead-inverse" class="cabecalho">
-        <tr>
-          <th>TITULO</th>
-          <th>LOCALIZAÇÃO</th>
-          <th>DATA</th>
-          <th>CRIADO POR</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let vol of pending" class="tableText">
-          <td class="tableBold tableTitle">{{vol?.name}}</td>
-
-          <td class="tablePlace">
-            <div *ngIf="vol.address" class="">{{vol?.address}}</div>
-            <div *ngIf="!vol.address" class="">Sem localização definida</div>
-
-          </td>
-
-          <td class="tableDate">
-            <div class="tableBold"> {{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} - {{vol?.date_end | date:"d"}} de {{vol?.date_end
-              | date:"MMMM"}}</div>
-            <div class="" *ngIf="vol.start_time">{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} às {{vol?.start_time | timePipe }} até {{vol?.date_end
-              | date:"d"}} de {{vol?.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.end_time | timePipe}}</span></div>
-          </td>
-
-          <td class="ellipsis pointer" (click)="openProfileModal(vol?.user_creator.id_user)">
-            <span class="table-user-image"><img src="{{vol?.user_creator.photo_url}}"></span>
-            <span class="tableBold margin-left underline">{{vol?.user_creator.name}} </span>
-          </td>
-
-          <td class="tableBtns">
-            <div class="text-right">
-              <button class="btn btnConfirm" (click)="seeDetails(vol.id_vol)">VER</button>
-            </div>
-            <div class="text-right">
-              <button class="btn btnCancel">CANCELAR</button>
-            </div>
-          </td>
-          <tr>
-
-
-
-
-      </tbody>
-    </table>
-  </div>
-  <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!pending || pending.length==0">
+</div>  
+<div class="container text-center no-content" style="margin-top:20px;" *ngIf="!pending || pending.length==0">
     <div><i class="material-icons">alarm</i></div>
     <span style="font-weight: 400">Não possui ações em espera.</span>
   </div>
--->
-</div>

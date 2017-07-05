@@ -1,125 +1,65 @@
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row" *ngIf="vols  && vols.length>0">
+    <div class="col-md-4" *ngFor="let vol of vols">
         <div class="ui-block">
            <div class="action-header-picture">
                 
                 <div class="ui-block-header">
                     <div class="action-header">
-                        <div class="action-day">19</div>
-                        <div class="action-month">mar</div>
+                        <div class="action-day">{{vol?.vol.date_begin | date:"d"}}</div>
+                        <div class="action-month">{{vol?.vol.date_begin | date:"MMM"}}</div>
                     </div>
                     <div>
-                    <h5>Servisço de Jardinagem</h5>
-                    <p>23 de junho a 24 de junho</p>
+                    <h5>{{vol?.vol.name}}</h5>
+                    <p>{{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} <span *ngIf="vol?.date_end">a {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}}</span></p>
                     </div>
                 </div>
 
-                <img src="src/assets/img/cover.jpg">  
+                <img src="{{vol?.vol.photos[0]}}">  
             </div>
 
             <div class="action-item-content">
                 <div class="action-creator">
-                    <div class="action-creator-avatar">
-                        <img src="src/assets/img/cover.jpg">  
+                    <div class="action-creator-avatar underline">
+                        <img src="{{vol?.user.photo_url}}">  
                     </div>
                     <div class="action-creator-text">
-                        <p><span class="action-creator-name">Pedro Araújo</span> criou a <span class="action-creator-color">ação</span></p>
-                        <p class="action-creater-date-creation">Criada em: 25/6 às 14:19</p>
+                        <p><span class="action-creator-name underline" (click)="openProfileModal(vol.user.id_user)">{{vol?.user.name}}</span> criou a <span class="action-creator-color">ação</span></p>
+                        <p class="action-creater-date-creation">Criada em: {{vol?.vol.date_creation | date:"d/M"}} às {{vol?.vol.date_creation | date:"shortTime"}}</p>
                     </div>
                 </div>
                 <div class="action-description">
                   
-                    <p>O defesa-central Pepe, devido a castigo, e o lateral-esquerdo Raphael Guerreiro, por lesão, vão falhar o jogo em Kazan, enquanto Bernardo Silva treinou com limitações na terça-feira e também deverá ficar ausente das opções do selecionador Fernando Santos.</p>
+                    <p>{{vol?.vol.desc}}</p>
                 </div>
                 <div class="action-count">
                     <div class="action-count-item">
                         <div class="action-count-item-number c-s">
-                            12
+                            {{vol?.score}}
                         </div>
                         <div class="action-count-item-title">
-                            Candidatos
+                            Classificação
                         </div>
                     </div>
-                    <div class="action-count-item">
+                    <div class="action-count-item pointer" (click)="openModal(2, vol.vol.id_vol)">
                         <div class="action-count-item-number c-p">
-                            12
+                            {{vol?.participants}}
                         </div>
                         <div class="action-count-item-title">
-                            Confirmados
+                            Participantes
                         </div>
                     </div>
                 </div>
                  <div class="action-footer">
                     <a class="btn btn-bevolun-small btn-bevolun-grey mr-2">Apagar</a>
-                    <a class="btn btn-bevolun-small btn-bevolun-primary">Ver</a>
+                    <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="seeDetails(vol.vol.id_vol)">Ver</a>
                 </div>   
             </div>
            
         </div>
     </div>
-    <!--
-    <div *ngIf="vols  && vols.length>0" class="col-12 table">
-      <table class="table">
-        <thead class="thead-inverse" class="cabecalho">
-          <tr>
-            <th>TITULO</th>
-            <th *ngIf="user?.type == 1">LOCALIZAÇÃO</th>
-            <th>DATA</th>
-            <th>PARTICIPANTES</th>
-            <th *ngIf="user?.type == 2">CRIADO POR</th>
-            <th>CLASSIFICAÇÃO</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let vol of vols" class="tableText">
-            <td class="ellipsis tableBold tableTitle">{{vol?.vol.name}}</td>
 
-          <td class="tablePlace ellipsis" *ngIf="user?.type == 1">
-              <div class="" *ngIf="user?.type == 1">{{vol?.address}}</div>
-              <div class="" *ngIf="!vol.address">Sem localização definida</div>
-            </td>
-            <td class="tableDate">
-              <div class="tableBold"> {{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} - {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}}</div>
-              <div class="" *ngIf="vol.start_time">{{vol?.vol.date_begin | date:"d"}} de {{vol?.vol.date_begin | date:"MMMM"}} às  {{vol?.vol.start_time | timePipe }} até {{vol?.vol.date_end | date:"d"}} de {{vol?.vol.date_end | date:"MMMM"}} <span *ngIf="vol.end_time">às  {{vol?.vol.end_time | timePipe}}</span></div>
-              
-            </td>
-
-            <td class="tableDate pointer" (click)="openModal(2, vol?.vol.id_vol)">
-              <span class=" numberIn blue">{{vol?.participants}} </span><span class="underline">participante<span *ngIf="vol.participants!=1">s</span></span>
-            </td>
-
-            <td class="ellipsis pointer"  *ngIf="user?.type == 2" (click)="openProfileModal(vol?.user.id_user)">
-              <span class="table-user-image"><img src="{{vol?.user.photo_url}}"></span>
-              <span class="tableBold margin-left underline">{{vol?.user.name}}</span>
-            </td>
-            
-            <td class="ellipsis">
-              <div class="col user-rate">
-                    <md-icon>star_rate</md-icon>
-                     <md-icon>star_rate</md-icon>
-                      <md-icon>star_rate</md-icon>
-                       <md-icon>star_rate</md-icon>
-                    <md-icon >star_border</md-icon>
-                </div>
-            </td>    
-
-            <td class="tableBtns">
-              <div class="text-right">
-                <button class="btn btnConfirm" (click)="seeDetails(vol?.vol.id_vol)">VER</button>
-              </div>
-              <div class="text-right">
-                <button class="btn btnCancel" >OCULTAR</button>
-              </div>
-            </td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  </div>    
    <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!vols || vols.length==0">
        <div ><i class="material-icons">alarm</i></div>
       <span style="font-weight: 400">Não possui ações finalizadas.</span>
       </div>
-      -->
-  </div>

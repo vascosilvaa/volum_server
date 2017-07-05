@@ -204,4 +204,15 @@ export class ProfileService {
             .catch(error => console.log(error));
     }
 
+    getActiveVols(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/all').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getHistoryVols(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/all/history').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

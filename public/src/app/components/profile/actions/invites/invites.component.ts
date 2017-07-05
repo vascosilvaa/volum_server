@@ -22,8 +22,8 @@ export class InvitesComponent implements OnInit {
   public addressData: any;
 
   constructor(public sharedService: SharedService, public volsService: volsService, vcRef: ViewContainerRef, public modal: Modal, overlay: Overlay, private route: ActivatedRoute, private router: Router) {
-    
-   }
+
+  }
 
   ngOnInit() {
     this.listInvites();
@@ -32,29 +32,46 @@ export class InvitesComponent implements OnInit {
   listInvites() {
     this.volsService.listInvites().then(res => {
       this.vols = res.notifications;
-      this.getAddress();
+      this.countConfirmeds();
+      this.countCandidates();
     })
   }
 
-  getAddress() {
-    for (let i = 0; i < this.vols.length; i++) {
-      if (this.vols[i].lat && this.vols[i].lng && this.vols[i].lat != null && this.vols[i].lng != null) {
-        this.sharedService.getAddress(this.vols[i].lat, this.vols[i].lng)
-          .then(res => {
-            this.addressData = res.results;
-            this.vols[i].address = this.addressData[0].formatted_address;
-          });
-      }
-    }
-  }
-
- seeDetails(idVol) {
+  seeDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
   }
 
-   openProfileModal(idProfile) {
-    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1}, BSModalContext));
+  openProfileModal(idProfile) {
+    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1 }, BSModalContext));
   }
+
+  countConfirmeds() {
+    for (let i = 0; i < this.vols.length; i++) {
+      this.volsService.countConfirmeds(this.vols[i].vol.id_vol)
+        .then(res => {
+          let numberConfirmeds = res.count;
+          this.vols[i].numberConfirmeds = numberConfirmeds;
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  countCandidates() {
+    for (let i = 0; i < this.vols.length; i++) {
+      this.volsService.countCandidates(this.vols[i].vol.id_vol)
+        .then(res => {
+          let numberCandidates = res.count;
+          this.vols[i].numberCandidates = numberCandidates;
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  openModal(type, id_vol) {
+    return this.modal.open(ModalViewAllComponent, overlayConfigFactory({ type: type, id_vol: id_vol }, BSModalContext));
+  }
+
+
 }
 
 
