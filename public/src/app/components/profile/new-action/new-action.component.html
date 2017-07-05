@@ -85,7 +85,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="label-input">Localização</label>
-                                    <input type="text" class="form-control input-form" #input [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado" required>
+                                    <input [class.form-control-danger]="coordAdvice" type="text" class="form-control input-form" #input [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado" required>
                                     <small *ngIf="coordAdvice"  class="form-text text-muted">Por favor, indique uma localização válida.</small>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <label class="label-input">Data de fim</label>
                                     <input class="form-control input-form-date" ngbDatepicker type="date" formControlName="date_end" placeholder="aaaa-mm-dd" [class.form-control-danger]="!form.controls.date_end.valid && form.controls.date_end.touched">
-                                    <small class="form-text text-muted" *ngIf="form.controls.date_end.errors?.pattern && form.controls.date_end.touched">Por favor insira uma data válida.</small>
+                                    <small class="form-text text-muted" *ngIf="form.controls.date_end.errors?.required && form.controls.date_end.touched">Por favor insira uma data válida.</small>
                                 </div>
                             </div>
 
@@ -160,7 +160,7 @@
                                 <a class="btn-settings btn-settings-cancel" routerLink="/profile/{{idProfile}}/actions/my-actions">Cancelar</a>
                             </div>
                             <div class="col-6 mb-2 mt-5">
-                                <button type="submit" class="btn-settings btn-settings-save" [disabled]="submitted">Guardar</button>
+                                <button type="submit" class="btn-settings btn-settings-save" [disabled]="!form.valid"  [class.disabledBtn]="!form.valid">Guardar</button>
                             </div>
                         </div>
                     </form>

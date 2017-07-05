@@ -39,6 +39,7 @@ export class NewActionComponent implements OnInit {
   public errorFiles: any;
   public model: any;
   public submitted: boolean = false;
+    public readyTo: boolean = false;
   public photos = [];
   public insuranceControl: any;
   public categoryControl: any;
@@ -63,14 +64,17 @@ export class NewActionComponent implements OnInit {
       category: ['-1', [Validators.required]],
       insurance: ['-1', [Validators.required]],
       date_begin: ['', [Validators.required]],
-      date_end: ['',],
-      start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-      end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
+      date_end: ['', [Validators.required]],
+      start_time: ['',],
+      end_time: ['', ],
       duration: ['',],
       photos: []
     });
+
+  
     
   }
+
 
   insuranceChanged() {
     if(this.form.controls.insurance.value==1 || this.form.controls.insurance.value==0 ) {
@@ -190,45 +194,6 @@ export class NewActionComponent implements OnInit {
     })
   }
 
-  /*change(id) {
-    if (id==1 && this.name=="Insira aqui o título da ação de voluntariado") { // name
-      this.name="";
-    } else if (id==2 && this.desc=="Descrição das funções do voluntário") {// descrição 
-       this.desc="";
-    }
-    else if (id==3 &&  this.localization == "Insira a localização do voluntariado") {// localização 
-       this.localization="";
-    }
-    else if (id==4 && this.start_time== "Hora inicial da ação de voluntariado") {// start time 
-       this.start_time="";
-    }
-    else if (id==5 && this.end_time=="Hora final da ação de voluntariado") {// end time 
-       this.end_time="";
-    }
-    else if (id==6 && this.duration == "Duração diária da ação de voluntariado") {// duração 
-       this.duration="";
-    }
-  }
-   changeOut(id) {
-    if (id==1 && this.name == "") { // name
-      this.name="Insira aqui o título da ação de voluntariado";
-    } else if (id==2 && this.desc =="") {// descrição 
-      this.desc="Descrição das funções do voluntário";
-    }
-    else if (id==3 && this.localization == "") {// localização 
-      this.localization = "Insira a localização do voluntariado";
-    }
-    else if (id==4 && this.start_time == "") {// start time 
-      this.start_time="Hora inicial da ação de voluntariado ";
-    }
-    else if (id==5 && this.end_time == "") {// end time 
-      this.end_time="Hora final da ação de voluntariado";
-    }
-    else if (id==6 && this.duration == "") {// duração 
-      this.duration = "Duração diária da ação de voluntariado";
-    }
-  }
-*/
   showSchedule() {
     this.schedule = 1;
   }
@@ -258,7 +223,7 @@ export class NewActionComponent implements OnInit {
 
     if (this.coord && this.form.valid && this.submitted == false) {
       this.submitted = true;
-
+      console.log(this.form)
       form.value.lat = this.lat;
       form.value.lng = this.lng;
       let array = []
