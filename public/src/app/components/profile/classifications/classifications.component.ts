@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef} from '@angular/core';
+import { Overlay } from 'angular2-modal';
 
 @Component({
   selector: 'app-classifications',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassificationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public overlay: Overlay, vcRef: ViewContainerRef) {
+    overlay.defaultViewContainer = vcRef;
+  }
 
   ngOnInit() {
   }

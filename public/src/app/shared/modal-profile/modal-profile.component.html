@@ -2,7 +2,7 @@
     <div class="col-12 no-padding">
           <div class="card cardFriends text-center">
             <div class="friendsBackground">
-                <img class="coverImg" src='{{user?.photo}}'>
+                <img class="coverImg" src='{{user?.cover_photo}}'>
             </div>
             <div class="profile-user-picture text-center">
                 <img src="{{user?.photo}}" alt="profile user picture" />
@@ -17,8 +17,14 @@
             <div class="friendsName">
               {{user?.name}}
             </div>
-            <div class="friendsPlace">
-              Sever do Vouga, Aveiro
+            <div class="friendsPlace" *ngIf="user?.country && user?.region">
+              {{user?.country}}, {{user?.region}}
+            </div>
+            <div class="friendsPlace" *ngIf="user?.country && !user?.region">
+              {{user?.country}}
+            </div>
+            <div class="friendsPlace" *ngIf="!user?.country && user?.region">
+              {{user?.region}}
             </div>
           </div>
     </div>
@@ -30,9 +36,9 @@
       <div class="friendsCardNumber">Data de Nascimento</div>
       <div class="friendsCardNumberDesc">{{user?.birth_date | date:"d" }} de {{user?.birth_date | date:"MMMM" }} de {{user?.birth_date | date:"y" }}</div>
     </div>
-    <div class="col-md-8 offset-md-2 row-details">
+    <div class="col-md-8 offset-md-2 row-details" *ngIf="user?.about">
       <div class="friendsCardNumber">Descrição</div>
-      <div class="friendsCardNumberDesc">Sou um rapaz natural de Aveiro e sempre procurei ajudar aqueles que necessitam. Gosto muito de voluntariado.</div>
+      <div class="friendsCardNumberDesc">{{user?.about}}</div>
     </div>
 
     <div class="col-6 text-right no-padding btn-modal" style="padding-right:5px;">
