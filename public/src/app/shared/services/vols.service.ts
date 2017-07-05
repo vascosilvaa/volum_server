@@ -176,7 +176,7 @@ export class volsService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-    
+
     getCategories() {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/list/categories`).toPromise()
             .then(res => { return res.json() })
@@ -200,7 +200,7 @@ export class volsService {
     }
 
     listFinished(id_user, type) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/`+id_user+`/my-vols/history`, { user_type: type }).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + `/my-vols/history`, { user_type: type }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -212,7 +212,7 @@ export class volsService {
     }
 
     getVolScore(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/`+id+`/score`).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/score`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
