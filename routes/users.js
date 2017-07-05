@@ -1029,6 +1029,47 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get('/:id/following/users', function (req, res) {
+        if (isNaN(parseInt(req.params.id))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+            console.log("user", req.body)
+
+            let users = [];
+
+            db.get().query({
+                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user2 = ? AND users.type_user = 2',
+                nestTables: true
+            }, [req.params.id],
+                function (error, results, fields) {
+                    if (results) {
+
+                        for (let i = 0; i < results.length; i++) {
+                            users.push({
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            })
+                        }
+                        res.json({
+                            success: true,
+                            users
+                        });
+
+                    } else {
+                        res.json({
+                            success: true,
+                            users
+                        });
+                    }
+
+                });
+        }
+    });
+
     app.get('/:id/follows/inst', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
             res.status(400).send({
