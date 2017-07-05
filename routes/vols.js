@@ -165,10 +165,10 @@ var returnRouter = function (io) {
             };
 
             if (req.query['type'] == 'inst') {
-                options.sql += `AND vols.id_vol_type = 2`
+                options.sql += ` AND vols.id_vol_type = 2 `
             }
             if (req.query['type'] == 'private') {
-                options.sql += `AND vols.id_vol_type = 1`
+                options.sql += ` AND vols.id_vol_type = 1   `
             }
             if (req.query.category) {
                 options.sql += ` AND vols_has_categories.id_category = ${req.query.category}`
