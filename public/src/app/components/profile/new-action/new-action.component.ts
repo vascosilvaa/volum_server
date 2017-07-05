@@ -40,20 +40,22 @@ export class NewActionComponent implements OnInit {
   public model: any;
   public submitted: boolean = false;
   public photos = [];
+  public insuranceControl: any;
+  public categoryControl: any;
 
   @ViewChild("input") input;
 
   constructor(public Router: Router, public sharedService: SharedService, public router: ActivatedRoute, public parser: NgbDateParserFormatter, private _fb: FormBuilder, private auth: AuthenticationService, public profileService: ProfileService) { }
 
   ngOnInit() {
-    
+    this.insuranceControl=2;
+    this.categoryControl=2;
     this.router.params.subscribe((params) => {
       this.idProfile = this.router.parent.parent.snapshot.params['id'];
 
     });
     this.profileService.getCategories().then(res => {
       this.categories = res.categories;
-      console.log(this.categories);
     });
     this.form = this._fb.group({
       name: ['', [Validators.required]],
@@ -67,9 +69,29 @@ export class NewActionComponent implements OnInit {
       duration: ['',],
       photos: []
     });
+    
   }
 
+  insuranceChanged() {
+    if(this.form.controls.insurance.value==1 || this.form.controls.insurance.value==0 ) {
+      this.insuranceControl=1;
+      this.form.controls.insurance.markAsTouched();
+    } else {
+      this.insuranceControl=2;
+      this.form.controls.insurance.markAsTouched();
+    }
+  }
+    
 
+  categoryChanged() {
+    if(this.form.controls.category.value == '-1' ) {
+      this.categoryControl=2;
+      this.form.controls.category.markAsTouched();
+    } else {
+      this.categoryControl=1;
+      this.form.controls.category.markAsTouched();
+    }
+  }
   navigate(lat, lng) {
     this.lat = lat;
     this.lng = lng;
@@ -226,7 +248,7 @@ export class NewActionComponent implements OnInit {
     this.form.controls.name.markAsTouched();
     this.form.controls.description.markAsTouched();
     this.form.controls.category.markAsTouched();
-    this.form.controls.insurance.markAsTouched()
+    this.form.controls.insurance.markAsTouched();
     this.form.controls.date_begin.markAsTouched();
     this.form.controls.date_end.markAsTouched();
     this.form.controls.start_time.markAsTouched();

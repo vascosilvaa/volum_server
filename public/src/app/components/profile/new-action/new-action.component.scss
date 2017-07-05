@@ -41,6 +41,10 @@
     border-color: $red!important;
 }
 
+/deep/ .dropdown-menu {
+    width: calc(100% - 30px)!important;
+}
+
 
 /*
 .inputProfile2 {

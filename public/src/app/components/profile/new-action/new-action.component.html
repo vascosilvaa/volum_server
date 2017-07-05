@@ -39,23 +39,23 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label class="label-input">Categoria</label>
-                                    <select class="select-input form-control" formControlName="category" [class.form-control-danger]="!form.controls.category.valid && form.controls.category.touched">
-                                        <option value="-1">Escolher categoria</option>
+                                    <select (focusout)="categoryChanged()" class="select-input form-control" formControlName="category" [class.form-control-danger]="form.controls.category.touched && categoryControl==2">
+                                        <option value="-1" disabled>Escolher categoria</option>
                                         <option *ngFor="let category of categories" [value]='category?.id_category'>{{category?.name}}</option>>
                                     </select>
-                                    <small class="form-text text-muted" *ngIf="form.controls.category.errors?.required && form.controls.category.touched">Por favor insira a categoria da ação.</small>
+                                    <small class="form-text text-muted" *ngIf="form.controls.category.touched && categoryControl==2">Por favor insira a categoria da ação.</small>
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label class="label-input">Seguro</label>
-                                    <select class="select-input form-control" formControlName="insurance" [class.error-label]="!form.controls.insurance.valid && form.controls.insurance.touched">
-                                        <option value="-1">Seguro</option>
+                                    <select (focusout)="insuranceChanged()" class="select-input form-control" formControlName="insurance" [class.form-control-danger]="form.controls.insurance.touched && insuranceControl==2">
+                                        <option value="-1" disabled>Seguro</option>
                                         <option value="1">Sim</option>
                                         <option value="0">Não</option>
                                     </select>
-                                    <small class="form-text text-muted" *ngIf="form.controls.insurance.errors?.required && form.controls.insurance.touched">Por favor defina se a ação possui seguro de participação.</small>
+                                    <small class="form-text text-muted" *ngIf="form.controls.insurance.touched && insuranceControl==2">Por favor defina se a ação possui seguro de participação.</small>
                                 </div>
                             </div>
 
