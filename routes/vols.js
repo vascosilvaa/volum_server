@@ -44,11 +44,17 @@ var returnRouter = function (io) {
                     db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
                         function (error, results, fields) {
 
-                            let index = loggedUsers.findIndex(x => x.user == id_creator);
-                            if (index !== -1) {
-                                io.to(loggedUsers[index].socket).emit('notification');
-                                console.log("EMITIU")
-                            }
+                            db.get().query('SELECT photo_url, name from users WHERE id_user = ?', [id_creator],
+                                function (error, user, fields) {
+
+
+                                    let index = loggedUsers.findIndex(x => x.user == id_creator);
+                                    if (index !== -1) {
+                                        io.to(loggedUsers[index].socket).emit('notification', { name: user[0].name, type: type, photo: user[0].photo_url });
+                                        console.log("EMITIU")
+                                    }
+
+                                });
 
 
 
