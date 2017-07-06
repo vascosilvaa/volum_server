@@ -3,6 +3,7 @@ import { EditModalComponent } from './../../shared/edit-modal/edit-modal.compone
 import { ProfileService } from './../../shared/services/profile.service';
 import { MomentModule } from 'angular2-moment';
 import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
+import { ModalInviteComponent } from './../../shared/modal-invite/modal-invite.component';
 import { ModalEndComponent } from './../../shared/modal-end/modal-end.component';
 import { ModalViewAllComponent } from './../../shared/modal-view-all/modal-view-all.component';
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
@@ -33,6 +34,7 @@ import { PeopleComponent } from './following/people/people.component';
 import { NewActionComponent } from './new-action/new-action.component';
 import { ClassificationsComponent } from './classifications/classifications.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -55,7 +57,7 @@ import { ClassificationsComponent } from './classifications/classifications.comp
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }
   ],
-  entryComponents: [ModalViewAllComponent, EditModalComponent, ModalEndComponent, VolDetailsModalComponent]
+  entryComponents: [ModalViewAllComponent, EditModalComponent, ModalEndComponent, VolDetailsModalComponent, ModalInviteComponent]
 })
 
 export class ProfileModule { }

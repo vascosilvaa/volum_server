@@ -56,7 +56,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
       apiKey: 'AIzaSyD6Vu6fjAgMtSRFFeMPLfhPxwx16EhqN0Y'
     }),
   ],
-  exports: [timePipe, CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent],
+  exports: [timePipe, CardComponent, VolDetailsModalComponent, FooterComponent, ModalViewAllComponent, ModalEndComponent, ModalProfileComponent, ModalInviteComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" }, SharedService, FeedComponent, ProfileService
   ],
