@@ -152,7 +152,6 @@ export class AppComponent implements OnInit {
       this.conversations = res.conversations;
       console.log("Conversations", this.conversations);
       this.getUsersAndLastMessage();
-
     });
   }
 

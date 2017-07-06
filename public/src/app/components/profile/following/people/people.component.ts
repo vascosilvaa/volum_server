@@ -41,13 +41,9 @@ export class PeopleComponent implements OnInit {
         this.profileService.countVolsParticipation(this.users[i].id_user).then(res => {
           this.users[i].numberVolsParticipated = res.rows[0].count;
         });
-        this.profileService.countFollows(this.users[i].id_user, 1).then(res => {
+        this.profileService.countFollowers(this.users[i].id_user).then(res => {
          let userCount = parseInt(res.count);
-
-          this.profileService.countFollows(this.users[i].id_user, 2).then(res => {
-            let instCount = parseInt(res.count);
-            this.users[i].numberFollowers = userCount + instCount;
-          });
+        this.users[i].numberFollowers = userCount;
         });
         
         

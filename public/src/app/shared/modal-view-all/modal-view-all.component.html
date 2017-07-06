@@ -13,10 +13,6 @@
                 <img src="{{candidate?.photo_url}}">
                 <span class="truncate candidateName">{{candidate?.name}}</span>
               </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnCancel">RECUSAR</button>
-                <button type="button" class="btn btnConfirm">ACEITAR</button>
-              </div>
             </div>
           </li>
           <div *ngIf="!candidates || candidates.length== 0" class="no-content text-center" style="padding:10px">
@@ -44,9 +40,6 @@
               <div class="card-user-image pointer" (click)="onSelect(confirmed?.id_user)" style="max-width:340px">
                 <img src="{{confirmed?.photo_url}}">
                 <span class="truncate candidateName">{{confirmed?.name}}</span>
-              </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnRemove">REMOVER</button>
               </div>
             </div>
           </li>
@@ -76,31 +69,11 @@
                 <img src="../assets/imgs/avatar04.png">
                 <span class="candidateName">Pedro Araújo</span>
               </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnCancel">CANCELAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin user-desc">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnCancel">CANCELAR</button>
-              </div>
-            </div>
-          </li>
-          <li class="listPerson no-border no-margin">
-            <div class="row no-margin user-desc">
-              <div class="card-user-image">
-                <img src="../assets/imgs/avatar04.png">
-                <span class="candidateName">Pedro Araújo</span>
-              </div>
-              <div class="col text-right no-padding">
-                <button type="button" class="btn btnCancel">CANCELAR</button>
-              </div>
+              <!--
+                <div class="col text-right no-padding">
+                  <button type="button" class="btn btnCancel">CANCELAR</button>
+                </div>
+              -->
             </div>
           </li>
         </ul>

@@ -2,10 +2,11 @@
 
 .recent-msgs {
     background: $white;
-    height:calc( 100vh - 105px );
+    height:calc(100vh - 72px);
     padding:0;
     overflow-y:auto;
     border-right:1px solid $grey1;
+    margin-top:17px;
    
 }
 

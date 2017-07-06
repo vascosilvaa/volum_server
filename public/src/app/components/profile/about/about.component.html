@@ -179,40 +179,22 @@
         </div>
       </div>
 
-      <div class="ui-block">
+      <div class="ui-block"> 
         <div class="ui-block-title">
           <h6>Educação e Formação</h6>
         </div>
-        <div class="ui-block-content">
+        <div class="ui-block-content container-fluid">
           <div class="row">
-            <div class="col-6">
+            <div class="col-6" *ngFor="let educ of education">
               <ul>
                 <li>
-                  <span class="title">Licenciatura em Psicologia</span>
-                  <span class="text">Universidade de Aveiro</span>
-                  <span class="text text-small">2010-2013</span>
-                </li>
-                <li>
-                  <span class="title">Mestrado em Apoio Auxiliar</span>
-                  <span class="text">Faculdade de Letras da Universidade do Porto</span>
-                  <span class="text text-small">2014-2016</span>
+                  <span class="title">{{educ?.name}}</span>
+                  <span class="text">{{educ?.institution}}</span>
+                  <span class="text text-small">{{educ?.start_at}}<span *ngIf="educ?.end_at">-{{educ?.end_at}}</span></span>
                 </li>
               </ul>
             </div>
-            <div class="col-6">
-              <ul>
-                <li>
-                  <span class="title">Formação em Voluntariado</span>
-                  <span class="text">Banco Alimentar</span>
-                  <span class="text text-small">2010-2013</span>
-                </li>
-                <li>
-                  <span class="title">Curso Secundário de Jardinagem</span>
-                  <span class="text">Escola Secundária de Oliveira de Azemeis</span>
-                  <span class="text text-small">2009-2012</span>
-                </li>
-              </ul>
-            </div>
+        
           </div>
         </div>
       </div>

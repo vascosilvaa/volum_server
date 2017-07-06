@@ -3,7 +3,8 @@
 
 .chat-content{
     overflow-y: scroll;
-    height:calc(100vh - 155px);
+    height:calc(100vh - 122px);
+    margin-top: 17px;
 }
 .header-msg {
     background: $white;
@@ -17,7 +18,7 @@
 
 .area-insert {
     position:absolute;
-    top:calc( 100vh - 100px );
+    top:calc(100vh - 50px);
     height: 50px;
     background: $white;
     border:1px solid $grey1;
@@ -107,10 +108,11 @@
 
 .area-profile {
     border-left: 1px solid $grey1;
-    height:calc( 100vh - 105px );
+    height:calc(100vh - 72px);
     width: 100%;
     background: $white;
     display: flex;
+    margin-top:17px;
     overflow: auto;
 }
 

@@ -89,20 +89,20 @@
                   </div>
                 </div>
 
-                <div class="justify-content-center table-flex">
-                  <div class="bold">
-                    Profissão:
-                  </div>
-                  <div class="">
-                    Estudante
-                  </div>
-                </div>
-                <div class="justify-content-center table-flex">
+               <div class="justify-content-center table-flex" *ngIf="prof.numberVolsParticipated>0">
                   <div class="bold">
                     Já participou em:
                   </div>
                   <div class="">
-                    7 ações de voluntariado
+                    {{prof?.numberVolsParticipated}} ações de voluntariado
+                  </div>
+                </div>
+                <div class="justify-content-center table-flex" *ngIf="prof.numberVolsParticipated==0 || prof.numberVolsParticipated == null || !prof.numberVolsParticipated ">
+                  <div class="bold">
+                    Ainda não participou em 
+                  </div>
+                  <div class="">
+                    ações de voluntariado
                   </div>
                 </div>
                 <div class="justify-content-center table-flex">
@@ -110,39 +110,39 @@
                     Classificação média:
                   </div>
                   <div class="">
-                    4
+                    {{prof?.score}}
                   </div>
                 </div>
-                <div class="justify-content-center table-flex" style="margin-top: 40px;">
+                <div class="justify-content-center table-flex" style="margin-top: 40px;" *ngIf="prof?.facebook_id">
                   <div class="bold">
                     Facebook:
                   </div>
                   <div class="">
-                    https://www.facebook.com/vascorafaelsilva
+                    {{prof?.facebook_id}}
                   </div>
                 </div>
-                <div class="justify-content-center table-flex">
+                <div class="justify-content-center table-flex" *ngIf="prof?.linkedin_id">
                   <div class="bold">
                     Linkedin:
                   </div>
                   <div class="">
-                    https://www.facebook.com/vascorafaelsilva
+                    {{prof?.linkedin_id}}
                   </div>
                 </div>
-                <div class="justify-content-center table-flex">
+                <div class="justify-content-center table-flex" *ngIf="prof?.instagram_id">
                   <div class="bold">
                     Instagram:
                   </div>
                   <div class="">
-                    https://www.facebook.com/vascorafaelsilva
+                    {{prof?.instagram_id}}
                   </div>
                 </div>
-                <div class="justify-content-center table-flex">
+                <div class="justify-content-center table-flex" *ngIf="prof?.twitter_id">
                   <div class="bold">
                     Twitter:
                   </div>
                   <div class="">
-                    https://www.facebook.com/vascorafaelsilva
+                    {{prof?.twitter_id}}
                   </div>
                 </div>
 

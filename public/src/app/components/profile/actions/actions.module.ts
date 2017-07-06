@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from '../profile.component';
 import { FinishedComponent } from './finished/finished.component';
+import { MineComponent } from './mine/mine.component';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { FinishedComponent } from './finished/finished.component';
     NgbModule.forRoot(),
     ActionsRoutingModule,
   ],
-  declarations: [ActionsComponent, MyActionsComponent, InvitesComponent, WaitingComponent, FinishedComponent],
+  declarations: [ActionsComponent, MyActionsComponent, InvitesComponent, WaitingComponent, FinishedComponent, MineComponent],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-PT" },
   ],
