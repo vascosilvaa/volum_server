@@ -1,4 +1,5 @@
 import { ChatService } from './../../../shared/services/chat.service';
+import { ProfileService } from './../../../shared/services/profile.service';
 import { SocketService } from './../../../shared/socket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
@@ -20,7 +21,7 @@ export class ChatMessageComponent implements OnInit {
   public message: string;
   public conversationName: string;
   public profile: any;
-  constructor(public router: Router ,public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
+  constructor(public profileService: ProfileService, public router: Router, public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -69,6 +70,14 @@ export class ChatMessageComponent implements OnInit {
     this.chatService.getProfile(id_conversation).then(res => {
       this.profile = res.result;
       console.log(this.profile);
+      for (let i = 0; i < this.profile.length; i++) {
+        this.profileService.countVolsParticipation(this.profile[i].id_user).then(res => {
+          this.profile[i].numberVolsParticipated = res.rows[0].count;
+        });
+        this.profileService.getScore(this.profile[i].id_user).then(result => {
+          this.profile[i].score = parseFloat(result.score).toFixed(1);
+        });
+      }
     });
   }
 

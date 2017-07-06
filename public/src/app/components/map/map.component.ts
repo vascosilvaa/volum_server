@@ -4,8 +4,9 @@ import { ProfileService } from './../../shared/services/profile.service';
 import { volsService } from './../../shared/services/vols.service';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
 
 
 
@@ -29,7 +30,9 @@ export class MapComponent implements OnInit {
     public coord: any;
   public coordAdvice: any;
 
-  constructor( private _fb: FormBuilder, public http: Http, private volsService: volsService, public profileService: ProfileService, private map: GoogleMapsAPIWrapper, private _loader: MapsAPILoader) { }
+  constructor(overlay: Overlay, vcRef: ViewContainerRef, private _fb: FormBuilder, public http: Http, private volsService: volsService, public profileService: ProfileService, private map: GoogleMapsAPIWrapper, private _loader: MapsAPILoader) {
+        overlay.defaultViewContainer = vcRef;
+   }
   location = {};
   setPosition(position) {
     this.location = position.coords;
@@ -106,11 +109,6 @@ export class MapComponent implements OnInit {
       nwlng: event.getNorthEast().lng()
 
     }
-
-
-
-
-
   }
 
   private convertStringToNumber(value: string): number {

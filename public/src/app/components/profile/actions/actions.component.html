@@ -5,6 +5,7 @@
                 <div class="action-menu">
                     <ul>
                         <li><a routerLink="my-actions" [routerLinkActive]="['active-action-menu']">Ações ativas</a></li>
+                        <li><a routerLink="mine" [routerLinkActive]="['active-action-menu']">Minhas ações</a></li>
                         <li *ngIf="user?.type==2"><a routerLink="invites" [routerLinkActive]="['active-action-menu']">Convites</a><!--<span class="badge badge-pill badge-primary">2</span>--></li>
                         <li *ngIf="user?.type==2"><a routerLink="waiting" [routerLinkActive]="['active-action-menu']">Em espera</a></li>
                         <li><a routerLink="finished" [routerLinkActive]="['active-action-menu']">Finalizadas</a></li>

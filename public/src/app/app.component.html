@@ -82,8 +82,8 @@
                         </div>
                         -->
                     </div>
-                    <div class="message-item text-center no-content" *ngIf="requests.length == 0">
-                        Sem Novidades
+                    <div class="container text-center no-content" style="margin-top:10px; margin-bottom:10px;" *ngIf="requests.length==0">
+                        <span style="font-weight: 400">Não possui pedidos.</span>
                     </div>
                 </ng-container>
 
@@ -135,7 +135,9 @@
 
                         </div>
                     </div>
-
+                    <div class="container text-center no-content" style="margin-top:10px; margin-bottom:10px;" *ngIf="conversations.length==0">
+                        <span style="font-weight: 400">Não possui mensagens.</span>
+                    </div>
                 </ng-container>
 
 

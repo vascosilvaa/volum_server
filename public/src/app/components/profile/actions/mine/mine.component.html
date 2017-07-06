@@ -1,0 +1,66 @@
+<div class="row" *ngIf="vols  && vols.length>0">
+    <div *ngFor="let vol of vols; let i=index" class="col-md-4">
+        <div class="ui-block">
+           <div class="action-header-picture">
+                
+                <div class="ui-block-header">
+                    <div class="action-header">
+                        <div class="action-day">{{vol.date_begin | date:"d"}}</div>
+                        <div class="action-month">{{vol?.date_begin | date:"MMM"}}</div>
+                    </div>
+                    <div>
+                    <h5>{{vol?.name}}</h5>
+                    <p>{{vol?.date_begin | date:"d"}} de {{vol?.date_begin | date:"MMMM"}} <span *ngIf="vol?.date_end">a {{vol?.date_end | date:"d"}} de {{vol?.date_end | date:"MMMM"}}</span></p>
+                    </div>
+                </div>
+
+                <img src="{{vol?.photos[0]}}">  
+            </div>
+
+            <div class="action-item-content">
+                <div class="action-creator">
+                    <div class="action-creator-avatar">
+                        <img src="{{user?.photo}}">  
+                    </div>
+                    <div class="action-creator-text">
+                        <p><span class="action-creator-name underline" (click)="openProfileModal(user?.id_user)">{{user?.name}}</span> criou a <span class="action-creator-color">ação</span></p>
+                        <p class="action-creater-date-creation">Criado em:  {{vol?.date_creation | date:"d/M"}} às {{vol?.date_creation | date:"shortTime"}}</p>
+                    </div>
+                </div>
+                <div class="action-description">
+                  
+                    <p>{{vol?.description}}</p>
+                </div>
+                <div class="action-count">
+                    <div class="action-count-item pointer" (click)="openModal(1, vol.id_vol)">
+                        <div class="action-count-item-number c-s">
+                            {{vol?.numberCandidates}}
+                        </div>
+                        <div class="action-count-item-title">
+                            Candidatos
+                        </div>
+                    </div>
+                    <div class="action-count-item pointer" (click)="openModal(2, vol.id_vol)">
+                        <div class="action-count-item-number c-p">
+                            {{vol?.numberConfirmeds}}
+                        </div>
+                        <div class="action-count-item-title">
+                            Confirmados
+                        </div>
+                    </div>
+                </div>
+                 <div class="action-footer">
+                    <a class="btn btn-bevolun-small btn-bevolun-grey mr-2">Eliminar</a>
+                    <a class="btn btn-bevolun-small btn-bevolun-primary" (click)="seeDetails(vol.id_vol)">Ver</a>
+                </div>   
+            </div>
+           
+        </div>
+    </div>
+
+  </div>
+
+   <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!vols || vols.length==0">
+       <div ><i class="material-icons">alarm</i></div>
+      <span style="font-weight: 400">Nunca criou ações de voluntariado.</span>
+      </div>

@@ -44,11 +44,17 @@ var returnRouter = function (io) {
                     db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
                         function (error, results, fields) {
 
-                            let index = loggedUsers.findIndex(x => x.user == id_creator);
-                            if (index !== -1) {
-                                io.to(loggedUsers[index].socket).emit('notification');
-                                console.log("EMITIU")
-                            }
+                            db.get().query('SELECT photo_url, name from users WHERE id_user = ?', [id_user],
+                                function (error, user, fields) {
+
+
+                                    let index = loggedUsers.findIndex(x => x.user == id_creator);
+                                    if (index !== -1) {
+                                        io.to(loggedUsers[index].socket).emit('notification', { name: user[0].name, type: type, photo: user[0].photo_url });
+                                        console.log("EMITIU")
+                                    }
+
+                                });
 
 
 
@@ -159,10 +165,10 @@ var returnRouter = function (io) {
             };
 
             if (req.query['type'] == 'inst') {
-                options.sql += `AND vols.id_vol_type = 2`
+                options.sql += ` AND vols.id_vol_type = 2 `
             }
             if (req.query['type'] == 'private') {
-                options.sql += `AND vols.id_vol_type = 1`
+                options.sql += ` AND vols.id_vol_type = 1   `
             }
             if (req.query.category) {
                 options.sql += ` AND vols_has_categories.id_category = ${req.query.category}`

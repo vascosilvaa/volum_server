@@ -359,99 +359,6 @@ var returnRouter = function (io) {
 
 
     app.get('/:id/vols/all', passport.authenticate('jwt'), function (req, res) {
-        req.checkParams('id', 'Type tem que ser um numero').notEmpty().isInt();
-
-        req.getValidationResult().then(function (result) {
-            if (!result.isEmpty()) {
-                console.log(result.array())
-                res.status(400).send(result.mapped());
-                return;
-            } else {
-
-                let options;
-
-                options = {
-                      sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
-                        FROM vols 
-                       INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol
-                       INNER JOIN photos ON vols.id_vol = photos.id_vol 
-                       INNER JOIN users ON vols.id_user_creator = users.id_user
-                       WHERE (user_vol.id_user = ? 
-                       AND vols.deleted = 0)
-                       AND (user_vol.confirm = 1 OR user_vol.confirm IS NULL)
-                       AND vols.active = 1
-                       GROUP BY vols.id_vol
-                       ORDER BY vols.date_creation DESC`,
-                    nestTables: true
-                }
-
-
-
-                db.get().query(
-                    options, [req.params.id], function (err, results, fields) {
-                        if (err) {
-                            console.log(err)
-                            res.send({
-                                success: false,
-                                err
-                            });
-                        } else {
-                            if (results.length > 0) {
-                                let vols = [];
-                                for (let i = 0; i < results.length; i++) {
-
-                                    vols.push({
-                                        vol: {
-                                            id_vol: results[i].vols.id_vol,
-                                            name: results[i].vols.name,
-                                            date_begin: results[i].vols.date_begin,
-                                            description: results[i].vols.description,
-                                            date_creation: results[i].vols.date_creation,
-                                            date_end: results[i].vols.date_end,
-                                            lat: results[i].vols.lat,
-                                            lng: results[i].vols.lng,
-                                            start_time: results[i].vols.start_time,
-                                            end_time: results[i].vols.end_time,
-                                           active: results[i].vols.active,
-
-                                            photos: (results[i][''].photos).split('->')
-                                        },
-                                        user: {
-                                            id_user: results[i].users.id_user,
-                                            name: results[i].users.name,
-                                            photo_url: results[i].users.photo_url,
-                                        }
-                                    });
-
-
-                                  
-
-                                }
-
-                                  res.send({
-                                        success: true,
-                                        vols
-                                    });
-                            } else {
-                                res.send({
-                                    success: true,
-                                    vols: []
-                                });
-                            }
-                        }
-
-
-
-                    });
-            }
-        });
-    });
-
-
-
-
-
- app.get('/:id/vols/all/history', passport.authenticate('jwt'), function (req, res) {
         req.checkParams('id', 'ID tem que ser um numero').notEmpty().isInt();
 
         req.getValidationResult().then(function (result) {
@@ -463,25 +370,23 @@ var returnRouter = function (io) {
 
                 let options;
 
-                   options = {
+                options = {
                     sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
                         FROM vols 
-                       INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol
+                       LEFT JOIN user_vol ON vols.id_vol = user_vol.id_vol
                        INNER JOIN photos ON vols.id_vol = photos.id_vol 
                        INNER JOIN users ON vols.id_user_creator = users.id_user
-                       WHERE (user_vol.id_user = ? 
-                       AND vols.deleted = 0)
+                         WHERE (user_vol.id_user = ? OR vols.id_user_creator = ?)
+                       AND vols.deleted = 0
                        AND (user_vol.confirm = 1 OR user_vol.confirm IS NULL)
-                       AND vols.active = 0
+                       AND vols.active = 1
                        GROUP BY vols.id_vol
                        ORDER BY vols.date_creation DESC`,
                     nestTables: true
                 }
 
-
-
                 db.get().query(
-                    options, [req.params.id], function (err, results, fields) {
+                    options, [req.params.id, req.params.id], function (err, results, fields) {
                         if (err) {
                             console.log(err)
                             res.send({
@@ -518,14 +423,108 @@ var returnRouter = function (io) {
                                     });
 
 
-                                  
+
 
                                 }
 
-                                  res.send({
-                                        success: true,
-                                        vols
+                                res.send({
+                                    success: true,
+                                    vols
+                                });
+                            } else {
+                                res.send({
+                                    success: true,
+                                    vols: []
+                                });
+                            }
+                        }
+
+
+
+                    });
+            }
+        });
+    });
+
+
+
+
+
+    app.get('/:id/vols/all/history', passport.authenticate('jwt'), function (req, res) {
+        req.checkParams('id', 'ID tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+
+                let options;
+
+                options = {
+                    sql: `SELECT *, GROUP_CONCAT(photos.url SEPARATOR '->') As photos
+                        FROM vols 
+                       INNER JOIN user_vol ON vols.id_vol = user_vol.id_vol
+                       INNER JOIN photos ON vols.id_vol = photos.id_vol 
+                       INNER JOIN users ON vols.id_user_creator = users.id_user
+                         WHERE (user_vol.id_user = ? OR vols.id_user_creator = ?)
+                       AND vols.deleted = 0
+                       AND (user_vol.confirm = 1 OR user_vol.confirm IS NULL)
+                       AND vols.active = 0
+                       GROUP BY vols.id_vol
+                       ORDER BY vols.date_creation DESC`,
+                    nestTables: true
+                }
+
+
+
+                db.get().query(
+                    options, [req.params.id, req.params.id], function (err, results, fields) {
+                        if (err) {
+                            console.log(err)
+                            res.send({
+                                success: false,
+                                err
+                            });
+                        } else {
+                            console.log(results)
+                            if (results.length > 0) {
+                                let vols = [];
+                                for (let i = 0; i < results.length; i++) {
+                                    console.log(req.query.user_type)
+
+                                    vols.push({
+                                        vol: {
+                                            id_vol: results[i].vols.id_vol,
+                                            name: results[i].vols.name,
+                                            date_begin: results[i].vols.date_begin,
+                                            description: results[i].vols.description,
+                                            date_creation: results[i].vols.date_creation,
+                                            date_end: results[i].vols.date_end,
+                                            lat: results[i].vols.lat,
+                                            active: results[i].vols.active,
+                                            lng: results[i].vols.lng,
+                                            start_time: results[i].vols.start_time,
+                                            end_time: results[i].vols.end_time,
+                                            photos: (results[i][''].photos).split('->')
+                                        },
+                                        user: {
+                                            id_user: results[i].users.id_user,
+                                            name: results[i].users.name,
+                                            photo_url: results[i].users.photo_url,
+                                        }
                                     });
+
+
+
+
+                                }
+
+                                res.send({
+                                    success: true,
+                                    vols
+                                });
                             } else {
                                 res.send({
                                     success: true,
@@ -1029,6 +1028,101 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get('/:id/followers/users', function (req, res) {
+        if (isNaN(parseInt(req.params.id))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+            console.log("user", req.body)
+
+            let users = [];
+
+            db.get().query({
+                sql: `
+                SELECT users.id_user, users.type_user,
+                users.name,
+                users.photo_url 
+                FROM follows
+                INNER JOIN users ON follows.id_user = users.id_user  
+                WHERE follows.id_user2 = ? AND users.type_user = 2`,
+                nestTables: true
+            }, [req.params.id],
+                function (error, results, fields) {
+                    if (results) {
+
+                        for (let i = 0; i < results.length; i++) {
+                            users.push({
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            })
+                        }
+                        res.json({
+                            success: true,
+                            users
+                        });
+
+                    } else {
+                        res.json({
+                            success: true,
+                            users
+                        });
+                    }
+
+                });
+        }
+    });
+
+    app.get('/:id/followers/inst', function (req, res) {
+        if (isNaN(parseInt(req.params.id))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+            console.log("user", req.body)
+
+            let users = [];
+
+            db.get().query({
+                sql: `
+                SELECT users.id_user, users.type_user,
+                users.name,
+                users.photo_url 
+                FROM follows
+                INNER JOIN users ON follows.id_user = users.id_user  
+                WHERE follows.id_user2 = ? AND users.type_user = 1`,
+                nestTables: true
+            }, [req.params.id],
+                function (error, results, fields) {
+                    if (results) {
+
+                        for (let i = 0; i < results.length; i++) {
+                            users.push({
+                                id_user: results[i].users.id_user,
+                                name: results[i].users.name,
+                                photo_url: results[i].users.photo_url
+                            })
+                        }
+                        res.json({
+                            success: true,
+                            users
+                        });
+
+                    } else {
+                        res.json({
+                            success: true,
+                            users
+                        });
+                    }
+
+                });
+        }
+    });
+
+
     app.get('/:id/follows/inst', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
             res.status(400).send({
@@ -1096,6 +1190,8 @@ var returnRouter = function (io) {
         }
     });
 
+
+
     app.get('/:id/follows/inst/count', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
             res.status(400).send({
@@ -1122,6 +1218,8 @@ var returnRouter = function (io) {
         }
     });
 
+
+
     app.get('/:id/follows/count', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
             res.status(400).send({
@@ -1135,6 +1233,33 @@ var returnRouter = function (io) {
 
             db.get().query({
                 sql: 'SELECT COUNT(*) AS count FROM follows WHERE follows.id_user2 = ?'
+            }, [req.params.id],
+                function (error, results, fields) {
+                    count = results[0].count
+
+                    res.json({
+                        success: true,
+                        count
+                    });
+
+                });
+        }
+    });
+
+
+    app.get('/:id/followers/count', function (req, res) {
+        if (isNaN(parseInt(req.params.id))) {
+            res.status(400).send({
+                success: false,
+                message: "Parâmetros Invalidos"
+            });
+        } else {
+            console.log("user", req.body)
+
+            let count;
+
+            db.get().query({
+                sql: 'SELECT COUNT(*) AS count FROM follows WHERE follows.id_user = ?'
             }, [req.params.id],
                 function (error, results, fields) {
                     count = results[0].count
@@ -1323,6 +1448,9 @@ var returnRouter = function (io) {
         });
     });
 
+    //CLASSIFICAÇOES QUE RECEBI
+
+
     app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
         if (!req.query.amount && !req.query.startAt) {
             res.json({
@@ -1339,6 +1467,62 @@ var returnRouter = function (io) {
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
          WHERE classification.id_user2 = ?
+         LIMIT ?, ?`, nestTables: true
+            }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
+                console.log(rows)
+                if (error) {
+                    res.send({
+                        success: false,
+                        message: error
+                    })
+                    throw new Error(error);
+                } else {
+                    for (let i = 0; i < rows.length; i++) {
+
+                        results.push({
+                            user: {
+                                name: rows[i].users.name,
+                                photo_url: rows[i].users.photo_url,
+                                id_user: rows[i].users.id_user
+                            },
+                            message: rows[i].classification.message,
+                            classification: rows[i].classification.classification,
+                            vol: {
+                                id_vol: rows[i].vols.id_vol,
+                                name: rows[i].vols.name
+                            }
+                        })
+
+                    }
+                    res.send({
+                        success: true,
+                        results
+                    })
+
+                }
+            });
+        }
+    });
+
+
+    //CLASSIFICAÇOES QUE ATRIBUI
+
+    app.get('/:id/other-score/list', passport.authenticate('jwt'), function (req, res) {
+        if (!req.query.amount && !req.query.startAt) {
+            res.json({
+                succes: false,
+                message:
+                "Falta Enviar o Amount e startAt"
+            })
+        } else {
+            let results = [];
+
+            db.get().query({
+                sql: `SELECT classification.id_vol, classification.id_user, classification.classification,   vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
+         FROM classification 
+         INNER JOIN users ON classification.id_user2 = users.id_user
+          INNER JOIN vols ON classification.id_vol = vols.id_vol
+         WHERE classification.id_user = ?
          LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)
