@@ -5,6 +5,10 @@
 //AJUSTES GLOBAIS
 
 
+/deep/ a:hover{
+    text-decoration: none!important;
+}
+
 // FIX ICON ALIGN
 .fix-icon{
     vertical-align: middle
@@ -1107,3 +1111,10 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
+
+.page-classification-list{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+
+}

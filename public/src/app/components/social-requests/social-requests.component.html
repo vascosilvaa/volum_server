@@ -1,63 +1,39 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card primaryCard">
-        <div class="card-header cardTitle">
-          <div class="container">
-            <div class="row headerNotifications">
-              <div class="col titleCard">
-                Pedidos
-              </div>
-              <div class="col text-right iconCard">
-                <i class="material-icons edit">more_horiz</i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="requestsTrue">
-          <div *ngFor = "let request of requests" class="card-block not-item">
-            <div class="container">
-              <div class="row ">
-                <div class="col-12 not-content">
-                  <div class="image">
-                      <img src="{{request?.photo_url}}">
-                  </div>
-                  <div class="notDesc">
-                    <span class="not-name">{{request?.user_name}}</span> começou a seguir-te.
-                  <div class="notTime">
-                    {{request?.date | amTimeAgo:true}}
-                  </div>
-                  </div>
-                
-            
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block" style="margin-top:100px;">
+                <div class="ui-block-title">
+                    <h6>Pedidos</h6>
                 </div>
-              </div>
-              <div class="col text-right not-icon no-padding">
-                
-                  <button class="btn btnCancel">IGNORAR</button>
-                    <button class="btn btnConfirm">ACEITAR</button>
+                <ul class="page-classification-list" *ngIf="requestsTrue">
+                    <li *ngFor = "let request of requests">
+                        <div class="page-classification-header">
+                            <div class="page-classification-picture">
+                                 <img src="{{request?.photo_url}}">
+                            </div>
+                            <div class="page-classification-action">
+                                <h6><a class="page-classification-name-user underline">{{request?.user_name}}</a> começou a seguir-te.</h6>
+                                <p>{{request?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div class="page-classification-more">
+                                <i class="material-icons">insert_emoticon</i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div *ngIf="!requestsTrue" class="text-center no-notification">
+                    <div class="icon-undefined">
+                        <i class="material-icons">access_time</i>
+                    </div>
+                    <p>Não possui qualquer pedido.</p>
                 </div>
             </div>
-          </div>
         </div>
-
-        <div *ngIf="!requestsTrue">
-           <div class="container">
-            <div class="row ">
-              <div class="col-12 text-center">
-                <div class="icon-undefined">
-                 <i class="material-icons">access_time</i>
-                  </div>
-                <div class="text-undefined">Não possui qualquer pedido.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-      </div>
     </div>
-  </div>
 </div>
 
-<app-footer></app-footer>
+
+
+
+
+

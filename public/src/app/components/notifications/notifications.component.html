@@ -1,64 +1,38 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card primaryCard">
-        <div class="card-header cardTitle">
-          <div class="container">
-            <div class="row headerNotifications">
-              <div class="col titleCard">
-                Notificações
-              </div>
-              <div class="col text-right iconCard">
-                <i class="material-icons edit">more_horiz</i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <div *ngIf="notificationsTrue">
-        <div (click)="openVolDetails(notification?.id_vol)" *ngFor="let notification of notifications" class="card-block not-item">
-            <div class="container">
-              <div class="row ">
-                <div class="col-12 not-content">
-                  <div class="image">
-                    <img src="{{notification.photo_url}}">
-                  </div>
-                  <div class="notDesc">
-                    <span class="not-name">{{notification?.user_name}}</span> candidatou-se à
-                    ação de voluntariado <span class="notEvent">"{{notification?.vol_name}}"</span>.
-                    <div class="notTime">
-                      {{notification?.date | amTimeAgo:true}}
-                    </div>
-                  </div>
-
-
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block" style="margin-top:100px;">
+                <div class="ui-block-title">
+                    <h6>Notificações</h6>
                 </div>
-              </div>
-              <div class="col text-right not-icon no-padding pointer">
-                <i class="material-icons edit">event_note</i>
-              </div>
+                <ul class="page-classification-list" *ngIf="notificationsTrue">
+                    <li *ngFor="let notification of notifications">
+                        <div class="page-classification-header">
+                            <div class="page-classification-picture">
+                                 <img src="{{notification.photo_url}}">
+                            </div>
+                            <div class="page-classification-action">
+                                <h6><a class="page-classification-name-user underline">{{notification?.user_name}}</a>  candidatou-se à ação de voluntariado <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div class="page-classification-more">
+                                <i class="material-icons">event_note</i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div *ngIf="!notificationsTrue" class="text-center no-notification">
+                    <div class="icon-undefined">
+                        <i class="material-icons">access_time</i>
+                    </div>
+                    <p>Não possui qualquer notificação.</p>
+                </div>
             </div>
-          </div>
         </div>
-        <div *ngIf="!notificationsTrue">
-           <div class="container">
-            <div class="row ">
-              <div class="col-12 text-center">
-                <div class="icon-undefined">
-                 <i class="material-icons">access_time</i>
-                  </div>
-                <div class="text-undefined">Não possui qualquer notificação.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
     </div>
-  </div>
 </div>
 
 
+<!--
 <app-footer></app-footer>
+-->

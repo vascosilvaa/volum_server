@@ -1,0 +1,80 @@
+@import "../../../variables";
+
+.invite-content{
+    padding-bottom: 25px;
+}
+
+.invite-content .form-group{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+
+.top-user-text-invite{
+    padding-left: 15px;
+}
+
+.list-invites{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid $grey1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.list-invites:last-child{
+    border-bottom: 0px solid $grey1;
+}
+
+.list-invites:hover{
+    background-color: $grey0;
+}
+
+.top-user-text-invite{
+    flex: 2;
+}
+
+.invite-border{
+    border: 1px solid $grey1;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 5px;
+    max-height: 356px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.invite-border::-webkit-scrollbar {
+    width: 5px;
+    background: $grey1;
+    border:0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+ 
+.invite-border::-webkit-scrollbar-thumb {
+    background-color: $grey2;
+    border:0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.btn-invite-list{
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 15px;
+}
+
+
+.checkbox-invite-color{
+    color: $primary;
+}
+
+.input-form-invite{
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+    color: $grey5!important;
+    border-color: $grey1!important
+}
