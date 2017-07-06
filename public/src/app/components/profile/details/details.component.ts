@@ -1,5 +1,6 @@
 import { SearchService } from './../../feed/search/search.service';
 import { EditModalComponent } from './../../../shared/edit-modal/edit-modal.component';
+import { ModalInviteComponent } from './../../../shared/modal-invite/modal-invite.component';
 import { volsService } from './../../../shared/services/vols.service';
 import { SharedService } from './../../../shared/services/shared.service';
 import { ProfileService } from './../../../shared/services/profile.service';
@@ -13,17 +14,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
-  providers: [ProfileService, volsService, SearchService, NgbTypeaheadConfig]
+  providers: [ProfileService, volsService]
 })
 export class DetailsComponent implements OnInit {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
@@ -46,24 +41,20 @@ export class DetailsComponent implements OnInit {
   public address: any;
   public categories: any;
 
-  model: any;
-  searching = false;
-  searchFailed = false;
-
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
-    private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService, private _service: SearchService) {
+    private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService) {
   }
 
   ngAfterViewChecked() {
-      this.scrollToBottom();
-    }
+    this.scrollToBottom();
+  }
 
-    scrollToBottom(): void {
-      try {
-        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-      } catch (err) { }
-    }
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -78,39 +69,21 @@ export class DetailsComponent implements OnInit {
     this.countCandidates(this.id_vol);
     this.countConfirmed(this.id_vol);
   }
-    formatter = (x: {
-    name: string
-    registration: {
-    name: string
-    }
-  }) => x.name || x.registration.name;
-
-  search = (text$: Observable<string>) =>
-    text$
-      .debounceTime(300)
-      .distinctUntilChanged()
-      .do(() => this.searching = true)
-      .switchMap(term =>
-        this._service.search(term)
-          .do(() => { this.searchFailed = false })
-          .catch(() => {
-            this.searchFailed = true;
-            return Observable.of([]);
-          }))
-      .do(() => this.searching = false);
-
-  
 
   getCategories() {
-      this.volsService.getCategories()
-        .then(res => {
-          this.categories = res.categories;
-        })
-        .catch(err => console.log(err));
-    }
+    this.volsService.getCategories()
+      .then(res => {
+        this.categories = res.categories;
+      })
+      .catch(err => console.log(err));
+  }
 
   openEditModal() {
     return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
+  }
+
+  openInviteModal() {
+    return this.modal.open(ModalInviteComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -175,12 +148,12 @@ export class DetailsComponent implements OnInit {
         this.lng = parseFloat(this.vol.lng);
         this.getAddress();
 
-        for(let i=0;  i< this.categories.length; i++) {
-            if(this.categories[i].id_category==parseInt(this.vol.id_category)) {
-              this.vol.category_name = this.categories[i].name;
-            }
+        for (let i = 0; i < this.categories.length; i++) {
+          if (this.categories[i].id_category == parseInt(this.vol.id_category)) {
+            this.vol.category_name = this.categories[i].name;
           }
-       
+        }
+
 
 
 
