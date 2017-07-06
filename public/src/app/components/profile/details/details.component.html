@@ -4,7 +4,7 @@
             <div class="ui-block">
                 <div class="details-header">
                     <div class="details-header-back">
-                        <a routerLink="/profile/{{idLogin}}/actions"><i class="material-icons">arrow_back</i></a>
+                        <a routerLink="/profile/{{idLogin}}/actions/mine"><i class="material-icons">arrow_back</i></a>
                     </div>
                     <div class="details-header-titile">
                         {{vol?.name}}
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-        <div class="col-lg-12">
+        <div class="col-lg-12" *ngIf="!vol?.isMap">
             <div class="ui-block">
                 <div class="ui-block-content-details">
                     <div class="row">

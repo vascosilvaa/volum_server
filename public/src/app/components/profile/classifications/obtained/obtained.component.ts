@@ -17,6 +17,7 @@ import { VolDetailsModalComponent } from './../../../../shared/vol-details-modal
 export class ObtainedComponent implements OnInit {
   public id_user: any;
   public testimonials;
+  public user: any;
   constructor(public profileService: ProfileService,  private route: ActivatedRoute, public modal: Modal, overlay: Overlay) { }
 
   ngOnInit() {
@@ -24,6 +25,9 @@ export class ObtainedComponent implements OnInit {
       this.id_user = this.route.parent.parent.parent.snapshot.params['id'];
     });
     this.getClassifications(this.id_user);
+    this.profileService.getProfile(this.id_user).then( res => {
+    this.user = res.user;
+    });
   }
 
   getClassifications(id_user) {
