@@ -1,3 +1,20 @@
+<ng-template #rt let-r="result" let-t="term">
+
+        <div class="search-result pointer" (click)="navigate(r.id, r.type)">
+            <div class="search-img">
+                <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
+                <img *ngIf="r.type==1 || r.type==2" [src]="r.photo_url">
+            </div>
+            <div class="search-text">
+                <h6 class="search-name">{{ r.name}}</h6>
+                <p *ngIf="r.type==0"> Ação de Voluntariado</p>
+                <p *ngIf="r.type==1"> Voluntário</p>
+                <p *ngIf="r.type==2"> Instituição</p>
+            </div>
+        </div>    
+  
+</ng-template>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -270,7 +287,7 @@
                             <ul>
                                 <li>
                                     <span class="title">Convidar pessoas</span>
-                                    <span class="text"><input type="text" class="inputInvite" placeholder="Convidar voluntários"></span>
+                                    <span class="text"><input class="inputInvite" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)" placeholder="Convidar voluntários"></span>
                                 </li>
                             </ul>
                         </div>
