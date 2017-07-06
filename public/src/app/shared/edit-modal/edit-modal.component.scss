@@ -1,6 +1,8 @@
 @import '../../../styles';
 @import '../../components/profile/settings/settings.component';
 
+
+/*
 .inputProfile2 {
     margin-top: 30px;
 }
@@ -130,4 +132,45 @@ textarea:focus + label {
 
 .card-block {
     padding: 20px 10px;
+}*/
+
+.insert-pictures{
+    color: $primary;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.insert-pictures:hover{
+    opacity: 0.9;
+}
+
+.imageVol{
+    height: 100px;
+    border: 1px dashed $grey2;
+    border-radius: 6px;
+}
+
+.imgPreview {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.btn-insert-imgs{
+    background-color: $primary;
+}
+
+.text-red {
+    color: $red!important;
+}
+
+.map-size{
+    width: 100%;
+    height: 230px;
+}
+.form-control-danger{
+    border-color: $red!important;
 }

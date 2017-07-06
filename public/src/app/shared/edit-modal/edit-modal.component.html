@@ -4,6 +4,169 @@
         </div>
 </ng-template>
 
+
+<div class="container no-padding">
+    <div class="ui-block-title">
+        <h6>Editar ação</h6>
+    </div>
+    <div class="ui-block-content">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="label-input">Titulo da ação de voluntariado</label>
+                        <input type="text" class="form-control input-form" aria-describedby="title-action" placeholder="Titulo da ação de voluntariado" [class.form-control-danger]="!form.controls.name.valid && form.controls.name.touched" minlength="10" maxlength="60" formControlName="name" required>
+                        <small *ngIf="form.controls.name.errors?.required && form.controls.name.touched" class="form-text text-muted">Por favor, insira o título da ação.</small>
+                        <small *ngIf="form.controls.name.errors?.maxlength && form.controls.name.touched" class="form-text text-muted">O título da ação não deve exceder o limite de 30 caracteres.</small>
+                        <small *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" class="form-text text-muted">O título da ação deve possuir, pelo menos 10 caracteres.</small>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="label-input">Descrição da ação de voluntariado</label>
+                        <textarea class="form-control input-textarea" rows="6" formControlName='about' placeholder="Descrição, funções do voluntário..." [class.form-control-danger]="!form.controls.description.valid && form.controls.description.touched" minlength="50" formControlName="description" required></textarea>
+                        <small class="form-text text-muted" *ngIf="form.controls.description.errors?.required && form.controls.description.touched">Por favor, insira a descrição da ação.</small>
+                        <small class="form-text text-muted" *ngIf="form.controls.description.errors?.minlength && form.controls.description.touched">A descrição da ação deve possuir, no mínimo 30 caracteres.</small>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label class="label-input">Categoria</label>
+                                    <select (focusout)="categoryChanged()" class="select-input form-control" formControlName="category" [class.form-control-danger]="form.controls.category.touched && categoryControl==2">
+                                        <option value="-1" disabled>Escolher categoria</option>
+                                        <option *ngFor="let category of categories" [value]='category?.id_category'>{{category?.name}}</option>>
+                                    </select>
+                                    <small class="form-text text-muted" *ngIf="form.controls.category.touched && categoryControl==2">Por favor insira a categoria da ação.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label class="label-input">Seguro</label>
+                                    <select (focusout)="insuranceChanged()" class="select-input form-control" formControlName="insurance" [class.form-control-danger]="form.controls.insurance.touched && insuranceControl==2">
+                                        <option value="-1" disabled>Seguro</option>
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select>
+                                    <small class="form-text text-muted" *ngIf="form.controls.insurance.touched && insuranceControl==2">Por favor defina se a ação possui seguro de participação.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-3 mb-3">
+                                <h5 class="insert-pictures" *ngIf="img==0" (click)="showImgs()">+ Inserir fotografias(s)</h5>
+                                <h5 class="insert-pictures" *ngIf="img==1" (click)="hideImgs()">- Esconder fotografias(s)</h5>
+                            </div>
+
+                            <div class="col-6" *ngIf="img==1">
+                                <div class="form-group">
+                                    <input type="file" multiple class="form-control-file" (change)="readUrl($event)" aria-describedby="fileHelp">
+                                    <small *ngIf="errorFiles==0" class="form-text text-muted">Pode inserir 3 fotografias selecionando na área de seleção.</small>
+                                    <small *ngIf="errorFiles==1" class="form-text text-muted text-red"><strong>Erro! </strong>Só pode inserir 3 fotografias!</small>
+                                </div>
+                            </div>
+
+                            <div *ngIf="img==1" class="col-2">
+                                <div class="imageVol"><img *ngIf="url1" class="imgPreview" [src]="url1"></div>
+                            </div>
+                            <div *ngIf="img==1" class="col-2">
+                                <div class="imageVol"><img *ngIf="url2" class="imgPreview" [src]="url2"></div>
+                            </div>
+                            <div *ngIf="img==1" class="col-2">
+                                <div class="imageVol"><img *ngIf="url3" class="imgPreview" [src]="url3"></div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="label-input">Localização</label>
+                                    <input type="text" class="form-control input-form" #input [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado" required>
+                                    <small *ngIf="coordAdvice"  class="form-text text-muted">Por favor, indique uma localização válida.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <sebm-google-map class="map-size" [latitude]="lat" [longitude]="lng" [zoom]="13">
+                                    <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></sebm-google-map-marker>
+                                </sebm-google-map>
+                            </div>
+
+                            
+                            <div class="col-lg-6 col-md-6 col-12 mt-2">
+                                <div class="form-group">
+                                    <label class="label-input">Data de início</label>
+                                    <input class="form-control input-form-date" ngbDatepicker type="date" formControlName="date_begin" placeholder="aaaa-mm-dd" [class.form-control-danger]="!form.controls.date_begin.valid && form.controls.date_begin.touched" required>
+                                    <small class="form-text text-muted" *ngIf="form.controls.date_begin.errors?.required && form.controls.date_begin.touched">Por favor insira a data de início da ação.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12 mt-2">
+                                <div class="form-group">
+                                    <label class="label-input">Data de fim</label>
+                                    <input class="form-control input-form-date" ngbDatepicker type="date" formControlName="date_end" placeholder="aaaa-mm-dd" [class.form-control-danger]="!form.controls.date_end.valid && form.controls.date_end.touched">
+                                    <small class="form-text text-muted" *ngIf="form.controls.date_end.errors?.pattern && form.controls.date_end.touched">Por favor insira uma data válida.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-3 mb-3">
+                                <h5 class="insert-pictures" *ngIf="schedule==0" (click)="showSchedule()">+ Inserir mais detalhes de horário</h5>
+                                <h5 class="insert-pictures" *ngIf="schedule==1" (click)="hideSchedule()">- Esconder detalhes de horário</h5>
+                            </div>
+
+                            <div class="col-md-4 col-12" *ngIf="schedule==1">
+                                <label class="label-input">Hora de entrada</label>
+                                <input class="form-control input-form-date" type="time" formControlName="start_time">
+                            </div>
+                            <div class="col-md-4 col-12" *ngIf="schedule==1">
+                                <label class="label-input">Hora de saída</label>
+                                <input class="form-control input-form-date" type="time" formControlName="end_time">
+                            </div>
+                            <div class="col-md-4 col-12" *ngIf="schedule==1">
+                                <label class="label-input">Duração diária</label>
+                                <input class="form-control input-form-date" type="number" placeholder="Duração diária em horas" formControlName="duration">
+                            </div>
+                            
+                            <div class="col-md-4 col-12 mt-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" checked type="checkbox" value="">
+                                        Esta ação é publica
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 text-center mt-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" checked type="checkbox" value="">
+                                        Qualquer pessoa pode ver/comentar.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12 text-right mt-4">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" checked type="checkbox" value="">
+                                        Os candidatos são aceites diretamente.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-6 mb-2 mt-5">
+                                <a class="btn-settings btn-settings-cancel" routerLink="/profile/{{idProfile}}/actions/my-actions">Cancelar</a>
+                            </div>
+                            <div class="col-6 mb-2 mt-5">
+                                <button type="submit" class="btn-settings btn-settings-save" [disabled]="submitted">Guardar</button>
+                            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -164,3 +327,4 @@
       </div>
     </div>
     </div>
+-->
