@@ -1,102 +1,121 @@
-@import '../../../styles';
+@import '../../../variables';
 
-.titleCard {
-  font-weight: $bold;
-}
-.primaryCard {
-  margin-top: 100px;
-  font-size: 16px;
-  border: 0;
-}
 
-.cardTitle {
-  background: #fff;
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
+.page-classification-list{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+
 }
 
-.cardTitleMap {
-  background: #fff;
-  border-bottom: 2px solid $blue;
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
+a:hover{
+    text-decoration: none!important;
 }
 
+.page-classification-list li{
+    padding: 25px;
+    border-bottom: 1px solid #e6ecf5;
+    transition: all .3s ease;
+    margin-bottom: 0;
+}
 
-.image img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+.page-classification-list li:last-child{
+    border-bottom: 0px solid #e6ecf5;
+}
+
+.page-classification-header{
+    display: flex;
+    align-items: center;
+}
+
+.page-classification-picture{
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.page-classification-picture img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    vertical-align: middle;
     object-fit: cover;
 }
 
-.image {
-    display: inline-flex;
+.page-classification-action{
+    padding-left: 15px;
+    font-size: 0.9rem;
+    flex: 2
 }
 
-.not-content {
-    display:flex;
-}
-
-.notDesc {
-    margin-left: 15px;
-   margin-top: 4px;
-   color: $grey5;
-   font-size:15px;
-}
-
-.not-name {
-    font-weight: $bold;
-
-}
-
-.notTime {
-    font-size:14px;
-    color: $grey2;
-}
-
-.notEvent {
-    color: $orange;
-    font-weight: $bold;
-}
-
-.not-item {
-    border-bottom: 1px solid $grey1;
-    cursor: pointer;
-}
-
-.titleCard {
-    margin-top: 4px
-}
-
-.iconCard {
-    margin-top:5px;
-    color: $grey2;
-}
-
-.not-icon {
-    margin-top: -38px;
-    float: left;
-}
-
-.not-icon i {
-    color: $grey2;
-}
-
-.not-item:hover {
-    background: #f5f5f5
-}
-
-.icon-undefined {
-    color: $grey2;
-    font-size:20px;
-    padding-top:20px;
-}
-
-.text-undefined {
-    font-size:14px;
+.page-classification-name-user{
     color: $grey5;
-    padding-bottom: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.page-classification-name-user:hover{
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.page-classification-action .page-classification-name-action{
+    color: $primary;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.page-classification-action .page-classification-name-action:hover{
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.page-classification-action h6{
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.page-classification-action p{
+    font-size: 0.8rem;
+    color: $grey3;
+}
+
+.classification-number{
+    font-weight: 600;
+    color: $yellow;
+}
+
+.page-classification-more i{
+    color: $grey3;
+    cursor: pointer;
+    vertical-align: middle; 
+}
+
+.page-classification-content{
+    padding-top: 20px;
+}
+
+.page-classification-content p{
+    color: $grey5;
+}
+
+.page-classification-action md-icon{
+    padding-top: 4px;
+    color: $yellow;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.no-notification{
+    padding: 25px;
+    color: $grey2;
+}
+
+.no-notification p{
+    color: $grey2;
 }
