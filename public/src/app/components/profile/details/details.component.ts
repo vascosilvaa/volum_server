@@ -1,3 +1,4 @@
+import { SearchService } from './../../feed/search/search.service';
 import { EditModalComponent } from './../../../shared/edit-modal/edit-modal.component';
 import { volsService } from './../../../shared/services/vols.service';
 import { SharedService } from './../../../shared/services/shared.service';
@@ -13,11 +14,16 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@ang
 import * as moment from 'moment';
 
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
+import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
-  providers: [ProfileService, volsService]
+  providers: [ProfileService, volsService, SearchService, NgbTypeaheadConfig]
 })
 export class DetailsComponent implements OnInit {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
@@ -40,9 +46,13 @@ export class DetailsComponent implements OnInit {
   public address: any;
   public categories: any;
 
+  model: any;
+  searching = false;
+  searchFailed = false;
+
   constructor(public route: ActivatedRoute, public http: Http, overlay: Overlay, vcRef: ViewContainerRef,
     public modal: Modal, private sharedService: SharedService, private auth: AuthenticationService,
-    private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService) {
+    private router: Router, private ProfileService: ProfileService, public volsService: volsService, public SharedService: SharedService, private _service: SearchService) {
   }
 
   ngAfterViewChecked() {
@@ -68,6 +78,28 @@ export class DetailsComponent implements OnInit {
     this.countCandidates(this.id_vol);
     this.countConfirmed(this.id_vol);
   }
+    formatter = (x: {
+    name: string
+    registration: {
+    name: string
+    }
+  }) => x.name || x.registration.name;
+
+  search = (text$: Observable<string>) =>
+    text$
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .do(() => this.searching = true)
+      .switchMap(term =>
+        this._service.search(term)
+          .do(() => { this.searchFailed = false })
+          .catch(() => {
+            this.searchFailed = true;
+            return Observable.of([]);
+          }))
+      .do(() => this.searching = false);
+
+  
 
   getCategories() {
       this.volsService.getCategories()
