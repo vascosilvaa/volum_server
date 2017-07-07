@@ -138,7 +138,15 @@ export class volsService {
                 return err.json();
             });
     }
-
+  getVolsAldrabado(params) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, params).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
     checkLike(id_vol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/checkLike`).toPromise()
             .then(res => { return res.json() })

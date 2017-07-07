@@ -170,13 +170,17 @@
 <div style="margin-top:30px;" *ngIf="login" class="container" [class.disableContainer]="disableContainer" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()" >
 
   <div class="row">
-
+ <div class="container text-center no-content mt-2" *ngIf="vols == ''">
+     <div ><i class="material-icons">alarm</i></div>
+      <span style="font-weight: 400">Sem resultados para mostrar. <span (click)="noFilter(1)" class="pointer">Apagar filtros</span></span>
+    </div>
     <div class="col-lg-6" *ngFor="let vol of vols; let i = index;">
       <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
         type="private" class="swiper-slide" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name"
         [likeState]="vol.vol.likeState" [dateCreation]="vol.vol.date_creation" [description]="vol.vol.description" [index]="i">
       </vol-card>
     </div>
+   
     <div class="sk-fading-circle" *ngIf="loading">
       <div class="sk-circle1 sk-circle"></div>
       <div class="sk-circle2 sk-circle"></div>
@@ -210,7 +214,7 @@
              <div class="col-lg-6 mb-5">
                 <label class="filter-label" for="exampleSelect1">Data de início</label>
                 <div class="input-group filter-dropdown">
-                    <input class="date_picker filter-date-picker" ngbDatepicker #ds="ngbDatepicker" placeholder="Inicio">
+                    <input class="date_picker filter-date-picker" ngbDatepicker #ds="ngbDatepicker" [(ngModel)]="startDate" placeholder="Inicio">
                     <div class="input-group-addon filter-input-button" (click)="ds.toggle()">
                         <i class="data_range_icon material-icons">date_range</i>
                     </div>
@@ -219,7 +223,7 @@
             <div class="col-lg-6  mb-5">
                 <label class="filter-label" for="exampleSelect1">Data de fim</label>
                 <div class="input-group filter-dropdown">
-                    <input class="date_picker filter-date-picker" ngbDatepicker #de="ngbDatepicker" placeholder="Fim">
+                    <input class="date_picker filter-date-picker" ngbDatepicker #de="ngbDatepicker" [(ngModel)]="endDate" placeholder="Fim">
                     <div class="input-group-addon filter-input-button" (click)="de.toggle()">
                         <i class="data_range_icon material-icons">date_range</i>
                     </div>
@@ -228,27 +232,27 @@
             
             <div class="col-lg-4 mb-5">
                 <label class="filter-label" for="exampleSelect1">Tipo de voluntariado</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>Todos</option>
-                  <option>Institucional</option>
-                  <option>Entre ajuda</option>
+                <select class="form-control"  [(ngModel)]="type">
+                  <option value="-1">Todos</option>
+                  <option value="inst">Institucional</option>
+                  <option value="private">Entre ajuda</option>
                 </select>
             </div>
 
             <div class="col-lg-4  mb-5">
                 <label class="filter-label" for="exampleSelect1">Seguro</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>Sim</option>
-                  <option>Não</option>
+                <select class="form-control" [(ngModel)]="insurance">
+                  <option value="-1">Sem Preferência</option>
+                  <option value="1">Sim</option>
+                  <option value="0">Não</option>
                 </select>
             </div>
 
             <div class="col-lg-4  mb-5">
                 <label class="filter-label" for="exampleSelect1">Categorias</label>
-                <select class="form-control" id="exampleSelect1">
-                    <option>Todas</option>
-                    <option>Saúde</option>
-                    <option>Desporto</option>
+                <select class="form-control" [(ngModel)]="category" >
+                    <option value="-1">Todas</option>
+                    <option *ngFor="let cat of categories" value="{{cat.id_category}}">{{cat.name}}</option>
                 </select>
             </div>
   
@@ -257,8 +261,8 @@
 
         <div class="row mt-1">
            <div class="col-lg-12 text-right">
-                <button class="btn btn-grey mr-2">Apagar</button>
-                <button class="btn btn-primary">Aplicar</button>
+                <button class="btn btn-grey mr-2" (click)="noFilter(0)">Apagar</button>
+                <button class="btn btn-primary" (click)="applyFilter()">Aplicar</button>
             </div>
         </div>
     </div>
