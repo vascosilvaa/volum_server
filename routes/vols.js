@@ -141,6 +141,9 @@ var returnRouter = function (io) {
      */
 
     app.get('/', function (req, res, next) {
+
+        console.log("24421421", req.body);
+
         if (!req.query.amount && !req.query.startAt) {
             res.json({
                 succes: false,
@@ -176,11 +179,12 @@ var returnRouter = function (io) {
             if (req.query.insurance) {
                 options.sql += ' AND vols.insurance = ' + req.query.insurance + ' ';
             }
-            if (req.query.startDate) {
-                options.sql += ' AND vols.date_begin > ' + req.query.startDate;
+            if (req.query.startDate || req.query.startDate 
+            ) {
+                options.sql += ' AND vols.date_begin > ' + req.query.startDate + ' ';
             }
             if (req.query.startDate && req.query.endDate) {
-                options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}`;
+                options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}` + ' ';
             }
 
             options.sql += `GROUP BY vols.id_vol 
