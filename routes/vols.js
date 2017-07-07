@@ -171,10 +171,10 @@ var returnRouter = function (io) {
                 options.sql += ` AND vols.id_vol_type = 1   `
             }
             if (req.query.category) {
-                options.sql += ` AND vols_has_categories.id_category = ${req.query.category}`
+                options.sql += ` AND vols_has_categories.id_category = ${req.query.category} ` + ' ';
             }
             if (req.query.insurance) {
-                options.sql += ' AND vols.insurance = ' + req.query.insurance;
+                options.sql += ' AND vols.insurance = ' + req.query.insurance + ' ';
             }
             if (req.query.startDate) {
                 options.sql += ' AND vols.date_begin > ' + req.query.startDate;
@@ -638,7 +638,7 @@ var returnRouter = function (io) {
 
             db.get().query(`SELECT notifications.type, vols.id_vol, vols.name, users.name, users.photo_url, users.id_user 
             FROM notifications
-            INNER JOIN users ON notifications.id_user2 = users.id_user 
+            INNER JOIN users ON notifications.id_user = users.id_user 
             INNER JOIN vols ON notifications.id_vol = vols.id_vol 
             WHERE notifications.type = 7 AND notifications.id_vol = ?`, [req.params.id],
                 function (error, results, fields) {
