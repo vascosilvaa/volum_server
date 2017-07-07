@@ -10,7 +10,7 @@ import * as moment from 'moment'
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-
+  public education: any;
   public user : any;
   public id_user: any;
   public userIn: any;
@@ -27,18 +27,25 @@ export class AboutComponent implements OnInit {
     
     this.profileService.activeProfileSource.subscribe((result) => {
       this.user = result;
-      console.log("ASYNC User", this.user)
+      console.log("ASYNC User", this.user);
+      this.getEducation();
     });
 
     if (!this.profileService.activeUser) {
       this.profileService.activeProfileSource.subscribe((result) => {
         this.user = result;
-        console.log("ASYNC User", this.user)
+        console.log("ASYNC User", this.user);
       });
     } else {
       this.user = this.profileService.activeUser;
     }
      
+  }
+
+  getEducation() {
+     this.profileService.getEducation(this.user.id_user).then(res => {
+      this.education = res.education;
+    });
   }
 
   getAge(date) {

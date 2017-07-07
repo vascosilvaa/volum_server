@@ -189,8 +189,16 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    getInvites(id_user) {
+    getInvites(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invites`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 
+    insertInvite(id_vol, users) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invite`, {users: users}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
 
     listPending(id_user) {

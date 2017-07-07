@@ -174,6 +174,13 @@ export class ProfileService {
         }
     }
 
+    countFollowers(id_user) {
+            return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/followers/count').toPromise()
+                .then(res => { return res.json() })
+                .catch(error => console.log(error));
+
+    }
+
     checkState(id_user) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/checkFollow').toPromise()
             .then(res => { return res.json() })
@@ -188,6 +195,12 @@ export class ProfileService {
 
     getTestimonials(id_user, startAt, amount) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/score/list', { startAt: startAt, amount: amount }).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getOtherTestimonials(id_user, startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/other-score/list', { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -212,6 +225,12 @@ export class ProfileService {
 
     getHistoryVols(id_user) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/all/history').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+    getEducation(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/education').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

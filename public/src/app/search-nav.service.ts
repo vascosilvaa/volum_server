@@ -21,13 +21,12 @@ export class SearchNavService {
             return Observable.of([]);
         }
         let params = new URLSearchParams();
-        params.set('search', term);
-
-        let url = `${GlobalConstants.API_ENDPOINT}/search`
+     
+        let url = `${GlobalConstants.API_ENDPOINT}/search?amount=10&startAt=0&search=${term}`
         let array = [];
 
         return this.http
-            .get(url, { search: params })
+            .get(url)
             .map(response => array = response.json().message);
     }
 }

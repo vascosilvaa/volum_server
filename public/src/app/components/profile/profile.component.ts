@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
           this.auth.storeFacebookToken(query.id_token);
           console.log("TOKEN", this.auth.facebookToken);
           localStorage.setItem("USER_ID", params.id);
-
+          location.reload;
 
         }
       }))
@@ -144,7 +144,6 @@ export class ProfileComponent implements OnInit {
       this.auth.logout();
     }
   }
-
 
 
   follow(id_user) {

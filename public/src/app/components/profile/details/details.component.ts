@@ -1,4 +1,6 @@
+import { SearchService } from './../../feed/search/search.service';
 import { EditModalComponent } from './../../../shared/edit-modal/edit-modal.component';
+import { ModalInviteComponent } from './../../../shared/modal-invite/modal-invite.component';
 import { volsService } from './../../../shared/services/vols.service';
 import { SharedService } from './../../../shared/services/shared.service';
 import { ProfileService } from './../../../shared/services/profile.service';
@@ -11,7 +13,6 @@ import { AuthenticationService } from './../../../shared/Auth/authentication.ser
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-details',
@@ -46,14 +47,14 @@ export class DetailsComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-      this.scrollToBottom();
-    }
+    this.scrollToBottom();
+  }
 
-    scrollToBottom(): void {
-      try {
-        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-      } catch (err) { }
-    }
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -70,15 +71,19 @@ export class DetailsComponent implements OnInit {
   }
 
   getCategories() {
-      this.volsService.getCategories()
-        .then(res => {
-          this.categories = res.categories;
-        })
-        .catch(err => console.log(err));
-    }
+    this.volsService.getCategories()
+      .then(res => {
+        this.categories = res.categories;
+      })
+      .catch(err => console.log(err));
+  }
 
   openEditModal() {
     return this.modal.open(EditModalComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
+  }
+
+  openInviteModal() {
+    return this.modal.open(ModalInviteComponent, overlayConfigFactory({ id_vol: this.id_vol }, BSModalContext));
   }
 
   countCandidates(id_vol) {
@@ -143,12 +148,12 @@ export class DetailsComponent implements OnInit {
         this.lng = parseFloat(this.vol.lng);
         this.getAddress();
 
-        for(let i=0;  i< this.categories.length; i++) {
-            if(this.categories[i].id_category==parseInt(this.vol.id_category)) {
-              this.vol.category_name = this.categories[i].name;
-            }
+        for (let i = 0; i < this.categories.length; i++) {
+          if (this.categories[i].id_category == parseInt(this.vol.id_category)) {
+            this.vol.category_name = this.categories[i].name;
           }
-       
+        }
+
 
 
 

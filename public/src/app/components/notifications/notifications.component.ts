@@ -1,4 +1,5 @@
 import { VolDetailsModalComponent } from './../../shared/vol-details-modal/vol-details-modal.component';
+import { ModalProfileComponent } from './../../shared/modal-profile/modal-profile.component';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { AppService } from './../../app.service';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
@@ -52,5 +53,9 @@ export class NotificationsComponent implements OnInit {
 
   openVolDetails(idVol) {
     return this.modal.open(VolDetailsModalComponent, overlayConfigFactory({ idVol: idVol }, BSModalContext));
+  }
+
+   openProfileModal(id_user) {
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: id_user }, BSModalContext));
   }
 }
