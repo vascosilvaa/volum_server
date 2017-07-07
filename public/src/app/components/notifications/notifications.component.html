@@ -7,12 +7,32 @@
                 </div>
                 <ul class="page-classification-list" *ngIf="notificationsTrue">
                     <li *ngFor="let notification of notifications">
-                        <div class="page-classification-header">
+                        <div class="page-classification-header pointer" (click)="openVolDetails(notification.id_vol)">
                             <div class="page-classification-picture">
                                  <img src="{{notification.photo_url}}">
                             </div>
-                            <div class="page-classification-action">
+                            <div *ngIf="notification.type == 1" class="page-classification-action">
                                 <h6><a class="page-classification-name-user underline">{{notification?.user_name}}</a>  candidatou-se à ação de voluntariado <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div *ngIf="notification.type == 3" class="page-classification-action">
+                                <h6><a class="page-classification-name-user underline">{{notification?.user_name}}</a>  gostou de <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div *ngIf="notification.type == 4" class="page-classification-action">
+                                <h6><a class="page-classification-name-user underline">{{notification?.user_name}}</a>  comentou <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div *ngIf="notification.type == 5" class="page-classification-action">
+                                <h6>Parabéns! Foste confirmado na ação de voluntariado <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div *ngIf="notification.type == 6" class="page-classification-action">
+                                <h6>Parabéns! Terminaste a ação de voluntariado <a class="page-classification-name-action underline">{{notification?.vol_name}}</a></h6>
+                                <p>{{notification?.date | amTimeAgo:true}}</p>
+                            </div>
+                            <div *ngIf="notification.type == 7" class="page-classification-action">
+                                <h6><a class="page-classification-name-user underline">{{notification?.user_name}}</a>  convidou-te para a ação de voluntariado <a class="page-classification-name-action underline">{{notification?.vol_name}}</a> Clica para ver mais detalhes.</h6>
                                 <p>{{notification?.date | amTimeAgo:true}}</p>
                             </div>
                             <div class="page-classification-more">
@@ -36,3 +56,4 @@
 <!--
 <app-footer></app-footer>
 -->
+

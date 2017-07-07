@@ -182,8 +182,7 @@
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
-                                <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica
-                                    aqui para deixares o teu testemunho.
+                                <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica aqui para ver mais detalhes.
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
@@ -210,9 +209,10 @@
                         </div>
                     </div>
 
-                    <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
+                   
 
                 </div>
+                 <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
             </div>
         </div>
 
