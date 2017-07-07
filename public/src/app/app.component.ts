@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   public sum: number = 5;
 
   //SEARCH
-  model: any;
+  model: any ;
   searching = false;
   searchFailed = false;
   public showSearch: boolean;
@@ -300,6 +300,7 @@ export class AppComponent implements OnInit {
       .do(() => this.searching = false);
 
   navigate(id, type) {
+    this.model="";
     if (type == 1 || type == 2) {
       this.router.navigate(['profile/' + id + '/about'])
     } else if (type == 0) {

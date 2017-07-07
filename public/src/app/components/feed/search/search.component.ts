@@ -46,8 +46,10 @@ export class SearchComponent implements OnInit {
 
   navigate(id, type) {
     if (type == 1 || type == 2) {
-      this.router.navigate(['profile/' + id + '/about'])
+      this.model="";
+      this.router.navigate(['profile/' + id + '/about']);
     } else if (type == 0) {
+      this.model="";
       this.router.navigate(['action/' + id])
     }
   }

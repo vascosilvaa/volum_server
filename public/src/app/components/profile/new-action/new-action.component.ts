@@ -261,7 +261,7 @@ export class NewActionComponent implements OnInit {
         if (res.error) {
           console.log('erro')
         } else {
-          this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
+            this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
         }
       });
 

@@ -153,8 +153,8 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    search(query) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=` + query).toPromise()
+    search(query, startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search`,   { search: query, startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

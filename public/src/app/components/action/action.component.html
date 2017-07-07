@@ -1,4 +1,5 @@
-<div class="container" style="background:white; margin-top:50px">
+<div style="height:135px;">
+</div><div class="container" style="background:white">
   <div class="no-padding">
     <div class="modalHeader row">
       <div class="day-w-border">
@@ -63,7 +64,7 @@
           {{volDetails?.description}}
         </div>
         <div class="details-vol">
-          <span class="typeVol">Solidariedade Social</span> <span class="insuBool">Seguro</span>
+          <span class="typeVol">{{volDetails?.category_name}}</span> <span class="insuBool">Seguro</span>
         </div>
       </div>
 
@@ -148,8 +149,8 @@
                 <div class="row">
                     <div class="col-12 no-padding" style="display:flex; align-items:center;">
                         <div class="cardLikes">
-                            <md-icon (click)="dislike(vol)" *ngIf="likeState==1" class="btnLike">favorite</md-icon>
-                            <md-icon (click)="like(vol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack">favorite_border</md-icon>
+                            <md-icon (click)="dislike(vol)" *ngIf="likeState==1" class="btnLike pointer">favorite</md-icon>
+                            <md-icon (click)="like(vol)" *ngIf="!numberLikes || likeState==0" class="btnLike btnBlack pointer">favorite_border</md-icon>
                         </div>
                         <div *ngIf="login" class="likesText ts12">
                             <!-- <span class="likesTestMe">Tu,</span> <span class="likesTestSecond">Araújo</span> e mais 298 gostaram disto -->

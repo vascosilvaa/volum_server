@@ -1,10 +1,12 @@
 import { SocketService } from './../../shared/socket.service';
 import { AppComponent } from './../../app.component';
 import { AuthenticationService } from './../../shared/Auth/authentication.service';
-import { Component, OnInit } from '@angular/core';
-import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewContainerRef, Injector, ViewChild, ElementRef } from '@angular/core';
+import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
+import { Router } from '@angular/router';
+import { RegisterComponent } from '../register/register.component'
 
 
 export class ModalContext extends BSModalContext {
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
     public statePass = 0;
     public error: any;
 
-    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>, private socketService: SocketService) {
+    constructor(private _fb: FormBuilder, private auth: AuthenticationService, private dialog: DialogRef<ModalContext>, private socketService: SocketService,
+    private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal) {
         this.context = dialog.context;
         this.context.isBlocking = false;
         this.context.keyboard = [27];
@@ -64,5 +67,10 @@ export class LoginComponent implements OnInit {
                 console.log(err)
             });
 
+    }
+
+    openRegister(){
+        this.dialog.dismiss();
+        return this.modal.open(RegisterComponent);
     }
 }

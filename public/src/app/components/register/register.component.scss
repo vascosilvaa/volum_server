@@ -16,7 +16,7 @@ input{
     font-size: 16px;
     font-family: Lato;
     border:1px solid $grey1;
-    margin-bottom: 6px;
+    margin-top: 6px;
 
 }
 
@@ -93,6 +93,7 @@ button{
 .forgotPass:hover {
     text-decoration: underline;
     cursor: pointer; 
+
 }
 
 .footerLogin {
@@ -139,6 +140,21 @@ button{
     cursor: pointer;
 }
 
+.selectRegister {
+    width: 100%;
+    border-radius: 0px;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 27px !important;
+    padding-right: 27px !important;
+    background: #FFFFFF;
+    color: #3F4257 !important;
+    font-size: 16px;
+    font-family: Lato;
+    border: 1px solid #E6ECF5!important;
+    margin-top: 6px;
+}
+
 .adviceSocial:hover {
     text-decoration: underline;
 }
@@ -155,5 +171,8 @@ button{
     color: $grey5;
     font-size:14px;
     font-family: Lato;
+}
 
+.text-danger {
+    font-size:14px;
 }

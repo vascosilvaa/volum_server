@@ -32,6 +32,20 @@
     max-width: 170px;
 
 }
+
+.btn-see {
+    background: $blue;
+    color: $white;
+    font-size: 14px;
+    width: 60px;
+    text-decoration: none;
+    border: 0;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: $bold;
+    cursor: pointer;
+}
 .desc-person {
     color: $grey2;
     display: -webkit-box;
