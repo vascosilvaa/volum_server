@@ -179,7 +179,7 @@ var returnRouter = function (io) {
             if (req.query.insurance) {
                 options.sql += ' AND vols.insurance = ' + req.query.insurance + ' ';
             }
-            if (req.query.startDate || req.query.startDate 
+            if (req.query.startDate || req.query.startDate
             ) {
                 options.sql += ' AND vols.date_begin > ' + req.query.startDate + ' ';
             }
@@ -616,20 +616,33 @@ var returnRouter = function (io) {
      */
 
     app.post('/:id/invite', passport.authenticate('jwt'), function (req, res) {
-        console.log(req.body)
+        console.log("initial body", req.body)
         let user_array = []
+        array = JSON.parse(req.body.users)
+
+        console.log("array", array)
         if (req.body.users) {
 
-            for (let i = 0; i < req.body.users.length; i++) {
+            for (let i = 0; i < array.length; i++) {
 
-                user_array.push([req.body.users[i], req.user.id_user, req.params.id, new Date(), 7])
+                user_array.push([array[i], req.user.id_user, req.params.id, new Date(), 7])
             }
 
+            console.log(user_array)
             db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ?', [user_array],
                 function (error, results, fields) {
-                    res.send({
-                        success: true,
-                    })
+                    if (error) {
+                        console.log(error)
+                        res.send({
+                            success: false,
+                            error: error
+                        })
+                    } else {
+                        res.send({
+                            success: true,
+                        })
+                    }
+
 
                 });
 
@@ -1458,6 +1471,42 @@ var returnRouter = function (io) {
         }
 
     });
+
+    app.get('/:id/checkScoreState', passport.authenticate('jwt'), function (req, res) {
+
+        let options = {
+            sql: 'SELECT * from classification WHERE id_user = ? AND id_vol = ?',
+        };
+
+        db.get().query(options, [req.user.id_user, req.params['id']], function (error, results, fields) {
+            if (error) {
+                res.send({
+                    success: false,
+                    message: error
+                })
+                throw new Error(error);
+            } else {
+                if (results.length == 0) {
+                    res.status(200);
+                    res.send({
+                        success: true,
+                        state: 0
+                    })
+                } else {
+                    res.status(200);
+                    res.send({
+                        success: true,
+                        state: 1
+                    })
+                }
+
+
+            };
+
+        });
+
+    });
+
 
     app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
 

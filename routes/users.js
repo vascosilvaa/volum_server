@@ -783,6 +783,58 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get(`/:id/vols/count`, passport.authenticate('jwt'), function (req, res) {
+        req.checkParams('id', 'ID tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+                let options = {
+                    sql: `SELECT COUNT (*) AS count FROM vols WHERE id_user_creator = ? AND deleted = 0`
+                }
+                db.get().query(options, [req.params.id], function (err, count, fields) {
+
+                    res.json({
+                        success: true,
+                        count: count[0].count
+                    });
+
+                });
+
+            }
+
+        });
+    });
+
+    app.get(`/:id/vols/active/count`, passport.authenticate('jwt'), function (req, res) {
+        req.checkParams('id', 'ID tem que ser um numero').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+                let options = {
+                    sql: `SELECT COUNT (*) AS count FROM vols WHERE id_user_creator = ? AND active = 1 AND deleted = 0`
+                }
+                db.get().query(options, [req.params.id], function (err, count, fields) {
+
+                    res.json({
+                        success: true,
+                        count: count[0].count
+                    });
+
+                });
+
+            }
+
+        });
+    });
+
     app.get('/:id/vols/history', passport.authenticate('jwt'), function (req, res) {
         console.log(typeof req.params.id)
         console.log(req.params.id);
@@ -999,7 +1051,7 @@ var returnRouter = function (io) {
             let users = [];
 
             db.get().query({
-                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2',
+                sql: 'SELECT users.id_user, users.type_user, users.cover_photo, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 2',
                 nestTables: true
             }, [req.params.id],
                 function (error, results, fields) {
@@ -1009,7 +1061,8 @@ var returnRouter = function (io) {
                             users.push({
                                 id_user: results[i].users.id_user,
                                 name: results[i].users.name,
-                                photo_url: results[i].users.photo_url
+                                photo_url: results[i].users.photo_url,
+                                cover_photo: results[i].users.cover_photo
                             })
                         }
                         res.json({
@@ -1043,7 +1096,8 @@ var returnRouter = function (io) {
                 sql: `
                 SELECT users.id_user, users.type_user,
                 users.name,
-                users.photo_url 
+                users.photo_url,
+                users.cover_photo
                 FROM follows
                 INNER JOIN users ON follows.id_user = users.id_user  
                 WHERE follows.id_user2 = ? AND users.type_user = 2`,
@@ -1056,7 +1110,9 @@ var returnRouter = function (io) {
                             users.push({
                                 id_user: results[i].users.id_user,
                                 name: results[i].users.name,
-                                photo_url: results[i].users.photo_url
+                                photo_url: results[i].users.photo_url,
+                                cover_photo: results[i].users.cover_photo
+
                             })
                         }
                         res.json({
@@ -1089,7 +1145,7 @@ var returnRouter = function (io) {
             db.get().query({
                 sql: `
                 SELECT users.id_user, users.type_user,
-                users.name,
+                users.name, users.cover_photo,
                 users.photo_url 
                 FROM follows
                 INNER JOIN users ON follows.id_user = users.id_user  
@@ -1103,7 +1159,9 @@ var returnRouter = function (io) {
                             users.push({
                                 id_user: results[i].users.id_user,
                                 name: results[i].users.name,
-                                photo_url: results[i].users.photo_url
+                                photo_url: results[i].users.photo_url,
+                                cover_photo: results[i].users.cover_photo
+
                             })
                         }
                         res.json({
@@ -1135,7 +1193,7 @@ var returnRouter = function (io) {
             let institutions = [];
 
             db.get().query({
-                sql: 'SELECT users.id_user, users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1',
+                sql: 'SELECT users.id_user, users.cover_photo,users.type_user, users.name, users.photo_url FROM follows INNER JOIN users ON follows.id_user2 = users.id_user  WHERE follows.id_user = ? AND users.type_user = 1',
                 nestTables: true
             }, [req.params.id],
                 function (error, results, fields) {
@@ -1145,7 +1203,9 @@ var returnRouter = function (io) {
                             institutions.push({
                                 id_user: results[i].users.id_user,
                                 name: results[i].users.name,
-                                photo_url: results[i].users.photo_url
+                                photo_url: results[i].users.photo_url,
+                                cover_photo: results[i].users.cover_photo
+
                             })
                         }
                         res.json({
