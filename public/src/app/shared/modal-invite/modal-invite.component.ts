@@ -57,7 +57,8 @@ export class ModalInviteComponent implements OnInit {
     });
   }
 
-  invite(id_user) {
+  invite(id_user, index) {
+    this.follows[index].isInvited=true;
     this.invited.push(id_user);
     console.log(this.invited);
     this.volsService.insertInvite(this.context.id_vol, this.invited).then(res => {
