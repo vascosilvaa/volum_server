@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
 
   search(query) {
     console.log(query);
-    this.volsService.search(query).then(res => {
+    this.volsService.search(query, 0, 100 ).then(res => {
         this.searchResult = res;
         console.log(this.searchResult);
         if (this.searchResult.success==true) {

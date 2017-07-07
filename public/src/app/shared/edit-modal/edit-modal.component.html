@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label class="label-input">Titulo da ação de voluntariado</label>
-                        <input type="text" class="form-control input-form" aria-describedby="title-action" placeholder="Titulo da ação de voluntariado" [class.form-control-danger]="!form.controls.name.valid && form.controls.name.touched" minlength="10" maxlength="60" formControlName="name" required>
+                        <input type="text" class="form-control input-form" aria-describedby="title-action" placeholder="Titulo da ação de voluntariado" [class.form-control-danger]="!form.controls.name.valid && form.controls.name.touched" minlength="10" maxlength="60" formControlName="name" required [value]="model_title">
                         <small *ngIf="form.controls.name.errors?.required && form.controls.name.touched" class="form-text text-muted">Por favor, insira o título da ação.</small>
                         <small *ngIf="form.controls.name.errors?.maxlength && form.controls.name.touched" class="form-text text-muted">O título da ação não deve exceder o limite de 30 caracteres.</small>
                         <small *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" class="form-text text-muted">O título da ação deve possuir, pelo menos 10 caracteres.</small>
@@ -24,7 +24,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label class="label-input">Descrição da ação de voluntariado</label>
-                        <textarea class="form-control input-textarea" rows="6" formControlName='about' placeholder="Descrição, funções do voluntário..." [class.form-control-danger]="!form.controls.description.valid && form.controls.description.touched" minlength="50" formControlName="description" required></textarea>
+                        <textarea class="form-control input-textarea" rows="6" formControlName='about' placeholder="Descrição, funções do voluntário..." [class.form-control-danger]="!form.controls.description.valid && form.controls.description.touched" minlength="50" formControlName="description" required [value]="model_desc"></textarea>
                         <small class="form-text text-muted" *ngIf="form.controls.description.errors?.required && form.controls.description.touched">Por favor, insira a descrição da ação.</small>
                         <small class="form-text text-muted" *ngIf="form.controls.description.errors?.minlength && form.controls.description.touched">A descrição da ação deve possuir, no mínimo 30 caracteres.</small>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label class="label-input">Categoria</label>
-                                    <select (focusout)="categoryChanged()" class="select-input form-control" formControlName="category" [class.form-control-danger]="form.controls.category.touched && categoryControl==2">
+                                    <select class="select-input form-control" formControlName="category" [class.form-control-danger]="form.controls.category.touched && categoryControl==2" [value]="model_category">
                                         <option value="-1" disabled>Escolher categoria</option>
                                         <option *ngFor="let category of categories" [value]='category?.id_category'>{{category?.name}}</option>>
                                     </select>
@@ -43,7 +43,7 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label class="label-input">Seguro</label>
-                                    <select (focusout)="insuranceChanged()" class="select-input form-control" formControlName="insurance" [class.form-control-danger]="form.controls.insurance.touched && insuranceControl==2">
+                                    <select class="select-input form-control" formControlName="insurance" [class.form-control-danger]="form.controls.insurance.touched && insuranceControl==2" [value]="model_insurance">
                                         <option value="-1" disabled>Seguro</option>
                                         <option value="1">Sim</option>
                                         <option value="0">Não</option>
@@ -78,14 +78,14 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="label-input">Localização</label>
-                                    <input type="text" class="form-control input-form" #input [ngModelOptions]="{standalone: true}" [(ngModel)]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado" required>
-                                    <small *ngIf="coordAdvice"  class="form-text text-muted">Por favor, indique uma localização válida.</small>
+                                    <input type="text" class="form-control input-form" #input [ngModelOptions]="{standalone: true}" [(ngModel)]="model" [value]="model" (keyup.enter)="navigate(model.geometry.location.lat, model.geometry.location.lng)" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="localization" placeholder="Insira a localização do voluntariado" required>
+                                    <small *ngIf="coordAdvice"  class="form-text text-muted">Por favor, indique uma localização válida.</small> 
                                 </div>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <sebm-google-map class="map-size" [latitude]="lat" [longitude]="lng" [zoom]="13">
-                                    <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></sebm-google-map-marker>
+                                <sebm-google-map class="map-size" [latitude]="model_lat" [longitude]="model_lng" [zoom]="13">
+                                    <sebm-google-map-marker [latitude]="model_lat" [longitude]="model_lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></sebm-google-map-marker>
                                 </sebm-google-map>
                             </div>
 
@@ -93,7 +93,7 @@
                             <div class="col-lg-6 col-md-6 col-12 mt-2">
                                 <div class="form-group">
                                     <label class="label-input">Data de início</label>
-                                    <input class="form-control input-form-date" ngbDatepicker type="date" formControlName="date_begin" placeholder="aaaa-mm-dd" [class.form-control-danger]="!form.controls.date_begin.valid && form.controls.date_begin.touched" required>
+                                    <input class="form-control input-form-date" ngbDatepicker type="date" formControlName="date_begin" [(ngModel)]="model_date_begin" [class.form-control-danger]="!form.controls.date_begin.valid && form.controls.date_begin.touched" required>
                                     <small class="form-text text-muted" *ngIf="form.controls.date_begin.errors?.required && form.controls.date_begin.touched">Por favor insira a data de início da ação.</small>
                                 </div>
                             </div>

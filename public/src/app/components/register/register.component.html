@@ -38,33 +38,57 @@
                         <div class="col-12">
                             <input type="email" maxlength="120" [class.borda]="!form.controls.email.valid && form.controls.email.touched" formControlName="email"
                                 class="inputEmailLogin form-control" placeholder="Endereço de e-mail">
-                            <div *ngIf="form.controls.email.errors?.required && form.controls.email.touched" class="text-danger">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.email.errors?.required && form.controls.email.touched" class="text-danger">O e-mail é obrigatório.</div>
+                            <div *ngIf="form.controls.email.errors?.email && form.controls.email.touched" class="text-danger">O formato do e-mail não está correto.</div>
                         </div>
                         <div class="col-12">
                             <input type="text" maxlength="120" [class.borda]="!form.controls.name.valid && form.controls.name.touched" formControlName="name"
-                                class="inputEmailLogin form-control" placeholder="Primeiro nome">
-                            <div *ngIf="form.controls.name.errors?.required && form.controls.name.touched" class="text-danger">Campo Obrigatório</div>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" maxlength="120" [class.borda]="!form.controls.lastname.valid && form.controls.lastname.touched" formControlName="lastname"
-                                class="inputEmailLogin form-control" placeholder="Último Nome">
-                            <div *ngIf="form.controls.lastname.errors?.required && form.controls.lastname.touched" class="text-danger">Campo Obrigatório</div>
+                                class="inputEmailLogin form-control" placeholder="Primeiro e último nome">
+                            <div *ngIf="form.controls.name.errors?.required && form.controls.name.touched" class="text-danger">O nome é obrigatório.</div>
+                            <div *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" class="text-danger">O nome que inseriste é demasiado pequeno.</div>
                         </div>
                         <div class="col-12">
                             <input maxlength="120" [class.borda]="!form.controls.password.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password" placeholder="Inserir palavra-passe">
                             <div *ngIf="form.controls.password.errors?.actualLength < form.controls.password.errors?.requiredLength && form.controls.password.touched"
                                 class="text-danger">A password não é forte o suficiente</div>
-                            <div *ngIf="form.controls.password.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
+                            <div *ngIf="form.controls.password.errors?.required && form.controls.password2.touched" class="text-danger">A password é obrigatória.</div>
+                            <div *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" class="text-danger">A password que inseriste é demasiado pequena.</div>
 
                         </div>
                         <div class="col-12">
                             <input maxlength="120" [class.borda]="!form.controls.password2.valid && form.controls.password.touched" type="password" class="inputPasswordLogin form-control"
                                 formControlName="password2" placeholder="Confirmar palavra-passe">
-                            <div *ngIf="form.controls.password2.errors?.required && form.controls.password2.touched" class="text-danger">Campo Obrigatório</div>
-                            <div *ngIf="form.controls.password2.errors?.actualLength < form.controls.password2.errors?.requiredLength && form.controls.password2.touched"
-                                class="text-danger">A password não é forte o suficiente</div>
+                            <div *ngIf="form.controls.password2.errors?.required && form.controls.password2.touched" class="text-danger">Repita a password por favor.</div>
+                            <div *ngIf="form.controls.name.errors?.minlength && form.controls.name.touched" class="text-danger">A password que inseriste é demasiado pequena.</div>
 
+                        </div>
+
+                         <div class="col-12">
+                            <select class="selectRegister" formControlName="gender">
+                                <option value='0' disabled>Género</option>
+                                <option value='1'>Masculino</option>
+                                <option value='2'>Feminino</option>
+                            </select>
+                            <div *ngIf="form.controls.gender.errors?.required && form.controls.gender.touched" class="text-danger">O Género é obrigatório.</div>
+                        </div>
+                          <div class="col-12">
+                            <select class="selectRegister" formControlName="type">
+                                <option  value='0' disabled>Tipo de utilizador</option>
+                                <option value='1'>Instituição</option>
+                                <option value='2'>Voluntário</option>
+                                 <div *ngIf="form.controls.type.errors?.required && form.controls.type.touched" class="text-danger">A indicação de tipo de utilizador é obrigatória.</div>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <select class="selectRegister" >
+                                <option value='0' disabled>Categoria favorita</option>
+                                <option *ngFor="let category of categories" value='{{category.id_category}}'>{{category?.name}}</option>
+                            </select>
+                        </div>
+                       
+                        <div class="col-12">
+                            <p class="text-danger">{{errorSent}} </p>
                         </div>
                         <div class="col-12">
                             <p class="serviceAdvice">Ao fazer o registo, concordo com os Termos de Serviço e a Política de Privacidade da Volum. </p>
@@ -74,7 +98,7 @@
                             <button class="normalLogin" type="submit">Registar</button>
                         </div>
                     </form>
-                </div>
+                </div>  
 
                 <div *ngIf="emailRegist==2">
                     <div class="col-12">
@@ -95,7 +119,7 @@
                         <span class="registerAdvice">Já se encontra registado?</span>
                     </div>
                     <div class="col text-right btnRegister">
-                        <button type="button" class="registerBtn">Entrar</button>
+                        <button type="button" class="registerBtn" (click)="openLogin()">Entrar</button>
                     </div>
                 </div>
 

@@ -167,13 +167,13 @@ export class ProfileComponent implements OnInit {
       console.log(this.state);
     });
   }
+  
   engageConversation() {
     this.profileService.engageConversation(this.id_user).then(res => {
       console.log(res);
       this.router.navigate(['./chat/msg/', res.id_conversation])
     }).catch(err => {
       this.router.navigate(['./chat/msg/'])
-
     })
   }
   checkOnline() {

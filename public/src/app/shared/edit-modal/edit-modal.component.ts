@@ -86,15 +86,17 @@ export class EditModalComponent implements OnInit {
 
       this.model_title = this.vol.name;
       this.model_desc = this.vol.description;
-      this.model_category = this.vol.category;
+      this.model_category = this.vol.id_category;
       this.model_insurance = this.vol.insurance;
-      this.model_date_begin = this.vol.date_begin;
+      this.model_date_begin = new Date(this.vol.date_begin.replace(/-/g,"/"));
+      console.log(this.model_date_begin);
       this.model_date_end = this.vol.date_end;
       this.model_lat = parseFloat(this.vol.lat);
       this.model_lng = parseFloat(this.vol.lng);
       this.SharedService.getAddress(this.vol.lat, this.vol.lng).then(res => {
         this.modelData = res.results;
         this.model = this.modelData[0].formatted_address;
+        console.log(this.model);
       });
       if (this.vol.start_time != "00:00:00.000000" && this.vol.start_time) {
         this.hora_inicio = this.vol.start_time.slice(0, 2);
