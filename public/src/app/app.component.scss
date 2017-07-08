@@ -465,7 +465,7 @@ display: -webkit-box;
 
 .message-container{
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .message-item .time {

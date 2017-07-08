@@ -5,7 +5,7 @@
             <img (click)="onSelect(userCreator)" class="clickable" src="{{avatar}}" (error)="this.avatar = 'http://santetotal.com/wp-content/uploads/2014/05/default-user.png'">
         </div>
         <div class="card-bevolun-user-name">
-            <a *ngIf="login" class="clickable" (click)="onSelect(userCreator)">{{username}}</a>
+            <a *ngIf="login" class="pointer underline" (click)="onSelect(userCreator)">{{username}}</a>
             <a *ngIf="!login">{{username}}</a>
         </div>
         <div class="card-bevolun-user-verified bevolun-tooltip clickable" *ngIf="verified==1">

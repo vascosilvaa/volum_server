@@ -6,7 +6,8 @@
     </div>
     <div class="navbar-bevolun-search">
         <div class="header-search" [class.showSearch]="showSearch">
-            <input type="text" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
+            <input type="text" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" (keyup.enter)="navigate(model.id, model.type)"
+                placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
             <ng-template #rt let-r="result" let-t="term">
                 <div class="search-result pointer" (click)="navigate(r.id, r.type)">
                     <div class="search-img">
@@ -36,7 +37,7 @@
         <div class="navbar-bevolun-people ml-4" *ngIf="user" ngbDropdown (click)="getRequests(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>people</md-icon>
-                <span class="badge badge-notify">2</span>
+                <span class="badge badge-notify" *ngIf="newRequestsCount > 0">{{newRequestsCount}}</span>
             </a>
 
             <div id="dropdown-messages" class="dropdown-menu">
@@ -97,7 +98,7 @@
         <div class="navbar-bevolun-chat ml-4 pointer" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>chat_bubble</md-icon>
-                <span class="badge badge-notify">2</span>
+                <span class="badge badge-notify">1</span>
             </a>
 
             <div id="dropdown-messages" class="dropdown-menu">
@@ -183,7 +184,7 @@
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
                                 <p *ngIf="notification.type == 7"><b>{{notification?.user_name}}</b> Convidou-te para <span>{{notification?.vol_name}}!</span><br>Clica
-                                    aqui para deixares o teu testemunho.
+                                    aqui para ver mais detalhes.
 
                                     <span class="time">{{notification?.date | amTimeAgo:true }}</span> </p>
 
@@ -210,13 +211,16 @@
                         </div>
                     </div>
 
-                    <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
 
+                    <div class="container text-center no-content" style="margin-top:10px; margin-bottom:10px;" *ngIf="notifications.length==0">
+                        <span style="font-weight: 400">Não possui notificações.</span>
+                    </div>
                 </div>
+                <div routerLink="/notifications" class="dropdown-footer">Ver todas as notificações</div>
             </div>
         </div>
 
-        
+
 
         <!-- USER -->
         <div class="navbar-bevolun-user ml-4" *ngIf="user" ngbDropdown ngbDropdownToggle>

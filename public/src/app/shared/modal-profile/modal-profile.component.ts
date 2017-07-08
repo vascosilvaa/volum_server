@@ -60,6 +60,7 @@ export class ModalProfileComponent implements OnInit {
         this.router.navigate(['/profile/' + this.context.idProfile + '/activity']);
       }, 250);
     } else {
+      this.router.navigate(['/profile/' + this.context.idProfile + '/activity']);
       this.dialog.close("done");
     }
   }
