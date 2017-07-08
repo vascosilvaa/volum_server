@@ -154,9 +154,6 @@ export class DetailsComponent implements OnInit {
           }
         }
 
-
-
-
         if (this.vol.active == 0) {
           this.volsService.getScores(this.id_vol).then(res => {
             console.log("RES", res)
@@ -173,7 +170,7 @@ export class DetailsComponent implements OnInit {
           })
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {console.log(err)});
   }
 
   getNumber = function (num) {

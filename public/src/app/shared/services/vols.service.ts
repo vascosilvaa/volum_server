@@ -138,15 +138,23 @@ export class volsService {
                 return err.json();
             });
     }
-
+  getVolsAldrabado(params) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, params).toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return err.json();
+            });
+    }
     checkLike(id_vol) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/checkLike`).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
 
-    search(query) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search?search=` + query).toPromise()
+    search(query, startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search`,   { search: query, startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -189,8 +197,16 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    getInvites(id_user) {
+    getInvites(id_vol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invites`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 
+    insertInvite(id_vol, users) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invite`, {users: users}).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
     }
 
     listPending(id_user) {

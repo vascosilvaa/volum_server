@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row no-padding">
-    <div class="col-12">
+    <div class="col-12" style="margin-top:100px">
       <div class="for-input">
         <div class="headerInput">Procurar pessoas/instituições ou ações de voluntariado</div>
 
@@ -12,7 +12,34 @@
     </div>
   </div>
 
-  <div *ngIf="elements!=0">
+  <div>
+    <div class="title-filter">
+      Resultados
+    </div>
+    <div class="row card-people">
+
+      <div *ngFor="let element of elements" class="col-3"> 
+        <div  class="mini-card-social">
+          <div class="for-img">
+              <img *ngIf="element.type==1 || element.type==2" class="thumbnail" src="{{element?.photo_url}}">
+              <img *ngIf="element.type==0" class="thumbnail4" src="{{element?.photos[0]}}">
+          </div>
+          <div class="text-person">
+          <div class="ts14 name-person">{{element?.name}}</div>
+          <div *ngIf="element.type==2" class="ts13 desc-person" >Utilizador</div>
+          <div *ngIf="element.type==1" class="ts13 desc-person" >Instituição</div>
+          <div *ngIf="element.type==0" class="ts13 desc-person" >Ação de voluntariado</div>
+          </div>
+           <div class="btn-person text-right for-btn">
+             <button *ngIf="element.type==1 || element.type==2" class="btn-see" (click)="openUser(element.id)">Ver</button>
+             <button *ngIf="element.type==0" class="btn-see" (click)="openVolDetails(element.id)">Ver</button>
+          </div>
+            
+</div>
+      </div>
+    </div>
+
+  <!--<div *ngIf="elements!=0">
     <div class="title-filter">
       Utilizadores
     </div>
@@ -42,7 +69,7 @@
           Carregar mais...
     </div>
   </div>
-  -->
+
     <div class="title-filter">
       Instituições
     </div>
@@ -71,7 +98,7 @@
           Carregar mais...
         </div>
       </div>
-      -->
+
     <div class="title-filter">
       Ações de Voluntariado
     </div>

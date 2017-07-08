@@ -27,7 +27,7 @@
 
                             <ul class="profile-menu" *ngIf="id_user!=id_logged_user">
                                  <!-- FALTA O ROUTING AQUI -->
-                                <li *ngIf="id_user!=id_logged_user"><a routerLink="/chat" [routerLinkActive]="['menuSubHeaderActive']">Mensagem</a></li>
+                                <li *ngIf="id_user!=id_logged_user"><a (click)="engageConversation()" [routerLinkActive]="['menuSubHeaderActive']">Mensagem</a></li>
 
                                 <li><a routerLink="/profile/{{id_user}}/following" [routerLinkActive]="['menuSubHeaderActive']">A seguir</a></li>
                                 <li>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="control-block-button">
                         <a class="btn btn-control btn-chat mr-2" *ngIf="id_user==id_logged_user" routerLink="/chat"><i class="material-icons">chat</i></a>
-                        <a class="btn btn-control btn-chat mr-2" *ngIf="id_user!=id_logged_user" routerLink="/chat/msg"><i class="material-icons">chat</i></a>
+                        <a class="btn btn-control btn-chat mr-2" *ngIf="id_user!=id_logged_user" (click)="engageConversation()"><i class="material-icons">chat</i></a>
                         <a class="btn btn-control btn-add" *ngIf="id_user==id_logged_user" routerLink="/profile/{{id_user}}/new"><i class="material-icons">add</i></a>
                         <span *ngIf="id_user!=id_logged_user">
                             <a class="btn btn-control-follow btn-follow" (click)="follow(id_user)" *ngIf="state == 0"><img src="src/assets/img/follow-add.png"></a>

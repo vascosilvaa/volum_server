@@ -89,12 +89,13 @@ app.get('/api/search', function (req, res) {
 
                         for (let i = 0; i < results[0].length; i++) {
                             results[0][i].type = 0;
-                            console.log("RESULTS", results[0][i].photos)
+                            console.log("RESULTS", results[0][i])
                             if (results[0][i].photos) {
 
                                 let temp = (results[0][i].photos.split('->'))
                                 results[0][i].photo_url = temp[0];
 
+                                delete results[0][i].photos;
                             }
                         }
 

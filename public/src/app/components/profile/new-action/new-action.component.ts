@@ -239,13 +239,18 @@ export class NewActionComponent implements OnInit {
       if (this.url3) {
         array.push(this.url3);
 
+      
+
       }
       form.value.photos = array;
       console.log('you submitted value:', form.value);
 
       if (form.value.date_begin instanceof Date) {
 
+        
+
       } else {
+        
         form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
         form.value.date_end = new Date(this.parser.format(form.value.date_end));
       }
@@ -256,7 +261,7 @@ export class NewActionComponent implements OnInit {
         if (res.error) {
           console.log('erro')
         } else {
-          this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
+            this.Router.navigate(['/profile/' + this.idProfile + '/details/' + res.id_vol]);
         }
       });
 

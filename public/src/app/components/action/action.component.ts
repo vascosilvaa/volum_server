@@ -48,6 +48,7 @@ lat: number;
   public ready: boolean = false;
   public feed: any;
   public vol: any;
+  public categories: any;
   constructor(public modal: Modal, public route: Router, private router: ActivatedRoute, overlay: Overlay, public injector: Injector, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
   }
 
@@ -70,6 +71,7 @@ lat: number;
       this.getComments();
       this.getCandidates();
       this.getConfirmed();
+      this.getCategories();
       if (this.authService.isAuthenticated()) {
         this.authService.userPromise.then(res => {
           this.userLogin = res.user;
@@ -80,7 +82,7 @@ lat: number;
         this.authService.userPromise.then(res => {
           this.id_user = res.user.id_user;
           this.photo = res.user.photo;
-          this.name = res.user.username;
+          this.name = res.user.name;
         });
       }
       else {
@@ -99,11 +101,25 @@ lat: number;
           this.lat = parseFloat(this.volDetails.lat);
           this.lng = parseFloat(this.volDetails.lng);
           console.log(this.lat, this.lng)
+          for(let i=0;  i< this.categories.length; i++) {
+            if(this.categories[i].id_category==parseInt(this.volDetails.id_category)) {
+              this.volDetails.category_name = this.categories[i].name;
+            }
+          }
           this.ready = true;
         })
         .catch(err => console.log(err));
     }, 250)
   }
+
+  getCategories() {
+    this.volsService.getCategories()
+      .then(res => {
+        this.categories = res.categories;
+      })
+      .catch(err => console.log(err));
+  }
+
 
   onSelect(id_profile) {
     this.route.navigate(['/profile/' + id_profile + '/activity']);
