@@ -45,7 +45,14 @@
     font-size: 12px;
     font-weight: $bold;
     cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 1;
 }
+
+.btn-see:hover{
+    opacity: 0.9;
+}
+
 .desc-person {
     color: $grey2;
     display: -webkit-box;
@@ -64,8 +71,8 @@
 }
 
 .btnConfirmPadding {
-    padding: 10px!important;
-    margin-left: 10px;
+    padding:10px;
+    font-weight: 600;
 }
 
 .for-btn {
@@ -97,8 +104,9 @@
 }
 .title-filter {
     font-weight: $bold;
-    margin-top: 30px;
+    margin-top: 25px;
     color: $grey4;
+    margin-bottom: 15px;
 }
 .moreResults {
     margin-top: 5px;
@@ -151,4 +159,87 @@
 
 .search_query {
     color: $blue;
+}
+
+.input-form-search-page{
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+    color: $grey5!important;
+    border-color: $grey1;
+    border:none!important;
+}
+
+.input-form-search-page::placeholder{
+    color: $grey2;
+}
+
+.ui-block-search-content{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 25px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.ui-block-title-search{
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.ui-block-title-search h6{
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+.ui-block-search-content .form-group{
+    flex: 2;
+    margin-bottom: 0;
+}
+
+.btn-search-page-b{
+    background-color: $primary;
+    padding: 1rem 0.75rem;
+    color: $white;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-block{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.search-block-img img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.actionsearch img{
+     border-radius: 0!important;
+}
+
+.search-block-name{
+    flex: 2;
+}
+
+.search-block-name h6{
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-block-name p{
+    font-size: 0.8rem;
+    color: $grey3
 }

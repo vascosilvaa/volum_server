@@ -1,143 +1,49 @@
+<div class="header-spacing"></div>
+
 <div class="container">
-  <div class="row no-padding">
-    <div class="col-12" style="margin-top:100px">
-      <div class="for-input">
-        <div class="headerInput">Procurar pessoas/instituições ou ações de voluntariado</div>
-
-        <input type="text" [(ngModel)]="search_query" (keyup.enter)="search(model)" [(ngModel)]="model" class="inputSearch" placeholder="Pesquisa pessoas/instituições ou ações de voluntariado">
-        <button
-          (keyup.enter)="search(model)" (click)="search(model)" class="btn btnConfirm btnConfirmPadding">PESQUISAR</button>
-
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="title-filter">
-      Resultados
-    </div>
-    <div class="row card-people">
-
-      <div *ngFor="let element of elements" class="col-3"> 
-        <div  class="mini-card-social">
-          <div class="for-img">
-              <img *ngIf="element.type==1 || element.type==2" class="thumbnail" src="{{element?.photo_url}}">
-              <img *ngIf="element.type==0" class="thumbnail4" src="{{element?.photos[0]}}">
-          </div>
-          <div class="text-person">
-          <div class="ts14 name-person">{{element?.name}}</div>
-          <div *ngIf="element.type==2" class="ts13 desc-person" >Utilizador</div>
-          <div *ngIf="element.type==1" class="ts13 desc-person" >Instituição</div>
-          <div *ngIf="element.type==0" class="ts13 desc-person" >Ação de voluntariado</div>
-          </div>
-           <div class="btn-person text-right for-btn">
-             <button *ngIf="element.type==1 || element.type==2" class="btn-see" (click)="openUser(element.id)">Ver</button>
-             <button *ngIf="element.type==0" class="btn-see" (click)="openVolDetails(element.id)">Ver</button>
-          </div>
-            
-</div>
-      </div>
-    </div>
-
-  <!--<div *ngIf="elements!=0">
-    <div class="title-filter">
-      Utilizadores
-    </div>
-    <div class="row card-people">
-      <span *ngFor="let element of elements">
-      <div *ngIf="element.type==1" class="col-12"> 
-        <div  class="mini-card-social">
-          <div class="for-img">
-              <img *ngIf="element.type==1 || element.type==2" class="thumbnail" src="{{element?.photo_url}}">
-          </div>
-          <div class="text-person">
-          <div class="ts14 name-person">{{element?.name}}</div>
-          <div class="ts13 desc-person" >Utilizador</div>
-          </div>
-           <div class="btn-person text-right for-btn">
-             <button class="btnConfirm" (click)="openUser(element.id)">VER</button>
-          </div>
-            
-</div>
-      </div>
-      </span>
-    </div>
-    
-    <!--
-     <div class="col-12 text-center">
-    <div class="moreResults">
-          Carregar mais...
-    </div>
-  </div>
-
-    <div class="title-filter">
-      Instituições
-    </div>
-    <div class="row card-people">
-      <span *ngFor="let element of elements">
-      <div *ngIf="element.type==2" class="col-12"> 
-        <div class="mini-card-social">
-          <div class="for-img">
-              <img class="thumbnail" src="{{element?.photo_url}}">
-          </div>
-          <div class="text-person">
-          <div class="ts14 name-person">{{element?.name}}</div>
-          <div class="ts13 desc-person">Instituição</div>
-          </div>
-           <div class="btn-person text-right for-btn">
-             <button class="btnConfirm" (click)="openUser(element.id)">VER</button>
-          </div>
-            
-</div>
-      </div>
-      </span>
-    </div>
-    <!--
-    <div class="col-12 text-center">
-        <div class="moreResults">
-          Carregar mais...
+    <div class="row">
+        <div class="col-12">
+            <div class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Pesquise pessoas, instituições ou ações de voluntariado</h6>
+                </div>
+                <div class="ui-block-search-content">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-form-search-page" aria-describedby="search" [(ngModel)]="search_query" (keyup.enter)="search(model)" [(ngModel)]="model"  placeholder="Pesquisa pessoas, instituições ou ações de voluntariado">
+                    </div>
+                    <div class="btn-search-page">
+                       <button (keyup.enter)="search(model)" (click)="search(model)" class="btn btnConfirm btnConfirmPadding">Pesquisar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-    <div class="title-filter">
-      Ações de Voluntariado
     </div>
-    <div class="row card-people">
-      <span *ngFor="let element of elements">
-      <div *ngIf="element.type==0" class="col-12"> 
-        <div class="mini-card-social">
-          <div class="for-img">
-              <img  class="thumbnail4" src="http://www.ids.edu.pt/wp-content/uploads/2017/03/bolsa-voluntariado-7.png">
-          </div>
-          <div class="text-person">
-          <div class="ts14 name-person">{{element?.name}}</div>
-          <div class="ts13 desc-person">Ação de Voluntariado</div>
-          </div>
-           <div class="btn-person text-right for-btn">
-             <button class="btnConfirm" (click)="openVolDetails(element.id)">VER</button>
-          </div>
-            
-</div>
-      </div>
-      </span>
+    <div class="row mt-2">
+        <div class="col-md-4 col-sm-6 col-12" *ngFor="let element of elements">
+            <div class="ui-block">
+                <div class="search-block">
+                    <div class="search-block-img" [class.actionsearch]="element.type == 0">
+                        <img *ngIf="element.type==1 || element.type==2" class="thumbnail" src="{{element?.photo_url}}">
+                        <img *ngIf="element.type==0" src="{{element?.photos[0]}}">
+                    </div>
+                    <div class="search-block-name">
+                        <h6>{{element?.name}}</h6>
+                        <p *ngIf="element.type==2">Voluntário</p>
+                        <p *ngIf="element.type==1">Instituição</p>
+                        <p *ngIf="element.type==0">Ação de voluntariado</p>
+                    </div>
+                    <div class="search-block-btn">
+                        <button *ngIf="element.type==1 || element.type==2" class="btn-see" (click)="openUser(element.id)">Ver</button>
+                        <button *ngIf="element.type==0" class="btn-see" (click)="openVolDetails(element.id)">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 no-results-row" *ngIf="elements==0">
+            <i class="material-icons">youtube_searched_for</i>
+            <div> Não foram encontrados resultados.</div>
+        </div>
     </div>
-   <!-- <div class="col-12 text-center">
-      <div class="moreResults">
-        Carregar mais...
-      </div>
-    </div>
-    -->
-  </div>
-  <div *ngIf="elements==0">
-    <div class="row no-results">
-      <div class="col-12 no-results-row">
-        <i class="material-icons">youtube_searched_for</i>
-        <div> Não foram encontrados resultados<!--<span class="search_query">{{search_query}}</span>-->.</div>
-      </div>
-    </div>
-  </div>
-
-
 </div>
 
-<app-footer></app-footer>
+
