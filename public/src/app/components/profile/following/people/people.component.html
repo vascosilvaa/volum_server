@@ -27,15 +27,12 @@
                         </div>
                         <div class="follow-content">
                             <p class="follow-name">{{user.name}}</p>
-                            <div>
-                              <span>
-                                  <md-icon class="small-star">star_rate</md-icon>
-                                  <md-icon class="small-star">star_rate</md-icon>
-                                  <md-icon class="small-star">star_rate</md-icon>
-                                  <md-icon class="small-star">star_border</md-icon>
-                                  <md-icon class="small-star">star_border</md-icon>
-                              </span>
-                            </div>
+                        <div *ngIf="scoreReady">
+                            <span>
+                                <md-icon *ngFor="let star of user?.score" class="small-star">star_rate</md-icon>
+                                <md-icon *ngFor="let star of user?.negative_score" class="small-star">star_border</md-icon>
+                            </span>
+                        </div>
                         </div>
                     </div>
                     <div class="follow-count">

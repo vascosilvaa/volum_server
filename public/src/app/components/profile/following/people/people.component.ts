@@ -15,11 +15,10 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 })
 export class PeopleComponent implements OnInit {
   public users = [];
-  public numberVolsParticipated : any;
-  public numberFollowers: any;
+  public scoreReady: any;
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
-    private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
+    private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, public profileService: ProfileService) {
   }
 
 
@@ -44,12 +43,25 @@ export class PeopleComponent implements OnInit {
         this.profileService.countFollowers(this.users[i].id_user).then(res => {
          let userCount = parseInt(res.count);
         this.users[i].numberFollowers = userCount;
-        });
-        
-        
+      });
+      
+      this.profileService.getScore(this.users[i].id_user).then(res => {
+        this.users[i]['score_number'] = res.score;
+        this.users[i]['score'] = this.getNumber(res.score);
+        this.users[i]['negative_score'] = this.getNumber(res.score - 5);
+        this.scoreReady = true;
+    });
       }
     });
 
+  }
+
+  getNumber(num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+    return new Array(number);
   }
 
   openProfileModal(idProfile) {
