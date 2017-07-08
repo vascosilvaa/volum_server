@@ -234,4 +234,15 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+
+    countCreated(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/count').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+    countCreatedActive(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/active/count').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 }

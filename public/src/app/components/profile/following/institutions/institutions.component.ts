@@ -19,6 +19,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 export class InstitutionsComponent implements OnInit {
 
   public institutions = [];
+  public scoreReady: any;
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal, private sharedService: SharedService,
     private auth: AuthenticationService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
@@ -27,7 +28,6 @@ export class InstitutionsComponent implements OnInit {
   ngOnInit() {
 
     this.route.parent.parent.parent.params.subscribe(res => {
-      console.log("RES", res);
       this.listFollows(res.id);
     });
   }
@@ -36,9 +36,31 @@ export class InstitutionsComponent implements OnInit {
 
     this.profileService.listFollows(id, 2).then(res => {
       this.institutions = res.institutions;
-      console.log(res);
+
+      for(let i=0; i<this.institutions.length; i++) {
+        this.profileService.countCreated(this.institutions[i].id_user).then(res => {
+          this.institutions[i].vols_created = parseInt(res.count);
+        });
+        this.profileService.countCreatedActive(this.institutions[i].id_user).then(res => {
+        this.institutions[i].vols_created_active = parseInt(res.count);
+        });
+      this.profileService.getScore(this.institutions[i].id_user).then(res => {
+        this.institutions[i]['score_number'] = res.score;
+        this.institutions[i]['score'] = this.getNumber(res.score);
+        this.institutions[i]['negative_score'] = this.getNumber(res.score - 5);
+        this.scoreReady = true;
+    });
+      }
     });
 
+  }
+
+  getNumber(num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+    return new Array(number);
   }
 
 

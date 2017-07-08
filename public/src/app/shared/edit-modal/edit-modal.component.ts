@@ -1,4 +1,5 @@
-import { SharedService } from './../services/shared.service';
+
+  import { SharedService } from './../services/shared.service';
 import { Router } from '@angular/router';
 import { ProfileService } from './../services/profile.service';
 import { AuthenticationService } from './../Auth/authentication.service';
@@ -130,6 +131,9 @@ export class EditModalComponent implements OnInit {
     });
   }
 
+  markerDragEnd(event){
+    
+  }
   onSubmit(form: any) {
     if(this.formChanged==1) {
     console.log(form.valid);

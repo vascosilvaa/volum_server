@@ -47,7 +47,6 @@ export class MapComponent implements OnInit {
   }
   ngOnInit() {
     this.getLocation();
-
   }
 
   navigate(lat, lng) {
@@ -99,7 +98,7 @@ export class MapComponent implements OnInit {
 
   getVols(event) {
 
-    console.log(event)
+    console.log("EVENT -->" + event)
 
     this.lats = {
 
@@ -117,6 +116,7 @@ export class MapComponent implements OnInit {
   getLocation() {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+
 
 
     }

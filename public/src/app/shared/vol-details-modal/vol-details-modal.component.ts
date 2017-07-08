@@ -24,7 +24,7 @@ export class ModalContext extends BSModalContext {
 
 
 export class VolDetailsModalComponent implements OnInit {
-   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+   @ViewChild('scrollMe') public myScrollContainer: ElementRef;
   lat: number;
   lng: number;
   public volDetails: any;
@@ -56,9 +56,10 @@ export class VolDetailsModalComponent implements OnInit {
   public feed: any;
   public categories: any;
 
+
   public error: boolean = false;
 
-  constructor(private router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, private dialog: DialogRef<ModalContext>, public SharedService: SharedService, private volsService: volsService, private authService: AuthenticationService) {
+  constructor(public router: Router, overlay: Overlay, public injector: Injector, public modal: Modal, public dialog: DialogRef<ModalContext>, public SharedService: SharedService, public volsService: volsService, public authService: AuthenticationService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
     if (this.authService.isAuthenticated()) {
@@ -126,7 +127,7 @@ export class VolDetailsModalComponent implements OnInit {
   }
   ngOnInit() {
     this.feed = this.injector.get(FeedComponent);
-    console.log(this.feed);
+    console.log("FEED" , this.feed);
   }
 
   onSelect(id_profile) {

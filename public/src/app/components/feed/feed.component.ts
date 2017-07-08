@@ -10,7 +10,7 @@ import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
   selector: 'feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
-  providers: [volsService]
+  providers: [volsService],
 })
 
 export class FeedComponent implements OnInit {
@@ -41,7 +41,7 @@ export class FeedComponent implements OnInit {
     zoom: true
   };
 
-  constructor(public http: Http, private volsService: volsService, public parser: NgbDateParserFormatter, private auth: AuthenticationService, private router: Router) { }
+  constructor(public http: Http, public volsService: volsService, public parser: NgbDateParserFormatter, public auth: AuthenticationService, public router: Router) { }
 
   ngOnInit() {
 

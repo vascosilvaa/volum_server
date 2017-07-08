@@ -4,6 +4,7 @@ import { AuthenticationService } from './../Auth/authentication.service';
 import { AuthenticationGuard } from './../Auth/authentication.guard';
 import { SharedModule } from './../shared.module';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
+import { ModalProfileComponent } from './../modal-profile/modal-profile.component';
 import { Component, ViewContainerRef, OnInit, Input, ViewChild } from '@angular/core';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
@@ -88,7 +89,7 @@ export class CardComponent implements OnInit {
   }
 
   onSelect(profile) {
-    this.router.navigate(['/profile/' + profile + '/activity']);
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: profile }, BSModalContext)).then((d) => d.result)
   }
 
   like(id_vol) {
