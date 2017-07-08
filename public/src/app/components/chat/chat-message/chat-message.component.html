@@ -1,3 +1,110 @@
+<div class="ui-message" *ngFor="let prof of profile">
+    <div class="header-message">
+        <div class="header-message-text">
+            <p>{{prof.name}}</p>
+        </div>
+        <div class="header-message-more">
+            <i class="material-icons fix-icon">settings</i>
+        </div>
+    </div>
+    <div class="content-message">
+        <div class="message-content">
+
+           
+            <div class="message-content-chat" #scrollMe>
+
+                <div *ngFor="let message of messages" [class.message-content-chat-row-left]="message.from_id != id_user" [class.message-content-chat-row-right]="message.from_id == id_user">
+                    <div class="user-img" *ngIf="message.from_id != id_user">
+                        <img src="{{prof.photo_url}}">
+                    </div>
+                     <div class="user-text">
+                        <div>{{message.message}}</div>
+                     </div>
+                </div>
+                
+            </div>
+            
+            <div class="message-content-input">
+                <div class="form-chat">
+                    <div class="form-input">
+                         <input autofocus type="text" class="inputSearch" [(ngModel)]="message" placeholder="Escrever uma mensagem" (keyup.enter)="sendMessage(message)">
+                    </div>
+                    <div class="form-chat-btn">
+                          <button class="btn btnConfirm" (click)="sendMessage(message)">ENVIAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="message-info">
+            <div class="message-info-user">
+                <div class="img">
+                    <img src="{{prof.photo_url}}">
+                </div>
+                <div class="name">
+                    <h6>{{prof.name}}</h6>
+                    <span>
+                        <md-icon>star_rate</md-icon>
+                        <md-icon>star_rate</md-icon>
+                        <md-icon>star_rate</md-icon>
+                        <md-icon>star_rate</md-icon>
+                        <md-icon>star_border</md-icon>
+                    </span>
+                </div>
+                <div class="icon">
+                     <i class="material-icons fix-icon">more_horiz</i>
+                </div>
+            </div>
+            <div class="message-info-user-more">
+                <div class="message-info-user-more-row">
+                    <div class="title">
+                        <p>Email</p>
+                    </div>
+                    <div class="description">
+                        <p>{{prof.email}}</p>
+                    </div>
+                </div>
+                <!--
+                <div class="message-info-user-more-row">
+                    <div class="title">
+                        <p>Email</p>
+                    </div>
+                    <div class="description">
+                        <p>asdsadsadas</p>
+                    </div>
+                </div>
+                <div class="message-info-user-more-row">
+                    <div class="title">
+                        <p>Email</p>
+                    </div>
+                    <div class="description">
+                        <p>asdsadsadas</p>
+                    </div>
+                </div>
+                <div class="message-info-user-more-row">
+                    <div class="title">
+                        <p>Email</p>
+                    </div>
+                    <div class="description">
+                        <p>asdsadsadas</p>
+                    </div>
+                </div>
+                <div class="message-info-user-more-row">
+                    <div class="title">
+                        <p>Email</p>
+                    </div>
+                    <div class="description">
+                        <p>asdsadsadas</p>
+                    </div>
+                </div>
+                -->
+            </div>          
+        </div>
+    </div>
+</div>
+
+
+
+<!--
 <div *ngFor="let prof of profile" class="container-fluid">
   <div class="row">
     <div class="col-8 no-padding">
@@ -10,9 +117,12 @@
           <div class="col-12 no-padding">
             <div class="chat-content" #scrollMe>
               <div *ngFor="let message of messages" [class.item-mine]="message.from_id == id_user" [class.item-friend]="message.from_id != id_user">
-                <div><img class="img-user" *ngIf="message.from_id != id_user" src="{{prof.photo_url}}"></div><button [class.msg-mine]="message.from_id == id_user"
+
+                <div>
+                  <img class="img-user" *ngIf="message.from_id != id_user" src="{{prof.photo_url}}"></div><button [class.msg-mine]="message.from_id == id_user"
                   [class.msg-friend]="message.from_id != id_user">{{message.message}}</button>
               </div>
+
               <div *ngIf="messages.length == 0" class="text-center no-content mt-5">
 
                 <div style="padding: 5px;"><i class="material-icons">messages</i></div>
@@ -155,3 +265,4 @@
     </div>
   </div>
 </div>
+-->

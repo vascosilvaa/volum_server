@@ -1,130 +1,338 @@
 @import "../../../styles";
 
-.recent-msgs {
-    background: $white;
-    height:calc(100vh - 72px);
-    padding:0;
-    overflow-y:auto;
-    border-right:1px solid $grey1;
-    margin-top:17px;
-   
+.header-height{
+    height: 72px;
 }
 
-
-
-.title-msgs {
-    color: $grey5;
-    font-size: 16px;
-    font-weight: $bold;
-    padding:15px 0px 15px 0px;
-    // border-right: 1px solid $grey1;
+.ui-message{
+    background-color: $white;
+    min-height: calc(100vh - 72px);
 }
 
-.msg-item {
-    cursor:pointer;
-    display:flex;
-    padding:10px 15px 10px 15px;
-}
-
-.msg-item:hover {
-    background:$grey1;
-}
-.active{
-        background:$grey1 !important;
-
-}
-
-.msg-item .image img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-}
-
-.message-info {
-    margin-left: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 500px;
-    padding-top: 5px;
-    font-size: 14px;
-    margin-top:-1px;
-}
-
-.nameMsg{
-    font-weight: bold;
-    color: $grey5;
-    font-size:14px;
-}
-
-.textMsg{
-    color: $grey2;
-    font-size:13px;
-}
-
-.content-msgs{
-    padding: 10px 0px;
-}
-
-.time {
-    color: $grey2;
-    font-weight: normal;
-    font-size: 11px;
-    float:right;
-    margin-top:-20px;
-}
-
-.search-msgs {
-    background: $white;
-    padding: 0px 15px 0px 15px;
+.header-message{
+    display: flex;
+    align-items: center;
+    padding: 15px;
     border-bottom: 1px solid $grey1;
 }
 
-.inputSearch {
-  width: 100%;
-  height: 35px;
-  border: 1px solid $grey1;
-  border-radius: 0;
-  padding: 15px;
-  font-size: 14px;
-  color: $grey2;
+.header-message-icon{
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease
+}
+.header-message-icon:hover{
+    opacity: 0.8;
 }
 
-.recent-msgs::-webkit-scrollbar {
-    width: 5px;
-    border-radius:10px;
-}
- 
-.recent-msgs::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset $grey2;
-}
- 
-.recent-msgs::-webkit-scrollbar-thumb {
-  background-color: $grey2;
+.header-message-icon i{
+    color: $primary;
+} 
 
+.header-message-add{
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease
 }
 
-.search-icon, .add-icon {
-    padding-top:15px;
-    cursor:pointer;
-
+.header-message-add:hover{
+    opacity: 0.8;
 }
 
-.search-icon:focus, .add-icon:focus {
-    outline:0!important;
-
-}
-
-
-
-.search-icon i , .add-icon i{
+.header-message-more i{
     color: $grey2;
-    
+} 
+
+.header-message-more{
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease
+}
+.header-message-more:hover{
+    opacity: 0.8;
+}
+
+.header-message-add i{
+    color: $primary;
+} 
+
+.header-message-text{
+    flex: 2;
+    text-align: center;
+}
+
+.header-message-text p{
+    font-weight: 600;
+    font-size: 1rem;
+    color: $grey4;
+}
+
+.list-message{
+    height: calc(100vh - 129px);
+    overflow-y: auto;
+    border-right: 1px solid $grey1
+}
+
+.list-message::-webkit-scrollbar {
+    width: 5px;
+    background: $grey0;
+    border:0;
+}
+ 
+.list-message::-webkit-scrollbar-thumb {
+    background-color: $grey1;
+    border:0;
+}
+
+.list-message-search{
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+} 
+
+.input-form-invite{
+    padding: 1rem 0.75rem;
+    font-size: 0.9rem;
+    color: $grey5!important;
+    border-color: $grey1!important
+}
+
+.input-form-invite::placeholder{
+    color: $grey2;
+}
+
+.list-message-item{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.list-message-item:hover{
+    background-color: $grey0;
+}
+
+.activelistchat{
+    background-color: $grey0!important;
+}
+
+.list-message-user-avatar img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 45px;
+    margin-right: 10px;
+}
+
+.list-message-user-name{
+    flex: 2;
+}
+
+.list-message-user-name h6{
+    font-weight: 600;
+    margin-bottom: 0;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+}
+
+.list-message-user-name p{
+    font-size: 0.8rem;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-message-user-time{
+    text-align: right;
+}
+
+.list-message-user-time p{
+    color: $grey3;
+    font-size: 0.7rem;
+    margin-top: -20px;
+}
+
+.content-message{
+    display: flex;
 }
 
 
-.search-icon i:hover , .add-icon i:hover{
-    color: $grey5;
-    
+
+.message-content{
+    flex: 2;
+    border-right: 1px solid $grey1;
+}
+
+.message-info{
+    width: 320px;
+    height: calc(100vh - 129px);
+}  
+
+.ui-message-info{
+    padding: 15px;
+}
+
+
+.message-info-user{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $grey1;
+    padding: 15px;
+}
+                   
+.message-info-user .img img{
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.message-info-user .name{
+    flex: 2
+}
+
+.message-info-user .name h6{
+    font-weight: 600;
+    margin-bottom: 0;
+    max-width: 230px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.message-info-user .name span md-icon{
+    color: $yellow;
+    font-size: 1.1rem;
+    height: 15px;
+    width: 17px;
+    margin-top: 2px;
+    margin-left: -2px;
+}
+
+.message-info-user .icon i{
+    color: $grey2;
+}
+
+.message-info-user-more{
+    padding: 20px;
+}
+
+.message-info-user-more-row{
+    margin-bottom: 15px;
+}
+
+.message-info-user-more-row .title p{
+    font-weight: 600;
+}
+
+
+.message-content-chat{
+    width: 100%;
+    height: calc(100vh - 189px);
+    overflow-y: auto!important;
+}
+
+
+.message-content-chat::-webkit-scrollbar {
+    width: 5px;
+    background: $grey0;
+    border:0;
+}
+ 
+.message-content-chat::-webkit-scrollbar-thumb {
+    background-color: $grey1;
+    border:0;
+}
+
+.message-content-chat-row-left{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.message-content-chat-row-left .user-img img{
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.message-content-chat-row-left .user-text{
+    flex: 2;
+}
+
+.message-content-chat-row-left .user-text div{
+   background-color: $grey1;
+   padding: 10px 15px 10px 15px;
+   border-radius: 15px;
+   float: left;
+}
+
+
+
+.message-content-chat-row-right{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.message-content-chat-row-right .user-img img{
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.message-content-chat-row-right .user-text div{
+   background-color: $primary;
+   padding: 10px 15px 10px 15px;
+   border-radius: 15px;
+   color: $white;
+   float: right;
+   margin-left: 15px;
+   margin-right: 15px;
+}
+
+.message-content-input{
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid $grey1;
+    overflow-y: auto;  
+}
+
+.form-chat{
+    display: flex;
+    align-items: center;
+}
+
+.form-input{
+    flex: 2;
+    padding-top: 15px;
+}
+
+.form-chat-btn{
+    padding-top: 8px;
+    padding-right: 15px;
 }

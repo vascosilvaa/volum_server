@@ -69,7 +69,7 @@ export class ChatMessageComponent implements OnInit {
   getProfile(id_conversation) {
     this.chatService.getProfile(id_conversation).then(res => {
       this.profile = res.result;
-      console.log(this.profile);
+      console.log("PROFILE",this.profile);
       for (let i = 0; i < this.profile.length; i++) {
         this.profileService.countVolsParticipation(this.profile[i].id_user).then(res => {
           this.profile[i].numberVolsParticipated = res.rows[0].count;

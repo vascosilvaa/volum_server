@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit {
     if (this.auth.isAuthenticated()) {
       this.auth.userPromise.then(res => {
 
+        
         this.router.navigate(['./msg', 26], { relativeTo: this.route }).then((a => {
           this.getConversations();
         }));

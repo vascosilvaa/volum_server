@@ -1,51 +1,103 @@
+<div class="header-height"></div>
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-3 no-padding">
+    <div class="row">
+        <div class="col-lg-3 col-md-7 col-sm-5 no-padding">
+            <div class="ui-message">
+                <div class="header-message">
+                    <div class="header-message-icon" (click)="activeSearch()">
+                        <i class="material-icons fix-icon">search</i>
+                    </div>
+                    <div class="header-message-text">
+                        <p>Últimas mensagens</p>
+                    </div>
+                    <div class="header-message-add" routerLink="/chat/new">
+                        <i class="material-icons fix-icon">add</i>
+                    </div>
+                </div>
 
-      <div class="search-msgs d-flex justify-content-between">
-
-        <div class="search-icon" (click)="activeSearch()">
-          <i class="material-icons">search</i>
-        </div>
-
-        <div class="title-msgs text-center">
-          Ultimas mensagens
-        </div>
-
-        <div class="add-icon" routerLink="/chat/new">
-          <i class="material-icons">add</i>
-        </div>
-
-      </div>
-      <div class="recent-msgs">
-        <div class="searchSection" *ngIf="searchAtive" style="padding-top:5px;">
-          <div class="areaInput">
-            <input type="text" class="inputSearch" autofocus placeholder="Pesquisar contactos">
-          </div>
-        </div>
-
-        <div class="content-msgs">
-          <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.name)"
-            routerLinkActive="active">
-            <div class="image">
-              <img [src]="conversation?.photo_url">
+      
+                <div class="list-message">
+                    <div class="list-message-search" *ngIf="searchAtive">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-form-invite" aria-describedby="search" placeholder="Procurar">
+                        </div>
+                    </div>
+                    <div class="list-message-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.name)" routerLinkActive="activelistchat">
+                        <div class="list-message-user-avatar">
+                            <img [src]="conversation?.photo_url">
+                        </div>
+                        <div class="list-message-user-name">
+                            <h6>{{conversation?.name}}</h6>
+                            <p>{{conversation?.message}}</p>
+                        </div>
+                        <div class="list-message-user-time text-right">
+                            <p>{{conversation.date | amTimeAgo:true}}</p>
+                        </div>
+                    </div>
+                </div>
+              
             </div>
-            <div class="message-info">
-              <div>
-
-                <div class="nameMsg">{{conversation?.name}}</div>
-                <div class="time">{{conversation.date | amTimeAgo:true}}</div>
-              </div>
-
-              <span class="textMsg">{{conversation.message}} </span>
-            </div>
-          </div>
-
         </div>
-      </div>
+        <div class="col-lg-9 col-md-5 col-sm-5 no-padding">
+            <router-outlet></router-outlet>
+        </div>
     </div>
+</div>
+
+<!--
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 no-padding fix-container">
+
+            <div class="search-msgs d-flex justify-content-between">
+
+                <div class="search-icon" (click)="activeSearch()">
+                  <i class="material-icons">search</i>
+                </div>
+
+                <div class="title-msgs text-center">
+                  Ultimas mensagens
+                </div>
+
+                <div class="add-icon" routerLink="/chat/new">
+                  <i class="material-icons">add</i>
+                </div>
+
+            </div>
+
+            <div class="recent-msgs">
+                <div class="searchSection" *ngIf="searchAtive" style="padding-top:5px;">
+                    <div class="areaInput">
+                      <input type="text" class="inputSearch" autofocus placeholder="Pesquisar contactos">
+                    </div>
+                </div>
+                <div class="content-msgs">
+                <div class="msg-item" *ngFor="let conversation of conversations" (click)="navigate(conversation.id_conversation, conversation.name)" routerLinkActive="active">
+                    <div class="image">
+                        <img [src]="conversation?.photo_url">
+                    </div>
+                    <div class="message-info">
+                    <div>
+                        <div class="nameMsg">{{conversation?.name}}</div>
+                        <div class="time">{{conversation.date | amTimeAgo:true}}</div>
+                    </div>
+                    <span class="textMsg">{{conversation.message}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
     <div class="col-9 no-padding">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
+-->
