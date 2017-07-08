@@ -34,7 +34,7 @@ var db = require('./config/db');
 var searchData = [];
 loggedUsers = [];
 app.use(passport.initialize());
-app.use(morgan('dev'));
+app.use(morgan('common'));
 app.use(cors());
 app.use(fileUpload());
 require('./config/passport')(passport);
