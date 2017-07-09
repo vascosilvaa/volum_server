@@ -47,7 +47,6 @@ export class SearchComponent implements OnInit {
         this.searchResult = res;
         if (this.searchResult.success==true) {
           this.elements = this.searchResult.message;
-          console.log(this.elements);
         } else {
           this.elements = 0;
         }

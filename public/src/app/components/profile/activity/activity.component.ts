@@ -55,10 +55,13 @@ export class ActivityComponent implements OnInit {
       if (profile) {
         this.user = profile;
 
-        if (this.user.birth_date) {
+        if (this.user.birth_date && this.user.birth_date != "0000-00-00") {
           this.dateFormatted = new Date(this.user.birth_date);
           this.timeDiff = Math.abs(Date.now() - this.dateFormatted);
           this.age = Math.floor((this.timeDiff / (1000 * 3600 * 24)) / 365);
+        }
+        else {
+          
         }
 
         this.profileService.getTestimonials(profile.id_user, 0, 3).then(res => {
