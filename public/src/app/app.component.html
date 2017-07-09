@@ -247,14 +247,6 @@
                             Definições de perfil
                         </div>
                     </div>
-                    <div class="profile-item" (click)="logout()">
-                        <div class="icon">
-                            <i class="material-icons">power_settings_new</i>
-                        </div>
-                        <div class="desc">
-                            Log out
-                        </div>
-                    </div>
                 </div>
                 <div class="dropdown-header">SOCIAL</div>
                 <div class="actions-profile">
@@ -285,7 +277,7 @@
                 </div>
                 <div class="dropdown-header">SOBRE O BEVOLUN</div>
                 <div class="actions-profile">
-                    <div class="profile-item">
+                    <div class="profile-item" routerLink="/terms">
                         <div class="icon">
                             <i class="material-icons">toc</i>
                         </div>
@@ -293,7 +285,7 @@
                             Termos e condições
                         </div>
                     </div>
-                    <div class="profile-item">
+                   <!-- <div class="profile-item" routerLink="/contacts">
                         <div class="icon">
                             <i class="material-icons">forum</i>
                         </div>
@@ -301,12 +293,21 @@
                             Contactos
                         </div>
                     </div>
-                    <div class="profile-item">
+                    -->
+                    <div class="profile-item" routerLink="/faqs">
                         <div class="icon">
                             <i class="material-icons">help_outline</i>
                         </div>
                         <div class="desc">
                             FAQS
+                        </div>
+                    </div>
+                    <div class="profile-item" (click)="logout()">
+                        <div class="icon">
+                            <i class="material-icons">power_settings_new</i>
+                        </div>
+                        <div class="desc">
+                            Log out
                         </div>
                     </div>
                 </div>

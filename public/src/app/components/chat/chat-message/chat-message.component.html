@@ -44,7 +44,7 @@
                     <h6 class="underline pointer" (click)="openProfile(prof.id_user)">{{prof.name}}</h6>
                     <span>
                     <md-icon *ngFor="let star of prof?.score">star_rate</md-icon>
-                    <md-icon *ngFor="let star of prof?.negative_score">star_border</md-icon>
+                    <md-icon *ngFor="let star of prof?.negative_score" style="margin-left: -10px;">star_border</md-icon>
                     </span>
                 </div>
                 <div class="icon">

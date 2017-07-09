@@ -100,15 +100,17 @@
   margin-bottom: 15px;
 }
 
-.user-rate{
-    margin-left: 10px;
-    margin-top: -4px;
+.user-rate{ 
+    margin-top: -3px;
     padding-bottom: 15px;
- }
+    padding-left: 18px;
+}
+
 
  .user-rate md-icon{
     color: $yellow;
-    font-size: 16px;
-    padding-left: -10px;
-    margin-left: -10px;
+    font-size: 1rem;
+    height: 15px;
+    width: 17px;
+    margin-left: -2px;
  }

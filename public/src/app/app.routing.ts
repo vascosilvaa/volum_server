@@ -1,5 +1,8 @@
 import { ErrorComponent } from './components/error/error.component';
 import { ActionComponent } from './components/action/action.component';
+import { TermsComponent } from './components/terms/terms.component';
+import { FaqsComponent } from './components/faqs/faqs.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionsComponent } from './components/profile/actions/actions.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -60,6 +63,18 @@ const appRoutes: Routes = [
       {
         path: 'requests',
         component: SocialRequestsComponent
+      },
+      {
+        path: 'terms',
+        component: TermsComponent
+      },
+      {
+        path: 'faqs',
+        component: FaqsComponent
+      },
+      {
+        path: 'contacts',
+        component: ContactsComponent
       },
     ]
   },
