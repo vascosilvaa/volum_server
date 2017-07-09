@@ -164,7 +164,7 @@
                             <img [src]="user.photo_url">
                         </div>
                         <div class="top-user-text">
-                            <p class="classfication-name">{{user.name}}</p>
+                            <p class="classfication-name" (click)="openProfileModal(user.id_user)">{{user.name}}</p>
                             <span>
                            <md-icon class="small-star" *ngFor="let star of user?.score">star_rate</md-icon>
                             <md-icon class="small-star" *ngFor="let star of user?.negative_score">star_border</md-icon>

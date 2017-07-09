@@ -240,6 +240,11 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
+     sendEducation(value) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/users/education`, value).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
 
     countCreated(id_user) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/count').toPromise()
