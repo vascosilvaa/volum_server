@@ -42,6 +42,9 @@ import { ChatComponent } from './components/chat/chat.component';
 import { SocialRequestsComponent } from './components/social-requests/social-requests.component';
 import { ActionComponent } from './components/action/action.component';
 import { ErrorComponent } from './components/error/error.component';
+import { TermsComponent } from './components/terms/terms.component';
+import { FaqsComponent } from './components/faqs/faqs.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 
 
@@ -55,6 +58,9 @@ import { ErrorComponent } from './components/error/error.component';
     SocialRequestsComponent,
     ActionComponent,
     ErrorComponent,
+    TermsComponent,
+    FaqsComponent,
+    ContactsComponent,
   ],
   imports: [
     SharedModule,
