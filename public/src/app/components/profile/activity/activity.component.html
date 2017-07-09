@@ -4,49 +4,49 @@
         <!--DADOS PESSOAIS-->
 
 
-    <div class="col-lg-3">
-        <div class="ui-block">
-            <div class="ui-block-title">
-                <h6>Introdução</h6>
-            </div>
-            <div class="ui-block-content">
-                <ul>
-                  <li>
-                    <span class="title">Nome</span>
-                     <span class="text" *ngIf="!user?.name">Sem nome definido</span>
-                    <span class="text" *ngIf="user?.name">{{user?.name}}</span>
-                  </li>
-                  <li>
-                    <span class="title">Idade</span>
-                    <span class="text" *ngIf="!age">Sem idade definida</span>
-                    <span class="text" *ngIf="age">{{age}} anos</span>
-                  </li>
-                  <li>
-                    <span class="title">Vive em</span>
-                    <div class="text" *ngIf="user?.country && user?.region">
-                        {{user?.region}}, {{user?.country}}
-                    </div>
-                    <div class="text" *ngIf="user?.country && !user?.region">
-                        {{user?.country}}
-                    </div>
-                    <div class="text" *ngIf="!user?.country && user?.region">
-                        {{user?.region}}
-                    </div>
-                    <div class="text" *ngIf="!user?.country && !user?.region">
-                        Sem localização definida
-                    </div>
-                  </li>
-                  <li>
-                    <span class="title">Email</span>
-                    <span class="text">{{user.email}}</span>
-                  </li>
-                  <li *ngIf="user.phone">
-                    <span class="title">Telémovel</span>
-                    <span class="text">{{user.phone}}</span>
-                  </li>
-                </ul>
-                
-                
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Introdução</h6>
+                </div>
+                <div class="ui-block-content">
+                    <ul>
+                        <li>
+                            <span class="title">Nome</span>
+                            <span class="text" *ngIf="!user?.name">Sem nome definido</span>
+                            <span class="text" *ngIf="user?.name">{{user?.name}}</span>
+                        </li>
+                        <li>
+                            <span class="title">Idade</span>
+                            <span class="text" *ngIf="!age">Sem idade definida</span>
+                            <span class="text" *ngIf="age">{{age}} anos</span>
+                        </li>
+                        <li>
+                            <span class="title">Vive em</span>
+                            <div class="text" *ngIf="user?.country && user?.region">
+                                {{user?.region}}, {{user?.country}}
+                            </div>
+                            <div class="text" *ngIf="user?.country && !user?.region">
+                                {{user?.country}}
+                            </div>
+                            <div class="text" *ngIf="!user?.country && user?.region">
+                                {{user?.region}}
+                            </div>
+                            <div class="text" *ngIf="!user?.country && !user?.region">
+                                Sem localização definida
+                            </div>
+                        </li>
+                        <li>
+                            <span class="title">Email</span>
+                            <span class="text">{{user.email}}</span>
+                        </li>
+                        <li *ngIf="user.phone">
+                            <span class="title">Telémovel</span>
+                            <span class="text">{{user.phone}}</span>
+                        </li>
+                    </ul>
+
+
                     <div class="user-interests">
                         <h6>Áreas de interesse</h6>
                         <div class="ui-block-interests">
@@ -92,9 +92,9 @@
         <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready  && vols.length > 0">
 
             <ng-container *ngFor="let vol of vols; let i = index;">
-                <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
-                    [avatar]="user.photo" [photos]="vol.photos" [username]="user.name" [likeState]="vol.likeState" [dateCreation]="vol.date_creation"
-                    [description]="vol.description" [index]="i">
+                <vol-card [userCreator]="vol.user.id_user" [title]="vol.vol.name" [likes]="vol.likes" [idVol]="vol.vol.id_vol" [verified]="true"
+                    type="private" [avatar]="vol.user.photo_url" [photos]="vol.vol.photos" [username]="vol.user.name" [likeState]="vol.likeState"
+                    [dateCreation]="vol.vol.date_creation" [description]="vol.vol.description" [index]="i">
                 </vol-card>
 
             </ng-container>

@@ -97,17 +97,17 @@ export class ActivityComponent implements OnInit {
 
         })
 
-        this.profileService.getVolHistory(profile.id_user).then(res => {
+        this.profileService.getActivity(profile.id_user).then(res => {
           this.vols = res.vols;
           console.log("VOLS", res.vols)
           this.ready = true;
 
           for (let i = 0; i < this.vols.length; i++) {
-            this.volsService.countLikes(this.vols[i].id_vol)
+            this.volsService.countLikes(this.vols[i].vol.id_vol)
               .then(res => {
                 this.vols[i].likes = res.likes;
               })
-            this.volsService.checkLike(this.vols[i].id_vol)
+            this.volsService.checkLike(this.vols[i].vol.id_vol)
               .then(res => {
                 this.vols[i].likeState = parseInt(res.state);
               })
@@ -129,7 +129,7 @@ export class ActivityComponent implements OnInit {
   }
 
   openProfileModal(idProfile) {
-     return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1}, BSModalContext));
+    return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1 }, BSModalContext));
   }
 
 

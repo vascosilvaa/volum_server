@@ -135,8 +135,8 @@ export class ProfileService {
             .catch(error => console.log(error));
     }
 
-    getActivity(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id + `/my-vols`).toPromise()
+    getActivity(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/activity').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -246,7 +246,7 @@ export class ProfileService {
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
-     sendEducation(value) {
+    sendEducation(value) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/users/education`, value).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));

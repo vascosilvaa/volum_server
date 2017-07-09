@@ -158,26 +158,33 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal-content-title col-12">
-            Avaliar a ação e deixar um testemunho
-        </div>
-        <div class="modal-content-desc col-12">
-            Avalia {{vol?.user.name}} como instituição de voluntariado e deixa um testemunho no seu perfil!
-        </div>
-        <div class="user-rate-all" style="padding-top: 15px;padding-left: 10px!important;">
-            <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= all_classification" [class.grey]="!all_classification || star >= all_classification"
-                (click)="setScore(star)">star_rate</md-icon>
-        </div>
-
-
-        <div class="col-12">
-            <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="message"></textarea>
-        </div>
+        <ng-container *ngIf="scoreStatus == null">
+            <div class="modal-content-title col-12">
+                Avaliar a ação e deixar um testemunho
+            </div>
+            <div class="modal-content-desc col-12">
+                Avalia {{vol?.user.name}} como instituição de voluntariado e deixa um testemunho no seu perfil!
+            </div>
+            <div class="user-rate-all" style="padding-top: 15px;padding-left: 10px!important;">
+                <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= all_classification" [class.grey]="!all_classification || star >= all_classification"
+                    (click)="setScore(star)">star_rate</md-icon>
+            </div>
 
 
+            <div class="col-12">
+                <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="message"></textarea>
+            </div>
 
-        <div class="col-12 modal-end-footer text-right">
+        </ng-container>
+
+        <ng-container *ngIf="scoreStatus">
+
+            <div class="modal-content-desc col-12">
+                Ja avaliaste esta ação com {{scoreStatus}} estrelas.
+            </div>
+        </ng-container>
+
+        <div class="col-12 modal-end-footer text-right" *ngIf="scoreStatus == null">
             <button class="btn btnCancel" (click)="close()">CANCELAR</button>
             <button class="btn btnConfirm" (click)="submitTestimony()">FINALIZAR</button>
         </div>

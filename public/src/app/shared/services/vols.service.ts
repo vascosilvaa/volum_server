@@ -235,8 +235,15 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    getVolScore(id) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id + `/score`).toPromise()
+    getVolScore(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + id_user + `/score`).toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
+    }
+
+
+    userVolScore(id_user, id_vol) {
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + `/getVolScore`, { id_vol: id_vol }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

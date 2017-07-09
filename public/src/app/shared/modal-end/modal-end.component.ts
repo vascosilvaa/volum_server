@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../Auth/authentication.service';
 import { DetailsComponent } from './../../components/profile/details/details.component';
 import { volsService } from './../services/vols.service';
 import { SharedService } from './../services/shared.service';
@@ -29,19 +30,31 @@ export class ModalEndComponent implements OnInit {
   public message: any;
 
   public last_message: any;
-
+  public scoreStatus: any;
   public score: any;
   context: ModalContext;
 
-  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, private injector: Injector, public volsService: volsService) {
+  constructor(private dialog: DialogRef<ModalContext>, private SharedService: SharedService, public auth: AuthenticationService, private injector: Injector, public volsService: volsService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
+
+    this.auth.userPromise.then(res => {
+      if (this.context.type == 3) {
+
+        this.volsService.userVolScore(res.user.id_user, this.context.id_vol).then(score => {
+          this.scoreStatus = score.score;
+          console.warn(this.scoreStatus);
+        })
+
+      }
+    })
 
     if (this.context.type == 1) {
 
     } else if (this.context.type == 2 || this.context.type == 3) {
       this.context.size = "lg";
     }
+
 
   }
 
@@ -73,6 +86,7 @@ export class ModalEndComponent implements OnInit {
     }
 
   }
+
   getMessage(id_vol) {
     this.volsService.getMessage(id_vol).then(
       res => {

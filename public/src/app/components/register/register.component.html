@@ -64,7 +64,7 @@
 
                         </div>
 
-                         <div class="col-12">
+                        <div class="col-12">
                             <select class="selectRegister" formControlName="gender">
                                 <option value='0' disabled>Género</option>
                                 <option value='1'>Masculino</option>
@@ -72,7 +72,7 @@
                             </select>
                             <div *ngIf="form.controls.gender.errors?.required && form.controls.gender.touched" class="text-danger">O Género é obrigatório.</div>
                         </div>
-                          <div class="col-12">
+                        <div class="col-12">
                             <select class="selectRegister" formControlName="type">
                                 <option  value='0' disabled>Tipo de utilizador</option>
                                 <option value='1'>Instituição</option>
@@ -81,12 +81,12 @@
                             </select>
                         </div>
                         <div class="col-12">
-                            <select class="selectRegister" >
+                            <select class="selectRegister">
                                 <option value='0' disabled>Categoria favorita</option>
                                 <option *ngFor="let category of categories" value='{{category.id_category}}'>{{category?.name}}</option>
                             </select>
                         </div>
-                       
+
                         <div class="col-12">
                             <p class="text-danger">{{errorSent}} </p>
                         </div>
@@ -98,7 +98,7 @@
                             <button class="normalLogin" type="submit">Registar</button>
                         </div>
                     </form>
-                </div>  
+                </div>
 
                 <div *ngIf="emailRegist==2">
                     <div class="col-12">
@@ -111,17 +111,6 @@
                     </div>
                 </div>
 
-                <div *ngIf="emailRegist==1 || emailRegist==0">
-                    <div class="col-12 footerLogin">
-                        <hr>
-                    </div>
-                    <div class="col-6">
-                        <span class="registerAdvice">Já se encontra registado?</span>
-                    </div>
-                    <div class="col text-right btnRegister">
-                        <button type="button" class="registerBtn" (click)="openLogin()">Entrar</button>
-                    </div>
-                </div>
 
 
 
