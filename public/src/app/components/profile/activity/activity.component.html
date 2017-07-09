@@ -1,216 +1,187 @@
 <div class="container">
     <div class="row">
 
-    <!--DADOS PESSOAIS-->
+        <!--DADOS PESSOAIS-->
 
-    <div class="col-lg-3">
-        <div class="ui-block">
-            <div class="ui-block-title">
-                <h6>Introdução</h6>
-            </div>
-            <div class="ui-block-content">
-                <ul>
-                  <li>
-                    <span class="title">Nome</span>
-                    <span class="text">{{user?.name}}</span>
-                  </li>
-                  <li>
-                    <span class="title">Idade</span>
-                    <span class="text">{{age}} anos</span>
-                  </li>
-                  <li>
-                    <span class="title">Vive em</span>
-                    <span class="text">{{user?.region}}, {{user?.country}}</span>
-                  </li>
-                  <li>
-                    <span class="title">Email</span>
-                    <span class="text">{{user.email}}</span>
-                  </li>
-                  <li *ngIf="user.phone">
-                    <span class="title">Telémovel</span>
-                    <span class="text">{{user.phone}}</span>
-                  </li>
-                </ul>
-                <div class="user-interests">
-                    <h6>Áreas de interesse</h6>
-                    <div class="ui-block-interests">
-                        <div>Desporto</div><div>Ação social</div><div>Saúde</div><div>Apoio ao Domicilio</div>
+        <div class="col-lg-3">
+            <div class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Introdução</h6>
+                </div>
+                <div class="ui-block-content">
+                    <ul>
+                        <li>
+                            <span class="title">Nome</span>
+                            <span class="text">{{user?.name}}</span>
+                        </li>
+                        <li>
+                            <span class="title">Idade</span>
+                            <span class="text">{{age}} anos</span>
+                        </li>
+                        <li>
+                            <span class="title">Vive em</span>
+                            <span class="text">{{user?.region}}, {{user?.country}}</span>
+                        </li>
+                        <li>
+                            <span class="title">Email</span>
+                            <span class="text">{{user.email}}</span>
+                        </li>
+                        <li *ngIf="user.phone">
+                            <span class="title">Telémovel</span>
+                            <span class="text">{{user.phone}}</span>
+                        </li>
+                    </ul>
+                    <div class="user-interests">
+                        <h6>Áreas de interesse</h6>
+                        <div class="ui-block-interests">
+                            <div>Desporto</div>
+                            <div>Ação social</div>
+                            <div>Saúde</div>
+                            <div>Apoio ao Domicilio</div>
+                        </div>
+                    </div>
+                    <div class="social-network" *ngIf="user.facebook_id || user.google_id || user.twitter_id">
+                        <h6>Redes sociais</h6>
+                        <a href="#" class="btn-social bg-facebook" *ngIf="user.facebook_id">Facebook</a>
+                        <a href="#" class="btn-social bg-google" *ngIf="user.google_id">Google</a>
+                        <a href="#" class="btn-social bg-twitter" *ngIf="user.twitter_id">Twitter</a>
                     </div>
                 </div>
-                <div class="social-network" *ngIf="user.facebook_id || user.google_id || user.twitter_id">
-                    <h6>Redes sociais</h6>
-                    <a href="#" class="btn-social bg-facebook" *ngIf="user.facebook_id">Facebook</a>
-                    <a href="#" class="btn-social bg-google" *ngIf="user.google_id">Google</a>
-                    <a href="#" class="btn-social bg-twitter" *ngIf="user.twitter_id">Twitter</a>
+            </div>
+        </div>
+
+        <div class="text-center no-content mt-4 col-6" *ngIf="vols.length == 0 && ready">
+
+            <div style="padding: 5px;"><i class="material-icons">access_time</i></div>
+            <span>Sem Atividade</span>
+
+        </div>
+        <div class="text-center no-content col-6" *ngIf="!ready">
+            <div class="sk-fading-circle">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready  && vols.length > 0">
+
+            <ng-container *ngFor="let vol of vols; let i = index;">
+                <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
+                    [avatar]="user.photo" [photos]="vol.photos" [username]="user.name" [likeState]="vol.likeState" [dateCreation]="vol.date_creation"
+                    [description]="vol.description" [index]="i">
+                </vol-card>
+
+            </ng-container>
+        </div>
+
+        <div class="col-lg-3">
+            <div *ngIf="user?.type==1" class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Top voluntários</h6>
                 </div>
+                <ul class="top-volun-list">
+                    <li>
+                        <div class="top-user-picture">
+                            <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
+                        </div>
+                        <div class="top-user-text">
+                            <p class="classfication-name">André Martins</p>
+                            <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="top-user-picture">
+                            <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
+                        </div>
+                        <div class="top-user-text">
+                            <p class="classfication-name">Pedro Araújo</p>
+                            <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_border</md-icon>
+                      </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="top-user-picture">
+                            <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
+                        </div>
+                        <div class="top-user-text">
+                            <p class="classfication-name">Vasco Silva</p>
+                            <span>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                          <md-icon class="small-star">star_rate</md-icon>
+                      </span>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div> 
 
-    <div class="text-center no-content mt-4 col-6" *ngIf="vols.length == 0 && ready">
+            <div *ngIf="user?.type==2" class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Colaboradores</h6>
+                </div>
+                <ul class="top-volun-list">
+                    <li *ngFor="let user of top">
+                        <div class="top-user-picture">
+                            <img [src]="user.photo_url">
+                        </div>
+                        <div class="top-user-text">
+                            <p class="classfication-name">{{user.name}}</p>
+                            <span>
+                           <md-icon class="small-star" *ngFor="let star of user?.score">star_rate</md-icon>
+                            <md-icon class="small-star" *ngFor="let star of user?.negative_score">star_border</md-icon>
+                      </span>
+                        </div>
+                    </li>
 
-      <div style="padding: 5px;"><i class="material-icons">access_time</i></div>
-      <span>Sem Atividade</span>
-
-    </div>
-    <div class="text-center no-content col-6" *ngIf="!ready">
-      <div class="sk-fading-circle">
-        <div class="sk-circle1 sk-circle"></div>
-        <div class="sk-circle2 sk-circle"></div>
-        <div class="sk-circle3 sk-circle"></div>
-        <div class="sk-circle4 sk-circle"></div>
-        <div class="sk-circle5 sk-circle"></div>
-        <div class="sk-circle6 sk-circle"></div>
-        <div class="sk-circle7 sk-circle"></div>
-        <div class="sk-circle8 sk-circle"></div>
-        <div class="sk-circle9 sk-circle"></div>
-        <div class="sk-circle10 sk-circle"></div>
-        <div class="sk-circle11 sk-circle"></div>
-        <div class="sk-circle12 sk-circle"></div>
-      </div>
-    </div>
-
-    <div class="col-xl-6 col-lg-6 col-12 card-content" *ngIf="ready  && vols.length > 0">
-
-      <ng-container *ngFor="let vol of vols; let i = index;">
-        <vol-card [userCreator]="user.id_user" [title]="vol.name" [likes]="vol.likes" [idVol]="vol.id_vol" [verified]="true" type="private"
-          [avatar]="user.photo" [photos]="vol.photos" [username]="user.name" [likeState]="vol.likeState" [dateCreation]="vol.date_creation"
-          [description]="vol.description" [index]="i">
-        </vol-card>
-
-      </ng-container>
-    </div>
-
-    <div class="col-lg-3">
-        <div *ngIf="user?.type==1" class="ui-block">
-            <div class="ui-block-title">
-                <h6>Top voluntários</h6>
+                </ul>
             </div>
-            <ul class="top-volun-list">
-                <li>
-                  <div class="top-user-picture">
-                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">André Martins</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                  </div>
-                </li>
-                <li>
-                  <div class="top-user-picture">
-                       <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">Pedro Araújo</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                  </div>
-                </li>
-                <li>
-                  <div class="top-user-picture">
-                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">Vasco Silva</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                      </span>
-                  </div>
-                </li>
-            </ul>
-        </div>
 
-        <div *ngIf="user?.type==2" class="ui-block">
-            <div class="ui-block-title">
-                <h6>Instituições que colaborou</h6>
-            </div>
-            <ul class="top-volun-list">
-                <li>
-                  <div class="top-user-picture">
-                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">André Martins</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                  </div>
-                </li>
-                <li>
-                  <div class="top-user-picture">
-                       <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">Pedro Araújo</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                  </div>
-                </li>
-                <li>
-                  <div class="top-user-picture">
-                       <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">Vasco Silva</p>
-                      <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                      </span>
-                  </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="ui-block">
-            <div class="ui-block-title">
-                <h6>Últimas classificações</h6>
-            </div>
-            <ul class="top-volun-list">
-                <li *ngFor="let testimony of testimonials" (click)="openTests(9)">
-                  <div class="top-user-picture">
-                       <img src="{{testimony.user.photo_url}}">
-                  </div>
-                  <div class="top-user-text">
-                      <p class="classfication-name">{{testimony?.user.name}}</p>
-                      <span>
+            <div class="ui-block">
+                <div class="ui-block-title">
+                    <h6>Últimas classificações</h6>
+                </div>
+                <ul class="top-volun-list">
+                    <li *ngFor="let testimony of testimonials" (click)="openTests(9)">
+                        <div class="top-user-picture">
+                            <img src="{{testimony.user.photo_url}}">
+                        </div>
+                        <div class="top-user-text">
+                            <p class="classfication-name">{{testimony?.user.name}}</p>
+                            <span>
                         <md-icon class="small-star" *ngFor="let star of testimony?.score">star_rate</md-icon>
                         <md-icon class="small-star" *ngFor="let star of testimony?.negative_score">star_border</md-icon>
                       </span>
-                      <p class="classification-text">{{testimony?.message}}</p>
-                  </div>
-                </li>
-                <li *ngIf="testimonials == undefined || testimonials.length == 0" class="text-center no-content">
-                    <span style="font-weight: 400">Ainda ninguém classificou {{user.name}}.</span>
-                </li>
-            </ul>
+                            <p class="classification-text">{{testimony?.message}}</p>
+                        </div>
+                    </li>
+                    <li *ngIf="testimonials == undefined || testimonials.length == 0" class="text-center no-content">
+                        <span style="font-weight: 400">Ainda ninguém classificou {{user.name}}.</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div> 
-  </div>
+    </div>
 </div>

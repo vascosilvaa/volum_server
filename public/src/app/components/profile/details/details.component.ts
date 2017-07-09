@@ -170,7 +170,7 @@ export class DetailsComponent implements OnInit {
           })
         }
       })
-      .catch(err => {console.log(err)});
+      .catch(err => { console.log(err) });
   }
 
   getNumber = function (num) {

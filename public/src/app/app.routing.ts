@@ -30,10 +30,10 @@ const appRoutes: Routes = [
 
   {
     path: '',
-    canActivateChild: [AuthenticationGuard],
     children: [
       {
         path: 'chat',
+        canActivate: [AuthenticationGuard],
         loadChildren: '../app/components/chat/chat.module#ChatModule'
       },
       {
@@ -42,6 +42,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'action/:id',
+        canActivate: [AuthenticationGuard],
         component: ActionComponent
       },
       {
@@ -50,14 +51,17 @@ const appRoutes: Routes = [
       },
       {
         path: 'map',
+        canActivate: [AuthenticationGuard],
         loadChildren: '../app/components/map/map.module#MapModule'
       },
       {
         path: 'search',
+        canActivate: [AuthenticationGuard],
         component: SearchComponent,
       },
       {
         path: 'notifications',
+        canActivate: [AuthenticationGuard],
         component: NotificationsComponent
       },
       {

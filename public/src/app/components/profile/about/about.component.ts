@@ -11,7 +11,7 @@ import * as moment from 'moment'
 })
 export class AboutComponent implements OnInit {
   public education: any;
-  public user : any;
+  public user: any;
   public id_user: any;
   public userIn: any;
 
@@ -19,34 +19,27 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
 
-   this.authService.userPromise.then(res => {
-          this.id_user = res.user.id_user;
-          console.log( this.id_user);
+    this.authService.userPromise.then(res => {
+      this.id_user = res.user.id_user;
+      console.log(this.id_user);
     });
 
-    
-    this.profileService.activeProfileSource.subscribe((result) => {
-      this.user = result;
-      console.log("ASYNC User", this.user);
-      this.getEducation();
-    });
 
-    if (!this.profileService.activeUser) {
-      this.profileService.activeProfileSource.subscribe((result) => {
-        this.user = result;
-        console.log("ASYNC User", this.user);
-      });
-    } else {
-      this.user = this.profileService.activeUser;
-    }
-     
+    this.profileService.activeProfileSource.subscribe(profile => {
+      if (profile) {
+        this.user = profile;
+
+        this.profileService.getEducation(this.user.id_user).then(res => {
+          this.education = res.education;
+        });
+
+      }
+    })
+
+
   }
 
-  getEducation() {
-     this.profileService.getEducation(this.user.id_user).then(res => {
-      this.education = res.education;
-    });
-  }
+
 
   getAge(date) {
     return moment().diff(date, 'years');

@@ -33,13 +33,15 @@ export class ActivityComponent implements OnInit {
     type: 0,
     region: '',
     country: '',
-    
+
   }
 
   public age: any;
   public dateFormatted: any;
   public timeDiff: any;
   public testimonials: any;
+
+  public top: any;
 
   constructor(public http: Http, public overlay: Overlay, private volsService: volsService, private router: Router, private route: ActivatedRoute, private profileService: ProfileService,
     private auth: AuthenticationService, public modal: Modal) { }
@@ -71,6 +73,26 @@ export class ActivityComponent implements OnInit {
           }
         });
 
+        this.profileService.getTop(profile.id_user).then(res => {
+
+          this.top = res.results;
+          console.warn("top", this.top)
+
+          for (let i = 0; i < this.top.length; i++) {
+
+            this.profileService.getScore(this.top[i].id_user).then(res => {
+
+              this.top[i].score = res.score;
+              this.top[i]['score_number'] = res.score;
+              this.top[i]['score'] = this.getNumber(res.score);
+              this.top[i]['negative_score'] = this.getNumber(res.score - 5);
+
+            });
+
+          }
+
+        })
+
         this.profileService.getMyVols(profile.id_user).then(res => {
           this.vols = res.vols;
           console.log("VOLS", res.vols)
@@ -92,6 +114,8 @@ export class ActivityComponent implements OnInit {
     })
 
   }
+
+
   getNumber(num) {
     let number = Math.round(num);
     if (num < 0) {

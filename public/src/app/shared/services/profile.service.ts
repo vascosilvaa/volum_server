@@ -175,9 +175,9 @@ export class ProfileService {
     }
 
     countFollowers(id_user) {
-            return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/followers/count').toPromise()
-                .then(res => { return res.json() })
-                .catch(error => console.log(error));
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/followers/count').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.log(error));
 
     }
 
@@ -185,6 +185,12 @@ export class ProfileService {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/checkFollow').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
+    }
+
+    getTop(id_user) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/top').toPromise()
+            .then(res => { return res.json() })
+            .catch(error => console.error(error));
     }
 
     engageConversation(id_user) {
@@ -212,7 +218,7 @@ export class ProfileService {
     }
 
     countVolsParticipation(id_user) {
-         return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/finished/count').toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/users/` + id_user + '/vols/finished/count').toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

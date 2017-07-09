@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
           this.auth.storeFacebookToken(query.id_token);
           console.log("TOKEN", this.auth.facebookToken);
           localStorage.setItem("USER_ID", params.id);
-          location.reload;
+          location.reload();
 
         }
       }))
@@ -178,6 +178,7 @@ export class ProfileComponent implements OnInit {
   engageConversation() {
     this.profileService.engageConversation(this.id_user).then(res => {
       console.log(res);
+
       this.router.navigate(['./chat/msg/', res.id_conversation])
     }).catch(err => {
       this.router.navigate(['./chat/msg/'])

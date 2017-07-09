@@ -36,7 +36,7 @@ export class ModalEndComponent implements OnInit {
 
     if (this.context.type == 1) {
 
-    } else if (this.context.type == 2 || this.context.type==3) {
+    } else if (this.context.type == 2 || this.context.type == 3) {
       this.context.size = "lg";
     }
 
@@ -63,9 +63,9 @@ export class ModalEndComponent implements OnInit {
       this.getVol(this.context.id_vol);
     }
 
-    if (this.context.type==3) {
+    if (this.context.type == 3) {
       this.getVol(this.context.id_vol);
- 
+
     }
 
   }
@@ -99,7 +99,7 @@ export class ModalEndComponent implements OnInit {
     }
   }
 
-  setScore(classification){
+  setScore(classification) {
     this.all_classification = (classification + 1);
     this.score = classification + 1;
   }
@@ -123,19 +123,20 @@ export class ModalEndComponent implements OnInit {
     console.log("classification:" + this.score);
     console.log("user2:" + this.vol.user.id_user);
     console.log("id_vol:" + this.vol.id_vol);
-    
+
     let body = {
-          message: this.message,
-          classification: this.score,
-          id_user2: this.vol.user.id_user,
-          id_vol: this.vol.id_vol
-        }
-        console.log(body)
-        this.volsService.insertTestimony(body).then(res => {
-          if (res.success) {
-            this.dialog.close();
-            location.reload();
-          }
+      message: this.message,
+      classification: this.score,
+      id_user2: this.vol.user.id_user,
+      id_vol: this.vol.id_vol,
+      type: 1,
+    }
+    console.log(body)
+    this.volsService.insertTestimony(body).then(res => {
+      if (res.success) {
+        this.dialog.close();
+        location.reload();
+      }
     });
   }
 

@@ -159,36 +159,34 @@ var returnRouter = function (io) {
 
     app.get('/:id/user', passport.authenticate('jwt'), function (req, res) {
         let id_user;
-        db.get().query('SELECT id_user, id_user2 FROM user_relations WHERE id_conversation = ?', [req.params.id, req.user.id_user, req.user.id_user], function (error, results, fields) {
+        db.get().query('SELECT id_user, id_user2 FROM user_relations WHERE id_conversation = ?', [req.params.id ], function (error, results, fields) {
             if (error) {
                 console.log(error);
                 if (error) throw error;
             } else {
 
-                if (results) {
+                console.log(results);
 
-                    if (results[0].id_user == req.user.id_user) {
-                        id_user = results[0].id_user2;
-                    } else {
-                        id_user = results[0].id_user
-                    }
-
-                    db.get().query('SELECT * FROM users WHERE id_user = ?', [id_user], function (error, result, fields) {
-                        res.json({
-                            success: true,
-                            result
-                        });
-                    });
+                if (results[0].id_user == req.user.id_user) {
+                    id_user = results[0].id_user2;
+                } else {
+                    id_user = results[0].id_user
                 }
-                
 
-
+                db.get().query('SELECT * FROM users WHERE id_user = ?', [id_user], function (error, result, fields) {
+                    res.json({
+                        success: true,
+                        result
+                    });
+                });
             }
 
 
-        });
 
+        });
     });
+
+
 
 
     app.get('/:id/messages/last', function (req, res) {
@@ -236,11 +234,13 @@ var returnRouter = function (io) {
         db.get().query('SELECT * FROM user_relations WHERE ((id_user = ? AND id_user2 = ?) OR (id_user2 = ? AND id_user = ?))', [req.user.id_user, req.body.id_user, req.user.id_user, req.body.id_user],
             function (error, results, fields) {
                 if (error) {
+                    console.log(error)
                     res.json({
                         success: false,
                         error
                     });
                 } else {
+
                     if (results.length > 0) {
                         console.log("results", results[0].id_conversation);
                         res.json({
@@ -250,9 +250,13 @@ var returnRouter = function (io) {
 
                     } else {
 
-                        db.get().query('INSERT INTO user_relations (id_user, id_user2) VALUES (?, ?, ?)', [req.user.id_user, req.body.id_user, new Date()],
+                        console.log("fez")
+
+                        db.get().query('INSERT INTO user_relations (id_user, id_user2, date) VALUES (?, ?, ?)', [req.user.id_user, req.body.id_user, new Date()],
                             function (error, results, fields) {
                                 if (error) {
+                                    console.log(error)
+
                                     res.json({
                                         success: false,
 
@@ -273,10 +277,7 @@ var returnRouter = function (io) {
 
             });
 
-        /*
-               
-        
-                    */
+
 
     });
 

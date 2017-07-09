@@ -1244,6 +1244,94 @@ var returnRouter = function (io) {
         }
     });
 
+    app.get('/:id/top', function (req, res) {
+        req.checkParams('id', 'ID invalido').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+                db.get().query({
+                    sql: `SELECT user_vol.id_vol
+                     FROM users
+                     INNER JOIN user_vol ON users.id_user = user_vol.id_user
+                     WHERE user_vol.confirm = 1 AND user_vol.id_user = ?
+                     `,
+                }, [req.params.id],
+                    function (error, results, fields) {
+                        if (error) {
+
+                        } else {
+
+                            if (results.length == 0) {
+                                res.json({
+                                    success: true,
+                                    results: results
+                                })
+                            }
+                            let array = [];
+                            let array2;
+                            console.log(results)
+
+                            for (let i = 0; i < results.length; i++) {
+                                array.push(results[i].id_vol);
+                            }
+
+                            array2 = array.join();
+
+
+
+                            db.get().query({
+                                sql: 'SELECT DISTINCT id_user_creator FROM vols WHERE id_vol IN (' + array2 + ')',
+                            },
+                                function (error, results, fields) {
+                                    if (error) {
+                                        console.log(error)
+                                    } else {
+
+                                        console.log("results", results)
+
+                                        let user_array = [];
+                                        let user_array2;
+
+                                        for (let i = 0; i < results.length; i++) {
+                                            user_array.push(results[i].id_user_creator);
+                                        }
+
+                                        user_array2 = user_array.join();
+
+                                        console.log("user array", user_array2);
+
+                                        db.get().query({
+                                            sql: 'SELECT DISTINCT users.name, users.photo_url, users.id_user FROM users WHERE id_user IN (' + user_array2 + ')',
+                                        },
+                                            function (error, results, fields) {
+                                                if (error) {
+                                                    console.log(error)
+                                                } else {
+
+                                                    res.json({
+                                                        success: true,
+                                                        results: results
+                                                    })
+
+                                                }
+                                            });
+
+
+                                    }
+                                });
+
+
+
+                        }
+                    });
+            }
+        });
+
+    });
 
     app.get('/:id/follows/inst', function (req, res) {
         if (isNaN(parseInt(req.params.id))) {
@@ -1410,18 +1498,20 @@ var returnRouter = function (io) {
                 sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification, message, type) VALUES ( ?, ? , ? , ?, ?, ?)',
             }, [req.user.id_user, req.body.id_user2, req.body.classification, req.body.message, req.body.type],
                 function (error, results, fields) {
-                    console.log(error)
-                    res.json({
-                        success: true,
-                        classification
-                    });
+                    if (error) {
+                        res.json({
+                            success: false,
+                            error
+                        });
+                    } else {
 
-                    //refreshUserScore(req.body.id_user2, function (classification) {
+                        res.json({
+                            success: true,
+                            results
+                        });
 
-                    console.log("CLASSIFICATION", classification)
 
-
-                    //     });
+                    }
                 });
         }
     });
@@ -1586,12 +1676,12 @@ var returnRouter = function (io) {
             let results = [];
 
             db.get().query({
-                sql: `SELECT classification.id_vol, classification.id_user, classification.classification,   vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
+                sql: `SELECT classification.id_vol, classification.id_user, classification.classification, vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
          FROM classification 
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
          WHERE classification.id_user2 = ?
-         LIMIT ?, ?`, nestTables: true
+                                    LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)
                 if (error) {
@@ -1642,12 +1732,12 @@ var returnRouter = function (io) {
             let results = [];
 
             db.get().query({
-                sql: `SELECT classification.id_vol, classification.id_user, classification.classification,   vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
+                sql: `SELECT classification.id_vol, classification.id_user, classification.classification, vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
          FROM classification 
          INNER JOIN users ON classification.id_user2 = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
          WHERE classification.id_user = ?
-         LIMIT ?, ?`, nestTables: true
+                                    LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)
                 if (error) {
