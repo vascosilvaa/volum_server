@@ -8,11 +8,8 @@
                 <img src="{{user?.photo}}" alt="profile user picture" />
             </div>
             <div class="col user-rate">
-                    <md-icon class="rate1">star_rate</md-icon>
-                    <md-icon>star_rate</md-icon>
-                    <md-icon>star_rate</md-icon>
-                    <md-icon>star_rate</md-icon>
-                    <md-icon>star_rate</md-icon>
+                    <md-icon *ngFor="let star of user?.score">star_rate</md-icon>
+                    <md-icon *ngFor="let star of user?.negative_score">star_border</md-icon>
                 </div>
             <div class="friendsName">
               {{user?.name}}

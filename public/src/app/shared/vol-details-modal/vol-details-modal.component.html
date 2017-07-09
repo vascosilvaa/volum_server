@@ -126,7 +126,7 @@
                 <span> {{volDetails?.description}}</span>
             </div>
             <div class="details-vol">
-                <span class="typeVol">{{volDetails?.category_name}}</span> <span class="insuBool">Seguro</span>
+                <span class="typeVol">{{volDetails?.category_name}}</span> <span class="insuBool" *ngIf="volDetails?.insurance==1">Seguro</span> <span class="noinsuBool" *ngIf="volDetails?.insurance==0">Sem seguro</span>
             </div>
         </div>
 
@@ -256,7 +256,7 @@
                     <img src="{{comment.photo_url}}">
                 </div>
                 <div class="col-8 card-user-nd">
-                    <div class="card-user-name-comments ts13">{{comment.name}}</div>
+                    <div (click)="openProfileModal(comment.id_user)" class="underline pointer card-user-name-comments ts13">{{comment.name}}</div>
                     <div class="card-date-comments ts12">{{comment.date | amTimeAgo: true}}</div>
                 </div>
                 <div class="col no-padding card-option-comments text-right">

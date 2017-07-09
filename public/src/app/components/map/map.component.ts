@@ -28,6 +28,7 @@ export class MapComponent implements OnInit {
   public lats: any = {};
     public model: any;
     public coord: any;
+    public first: any;
   public coordAdvice: any;
 
   constructor(overlay: Overlay, vcRef: ViewContainerRef, private _fb: FormBuilder, public http: Http, private volsService: volsService, public profileService: ProfileService, private map: GoogleMapsAPIWrapper, private _loader: MapsAPILoader) {
@@ -45,14 +46,19 @@ export class MapComponent implements OnInit {
       lng: this.lng
     }
   }
+
+
   ngOnInit() {
-    this.getLocation();
+    this.first=1;
+   // this.getLocation(); // Obter a localização do pc
+   this.getStaticLocation();
   }
 
   navigate(lat, lng) {
     this.lat = lat;
     this.lng = lng;
     this.coord = true;
+    this.first=1;
   }
 
   formatter = (x: {
@@ -108,18 +114,27 @@ export class MapComponent implements OnInit {
       nwlng: event.getNorthEast().lng()
 
     }
+
+    if(this.first==1) {
+      this.searchMap();
+      this.first=0;
+    }
   }
 
   private convertStringToNumber(value: string): number {
     return +value;
   }
+
   getLocation() {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-
-
-
     }
 
   }
+
+  getStaticLocation() {
+    this.lat = 40.630441;
+    this.lng =-8.657527;
+  }
+
 }

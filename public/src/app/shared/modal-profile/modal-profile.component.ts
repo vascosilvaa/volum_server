@@ -1,4 +1,5 @@
 import { SharedService } from './../services/shared.service';
+import { ProfileService } from './../services/profile.service';
 import { VolDetailsModalComponent } from './../vol-details-modal/vol-details-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppModule } from './../../app.module';
@@ -28,7 +29,7 @@ export class ModalProfileComponent implements OnInit {
   context: ModalContext;
 
 
-  constructor(private router: Router, public modal: Modal, public sharedService: SharedService, private dialog: DialogRef<ModalContext>/*, private volsService: VolDetailsModalService*/) {
+  constructor(private router: Router, public modal: Modal, public sharedService: SharedService, private dialog: DialogRef<ModalContext>, private profileService: ProfileService) {
     this.context = dialog.context;
     this.context.isBlocking = false;
   }
@@ -46,11 +47,18 @@ export class ModalProfileComponent implements OnInit {
 
 
   getUser() {
+
     this.sharedService.getProfile(this.context.idProfile)
       .then(res => {
         this.user = res.user;
+        this.profileService.getScore(this.user.id_user).then(res => {
+        this.user['score_number'] = res.score;
+        this.user['score'] = this.getNumber(res.score);
+        this.user['negative_score'] = this.getNumber(res.score - 5);
+    });
       })
       .catch(err => console.log(err));
+
   }
 
   onSelect(profile) {
@@ -67,5 +75,13 @@ export class ModalProfileComponent implements OnInit {
 
   close() {
     this.dialog.dismiss();
+  }
+
+  getNumber(num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+    return new Array(number);
   }
 }
