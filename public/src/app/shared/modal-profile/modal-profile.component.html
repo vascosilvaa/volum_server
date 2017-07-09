@@ -15,7 +15,7 @@
               {{user?.name}}
             </div>
             <div class="friendsPlace" *ngIf="user?.country && user?.region">
-              {{user?.country}}, {{user?.region}}
+               {{user?.region}}, {{user?.country}}
             </div>
             <div class="friendsPlace" *ngIf="user?.country && !user?.region">
               {{user?.country}}
@@ -23,6 +23,7 @@
             <div class="friendsPlace" *ngIf="!user?.country && user?.region">
               {{user?.region}}
             </div>
+          
           </div>
     </div>
     <div class="col-12 details">

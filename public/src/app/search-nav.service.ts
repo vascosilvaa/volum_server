@@ -27,7 +27,9 @@ export class SearchNavService {
 
         return this.http
             .get(url)
-            .map(response => array = response.json().message);
+            .map(response => 
+                array = response.json().message
+            );
     }
 }
 

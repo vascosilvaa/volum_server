@@ -14,7 +14,11 @@
             <input type="text" class="form-control input-form-invite" aria-describedby="search" placeholder="Procurar">
         </div>
         -->
-        <div class="invite-border mt-3">
+         <div class="container text-center no-content" style="margin-top:20px; margin-bottom:10px;" *ngIf="!follows || follows.length == 0">
+                <div style="font-size:14px"><i class="material-icons">sentiment_dissatisfied</i></div>
+                <span style="font-weight: 400">Não segues nenhuma pessoa.</span>
+            </div>
+        <div *ngIf="follows || follows.length > 0" class="invite-border mt-3">
             <div *ngFor="let follow of follows; let i=index" class="list-invites">
                 <div class="top-user-picture">
                     <img [src]="follow.photo_url">
@@ -29,6 +33,7 @@
                     <i class="material-icons fix-icon checkbox-invite-color">done</i>
                 </div>
             </div>
+           
         </div>
         <div class="">
            <a class="btn-settings btn-settings-save btn-invite-list" (click)="sendInvites()">Convidar</a>

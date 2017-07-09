@@ -24,7 +24,7 @@ export class AppService {
             .catch(error => console.log(error));
     };
     getRequests(id_user) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`, { startAt: 1, amount: 5 }).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/requests`, { startAt: 0, amount: 5 }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     };

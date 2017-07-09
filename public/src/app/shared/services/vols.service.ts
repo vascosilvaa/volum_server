@@ -221,8 +221,8 @@ export class volsService {
             .catch(error => console.log(error));
     }
 
-    listInvites() {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/7`).toPromise()
+    listInvites(startAt, amount) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/notifications/7`, { startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

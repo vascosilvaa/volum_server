@@ -154,7 +154,10 @@
 .btn-follow{
     background-color: $green;
     transition: all 400ms;
+     opacity: 1;
+    color: white!important;
 }
+
 
 .btn-chat{
     background-color: $purple;
