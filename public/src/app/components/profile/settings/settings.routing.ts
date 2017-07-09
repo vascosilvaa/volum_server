@@ -29,7 +29,7 @@ const routes: Routes = [
             component: PersonalSettingsComponent
           },
           {
-            path: 'about-me',
+            path: 'about',
             component: AboutMeComponent
           },
           {

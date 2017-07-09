@@ -7,6 +7,7 @@ import { GlobalConstants } from '../../../shared/global-constants';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { ModalViewAllComponent } from '../../../shared/modal-view-all/modal-view-all.component';
+import { ModalProfileComponent } from '../../../shared/modal-profile/modal-profile.component';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 import { DialogRef, ModalComponent, CloseGuard, Overlay, overlayConfigFactory } from 'angular2-modal';
 
@@ -125,6 +126,10 @@ export class ActivityComponent implements OnInit {
       number = Math.abs(number);
     }
     return new Array(number);
+  }
+
+  openProfileModal(idProfile) {
+     return this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: idProfile, inProfile: 1}, BSModalContext));
   }
 
 

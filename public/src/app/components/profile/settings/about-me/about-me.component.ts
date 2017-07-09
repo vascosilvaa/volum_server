@@ -1,5 +1,7 @@
 import { ProfileService } from './../../../../shared/services/profile.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-about-me',
@@ -7,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
-
-  constructor(public profileService: ProfileService) { }
+  public form: FormGroup;
+  constructor(public profileService: ProfileService, public _fb: FormBuilder) { }
 
   ngOnInit() {
 
@@ -16,6 +18,10 @@ export class AboutMeComponent implements OnInit {
 
       console.log("COUNTR", res);
     })
+      this.form = this._fb.group({
+            about: [],
+
+    });
 
 
   }
