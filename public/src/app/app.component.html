@@ -148,7 +148,7 @@
 
 
         <!-- NOTIFICATIONS -->
-        <div class="navbar-bevolun-notification ml-4 pointer" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(1, 5, true);">
+        <div class="navbar-bevolun-notification ml-4 pointer" *ngIf="user" ngbDropdown (click)="sum = 5; getNotifications(0, 5, true);">
             <a>
                 <md-icon ngbDropdownToggle>notifications</md-icon>
                 <span class="badge badge-notify" *ngIf="newNotificationCount > 0">{{newNotificationCount}}</span>
