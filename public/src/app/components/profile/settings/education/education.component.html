@@ -5,85 +5,89 @@
 
     <div class="ui-block-content">
         <div class="row" *ngFor="let educ of education; let i=index">
-                <div class="col-6 education-number mb-2">
-                    <h6>Formação {{i}}</h6>
-                </div>
-                <div class="col-6 text-right education-number-button mb-2">
-                    <i class="material-icons">close</i>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label class="label-input" for="exampleInputEmail1">Instituição</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.institution}}" placeholder="Instituição">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-group">
-                        <label class="label-input">Data de início</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.start_at}}" placeholder="Data de início">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-group">
-                        <label class="label-input">Data de fim</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.end_at}}" placeholder="Data de fim">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label class="label-input" for="exampleSelect1">Descrição</label>
-                        <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" placeholder="{{educ?.name}}">{{educ?.name}}</textarea>
-                    </div>
+            <div class="col-6 education-number mb-2">
+                <h6>Formação {{i}}</h6>
+            </div>
+            <div class="col-6 text-right education-number-button mb-2">
+                <i class="material-icons">close</i>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="label-input" for="exampleInputEmail1">Instituição</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.institution}}" placeholder="Instituição">
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label class="label-input">Data de início</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.start_at}}" placeholder="Data de início">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+                    <label class="label-input">Data de fim</label>
+                    <input type="email" class="form-control input-form" aria-describedby="first-name" value="{{educ?.end_at}}" placeholder="Data de fim">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                <label class="label-input" for="exampleSelect1">Descrição</label>
+                    <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" placeholder="{{educ?.name}}">{{educ?.name}}</textarea>
+                </div>
+            </div>
+        </div>
+       <form (ngSubmit)="onSubmit(form.value, form.valid)"[formGroup]="form">
             <div class="row">
                 <div (click)="newForm()"class="col-12 mb-3 mt-2 newFormation">
                     <h6>+ Adicionar uma nova formação</h6>
                 </div>
-
-                <div class="container"><div *ngIf="new" class="row">
-                <div class="col-6 education-number mb-2">
-                    <h6>Formação Nova</h6>
-                </div>
-                <div class="col-6 text-right education-number-button mb-2">
-                    <i class="material-icons">close</i>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label class="label-input" for="exampleInputEmail1">Instituição</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="" placeholder="Instituição">
+            
+                <div class="container">
+                    <div *ngIf="new" class="row">
+                        <div class="col-6 education-number mb-2">
+                            <h6>Formação Nova</h6>
+                        </div>
+                    <div class="col-6 text-right education-number-button mb-2">
+                        <i class="material-icons">close</i>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-group">
-                        <label class="label-input">Data de início</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="" placeholder="Data de início">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="label-input" for="exampleInputEmail1">Instituição</label>
+                            <input type="email" class="form-control input-form" aria-describedby="first-name" value="" formControlName='institution' placeholder="Instituição">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="form-group">
-                        <label class="label-input">Data de fim</label>
-                        <input type="email" class="form-control input-form" aria-describedby="first-name" value="" placeholder="Data de fim">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="label-input">Ano de ínicio</label>
+                            <input type="email" class="form-control input-form" aria-describedby="first-name" value="" formControlName='start_at' placeholder="Ano de ínicio">
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label class="label-input" for="exampleSelect1">Descrição</label>
-                        <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" placeholder="Título da Formação"></textarea>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="label-input">Ano de fim</label>
+                            <input type="email" class="form-control input-form" aria-describedby="first-name" value="" formControlName='end_at' placeholder="Ano de fim">
+                        </div>
                     </div>
-                </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="label-input" for="exampleSelect1">Descrição</label>
+                            <textarea class="form-control input-textarea" id="exampleTextarea" rows="4" formControlName='name' placeholder="Título da Formação"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-                <div class="col-6 mb-2">
-                    <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
-                </div>
-                <div class="col-6 mb-2">
-                    <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
-                </div>
+            <div class="col-6 mb-2">
+                <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
             </div>
-        
-    </div>
+            <div class="col-6 mb-2">
+                <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
+            </div>
+      
+        </div>
+    </form>  
+     
+</div>
 </div>
 
 
