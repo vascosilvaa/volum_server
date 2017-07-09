@@ -1,3 +1,4 @@
+
 import { AuthenticationService } from './../../../../shared/Auth/authentication.service';
 import { ProfileComponent } from './../../profile.component';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +7,7 @@ import { CustomValidators } from 'ng2-validation';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ProfileService } from './../../../../shared/services/profile.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-personal-settings',
@@ -18,6 +20,9 @@ export class PersonalSettingsComponent implements OnInit {
   public user: any;
 
   public form: FormGroup;
+
+  public coverPhoto: any;
+  public profilePhoto: any;
 
 
   constructor(private profileService: ProfileService, public auth: AuthenticationService, public profileComponent: ProfileComponent, public _fb: FormBuilder, public router: Router, public route: ActivatedRoute, public parser: NgbDateParserFormatter) { }
@@ -42,6 +47,8 @@ export class PersonalSettingsComponent implements OnInit {
 
     });
 
+
+
     this.profileService.activeProfileSource.subscribe(profile => {
       if (profile) {
 
@@ -56,6 +63,30 @@ export class PersonalSettingsComponent implements OnInit {
 
       }
     });
+
+  }
+
+  getProfilePhoto(event) {
+
+    var reader = new FileReader()
+    reader.onload = (event) => {
+      this.profilePhoto = event.target['result'];
+    }
+
+    reader.readAsDataURL(event.target.files[0]);
+
+
+
+  }
+
+  getCoverPhoto(event) {
+    var reader = new FileReader()
+    reader.onload = (event) => {
+      this.coverPhoto = event.target['result'];
+    }
+
+    reader.readAsDataURL(event.target.files[0]);
+
 
   }
 
@@ -74,6 +105,7 @@ export class PersonalSettingsComponent implements OnInit {
 
   onSubmit(value, valid) {
 
+
     //FORMATAÇOES
 
     if (value.birth_date instanceof Date) {
@@ -83,17 +115,22 @@ export class PersonalSettingsComponent implements OnInit {
     }
 
     value.name = value.first_name + ' ' + value.last_name;
-
+    value.cover_photo = this.coverPhoto;
+    value.photo_url = this.profilePhoto;
     delete value.first_name;
     delete value.last_name;
 
-    console.log(value);
+    console.log("VALOR A SER ENVIADO", value);
     this.profileService.editUser(value).then(res => {
-      this.profileService.reloadProfile(this.user.id_user);
-      this.auth.reloadUser(this.user.id_user, true);
+      if (res['success']) {
 
-      this.profileComponent.getUser();
-      this.router.navigate(['../../about'], { relativeTo: this.route });
+        this.profileService.reloadProfile(this.user.id_user);
+        this.auth.reloadUser(this.user.id_user, true);
+
+        this.profileComponent.getUser();
+        this.router.navigate(['../../about'], { relativeTo: this.route });
+
+      }
     }).catch(err => {
       console.log(err)
     })

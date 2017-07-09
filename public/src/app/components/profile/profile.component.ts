@@ -8,6 +8,7 @@ import { Component, Injector, OnInit, ViewContainerRef } from '@angular/core';
 import { Http } from '@angular/http';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -39,27 +40,32 @@ export class ProfileComponent implements OnInit {
   userId: any;
   public online: number = 0;
   public id_user: any;
-  public user: any = {}
+  public user: any = {};
+
   public id_logged_user: number;
   public state: number;
   public scoreReady: boolean = false;
+
+
+
   constructor(public http: Http, public overlay: Overlay, vcRef: ViewContainerRef, private sharedService: SharedService, private route: ActivatedRoute, private router: Router, private injector: Injector, private profileService: ProfileService,
     private auth: AuthenticationService) {
     overlay.defaultViewContainer = vcRef;
   }
 
+
+
   ngOnInit() {
 
     //NAVEGAR SEMPRE PARA O TOPO DA PAGINA
+
+
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
       window.scrollTo(0, 0)
     });
-
-
-
 
     this.route.params.subscribe((params) => {
 
@@ -68,7 +74,7 @@ export class ProfileComponent implements OnInit {
       console.log("TROCOU PARAMS", params)
       this.id_user = params.id;
 
-      
+
       //FACEBOOK TOKEN
       this.route.queryParams.subscribe((query => {
         console.log(query);
@@ -91,9 +97,10 @@ export class ProfileComponent implements OnInit {
       this.getUser();
       this.checkFollow();
     });
-    
 
   }
+
+
   getUser() {
 
     //SE ESTIVER AUTENTICADO
@@ -129,7 +136,7 @@ export class ProfileComponent implements OnInit {
               this.checkOnline();
               this.getScore();
 
-              console.log("USER:",this.user);
+              console.log("USER:", this.user);
 
             });
 
@@ -161,13 +168,13 @@ export class ProfileComponent implements OnInit {
     });
   }
   checkFollow() {
-    
+
     this.profileService.checkState(this.id_user).then(res => {
       this.state = res.state;
       console.log(this.state);
     });
   }
-  
+
   engageConversation() {
     this.profileService.engageConversation(this.id_user).then(res => {
       console.log(res);

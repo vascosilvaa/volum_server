@@ -79,6 +79,20 @@
 
                 <div class="col-12">
                     <div class="form-group">
+                        <label class="label-input" for="exampleSelect1">Alterar Foto de Perfil</label>
+                        <input type="file" class="form-control input-form" (change)="getProfilePhoto($event)">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="label-input" for="exampleSelect1">Alterar Foto de Capa</label>
+                        <input type="file" class="form-control input-form" (change)="getCoverPhoto($event)">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
                         <label class="label-input" for="exampleSelect1">Redes sociais</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon"><img src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png"></div>
@@ -118,20 +132,20 @@
                         </div>
                     </div>
                 </div>
-               
 
 
 
 
 
-               
+
+
                 <div class="col-6 mb-2">
                     <a class="btn-settings btn-settings-cancel" routerLink="/profile/details">Cancelar</a>
                 </div>
                 <div class="col-6 mb-2">
                     <button type="submit" class="btn-settings btn-settings-save">Guardar</button>
                 </div>
-           
+
             </div>
         </form>
     </div>

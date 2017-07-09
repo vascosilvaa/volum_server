@@ -202,7 +202,6 @@ var returnRouter = function (io) {
 
             }
         });
-
     });
 
     app.get('/:id/messages/last', function (req, res) {

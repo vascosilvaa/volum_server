@@ -31,7 +31,7 @@
             <li>
               <span class="title">Website</span>
               <span *ngIf="user.id_user!=id_user" class="linkInsert text">Não definido</span>
-              <span *ngIf="user.id_user==id_user" class="linkInsert text">Inserir já</span>
+              <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
             </li>
             <li *ngIf="user.phone">
               <span class="title">Telémovel</span>
@@ -125,10 +125,9 @@
                   <span class="text" *ngIf="user.about">{{user.about}}</span>
                   <span class="text" *ngIf="!user.about">
                           Sem descrição. 
-                          <span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span>
-                  <span
-                    *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
-                    </span>
+                                            <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
+                  <span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
+                  </span>
 
                 </li>
                 <li>
@@ -139,9 +138,8 @@
                   <span class="title">Idiomas</span>
                   <span class="text" *ngIf="user.languages">{{user.languages}}</span>
                   <span class="text" *ngIf="!user.languages">Sem idiomas definidos. <span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
-                  <span
-                    *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span>
-                    </span>
+                  <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -151,27 +149,25 @@
                   <span class="title">Hobbies e interesses</span>
 
                   <span class="text" *ngIf="user.hobbies"> {{user.hobbies}}</span>
-                  <span class="text" *ngIf="!user.hobbies">Sem hobbies e interesses definidos. <span *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span>
-                  <span
-                    *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
-                    </span>
+                  <span class="text" *ngIf="!user.hobbies">Sem hobbies e interesses definidos.                   <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
+                  <span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
+                  </span>
 
                 </li>
                 <li>
                   <span class="title">Historial de voluntariado</span>
-                  <span *ngIf="!user.history" class="text">Sem historial de voluntariado. <span class="linkInsert" *ngIf="user.id_user==id_user">Inserir já</span>
-                  <span
-                    *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
-                    </span>
-                    <span *ngIf="user.history" class="text">{{user.history}}</span>
+                  <span *ngIf="!user.history" class="text">Sem historial de voluntariado.       
+                  <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
+                  <span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
+                  </span>
+                  <span *ngIf="user.history" class="text">{{user.history}}</span>
                 </li>
                 <li>
                   <span class="title">Outros interesses</span>
                   <span *ngIf="user.other" class="text">{{user.other}}</span>
                   <span *ngIf="!user.other" class="text">Sem outros interesses definidos.<span *ngIf="user.id_user!=id_user" class="linkInsert">Não definido</span>
-                  <span
-                    *ngIf="user.id_user==id_user" class="linkInsert">Inserir já</span>
-                    </span>
+                  <span *ngIf="user.id_user==id_user" class="linkInsert" routerLink="../settings/personal">Inserir já</span>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -179,7 +175,7 @@
         </div>
       </div>
 
-      <div class="ui-block"> 
+      <div class="ui-block">
         <div class="ui-block-title">
           <h6>Educação e Formação</h6>
         </div>
@@ -194,7 +190,7 @@
                 </li>
               </ul>
             </div>
-        
+
           </div>
         </div>
       </div>

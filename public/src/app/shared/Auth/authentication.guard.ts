@@ -20,27 +20,14 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild {
     canActivateChild = this.check;
 
     check(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        /*  
-                this.authService.userPromise.then(res => {
-                    console.log("company route: " + this.company);
-                    console.log("company user id: " + res.user._company_id)
-                    if (res._company_id == this.company) {
-                        console.log(this.company);
-                        console.log("company Ã© igual");
-                    } else {
-                        this.authService.logout();
-                        console.log("derp");
-                    }
-                });
-        */
         if (!this.authService.isAuthenticated()) {
-            this.router.navigateByUrl('/feed');
-            console.log("a")
+            this.router.navigateByUrl('/');
             return false;
+
         } else {
             console.log("authenticated")
+            return true;
         };
-        return true;
     }
 
 }
