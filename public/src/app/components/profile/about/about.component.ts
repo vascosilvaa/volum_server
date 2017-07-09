@@ -32,17 +32,14 @@ export class AboutComponent implements OnInit {
     this.profileService.activeProfileSource.subscribe(profile => {
       if (profile) {
         this.user = profile;
-<<<<<<< HEAD
-=======
+
         console.log(this.user)
->>>>>>> 30346e5a327eb5dc9af517a07af21c5a6a357cb9
 
         this.profileService.getEducation(this.user.id_user).then(res => {
           this.education = res.education;
         });
 
-<<<<<<< HEAD
-=======
+
         if (this.user.birth_date && this.user.birth_date != "0000-00-00") {
           this.dateFormatted = new Date(this.user.birth_date);
           this.timeDiff = Math.abs(Date.now() - this.dateFormatted);
@@ -53,7 +50,6 @@ export class AboutComponent implements OnInit {
           
         }
 
->>>>>>> 30346e5a327eb5dc9af517a07af21c5a6a357cb9
       }
     })
 
