@@ -48,7 +48,7 @@
                         <a class="btn btn-control btn-chat mr-2" *ngIf="id_user!=id_logged_user" (click)="engageConversation()"><i class="material-icons">chat</i></a>
                         <a class="btn btn-control btn-add" *ngIf="id_user==id_logged_user" routerLink="/profile/{{id_user}}/new"><i class="material-icons">add</i></a>
                         <span *ngIf="id_user!=id_logged_user">
-                            <a class="btn btn-control-follow btn-follow" (click)="follow(id_user)" *ngIf="state == 0"><img src="src/assets/img/follow-add.png"></a>
+                            <a class="btn btn-control btn-follow" (click)="follow(id_user)" *ngIf="state == 0"><i class="material-icons">person_add</i></a>
                         </span>
                     </div>
                 </div>

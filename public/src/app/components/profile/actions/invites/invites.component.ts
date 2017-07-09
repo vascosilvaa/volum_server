@@ -30,7 +30,7 @@ export class InvitesComponent implements OnInit {
   }
 
   listInvites() {
-    this.volsService.listInvites().then(res => {
+    this.volsService.listInvites(0, 100).then(res => {
       this.vols = res.notifications;
       this.countConfirmeds();
       this.countCandidates();

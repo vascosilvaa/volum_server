@@ -17,8 +17,8 @@
                     <div class="search-text">
                         <h6 class="search-name">{{ r.name}}</h6>
                         <p *ngIf="r.type==0"> Ação de Voluntariado</p>
-                        <p *ngIf="r.type==1"> Voluntário</p>
-                        <p *ngIf="r.type==2"> Instituição</p>
+                        <p *ngIf="r.type==2"> Voluntário</p>
+                        <p *ngIf="r.type==1"> Instituição</p>
                     </div>
                 </div>
             </ng-template>
@@ -98,7 +98,7 @@
         <div class="navbar-bevolun-chat ml-4 pointer" *ngIf="user" ngbDropdown (click)="getConversations(user.id_user)">
             <a>
                 <md-icon ngbDropdownToggle>chat_bubble</md-icon>
-                <span class="badge badge-notify">1</span>
+                <!-- <span class="badge badge-notify">1</span> -->
             </a>
 
             <div id="dropdown-messages" class="dropdown-menu">
