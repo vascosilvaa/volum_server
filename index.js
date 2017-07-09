@@ -88,6 +88,8 @@ app.get('/api/search', function (req, res) {
                     } else {
 
                         for (let i = 0; i < results[0].length; i++) {
+
+
                             results[0][i].type = 0;
                             console.log("RESULTS", results[0][i])
                             if (results[0][i].photos) {
@@ -99,11 +101,18 @@ app.get('/api/search', function (req, res) {
                             }
                         }
 
+                        
+
 
                         if (results[0].length == 0 && results[1].length == 0) {
                             res.send({ success: false, message: [] })
                         } else {
+
+                      
                             searchData = results[0].concat(results[1]);
+
+                            searchData.shift();
+                            
                             res.send({ success: true, message: searchData })
                         }
                     }
@@ -168,9 +177,6 @@ io.on('connection', function (socket) {
             app.set('users', loggedUsers);
 
         }
-
-
-
 
     });
 

@@ -30,7 +30,7 @@ const appRoutes: Routes = [
 
   {
     path: '',
-    // canActivateChild: [AuthenticationGuard],
+    canActivateChild: [AuthenticationGuard],
     children: [
       {
         path: 'chat',

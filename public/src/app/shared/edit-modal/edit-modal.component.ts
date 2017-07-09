@@ -1,5 +1,5 @@
 
-  import { SharedService } from './../services/shared.service';
+import { SharedService } from './../services/shared.service';
 import { Router } from '@angular/router';
 import { ProfileService } from './../services/profile.service';
 import { AuthenticationService } from './../Auth/authentication.service';
@@ -8,7 +8,7 @@ import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { volsService } from './../services/vols.service';
 import { AppModule } from './../../app.module';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap';
 
@@ -54,18 +54,12 @@ export class EditModalComponent implements OnInit {
   public minutos_fim: any;
   public modelData: any;
   public model: any;
-  public model_title: any;
-  public model_desc: any;
-  public model_category: any;
-  public model_insurance: any;
-  public model_date_begin: any;
-  public model_date_end: any;
-  public model_duration: any;
-  public model_lat: any;
-  public model_lng: any;
-  public dateChanged: any;
+
+  public lat: any;
+  public lng: any;
 
   public formChanged: any;
+  @ViewChild("input") input;
 
   constructor(public SharedService: SharedService, public router: Router, private dialog: DialogRef<ModalContext>, public parser: NgbDateParserFormatter, private _fb: FormBuilder, public volsService: volsService, public ProfileService: ProfileService) {
     this.context = dialog.context;
@@ -74,30 +68,57 @@ export class EditModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ProfileService.getCategories().then(res => {
-      this.categories = res.categories;
-      console.log(res);
-      console.log("ID MODEL ->>" + this.context.id_vol);
+
+
+    this.form = this._fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      category: ['', Validators.required],
+      insurance: ['', Validators.required],
+      date_begin: ['', Validators.required],
+      date_end: [],
+      start_time: [''],
+      end_time: [''],
+      duration: [],
     });
+
+
+
+
     this.volsService.getVol(this.context.id_vol).then(res => {
+
+
+      this.ProfileService.getCategories().then(res => {
+        this.categories = res.categories;
+
+        this.form.patchValue({
+          name: this.vol.name, description: this.vol.description,
+          category: this.vol.id_category, insurance: this.vol.insurance,
+          date_begin: this.parser.parse(this.vol.date_begin), date_end: this.parser.parse(this.vol.date_end),
+          start_time: this.vol.start_time, end_time: this.vol.end_time, duration: this.vol.duration
+        })
+      });
 
       this.vol = res.vol;
 
+      this.lat = this.vol.lat;
+      this.lng = this.vol.lng;
+
+      console.warn(this.vol)
 
 
-      this.model_title = this.vol.name;
-      this.model_desc = this.vol.description;
-      this.model_category = this.vol.id_category;
-      this.model_insurance = this.vol.insurance;
-      this.model_date_begin = new Date(this.vol.date_begin.replace(/-/g,"/"));
-      console.log(this.model_date_begin);
-      this.model_date_end = this.vol.date_end;
-      this.model_lat = parseFloat(this.vol.lat);
-      this.model_lng = parseFloat(this.vol.lng);
+
+
+
       this.SharedService.getAddress(this.vol.lat, this.vol.lng).then(res => {
         this.modelData = res.results;
-        this.model = this.modelData[0].formatted_address;
-        console.log(this.model);
+
+        this.input.nativeElement.value = res.results[0].formatted_address;
+
+        console.log(this.lat)
+
+
+
       });
       if (this.vol.start_time != "00:00:00.000000" && this.vol.start_time) {
         this.hora_inicio = this.vol.start_time.slice(0, 2);
@@ -116,70 +137,40 @@ export class EditModalComponent implements OnInit {
         this.end_time = "";
       }
 
-      this.model_duration = this.vol.duration;
+      setTimeout(() => {
+        this.lat = this.vol.lat;
+        this.lng = this.vol.lng;
+
+      }, 500)
+
     });
-    this.form = this._fb.group({
-      name: ['', []],
-      description: ['', []],
-      category: ['', []],
-      insurance: ['', []],
-      date_begin: ['', []],
-      date_end: ['',],
-      start_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-      end_time: ['', [Validators.pattern('^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$')]],
-      duration: ['',],
-    });
+
   }
 
-  markerDragEnd(event){
-    
-  }
-  onSubmit(form: any) {
-    if(this.formChanged==1) {
-    console.log(form.valid);
-    this.form.controls.name.markAsTouched();
-    this.form.controls.description.markAsTouched();
-    this.form.controls.category.markAsTouched();
-    this.form.controls.insurance.markAsTouched()
-    this.form.controls.date_begin.markAsTouched();
-    this.form.controls.date_end.markAsTouched();
-    this.form.controls.start_time.markAsTouched();
-    this.form.controls.end_time.markAsTouched();
-    this.form.controls.duration.markAsTouched();
-    if (form.valid) {
-      if(form.value.date_begin == "") {
-         form.value.date_begin ="";
-        form.value.date_begin = this.model_date_begin;
+  markerDragEnd($event: MouseEvent) {
+    console.log('dragEnd', $event);
+    this.lat = $event['coords']['lat'];
+    this.lng = $event['coords']['lng'];
+    console.log(this.lat);
+    console.log(this.lng)
+
+    console.log("model 1", this.model)
+    this.SharedService.getAddress(this.lat, this.lng).then(res => {
+      console.log(res);
+      if (res.results.length > 0) {
+
+        this.input.nativeElement.value = res.results["0"].formatted_address;
+        this.coord = true;
+
       }
-      if(form.value.date_end == "") {
-         form.value.date_end ="";
-        form.value.date_end = this.model_date_end;
-      }
-
-
-
-
-      form.value.lat = this.model_lat;
-      form.value.lng = this.model_lng;
-      console.log("VALUE", form.value);
-      this.volsService.editAction(this.context.id_vol, form.value).then(res => {
-        console.log(res);
-        if (res.error) {
-          console.log('erro')
-        } else {
-          console.log('updated');
-        }
-      });
-
-    } else {
-      this.coordAdvice = true;
-    }
-    }
+      console.log("model 2", this.model)
+    })
   }
+
 
   navigate(lat, lng) {
-    this.model_lat = lat;
-    this.model_lng = lng;
+    this.lat = lat;
+    this.lng = lng;
   }
 
   formatter = (x: {
@@ -267,7 +258,63 @@ export class EditModalComponent implements OnInit {
     this.img = 0;
   }
 
-  changed() {
-    this.formChanged=1;
+  onSubmit(form: any) {
+
+    this.form.controls.name.markAsTouched();
+    this.form.controls.description.markAsTouched();
+    this.form.controls.category.markAsTouched();
+    this.form.controls.insurance.markAsTouched()
+    this.form.controls.date_begin.markAsTouched();
+    this.form.controls.date_end.markAsTouched();
+    this.form.controls.start_time.markAsTouched();
+    this.form.controls.end_time.markAsTouched();
+
+
+    this.form.controls.duration.markAsTouched();
+    if (form.valid) {
+
+      if (form.value.date_begin instanceof Date) {
+
+      } else {
+
+        form.value.date_begin = new Date(this.parser.format(form.value.date_begin));
+        form.value.date_end = new Date(this.parser.format(form.value.date_end));
+      }
+      let array = []
+
+
+      if (this.url1) {
+        array.push(this.url1);
+
+      }
+      if (this.url2) {
+        array.push(this.url2);
+
+      }
+      if (this.url3) {
+        array.push(this.url3);
+      }
+
+      form.value.lat = this.lat;
+      form.value.lng = this.lng;
+      form.value.photos = array;
+
+      console.log("VALUE", form.value);
+
+
+      this.volsService.editAction(this.context.id_vol, form.value).then(res => {
+        console.log(res);
+        if (res.error) {
+          console.log('erro')
+        } else {
+          console.log('updated');
+        }
+      });
+
+    } else {
+      this.coordAdvice = true;
+    }
+
   }
+
 }

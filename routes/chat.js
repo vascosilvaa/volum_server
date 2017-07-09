@@ -165,18 +165,23 @@ var returnRouter = function (io) {
                 if (error) throw error;
             } else {
 
-                if (results[0].id_user == req.user.id_user) {
-                    id_user = results[0].id_user2;
-                } else {
-                    id_user = results[0].id_user
-                }
+                if (results) {
 
-                db.get().query('SELECT * FROM users WHERE id_user = ?', [id_user], function (error, result, fields) {
-                    res.json({
-                        success: true,
-                        result
+                    if (results[0].id_user == req.user.id_user) {
+                        id_user = results[0].id_user2;
+                    } else {
+                        id_user = results[0].id_user
+                    }
+
+                    db.get().query('SELECT * FROM users WHERE id_user = ?', [id_user], function (error, result, fields) {
+                        res.json({
+                            success: true,
+                            result
+                        });
                     });
-                });
+                }
+                
+
 
             }
 
@@ -202,7 +207,6 @@ var returnRouter = function (io) {
 
             }
         });
-
     });
 
     app.get('/:id/messages/last', function (req, res) {

@@ -1,3 +1,4 @@
+import { AuthenticationGuard } from './shared/Auth/authentication.guard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeedModule } from './components/feed/feed.module';
 import { ProfileService } from './shared/services/profile.service';
@@ -77,13 +78,14 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     BootstrapModalModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'
     }),
   ],
   entryComponents: [LoginComponent, RegisterComponent, ModalViewAllComponent, ModalEndComponent, VolDetailsModalComponent, ModalViewAllComponent],
-  providers: [AuthenticationService, HttpClient, volsService, ProfileService, { provide: LOCALE_ID, useValue: "pt-PT" }],
+  providers: [AuthenticationService, AuthenticationGuard, HttpClient, volsService, ProfileService, { provide: LOCALE_ID, useValue: "pt-PT" }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

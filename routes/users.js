@@ -3,8 +3,14 @@ var express = require('express'),
     config = require('../config'),
     jwt = require('jsonwebtoken'),
     db = require('../config/db'),
-    passport = require('passport');
+    passport = require('passport'),
+    cloudinary = require('cloudinary');
 
+cloudinary.config({
+    cloud_name: 'dbbmwchww',
+    api_key: '266298598993945',
+    api_secret: 'UjQ9gFhIgaBJvt5X5uXl5xh9zYc'
+})
 
 function getUserById(id, done) {
     db.get().query('SELECT * FROM users WHERE id_user = ? LIMIT 1', [id], function (err, rows, fields) {
@@ -43,7 +49,6 @@ var returnRouter = function (io) {
 
     app.get('/:id', passport.authenticate(['jwt']), function (req, res) {
         if (!req.params.id) {
-            console.log("gawagaw", req.user)
             res.send({
                 success: false,
                 user: req.user
@@ -58,7 +63,6 @@ var returnRouter = function (io) {
                     })
 
                 } else {
-                    console.log("USER", user)
                     res.status(200);
                     res.send({
                         success: true,
@@ -135,32 +139,92 @@ var returnRouter = function (io) {
             ' gender = IFNULL(?, gender),' +
             ' email = IFNULL(?, email),' +
             ' about = IFNULL(?, about),' +
+            ' photo_url = IFNULL(?, photo_url),' +
+            ' cover_photo = IFNULL(?, cover_photo),' +
             ' birth_date = IFNULL(?, birth_date),' +
             ' country = IFNULL(?, country),' +
             ' region = IFNULL(?, region)' +
             '  WHERE id_user = ?;'
         };
-        console.log(options.sql)
 
-        console.log(req.body);
+        let photo_url, cover_photo;
 
-        db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
-            console.log(error);
-            console.log(fields);
-            if (error) {
-                res.send({
-                    success: false,
-                    message: error
-                })
-                throw new Error(error);
-            } else {
-                res.send({
-                    success: true,
-                    results
-                })
+        if (req.body.cover_photo) {
+            cloudinary.uploader.upload(req.body.cover_photo, function (result) {
+                cover_photo = result.url;
 
-            }
-        });
+
+                db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                    console.log(error);
+                    console.log(fields);
+                    if (error) {
+                        res.send({
+                            success: false,
+                            message: error
+                        })
+                        throw new Error(error);
+                    } else {
+
+
+                    }
+                });
+            });
+
+
+        }
+        if (req.body.photo_url) {
+
+            cloudinary.uploader.upload(req.body.photo_url, function (result) {
+                photo_url = result.url;
+
+                db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                    console.log(error);
+                    console.log(fields);
+                    if (error) {
+                        res.send({
+                            success: false,
+                            message: error
+                        })
+                        throw new Error(error);
+                    } else {
+
+                        res.send({
+                            success: true,
+                            results
+                        })
+
+
+                    }
+                });
+            });
+        }
+        if (!req.body.photo_url && !req.body.cover_photo) {
+            db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                console.log(error);
+                console.log(fields);
+                if (error) {
+                    res.send({
+                        success: false,
+                        message: error
+                    })
+                    throw new Error(error);
+                } else {
+
+                    res.send({
+                        success: true,
+                        results
+                    })
+
+
+                }
+            });
+        }
+
+
+
+
+
+
 
 
 

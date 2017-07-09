@@ -56,8 +56,6 @@ var returnRouter = function (io) {
 
                                 });
 
-
-
                         });
 
                 } else {

@@ -36,6 +36,7 @@
             </li>
             <li>
               <span class="title">Website</span>
+
               <span *ngIf="user.id_user!=id_user" class="linkInsert text">Sem website definido.</span>
               <span *ngIf="user.id_user==id_user" class="linkInsert text" (click)="redirectSettings()">Inserir já</span>
             </li>
@@ -131,9 +132,11 @@
                   <span class="text" *ngIf="user.about">{{user.about}}</span>
                   <span class="text text-none" *ngIf="!user.about">
                           Sem descrição. 
+
                           <span *ngIf="user.id_user==id_user" class="linkInsert" (click)="redirectSettings()">Inserir já</span>
                   
                     </span>
+
 
                 </li>
                 <li>
@@ -143,10 +146,12 @@
                 <li>
                   <span class="title">Idiomas</span>
                   <span class="text" *ngIf="user.languages">{{user.languages}}</span>
+
                   <span class="text text-none" *ngIf="!user.languages">Sem idiomas definidos. 
                   <span
                     *ngIf="user.id_user==id_user" class="linkInsert" (click)="redirectSettings()">Inserir já</span>
                     </span>
+
                 </li>
               </ul>
             </div>
@@ -156,25 +161,31 @@
                   <span class="title">Hobbies e interesses</span>
 
                   <span class="text" *ngIf="user.hobbies"> {{user.hobbies}}</span>
+
                   <span class="text text-none" *ngIf="!user.hobbies">Sem hobbies e interesses definidos. <span *ngIf="user.id_user==id_user" class="linkInsert" (click)="redirectSettings()">Inserir já</span>
                   
                     </span>
 
+
                 </li>
                 <li>
                   <span class="title">Historial de voluntariado</span>
+
                   <span *ngIf="!user.history" class="text text-none">Sem historial de voluntariado. <span class="linkInsert" *ngIf="user.id_user==id_user" (click)="redirectSettings()">Inserir já</span>
                   
                     </span>
                     <span *ngIf="user.history" class="text">{{user.history}}</span>
+
                 </li>
                 <li>
                   <span class="title">Outros interesses</span>
                   <span *ngIf="user.other" class="text">{{user.other}}</span>
+
                   <span *ngIf="!user.other" class="text text-none">Sem outros interesses definidos.
                   <span
                     *ngIf="user.id_user==id_user" class="linkInsert" (click)="redirectSettings()">Inserir já</span>
                     </span>
+
                 </li>
               </ul>
             </div>
@@ -182,7 +193,7 @@
         </div>
       </div>
 
-      <div class="ui-block"> 
+      <div class="ui-block">
         <div class="ui-block-title">
           <h6>Educação e Formação</h6>
         </div>
@@ -197,7 +208,7 @@
                 </li>
               </ul>
             </div>
-        
+
           </div>
           <div class="row" *ngIf="!education || education.length==0">
             <div class="col-12 text-center no-content">
