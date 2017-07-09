@@ -3,7 +3,10 @@ import { ProfileService } from './../../../shared/services/profile.service';
 import { SocketService } from './../../../shared/socket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './../../../shared/Auth/authentication.service';
-import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ModalProfileComponent } from './../../../shared/modal-profile/modal-profile.component';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   selector: 'app-chat-message',
@@ -21,7 +24,7 @@ export class ChatMessageComponent implements OnInit {
   public message: string;
   public conversationName: string;
   public profile: any;
-  constructor(public profileService: ProfileService, public router: Router, public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
+  constructor(public modal: Modal, overlay: Overlay, vcRef: ViewContainerRef, public profileService: ProfileService, public router: Router, public chatService: ChatService, public auth: AuthenticationService, private socket: SocketService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -74,12 +77,25 @@ export class ChatMessageComponent implements OnInit {
         this.profileService.countVolsParticipation(this.profile[i].id_user).then(res => {
           this.profile[i].numberVolsParticipated = res.rows[0].count;
         });
-        this.profileService.getScore(this.profile[i].id_user).then(result => {
-          this.profile[i].score = parseFloat(result.score).toFixed(1);
-        });
+      
+        this.profileService.getScore(this.profile[i].id_user).then(res => {
+        this.profile[i]['score_number'] = res.score;
+        this.profile[i]['score'] = this.getNumber(res.score);
+        this.profile[i]['negative_score'] = this.getNumber(res.score - 5);
+
+    });
       }
     });
   }
+
+ getNumber(num) {
+    let number = Math.round(num);
+    if (num < 0) {
+      number = Math.abs(number);
+    }
+    return new Array(number);
+  }
+
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -113,6 +129,10 @@ export class ChatMessageComponent implements OnInit {
 
     }
 
+  }
+
+   openProfile(id_user) {
+    this.modal.open(ModalProfileComponent, overlayConfigFactory({ idProfile: id_user }, BSModalContext));
   }
 
 }

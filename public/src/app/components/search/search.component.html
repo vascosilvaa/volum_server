@@ -24,7 +24,7 @@
                 <div class="search-block">
                     <div class="search-block-img" [class.actionsearch]="element.type == 0">
                         <img *ngIf="element.type==1 || element.type==2" class="thumbnail" src="{{element?.photo_url}}">
-                        <img *ngIf="element.type==0" src="{{element?.photos[0]}}">
+                        <img *ngIf="element.type==0" src="{{element?.photo_url}}">
                     </div>
                     <div class="search-block-name">
                         <h6>{{element?.name}}</h6>
