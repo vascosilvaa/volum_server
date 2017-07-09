@@ -123,7 +123,7 @@ var returnRouter = function (io) {
     }
 
     function getVolScore(id, done) {
-        db.get().query('SELECT AVG(classification) as score FROM classification WHERE id_vol = ? AND type = 1', [id], function (err, rows, fields) {
+        db.get().query('SELECT AVG(classification) as score, message FROM classification WHERE id_vol = ? AND type = 1', [id], function (err, rows, fields) {
             if (err) throw err;
             console.log("ROWS", rows);
 
@@ -637,6 +637,7 @@ var returnRouter = function (io) {
                             error: error
                         })
                     } else {
+
                         res.send({
                             success: true,
                         })
@@ -1415,7 +1416,7 @@ var returnRouter = function (io) {
             users = req.body.users;
 
             for (let i = 0; i < req.body.users.length; i++) {
-                array.push([req.user.id_user, users[i].id_user, req.params.id, users[i].classification])
+                array.push([req.user.id_user, users[i].id_user, req.params.id, users[i].classification, req.body.message])
             }
 
             let errors = false;
@@ -1435,7 +1436,7 @@ var returnRouter = function (io) {
                 } else {
 
                     db.get().query({
-                        sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification) VALUES ?',
+                        sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification, message) VALUES ?',
                     }, [array], function (error, results, fields) {
                         if (error) {
                             console.log(error);
@@ -1559,12 +1560,28 @@ var returnRouter = function (io) {
         });
     });
 
+
     app.get('/:id/score', function (req, res) {
 
         getVolScore(req.params.id, function (score) {
             res.json({
                 success: true,
                 score
+            });
+        });
+    });
+
+
+    app.get('/:id/score/message', function (req, res) {
+        let messsage;
+
+        db.get().query('SELECT message FROM classification WHERE id_vol = ? AND type = 0 LIMIT 1', [req.params.id], function (err, rows, fields) {
+            if (err) throw err;
+
+            message = rows[0].message;
+            res.json({
+                success: true,
+                message
             });
         });
     });

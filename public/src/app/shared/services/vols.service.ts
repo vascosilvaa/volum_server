@@ -31,6 +31,14 @@ export class volsService {
             })
             .catch((error: any) => console.log(error))
     }
+
+    getMessage(idVol) {
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols/` + idVol + '/score/message').toPromise()
+            .then(res => {
+                return res.json();
+            })
+            .catch((error: any) => console.log(error))
+    }
     checkState(id_user, id_vol) {
         return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + '/checkState', { id_user: id_user }).toPromise()
             .then(res => { return res.json() })
@@ -138,7 +146,7 @@ export class volsService {
                 return err.json();
             });
     }
-  getVolsAldrabado(params) {
+    getVolsAldrabado(params) {
         return this.http.get(`${GlobalConstants.API_ENDPOINT}/vols`, params).toPromise()
             .then(res => {
                 return res.json();
@@ -154,7 +162,7 @@ export class volsService {
     }
 
     search(query, startAt, amount) {
-        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search`,   { search: query, startAt: startAt, amount: amount }).toPromise()
+        return this.http.get(`${GlobalConstants.API_ENDPOINT}/search`, { search: query, startAt: startAt, amount: amount }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }
@@ -204,7 +212,7 @@ export class volsService {
     }
 
     insertInvite(id_vol, users) {
-        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invite`, {users: users}).toPromise()
+        return this.http.post(`${GlobalConstants.API_ENDPOINT}/vols/` + id_vol + `/invite`, { users: users }).toPromise()
             .then(res => { return res.json() })
             .catch(error => console.log(error));
     }

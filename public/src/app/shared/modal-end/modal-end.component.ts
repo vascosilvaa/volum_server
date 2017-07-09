@@ -27,6 +27,9 @@ export class ModalEndComponent implements OnInit {
   public comment: string;
   public vol: any;
   public message: any;
+
+  public last_message: any;
+
   public score: any;
   context: ModalContext;
 
@@ -65,11 +68,19 @@ export class ModalEndComponent implements OnInit {
 
     if (this.context.type == 3) {
       this.getVol(this.context.id_vol);
+      this.getMessage(this.context.id_vol)
 
     }
 
   }
-
+  getMessage(id_vol) {
+    this.volsService.getMessage(id_vol).then(
+      res => {
+        this.last_message = res.message;
+        console.warn(res)
+      }
+    )
+  }
   getVol(id_vol) {
     this.volsService.getVol(id_vol).then(
       res => {
@@ -105,9 +116,15 @@ export class ModalEndComponent implements OnInit {
   }
 
   submit() {
+
+    console.log("comment:" + this.comment);
+    console.log("classification:" + this.score);
+    console.log("user2:" + this.vol.user.id_user);
+    console.log("id_vol:" + this.vol.id_vol);
+
     let body = {
       users: this.users,
-      comment: this.comment
+      message: this.comment
     }
     this.volsService.endVol(this.context.id_vol, body).then(res => {
       if (res.success) {

@@ -45,7 +45,7 @@
                 {{vol?.date_begin | date:"MMM" | uppercase}}
             </div>
             <div>
-                
+
                 {{vol?.date_begin | date:"d"}}
             </div>
         </div>
@@ -108,8 +108,12 @@
     </div>
 </div>
 
+
 <!-- CLASSIFICAR AÇÃO -->
 <div *ngIf="context.type==3">
+
+
+
     <div class="modalHeader row">
         <div class="day-w-border">
             <div>
@@ -134,7 +138,7 @@
             Parabéns! Terminaste a ação de voluntariado "{{vol?.name}}".
         </div>
         <div class="modal-content-desc col-12">
-           {{vol?.user.name}} deu como terminada a ação de voluntariado "{{vol?.name}}" e deixou como sumário da ação a seguinte descrição:
+            {{vol?.user.name}} deu como terminada a ação de voluntariado "{{vol?.name}}" e deixou como sumário da ação a seguinte descrição:
         </div>
         <div class="col-12">
             <div class="card-bevolun">
@@ -150,11 +154,11 @@
                     </div>
                 </div>
                 <div class="text-inst">
-                    Tudo correu da melhor maneira, quero agradecer a todos a presença e a força de vontade para nos ajudar!
+                    {{last_message}}
                 </div>
             </div>
         </div>
-        
+
         <div class="modal-content-title col-12">
             Avaliar a ação e deixar um testemunho
         </div>
@@ -165,14 +169,14 @@
             <md-icon *ngFor="let num of getNumber(5); let star = index " [class.yellow]="star <= all_classification" [class.grey]="!all_classification || star >= all_classification"
                 (click)="setScore(star)">star_rate</md-icon>
         </div>
-         
-        
+
+
         <div class="col-12">
             <textarea rows="4" class="modal-textarea" placeholder="Escrever testemunho..." [(ngModel)]="message"></textarea>
         </div>
 
-        
-        
+
+
         <div class="col-12 modal-end-footer text-right">
             <button class="btn btnCancel" (click)="close()">CANCELAR</button>
             <button class="btn btnConfirm" (click)="submitTestimony()">FINALIZAR</button>
