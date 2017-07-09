@@ -1,10 +1,15 @@
-import { Router } from '@angular/router';
 import { SearchService } from './search.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/map';
 import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from './../../../shared/Auth/authentication.service';
+import { LoginComponent } from '../../login/login.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+
 
 @Component({
   selector: 'search',
@@ -13,13 +18,18 @@ import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [SearchService, NgbTypeaheadConfig]
 })
 export class SearchComponent implements OnInit {
-
+  public login: any;
   model: any;
   searching = false;
   searchFailed = false;
-  constructor(private _service: SearchService, private router: Router) { }
+  constructor(public modal: Modal, private _service: SearchService, private router: Router, public auth: AuthenticationService,) { }
 
   ngOnInit() {
+     if (this.auth.isAuthenticated()) {
+      this.login = 1;
+    } else {
+      this.login = 0;
+    }
   }
   formatter = (x: {
     name: string
@@ -65,6 +75,10 @@ export class SearchComponent implements OnInit {
         this.router.navigate(['/search', { q: this.model }]);
       }
     }
+  }
+
+  openLogin() {
+      return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
 
 }

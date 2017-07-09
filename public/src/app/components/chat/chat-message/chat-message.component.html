@@ -41,13 +41,10 @@
                     <img src="{{prof.photo_url}}">
                 </div>
                 <div class="name">
-                    <h6>{{prof.name}}</h6>
+                    <h6 class="underline pointer" (click)="openProfile(prof.id_user)">{{prof.name}}</h6>
                     <span>
-                        <md-icon>star_rate</md-icon>
-                        <md-icon>star_rate</md-icon>
-                        <md-icon>star_rate</md-icon>
-                        <md-icon>star_rate</md-icon>
-                        <md-icon>star_border</md-icon>
+                    <md-icon *ngFor="let star of prof?.score">star_rate</md-icon>
+                    <md-icon *ngFor="let star of prof?.negative_score">star_border</md-icon>
                     </span>
                 </div>
                 <div class="icon">
@@ -63,15 +60,43 @@
                         <p>{{prof.email}}</p>
                     </div>
                 </div>
-                <!--
+               
                 <div class="message-info-user-more-row">
                     <div class="title">
-                        <p>Email</p>
+                        <p>Tipo de utilizador</p>
                     </div>
-                    <div class="description">
-                        <p>asdsadsadas</p>
+                    <div *ngIf="prof.type_user==2" class="description">
+                        <p>Voluntário</p>
+                    </div>
+                    <div *ngIf="prof.type_user==1" class="description">
+                        <p>Instituição de voluntariado</p>
                     </div>
                 </div>
+                 <div class="message-info-user-more-row" *ngIf="prof.region || prof.country">
+                    <div class="title">
+                        <p>Vivem em:</p>
+                    </div>
+                    <div class="description">
+                        <p>
+                          <span *ngIf="prof.region && prof.country">{{prof.region}}, {{prof.country}}</span>
+                          <span *ngIf="prof.region && !prof.country">{{prof.region}}</span>
+                          <span *ngIf="!prof.region && prof.country">{{prof.country}}</span>
+                        </p>
+                    </div>
+                    
+                </div>
+                <div class="message-info-user-more-row" *ngIf="prof.about">
+                    <div class="title">
+                        <p>Descrição</p>
+                    </div>
+                    <div class="description">
+                        <p>
+                          <span>{{prof.about}}</span>
+                        </p>
+                    </div>
+                    
+                </div>
+                 <!--
                 <div class="message-info-user-more-row">
                     <div class="title">
                         <p>Email</p>

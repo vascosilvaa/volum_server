@@ -7,6 +7,7 @@ import { Params,ActivatedRoute, Router } from '@angular/router';
 import { SharedModule } from './../../shared/shared.module';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
+import { AuthenticationService } from './../../shared/Auth/authentication.service';
 
 @Component({
   selector: 'app-search',
@@ -19,9 +20,15 @@ export class SearchComponent implements OnInit {
   public searchResult: any;
   public model: any;
   public elements: any;
-  constructor(public volsService: volsService , public modal: Modal, private route: ActivatedRoute, private router: Router) { }
+  public login: any;
+  constructor(public auth: AuthenticationService, public volsService: volsService , public modal: Modal, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+     if (this.auth.isAuthenticated()) {
+      this.login = 1;
+    } else {
+      this.login = 0;
+    }
       this.model = "";
       this.route.params.subscribe((params) => {
       this.search_query = this.route.snapshot.params['q'];
@@ -32,13 +39,15 @@ export class SearchComponent implements OnInit {
 
   }
 
+  
+
   search(query) {
     console.log(query);
     this.volsService.search(query, 0, 100 ).then(res => {
         this.searchResult = res;
-        console.log(this.searchResult);
         if (this.searchResult.success==true) {
           this.elements = this.searchResult.message;
+          console.log(this.elements);
         } else {
           this.elements = 0;
         }
