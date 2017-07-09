@@ -1496,7 +1496,7 @@ var returnRouter = function (io) {
 
             db.get().query({
                 sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification, message, type) VALUES ( ?, ? , ? , ?, ?, ?)',
-            }, [req.user.id_user, req.body.id_user2, req.body.classification, req.body.message, req.body.type],
+            }, [req.user.id_user, req.body.id_user2, req.body.id_vol, req.body.classification, req.body.message, req.body.type],
                 function (error, results, fields) {
                     if (error) {
                         res.json({
@@ -1607,12 +1607,35 @@ var returnRouter = function (io) {
         });
     });
 
-    app.post('/education', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/getVolScore', passport.authenticate('jwt'), function (req, res) {
 
-        req.checkBody('name', 'Nome Inválido').notEmpty().isAlphanumeric();
+        req.checkParams('id', 'ID invalido').notEmpty().isInt();
+        req.checkBody('id_vol', 'ID invalido').notEmpty().isInt();
+
+        req.getValidationResult().then(function (result) {
+            if (!result.isEmpty()) {
+                console.log(result.array())
+                res.status(400).send(result.mapped());
+                return;
+            } else {
+                db.get().query('SELECT * FROM classification WHERE id_user2 = ? and id_vol = ?', [req.params.id, req.body.id_vol], function (err, results, fields) {
+
+                    res.json({
+                        success: true,
+                        score: results[0].classification
+                    });
+
+                });
+            }
+
+        });
+    });
+
+    app.post('/education', passport.authenticate('jwt'), function (req, res) {
+        req.checkBody('name', 'Nome Inválido').notEmpty();
         req.checkBody('start_at', 'Start At Inválido').notEmpty().isInt();
         req.checkBody('end_at', 'End At Inválido. Falta tirar obrigatoriadade').isInt().notEmpty();
-        req.checkBody('institution', 'Institution tem que ser uma string').notEmpty().isAlphanumeric();
+        req.checkBody('institution', 'Institution tem que ser uma string').notEmpty();
 
 
         req.getValidationResult().then(function (result) {
@@ -1680,7 +1703,7 @@ var returnRouter = function (io) {
          FROM classification 
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
-         WHERE classification.id_user2 = ?
+         WHERE classification.id_user2 = ? ORDER BY date DESC
                                     LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)

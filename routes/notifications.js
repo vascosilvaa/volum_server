@@ -189,11 +189,11 @@ var returnRouter = function (io) {
                      vols.id_vol, vols.name, vols.lat, vols.lng, vols.description, vols.date_begin, vols.date_end, vols.start_time, vols.end_time,
                      users.id_user, users.photo_url, users.name
                      FROM notifications
-                     INNER JOIN users ON notifications.id_user = users.id_user
+                     INNER JOIN users ON notifications.id_user2 = users.id_user
                      INNER JOIN vols ON notifications.id_vol = vols.id_vol
                      INNER JOIN photos ON photos.id_vol = notifications.id_vol
-                     WHERE notifications.id_user2 = ? 
-                     AND notifications.type = ? 
+                     WHERE notifications.id_user = ? 
+                     AND notifications.type = ? AND vols.active = 1
                      GROUP BY notifications.id_notification
                      ORDER BY notifications.id_notification DESC`,
                     nestTables: true

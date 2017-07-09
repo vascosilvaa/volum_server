@@ -63,7 +63,7 @@ export class ActivityComponent implements OnInit {
           this.age = Math.floor((this.timeDiff / (1000 * 3600 * 24)) / 365);
         }
         else {
-          
+
         }
 
         this.profileService.getTestimonials(profile.id_user, 0, 3).then(res => {
@@ -96,7 +96,7 @@ export class ActivityComponent implements OnInit {
 
         })
 
-        this.profileService.getMyVols(profile.id_user).then(res => {
+        this.profileService.getVolHistory(profile.id_user).then(res => {
           this.vols = res.vols;
           console.log("VOLS", res.vols)
           this.ready = true;
