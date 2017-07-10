@@ -31,7 +31,7 @@ export class ObtainedComponent implements OnInit {
   }
 
   getClassifications(id_user) {
-    this.profileService.getTestimonials(id_user, 0, 20).then(res => {
+    this.profileService.getTestimonials(id_user, 0, 30).then(res => {
       this.testimonials = res.results;
     });
   }

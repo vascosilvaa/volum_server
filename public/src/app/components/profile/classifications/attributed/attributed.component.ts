@@ -25,13 +25,14 @@ export class AttributedComponent implements OnInit {
       this.id_user = this.route.parent.parent.parent.snapshot.params['id'];
     });
     this.getClassifications(this.id_user);
+
     this.profileService.getProfile(this.id_user).then( res => {
     this.user = res.user;
     });
   }
 
   getClassifications(id_user) {
-    this.profileService.getOtherTestimonials(id_user, 0, 20).then(res => {
+    this.profileService.getOtherTestimonials(id_user, 0, 30).then(res => {
       this.testimonials = res.results;
     });
   }

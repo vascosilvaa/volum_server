@@ -135,7 +135,7 @@ var returnRouter = function (io) {
 
         let options = {
             sql: 'UPDATE users SET' +
-            ' name = IFNULL( ?, name), ' +
+            ' name = IFNULL(?, name), ' +
             ' gender = IFNULL(?, gender),' +
             ' email = IFNULL(?, email),' +
             ' about = IFNULL(?, about),' +
@@ -1845,11 +1845,11 @@ var returnRouter = function (io) {
             let results = [];
 
             db.get().query({
-                sql: `SELECT classification.id_vol, classification.id_user, classification.classification, vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
+                sql: `SELECT classification.id_vol, classification.id_user, classification.classification, classification.date, vols.name, vols.id_vol, classification.message, users.name, users.id_user, users.photo_url
          FROM classification 
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
-         WHERE classification.id_user2 = ? ORDER BY date ASC    
+         WHERE classification.id_user2 = ? ORDER BY date DESC    
                                     LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)
@@ -1870,6 +1870,7 @@ var returnRouter = function (io) {
                             },
                             message: rows[i].classification.message,
                             classification: rows[i].classification.classification,
+                            date: rows[i].classification.date,
                             vol: {
                                 id_vol: rows[i].vols.id_vol,
                                 name: rows[i].vols.name

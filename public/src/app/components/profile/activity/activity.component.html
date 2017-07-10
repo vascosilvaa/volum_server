@@ -58,7 +58,7 @@
                     </div>
                     <div class="social-network" *ngIf="user.facebook_id || user.google_id || user.twitter_id">
                         <h6>Redes sociais</h6>
-                        <a href="#" class="btn-social bg-facebook" *ngIf="user.facebook_id">Facebook</a>
+                        <a [attr.href]="'http://facebook.com' + user.facebook_id" class="btn-social bg-facebook" *ngIf="user.facebook_id">Facebook</a>
                         <a href="#" class="btn-social bg-google" *ngIf="user.google_id">Google</a>
                         <a href="#" class="btn-social bg-twitter" *ngIf="user.twitter_id">Twitter</a>
                     </div>

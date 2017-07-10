@@ -5,27 +5,30 @@
                 <li *ngFor="let testimony of testimonials">
                     <div class="page-classification-header">
                         <div class="page-classification-picture">
-                             <img src="{{testimony?.user.photo_url}}"/>
+                            <img src="{{testimony?.user.photo_url}}" />
                         </div>
                         <div class="page-classification-action">
-                            <h6><a class="page-classification-name-user underline" (click)="openProfileModal(testimony?.user.id_user)">{{testimony?.user.name}}</a> classificou <span class="page-classification-name-user underline">{{user?.name}}</span> na ação <a class="page-classification-name-action underline" (click)="seeDetails(testimony?.vol.id_vol)">{{testimony?.vol.name}}</a> com <span class="classification-number">{{testimony?.classification}}</span>  <md-icon>star_rate</md-icon></h6>
-                            <p>February 7th, 2017</p>
+                            <h6><a class="page-classification-name-user underline" (click)="openProfileModal(testimony?.user.id_user)">{{testimony?.user.name}}</a>                                classificou <span class="page-classification-name-user underline">{{user?.name}}</span> na
+                                ação <a class="page-classification-name-action underline" (click)="seeDetails(testimony?.vol.id_vol)">{{testimony?.vol.name}}</a>                                com <span class="classification-number">{{testimony?.classification}}</span>
+                                <md-icon>star_rate</md-icon>
+                            </h6>
+                            <p>{{testimony?.date | date}}</p>
                         </div>
                         <div class="page-classification-more">
-                             <i class="material-icons">more_horiz</i>
+                            <i class="material-icons">more_horiz</i>
                         </div>
                     </div>
-                    
+
                     <div class="page-classification-content" *ngIf="testimony.message">
                         <p>{{testimony?.message}}</p>
                     </div>
-                    
+
                 </li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container text-center no-content" style="margin-top:20px;" *ngIf="!testimonials || testimonials.length==0">
-    <div ><i class="material-icons">alarm</i></div>
+    <div><i class="material-icons">alarm</i></div>
     <span style="font-weight: 400">Ainda ninguém classificou {{user?.name}}.</span>
 </div>

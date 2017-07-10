@@ -22,10 +22,10 @@ export class SearchComponent implements OnInit {
   model: any;
   searching = false;
   searchFailed = false;
-  constructor(public modal: Modal, private _service: SearchService, private router: Router, public auth: AuthenticationService,) { }
+  constructor(public modal: Modal, private _service: SearchService, private router: Router, public auth: AuthenticationService, ) { }
 
   ngOnInit() {
-     if (this.auth.isAuthenticated()) {
+    if (this.auth.isAuthenticated()) {
       this.login = 1;
     } else {
       this.login = 0;
@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
   formatter = (x: {
     name: string
     registration: {
-    name: string
+      name: string
     }
   }) => x.name || x.registration.name;
 
@@ -55,12 +55,18 @@ export class SearchComponent implements OnInit {
 
 
   navigate(id, type) {
-    if (type == 1 || type == 2) {
-      this.model="";
-      this.router.navigate(['profile/' + id + '/about']);
-    } else if (type == 0) {
-      this.model="";
-      this.router.navigate(['action/' + id])
+    if (this.login == 1) {
+
+      if (type == 1 || type == 2) {
+        this.model = "";
+        this.router.navigate(['profile/' + id + '/about']);
+      } else if (type == 0) {
+        this.model = "";
+        this.router.navigate(['action/' + id])
+      }
+
+    } else {
+      this.openLogin();
     }
   }
 
@@ -78,7 +84,7 @@ export class SearchComponent implements OnInit {
   }
 
   openLogin() {
-      return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+    return this.modal.open(LoginComponent, overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
 
 }
