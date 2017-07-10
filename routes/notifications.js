@@ -12,8 +12,8 @@ var app = module.exports = express.Router();
  * @apiParam id ID do user
  * @apiGroup Notifications
  */
-var returnRouter = function (io) {
-    app.get('/', passport.authenticate('jwt'), function (req, res) {
+var returnRouter = function(io) {
+    app.get('/', passport.authenticate('jwt'), function(req, res) {
         if (!req.query.amount && !req.query.startAt) {
             res.json({
                 succes: false,
@@ -32,7 +32,7 @@ var returnRouter = function (io) {
             ORDER BY date DESC
             LIMIT ?, ?`
                 , nestTables: true
-            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function(error, results, fields) {
                 console.log(error);
 
                 let notifications = [];
@@ -64,7 +64,7 @@ var returnRouter = function (io) {
 
     });
 
-    app.get('/list/all', passport.authenticate('jwt'), function (req, res) {
+    app.get('/list/all', passport.authenticate('jwt'), function(req, res) {
         if (!req.query.amount && !req.query.startAt) {
             res.json({
                 succes: false,
@@ -82,7 +82,7 @@ var returnRouter = function (io) {
             ORDER BY date DESC
             LIMIT ?, ?`
                 , nestTables: true
-            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function(error, results, fields) {
                 console.log(error);
 
                 let notifications = [];
@@ -96,7 +96,7 @@ var returnRouter = function (io) {
                             vol_name: results[i].vols.name,
                             user_name: results[i].users.name,
                             photo_url: results[i].users.photo_url,
-                            id_user: results[i].users.id_user2,
+                            id_user: results[i].users.id_user,
                             date: results[i].notifications.date,
                             id_vol: results[i].vols.id_vol
                         })
@@ -122,7 +122,7 @@ var returnRouter = function (io) {
      */
 
 
-    app.get('/requests', passport.authenticate('jwt'), function (req, res) {
+    app.get('/requests', passport.authenticate('jwt'), function(req, res) {
         if (req.query.amount && req.query.startAt) {
             db.get().query({
                 sql: `
@@ -133,7 +133,7 @@ var returnRouter = function (io) {
         ORDER BY notifications.id_notification DESC 
         LIMIT ?,?`,
                 nestTables: true
-            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, results, fields) {
+            }, [req.user.id_user, parseInt(req.query.startAt), parseInt(req.query.amount)], function(error, results, fields) {
                 if (results) {
                     let notifications = [];
                     for (let i = 0; i < results.length; i++) {
@@ -169,11 +169,11 @@ var returnRouter = function (io) {
 
     });
 
-    app.get('/:type', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:type', passport.authenticate('jwt'), function(req, res) {
 
         req.checkParams('type', 'Type tem que ser um numero').notEmpty().isInt();
 
-        req.getValidationResult().then(function (result) {
+        req.getValidationResult().then(function(result) {
             if (!result.isEmpty()) {
                 console.log(result.array())
                 res.status(400).send(result.mapped());
@@ -198,7 +198,7 @@ var returnRouter = function (io) {
                      ORDER BY notifications.id_notification DESC`,
                     nestTables: true
                 }, [req.user.id_user, req.params.type],
-                    function (error, results, fields) {
+                    function(error, results, fields) {
                         if (error) {
                             console.log(error);
                             res.json({
@@ -269,8 +269,8 @@ var returnRouter = function (io) {
      * @apiGroup Notifications
      */
 
-    app.get('/not-read/count', passport.authenticate('jwt'), function (req, res) {
-        db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.user.id_user, 0], function (error, results, fields) {
+    app.get('/not-read/count', passport.authenticate('jwt'), function(req, res) {
+        db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type <> 2', [req.user.id_user, 0], function(error, results, fields) {
             console.log(error);
             console.log(results);
             if (results) {
@@ -297,8 +297,8 @@ var returnRouter = function (io) {
      * @apiGroup Notifications
      */
 
-    app.get('/requests/not-read/count', passport.authenticate('jwt'), function (req, res) {
-        db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.user.id_user, 0], function (error, results, fields) {
+    app.get('/requests/not-read/count', passport.authenticate('jwt'), function(req, res) {
+        db.get().query('SELECT Count(id_notification) AS count FROM notifications WHERE id_user = ? AND notifications.read = ? AND notifications.type = 2', [req.user.id_user, 0], function(error, results, fields) {
 
             if (results) {
 
@@ -325,8 +325,8 @@ var returnRouter = function (io) {
      * @apiGroup Notifications
      */
 
-    app.post('/requests/read-all', passport.authenticate('jwt'), function (req, res) {
-        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 2', [req.user.id_user], function (error, results, fields) {
+    app.post('/requests/read-all', passport.authenticate('jwt'), function(req, res) {
+        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type = 2', [req.user.id_user], function(error, results, fields) {
 
             res.json({
                 success: true
@@ -343,8 +343,8 @@ var returnRouter = function (io) {
      */
 
 
-    app.post('/read-all', passport.authenticate('jwt'), function (req, res) {
-        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type <> 2', [req.user.id_user], function (error, results, fields) {
+    app.post('/read-all', passport.authenticate('jwt'), function(req, res) {
+        db.get().query('UPDATE notifications SET notifications.read = 1 WHERE id_user = ? AND type <> 2', [req.user.id_user], function(error, results, fields) {
 
             res.json({
                 success: true

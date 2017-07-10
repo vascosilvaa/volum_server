@@ -1705,12 +1705,19 @@ var returnRouter = function (io) {
                 res.status(400).send(result.mapped());
                 return;
             } else {
-                db.get().query('SELECT * FROM classification WHERE id_user2 = ? and id_vol = ?', [req.params.id, req.body.id_vol], function (err, results, fields) {
+                db.get().query('SELECT * FROM classification WHERE id_user = ? and id_vol = ? AND type = 1', [req.params.id, req.body.id_vol], function (err, results, fields) {
+                    if (results.length > 0) {
+                        res.json({
+                            success: true,
+                            score: results[0].classification
+                        });
+                    } else {
+                        res.json({
+                            success: true,
+                            score: null
+                        });
+                    }
 
-                    res.json({
-                        success: true,
-                        score: results[0].classification
-                    });
 
                 });
             }

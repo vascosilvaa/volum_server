@@ -323,10 +323,7 @@ var returnRouter = function (io) {
                             //CATEGORIAS
                             db.get().query('INSERT INTO vols_has_categories (id_vol, id_category) VALUES (?, ?)', [results.insertId, req.body.category], function (error, category_results, fields) {
 
-                                res.json({
-                                    message: 'Success',
-                                    id_vol: results.insertId
-                                });
+
 
                             });
 
