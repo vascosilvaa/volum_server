@@ -30,22 +30,22 @@ let amount = 0;
 
 
 
-var returnRouter = function (io) {
+var returnRouter = function(io) {
 
 
     function emitNotificationToVolCreator(id_vol, id_user, type) {
         // EMITE NOTIFICAÇAO A CRIADOR DO VOL EM QUESTAO
         db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [id_vol],
-            function (error, results, fields) {
+            function(error, results, fields) {
 
                 let id_creator = results[0].id_user_creator;
                 if (id_creator != id_user) {
 
                     db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_creator, id_user, id_vol, new Date(), type],
-                        function (error, results, fields) {
+                        function(error, results, fields) {
 
                             db.get().query('SELECT photo_url, name from users WHERE id_user = ?', [id_user],
-                                function (error, user, fields) {
+                                function(error, user, fields) {
 
 
                                     let index = loggedUsers.findIndex(x => x.user == id_creator);
@@ -66,12 +66,12 @@ var returnRouter = function (io) {
 
     function removeNotificationFromVolCreator(id_vol, id_user, type) {
         db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [id_vol],
-            function (error, results, fields) {
+            function(error, results, fields) {
 
                 let id_creator = results[0].id_user_creator;
 
                 db.get().query('DELETE FROM notifications WHERE id_user = ? AND id_user2 = ? AND id_vol = ? AND type = ?', [id_creator, id_user, id_vol, type],
-                    function (error, results, fields) {
+                    function(error, results, fields) {
 
 
 
@@ -85,7 +85,7 @@ var returnRouter = function (io) {
         // EMITE NOTIFICAÇAO A UTILIZADOR
 
         return db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES (?, ?, ?, ?, ?)', [id_user, id_user, id_vol, new Date(), type],
-            function (error, results, fields) {
+            function(error, results, fields) {
 
                 let index = loggedUsers.findIndex(x => x.user == id_user);
                 if (index !== -1) {
@@ -105,7 +105,7 @@ var returnRouter = function (io) {
 
 
         db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ?', [user_array],
-            function (error, results, fields) {
+            function(error, results, fields) {
                 console.log("INSERIU NOTIFICAT", results);
                 console.log("EROOR", error)
                 console.log("FIELDS", fields)
@@ -123,7 +123,7 @@ var returnRouter = function (io) {
     }
 
     function getVolScore(id, done) {
-        db.get().query('SELECT AVG(classification) as score, message FROM classification WHERE id_vol = ? AND type = 1', [id], function (err, rows, fields) {
+        db.get().query('SELECT AVG(classification) as score, message FROM classification WHERE id_vol = ? AND type = 1', [id], function(err, rows, fields) {
             if (err) throw err;
             console.log("ROWS", rows);
 
@@ -138,9 +138,9 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.get('/', function (req, res, next) {
+    app.get('/', function(req, res, next) {
 
-        console.log("24421421", req.body);
+        console.log("24421421", req.query);
 
         if (!req.query.amount && !req.query.startAt) {
             res.json({
@@ -177,12 +177,12 @@ var returnRouter = function (io) {
             if (req.query.insurance) {
                 options.sql += ' AND vols.insurance = ' + req.query.insurance + ' ';
             }
-            if (req.query.startDate || req.query.startDate
-            ) {
-                options.sql += ' AND vols.date_begin > ' + req.query.startDate + ' ';
+            if (req.query.startDate) {
+                console.log("AAAAAAAAAAAAAAAAAAAA")
+                options.sql += ' AND DATE(vols.date_begin) > ' + '"' + req.query.startDate + '"' + ' ';
             }
             if (req.query.startDate && req.query.endDate) {
-                options.sql += ` AND vols.date_begin BETWEEN ${req.query.startDate} AND ${req.query.endDate} AND vols.date_end <= ${req.query.endDate}` + ' ';
+                options.sql += ` AND DATE(vols.date_begin) BETWEEN  '${req.query.startDate}' AND '${req.query.endDate}' AND DATE(vols.date_end) <= '${req.query.endDate}'` + ' ';
             }
 
             options.sql += `GROUP BY vols.id_vol 
@@ -192,7 +192,7 @@ var returnRouter = function (io) {
             console.log(options.sql);
 
             db.get().query(options, [parseInt(req.query.startAt), parseInt(req.query.amount)],
-                function (error, results, fields) {
+                function(error, results, fields) {
                     if (error) {
                         res.send({
                             success: false,
@@ -247,7 +247,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/', passport.authenticate('jwt'), function (req, res) {
+    app.post('/', passport.authenticate('jwt'), function(req, res) {
         let result_id;
         console.log("body", req.body)
         let photos = []
@@ -271,7 +271,7 @@ var returnRouter = function (io) {
 
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
                     'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [1, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
-                    function (error, results, fields) {
+                    function(error, results, fields) {
                         if (error) {
                             console.log(error);
                             res.json({
@@ -280,9 +280,9 @@ var returnRouter = function (io) {
                         } else {
                             //SE TIVER MAIS QUE UMA FOTO
                             for (let i = 0; i < req.body.photos.length; i++) {
-                                cloudinary.uploader.upload(req.body.photos[i], function (result) {
+                                cloudinary.uploader.upload(req.body.photos[i], function(result) {
 
-                                    db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function (error, result, field) {
+                                    db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, result.url], function(error, result, field) {
                                         if (error) {
                                             res.json({
                                                 error
@@ -305,7 +305,7 @@ var returnRouter = function (io) {
                             //SE NAO TIVER FOTOS
                             if (req.body.photos.length == 0) {
 
-                                db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'], function (error, result, field) {
+                                db.get().query('INSERT INTO photos (id_vol, url) VALUES( ?, ?)', [results.insertId, 'https://maps.googleapis.com/maps/api/staticmap?center=' + req.body.lat + ',' + req.body.lng + '&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A'], function(error, result, field) {
                                     if (error) {
                                         res.json({
                                             error
@@ -321,7 +321,7 @@ var returnRouter = function (io) {
                             }
 
                             //CATEGORIAS
-                            db.get().query('INSERT INTO vols_has_categories (id_vol, id_category) VALUES (?, ?)', [results.insertId, req.body.category], function (error, category_results, fields) {
+                            db.get().query('INSERT INTO vols_has_categories (id_vol, id_category) VALUES (?, ?)', [results.insertId, req.body.category], function(error, category_results, fields) {
 
 
 
@@ -339,7 +339,7 @@ var returnRouter = function (io) {
     });
 
 
-    app.get('/bounds', function (req, res, next) {
+    app.get('/bounds', function(req, res, next) {
         console.log("query", req.query);
 
         let vols = [];
@@ -369,7 +369,7 @@ var returnRouter = function (io) {
 
 
         console.log(options.sql)
-        db.get().query(options, [a, c, a, c, c, a, c, a, b, d, b, d, d, b, d, b], function (error, results, fields) {
+        db.get().query(options, [a, c, a, c, c, a, c, a, b, d, b, d, d, b, d, b], function(error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send({
@@ -411,7 +411,7 @@ var returnRouter = function (io) {
 
     });
 
-    app.get('/nearby', function (req, res, next) {
+    app.get('/nearby', function(req, res, next) {
         console.log("query", req.query);
 
         let vols = [];
@@ -433,7 +433,7 @@ var returnRouter = function (io) {
 
 
         console.log(options.sql)
-        db.get().query(options, [req.query.lat, req.query.lng, req.query.lat], function (error, results, fields) {
+        db.get().query(options, [req.query.lat, req.query.lng, req.query.lat], function(error, results, fields) {
             if (error) {
                 console.log(error);
                 res.send({
@@ -482,7 +482,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.put('/:id', function (req, res, next) {
+    app.put('/:id', function(req, res, next) {
 
 
         let options = {
@@ -501,7 +501,7 @@ var returnRouter = function (io) {
 
         console.log(req.body);
 
-        db.get().query(options, [req.body.name, req.body.description, req.body.date_end, req.body.start_time, req.body.end_time, req.body.insurance, req.body.lat, req.body.lng, req.params.id], function (error, results, fields) {
+        db.get().query(options, [req.body.name, req.body.description, req.body.date_end, req.body.start_time, req.body.end_time, req.body.insurance, req.body.lat, req.body.lng, req.params.id], function(error, results, fields) {
             console.log(error);
             console.log(fields);
             if (error) {
@@ -523,7 +523,7 @@ var returnRouter = function (io) {
 
     });
 
-    app.get('/test', function (req, res, next) {
+    app.get('/test', function(req, res, next) {
         let url = 'https://maps.googleapis.com/maps/api/staticmap?center=40.6405055,-8.6537539&zoom=13&size=600x300&maptype=roadmap&key=AIzaSyBSjBjb_vmdR0zlScrJM12DQRjc58HMQ7A';
 
         if (url.substring(0, 27) == "https://maps.googleapis.com") {
@@ -534,7 +534,7 @@ var returnRouter = function (io) {
         }
     });
 
-    app.get('/:id', function (req, res, next) {
+    app.get('/:id', function(req, res, next) {
         console.log("query", req.query);
 
 
@@ -544,7 +544,7 @@ var returnRouter = function (io) {
         };
 
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             console.log("RESULTS", results)
 
             if (error) {
@@ -610,7 +610,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/invite', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/invite', passport.authenticate('jwt'), function(req, res) {
         console.log("initial body", typeof req.body.users)
         let user_array = []
         array = JSON.parse(req.body.users)
@@ -626,7 +626,7 @@ var returnRouter = function (io) {
 
             console.log(user_array)
             db.get().query('INSERT INTO notifications (id_user, id_user2, id_vol, date, type) VALUES ? ', [user_array],
-                function (error, results, fields) {
+                function(error, results, fields) {
                     if (error) {
                         console.log(error)
                         res.send({
@@ -646,7 +646,7 @@ var returnRouter = function (io) {
         }
     })
 
-    app.get('/:id/invites', function (req, res) {
+    app.get('/:id/invites', function(req, res) {
 
         if (Number(req.params.id)) {
 
@@ -655,7 +655,7 @@ var returnRouter = function (io) {
             INNER JOIN users ON notifications.id_user = users.id_user 
             INNER JOIN vols ON notifications.id_vol = vols.id_vol 
             WHERE notifications.type = 7 AND notifications.id_vol = ?`, [req.params.id],
-                function (error, results, fields) {
+                function(error, results, fields) {
                     res.send({
                         success: true,
                         results
@@ -666,13 +666,13 @@ var returnRouter = function (io) {
         }
     })
 
-    app.get('/:id/likes/count', function (req, res) {
+    app.get('/:id/likes/count', function(req, res) {
 
         let options = {
             sql: 'SELECT COUNT(*) AS likes FROM likes WHERE id_vol = ? ',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -698,7 +698,7 @@ var returnRouter = function (io) {
 
         });
     });
-    app.get('/:id/checkLike', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/checkLike', passport.authenticate('jwt'), function(req, res) {
         if (!Number(req.params.id)) {
             res.status(400).send({
                 success: false,
@@ -710,7 +710,7 @@ var returnRouter = function (io) {
             db.get().query({
                 sql: 'SELECT COUNT(*) AS count FROM likes WHERE id_user = ? AND id_vol = ?'
             }, [req.user.id_user, req.params.id],
-                function (error, count, fields) {
+                function(error, count, fields) {
                     console.log(count);
                     if (count[0].count == 1) {
                         res.json({
@@ -738,13 +738,13 @@ var returnRouter = function (io) {
 
     app.get('/:id/likes', passport.authenticate('jwt', {
         session: false
-    }), function (req, res) {
+    }), function(req, res) {
 
         let options = {
             sql: 'SELECT users.id_user, users.photo_url, users.name  FROM likes INNER JOIN users ON likes.id_user = users.id_user WHERE id_vol = ?',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -776,8 +776,8 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.get('/list/categories', function (req, res) {
-        db.get().query('SELECT id_category, name FROM vol_categories', function (error, categories, fields) {
+    app.get('/list/categories', function(req, res) {
+        db.get().query('SELECT id_category, name FROM vol_categories', function(error, categories, fields) {
             if (error) {
                 res.json({
                     success: false,
@@ -800,9 +800,9 @@ var returnRouter = function (io) {
      */
 
 
-    app.post('/:id/like', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/like', passport.authenticate('jwt'), function(req, res) {
         db.get().query('INSERT INTO likes (id_user, id_vol, _like) VALUES (?, ?, 1)', [req.user.id_user, req.params.id],
-            function (error, results, fields) {
+            function(error, results, fields) {
                 if (error) {
                     res.json({
                         success: false,
@@ -826,9 +826,9 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/dislike', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/dislike', passport.authenticate('jwt'), function(req, res) {
         db.get().query('DELETE FROM likes WHERE id_user = ? AND id_vol = ?', [req.user.id_user, req.params.id],
-            function (error, results, fields) {
+            function(error, results, fields) {
                 if (error) {
                     res.json({
                         success: false
@@ -852,7 +852,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/comment', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/comment', passport.authenticate('jwt'), function(req, res) {
 
         if (req.body.message) {
 
@@ -864,7 +864,7 @@ var returnRouter = function (io) {
             }
 
             db.get().query('INSERT INTO comments SET ?', [body],
-                function (error, results, fields) {
+                function(error, results, fields) {
                     console.log(error);
                     if (!error) {
 
@@ -900,14 +900,14 @@ var returnRouter = function (io) {
      */
 
 
-    app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/comments', passport.authenticate('jwt'), function(req, res) {
 
         db.get().query(`
                         SELECT comments.id_comment, comments.message, comments.date, users.photo_url, users.name, users.id_user FROM comments 
                         INNER JOIN users ON comments.id_user = users.id_user 
                         WHERE id_vol = ?`,
 
-            [req.params.id], function (error, comments, fields) {
+            [req.params.id], function(error, comments, fields) {
                 if (error) {
                     res.json({
                         success: false
@@ -922,9 +922,9 @@ var returnRouter = function (io) {
             });
     });
 
-    app.get('/:id/comments', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/comments', passport.authenticate('jwt'), function(req, res) {
 
-        db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function (error, comments, fields) {
+        db.get().query('SELECT * FROM comments INNER JOIN users ON comments.id_user = users.id_user WHERE id_vol = ? ', [req.params.id], function(error, comments, fields) {
             if (error) {
                 res.json({
                     success: false
@@ -939,13 +939,13 @@ var returnRouter = function (io) {
         });
     });
 
-    app.get('/:id/comments/count', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/comments/count', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT COUNT(*) AS count FROM comments WHERE id_vol = ? ',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -978,7 +978,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/apply', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/apply', passport.authenticate('jwt'), function(req, res) {
         if (!req.body) {
             res.json({
                 success: false,
@@ -986,7 +986,7 @@ var returnRouter = function (io) {
             });
 
         } else {
-            db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id], function (error, results, fields) {
+            db.get().query('SELECT id_user_creator from vols WHERE id_vol = ?', [req.params.id], function(error, results, fields) {
                 if (results[0].id_user_creator == req.user.id_user) {
 
                     res.json({
@@ -997,7 +997,7 @@ var returnRouter = function (io) {
                 } else {
 
                     db.get().query('INSERT INTO user_vol (`id_user`, `id_vol`) VALUES (?, ?)', [req.user.id_user, req.params.id],
-                        function (error, results, fields) {
+                        function(error, results, fields) {
                             if (error) {
                                 console.log(error);
                                 res.json({
@@ -1029,7 +1029,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/checkState', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/checkState', passport.authenticate('jwt'), function(req, res) {
         if (!req.body) {
             res.json({
                 success: false,
@@ -1042,7 +1042,7 @@ var returnRouter = function (io) {
             });
         } else {
             db.get().query("SELECT * FROM user_vol WHERE id_user = ? AND id_vol = ?", [req.body.id_user, req.params.id],
-                function (error, results, fields) {
+                function(error, results, fields) {
                     if (error) {
                         console.log(error);
                     } else if (results) {
@@ -1084,7 +1084,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.get('/:id/applies/confirmed', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/applies/confirmed', passport.authenticate('jwt'), function(req, res) {
 
         let users = [];
 
@@ -1109,7 +1109,7 @@ var returnRouter = function (io) {
                 nestTables: true
             };
 
-            db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
+            db.get().query(options, [req.params.id, req.query.amount], function(error, results, fields) {
                 console.log("results", results);
                 if (error) {
                     console.log(error);
@@ -1134,13 +1134,13 @@ var returnRouter = function (io) {
             });
         }
     });
-    app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/applies/confirmed/count', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 1 AND user_vol.active = 1 AND user_vol.id_vol = ?',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -1176,7 +1176,7 @@ var returnRouter = function (io) {
     // CONFIRM = 2 -> NEGADO
 
 
-    app.get('/:id/applies/candidates', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/applies/candidates', passport.authenticate('jwt'), function(req, res) {
 
         console.log("QUEERY", req.query);
         console.log("a")
@@ -1201,7 +1201,7 @@ var returnRouter = function (io) {
                 nestTables: true
             };
 
-            db.get().query(options, [req.params.id, req.query.amount], function (error, results, fields) {
+            db.get().query(options, [req.params.id, req.query.amount], function(error, results, fields) {
 
                 console.error(error)
                 if (error) {
@@ -1234,13 +1234,13 @@ var returnRouter = function (io) {
 
         }
     });
-    app.get('/:id/applies/candidates/count', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/applies/candidates/count', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT COUNT(*) AS count FROM user_vol WHERE user_vol.confirm = 0 AND user_vol.active = 1 AND user_vol.id_vol = ?',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -1274,7 +1274,7 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/:id/applies/accept', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/applies/accept', passport.authenticate('jwt'), function(req, res) {
 
         if (!Number(req.params.id)) {
             res.json({
@@ -1282,7 +1282,7 @@ var returnRouter = function (io) {
                 message: 'Id Inválido'
             });
         } else {
-            db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
+            db.get().query('UPDATE user_vol SET confirm = 1 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function(error, results, fields) {
                 if (error) {
                     res.json({
                         success: false,
@@ -1314,7 +1314,7 @@ var returnRouter = function (io) {
     });
 
 
-    app.post('/:id/applies/deny', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/applies/deny', passport.authenticate('jwt'), function(req, res) {
         console.log(req.params.id);
         if (!Number(req.params.id)) {
             res.json({
@@ -1322,7 +1322,7 @@ var returnRouter = function (io) {
                 message: 'Id Inválido'
             });
         } else {
-            db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function (error, results, fields) {
+            db.get().query('UPDATE user_vol SET confirm = 2 WHERE id_vol = ? AND id_user = ?', [req.params.id, req.body.id_user], function(error, results, fields) {
                 if (error) {
                     res.json({
                         success: false,
@@ -1350,14 +1350,14 @@ var returnRouter = function (io) {
 
     });
 
-    app.post('/:id/applies/cancel', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/applies/cancel', passport.authenticate('jwt'), function(req, res) {
         if (!Number(req.params.id)) {
             res.json({
                 success: false,
                 message: 'Id Inválido'
             });
         } else {
-            db.get().query('DELETE FROM user_vol WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function (error, results, fields) {
+            db.get().query('DELETE FROM user_vol WHERE id_vol = ? AND id_user = ?', [req.params.id, req.user.id_user], function(error, results, fields) {
                 console.log(results);
                 if (error) {
                     res.json({
@@ -1397,7 +1397,7 @@ var returnRouter = function (io) {
      * @apiParam {String}  id ID do Vol  
      * @apiGroup Voluntariados 
      */
-    app.post('/:id/finish', passport.authenticate('jwt'), function (req, res) {
+    app.post('/:id/finish', passport.authenticate('jwt'), function(req, res) {
         console.log("derp", req.body);
         if (!req.params.id || !req.body.users) {
             res.status(400).json({
@@ -1422,7 +1422,7 @@ var returnRouter = function (io) {
             };
 
 
-            db.get().query(options, [req.params.id], function (error, results, fields) {
+            db.get().query(options, [req.params.id], function(error, results, fields) {
 
                 if (error) {
                     res.send({
@@ -1434,7 +1434,7 @@ var returnRouter = function (io) {
 
                     db.get().query({
                         sql: 'INSERT INTO classification (id_user, id_user2, id_vol ,classification, message) VALUES ?',
-                    }, [array], function (error, results, fields) {
+                    }, [array], function(error, results, fields) {
                         if (error) {
                             console.log(error);
                             throw error;
@@ -1469,13 +1469,13 @@ var returnRouter = function (io) {
 
     });
 
-    app.get('/:id/checkScoreState', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/checkScoreState', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT * from classification WHERE id_user = ? AND id_vol = ?',
         };
 
-        db.get().query(options, [req.user.id_user, req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.user.id_user, req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -1505,13 +1505,13 @@ var returnRouter = function (io) {
     });
 
 
-    app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/score/list', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT DISTINCT classification.classification, classification.id_user2 FROM classification INNER JOIN user_vol ON classification.id_vol = user_vol.id_vol WHERE classification.id_vol = ?',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -1531,13 +1531,13 @@ var returnRouter = function (io) {
         });
     });
 
-    app.get('/:id/score/list', passport.authenticate('jwt'), function (req, res) {
+    app.get('/:id/score/list', passport.authenticate('jwt'), function(req, res) {
 
         let options = {
             sql: 'SELECT DISTINCT classification.classification, classification.id_user2 FROM classification INNER JOIN user_vol ON classification.id_vol = user_vol.id_vol WHERE classification.id_vol = ?',
         };
 
-        db.get().query(options, [req.params['id']], function (error, results, fields) {
+        db.get().query(options, [req.params['id']], function(error, results, fields) {
             if (error) {
                 res.send({
                     success: false,
@@ -1558,9 +1558,9 @@ var returnRouter = function (io) {
     });
 
 
-    app.get('/:id/score', function (req, res) {
+    app.get('/:id/score', function(req, res) {
 
-        getVolScore(req.params.id, function (score) {
+        getVolScore(req.params.id, function(score) {
             res.json({
                 success: true,
                 score
@@ -1569,10 +1569,10 @@ var returnRouter = function (io) {
     });
 
 
-    app.get('/:id/score/message', function (req, res) {
+    app.get('/:id/score/message', function(req, res) {
         let messsage;
 
-        db.get().query('SELECT message FROM classification WHERE id_vol = ? AND type = 0 LIMIT 1', [req.params.id], function (err, rows, fields) {
+        db.get().query('SELECT message FROM classification WHERE id_vol = ? AND type = 0 LIMIT 1', [req.params.id], function(err, rows, fields) {
             if (err) throw err;
 
             message = rows[0].message;
@@ -1584,18 +1584,18 @@ var returnRouter = function (io) {
     });
 
 
-    app.post('/delete', passport.authenticate('jwt'), function (req, res) {
+    app.post('/delete', passport.authenticate('jwt'), function(req, res) {
         if (!Number(req.body.id_vol)) {
             res.json({
                 success: false,
                 message: 'Id Inválido'
             });
         } else {
-            db.get().query('SELECT id_user_creator FROM vols WHERE id_vol = ? LIMIT 1', [req.body.id_vol], function (error, results, fields) {
+            db.get().query('SELECT id_user_creator FROM vols WHERE id_vol = ? LIMIT 1', [req.body.id_vol], function(error, results, fields) {
 
                 if (results) {
                     if (results[0].id_user_creator == req.user.id_user) {
-                        db.get().query('UPDATE vols SET deleted = ? WHERE id_vol = ?', [1, req.body.id_vol], function (error, results, fields) {
+                        db.get().query('UPDATE vols SET deleted = ? WHERE id_vol = ?', [1, req.body.id_vol], function(error, results, fields) {
                             if (error) throw error;
                             res.json({
                                 success: true,
@@ -1625,9 +1625,9 @@ var returnRouter = function (io) {
      * @apiGroup Voluntariados 
      */
 
-    app.post('/undelete', passport.authenticate('jwt'), function (req, res) {
+    app.post('/undelete', passport.authenticate('jwt'), function(req, res) {
         var id = req.body.id;
-        db.get().query('UPDATE vols SET deleted = ? WHERE id = ?', [0, id], function (error, results, fields) {
+        db.get().query('UPDATE vols SET deleted = ? WHERE id = ?', [0, id], function(error, results, fields) {
             if (error) throw error;
             res.json({
                 message: 'Success',

@@ -126,7 +126,6 @@ export class AppComponent implements OnInit {
         this.socketService.onNotification().subscribe(res => {
           this.newNotificationCount++;
           console.log("NEW NOTIFICATION", res);
-          this.notification.play();
 
         });
 

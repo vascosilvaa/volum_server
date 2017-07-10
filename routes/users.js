@@ -1797,7 +1797,7 @@ var returnRouter = function (io) {
          FROM classification 
          INNER JOIN users ON classification.id_user = users.id_user
           INNER JOIN vols ON classification.id_vol = vols.id_vol
-         WHERE classification.id_user2 = ? ORDER BY date DESC
+         WHERE classification.id_user2 = ? ORDER BY date ASC    
                                     LIMIT ?, ?`, nestTables: true
             }, [req.params.id, parseInt(req.query.startAt), parseInt(req.query.amount)], function (error, rows, fields) {
                 console.log(rows)

@@ -308,6 +308,7 @@ export class EditModalComponent implements OnInit {
           console.log('erro')
         } else {
           console.log('updated');
+          this.dialog.close();
         }
       });
 
