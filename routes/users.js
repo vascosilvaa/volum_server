@@ -150,8 +150,8 @@ var returnRouter = function (io) {
         let photo_url, cover_photo;
 
         if (req.body.cover_photo && !req.body.photo_url) {
-            cloudinary.uploader.upload(req.body.photo_url, function (result) {
-                photo_url = result.url;
+            cloudinary.uploader.upload(req.body.cover_photo, function (result) {
+                cover_photo = result.url;
 
                 db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
                     console.log(error);
@@ -217,10 +217,30 @@ var returnRouter = function (io) {
                         throw new Error(error);
                     } else {
 
-                        res.send({
-                            success: true,
-                            results
-                        })
+                        cloudinary.uploader.upload(req.body.photo_url, function (result) {
+                            photo_url = result.url;
+
+
+                            db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                                console.log(error);
+                                console.log(fields);
+                                if (error) {
+                                    res.send({
+                                        success: false,
+                                        message: error
+                                    })
+                                    throw new Error(error);
+                                } else {
+
+                                    res.send({
+                                        success: true,
+                                        results
+                                    })
+
+
+                                }
+                            });
+                        });
 
 
                     }
