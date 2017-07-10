@@ -149,31 +149,7 @@ var returnRouter = function (io) {
 
         let photo_url, cover_photo;
 
-        if (req.body.cover_photo) {
-            cloudinary.uploader.upload(req.body.cover_photo, function (result) {
-                cover_photo = result.url;
-
-
-                db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
-                    console.log(error);
-                    console.log(fields);
-                    if (error) {
-                        res.send({
-                            success: false,
-                            message: error
-                        })
-                        throw new Error(error);
-                    } else {
-
-
-                    }
-                });
-            });
-
-
-        }
-        if (req.body.photo_url) {
-
+        if (req.body.cover_photo && !req.body.photo_url) {
             cloudinary.uploader.upload(req.body.photo_url, function (result) {
                 photo_url = result.url;
 
@@ -198,6 +174,62 @@ var returnRouter = function (io) {
                 });
             });
         }
+
+        if (!req.body.cover_photo && req.body.photo_url) {
+            cloudinary.uploader.upload(req.body.photo_url, function (result) {
+                photo_url = result.url;
+
+                db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                    console.log(error);
+                    console.log(fields);
+                    if (error) {
+                        res.send({
+                            success: false,
+                            message: error
+                        })
+                        throw new Error(error);
+                    } else {
+
+                        res.send({
+                            success: true,
+                            results
+                        })
+
+
+                    }
+                });
+            });
+        }
+
+        if (req.body.cover_photo && req.body.photo_url) {
+            cloudinary.uploader.upload(req.body.cover_photo, function (result) {
+                cover_photo = result.url;
+
+
+                db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
+                    console.log(error);
+                    console.log(fields);
+                    if (error) {
+                        res.send({
+                            success: false,
+                            message: error
+                        })
+                        throw new Error(error);
+                    } else {
+
+                        res.send({
+                            success: true,
+                            results
+                        })
+
+
+                    }
+                });
+            });
+
+
+        }
+
         if (!req.body.photo_url && !req.body.cover_photo) {
             db.get().query(options, [req.body.name, req.body.gender, req.body.email, req.body.about, photo_url, cover_photo, req.body.birth_date, req.body.country, req.body.region, req.user.id_user], function (error, results, fields) {
                 console.log(error);
