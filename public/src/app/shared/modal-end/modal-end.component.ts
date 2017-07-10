@@ -64,7 +64,7 @@ export class ModalEndComponent implements OnInit {
 
         })
     }
-    getNumber = function(num) {
+    getNumber = function (num) {
         let number = Math.round(num);
         if (num < 0) {
             number = Math.abs(number);
@@ -137,6 +137,19 @@ export class ModalEndComponent implements OnInit {
 
             }
         });
+    }
+
+    ev(i, classification) {
+        console.log(i, classification)
+        this.users[i].classification = classification + 1;
+    }
+
+    evAll(classification) {
+        this.all_classification = (classification + 1);
+
+        for (let i = 0; i < this.users.length; i++) {
+            this.users[i].classification = (classification + 1);
+        }
     }
 
     submitTestimony() {
