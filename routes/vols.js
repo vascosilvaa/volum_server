@@ -267,10 +267,18 @@ var returnRouter = function (io) {
                 })
             } else {
 
+                let type;
+
+                if (req.user.type_user == 1) {
+                    type = 2
+                } else {
+                    type = 1;
+                }
+
 
 
                 db.get().query('INSERT INTO vols (id_vol_type, id_user_creator, name, description, date_creation, date_begin, date_end, duration, start_time, end_time, lat, lng, insurance)' +
-                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [1, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
+                    'VALUES ( ? , ? , ? , ? , ? , ? , ?, ? , ?, ? , ? , ?, ?)', [type, req.user.id_user, req.body.name, req.body.description, new Date(), req.body.date_begin, req.body.date_end, req.body.duration, req.body.start_time, req.body.end_time, req.body.lat, req.body.lng, req.body.insurance],
                     function (error, results, fields) {
                         if (error) {
                             console.log(error);

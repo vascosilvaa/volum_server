@@ -1,6 +1,7 @@
 <div class="search-content">
     <div class="search-input">
-        <input [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)" placeholder="Pesquisa pessoas, instituições e ações de voluntariado">  
+        <input [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" (keyup.enter)="navigate(model.id, model.type)"
+            placeholder="Pesquisa pessoas, instituições e ações de voluntariado">
     </div>
     <div class="search-button">
         <button type="button" class="btn btn-outline-primary" *ngIf="login==1" (click)="goToSearch()">Procurar</button>
@@ -11,27 +12,18 @@
 
 <ng-template #rt let-r="result" let-t="term">
 
-        <div *ngIf="login==0 && r.type==0" class="search-result pointer" (click)="navigate(r.id, r.type)">
-            <div class="search-img">
-                <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
-            </div>
-            <div class="search-text">
-                <h6 class="search-name">{{ r.name}}</h6>
-                <p *ngIf="r.type==0"> Ação de Voluntariado</p>
-            </div>
-        </div>    
 
-        <div *ngIf="login==1" class="search-result pointer" (click)="navigate(r.id, r.type)">
-            <div class="search-img">
-                <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
-                <img *ngIf="r.type==1 || r.type==2" [src]="r.photo_url">
-            </div>
-            <div class="search-text">
-                <h6 class="search-name">{{ r.name}}</h6>
-                <p *ngIf="r.type==0"> Ação de Voluntariado</p>
-                <p *ngIf="r.type==1"> Instituição</p>
-                <p *ngIf="r.type==2"> Voluntário</p>
-            </div>
-        </div>    
-  
+    <div class="search-result pointer" (click)="navigate(r.id, r.type)">
+        <div class="search-img">
+            <img *ngIf="r.type==0" src="http://nevesdealmeida.pt/wp-content/uploads/2016/06/Voluntariado.jpg">
+            <img *ngIf="r.type==1 || r.type==2" [src]="r.photo_url">
+        </div>
+        <div class="search-text">
+            <h6 class="search-name">{{ r.name}}</h6>
+            <p *ngIf="r.type==0"> Ação de Voluntariado</p>
+            <p *ngIf="r.type==1"> Instituição</p>
+            <p *ngIf="r.type==2"> Voluntário</p>
+        </div>
+    </div>
+
 </ng-template>
