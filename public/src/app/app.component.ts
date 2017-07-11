@@ -43,11 +43,13 @@ export class AppComponent implements OnInit {
   public sum: number = 5;
 
   //SEARCH
-  model: any ;
+  model: any;
   searching = false;
   searchFailed = false;
   public showSearch: boolean;
   public feedActive: boolean;
+
+  public login: any;
 
   constructor(overlay: Overlay, public route: ActivatedRoute, vcRef: ViewContainerRef, public modal: Modal,
     private router: Router, private auth: AuthenticationService,
@@ -77,6 +79,13 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+
+    if (this.auth.isAuthenticated()) {
+      this.login = 1;
+    } else {
+      this.login = 0;
+    }
+
     this.showSearch = false;
 
     this.router.events.subscribe((res) => {
@@ -92,10 +101,7 @@ export class AppComponent implements OnInit {
       }
 
     });
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      this.router.navigateByUrl('/mobile');
-    } else {
-    }
+
 
     moment.locale('pt-pt');
     moment.updateLocale('pt', {
@@ -118,6 +124,14 @@ export class AppComponent implements OnInit {
     this.getUser();
 
   }
+
+  formatter = (x: {
+    name: string
+    registration: {
+      name: string
+    }
+  }) => x.name || x.registration.name;
+
 
   getUser() {
     if (this.auth.isAuthenticated()) {
@@ -155,7 +169,7 @@ export class AppComponent implements OnInit {
   }
 
   getUsersAndLastMessage() {
-    if(this.conversations.length==0) {
+    if (this.conversations.length == 0) {
       this.messagesReady = true;
     }
     for (let i = 0; i < this.conversations.length; i++) {
@@ -246,7 +260,7 @@ export class AppComponent implements OnInit {
   }
 
   goToMessagesAll() {
-    this.router.navigate(['./chat' ]);
+    this.router.navigate(['./chat']);
   }
 
 
@@ -302,11 +316,18 @@ export class AppComponent implements OnInit {
       .do(() => this.searching = false);
 
   navigate(id, type) {
-    this.model="";
-    if (type == 1 || type == 2) {
-      this.router.navigate(['profile/' + id + '/about'])
-    } else if (type == 0) {
-      this.router.navigate(['action/' + id])
+    if (this.login == 1) {
+
+      if (type == 1 || type == 2) {
+        this.model = "";
+        this.router.navigate(['profile/' + id + '/about']);
+      } else if (type == 0) {
+        this.model = "";
+        this.router.navigate(['action/' + id])
+      }
+
+    } else {
+      this.openLogin();
     }
   }
 

@@ -50,10 +50,8 @@
                     <div class="user-interests">
                         <h6>Áreas de interesse</h6>
                         <div class="ui-block-interests">
-                            <div>Desporto</div>
-                            <div>Ação social</div>
-                            <div>Saúde</div>
-                            <div>Apoio ao Domicilio</div>
+                            <div>Educação</div>
+                            
                         </div>
                     </div>
                     <div class="social-network" *ngIf="user.facebook_id || user.google_id || user.twitter_id">
@@ -101,60 +99,8 @@
         </div>
 
         <div class="col-lg-3">
-            <div *ngIf="user?.type==1" class="ui-block">
-                <div class="ui-block-title">
-                    <h6>Top voluntários</h6>
-                </div>
-                <ul class="top-volun-list">
-                    <li>
-                        <div class="top-user-picture">
-                            <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/18699402_1943555465856845_4639652155845259629_o.jpg?oh=b3f1ca3a89e54e4c4e5213b81770031b&oe=599CBAB4">
-                        </div>
-                        <div class="top-user-text">
-                            <p class="classfication-name">André Martins</p>
-                            <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon> 
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="top-user-picture">
-                            <img src="http://res.cloudinary.com/dbbmwchww/image/upload/v1496342607/11220863_905757172805944_8420142272234467572_n_-_Copy_m0zmgi.jpg">
-                        </div>
-                        <div class="top-user-text">
-                            <p class="classfication-name">Pedro Araújo</p>
-                            <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_border</md-icon>
-                      </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="top-user-picture">
-                            <img src="https://scontent.fopo2-2.fna.fbcdn.net/v/t31.0-8/16836372_1540263429321679_3428357649124928065_o.jpg?oh=cb7f6781e12ca0be479ce6a4c86079da&oe=599EDE6C">
-                        </div>
-                        <div class="top-user-text">
-                            <p class="classfication-name">Vasco Silva</p>
-                            <span>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                          <md-icon class="small-star">star_rate</md-icon>
-                      </span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
 
-            <div *ngIf="user?.type==2" class="ui-block">
+            <div class="ui-block">
                 <div class="ui-block-title">
                     <h6>Colaboradores</h6>
                 </div>
